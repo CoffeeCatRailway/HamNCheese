@@ -102,6 +102,17 @@ public class HNCMod
         generator.addProvider(new HNCItemModels(generator));
     }
 
+    @SubscribeEvent
+    public void onProjectileImpact(ProjectileImpactEvent.Throwable event) {
+        if (event.getThrowable() instanceof EggEntity && event.getRayTraceResult().getType() != RayTraceResult.Type.MISS) {
+            EggEntity egg = (EggEntity) event.getThrowable();
+            World level = egg.level;
+            if (!level.isClientSide)
+                if (MathHelper.nextDouble(level.random, 0d, 1d) <= SERVER_CONFIG.crackedEggSpawnChance.get())
+                    level.addFreshEntity(new ItemEntity(level, egg.getX(), egg.getY(), egg.getZ(), new ItemStack(HNCItems.CRACKED_EGG.get())));
+        }
+    }
+
     public static ResourceLocation getLocation(String path)
     {
         return new ResourceLocation(HNCMod.MOD_ID, path);
