@@ -1,7 +1,7 @@
 modLoader="javafml"
 loaderVersion="[36,)"
 license="https://www.gnu.org/licenses/gpl-3.0.en.html"
-issueTrackerURL="https://github.com/CoffeeCatRailway/GITHUB REPO/issues"
+issueTrackerURL="https://github.com/CoffeeCatRailway/HamNCheese/issues"
 
 [[mods]]
 modId="hamncheese"
@@ -11,7 +11,7 @@ logoFile="logo.png"
 # credits=""
 authors="${author}"
 description='''
-
+Credit to 'https://github.com/SystemZeeWorkshop/modding-template'
 '''
 
 [[dependencies.hamncheese]]
