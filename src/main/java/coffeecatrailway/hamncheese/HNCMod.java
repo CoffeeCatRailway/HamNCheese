@@ -77,6 +77,7 @@ public class HNCMod
         MinecraftForge.EVENT_BUS.register(this);
 
         HNCItems.load(bus);
+        HNCRecipes.load(bus);
     }
 
     private void onClientSetup(FMLClientSetupEvent event)

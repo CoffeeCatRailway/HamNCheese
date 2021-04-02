@@ -1,8 +1,10 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import coffeecatrailway.hamncheese.common.item.CraftingToolItem;
 import coffeecatrailway.hamncheese.common.item.GreenFoodItem;
+import coffeecatrailway.hamncheese.common.item.SandwichItem;
 import coffeecatrailway.hamncheese.datagen.HNCLanguage;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
@@ -67,6 +69,8 @@ public class HNCItems
 
     public static final RegistryObject<Item> BACON = register("bacon", "Raw Bacon", prop -> new Item(prop.food(HNCFoods.BACON).stacksTo(32)));
     public static final RegistryObject<Item> COOKED_BACON = register("cooked_bacon", "Bacon", prop -> new Item(prop.food(HNCFoods.COOKED_BACON).stacksTo(32)));
+
+    public static final RegistryObject<SandwichItem> SANDWICH = register("sandwich", prop -> new SandwichItem(prop.setISTER(() -> SandwichItemRenderer::new).tab(null).stacksTo(4)));
 
     public static final RegistryObject<Item> PINEAPPLE = register("pineapple", prop -> new Item(prop.food(HNCFoods.PINEAPPLE).stacksTo(16))); // TODO: Add plant
     public static final RegistryObject<Item> PINEAPPLE_RING = register("pineapple_ring", prop -> new Item(prop.food(HNCFoods.PINEAPPLE_RING).stacksTo(32)));

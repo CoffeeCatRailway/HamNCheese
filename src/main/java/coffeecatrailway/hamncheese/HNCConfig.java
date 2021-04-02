@@ -31,6 +31,8 @@ public class HNCConfig
     public static class Server
     {
         public ForgeConfigSpec.DoubleValue crackedEggSpawnChance;
+        public ForgeConfigSpec.IntValue maxSandwichIngredientCraftCount;
+
         public ForgeConfigSpec.DoubleValue cookedFoodModifier;
 
         public Server(ForgeConfigSpec.Builder builder)
@@ -38,6 +40,8 @@ public class HNCConfig
             builder.comment("Server Configurable Settings").push("item");
             this.crackedEggSpawnChance = builder.comment("The chance of a cracked egg dropping from a thrown egg").translation(CONFIG + "item.crackedEggSpawnChance")
                     .defineInRange("crackedEggSpawnChance", .25d, 0d, 1d);
+            this.maxSandwichIngredientCraftCount = builder.comment("The amount of foods that can be crafted into a sandwich").translation(CONFIG + "item.maxSandwichIngredientCraftCount")
+                    .defineInRange("maxSandwichIngredientCraftCount", 8, 1, 8);
 
             builder.push("modifier");
             this.cookedFoodModifier = builder.comment("The amount of how much the saturation changes when grilled/cooked").translation(CONFIG + "item.cookedFoodModifier")
