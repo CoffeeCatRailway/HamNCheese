@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "g",
+    "s",
+    "s"
+  ],
+  "key": {
+    "s": {
+      "tag": "forge:rods/wooden"
+    },
+    "g": {
+      "tag": "forge:gears/wooden"
+    }
+  },
+  "result": {
+    "item": "hamncheese:curdler"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:pizza_base"
+    ]
+  },
+  "criteria": {
+    "has_dough": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:dough"
+          }
+        ]
+      }
+    },
+    "has_rolling_pin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:rolling_pin"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:pizza_base"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dough",
+      "has_rolling_pin",
+      "has_the_recipe"
+    ]
+  ]
+}

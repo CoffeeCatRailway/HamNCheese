@@ -52,6 +52,52 @@ public class HNCItemModels implements IDataProvider
 
     private void register()
     {
+        /*
+         * Crafting Ingredients
+         */
+        this.generateFlatItem(HNCItems.WOODEN_GEAR.get(), StockModelShapes.FLAT_ITEM);
+
+        /*
+         * Tools
+         */
+        this.generateFlatItem(HNCItems.CURDLER.get(), StockModelShapes.FLAT_HANDHELD_ITEM);
+        this.generateFlatItem(HNCItems.ROLLING_PIN.get(), StockModelShapes.FLAT_HANDHELD_ITEM);
+        this.generateFlatItem(HNCItems.GRIND_STONES.get(), StockModelShapes.FLAT_HANDHELD_ITEM);
+        this.generateFlatItem(HNCItems.KNIFE.get(), StockModelShapes.FLAT_HANDHELD_ITEM);
+
+        /*
+         * Foods
+         */
+        this.generateFlatItem(HNCItems.BLOCK_OF_CHEESE.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.CHEESE_SLICE.get(), StockModelShapes.FLAT_ITEM);
+
+        this.generateFlatItem(HNCItems.ROCK_SALT.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.FLOUR.get(), StockModelShapes.FLAT_ITEM);
+
+        this.generateFlatItem(HNCItems.DOUGH.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.PIZZA_BASE.get(), StockModelShapes.FLAT_ITEM);
+
+        this.generateFlatItem(HNCItems.UNBAKED_BREAD.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.BREAD_SLICE.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.TOAST.get(), StockModelShapes.FLAT_ITEM);
+
+        this.generateFlatItem(HNCItems.UNBAKED_CRACKER.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.CRACKER.get(), StockModelShapes.FLAT_ITEM); // TODO: Change for custom crackers
+
+        this.generateFlatItem(HNCItems.CRACKED_EGG.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.COOKED_EGG.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.GREEN_EGG.get(), StockModelShapes.FLAT_ITEM);
+
+        this.generateFlatItem(HNCItems.HAM_SLICE.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.COOKED_HAM_SLICE.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.GREEN_HAM_SLICE.get(), StockModelShapes.FLAT_ITEM);
+
+        this.generateFlatItem(HNCItems.BACON.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.COOKED_BACON.get(), StockModelShapes.FLAT_ITEM);
+
+        this.generateFlatItem(HNCItems.PINEAPPLE.get(), HNCMod.getLocation("block/pineapple_plant_stage_4"), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.PINEAPPLE_RING.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.PINEAPPLE_BIT.get(), StockModelShapes.FLAT_ITEM);
     }
 
     private void generateFlatItem(Item item, ModelsUtil modelsUtil)

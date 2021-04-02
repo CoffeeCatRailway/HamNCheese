@@ -20,6 +20,15 @@ import javax.annotation.Nullable;
  */
 public class HNCItemTags extends ItemTagsProvider
 {
+    public static final ITag.INamedTag<Item> GEARS = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "gears"));
+    public static final ITag.INamedTag<Item> GEARS_WOODEN = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "gears/wooden"));
+
+    public static final ITag.INamedTag<Item> WHEAT = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "wheat"));
+    public static final ITag.INamedTag<Item> SUGAR = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "sugar"));
+
+    public static final ITag.INamedTag<Item> DOUGH = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "dough"));
+    public static final ITag.INamedTag<Item> SALT = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "salt"));
+    public static final ITag.INamedTag<Item> FLOUR = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "flour"));
 
     public HNCItemTags(DataGenerator generator, BlockTagsProvider provider, @Nullable ExistingFileHelper fileHelper)
     {
@@ -29,5 +38,16 @@ public class HNCItemTags extends ItemTagsProvider
     @Override
     protected void addTags()
     {
+        this.tag(GEARS_WOODEN).add(HNCItems.WOODEN_GEAR.get());
+        this.tag(GEARS).addTag(GEARS_WOODEN);
+
+        this.tag(WHEAT).add(Items.WHEAT);
+        this.tag(SUGAR).add(Items.SUGAR);
+
+        this.tag(DOUGH).add(HNCItems.DOUGH.get(), HNCItems.PIZZA_BASE.get());
+        this.tag(SALT).add(HNCItems.ROCK_SALT.get());
+        this.tag(FLOUR).add(HNCItems.FLOUR.get());
+
+        this.tag(Tags.Items.EGGS).add(HNCItems.CRACKED_EGG.get(), HNCItems.COOKED_EGG.get(), HNCItems.GREEN_EGG.get());
     }
 }

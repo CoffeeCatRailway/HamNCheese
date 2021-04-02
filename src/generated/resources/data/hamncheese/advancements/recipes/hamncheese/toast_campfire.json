@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:toast_campfire"
+    ]
+  },
+  "criteria": {
+    "has_bread_slice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:bread_slice"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:toast_campfire"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bread_slice",
+      "has_the_recipe"
+    ]
+  ]
+}

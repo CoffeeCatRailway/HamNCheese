@@ -30,10 +30,20 @@ public class HNCConfig
 
     public static class Server
     {
+        public ForgeConfigSpec.DoubleValue crackedEggSpawnChance;
+        public ForgeConfigSpec.DoubleValue cookedFoodModifier;
+
         public Server(ForgeConfigSpec.Builder builder)
         {
-//            builder.comment("Server Configurable Settings");
-//            builder.pop();
+            builder.comment("Server Configurable Settings").push("item");
+            this.crackedEggSpawnChance = builder.comment("The chance of a cracked egg dropping from a thrown egg").translation(CONFIG + "item.crackedEggSpawnChance")
+                    .defineInRange("crackedEggSpawnChance", .25d, 0d, 1d);
+
+            builder.push("modifier");
+            this.cookedFoodModifier = builder.comment("The amount of how much the saturation changes when grilled/cooked").translation(CONFIG + "item.cookedFoodModifier")
+                    .defineInRange("cookedFoodModifier", 1.5d, 0.5d, 10d);
+
+            builder.pop(2);
         }
     }
 }

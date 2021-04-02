@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ddd"
+  ],
+  "key": {
+    "d": {
+      "tag": "forge:dough"
+    }
+  },
+  "result": {
+    "item": "hamncheese:unbaked_bread",
+    "count": 2
+  }
+}

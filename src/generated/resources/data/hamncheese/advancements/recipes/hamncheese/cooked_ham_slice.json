@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:cooked_ham_slice"
+    ]
+  },
+  "criteria": {
+    "has_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:knife"
+          }
+        ]
+      }
+    },
+    "has_cooked_porkchop": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:cooked_porkchop"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:cooked_ham_slice"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_knife",
+      "has_cooked_porkchop",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,21 +1,33 @@
 package coffeecatrailway.hamncheese;
 
+import coffeecatrailway.hamncheese.datagen.*;
 import coffeecatrailway.hamncheese.registry.HNCItems;
-import com.tterrag.registrate.Registrate;
-import com.tterrag.registrate.providers.ProviderType;
-import net.minecraft.block.Blocks;
+import coffeecatrailway.hamncheese.registry.HNCRecipes;
+import io.github.ocelot.sonar.Sonar;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
@@ -31,14 +43,13 @@ public class HNCMod
     public static HNCConfig.Common COMMON_CONFIG;
     public static HNCConfig.Server SERVER_CONFIG;
 
-    public static Registrate REGISTRATE;
-
     public static final ItemGroup GROUP_ALL = new ItemGroup(HNCMod.MOD_ID)
     {
         @Override
-        public ItemStack createIcon()
+        @OnlyIn(Dist.CLIENT)
+        public ItemStack makeIcon()
         {
-            return new ItemStack(Blocks.DIRT);
+            return new ItemStack(HNCItems.BLOCK_OF_CHEESE.get());
         }
     };
 

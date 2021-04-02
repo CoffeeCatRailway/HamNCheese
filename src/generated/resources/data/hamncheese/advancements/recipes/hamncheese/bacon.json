@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:bacon"
+    ]
+  },
+  "criteria": {
+    "has_ham": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:ham_slice"
+          }
+        ]
+      }
+    },
+    "has_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:knife"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:bacon"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ham",
+      "has_knife",
+      "has_the_recipe"
+    ]
+  ]
+}

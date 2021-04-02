@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.registry;
 
+import coffeecatrailway.hamncheese.HNCMod;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.item.Food;
 import net.minecraft.item.Foods;
@@ -16,36 +17,40 @@ public class HNCFoods
 {
     private static final Supplier<EffectInstance> HUNGER_EFFECT = () -> new EffectInstance(Effects.HUNGER, 400, 1);
 
-    public static final Food BLOCK_OF_CHEESE = new Food.Builder().hunger(6).saturation(1f).build();
-    public static final Food CHEESE_SLICE = divide(BLOCK_OF_CHEESE, 3, 2f).fastToEat().build();
+    public static final Food BLOCK_OF_CHEESE = new Food.Builder().nutrition(6).saturationMod(1f).build();
+    public static final Food CHEESE_SLICE = divide(BLOCK_OF_CHEESE, 3, 2f).fast().build();
 
-    public static final Food INGREDIENT = new Food.Builder().hunger(1).saturation(.5f).build();
+    public static final Food INGREDIENT = new Food.Builder().nutrition(1).saturationMod(.5f).build();
     public static final Food DOUGH = times(INGREDIENT, 3f).build();
 
     public static final Food BREAD_SLICE = times(divide(Foods.BREAD, 3f).build(), 1, 2f).build();
     public static final Food TOAST = times(BREAD_SLICE, 1.5f).build();
 
-    public static final Food CRACKER = combine(.5f, INGREDIENT, INGREDIENT, divide(Foods.BREAD, 3f).build()).build();
+    public static final Food CRACKER = combine(.5f, false, INGREDIENT, INGREDIENT, divide(Foods.BREAD, 3f).build()).build();
 
-    public static final Food CRACKED_EGG = new Food.Builder().hunger(3).saturation(1f).build();
+    public static final Food CRACKED_EGG = new Food.Builder().nutrition(3).saturationMod(1f).build();
     public static final Food COOKED_EGG = times(CRACKED_EGG, 2f).build();
     public static final Food GREEN_EGG = copyFood(CRACKED_EGG).effect(HUNGER_EFFECT, 1f).build();
 
-    public static final Food HAM_SLICE = divide(Foods.PORKCHOP, 2f).build();
-    public static final Food COOKED_HAM_SLICE = divide(Foods.COOKED_PORKCHOP, 2f).build();
+    public static final Food HAM_SLICE = divide(Foods.PORKCHOP, 3f).build();
+    public static final Food COOKED_HAM_SLICE = divide(Foods.COOKED_PORKCHOP, 3f).build();
     public static final Food GREEN_HAM_SLICE = copyFood(HAM_SLICE).effect(HUNGER_EFFECT, 1f).meat().build();
 
     public static final Food BACON = divide(HAM_SLICE, 1.5f).build();
     public static final Food COOKED_BACON = divide(COOKED_HAM_SLICE, 1.5f).build();
+
+    public static final Food PINEAPPLE = new Food.Builder().nutrition(12).saturationMod(5f).build();
+    public static final Food PINEAPPLE_RING = divide(PINEAPPLE, 4f).build();
+    public static final Food PINEAPPLE_BIT = divide(PINEAPPLE_RING, 3f).build();
 
     private static Food.Builder divide(Food copy, float amount)
     {
         return divide(copy, (int) amount, amount);
     }
 
-    private static Food.Builder divide(Food copy, int hunger, float saturation)
+    private static Food.Builder divide(Food copy, int nutrition, float saturationMod)
     {
-        return copyFood(copy).hunger(copy.getHealing() / hunger).saturation(copy.getSaturation() / saturation);
+        return copyFood(copy).nutrition(copy.getNutrition() / nutrition).saturationMod(copy.getSaturationModifier() / saturationMod);
     }
 
     private static Food.Builder times(Food copy, float amount)
@@ -53,26 +58,31 @@ public class HNCFoods
         return times(copy, (int) amount, amount);
     }
 
-    private static Food.Builder times(Food copy, int hunger, float saturation)
+    private static Food.Builder times(Food copy, int nutrition, float saturationMod)
     {
-        return copyFood(copy).hunger(copy.getHealing() * hunger).saturation(copy.getSaturation() * saturation);
+        return copyFood(copy).nutrition(copy.getNutrition() * nutrition).saturationMod(copy.getSaturationModifier() * saturationMod);
     }
 
-    private static Food.Builder combine(float combinationMultiplier, Food... foods)
+    public static Food.Builder combine(float combinationMultiplier, boolean cooked, Food... foods)
     {
         if (foods.length == 1)
             return copyFood(foods[0]);
 
         Food.Builder combination = new Food.Builder();
-        int hunger = 0;
-        float saturation = 0f;
+        int nutrition = 0;
+        float saturationMod = 0f;
         for (Food food : foods)
         {
-            hunger += food.getHealing();
-            saturation += food.getSaturation();
+            nutrition += food.getNutrition();
+            saturationMod += food.getSaturationModifier();
             copyFood(food, combination);
         }
-        return combination.hunger((int) (hunger * combinationMultiplier)).saturation(saturation * combinationMultiplier);
+        return combination.nutrition((int) (nutrition * combinationMultiplier * cookedModifier(cooked))).saturationMod(saturationMod * combinationMultiplier * cookedModifier(cooked));
+    }
+
+    private static float cookedModifier(boolean cooked)
+    {
+        return (float) (cooked ? HNCMod.SERVER_CONFIG.cookedFoodModifier.get() : 1f);
     }
 
     private static Food.Builder copyFood(Food copy)
@@ -84,8 +94,8 @@ public class HNCFoods
     {
         Food copiedTmp = copied.build();
         if (copy.isMeat() && !copiedTmp.isMeat()) copied.meat();
-        if (copy.isFastEating() && !copiedTmp.isFastEating()) copied.fastToEat();
-        if (copy.canEatWhenFull() && !copiedTmp.canEatWhenFull()) copied.setAlwaysEdible();
+        if (copy.isFastFood() && !copiedTmp.isFastFood()) copied.fast();
+        if (copy.canAlwaysEat() && !copiedTmp.canAlwaysEat()) copied.alwaysEat();
 
         for (Pair<EffectInstance, Float> effect : copy.getEffects())
             if (!copiedTmp.getEffects().contains(effect))

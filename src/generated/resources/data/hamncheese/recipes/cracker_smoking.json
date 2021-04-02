@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "hamncheese:unbaked_cracker"
+  },
+  "result": "hamncheese:cracker",
+  "experience": 0.35,
+  "cookingtime": 50
+}
