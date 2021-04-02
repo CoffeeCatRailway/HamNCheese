@@ -44,9 +44,11 @@ public class HNCMod
 
     public HNCMod()
     {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::onClientSetup);
-        modEventBus.addListener(this::onCommonSetup);
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        Sonar.init(bus);
+        bus.addListener(this::onClientSetup);
+        bus.addListener(this::onCommonSetup);
+        bus.addListener(this::onGatherData);
 
         final Pair<HNCConfig.Client, ForgeConfigSpec> client = new ForgeConfigSpec.Builder().configure(HNCConfig.Client::new);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, client.getRight());
@@ -63,13 +65,7 @@ public class HNCMod
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        REGISTRATE = Registrate.create(MOD_ID).itemGroup(() -> GROUP_ALL, "Ham N' Cheese")
-                .addDataGenerator(ProviderType.BLOCK_TAGS, new HNCData.TagBlocks())
-                .addDataGenerator(ProviderType.ITEM_TAGS, new HNCData.TagItems())
-                .addDataGenerator(ProviderType.LANG, new HNCData.Lang())
-                .addDataGenerator(ProviderType.LOOT, new HNCData.LootTables());
-
-        HNCItems.load();
+        HNCItems.load(bus);
     }
 
     private void onClientSetup(FMLClientSetupEvent event)
@@ -78,6 +74,20 @@ public class HNCMod
 
     private void onCommonSetup(FMLCommonSetupEvent event)
     {
+    }
+
+    private void onGatherData(GatherDataEvent event)
+    {
+        DataGenerator generator = event.getGenerator();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+        HNCBlockTags blockTags = new HNCBlockTags(generator, existingFileHelper);
+
+        generator.addProvider(new HNCLanguage(generator));
+        generator.addProvider(new HNCItemTags(generator, blockTags, existingFileHelper));
+        generator.addProvider(blockTags);
+        generator.addProvider(new HNCLootTables(generator));
+        generator.addProvider(new HNCRecipeGen(generator));
+        generator.addProvider(new HNCItemModels(generator));
     }
 
     public static ResourceLocation getLocation(String path)

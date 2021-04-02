@@ -114,9 +114,9 @@ dependencies {
     compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwylaVersion}:api")
     runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwylaVersion}")
 
-    def registrate = "com.tterrag.registrate:Registrate:MC${project.registrateVersion}"
-    implementation fg.deobf(registrate)
-    shade registrate
+//    def registrate = "com.tterrag.registrate:Registrate:MC${project.registrateVersion}"
+//    implementation fg.deobf(registrate)
+//    shade registrate
 
     runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
     compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}:api"
@@ -125,7 +125,7 @@ dependencies {
 
 shadowJar {
     configurations = [project.configurations.shade]
-    relocate 'com.tterrag.registrate', 'coffeecatrailway.repack.registrate'
+//    relocate 'com.tterrag.registrate', 'coffeecatrailway.repack.registrate'
     relocate 'io.github.ocelot', 'io.github.ocelot.lib'
 }
 
