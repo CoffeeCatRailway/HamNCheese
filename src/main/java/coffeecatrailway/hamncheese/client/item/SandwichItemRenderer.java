@@ -15,7 +15,11 @@ import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.event.TagsUpdatedEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -26,6 +30,7 @@ import java.util.Random;
 public class SandwichItemRenderer extends ItemStackTileEntityRenderer
 {
     private static final Random RANDOM = new Random(42);
+    private static final Map<INBT, ItemStack> INGREDIENT_CACHE = new HashMap<>();
 
     @Override
     public void renderByItem(ItemStack stack, ItemCameraTransforms.TransformType transformType, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay)
@@ -46,12 +51,8 @@ public class SandwichItemRenderer extends ItemStackTileEntityRenderer
             ItemStack bun = new ItemStack(nbt.getBoolean(AbstractSandwichItem.TAG_TOASTED) ? item.foodProperties.getToastedBunItem().get() : item.foodProperties.getBunItem().get());
 
             // Move back if ingredients are present
-            float offset;
             if (ingredients.size() > 0)
-            {
-                offset = -(.06f * ingredients.size()) / 2f;
-                matrixStack.translate(0f, 0f, offset);
-            }
+                matrixStack.translate(0f, 0f, -(.06f * ingredients.size()) / 2f);
 
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
             itemRenderer.renderStatic(bun, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
@@ -62,11 +63,15 @@ public class SandwichItemRenderer extends ItemStackTileEntityRenderer
                 RANDOM.setSeed(42);
                 for (INBT ingredient : ingredients)
                 {
-                    matrixStack.translate(0f, 0f, .06f);
-                    float angle = (float) (RANDOM.nextFloat() * Math.PI * 2f);
-                    matrixStack.mulPose(Vector3f.ZN.rotation(angle));
-                    itemRenderer.renderStatic(ItemStack.of((CompoundNBT) ingredient), ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
-                    matrixStack.mulPose(Vector3f.ZP.rotation(angle));
+                    if (INGREDIENT_CACHE.containsKey(ingredient))
+                    {
+                        matrixStack.translate(0f, 0f, .06f);
+                        float angle = (float) (RANDOM.nextFloat() * Math.PI * 2f);
+                        matrixStack.mulPose(Vector3f.ZN.rotation(angle));
+                        itemRenderer.renderStatic(INGREDIENT_CACHE.get(ingredient), ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
+                        matrixStack.mulPose(Vector3f.ZP.rotation(angle));
+                    } else
+                        INGREDIENT_CACHE.put(ingredient, ItemStack.of((CompoundNBT) ingredient));
                 }
             }
 
@@ -78,5 +83,12 @@ public class SandwichItemRenderer extends ItemStackTileEntityRenderer
 
             matrixStack.popPose();
         }
+    }
+
+    @SubscribeEvent
+    public void onReload(TagsUpdatedEvent event)
+    {
+        if (!INGREDIENT_CACHE.isEmpty())
+            INGREDIENT_CACHE.clear();
     }
 }
