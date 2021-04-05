@@ -82,7 +82,7 @@ public class HNCItemModels implements IDataProvider
         this.generateFlatItem(HNCItems.TOAST.get(), StockModelShapes.FLAT_ITEM);
 
         this.generateFlatItem(HNCItems.UNBAKED_CRACKER.get(), StockModelShapes.FLAT_ITEM);
-        this.generateFlatItem(HNCItems.CRACKER.get(), StockModelShapes.FLAT_ITEM); // TODO: Change for custom crackers
+        this.generateFlatItem(HNCItems.CRACKER_DUMMY.get(), HNCMod.getLocation("item/cracker"), StockModelShapes.FLAT_ITEM);
 
         this.generateFlatItem(HNCItems.CRACKED_EGG.get(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.COOKED_EGG.get(), StockModelShapes.FLAT_ITEM);

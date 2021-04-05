@@ -31,6 +31,7 @@ public class HNCItemTags extends ItemTagsProvider
     public static final ITag.INamedTag<Item> FLOUR = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "flour"));
 
     public static final ITag.INamedTag<Item> BREAD_SLICE = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "bread_slice"));
+    public static final ITag.INamedTag<Item> CRACKER = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "cracker"));
 
     public HNCItemTags(DataGenerator generator, BlockTagsProvider provider, @Nullable ExistingFileHelper fileHelper)
     {
@@ -51,6 +52,7 @@ public class HNCItemTags extends ItemTagsProvider
         this.tag(FLOUR).add(HNCItems.FLOUR.get());
 
         this.tag(BREAD_SLICE).add(HNCItems.BREAD_SLICE.get());
+        this.tag(CRACKER).add(HNCItems.CRACKER.get());
 
         this.tag(Tags.Items.EGGS).add(HNCItems.CRACKED_EGG.get(), HNCItems.COOKED_EGG.get(), HNCItems.GREEN_EGG.get());
     }

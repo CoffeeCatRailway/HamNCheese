@@ -11,6 +11,6 @@ public class SandwichItem extends AbstractSandwichItem
 {
     public SandwichItem(Properties properties)
     {
-        super(properties, new FoodProperties(HNCFoods.BREAD_SLICE, HNCFoods.TOAST, HNCItems.BREAD_SLICE, HNCItems.TOAST, true));
+        super(properties, new SandwichProperties(HNCFoods.BREAD_SLICE, HNCFoods.TOAST, HNCItems.BREAD_SLICE, HNCItems.TOAST, true));
     }
 }

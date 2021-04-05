@@ -1,9 +1,9 @@
 package coffeecatrailway.hamncheese.common.item;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import coffeecatrailway.hamncheese.registry.HNCFoods;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,7 +18,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -41,14 +40,12 @@ public class AbstractSandwichItem extends Item
     public static final String TAG_INGREDIENTS = "Ingredients";
     public static final String TAG_TOASTED = "Toasted";
 
-    public final FoodProperties foodProperties;
-    private ItemStack foodStack;
-    private Food food;
+    public final SandwichProperties sandwichProperties;
 
-    public AbstractSandwichItem(Properties properties, FoodProperties foodProperties)
+    public AbstractSandwichItem(Properties properties, SandwichProperties sandwichProperties)
     {
-        super(properties.food(foodProperties.getBunFood()));
-        this.foodProperties = foodProperties;
+        super(properties.setISTER(() -> SandwichItemRenderer::new).food(sandwichProperties.bunFood));
+        this.sandwichProperties = sandwichProperties;
     }
 
     @Nullable
@@ -60,7 +57,7 @@ public class AbstractSandwichItem extends Item
         if (!stackNbt.contains(TAG_INGREDIENTS))
             stackNbt.put(TAG_INGREDIENTS, new ListNBT());
 
-        if (!stackNbt.contains(TAG_TOASTED))
+        if (this.sandwichProperties.canBeToasted && !stackNbt.contains(TAG_TOASTED))
             stackNbt.putBoolean(TAG_TOASTED, false);
         return super.initCapabilities(stack, nbt);
     }
@@ -73,7 +70,7 @@ public class AbstractSandwichItem extends Item
         ITextComponent name = super.getName(stack);
         if (ingredients.size() > 0)
             name = ItemStack.of((CompoundNBT) ingredients.get(0)).getDisplayName().copy().append(" ").append(super.getName(stack));
-        if (nbt.getBoolean(TAG_TOASTED))
+        if (this.sandwichProperties.isToasted(nbt))
             name = new TranslationTextComponent("item.hamncheese.sandwich.toasted").append(" ").append(name);
         return name;
     }
@@ -88,82 +85,57 @@ public class AbstractSandwichItem extends Item
     }
 
     @Override
-    public void onUsingTick(ItemStack stack, LivingEntity player, int count)
-    {
-        Food food = this.getFood(stack.copy());
-        if (this.food != food)
-            this.food = food;
-    }
-
-    @Nullable
-    @Override
-    public Food getFoodProperties()
-    {
-        if (this.food != null)
-            return this.food;
-        else
-            return super.getFoodProperties();
-    }
-
-    @Override
     public boolean isEdible()
     {
         return true;
     }
 
-//    @Override
-//    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity entity)
-//    {
-//        if (!world.isClientSide)
-//        {
-//            SoundEvent sound = SoundEvents.GENERIC_EAT;
-//            Supplier<Float> pitch = () -> 1f + (world.random.nextFloat() - world.random.nextFloat()) * .4f;
-//
-//            entity.playSound(sound, 1f, pitch.get());
-//            world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), sound, SoundCategory.NEUTRAL, 1f, pitch.get());
-//
-//            Food food = this.getFood(stack);
-//            if (entity instanceof PlayerEntity)
-//            {
-//                PlayerEntity player = (PlayerEntity) entity;
-//                if (!player.isCreative()) stack.shrink(1);
-//                player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
-//            }
-//
-//            for (Pair<EffectInstance, Float> pair : food.getEffects())
-//                if (pair.getFirst() != null && world.random.nextFloat() < pair.getSecond())
-//                    entity.addEffect(new EffectInstance(pair.getFirst()));
-//        }
-//        return stack;
-//    }
+    @Override
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity entity)
+    {
+        if (!world.isClientSide)
+        {
+            SoundEvent sound = SoundEvents.GENERIC_EAT;
+            Supplier<Float> pitch = () -> 1f + (world.random.nextFloat() - world.random.nextFloat()) * .4f;
+
+            entity.playSound(sound, 1f, pitch.get());
+            world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), sound, SoundCategory.NEUTRAL, 1f, pitch.get());
+
+            Food food = this.getFood(stack);
+            if (entity instanceof PlayerEntity)
+            {
+                PlayerEntity player = (PlayerEntity) entity;
+                if (!player.isCreative()) stack.shrink(1);
+                player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
+            }
+
+            for (Pair<EffectInstance, Float> pair : food.getEffects())
+                if (pair.getFirst() != null && world.random.nextFloat() < pair.getSecond())
+                    entity.addEffect(new EffectInstance(pair.getFirst()));
+        }
+        return stack;
+    }
 
     private Food getFood(ItemStack stack)
     {
-        if (this.food == null)
+        List<Food> foods = new ArrayList<>();
+        CompoundNBT nbt = stack.getOrCreateTag();
+
+        Food bread = this.sandwichProperties.getBunFood(nbt);
+        foods.add(bread);
+
+        ListNBT ingredients = nbt.getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
+        for (INBT ingredient : ingredients)
         {
-            List<Food> foods = new ArrayList<>();
-            CompoundNBT nbt = stack.getOrCreateTag();
-
-            Food bread = this.foodProperties.getBunFood();
-            if (nbt.getBoolean(TAG_TOASTED))
-                bread = this.foodProperties.getToastedBunFood();
-            foods.add(bread);
-
-            ListNBT ingredients = nbt.getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
-            for (INBT ingredient : ingredients)
-            {
-                ItemStack foodStack = ItemStack.of((CompoundNBT) ingredient);
-                if (foodStack.isEdible())
-                    foods.add(foodStack.getItem().getFoodProperties());
-            }
-
-            if (this.foodProperties.hasTwoBuns())
-                foods.add(bread);
-
-            this.food = HNCFoods.combine(.2f, nbt.getBoolean(TAG_TOASTED), foods.toArray(new Food[]{})).build();
+            ItemStack foodStack = ItemStack.of((CompoundNBT) ingredient);
+            if (foodStack.isEdible())
+                foods.add(foodStack.getItem().getFoodProperties());
         }
 
-        return this.food;
+        if (this.sandwichProperties.hasTwoBuns())
+            foods.add(bread);
+
+        return HNCFoods.combine(.2f, this.sandwichProperties.isToasted(nbt), foods.toArray(new Food[]{})).build();
     }
 
     public static ItemStack addIngredient(ItemStack sandwich, ItemStack ingredient)
@@ -187,48 +159,59 @@ public class AbstractSandwichItem extends Item
         return ItemStack.isSame(stack1, stack2) && stack1.getItem() == stack2.getItem();
     }
 
-    public static class FoodProperties
+    public static class SandwichProperties
     {
         private final Food bunFood;
+        @Nullable
         private final Food toastedBunFood;
-        private final Supplier<? extends Item> bunItem;
-        private final Supplier<? extends Item> toastedBunItem;
+        private final ItemStack bunItem;
+        @Nullable
+        private final ItemStack toastedBunItem;
 
         private final boolean hasTwoBuns;
+        private final boolean canBeToasted;
 
-        public FoodProperties(Food bunFood, Food toastedBunFood, Supplier<? extends Item> bunItem, Supplier<? extends Item> toastedBunItem, boolean hasTwoBuns)
+        public SandwichProperties(Food bunFood, Supplier<? extends Item> bunItem, boolean hasTwoBuns)
+        {
+            this(bunFood, null, bunItem, null, hasTwoBuns, false);
+        }
+
+        public SandwichProperties(Food bunFood, Food toastedBunFood, Supplier<? extends Item> bunItem, Supplier<? extends Item> toastedBunItem, boolean hasTwoBuns)
+        {
+            this(bunFood, toastedBunFood, bunItem, toastedBunItem, hasTwoBuns, true);
+        }
+
+        private SandwichProperties(Food bunFood, @Nullable Food toastedBunFood, Supplier<? extends Item> bunItem, @Nullable Supplier<? extends Item> toastedBunItem, boolean hasTwoBuns, boolean canBeToasted)
         {
             this.bunFood = bunFood;
             this.toastedBunFood = toastedBunFood;
-            this.bunItem = bunItem;
-            this.toastedBunItem = toastedBunItem;
+            this.bunItem = new ItemStack(bunItem.get());
+            this.toastedBunItem = toastedBunItem == null ? ItemStack.EMPTY : new ItemStack(toastedBunItem.get());
 
             this.hasTwoBuns = hasTwoBuns;
+            this.canBeToasted = canBeToasted;
         }
 
-        public Food getBunFood()
+        @Nullable
+        public Food getBunFood(CompoundNBT nbt)
         {
-            return bunFood;
+            return this.isToasted(nbt) ? this.toastedBunFood : this.bunFood;
         }
 
-        public Food getToastedBunFood()
+        @Nullable
+        public ItemStack getBunItem(CompoundNBT nbt)
         {
-            return toastedBunFood;
-        }
-
-        public Supplier<? extends Item> getBunItem()
-        {
-            return bunItem;
-        }
-
-        public Supplier<? extends Item> getToastedBunItem()
-        {
-            return toastedBunItem;
+            return this.isToasted(nbt) ? this.toastedBunItem : this.bunItem;
         }
 
         public boolean hasTwoBuns()
         {
-            return hasTwoBuns;
+            return this.hasTwoBuns;
+        }
+
+        private boolean isToasted(CompoundNBT nbt)
+        {
+            return this.canBeToasted && nbt.contains(AbstractSandwichItem.TAG_TOASTED) && nbt.getBoolean(AbstractSandwichItem.TAG_TOASTED);
         }
     }
 }

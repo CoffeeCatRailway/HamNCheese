@@ -48,7 +48,7 @@ public class SandwichItemRenderer extends ItemStackTileEntityRenderer
             // NBT setup
             CompoundNBT nbt = stack.getOrCreateTag();
             ListNBT ingredients = nbt.getList(AbstractSandwichItem.TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
-            ItemStack bun = new ItemStack(nbt.getBoolean(AbstractSandwichItem.TAG_TOASTED) ? item.foodProperties.getToastedBunItem().get() : item.foodProperties.getBunItem().get());
+            ItemStack bun = item.sandwichProperties.getBunItem(nbt);
 
             // Move back if ingredients are present
             if (ingredients.size() > 0)
@@ -75,7 +75,7 @@ public class SandwichItemRenderer extends ItemStackTileEntityRenderer
                 }
             }
 
-            if (item.foodProperties.hasTwoBuns())
+            if (item.sandwichProperties.hasTwoBuns())
             {
                 matrixStack.translate(0f, 0f, .06f);
                 itemRenderer.renderStatic(bun, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);

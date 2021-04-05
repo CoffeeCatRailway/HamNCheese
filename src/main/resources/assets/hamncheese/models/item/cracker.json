@@ -1,0 +1,6 @@
+{
+  "parent": "hamncheese:item/sandwich",
+  "textures": {
+    "particle": "hamncheese:item/bread_slice"
+  }
+}

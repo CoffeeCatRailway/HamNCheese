@@ -7,7 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.tags.ITag;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -37,7 +36,7 @@ public abstract class AbstractSandwichRecipe extends SpecialRecipe
         if (!bunStack.isEmpty())
         {
             AbstractSandwichItem sandwich = (AbstractSandwichItem) this.assemble(inventory).getItem();
-            int maxBunCount = sandwich.foodProperties.hasTwoBuns() ? 2 : 1;
+            int maxBunCount = sandwich.sandwichProperties.hasTwoBuns() ? 2 : 1;
             int bunCount = 0;
             int ingredientCount = 0;
 

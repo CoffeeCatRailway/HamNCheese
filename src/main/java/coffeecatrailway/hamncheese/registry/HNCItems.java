@@ -2,6 +2,7 @@ package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
+import coffeecatrailway.hamncheese.common.item.CrackerItem;
 import coffeecatrailway.hamncheese.common.item.CraftingToolItem;
 import coffeecatrailway.hamncheese.common.item.GreenFoodItem;
 import coffeecatrailway.hamncheese.common.item.SandwichItem;
@@ -57,7 +58,8 @@ public class HNCItems
     public static final RegistryObject<Item> TOAST = register("toast", prop -> new Item(prop.food(HNCFoods.TOAST)));
 
     public static final RegistryObject<Item> UNBAKED_CRACKER = register("unbaked_cracker", prop -> new Item(prop.food(HNCFoods.DOUGH).stacksTo(16)));
-    public static final RegistryObject<Item> CRACKER = register("cracker", prop -> new Item(prop.food(HNCFoods.CRACKER).stacksTo(16)));
+    public static final RegistryObject<Item> CRACKER_DUMMY = register("cracker_dummy", prop -> new Item(prop.food(HNCFoods.CRACKER).tab(null)));
+    public static final RegistryObject<CrackerItem> CRACKER = register("cracker", prop -> new CrackerItem(prop.food(HNCFoods.CRACKER).stacksTo(16)));
 
     public static final RegistryObject<Item> CRACKED_EGG = register("cracked_egg", prop -> new Item(prop.food(HNCFoods.CRACKED_EGG).stacksTo(32)));
     public static final RegistryObject<Item> COOKED_EGG = register("cooked_egg", prop -> new Item(prop.food(HNCFoods.COOKED_EGG).stacksTo(32)));
@@ -70,7 +72,7 @@ public class HNCItems
     public static final RegistryObject<Item> BACON = register("bacon", "Raw Bacon", prop -> new Item(prop.food(HNCFoods.BACON).stacksTo(32)));
     public static final RegistryObject<Item> COOKED_BACON = register("cooked_bacon", "Bacon", prop -> new Item(prop.food(HNCFoods.COOKED_BACON).stacksTo(32)));
 
-    public static final RegistryObject<SandwichItem> SANDWICH = register("sandwich", prop -> new SandwichItem(prop.setISTER(() -> SandwichItemRenderer::new).tab(null).stacksTo(4)));
+    public static final RegistryObject<SandwichItem> SANDWICH = register("sandwich", prop -> new SandwichItem(prop.tab(null).stacksTo(8)));
 
     public static final RegistryObject<Item> PINEAPPLE = register("pineapple", prop -> new Item(prop.food(HNCFoods.PINEAPPLE).stacksTo(16))); // TODO: Add plant
     public static final RegistryObject<Item> PINEAPPLE_RING = register("pineapple_ring", prop -> new Item(prop.food(HNCFoods.PINEAPPLE_RING).stacksTo(32)));
