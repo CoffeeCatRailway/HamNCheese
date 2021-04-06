@@ -6,10 +6,12 @@ import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.SpecialRecipe;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 
 import java.util.function.Supplier;
 
@@ -85,7 +87,15 @@ public abstract class AbstractSandwichRecipe extends SpecialRecipe
         {
             ItemStack stack = inventory.getItem(i);
             if (this.bunTag.contains(stack.getItem()))
+            {
+                if (stack.getItem() instanceof AbstractSandwichItem)
+                {
+                    ListNBT ingredients = stack.getOrCreateTag().getList(AbstractSandwichItem.TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
+                    if (ingredients.size() <= 0)
+                        return stack;
+                }
                 return stack;
+            }
         }
         return ItemStack.EMPTY;
     }
