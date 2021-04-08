@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 public class HNCLanguage extends LanguageProvider
 {
     public static final Map<RegistryObject<? extends Item>, String> ITEMS = new HashMap<>();
-    public static final Map<Supplier<? extends Block>, String> BLOCKS = new HashMap<>();
+    public static final Map<RegistryObject<? extends Block>, String> BLOCKS = new HashMap<>();
 
     public HNCLanguage(DataGenerator generator)
     {
@@ -32,7 +32,7 @@ public class HNCLanguage extends LanguageProvider
         this.add("itemGroup." + HNCMod.MOD_ID, "Ham N' Cheese");
         this.add("item.hamncheese.sandwich.toasted", "Toasted");
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
-//        BLOCKS.forEach((block, name) -> this.add(block.get(), name));
+        BLOCKS.forEach((block, name) -> this.add(block.get(), name));
     }
 
     public static String capitalize(String id) {

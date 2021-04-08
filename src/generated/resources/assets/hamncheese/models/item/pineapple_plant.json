@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hamncheese:block/pineapple_stage_4"
+    "layer0": "hamncheese:block/pineapple_stage_0"
   }
 }

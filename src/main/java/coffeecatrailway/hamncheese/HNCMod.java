@@ -1,6 +1,8 @@
 package coffeecatrailway.hamncheese;
 
+import coffeecatrailway.hamncheese.client.ClientEvents;
 import coffeecatrailway.hamncheese.datagen.*;
+import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import io.github.ocelot.sonar.Sonar;
@@ -22,6 +24,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -76,12 +79,14 @@ public class HNCMod
 
         MinecraftForge.EVENT_BUS.register(this);
 
+        HNCBlocks.load(bus);
         HNCItems.load(bus);
         HNCRecipes.load(bus);
     }
 
     private void onClientSetup(FMLClientSetupEvent event)
     {
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::renderLayers);
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event)
@@ -100,6 +105,7 @@ public class HNCMod
         generator.addProvider(new HNCLootTables(generator));
         generator.addProvider(new HNCRecipeGen(generator));
         generator.addProvider(new HNCItemModels(generator));
+        generator.addProvider(new HNCBlockStates(generator, existingFileHelper));
     }
 
     @SubscribeEvent

@@ -1,17 +1,24 @@
 package coffeecatrailway.hamncheese.datagen;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
+import coffeecatrailway.hamncheese.registry.HNCBlocks;
+import coffeecatrailway.hamncheese.registry.HNCItems;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.data.loot.ChestLootTables;
 import net.minecraft.data.loot.EntityLootTables;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
-import net.minecraft.loot.LootParameterSet;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootTable;
+import net.minecraft.loot.*;
+import net.minecraft.loot.conditions.BlockStateProperty;
+import net.minecraft.loot.functions.ApplyBonus;
+import net.minecraft.loot.functions.ExplosionDecay;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ForgeLootTableProvider;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -71,6 +78,22 @@ public class HNCLootTables extends ForgeLootTableProvider
         @Override
         protected void addTables()
         {
+            this.add(HNCBlocks.PINEAPPLE_PLANT.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.PINEAPPLE.get())
+                                    .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.PINEAPPLE_PLANT.get())
+                                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                    .hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.UPPER)
+                                                    .hasProperty(PineapplePlantBlock.AGE, 4)))
+                                    .otherwise(ItemLootEntry.lootTableItem(HNCItems.PINEAPPLE_PLANT.get()))))
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.PINEAPPLE_PLANT.get())
+                                    .apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 3)))
+                            .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.PINEAPPLE_PLANT.get())
+                                    .setProperties(StatePropertiesPredicate.Builder.properties()
+                                            .hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)
+                                            .hasProperty(PineapplePlantBlock.AGE, 4))))
+                    .apply(ExplosionDecay.explosionDecay()));
         }
 
         @Override
