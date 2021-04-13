@@ -47,7 +47,7 @@ public class HNCItemTags extends ItemTagsProvider
         this.tag(WHEAT).add(Items.WHEAT);
         this.tag(SUGAR).add(Items.SUGAR);
 
-        this.tag(DOUGH).add(HNCItems.DOUGH.get(), HNCItems.PIZZA_BASE.get());
+        this.tag(DOUGH).add(HNCItems.DOUGH.get(), HNCItems.UNBAKED_PIZZA_BASE.get());
         this.tag(SALT).add(HNCItems.ROCK_SALT.get());
         this.tag(FLOUR).add(HNCItems.FLOUR.get());
 

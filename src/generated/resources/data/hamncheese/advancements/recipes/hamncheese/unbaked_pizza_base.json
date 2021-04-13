@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "hamncheese:pizza_base"
+      "hamncheese:unbaked_pizza_base"
     ]
   },
   "criteria": {
@@ -29,7 +29,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "hamncheese:pizza_base"
+        "recipe": "hamncheese:unbaked_pizza_base"
       }
     }
   },

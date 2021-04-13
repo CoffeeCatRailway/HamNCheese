@@ -66,7 +66,7 @@ public class HNCRecipeGen extends RecipeProvider
 
         ShapelessRecipeBuilder.shapeless(HNCItems.DOUGH.get(), 2).requires(HNCItemTags.WHEAT).requires(HNCItemTags.SUGAR).requires(HNCItemTags.SALT).requires(HNCItemTags.FLOUR).unlockedBy("has_wheat", has(HNCItemTags.WHEAT))
                 .unlockedBy("has_sugar", has(HNCItemTags.SUGAR)).unlockedBy("has_salt", has(HNCItemTags.SALT)).unlockedBy("has_flour", has(HNCItemTags.FLOUR)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(HNCItems.PIZZA_BASE.get()).requires(HNCItems.ROLLING_PIN.get()).requires(HNCItems.DOUGH.get()).unlockedBy("has_dough", has(HNCItems.DOUGH.get()))
+        ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_PIZZA_BASE.get()).requires(HNCItems.ROLLING_PIN.get()).requires(HNCItems.DOUGH.get()).unlockedBy("has_dough", has(HNCItems.DOUGH.get()))
                 .unlockedBy("has_rolling_pin", has(HNCItems.ROLLING_PIN.get())).save(consumer); // TODO: Add custom pizza(s)
 
         ShapedRecipeBuilder.shaped(HNCItems.UNBAKED_BREAD.get(), 2).define('d', HNCItemTags.DOUGH).pattern("ddd").unlockedBy("has_dough", has(HNCItemTags.DOUGH)).save(consumer);

@@ -1,13 +1,11 @@
 package coffeecatrailway.hamncheese.datagen;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -77,7 +75,7 @@ public class HNCItemModels implements IDataProvider
         this.generateFlatItem(HNCItems.FLOUR.get(), StockModelShapes.FLAT_ITEM);
 
         this.generateFlatItem(HNCItems.DOUGH.get(), StockModelShapes.FLAT_ITEM);
-        this.generateFlatItem(HNCItems.PIZZA_BASE.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.UNBAKED_PIZZA_BASE.get(), StockModelShapes.FLAT_ITEM);
 
         this.generateFlatItem(HNCItems.UNBAKED_BREAD.get(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.BREAD_SLICE.get(), StockModelShapes.FLAT_ITEM);

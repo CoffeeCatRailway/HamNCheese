@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hamncheese:item/pizza_base"
+    "layer0": "hamncheese:item/unbaked_pizza_base"
   }
 }
