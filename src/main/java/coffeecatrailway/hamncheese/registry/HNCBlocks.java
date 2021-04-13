@@ -29,11 +29,16 @@ public class HNCBlocks
     private static final Logger LOGGER = HNCMod.getLogger("Blocks");
     protected static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, HNCMod.MOD_ID);
 
-    public static final RegistryObject<PineapplePlantBlock> PINEAPPLE_PLANT = registerWithItem("pineapple_plant", () -> new PineapplePlantBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)), null);
+    public static final RegistryObject<PineapplePlantBlock> PINEAPPLE_PLANT = registerPlant("pineapple_plant", PineapplePlantBlock::new);
 
     private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)
     {
         return registerWithItem(id, block, (object, prop) -> new BlockItem(object.get(), properties.apply(prop)));
+    }
+
+    private static <T extends Block> RegistryObject<T> registerPlant(String id, Function<AbstractBlock.Properties, T> factory)
+    {
+        return registerWithItem(id, () -> factory.apply(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)), null);
     }
 
     private static <T extends Block> RegistryObject<T> registerWithItem(String id, Supplier<T> block, @Nullable BiFunction<RegistryObject<T>, Item.Properties, Item> item)

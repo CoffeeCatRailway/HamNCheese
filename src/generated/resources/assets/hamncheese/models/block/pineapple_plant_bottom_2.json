@@ -1,7 +1,0 @@
-{
-  "parent": "hamncheese:block/pineapple_plant_bottom",
-  "textures": {
-    "plant": "hamncheese:block/pineapple_plant_stage_2",
-    "particle": "hamncheese:block/pineapple_plant_stage_2"
-  }
-}

@@ -1,4 +1,8 @@
 {
+    "ambientocclusion": false,
+    "textures": {
+      "particle": "#pineapple"
+    },
 	"elements": [
 		{
 			"name": "pineapple1",

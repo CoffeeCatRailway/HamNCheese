@@ -1,26 +1,19 @@
 package coffeecatrailway.hamncheese.common.block;
 
 import coffeecatrailway.hamncheese.registry.HNCItems;
-import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.RavagerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.EnumProperty;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.BushBlock;
+import net.minecraft.item.Item;
 import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.Random;
 
@@ -28,10 +21,9 @@ import java.util.Random;
  * @author CoffeeCatRailway
  * Created: 6/04/2021
  */
-public class PineapplePlantBlock extends BushBlock implements IGrowable
+public class PineapplePlantBlock extends AbstractDoublePlantBlock
 {
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
-    public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
     private static final VoxelShape[] SHAPES_TOP = new VoxelShape[]{
             Block.box(4d, 0d, 4d, 12d, 7d, 12d),
@@ -51,50 +43,59 @@ public class PineapplePlantBlock extends BushBlock implements IGrowable
     public PineapplePlantBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0).setValue(HALF, DoubleBlockHalf.LOWER));
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx)
+    protected IntegerProperty getAgeProperty()
     {
-        switch (state.getValue(HALF))
-        {
-            case UPPER:
-                return SHAPES_TOP[state.getValue(AGE)];
-            default:
-            case LOWER:
-                return SHAPES_BOTTOM[state.getValue(AGE)];
-        }
+        return AGE;
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, IBlockReader world, BlockPos pos)
+    protected int getMaxAge()
     {
-        return super.mayPlaceOn(state, world, pos) && !state.is(Blocks.FARMLAND);
+        return 4;
     }
 
     @Override
-    public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos)
+    protected VoxelShape[] getTopShapes()
     {
-        BlockPos below = pos.below();
-        BlockState stateBelow = world.getBlockState(below);
-        return (world.getRawBrightness(pos, 0) >= 8 || world.canSeeSky(pos)) && (this.mayPlaceOn(stateBelow, world, below) ||
-                (state.getBlock() == this && stateBelow.getBlock() == this && state.getValue(HALF) == DoubleBlockHalf.UPPER && stateBelow.getValue(HALF) == DoubleBlockHalf.LOWER));
+        return SHAPES_TOP;
     }
 
-    private BlockState getStateForAge(int age, DoubleBlockHalf half)
+    @Override
+    protected VoxelShape[] getBottomShapes()
     {
-        return this.defaultBlockState().setValue(AGE, age).setValue(HALF, half);
+        return SHAPES_BOTTOM;
     }
 
-    private boolean isYoung(BlockState state)
+    @Override
+    protected boolean placeableOn(BlockState state, IBlockReader world, BlockPos pos)
     {
-        return state.getValue(AGE) < 4;
+        return (state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.PODZOL)) && !state.is(Blocks.FARMLAND);
+    }
+
+    @Override
+    protected boolean needsFertileLand()
+    {
+        return false;
+    }
+
+    @Override
+    protected Item getPickBlock(BlockState state)
+    {
+        return state.getValue(HALF) == DoubleBlockHalf.UPPER && !this.isYoung(state) ? HNCItems.PINEAPPLE.get() : HNCItems.PINEAPPLE_PLANT.get();
+    }
+
+    @Override
+    protected void bonemeal(int age, ServerWorld world, BlockPos pos, BlockState state)
+    {
+        world.setBlock(pos, this.getStateForAge(age, state.getValue(HALF)), Constants.BlockFlags.BLOCK_UPDATE);
     }
 
     private void grow(BlockState state, BlockState newState, ServerWorld world, BlockPos pos, Random random)
     {
-        float growthSpeed = this.getGrowthSpeed(state, world, pos);
+        float growthSpeed = this.getGrowthSpeed(world, pos);
         if (ForgeHooks.onCropsGrowPre(world, pos, state, random.nextInt((int) (25f / growthSpeed) + 1) == 0))
         {
             world.setBlock(pos, newState, Constants.BlockFlags.BLOCK_UPDATE);
@@ -123,54 +124,5 @@ public class PineapplePlantBlock extends BushBlock implements IGrowable
                     this.grow(state, this.getStateForAge(0, DoubleBlockHalf.UPPER), world, pos.above(), random);
             }
         }
-    }
-
-    private float getGrowthSpeed(BlockState state, ServerWorld world, BlockPos pos)
-    {
-        float speed = 1.125f;
-        if (world.canSeeSky(pos))
-            speed += 2f;
-        return speed;
-    }
-
-    //    @Override
-    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity)
-    {
-        if (entity instanceof RavagerEntity && ForgeEventFactory.getMobGriefingEvent(world, entity))
-            world.destroyBlock(pos, true, entity);
-        super.entityInside(state, world, pos, entity);
-    }
-
-    @Override
-    public ItemStack getCloneItemStack(IBlockReader world, BlockPos pos, BlockState state)
-    {
-        return new ItemStack(HNCItems.PINEAPPLE_PLANT.get());
-    }
-
-    @Override
-    public boolean isValidBonemealTarget(IBlockReader world, BlockPos pos, BlockState state, boolean p_176473_4_)
-    {
-        return this.isYoung(state);
-    }
-
-    @Override
-    public boolean isBonemealSuccess(World world, Random random, BlockPos pos, BlockState state)
-    {
-        return true;
-    }
-
-    @Override
-    public void performBonemeal(ServerWorld world, Random random, BlockPos pos, BlockState state)
-    {
-        int age = state.getValue(AGE) + MathHelper.nextInt(random, 2, 3);
-        if (age > 4)
-            age = 4;
-        world.setBlock(pos, this.getStateForAge(age, state.getValue(HALF)), Constants.BlockFlags.BLOCK_UPDATE);
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
-    {
-        builder.add(AGE).add(HALF);
     }
 }

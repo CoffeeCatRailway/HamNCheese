@@ -1,4 +1,8 @@
 {
+    "ambientocclusion": false,
+    "textures": {
+      "particle": "#plant"
+    },
 	"elements": [
 		{
 			"name": "stalk1",

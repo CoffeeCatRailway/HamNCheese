@@ -24,19 +24,19 @@ public class HNCBlockStates extends BlockStateProvider
     @Override
     protected void registerStatesAndModels()
     {
+        int age;
         VariantBlockStateBuilder.PartialBlockstate pineapplePlant = this.getVariantBuilder(HNCBlocks.PINEAPPLE_PLANT.get()).partialState();
-
-        for (int age = 0; age <= 4; age++)
+        for (age = 0; age < 5; age++)
         {
-            ResourceLocation plantTexture = HNCMod.getLocation("block/pineapple_plant_stage_" + age);
             pineapplePlant.with(PineapplePlantBlock.AGE, age).with(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)
-                    .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_bottom_" + age, HNCMod.getLocation("block/pineapple_plant_bottom"))
-                    .texture("plant", plantTexture).texture("particle", plantTexture)).addModel();
+                    .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_bottom_stage_" + age, HNCMod.getLocation("block/pineapple_plant_bottom"))
+                    .texture("plant", HNCMod.getLocation("block/pineapple_plant_stage_" + age))).addModel();
 
             ResourceLocation pineappleTexture = HNCMod.getLocation("block/pineapple_stage_" + age);
             pineapplePlant.with(PineapplePlantBlock.AGE, age).with(PineapplePlantBlock.HALF, DoubleBlockHalf.UPPER)
-                    .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_top_" + age, HNCMod.getLocation("block/pineapple_plant_top"))
-                    .texture("pineapple", pineappleTexture).texture("particle", pineappleTexture)).addModel();
+                    .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_top_stage_" + age, HNCMod.getLocation("block/pineapple_plant_top"))
+                    .texture("pineapple", HNCMod.getLocation("block/pineapple_stage_" + age))).addModel();
+        }
         }
     }
 }
