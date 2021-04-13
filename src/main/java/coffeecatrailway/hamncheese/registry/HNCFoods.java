@@ -43,6 +43,10 @@ public class HNCFoods
     public static final Food PINEAPPLE_RING = divide(PINEAPPLE, 4f).build();
     public static final Food PINEAPPLE_BIT = divide(PINEAPPLE_RING, 3f).build();
 
+    public static final Food TOMATO = new Food.Builder().nutrition(4).saturationMod(.3f).build();
+    public static final Food TOMATO_SAUCE = combine(.5f, false, TOMATO, INGREDIENT, INGREDIENT).build();
+    public static final Food TOMATO_SLICE = divide(TOMATO, 2f).build();
+
     private static Food.Builder divide(Food copy, float amount)
     {
         return divide(copy, (int) amount, amount);

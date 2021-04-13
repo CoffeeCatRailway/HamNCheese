@@ -94,6 +94,22 @@ public class HNCLootTables extends ForgeLootTableProvider
                                             .hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)
                                             .hasProperty(PineapplePlantBlock.AGE, 4))))
                     .apply(ExplosionDecay.explosionDecay()));
+
+            this.add(HNCBlocks.TOMATO_PLANT.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.TOMATO.get())
+                                    .apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 3))
+                                    .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.TOMATO_PLANT.get())
+                                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                    .hasProperty(PineapplePlantBlock.AGE, 9)))
+                                    .otherwise(ItemLootEntry.lootTableItem(HNCItems.TOMATO_SEEDS.get()))))
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.TOMATO_SEEDS.get())
+                                    .apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 3)))
+                            .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.TOMATO_PLANT.get())
+                                    .setProperties(StatePropertiesPredicate.Builder.properties()
+                                            .hasProperty(PineapplePlantBlock.AGE, 9))))
+                    .apply(ExplosionDecay.explosionDecay()));
         }
 
         @Override

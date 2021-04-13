@@ -18,5 +18,6 @@ public class ClientEvents
         RenderType cutoutMipped = RenderType.cutoutMipped();
 
         RenderTypeLookup.setRenderLayer(HNCBlocks.PINEAPPLE_PLANT.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.TOMATO_PLANT.get(), cutoutMipped);
     }
 }

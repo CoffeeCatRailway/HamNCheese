@@ -101,6 +101,11 @@ public class HNCItemModels implements IDataProvider
         this.generateFlatItem(HNCItems.PINEAPPLE.get(), HNCMod.getLocation("block/pineapple_stage_4"), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.PINEAPPLE_RING.get(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.PINEAPPLE_BIT.get(), StockModelShapes.FLAT_ITEM);
+
+        this.generateFlatItem(HNCItems.TOMATO_SEEDS.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.TOMATO.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.TOMATO_SAUCE.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.TOMATO_SLICE.get(), StockModelShapes.FLAT_ITEM);
     }
 
     private void generateFlatItem(Item item, ModelsUtil modelsUtil)

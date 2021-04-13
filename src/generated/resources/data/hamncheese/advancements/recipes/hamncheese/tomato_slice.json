@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:tomato_slice"
+    ]
+  },
+  "criteria": {
+    "has_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:knife"
+          }
+        ]
+      }
+    },
+    "has_tomato": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:tomato"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:tomato_slice"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_knife",
+      "has_tomato",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,5 +1,6 @@
 {
   "block.hamncheese.pineapple_plant": "Pineapple Plant",
+  "block.hamncheese.tomato_plant": "Tomato Plant",
   "item.hamncheese.bacon": "Raw Bacon",
   "item.hamncheese.block_of_cheese": "Block Of Cheese",
   "item.hamncheese.bread_slice": "Bread Slice",
@@ -22,14 +23,18 @@
   "item.hamncheese.pineapple_bit": "Pineapple Bit",
   "item.hamncheese.pineapple_plant": "Pineapple Plant",
   "item.hamncheese.pineapple_ring": "Pineapple Ring",
-  "item.hamncheese.pizza_base": "Pizza Base",
   "item.hamncheese.rock_salt": "Rock Salt",
   "item.hamncheese.rolling_pin": "Rolling Pin",
   "item.hamncheese.sandwich": "Sandwich",
   "item.hamncheese.sandwich.toasted": "Toasted",
   "item.hamncheese.toast": "Toast",
+  "item.hamncheese.tomato": "Tomato",
+  "item.hamncheese.tomato_sauce": "Tomato Sauce",
+  "item.hamncheese.tomato_seeds": "Tomato Seeds",
+  "item.hamncheese.tomato_slice": "Tomato Slice",
   "item.hamncheese.unbaked_bread": "Unbaked Bread",
   "item.hamncheese.unbaked_cracker": "Unbaked Cracker",
+  "item.hamncheese.unbaked_pizza_base": "Unbaked Pizza Base",
   "item.hamncheese.wooden_gear": "Wooden Gear",
   "itemGroup.hamncheese": "Ham N' Cheese"
 }

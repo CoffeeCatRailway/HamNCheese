@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:tomato_seeds"
+    ]
+  },
+  "criteria": {
+    "has_tomato_slice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:tomato_slice"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:tomato_seeds"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tomato_slice",
+      "has_the_recipe"
+    ]
+  ]
+}

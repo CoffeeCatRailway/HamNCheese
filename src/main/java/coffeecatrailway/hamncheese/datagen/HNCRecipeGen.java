@@ -105,5 +105,11 @@ public class HNCRecipeGen extends RecipeProvider
                 .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_BIT.get(), 3).requires(HNCItems.KNIFE.get()).requires(HNCItems.PINEAPPLE_RING.get()).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE_RING.get()))
                 .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SAUCE.get()).requires(Items.BOWL).requires(Items.PUMPKIN_SEEDS).requires(HNCItems.TOMATO.get()).unlockedBy("has_bowl", has(Items.BOWL))
+                .unlockedBy("has_pumpkin_seeds", has(Items.PUMPKIN_SEEDS)).unlockedBy("has_tomato", has(HNCItems.TOMATO.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItems.KNIFE.get()).requires(HNCItems.TOMATO.get()).unlockedBy("has_knife", has(HNCItems.KNIFE.get()))
+                .unlockedBy("has_tomato", has(HNCItems.TOMATO.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SEEDS.get(), 4).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_tomato_slice", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
     }
 }
