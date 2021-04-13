@@ -11,7 +11,6 @@ import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundCategory;
@@ -27,9 +26,9 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
@@ -69,7 +68,7 @@ public class AbstractSandwichItem extends Item
         ListNBT ingredients = nbt.getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
         ITextComponent name = super.getName(stack);
         if (ingredients.size() > 0)
-            name = ItemStack.of((CompoundNBT) ingredients.get(0)).getDisplayName().copy().append(" ").append(super.getName(stack));
+            name = ItemStack.of((CompoundNBT) ingredients.get(0)).getHoverName().copy().append(" ").append(super.getName(stack));
         if (this.sandwichProperties.isToasted(nbt))
             name = new TranslationTextComponent("item.hamncheese.sandwich.toasted").append(" ").append(name);
         return name;
@@ -79,9 +78,9 @@ public class AbstractSandwichItem extends Item
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag)
     {
-        ListNBT ingredients = stack.getOrCreateTag().getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
-        for (INBT ingredient : ingredients)
-            tooltip.add(ItemStack.of((CompoundNBT) ingredient).getDisplayName().copy().withStyle(TextFormatting.GRAY));
+        List<Item> ingredients = stack.getOrCreateTag().getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND).stream().map(nbt -> ItemStack.of((CompoundNBT) nbt).getItem()).collect(Collectors.toList());
+        Set<Item> ingredientSet = new HashSet<>(ingredients);
+        ingredientSet.forEach(item -> tooltip.add(new ItemStack(item).getHoverName().copy().withStyle(TextFormatting.GRAY).append(" x").append(String.valueOf(Collections.frequency(ingredients, item)))));
     }
 
     @Override
@@ -123,19 +122,12 @@ public class AbstractSandwichItem extends Item
 
         Food bread = this.sandwichProperties.getBunFood(nbt);
         foods.add(bread);
-
-        ListNBT ingredients = nbt.getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
-        for (INBT ingredient : ingredients)
-        {
-            ItemStack foodStack = ItemStack.of((CompoundNBT) ingredient);
-            if (foodStack.isEdible())
-                foods.add(foodStack.getItem().getFoodProperties());
-        }
-
+        stack.getOrCreateTag().getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND).stream().map(inbt -> ItemStack.of((CompoundNBT) inbt))
+                .filter(ItemStack::isEdible).map(ingredient -> ingredient.getItem().getFoodProperties()).forEach(foods::add);
         if (this.sandwichProperties.hasTwoBuns())
             foods.add(bread);
 
-        return HNCFoods.combine(.2f, this.sandwichProperties.isToasted(nbt), foods.toArray(new Food[]{})).build();
+        return HNCFoods.combine(.5f, this.sandwichProperties.isToasted(nbt), foods.toArray(new Food[]{})).build();
     }
 
     public static ItemStack addIngredient(ItemStack sandwich, ItemStack ingredient)

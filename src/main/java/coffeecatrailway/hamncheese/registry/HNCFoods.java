@@ -18,12 +18,12 @@ public class HNCFoods
     private static final Supplier<EffectInstance> HUNGER_EFFECT = () -> new EffectInstance(Effects.HUNGER, 400, 1);
 
     public static final Food BLOCK_OF_CHEESE = new Food.Builder().nutrition(6).saturationMod(1f).build();
-    public static final Food CHEESE_SLICE = divide(BLOCK_OF_CHEESE, 3, 2f).fast().build();
+    public static final Food CHEESE_SLICE = divide(BLOCK_OF_CHEESE, 3f, 2f).fast().build();
 
     public static final Food INGREDIENT = new Food.Builder().nutrition(1).saturationMod(.5f).build();
     public static final Food DOUGH = times(INGREDIENT, 3f).build();
 
-    public static final Food BREAD_SLICE = times(divide(Foods.BREAD, 3f).build(), 1, 2f).build();
+    public static final Food BREAD_SLICE = times(divide(Foods.BREAD, 3f).build(), 1f, 2f).build();
     public static final Food TOAST = times(BREAD_SLICE, 1.5f).build();
 
     public static final Food CRACKER = combine(.5f, false, INGREDIENT, INGREDIENT, divide(Foods.BREAD, 3f).build()).build();
@@ -49,12 +49,12 @@ public class HNCFoods
 
     private static Food.Builder divide(Food copy, float amount)
     {
-        return divide(copy, (int) amount, amount);
+        return divide(copy, amount, amount);
     }
 
-    private static Food.Builder divide(Food copy, int nutrition, float saturationMod)
+    private static Food.Builder divide(Food copy, float nutrition, float saturationMod)
     {
-        return copyFood(copy).nutrition(copy.getNutrition() / nutrition).saturationMod(copy.getSaturationModifier() / saturationMod);
+        return copyFood(copy).nutrition(Math.round(copy.getNutrition() / nutrition)).saturationMod(copy.getSaturationModifier() / saturationMod);
     }
 
     private static Food.Builder times(Food copy, float amount)
@@ -62,9 +62,9 @@ public class HNCFoods
         return times(copy, (int) amount, amount);
     }
 
-    private static Food.Builder times(Food copy, int nutrition, float saturationMod)
+    private static Food.Builder times(Food copy, float nutrition, float saturationMod)
     {
-        return copyFood(copy).nutrition(copy.getNutrition() * nutrition).saturationMod(copy.getSaturationModifier() * saturationMod);
+        return copyFood(copy).nutrition(Math.round(copy.getNutrition() * nutrition)).saturationMod(copy.getSaturationModifier() * saturationMod);
     }
 
     public static Food.Builder combine(float combinationMultiplier, boolean cooked, Food... foods)
