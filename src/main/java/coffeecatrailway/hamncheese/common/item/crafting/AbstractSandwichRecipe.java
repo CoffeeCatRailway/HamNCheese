@@ -13,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
+import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 /**
@@ -41,6 +42,8 @@ public abstract class AbstractSandwichRecipe extends SpecialRecipe
             int maxBunCount = sandwich.sandwichProperties.hasTwoBuns() ? 2 : 1;
             int bunCount = 0;
             int ingredientCount = 0;
+            boolean hasNeededItem = this.getNeededItem() == null;
+            int neededItemCount = 0;
 
             for (int i = 0; i < inventory.getContainerSize(); i++)
             {
@@ -51,14 +54,18 @@ public abstract class AbstractSandwichRecipe extends SpecialRecipe
                         return false;
                     else
                     {
-                        if (this.bunTag.contains(stack.getItem()))
+                        if (stack.getItem() == this.getNeededItem())
+                        {
+                            neededItemCount++;
+                            hasNeededItem = neededItemCount <= 1;
+                        } else if (this.bunTag.contains(stack.getItem()))
                             bunCount++;
                         else
                             ingredientCount++;
                     }
                 }
             }
-            return bunCount == maxBunCount && ingredientCount > 0 && ingredientCount <= HNCMod.SERVER_CONFIG.maxSandwichIngredientCraftCount.get();
+            return bunCount == maxBunCount && ingredientCount > 0 && ingredientCount <= HNCMod.SERVER_CONFIG.maxSandwichIngredientCraftCount.get() && hasNeededItem;
         }
         return false;
     }
@@ -69,12 +76,16 @@ public abstract class AbstractSandwichRecipe extends SpecialRecipe
         ItemStack bunStack = this.hasBun(inventory);
         if (!bunStack.isEmpty())
         {
+            int neededItemCount = 0;
             ItemStack sandwich = new ItemStack(this.defaultItem.get());
             for (int i = 0; i < inventory.getContainerSize(); i++)
             {
                 ItemStack ingredient = inventory.getItem(i);
-                if (!ingredient.isEmpty() && ingredient.isEdible() && !this.bunTag.contains(ingredient.getItem()))
-                    sandwich = AbstractSandwichItem.addIngredient(sandwich, ingredient);
+                if (ingredient.getItem() == this.getNeededItem())
+                    neededItemCount++;
+                if (ingredient.getItem() != this.getNeededItem() && neededItemCount <= 1)
+                    if (!ingredient.isEmpty() && ingredient.isEdible() && !this.bunTag.contains(ingredient.getItem()))
+                        sandwich = AbstractSandwichItem.addIngredient(sandwich, ingredient);
             }
             return sandwich;
         }
@@ -104,5 +115,11 @@ public abstract class AbstractSandwichRecipe extends SpecialRecipe
     public boolean canCraftInDimensions(int width, int height)
     {
         return width >= 2 && height >= 2;
+    }
+
+    @Nullable
+    protected Item getNeededItem()
+    {
+        return null;
     }
 }

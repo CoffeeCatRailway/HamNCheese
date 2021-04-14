@@ -75,7 +75,9 @@ public class HNCItemModels implements IDataProvider
         this.generateFlatItem(HNCItems.FLOUR.get(), StockModelShapes.FLAT_ITEM);
 
         this.generateFlatItem(HNCItems.DOUGH.get(), StockModelShapes.FLAT_ITEM);
+
         this.generateFlatItem(HNCItems.UNBAKED_PIZZA_BASE.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.BAKED_PIZZA_DUMMY.get(), HNCMod.getLocation("item/pizza_base"), StockModelShapes.FLAT_ITEM);
 
         this.generateFlatItem(HNCItems.UNBAKED_BREAD.get(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.BREAD_SLICE.get(), StockModelShapes.FLAT_ITEM);

@@ -23,6 +23,8 @@ public class HNCFoods
     public static final Food INGREDIENT = new Food.Builder().nutrition(1).saturationMod(.5f).build();
     public static final Food DOUGH = times(INGREDIENT, 3f).build();
 
+    public static final Food PIZZA = times(DOUGH, 1.5f).build();
+
     public static final Food BREAD_SLICE = times(divide(Foods.BREAD, 3f).build(), 1f, 2f).build();
     public static final Food TOAST = times(BREAD_SLICE, 1.5f).build();
 
