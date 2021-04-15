@@ -1,35 +1,25 @@
 package coffeecatrailway.hamncheese;
 
-import coffeecatrailway.hamncheese.client.ClientEvents;
 import coffeecatrailway.hamncheese.datagen.*;
+import coffeecatrailway.hamncheese.registry.HNCBlockPlacerTypes;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.tuple.Pair;
@@ -60,8 +50,8 @@ public class HNCMod
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         Sonar.init(bus);
-        bus.addListener(this::onClientSetup);
-        bus.addListener(this::onCommonSetup);
+        bus.addListener(ClientEvents::init);
+        bus.addListener(CommonEvents::init);
         bus.addListener(this::onGatherData);
 
         final Pair<HNCConfig.Client, ForgeConfigSpec> client = new ForgeConfigSpec.Builder().configure(HNCConfig.Client::new);
@@ -82,15 +72,7 @@ public class HNCMod
         HNCBlocks.load(bus);
         HNCItems.load(bus);
         HNCRecipes.load(bus);
-    }
-
-    private void onClientSetup(FMLClientSetupEvent event)
-    {
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::renderLayers);
-    }
-
-    private void onCommonSetup(FMLCommonSetupEvent event)
-    {
+        HNCBlockPlacerTypes.load(bus);
     }
 
     private void onGatherData(GatherDataEvent event)
@@ -106,17 +88,6 @@ public class HNCMod
         generator.addProvider(new HNCRecipeGen(generator));
         generator.addProvider(new HNCItemModels(generator));
         generator.addProvider(new HNCBlockStates(generator, existingFileHelper));
-    }
-
-    @SubscribeEvent
-    public void onProjectileImpact(ProjectileImpactEvent.Throwable event) {
-        if (event.getThrowable() instanceof EggEntity && event.getRayTraceResult().getType() != RayTraceResult.Type.MISS) {
-            EggEntity egg = (EggEntity) event.getThrowable();
-            World level = egg.level;
-            if (!level.isClientSide)
-                if (MathHelper.nextDouble(level.random, 0d, 1d) <= SERVER_CONFIG.crackedEggSpawnChance.get())
-                    level.addFreshEntity(new ItemEntity(level, egg.getX(), egg.getY(), egg.getZ(), new ItemStack(HNCItems.CRACKED_EGG.get())));
-        }
     }
 
     public static ResourceLocation getLocation(String path)

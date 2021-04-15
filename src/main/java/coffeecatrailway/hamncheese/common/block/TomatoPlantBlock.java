@@ -21,7 +21,7 @@ import java.util.Random;
  * @author CoffeeCatRailway
  * Created: 11/04/2021
  */
-public class TomatoPlantBlock extends AbstractDoublePlantBlock
+public class TomatoPlantBlock extends AbstractDoubleCropBlock
 {
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 9);
 
@@ -56,13 +56,13 @@ public class TomatoPlantBlock extends AbstractDoublePlantBlock
     }
 
     @Override
-    protected IntegerProperty getAgeProperty()
+    public IntegerProperty getAgeProperty()
     {
         return AGE;
     }
 
     @Override
-    protected int getMaxAge()
+    public int getMaxAge()
     {
         return 9;
     }
@@ -82,7 +82,7 @@ public class TomatoPlantBlock extends AbstractDoublePlantBlock
     @Override
     protected boolean placeableOn(BlockState state, IBlockReader world, BlockPos pos)
     {
-        return state.is(Blocks.FARMLAND);
+        return state.is(Blocks.FARMLAND) || state.is(Blocks.GRASS_BLOCK);
     }
 
     @Override

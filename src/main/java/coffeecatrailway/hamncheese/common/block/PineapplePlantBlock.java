@@ -4,7 +4,6 @@ import coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.BushBlock;
 import net.minecraft.item.Item;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.properties.DoubleBlockHalf;
@@ -21,7 +20,7 @@ import java.util.Random;
  * @author CoffeeCatRailway
  * Created: 6/04/2021
  */
-public class PineapplePlantBlock extends AbstractDoublePlantBlock
+public class PineapplePlantBlock extends AbstractDoubleCropBlock
 {
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 
@@ -46,13 +45,13 @@ public class PineapplePlantBlock extends AbstractDoublePlantBlock
     }
 
     @Override
-    protected IntegerProperty getAgeProperty()
+    public IntegerProperty getAgeProperty()
     {
         return AGE;
     }
 
     @Override
-    protected int getMaxAge()
+    public int getMaxAge()
     {
         return 4;
     }

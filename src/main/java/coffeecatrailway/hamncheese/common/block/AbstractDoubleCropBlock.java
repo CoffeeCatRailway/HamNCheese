@@ -27,18 +27,18 @@ import java.util.Random;
  * @author CoffeeCatRailway
  * Created: 12/04/2021
  */
-public abstract class AbstractDoublePlantBlock extends BushBlock implements IGrowable
+public abstract class AbstractDoubleCropBlock extends BushBlock implements IGrowable
 {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
-    public AbstractDoublePlantBlock(Properties properties)
+    public AbstractDoubleCropBlock(Properties properties)
     {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(this.getAgeProperty(), 0).setValue(HALF, DoubleBlockHalf.LOWER));
     }
 
-    protected abstract IntegerProperty getAgeProperty();
-    protected abstract int getMaxAge();
+    public abstract IntegerProperty getAgeProperty();
+    public abstract int getMaxAge();
 
     protected abstract VoxelShape[] getTopShapes();
     protected abstract VoxelShape[] getBottomShapes();

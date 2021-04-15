@@ -21,10 +21,31 @@ public class HNCConfig
 
     public static class Common
     {
+        public ForgeConfigSpec.BooleanValue generateWildPineapples;
+        public ForgeConfigSpec.IntValue chanceWildPineapples;
+
+        public ForgeConfigSpec.BooleanValue generateWildTomatoes;
+        public ForgeConfigSpec.IntValue chanceWildTomatoes;
+
         public Common(ForgeConfigSpec.Builder builder)
         {
-//            builder.comment("Common Configurable Settings");
-//            builder.pop();
+            builder.comment("Common Configurable Settings").push("generation");
+
+            builder.push("wildPineapples");
+            this.generateWildPineapples = builder.comment("Generate pineapples in biomes with a temperature of .5 to 1").translation(CONFIG + "generation.wildPineapples.generateWildPineapples")
+                    .define("generateWildPineapples", true);
+            this.chanceWildPineapples = builder.comment("Pineapple generation chance").translation(CONFIG + "generation.wildPineapples.chanceWildPineapples")
+                    .defineInRange("chanceWildPineapples", 10, 0, Integer.MAX_VALUE);
+            builder.pop();
+
+            builder.push("wildTomatoes");
+            this.generateWildTomatoes = builder.comment("Generate tomatoes in biomes with a temperature of .5 to 1").translation(CONFIG + "generation.wildTomatoes.generateWildTomatoes")
+                    .define("generateWildTomatoes", true);
+            this.chanceWildTomatoes = builder.comment("Tomato generation chance").translation(CONFIG + "generation.wildTomatoes.chanceWildTomatoes")
+                    .defineInRange("chanceWildTomatoes", 10, 0, Integer.MAX_VALUE);
+            builder.pop();
+
+            builder.pop();
         }
     }
 
