@@ -27,6 +27,9 @@ public class HNCConfig
         public ForgeConfigSpec.BooleanValue generateWildTomatoes;
         public ForgeConfigSpec.IntValue chanceWildTomatoes;
 
+        public ForgeConfigSpec.BooleanValue allowButcherTrades;
+        public ForgeConfigSpec.BooleanValue allowFarmerTrades;
+
         public Common(ForgeConfigSpec.Builder builder)
         {
             builder.comment("Common Configurable Settings").push("generation");
@@ -43,8 +46,13 @@ public class HNCConfig
                     .define("generateWildTomatoes", true);
             this.chanceWildTomatoes = builder.comment("Tomato generation chance").translation(CONFIG + "generation.wildTomatoes.chanceWildTomatoes")
                     .defineInRange("chanceWildTomatoes", 10, 0, Integer.MAX_VALUE);
-            builder.pop();
+            builder.pop(2);
 
+            builder.push("villagers");
+            this.allowButcherTrades = builder.comment("Allow butchers to trade emeralds for cooking tools").translation(CONFIG + "villagers.allowButcherTrades")
+                    .define("allowButcherTrades", true);
+            this.allowFarmerTrades = builder.comment("Allow farmers to trade emeralds for foods").translation(CONFIG + "villagers.allowFarmerTrades")
+                    .define("allowFarmerTrades", true);
             builder.pop();
         }
     }
