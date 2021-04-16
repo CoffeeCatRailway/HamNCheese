@@ -4,6 +4,7 @@ import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import coffeecatrailway.hamncheese.registry.HNCFeatures;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -40,9 +41,43 @@ public class CommonEvents
     public static void init(final FMLCommonSetupEvent event)
     {
         event.enqueueWork(() -> {
-            // Compostable
+            registerCompostables();
             HNCFeatures.registerConfiguredFeatures();
         });
+    }
+
+    public static void registerCompostables()
+    {
+        // 30% chance
+        ComposterBlock.COMPOSTABLES.put(HNCItems.CHEESE_SLICE.get(), .3f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.HAM_SLICE.get(), .3f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_HAM_SLICE.get(), .3f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.GREEN_HAM_SLICE.get(), .3f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.BACON.get(), .3f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_BACON.get(), .3f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE_PLANT.get(), .3f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO_SEEDS.get(), .3f);
+
+        // 40% chance
+        ComposterBlock.COMPOSTABLES.put(HNCItems.CRACKED_EGG.get(), .4f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_EGG.get(), .4f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.GREEN_EGG.get(), .4f);
+
+        // 50% chance
+        ComposterBlock.COMPOSTABLES.put(HNCItems.BLOCK_OF_CHEESE.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.DOUGH.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_PIZZA_BASE.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_BREAD.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.BREAD_SLICE.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.TOAST.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_CRACKER.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE_RING.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE_BIT.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO_SLICE.get(), .5f);
+
+        // 65% chance
+        ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE.get(), .65f);
+        ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO.get(), .65f);
     }
 
     @SubscribeEvent
