@@ -109,10 +109,10 @@ public class CommonEvents
             trades.get(2).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.COOKED_HAM_SLICE.get(), 9, 16, 5));
             trades.get(2).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.COOKED_BACON.get(), 9, 16, 5));
 
-            trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.CURDLER.get(), 15, 16, 2));
-            trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.ROLLING_PIN.get(), 15, 16, 2));
-            trades.get(2).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.GRIND_STONES.get(), 15, 16, 5));
-            trades.get(2).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.KNIFE.get(), 18, 8, 5));
+            trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.CURDLER.get(), 1, 16, 2));
+            trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.ROLLING_PIN.get(), 1, 16, 2));
+            trades.get(2).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.GRIND_STONES.get(), 1, 16, 5));
+            trades.get(2).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.KNIFE.get(), 1, 8, 5));
         }
         if (event.getType() == VillagerProfession.FARMER)
         {
