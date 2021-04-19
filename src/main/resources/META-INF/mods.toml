@@ -8,9 +8,11 @@ modId="hamncheese"
 version="${version}"
 displayName="${name}"
 logoFile="logo.png"
-# credits=""
+displayURL="https://www.curseforge.com/minecraft/mc-mods/coffeecheese"
 authors="${author}"
 description='''
+Adds in lots of ham and cheese related foods.
+
 Discord: https://discord.com/invite/JM4NjRzZPS
 Credit to 'https://github.com/SystemZeeWorkshop/modding-template'
 '''
