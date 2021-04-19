@@ -79,7 +79,7 @@ public class HNCItems
     public static final RegistryObject<Item> PINEAPPLE_BIT = registerIdAsName("pineapple_bit", prop -> new Item(prop.food(HNCFoods.PINEAPPLE_BIT).stacksTo(32)));
 
     public static final RegistryObject<Item> TOMATO_SEEDS = registerIdAsName("tomato_seeds", prop -> new BlockNamedItem(HNCBlocks.TOMATO_PLANT.get(), prop));
-    public static final RegistryObject<Item> TOMATO = registerIdAsName("tomato", prop -> new Item(prop.food(HNCFoods.TOMATO).stacksTo(32))); // TODO: Tomato plant
+    public static final RegistryObject<Item> TOMATO = registerIdAsName("tomato", prop -> new Item(prop.food(HNCFoods.TOMATO).stacksTo(32)));
     public static final RegistryObject<Item> TOMATO_SAUCE = registerIdAsName("tomato_sauce", prop -> new Item(prop.food(HNCFoods.TOMATO_SAUCE).stacksTo(1)));
     public static final RegistryObject<Item> TOMATO_SLICE = registerIdAsName("tomato_slice", prop -> new Item(prop.food(HNCFoods.TOMATO_SLICE)));
 
@@ -87,11 +87,6 @@ public class HNCItems
     {
         return registerWithName(id, null, factory);
     }
-
-//    private static <T extends Item> RegistryObject<T> registerWithNoName(String id, Function<Item.Properties, T> factory)
-//    {
-//        return register(id, null, false, factory);
-//    }
 
     private static <T extends Item> RegistryObject<T> registerWithName(String id, @Nullable String name, Function<Item.Properties, T> factory)
     {

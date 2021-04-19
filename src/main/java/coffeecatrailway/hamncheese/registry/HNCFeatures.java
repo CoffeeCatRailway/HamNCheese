@@ -3,18 +3,11 @@ package coffeecatrailway.hamncheese.registry;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.world.DoubleCropBlockPlacer;
 import com.google.common.collect.ImmutableSet;
-import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.gen.blockplacer.BlockPlacer;
-import net.minecraft.world.gen.blockplacer.BlockPlacerType;
-import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * @author CoffeeCatRailway

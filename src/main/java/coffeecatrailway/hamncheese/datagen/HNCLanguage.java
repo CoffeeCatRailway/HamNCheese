@@ -1,7 +1,6 @@
 package coffeecatrailway.hamncheese.datagen;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
@@ -10,7 +9,6 @@ import net.minecraftforge.fml.RegistryObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 /**
  * @author CoffeeCatRailway

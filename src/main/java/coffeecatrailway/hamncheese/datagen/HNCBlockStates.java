@@ -7,7 +7,6 @@ import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;

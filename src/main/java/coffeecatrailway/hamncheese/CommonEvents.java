@@ -5,16 +5,11 @@ import coffeecatrailway.hamncheese.registry.HNCFeatures;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.ComposterBlock;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.projectile.EggEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -29,7 +24,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * @author CoffeeCatRailway

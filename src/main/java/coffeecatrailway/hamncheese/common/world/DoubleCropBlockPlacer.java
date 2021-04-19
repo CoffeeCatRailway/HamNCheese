@@ -4,7 +4,6 @@ import coffeecatrailway.hamncheese.common.block.AbstractDoubleCropBlock;
 import coffeecatrailway.hamncheese.registry.HNCBlockPlacerTypes;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
