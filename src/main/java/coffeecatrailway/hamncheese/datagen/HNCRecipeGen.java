@@ -67,7 +67,7 @@ public class HNCRecipeGen extends RecipeProvider
         ShapelessRecipeBuilder.shapeless(HNCItems.DOUGH.get(), 2).requires(HNCItemTags.WHEAT).requires(HNCItemTags.SUGAR).requires(HNCItemTags.SALT).requires(HNCItemTags.FLOUR).unlockedBy("has_wheat", has(HNCItemTags.WHEAT))
                 .unlockedBy("has_sugar", has(HNCItemTags.SUGAR)).unlockedBy("has_salt", has(HNCItemTags.SALT)).unlockedBy("has_flour", has(HNCItemTags.FLOUR)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_PIZZA_BASE.get()).requires(HNCItems.ROLLING_PIN.get()).requires(HNCItems.DOUGH.get()).unlockedBy("has_dough", has(HNCItems.DOUGH.get()))
-                .unlockedBy("has_rolling_pin", has(HNCItems.ROLLING_PIN.get())).save(consumer); // TODO: Add custom pizza(s)
+                .unlockedBy("has_rolling_pin", has(HNCItems.ROLLING_PIN.get())).save(consumer);
 
         ShapedRecipeBuilder.shaped(HNCItems.UNBAKED_BREAD.get(), 2).define('d', HNCItemTags.DOUGH).pattern("ddd").unlockedBy("has_dough", has(HNCItemTags.DOUGH)).save(consumer);
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_BREAD.get()), Items.BREAD, .35f, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_bread", has(HNCItems.UNBAKED_BREAD.get())).save(consumer, HNCMod.getLocation("bread_smoking"));
@@ -96,10 +96,10 @@ public class HNCRecipeGen extends RecipeProvider
 
         ShapelessRecipeBuilder.shapeless(HNCItems.BACON.get(), 2).requires(HNCItems.KNIFE.get()).requires(HNCItems.HAM_SLICE.get()).unlockedBy("has_ham", has(HNCItems.HAM_SLICE.get()))
                 .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.COOKED_BACON.get(), 2).requires(HNCItems.KNIFE.get()).requires(HNCItems.COOKED_HAM_SLICE.get()).unlockedBy("has_ham", has(HNCItems.COOKED_HAM_SLICE.get()))
+                .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer, HNCMod.getLocation("cooked_bacon_kinfe"));
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 50, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HNCMod.getLocation("cooked_bacon_smoking"));
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HNCMod.getLocation("cooked_bacon_campfire"));
-        ShapelessRecipeBuilder.shapeless(HNCItems.COOKED_BACON.get(), 2).requires(HNCItems.KNIFE.get()).requires(HNCItems.COOKED_HAM_SLICE.get()).unlockedBy("has_ham", has(HNCItems.COOKED_HAM_SLICE.get()))
-                .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_RING.get(), 4).requires(HNCItems.KNIFE.get()).requires(HNCItems.PINEAPPLE.get()).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE.get()))
                 .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
