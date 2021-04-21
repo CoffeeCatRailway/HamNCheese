@@ -1,14 +1,23 @@
 package coffeecatrailway.hamncheese;
 
+import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
 import coffeecatrailway.hamncheese.registry.HNCFeatures;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.ComposterBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.NonTamedTargetGoal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.CatEntity;
+import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
@@ -17,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -134,5 +144,15 @@ public class CommonEvents
                 if (MathHelper.nextDouble(level.random, 0d, 1d) <= HNCMod.SERVER_CONFIG.crackedEggSpawnChance.get())
                     level.addFreshEntity(new ItemEntity(level, egg.getX(), egg.getY(), egg.getZ(), new ItemStack(HNCItems.CRACKED_EGG.get())));
         }
+    }
+
+    @SubscribeEvent
+    public static void onEntityJoinWorld(EntityJoinWorldEvent event)
+    {
+        Entity entity = event.getEntity();
+        if (entity instanceof CatEntity)
+            ((CatEntity) entity).targetSelector.addGoal(1, new NearestAttackableTargetGoal<>((CatEntity) entity, MouseEntity.class, false));
+        if (entity instanceof OcelotEntity)
+            ((OcelotEntity) entity).targetSelector.addGoal(1, new NearestAttackableTargetGoal<>((OcelotEntity) entity, MouseEntity.class, false));
     }
 }
