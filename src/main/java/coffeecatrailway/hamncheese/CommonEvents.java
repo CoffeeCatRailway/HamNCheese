@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese;
 
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
+import coffeecatrailway.hamncheese.registry.HNCEntities;
 import coffeecatrailway.hamncheese.registry.HNCFeatures;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -38,6 +39,8 @@ public class CommonEvents
             registerCompostables();
             HNCFeatures.registerConfiguredFeatures();
         });
+
+        HNCEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);
     }
 
     public static void registerCompostables()

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:barrel",
+    "#forge:chests",
+    "#minecraft:shulker_boxes"
+  ]
+}

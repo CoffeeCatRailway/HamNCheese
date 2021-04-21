@@ -1,10 +1,7 @@
 package coffeecatrailway.hamncheese;
 
 import coffeecatrailway.hamncheese.datagen.*;
-import coffeecatrailway.hamncheese.registry.HNCBlockPlacerTypes;
-import coffeecatrailway.hamncheese.registry.HNCBlocks;
-import coffeecatrailway.hamncheese.registry.HNCItems;
-import coffeecatrailway.hamncheese.registry.HNCRecipes;
+import coffeecatrailway.hamncheese.registry.*;
 import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemGroup;
@@ -73,6 +70,7 @@ public class HNCMod
         HNCItems.load(bus);
         HNCRecipes.load(bus);
         HNCBlockPlacerTypes.load(bus);
+        HNCEntities.load(bus);
     }
 
     private void onGatherData(GatherDataEvent event)

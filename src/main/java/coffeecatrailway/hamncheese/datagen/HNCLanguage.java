@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.datagen;
 import coffeecatrailway.hamncheese.HNCMod;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.RegistryObject;
@@ -18,6 +19,7 @@ public class HNCLanguage extends LanguageProvider
 {
     public static final Map<RegistryObject<? extends Item>, String> ITEMS = new HashMap<>();
     public static final Map<RegistryObject<? extends Block>, String> BLOCKS = new HashMap<>();
+    public static final Map<RegistryObject<? extends EntityType<?>>, String> ENTITIES = new HashMap<>();
 
     public HNCLanguage(DataGenerator generator)
     {
@@ -31,6 +33,7 @@ public class HNCLanguage extends LanguageProvider
         this.add("item.hamncheese.sandwich.toasted", "Toasted");
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));
+        ENTITIES.forEach((entity, name) -> this.add(entity.get(), name));
     }
 
     public static String capitalize(String id) {

@@ -1,15 +1,19 @@
 package coffeecatrailway.hamncheese.client.entity;
 
+import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * @author ManWithoutTaste, CoffeeCatRailway
+ */
 @OnlyIn(Dist.CLIENT)
-public class MouseModel extends EntityModel<Entity>
+public class MouseModel extends EntityModel<MouseEntity>
 {
     private final ModelRenderer body;
     private final ModelRenderer upperbody;
@@ -77,9 +81,23 @@ public class MouseModel extends EntityModel<Entity>
     }
 
     @Override
-    public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch)
+    public void setupAnim(MouseEntity mouse, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch)
     {
+        float aggressiveAngle = mouse.isAggressive() ? -((float) Math.PI / 5f) : 0f;
+        body.xRot = aggressiveAngle;
 
+        this.legFrontLeft.xRot = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount - aggressiveAngle;
+        this.legFrontRight.xRot = MathHelper.cos(limbSwing * 0.6662f + (float) Math.PI) * 1.4f * limbSwingAmount - aggressiveAngle;
+
+        this.legBackLeft.xRot = MathHelper.cos(limbSwing * 0.6662f + (float) Math.PI) * 1.4f * limbSwingAmount;
+        this.legBackRight.xRot = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount;
+
+        this.tail.xRot = -aggressiveAngle;
+        this.tail.yRot = MathHelper.sin(ageInTicks * .4f) * .5f;
+        this.tailLower.yRot = -MathHelper.cos(ageInTicks * .4f) * .25f;
+
+        this.head.xRot = headPitch * ((float) Math.PI / 180f) - aggressiveAngle;
+        this.head.yRot = netHeadYaw * ((float) Math.PI / 180f);
     }
 
     @Override

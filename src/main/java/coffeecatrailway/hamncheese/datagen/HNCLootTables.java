@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.datagen;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
+import coffeecatrailway.hamncheese.registry.HNCEntities;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
@@ -16,8 +17,10 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.BlockStateProperty;
+import net.minecraft.loot.conditions.EntityHasProperty;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.ExplosionDecay;
+import net.minecraft.loot.functions.Smelt;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ForgeLootTableProvider;
@@ -64,6 +67,10 @@ public class HNCLootTables extends ForgeLootTableProvider
         @Override
         protected void addTables()
         {
+            this.add(HNCEntities.MOUSE.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.MOUSE.get())
+                                    .apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, EntityLootTables.ENTITY_ON_FIRE))))));
         }
 
         @Override

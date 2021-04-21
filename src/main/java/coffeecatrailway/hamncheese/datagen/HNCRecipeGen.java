@@ -111,5 +111,9 @@ public class HNCRecipeGen extends RecipeProvider
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItems.KNIFE.get()).requires(HNCItems.TOMATO.get()).unlockedBy("has_knife", has(HNCItems.KNIFE.get()))
                 .unlockedBy("has_tomato", has(HNCItems.TOMATO.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SEEDS.get(), 4).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_tomato_slice", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
+
+        CookingRecipeBuilder.smelting(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 100).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HNCMod.getLocation("cooked_mouse"));
+        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 50, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HNCMod.getLocation("cooked_mouse_smoking"));
+        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HNCMod.getLocation("cooked_mouse_campfire"));
     }
 }

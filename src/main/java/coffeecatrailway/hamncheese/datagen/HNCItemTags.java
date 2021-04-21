@@ -34,6 +34,8 @@ public class HNCItemTags extends ItemTagsProvider
     public static final ITag.INamedTag<Item> CRACKER = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "cracker"));
     public static final ITag.INamedTag<Item> PIZZA = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "pizza"));
 
+    public static final ITag.INamedTag<Item> MOUSE_BLACKLIST = net.minecraft.tags.ItemTags.createOptional(HNCMod.getLocation("mouse_blacklist"));
+
     public HNCItemTags(DataGenerator generator, BlockTagsProvider provider, @Nullable ExistingFileHelper fileHelper)
     {
         super(generator, provider, HNCMod.MOD_ID, fileHelper);
@@ -57,5 +59,7 @@ public class HNCItemTags extends ItemTagsProvider
         this.tag(PIZZA).add(HNCItems.UNBAKED_PIZZA_BASE.get());
 
         this.tag(Tags.Items.EGGS).add(HNCItems.CRACKED_EGG.get(), HNCItems.COOKED_EGG.get(), HNCItems.GREEN_EGG.get());
+
+        this.tag(MOUSE_BLACKLIST).add(Items.ROTTEN_FLESH, Items.SPIDER_EYE, Items.PUFFERFISH, HNCItems.MOUSE.get(), HNCItems.COOKED_MOUSE.get(), HNCItems.FOOD_SCRAPS.get());
     }
 }

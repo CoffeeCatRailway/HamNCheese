@@ -49,6 +49,11 @@ public class HNCFoods
     public static final Food TOMATO_SAUCE = combine(.5f, false, TOMATO, INGREDIENT, INGREDIENT).build();
     public static final Food TOMATO_SLICE = divide(TOMATO, 2f).build();
 
+    public static final Food MOUSE = new Food.Builder().nutrition(2).saturationMod(.3f).meat().effect(HUNGER_EFFECT, .3f).build();
+    public static final Food COOKED_MOUSE = times(MOUSE, 2f).build();
+
+    public static final Food FOOD_SCRAPS = new Food.Builder().nutrition(1).saturationMod(2f).build();
+
     private static Food.Builder divide(Food copy, float amount)
     {
         return divide(copy, amount, amount);
