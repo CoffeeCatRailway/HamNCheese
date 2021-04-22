@@ -51,6 +51,7 @@ public class CommonEvents
         });
 
         HNCEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);
+        HNCEntities.registerSpawnPlacements();
     }
 
     public static void registerCompostables()
@@ -101,6 +102,8 @@ public class CommonEvents
             if (HNCMod.COMMON_CONFIG.generateWildTomatoes.get())
                 builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_TOMATO_PATCH);
         }
+
+        HNCEntities.addEntitySpawns(event);
     }
 
     @SubscribeEvent
