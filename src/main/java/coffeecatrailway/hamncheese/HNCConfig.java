@@ -64,6 +64,10 @@ public class HNCConfig
 
         public ForgeConfigSpec.DoubleValue cookedFoodModifier;
 
+        public ForgeConfigSpec.IntValue mouseSpawnWeight;
+        public ForgeConfigSpec.IntValue mouseMinCount;
+        public ForgeConfigSpec.IntValue mouseMaxCount;
+
         public Server(ForgeConfigSpec.Builder builder)
         {
             builder.comment("Server Configurable Settings").push("item");
@@ -75,8 +79,21 @@ public class HNCConfig
             builder.push("modifier");
             this.cookedFoodModifier = builder.comment("The amount of how much the saturation changes when grilled/cooked").translation(CONFIG + "item.cookedFoodModifier")
                     .defineInRange("cookedFoodModifier", 1.5d, 0.5d, 10d);
-
             builder.pop(2);
+
+            builder.push("generation").push("mouse");
+            this.mouseSpawnWeight = builder.comment("The weight of mice spawning").translation(CONFIG + "item.mouseSpawnWeight")
+                    .defineInRange("mouseSpawnWeight", 10, 1, Integer.MAX_VALUE);
+            this.mouseMinCount = builder.comment("The minimum amount of mice that can spawn").translation(CONFIG + "item.mouseMinCount")
+                    .defineInRange("mouseMinCount", 2, 0, Integer.MAX_VALUE);
+            this.mouseMaxCount = builder.comment("The maximum amount of mice that can spawn").translation(CONFIG + "item.mouseMaxCount")
+                    .defineInRange("mouseMaxCount", 4, 0, Integer.MAX_VALUE);
+            builder.pop(2);
+        }
+
+        public boolean canSpawnMouse()
+        {
+            return this.mouseMaxCount.get() != 0 && this.mouseMinCount.get() <= this.mouseMaxCount.get();
         }
     }
 }

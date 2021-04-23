@@ -8,7 +8,6 @@ import net.minecraft.entity.*;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -54,12 +53,14 @@ public class HNCEntities
 
     public static void registerSpawnPlacements()
     {
-        EntitySpawnPlacementRegistry.register(MOUSE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::checkMobSpawnRules);
+        if (HNCMod.SERVER_CONFIG.canSpawnMouse())
+            EntitySpawnPlacementRegistry.register(MOUSE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::checkMobSpawnRules);
     }
 
     public static void addEntitySpawns(BiomeLoadingEvent event)
     {
-        event.getSpawns().getSpawner(MOUSE.get().getCategory()).add(new MobSpawnInfo.Spawners(MOUSE.get(), 10, 4, 4));
+        if (HNCMod.SERVER_CONFIG.canSpawnMouse())
+            event.getSpawns().getSpawner(MOUSE.get().getCategory()).add(new MobSpawnInfo.Spawners(MOUSE.get(), HNCMod.SERVER_CONFIG.mouseSpawnWeight.get(), HNCMod.SERVER_CONFIG.mouseMinCount.get(), HNCMod.SERVER_CONFIG.mouseMaxCount.get()));
     }
 
     public static void load(IEventBus bus)
