@@ -71,6 +71,7 @@ public class HNCMod
         HNCRecipes.load(bus);
         HNCBlockPlacerTypes.load(bus);
         HNCEntities.load(bus);
+        HNCProfessions.load(bus);
     }
 
     private void onGatherData(GatherDataEvent event)
