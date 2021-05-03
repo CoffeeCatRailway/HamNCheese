@@ -117,6 +117,20 @@ public class HNCLootTables extends ForgeLootTableProvider
                                     .setProperties(StatePropertiesPredicate.Builder.properties()
                                             .hasProperty(PineapplePlantBlock.AGE, 9))))
                     .apply(ExplosionDecay.explosionDecay()));
+
+            this.dropSelf(HNCBlocks.OAK_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.BIRCH_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.SPRUCE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.JUNGLE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.ACACIA_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.CRIMSON_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.WARPED_CHOPPING_BOARD.get());
+
+            this.dropSelf(HNCBlocks.STONE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.GOLD_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.IRON_CHOPPING_BOARD.get());
         }
 
         @Override

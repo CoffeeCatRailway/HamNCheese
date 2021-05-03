@@ -31,6 +31,20 @@ public class ClientEvents
 
         RenderTypeLookup.setRenderLayer(HNCBlocks.PINEAPPLE_PLANT.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(HNCBlocks.TOMATO_PLANT.get(), cutoutMipped);
+
+        RenderTypeLookup.setRenderLayer(HNCBlocks.OAK_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.BIRCH_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.SPRUCE_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.JUNGLE_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.ACACIA_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.CRIMSON_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.WARPED_CHOPPING_BOARD.get(), cutoutMipped);
+
+        RenderTypeLookup.setRenderLayer(HNCBlocks.STONE_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.GOLD_CHOPPING_BOARD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.IRON_CHOPPING_BOARD.get(), cutoutMipped);
     }
 
     public static void entityRenderers()
