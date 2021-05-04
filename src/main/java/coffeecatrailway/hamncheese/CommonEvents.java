@@ -197,11 +197,8 @@ public class CommonEvents
     public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
     {
         Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(event.getPlayer().getRandom());
-        Set<ToolType> toolType = event.getItemStack().getToolTypes();
-        BlockState blockstate = event.getWorld().getBlockState(event.getPos());
-
         ChoppingBoardManager.CHOPPING_BOARDS.forEach((key, board) -> {
-            if (toolType.contains(board.getToolType()) && blockstate.getBlock() == board.getStripBlock())
+            if (event.getItemStack().getToolTypes().contains(board.getToolType()) && event.getWorld().getBlockState(event.getPos()).getBlock() == board.getStripBlock())
             {
                 event.getWorld().setBlock(event.getPos(), board.getResult().getBlock().defaultBlockState().setValue(ChoppingBoardBlock.FACING, direction), Constants.BlockFlags.DEFAULT);
                 event.getWorld().playSound(event.getPlayer(), event.getPos(), board.getStripSound(), SoundCategory.BLOCKS, 1f, 1f);
