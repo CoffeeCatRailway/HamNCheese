@@ -1,0 +1,6 @@
+{
+  "stripBlock": "minecraft:light_weighted_pressure_plate",
+  "result": "hamncheese:gold_chopping_board",
+  "stripSound": "block.metal.place",
+  "toolType": "pickaxe"
+}

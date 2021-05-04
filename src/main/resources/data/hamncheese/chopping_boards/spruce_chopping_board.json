@@ -1,0 +1,6 @@
+{
+  "stripBlock": "minecraft:spruce_pressure_plate",
+  "result": "hamncheese:spruce_chopping_board",
+  "stripSound": "block.wood.place",
+  "toolType": "axe"
+}

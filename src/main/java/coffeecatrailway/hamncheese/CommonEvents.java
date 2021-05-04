@@ -1,13 +1,16 @@
 package coffeecatrailway.hamncheese;
 
+import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
+import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
 import coffeecatrailway.hamncheese.registry.HNCFeatures;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCProfessions;
 import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
@@ -19,14 +22,19 @@ import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,6 +42,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author CoffeeCatRailway
@@ -182,5 +191,21 @@ public class CommonEvents
             ((CatEntity) entity).targetSelector.addGoal(1, new NearestAttackableTargetGoal<>((CatEntity) entity, MouseEntity.class, false));
         if (entity instanceof OcelotEntity)
             ((OcelotEntity) entity).targetSelector.addGoal(1, new NearestAttackableTargetGoal<>((OcelotEntity) entity, MouseEntity.class, false));
+    }
+
+    @SubscribeEvent
+    public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
+    {
+        Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(event.getPlayer().getRandom());
+        Set<ToolType> toolType = event.getItemStack().getToolTypes();
+        BlockState blockstate = event.getWorld().getBlockState(event.getPos());
+
+        ChoppingBoardManager.CHOPPING_BOARDS.forEach((key, board) -> {
+            if (toolType.contains(board.getToolType()) && blockstate.getBlock() == board.getStripBlock())
+            {
+                event.getWorld().setBlock(event.getPos(), board.getResult().getBlock().defaultBlockState().setValue(ChoppingBoardBlock.FACING, direction), Constants.BlockFlags.DEFAULT);
+                event.getWorld().playSound(event.getPlayer(), event.getPos(), board.getStripSound(), SoundCategory.BLOCKS, 1f, 1f);
+            }
+        });
     }
 }

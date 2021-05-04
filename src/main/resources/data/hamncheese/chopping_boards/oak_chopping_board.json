@@ -1,0 +1,6 @@
+{
+  "stripBlock": "minecraft:oak_pressure_plate",
+  "result": "hamncheese:oak_chopping_board",
+  "stripSound": "block.wood.place",
+  "toolType": "axe"
+}

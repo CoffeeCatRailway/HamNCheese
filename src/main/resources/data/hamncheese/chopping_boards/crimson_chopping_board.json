@@ -1,0 +1,6 @@
+{
+  "stripBlock": "minecraft:crimson_pressure_plate",
+  "result": "hamncheese:crimson_chopping_board",
+  "stripSound": "block.wood.place",
+  "toolType": "axe"
+}

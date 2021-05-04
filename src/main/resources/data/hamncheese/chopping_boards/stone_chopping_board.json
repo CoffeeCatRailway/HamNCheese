@@ -1,0 +1,6 @@
+{
+  "stripBlock": "minecraft:stone_pressure_plate",
+  "result": "hamncheese:stone_chopping_board",
+  "stripSound": "block.stone.place",
+  "toolType": "pickaxe"
+}
