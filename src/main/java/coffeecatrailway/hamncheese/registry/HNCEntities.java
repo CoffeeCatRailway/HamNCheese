@@ -2,7 +2,7 @@ package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
-import coffeecatrailway.hamncheese.datagen.HNCLanguage;
+import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import io.github.ocelot.sonar.common.item.SpawnEggItemBase;
 import net.minecraft.entity.*;
 import net.minecraft.world.World;

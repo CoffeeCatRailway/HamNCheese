@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.common.item.crafting;
 
-import coffeecatrailway.hamncheese.datagen.HNCItemTags;
+import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import net.minecraft.item.crafting.IRecipeSerializer;

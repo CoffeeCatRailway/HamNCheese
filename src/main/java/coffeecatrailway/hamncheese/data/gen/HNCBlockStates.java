@@ -1,13 +1,10 @@
-package coffeecatrailway.hamncheese.datagen;
+package coffeecatrailway.hamncheese.data.gen;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
 import coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
-import io.netty.handler.codec.http2.Http2FrameLogger;
-import net.minecraft.block.Block;
-import net.minecraft.block.HorizontalBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;

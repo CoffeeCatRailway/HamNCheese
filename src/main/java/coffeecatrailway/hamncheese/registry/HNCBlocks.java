@@ -4,7 +4,7 @@ import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
 import coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
-import coffeecatrailway.hamncheese.datagen.HNCLanguage;
+import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

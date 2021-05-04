@@ -1,7 +1,7 @@
 package coffeecatrailway.hamncheese.common.entity.ai.goal;
 
-import coffeecatrailway.hamncheese.datagen.HNCBlockTags;
-import coffeecatrailway.hamncheese.datagen.HNCItemTags;
+import coffeecatrailway.hamncheese.data.gen.HNCBlockTags;
+import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureEntity;

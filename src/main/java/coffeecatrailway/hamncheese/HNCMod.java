@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese;
 
-import coffeecatrailway.hamncheese.datagen.*;
+import coffeecatrailway.hamncheese.data.gen.*;
 import coffeecatrailway.hamncheese.registry.*;
 import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;

@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package coffeecatrailway.hamncheese.datagen;
+package coffeecatrailway.hamncheese.data;
 
 import mcp.MethodsReturnNonnullByDefault;
 

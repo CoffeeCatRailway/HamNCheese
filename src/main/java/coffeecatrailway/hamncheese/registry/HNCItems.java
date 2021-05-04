@@ -2,7 +2,7 @@ package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.item.*;
-import coffeecatrailway.hamncheese.datagen.HNCLanguage;
+import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;

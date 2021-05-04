@@ -1,11 +1,10 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.datagen.HNCLanguage;
+import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;

@@ -1,4 +1,4 @@
-package coffeecatrailway.hamncheese.datagen;
+package coffeecatrailway.hamncheese.data.gen;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.registry.HNCItems;
