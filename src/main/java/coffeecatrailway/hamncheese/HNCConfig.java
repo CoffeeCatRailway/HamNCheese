@@ -10,14 +10,14 @@ public class HNCConfig
 {
     private static final String CONFIG = "config." + HNCMod.MOD_ID + ".";
 
-    public static class Client
-    {
-        public Client(ForgeConfigSpec.Builder builder)
-        {
+//    public static class Client
+//    {
+//        public Client(ForgeConfigSpec.Builder builder)
+//        {
 //            builder.comment("Client Configurable Settings");
 //            builder.pop();
-        }
-    }
+//        }
+//    }
 
     public static class Common
     {
