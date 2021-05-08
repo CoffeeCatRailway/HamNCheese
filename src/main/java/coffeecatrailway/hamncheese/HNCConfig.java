@@ -68,6 +68,12 @@ public class HNCConfig
         public ForgeConfigSpec.IntValue mouseMinCount;
         public ForgeConfigSpec.IntValue mouseMaxCount;
 
+        public ForgeConfigSpec.BooleanValue generateVillageRestaurants;
+        public ForgeConfigSpec.IntValue plainsRestaurantWeight;
+        public ForgeConfigSpec.IntValue snowyRestaurantWeight;
+        public ForgeConfigSpec.IntValue desertRestaurantWeight;
+        public ForgeConfigSpec.IntValue taigaRestaurantWeight;
+
         public Server(ForgeConfigSpec.Builder builder)
         {
             builder.comment("Server Configurable Settings").push("item");
@@ -88,6 +94,19 @@ public class HNCConfig
                     .defineInRange("mouseMinCount", 2, 0, Integer.MAX_VALUE);
             this.mouseMaxCount = builder.comment("The maximum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMaxCount")
                     .defineInRange("mouseMaxCount", 4, 0, Integer.MAX_VALUE);
+            builder.pop();
+
+            builder.push("village");
+            this.generateVillageRestaurants = builder.comment("Whether or not the restaurant can generate in villages").translation(CONFIG + "generation.village.generateVillageRestaurants")
+                    .define("generateVillageRestaurants", true);
+            this.plainsRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a plains village").translation(CONFIG + "generation.village.plainsRestaurantWeight")
+                    .defineInRange("plainsRestaurantWeight", 8, 1, Integer.MAX_VALUE);
+            this.snowyRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a snowy village").translation(CONFIG + "generation.village.snowyRestaurantWeight")
+                    .defineInRange("snowyRestaurantWeight", 8, 1, Integer.MAX_VALUE);
+            this.desertRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a desert village").translation(CONFIG + "generation.village.desertRestaurantWeight")
+                    .defineInRange("desertRestaurantWeight", 8, 1, Integer.MAX_VALUE);
+            this.taigaRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a taiga village").translation(CONFIG + "generation.village.taigaRestaurantWeight")
+                    .defineInRange("taigaRestaurantWeight", 8, 1, Integer.MAX_VALUE);
             builder.pop(2);
         }
 

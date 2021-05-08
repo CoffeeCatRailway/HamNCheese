@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
+import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
 import coffeecatrailway.hamncheese.registry.HNCFeatures;
@@ -10,7 +11,6 @@ import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCProfessions;
 import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
@@ -29,7 +29,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -42,7 +41,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author CoffeeCatRailway
@@ -53,6 +51,9 @@ public class CommonEvents
 {
     public static void init(final FMLCommonSetupEvent event)
     {
+        if (HNCMod.SERVER_CONFIG.generateVillageRestaurants.get())
+            VillagePoolsHelper.bootstrap();
+
         event.enqueueWork(() -> {
             registerCompostables();
             HNCFeatures.registerConfiguredFeatures();

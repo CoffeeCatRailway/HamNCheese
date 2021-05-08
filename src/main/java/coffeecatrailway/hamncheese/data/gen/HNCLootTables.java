@@ -15,11 +15,13 @@ import net.minecraft.data.loot.ChestLootTables;
 import net.minecraft.data.loot.EntityLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.conditions.EntityHasProperty;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.ExplosionDecay;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.loot.functions.Smelt;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ResourceLocation;
@@ -43,6 +45,8 @@ public class HNCLootTables extends ForgeLootTableProvider
             Pair.of(EntityProvider::new, LootParameterSets.ENTITY),
             Pair.of(BlockProvider::new, LootParameterSets.BLOCK));
 
+    public static final ResourceLocation PLAINS_CHEF_RESTAURANT = HNCMod.getLocation("chests/village/village_chef_restaurant");
+
     public HNCLootTables(DataGenerator generator)
     {
         super(generator);
@@ -59,6 +63,40 @@ public class HNCLootTables extends ForgeLootTableProvider
         @Override
         public void accept(BiConsumer<ResourceLocation, LootTable.Builder> registry)
         {
+            registry.accept(PLAINS_CHEF_RESTAURANT, LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(new RandomValueRange(3, 8))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.KNIFE.get()).setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.CURDLER.get()).setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.GRIND_STONES.get()).setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.PINEAPPLE.get()).setWeight(5)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 5))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.TOMATO.get()).setWeight(5)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 5))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.PINEAPPLE_PLANT.get()).setWeight(10)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 8))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.TOMATO_SEEDS.get()).setWeight(10)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 8))))
+                            .add(ItemLootEntry.lootTableItem(Items.BREAD).setWeight(8)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 4))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.BREAD_SLICE.get()).setWeight(10)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 8))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.BLOCK_OF_CHEESE.get()).setWeight(8)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 8))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.CHEESE_SLICE.get()).setWeight(10)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 4))))
+                            .add(ItemLootEntry.lootTableItem(Items.EMERALD).setWeight(2)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 4))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.ROCK_SALT.get()).setWeight(10)
+                                    .apply(SetCount.setCount(new RandomValueRange(2, 8))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.FLOUR.get()).setWeight(10)
+                                    .apply(SetCount.setCount(new RandomValueRange(2, 8))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.FOOD_SCRAPS.get()).setWeight(8)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 8))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.CRACKED_EGG.get()).setWeight(10)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 5))))
+                            .add(ItemLootEntry.lootTableItem(Items.EGG).setWeight(10)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 10))))
+                    ));
         }
     }
 
