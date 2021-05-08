@@ -82,11 +82,11 @@ public class HNCConfig
             builder.pop(2);
 
             builder.push("generation").push("mouse");
-            this.mouseSpawnWeight = builder.comment("The weight of mice spawning").translation(CONFIG + "item.mouseSpawnWeight")
+            this.mouseSpawnWeight = builder.comment("The weight of mice spawning").translation(CONFIG + "generation.mouse.mouseSpawnWeight")
                     .defineInRange("mouseSpawnWeight", 10, 1, Integer.MAX_VALUE);
-            this.mouseMinCount = builder.comment("The minimum amount of mice that can spawn").translation(CONFIG + "item.mouseMinCount")
+            this.mouseMinCount = builder.comment("The minimum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMinCount")
                     .defineInRange("mouseMinCount", 2, 0, Integer.MAX_VALUE);
-            this.mouseMaxCount = builder.comment("The maximum amount of mice that can spawn").translation(CONFIG + "item.mouseMaxCount")
+            this.mouseMaxCount = builder.comment("The maximum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMaxCount")
                     .defineInRange("mouseMaxCount", 4, 0, Integer.MAX_VALUE);
             builder.pop(2);
         }
