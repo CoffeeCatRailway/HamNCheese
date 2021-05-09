@@ -6,10 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
-import net.minecraft.world.gen.feature.structure.DesertVillagePools;
-import net.minecraft.world.gen.feature.structure.PlainsVillagePools;
-import net.minecraft.world.gen.feature.structure.SnowyVillagePools;
-import net.minecraft.world.gen.feature.structure.TaigaVillagePools;
+import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.feature.template.ProcessorLists;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import org.apache.logging.log4j.Logger;
@@ -28,11 +25,13 @@ public class VillagePoolsHelper
     {
         PlainsVillagePools.bootstrap();
         SnowyVillagePools.bootstrap();
+        SavannaVillagePools.bootstrap();
         DesertVillagePools.bootstrap();
         TaigaVillagePools.bootstrap();
 
         addPiece("plains", HNCMod.SERVER_CONFIG.plainsRestaurantWeight.get());
         addPiece("desert", HNCMod.SERVER_CONFIG.desertRestaurantWeight.get());
+        addPiece("savanna", HNCMod.SERVER_CONFIG.savannaRestaurantWeight.get());
         addPiece("snowy", HNCMod.SERVER_CONFIG.snowyRestaurantWeight.get());
         addPiece("taiga", HNCMod.SERVER_CONFIG.taigaRestaurantWeight.get());
     }

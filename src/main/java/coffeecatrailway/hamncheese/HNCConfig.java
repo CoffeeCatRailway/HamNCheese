@@ -71,6 +71,7 @@ public class HNCConfig
         public ForgeConfigSpec.BooleanValue generateVillageRestaurants;
         public ForgeConfigSpec.IntValue plainsRestaurantWeight;
         public ForgeConfigSpec.IntValue snowyRestaurantWeight;
+        public ForgeConfigSpec.IntValue savannaRestaurantWeight;
         public ForgeConfigSpec.IntValue desertRestaurantWeight;
         public ForgeConfigSpec.IntValue taigaRestaurantWeight;
 
@@ -103,6 +104,8 @@ public class HNCConfig
                     .defineInRange("plainsRestaurantWeight", 8, 1, Integer.MAX_VALUE);
             this.snowyRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a snowy village").translation(CONFIG + "generation.village.snowyRestaurantWeight")
                     .defineInRange("snowyRestaurantWeight", 8, 1, Integer.MAX_VALUE);
+            this.savannaRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a savanna village").translation(CONFIG + "generation.village.savannaRestaurantWeight")
+                    .defineInRange("savannaRestaurantWeight", 100, 1, Integer.MAX_VALUE);
             this.desertRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a desert village").translation(CONFIG + "generation.village.desertRestaurantWeight")
                     .defineInRange("desertRestaurantWeight", 8, 1, Integer.MAX_VALUE);
             this.taigaRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a taiga village").translation(CONFIG + "generation.village.taigaRestaurantWeight")
