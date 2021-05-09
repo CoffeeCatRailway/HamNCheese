@@ -29,8 +29,6 @@ public class HNCMod
     public static final String MOD_ID = "hamncheese";
     private static final Logger LOGGER = getLogger("");
 
-//    public static HNCConfig.Client CLIENT_CONFIG;
-    public static HNCConfig.Common COMMON_CONFIG;
     public static HNCConfig.Server SERVER_CONFIG;
 
     public static final ItemGroup GROUP_ALL = new ItemGroup(HNCMod.MOD_ID)
@@ -50,14 +48,6 @@ public class HNCMod
         bus.addListener(ClientEvents::init);
         bus.addListener(CommonEvents::init);
         bus.addListener(this::onGatherData);
-
-//        final Pair<HNCConfig.Client, ForgeConfigSpec> client = new ForgeConfigSpec.Builder().configure(HNCConfig.Client::new);
-//        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, client.getRight());
-//        CLIENT_CONFIG = client.getLeft();
-
-        final Pair<HNCConfig.Common, ForgeConfigSpec> common = new ForgeConfigSpec.Builder().configure(HNCConfig.Common::new);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, common.getRight());
-        COMMON_CONFIG = common.getLeft();
 
         final Pair<HNCConfig.Server, ForgeConfigSpec> server = new ForgeConfigSpec.Builder().configure(HNCConfig.Server::new);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, server.getRight());

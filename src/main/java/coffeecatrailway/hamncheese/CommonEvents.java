@@ -105,10 +105,10 @@ public class CommonEvents
 
         if (climate.temperature >= .5f && climate.temperature < 1f)
         {
-            if (HNCMod.COMMON_CONFIG.generateWildPineapples.get())
+            if (HNCMod.SERVER_CONFIG.generateWildPineapples.get())
                 builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_PINEAPPLE_PATCH);
 
-            if (HNCMod.COMMON_CONFIG.generateWildTomatoes.get())
+            if (HNCMod.SERVER_CONFIG.generateWildTomatoes.get())
                 builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_TOMATO_PATCH);
         }
 
@@ -145,7 +145,7 @@ public class CommonEvents
             trades.get(4).add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.PINEAPPLE_RING.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.PINEAPPLE_BIT.get(), HNCItems.HAM_SLICE.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.PINEAPPLE_BIT.get(), HNCItems.HAM_SLICE.get()), true, "Hawaiian", 3, 4, 25, 15));
         }
         // Vanilla
-        if (HNCMod.COMMON_CONFIG.allowButcherTrades.get() && event.getType() == VillagerProfession.BUTCHER)
+        if (HNCMod.SERVER_CONFIG.allowButcherTrades.get() && event.getType() == VillagerProfession.BUTCHER)
         {
             trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.HAM_SLICE.get(), 14, 16, 2));
             trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.BACON.get(), 14, 16, 2));
@@ -157,7 +157,7 @@ public class CommonEvents
             trades.get(2).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.GRIND_STONES.get(), 1, 16, 5));
             trades.get(3).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.KNIFE.get(), 1, 8, 5));
         }
-        if (HNCMod.COMMON_CONFIG.allowFarmerTrades.get() && event.getType() == VillagerProfession.FARMER)
+        if (HNCMod.SERVER_CONFIG.allowFarmerTrades.get() && event.getType() == VillagerProfession.FARMER)
         {
             trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.TOMATO_SEEDS.get(), 18, 16, 2));
             trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.PINEAPPLE_PLANT.get(), 18, 16, 2));
