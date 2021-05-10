@@ -201,7 +201,7 @@ public class CommonEvents
         ChoppingBoardManager.CHOPPING_BOARDS.forEach((key, board) -> {
             if (event.getItemStack().getToolTypes().contains(board.getToolType()) && event.getWorld().getBlockState(event.getPos()).getBlock() == board.getStripBlock())
             {
-                event.getWorld().setBlock(event.getPos(), board.getResult().getBlock().defaultBlockState().setValue(ChoppingBoardBlock.FACING, direction), Constants.BlockFlags.DEFAULT);
+                event.getWorld().setBlock(event.getPos(), board.getResult().getBlock().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, direction), Constants.BlockFlags.DEFAULT);
                 event.getWorld().playSound(event.getPlayer(), event.getPos(), board.getStripSound(), SoundCategory.BLOCKS, 1f, 1f);
             }
         });

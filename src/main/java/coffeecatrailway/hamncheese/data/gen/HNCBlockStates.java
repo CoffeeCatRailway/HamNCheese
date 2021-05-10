@@ -76,7 +76,10 @@ public class HNCBlockStates extends BlockStateProvider
         VariantBlockStateBuilder.PartialBlockstate partialState = this.getVariantBuilder(choppingBoard).partialState();
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
-            partialState.with(ChoppingBoardBlock.FACING, direction)
+            partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, false)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent("block/" + type + "_chopping_board", HNCMod.getLocation("block/chopping_board"))
+                    .texture("planks", new ResourceLocation("block/" + choppingBoardType.apply(type)))).addModel();
+            partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, true)
                     .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent("block/" + type + "_chopping_board", HNCMod.getLocation("block/chopping_board"))
                     .texture("planks", new ResourceLocation("block/" + choppingBoardType.apply(type)))).addModel();
         }
