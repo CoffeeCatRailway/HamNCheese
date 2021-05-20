@@ -4,6 +4,7 @@ import io.github.ocelot.sonar.common.block.BaseBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
@@ -19,7 +20,7 @@ import java.util.function.Supplier;
  * @author CoffeeCatRailway
  * Created: 27/04/2021
  */
-public class ChoppingBoardBlock extends BaseBlock
+public class ChoppingBoardBlock extends BaseBlock implements IWaterLoggable
 {
     private static final VoxelShape SHAPE_NS = Block.box(4d, 0d, 2d, 12d, 1d, 14d);
     private static final VoxelShape SHAPE_EW = Block.box(2d, 0d, 4d, 14d, 1d, 12d);
