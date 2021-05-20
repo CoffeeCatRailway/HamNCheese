@@ -17,7 +17,7 @@ public class HNCFoods
 {
     private static final Supplier<EffectInstance> HUNGER_EFFECT = () -> new EffectInstance(Effects.HUNGER, 400, 1);
 
-    public static final Food BLOCK_OF_CHEESE = new Food.Builder().nutrition(6).saturationMod(1f).build();
+    public static final Food BLOCK_OF_CHEESE = new Food.Builder().nutrition(6).saturationMod(.1f).build();
     public static final Food CHEESE_SLICE = divide(BLOCK_OF_CHEESE, 3f, 2f).fast().build();
 
     public static final Food INGREDIENT = new Food.Builder().nutrition(1).saturationMod(.5f).build();
@@ -30,7 +30,7 @@ public class HNCFoods
 
     public static final Food CRACKER = combine(.5f, false, INGREDIENT, INGREDIENT, divide(Foods.BREAD, 3f).build()).build();
 
-    public static final Food CRACKED_EGG = new Food.Builder().nutrition(3).saturationMod(1f).build();
+    public static final Food CRACKED_EGG = new Food.Builder().nutrition(3).saturationMod(.1f).build();
     public static final Food COOKED_EGG = times(CRACKED_EGG, 2f).build();
     public static final Food GREEN_EGG = copyFood(CRACKED_EGG).effect(HUNGER_EFFECT, 1f).build();
 
@@ -41,7 +41,7 @@ public class HNCFoods
     public static final Food BACON = divide(HAM_SLICE, 1.5f).build();
     public static final Food COOKED_BACON = divide(COOKED_HAM_SLICE, 1.5f).build();
 
-    public static final Food PINEAPPLE = new Food.Builder().nutrition(12).saturationMod(5f).build();
+    public static final Food PINEAPPLE = new Food.Builder().nutrition(12).saturationMod(.5f).build();
     public static final Food PINEAPPLE_RING = divide(PINEAPPLE, 4f).build();
     public static final Food PINEAPPLE_BIT = divide(PINEAPPLE_RING, 3f).build();
 
@@ -52,7 +52,7 @@ public class HNCFoods
     public static final Food MOUSE = new Food.Builder().nutrition(2).saturationMod(.3f).meat().effect(HUNGER_EFFECT, .3f).build();
     public static final Food COOKED_MOUSE =  new Food.Builder().nutrition(4).saturationMod(.6f).meat().build();
 
-    public static final Food FOOD_SCRAPS = new Food.Builder().nutrition(1).saturationMod(2f).build();
+    public static final Food FOOD_SCRAPS = new Food.Builder().nutrition(1).saturationMod(.2f).build();
 
     private static Food.Builder divide(Food copy, float amount)
     {
