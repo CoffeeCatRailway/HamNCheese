@@ -3,8 +3,6 @@ package coffeecatrailway.hamncheese;
 import com.google.common.collect.Lists;
 import net.minecraftforge.common.ForgeConfigSpec;
 
-import java.util.Collections;
-
 /**
  * @author CoffeeCatRailway
  * Created: 21/10/2020
@@ -48,10 +46,9 @@ public class HNCConfig
             this.maxSandwichIngredientCraftCount = builder.comment("The amount of foods that can be crafted into a sandwich").translation(CONFIG + "item.maxSandwichIngredientCraftCount")
                     .defineInRange("maxSandwichIngredientCraftCount", 8, 1, 8);
 
-            builder.push("modifier");
             this.cookedFoodModifier = builder.comment("The amount of how much the saturation changes when grilled/cooked").translation(CONFIG + "item.cookedFoodModifier")
                     .defineInRange("cookedFoodModifier", 1.5d, 0.5d, 10d);
-            builder.pop(2);
+            builder.pop();
 
             builder.push(Lists.newArrayList("generation", "crops", "wildPineapples"));
             this.generateWildPineapples = builder.comment("Generate pineapples in biomes with a temperature of .5 to 1").translation(CONFIG + "generation.crops.wildPineapples.generateWildPineapples")

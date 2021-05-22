@@ -64,6 +64,8 @@ public class HNCMod
         HNCEntities.load(bus);
         HNCProfessions.load(bus);
         bus.addGenericListener(StatType.class, HNCStats::register);
+        HNCTileEntities.load(bus);
+        HNCContainers.load(bus);
     }
 
     private void onGatherData(GatherDataEvent event)

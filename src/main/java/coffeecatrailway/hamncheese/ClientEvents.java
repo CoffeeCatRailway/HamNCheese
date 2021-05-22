@@ -1,8 +1,11 @@
 package coffeecatrailway.hamncheese;
 
 import coffeecatrailway.hamncheese.client.entity.MouseRenderer;
+import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
+import coffeecatrailway.hamncheese.registry.HNCContainers;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
@@ -23,6 +26,7 @@ public class ClientEvents
             renderLayers();
         });
         entityRenderers();
+        registerScreen();
     }
 
     private static void renderLayers()
@@ -52,5 +56,10 @@ public class ClientEvents
     private static void entityRenderers()
     {
         RenderingRegistry.registerEntityRenderingHandler(HNCEntities.MOUSE.get(), MouseRenderer::new);
+    }
+
+    private static void registerScreen()
+    {
+        ScreenManager.register(HNCContainers.PIZZA_OVEN.get(), PizzaOvenScreen::new);
     }
 }
