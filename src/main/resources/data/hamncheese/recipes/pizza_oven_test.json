@@ -1,0 +1,12 @@
+{
+  "type": "hamncheese:pizza_oven",
+  "ingredients": [
+    { "item": "hamncheese:dough" },
+    { "item": "hamncheese:rock_salt" }
+  ],
+  "result": {
+    "item": "hamncheese:cracker"
+  },
+  "experience": 0.1,
+  "cookingtime": 100
+}
