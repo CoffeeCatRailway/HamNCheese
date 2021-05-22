@@ -169,6 +169,8 @@ public class HNCLootTables extends ForgeLootTableProvider
             this.dropSelf(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get());
             this.dropSelf(HNCBlocks.GOLD_CHOPPING_BOARD.get());
             this.dropSelf(HNCBlocks.IRON_CHOPPING_BOARD.get());
+
+            this.dropSelf(HNCBlocks.PIZZA_OVEN.get());
         }
 
         @Override

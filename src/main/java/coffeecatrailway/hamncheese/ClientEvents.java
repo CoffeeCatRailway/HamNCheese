@@ -25,7 +25,7 @@ public class ClientEvents
         entityRenderers();
     }
 
-    public static void renderLayers()
+    private static void renderLayers()
     {
         RenderType cutoutMipped = RenderType.cutoutMipped();
 
@@ -45,9 +45,11 @@ public class ClientEvents
         RenderTypeLookup.setRenderLayer(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(HNCBlocks.GOLD_CHOPPING_BOARD.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(HNCBlocks.IRON_CHOPPING_BOARD.get(), cutoutMipped);
+
+        RenderTypeLookup.setRenderLayer(HNCBlocks.PIZZA_OVEN.get(), cutoutMipped);
     }
 
-    public static void entityRenderers()
+    private static void entityRenderers()
     {
         RenderingRegistry.registerEntityRenderingHandler(HNCEntities.MOUSE.get(), MouseRenderer::new);
     }

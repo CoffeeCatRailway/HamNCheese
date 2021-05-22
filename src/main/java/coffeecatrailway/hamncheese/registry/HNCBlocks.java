@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.registry;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
+import coffeecatrailway.hamncheese.common.block.PizzaOvenBlock;
 import coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.block.AbstractBlock;
@@ -48,6 +49,8 @@ public class HNCBlocks
     public static final RegistryObject<ChoppingBoardBlock> POLISHED_BLACKSTONE_CHOPPING_BOARD = register("polished_blackstone_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(Blocks.POLISHED_BLACKSTONE)), prop -> prop);
     public static final RegistryObject<ChoppingBoardBlock> GOLD_CHOPPING_BOARD = register("gold_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(Blocks.GOLD_BLOCK)), prop -> prop);
     public static final RegistryObject<ChoppingBoardBlock> IRON_CHOPPING_BOARD = register("iron_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
+
+    public static final RegistryObject<PizzaOvenBlock> PIZZA_OVEN = register("pizza_oven", () -> new PizzaOvenBlock(AbstractBlock.Properties.copy(Blocks.WHITE_TERRACOTTA)), prop -> prop);
 
     private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)
     {

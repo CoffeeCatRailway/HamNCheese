@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.data.gen;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
+import coffeecatrailway.hamncheese.common.block.PizzaOvenBlock;
 import coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import net.minecraft.data.DataGenerator;
@@ -69,6 +70,19 @@ public class HNCBlockStates extends BlockStateProvider
         this.choppingBoard(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get(), "polished_blackstone", ChoppingBoardType.EMPTY);
         this.choppingBoard(HNCBlocks.GOLD_CHOPPING_BOARD.get(), "gold", ChoppingBoardType.BLOCK);
         this.choppingBoard(HNCBlocks.IRON_CHOPPING_BOARD.get(), "iron", ChoppingBoardType.BLOCK);
+
+        VariantBlockStateBuilder.PartialBlockstate oven = this.getVariantBuilder(HNCBlocks.PIZZA_OVEN.get()).partialState();
+        for (Direction direction : Direction.Plane.HORIZONTAL)
+        {
+            oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, false).with(PizzaOvenBlock.LIT, false)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"))).addModel();
+            oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, false).with(PizzaOvenBlock.LIT, true)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"))).addModel();
+            oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, true).with(PizzaOvenBlock.LIT, false)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"))).addModel();
+            oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, true).with(PizzaOvenBlock.LIT, true)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"))).addModel();
+        }
     }
 
     private void choppingBoard(ChoppingBoardBlock choppingBoard, String type, ChoppingBoardType choppingBoardType)

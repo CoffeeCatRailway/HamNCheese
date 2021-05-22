@@ -8,6 +8,7 @@
   "block.hamncheese.jungle_chopping_board": "Jungle Chopping Board",
   "block.hamncheese.oak_chopping_board": "Oak Chopping Board",
   "block.hamncheese.pineapple_plant": "Pineapple Plant",
+  "block.hamncheese.pizza_oven": "Pizza Oven",
   "block.hamncheese.polished_blackstone_chopping_board": "Polished Blackstone Chopping Board",
   "block.hamncheese.spruce_chopping_board": "Spruce Chopping Board",
   "block.hamncheese.stone_chopping_board": "Stone Chopping Board",
@@ -56,5 +57,6 @@
   "item.hamncheese.unbaked_cracker": "Unbaked Cracker",
   "item.hamncheese.unbaked_pizza_base": "Unbaked Pizza Base",
   "item.hamncheese.wooden_gear": "Wooden Gear",
-  "itemGroup.hamncheese": "Ham N' Cheese"
+  "itemGroup.hamncheese": "Ham N' Cheese",
+  "stat.hamncheese.interact_pizza_oven": "Interactions with Pizza Oven"
 }
