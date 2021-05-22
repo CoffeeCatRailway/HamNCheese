@@ -23,7 +23,7 @@ import java.util.function.Supplier;
  */
 public class HNCItemModels implements IDataProvider
 {
-    private static final Logger LOGGER = HNCMod.getLogger("ItemModels");
+    private static final Logger LOGGER = HNCMod.getLogger("Item-Models");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     private final DataGenerator dataGenerator;
     private BiConsumer<ResourceLocation, Supplier<JsonElement>> consumer;

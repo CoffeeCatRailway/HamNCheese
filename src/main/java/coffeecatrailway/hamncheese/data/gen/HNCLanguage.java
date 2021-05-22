@@ -18,6 +18,7 @@ import java.util.Map;
  */
 public class HNCLanguage extends LanguageProvider
 {
+    public static final Map<String, String> EXTRA = new HashMap<>();
     public static final Map<RegistryObject<? extends Item>, String> ITEMS = new HashMap<>();
     public static final Map<RegistryObject<? extends Block>, String> BLOCKS = new HashMap<>();
     public static final Map<RegistryObject<? extends EntityType<?>>, String> ENTITIES = new HashMap<>();
@@ -33,6 +34,7 @@ public class HNCLanguage extends LanguageProvider
     {
         this.add("itemGroup." + HNCMod.MOD_ID, "Ham N' Cheese");
         this.add("item.hamncheese.sandwich.toasted", "Toasted");
+        EXTRA.forEach(this::add);
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));
         ENTITIES.forEach((entity, name) -> this.add(entity.get(), name));

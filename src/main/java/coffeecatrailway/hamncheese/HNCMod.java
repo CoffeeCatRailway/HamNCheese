@@ -6,6 +6,7 @@ import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.api.distmarker.Dist;
@@ -62,6 +63,7 @@ public class HNCMod
         HNCBlockPlacerTypes.load(bus);
         HNCEntities.load(bus);
         HNCProfessions.load(bus);
+        bus.addGenericListener(StatType.class, HNCStats::register);
     }
 
     private void onGatherData(GatherDataEvent event)
