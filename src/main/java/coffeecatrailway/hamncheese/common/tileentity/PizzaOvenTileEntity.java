@@ -12,6 +12,7 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.IRecipeHelperPopulator;
 import net.minecraft.inventory.IRecipeHolder;
 import net.minecraft.inventory.ISidedInventory;
@@ -137,7 +138,7 @@ public class PizzaOvenTileEntity extends HNCLockableTileEntity implements ISided
 
         this.recipeAmounts.forEach((location, amount) -> player.level.getRecipeManager().byKey(location).ifPresent(iRecipe -> {
             recipes.add(iRecipe);
-            this.giveExperience(player, amount, ((PizzaOvenRecipe) iRecipe).getExperience());
+            this.giveExperience(player, amount, MathHelper.nextDouble(player.getRandom(), 0f, 1f));
         }));
 
         player.awardRecipes(recipes);
@@ -232,7 +233,7 @@ public class PizzaOvenTileEntity extends HNCLockableTileEntity implements ISided
 
         if (index == 0 && !flag)
         {
-            this.cookTimeTotal = this.getCookTimeTotal();
+            this.cookTimeTotal = 200; // TODO: make cookTimeTotal a config value
             this.cookTime = 0;
             this.sendUpdates(this);
         }
@@ -289,7 +290,7 @@ public class PizzaOvenTileEntity extends HNCLockableTileEntity implements ISided
             int fuelSlot = this.getNextFuelStack().getSecond();
             if (this.isBurning() || !fuelStack.isEmpty() && this.hasItems())
             {
-                IRecipe<?> iRecipe = this.level.getRecipeManager().getRecipeFor(this.recipeType, this, this.level).orElse(null);
+                IRecipe<IInventory> iRecipe = this.level.getRecipeManager().getRecipeFor(this.recipeType, this, this.level).orElse(null);
                 if (!this.isBurning() && this.canSmelt(iRecipe))
                 {
                     this.burnTime = PizzaOvenTileEntity.getBurnTime(fuelStack);
@@ -321,7 +322,7 @@ public class PizzaOvenTileEntity extends HNCLockableTileEntity implements ISided
                     {
                         this.smeltRecipe(iRecipe);
                         this.cookTime = 0;
-                        this.cookTimeTotal = this.getCookTimeTotal();
+                        this.cookTimeTotal = 200; // TODO: make cookTimeTotal a config value
                         flag = true;
                         this.sendUpdates(this);
                     }
@@ -407,11 +408,11 @@ public class PizzaOvenTileEntity extends HNCLockableTileEntity implements ISided
         return Pair.of(ItemStack.EMPTY, 9);
     }
 
-    private boolean canSmelt(@Nullable IRecipe<?> iRecipe)
+    private boolean canSmelt(@Nullable IRecipe<IInventory> iRecipe)
     {
         if (iRecipe != null && this.hasItems())
         {
-            ItemStack result = iRecipe.getResultItem();
+            ItemStack result = iRecipe.assemble(this);
             if (result.isEmpty())
                 return false;
             else
@@ -428,7 +429,7 @@ public class PizzaOvenTileEntity extends HNCLockableTileEntity implements ISided
             return false;
     }
 
-    private void smeltRecipe(@Nullable IRecipe<?> iRecipe)
+    private void smeltRecipe(@Nullable IRecipe<IInventory> iRecipe)
     {
         if (this.canSmelt(iRecipe))
         {
@@ -436,7 +437,7 @@ public class PizzaOvenTileEntity extends HNCLockableTileEntity implements ISided
             for (int i = 0; i < 9; i++)
                 ingredients[i] = this.getItem(i);
 
-            ItemStack result = iRecipe.getResultItem();
+            ItemStack result = iRecipe.assemble(this);
             ItemStack output = this.getItem(12);
             if (output.isEmpty())
                 this.setItem(12, result.copy());
@@ -458,11 +459,6 @@ public class PizzaOvenTileEntity extends HNCLockableTileEntity implements ISided
             return 0;
         else
             return ForgeEventFactory.getItemBurnTime(fuelStack, fuelStack.getBurnTime() == -1 ? ForgeHooks.getBurnTime(fuelStack) : fuelStack.getBurnTime());
-    }
-
-    private int getCookTimeTotal()
-    {
-        return this.hasLevel() ? this.level.getRecipeManager().getRecipeFor(this.recipeType, this, this.level).map(PizzaOvenRecipe::getCookTime).orElse(200) : 200;
     }
 
     @Override

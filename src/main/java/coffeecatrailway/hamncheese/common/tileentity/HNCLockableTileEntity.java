@@ -55,7 +55,7 @@ public abstract class HNCLockableTileEntity extends LockableTileEntity
 
     public abstract void giveExperience(PlayerEntity player);
 
-    protected void giveExperience(PlayerEntity player, float amount, float experience)
+    protected void giveExperience(PlayerEntity player, float amount, double experience)
     {
         if (experience <= 0f)
         {

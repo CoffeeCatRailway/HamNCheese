@@ -28,7 +28,7 @@ public class PizzaRecipe extends AbstractSandwichRecipe
 
     @Nullable
     @Override
-    protected Item getNeededItem()
+    public Item getNeededItem()
     {
         return HNCItems.TOMATO_SAUCE.get();
     }

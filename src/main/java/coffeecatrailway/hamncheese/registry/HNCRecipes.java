@@ -26,7 +26,7 @@ public class HNCRecipes
 
     public static IRecipeType<PizzaOvenRecipe> PIZZA_OVEN_TYPE;
 
-    public static final RegistryObject<PizzaOvenRecipeSerializer> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", PizzaOvenRecipeSerializer::new);
+public static final RegistryObject<SpecialRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SpecialRecipeSerializer<>(PizzaOvenRecipe::new));
 
     public static final RegistryObject<SpecialRecipeSerializer<SandwichRecipe>> SANDWICH_SERIALIZER = RECIPE_SERIALIZERS.register("sandwich", () -> new SpecialRecipeSerializer<>(SandwichRecipe::new));
     public static final RegistryObject<SpecialRecipeSerializer<CrackerRecipe>> CRACKER_SERIALIZER = RECIPE_SERIALIZERS.register("cracker", () -> new SpecialRecipeSerializer<>(CrackerRecipe::new));

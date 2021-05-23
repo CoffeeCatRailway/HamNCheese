@@ -1,38 +1,66 @@
 package coffeecatrailway.hamncheese.common.item.crafting;
 
+import coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
+import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
+import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
-import net.minecraft.util.NonNullList;
+import net.minecraft.tags.ITag;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * @author CoffeeCatRailway
  * Created: 20/05/2021
  */
-public class PizzaOvenRecipe implements IRecipe<IInventory>
+public class PizzaOvenRecipe implements IRecipe<IInventory>, ISandwichRecipe<IInventory>
 {
     private final ResourceLocation id;
-    private final NonNullList<Ingredient> ingredients;
-    private final ItemStack result;
-    private final float experience;
-    private final int cookTime;
-    private final boolean isSimple;
 
-    public PizzaOvenRecipe(ResourceLocation id, NonNullList<Ingredient> ingredients, ItemStack result, float experience, int cookTime)
+    public PizzaOvenRecipe(ResourceLocation id)
     {
         this.id = id;
-        this.ingredients = ingredients;
-        this.result = result;
-        this.experience = experience;
-        this.cookTime = cookTime;
-        this.isSimple = ingredients.stream().allMatch(Ingredient::isSimple);
+    }
+
+    @Override
+    public ITag.INamedTag<Item> getBunTag()
+    {
+        return HNCItemTags.PIZZA;
+    }
+
+    @Override
+    public IItemProvider getDefaultBun()
+    {
+        return HNCItems.PIZZA.get();
+    }
+
+    @Nullable
+    @Override
+    public IItemProvider getNeededItem()
+    {
+        return HNCItems.TOMATO_SAUCE.get();
+    }
+
+    @Override
+    public Pair<Integer, Integer> getCheckSlots(IInventory inventory)
+    {
+        return Pair.of(0, 9);
+    }
+
+    @Override
+    public ItemStack assemble(IInventory inventory)
+    {
+        ItemStack result = ISandwichRecipe.super.assemble(inventory);
+        if (result.getItem() instanceof AbstractSandwichItem)
+            result.getOrCreateTag().putBoolean(AbstractSandwichItem.TAG_TOASTED, true);
+        return result;
     }
 
     @Override
@@ -42,61 +70,25 @@ public class PizzaOvenRecipe implements IRecipe<IInventory>
     }
 
     @Override
-    public String getGroup()
+    public ResourceLocation getId()
     {
-        return "";
+        return this.id;
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients()
-    {
-        return this.ingredients;
+    public boolean isSpecial() {
+        return true;
     }
 
     @Override
-    public boolean matches(IInventory inventory, World level)
-    {
-        RecipeItemHelper recipeitemhelper = new RecipeItemHelper();
-        List<ItemStack> inputs = new ArrayList<>();
-        int i = 0;
-
-        for (int j = 0; j < 9; ++j)
-        {
-            ItemStack itemstack = inventory.getItem(j);
-            if (!itemstack.isEmpty())
-            {
-                i++;
-                if (this.isSimple)
-                    recipeitemhelper.accountStack(itemstack, 1);
-                else inputs.add(itemstack);
-            }
-        }
-
-        return i == this.ingredients.size() && (this.isSimple ? recipeitemhelper.canCraft(this, null) : net.minecraftforge.common.util.RecipeMatcher.findMatches(inputs, this.ingredients) != null);
-    }
-
-    @Override
-    public ItemStack assemble(IInventory inventory)
-    {
-        return this.result.copy();
+    public ItemStack getResultItem() {
+        return ItemStack.EMPTY;
     }
 
     @Override
     public boolean canCraftInDimensions(int width, int height)
     {
         return true;
-    }
-
-    @Override
-    public ItemStack getResultItem()
-    {
-        return this.result.copy();
-    }
-
-    @Override
-    public ResourceLocation getId()
-    {
-        return this.id;
     }
 
     @Override
@@ -109,15 +101,5 @@ public class PizzaOvenRecipe implements IRecipe<IInventory>
     public IRecipeType<?> getType()
     {
         return HNCRecipes.PIZZA_OVEN_TYPE;
-    }
-
-    public float getExperience()
-    {
-        return this.experience;
-    }
-
-    public int getCookTime()
-    {
-        return this.cookTime;
     }
 }

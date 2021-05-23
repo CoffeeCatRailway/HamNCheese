@@ -3,8 +3,11 @@ package coffeecatrailway.hamncheese.common.item.crafting;
 import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nullable;
 
 /**
  * @author CoffeeCatRailway
@@ -21,5 +24,12 @@ public class CrackerRecipe extends AbstractSandwichRecipe
     public IRecipeSerializer<?> getSerializer()
     {
         return HNCRecipes.CRACKER_SERIALIZER.get();
+    }
+
+    @Nullable
+    @Override
+    public Item getNeededItem()
+    {
+        return null;
     }
 }
