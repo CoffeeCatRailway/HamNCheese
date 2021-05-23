@@ -29,7 +29,7 @@ public class PizzaOvenScreen extends ContainerScreen<PizzaOvenContainer>
     {
         super.init();
         this.titleLabelX = (this.imageWidth / 2 - this.font.width(this.title) / 2) + 9;
-        this.inventoryLabelY = this.imageHeight - 89;
+        this.inventoryLabelY = this.imageHeight - 93;
     }
 
     @Override
