@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.common.block;
 
+import coffeecatrailway.hamncheese.common.tileentity.HNCLockableTileEntity;
 import io.github.ocelot.sonar.common.block.BaseBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -7,11 +8,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -20,6 +23,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
@@ -40,6 +44,21 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
         if (this.hasLitState())
             state = state.setValue(LIT, false);
         this.registerDefaultState(state);
+    }
+
+    @Override
+    public void onRemove(BlockState state, World world, BlockPos pos, BlockState newState, boolean p_196243_5_)
+    {
+        if (!state.is(newState.getBlock()))
+        {
+            TileEntity tileentity = world.getBlockEntity(pos);
+            if (tileentity instanceof HNCLockableTileEntity)
+            {
+                InventoryHelper.dropContents(world, pos, (HNCLockableTileEntity) tileentity);
+                world.updateNeighbourForOutputSignal(pos, this);
+            }
+            super.onRemove(state, world, pos, newState, p_196243_5_);
+        }
     }
 
     @Override

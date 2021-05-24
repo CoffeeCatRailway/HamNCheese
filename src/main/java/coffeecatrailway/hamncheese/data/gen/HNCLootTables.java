@@ -19,10 +19,8 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.conditions.EntityHasProperty;
-import net.minecraft.loot.functions.ApplyBonus;
-import net.minecraft.loot.functions.ExplosionDecay;
-import net.minecraft.loot.functions.SetCount;
-import net.minecraft.loot.functions.Smelt;
+import net.minecraft.loot.conditions.SurvivesExplosion;
+import net.minecraft.loot.functions.*;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ForgeLootTableProvider;
@@ -170,7 +168,11 @@ public class HNCLootTables extends ForgeLootTableProvider
             this.dropSelf(HNCBlocks.GOLD_CHOPPING_BOARD.get());
             this.dropSelf(HNCBlocks.IRON_CHOPPING_BOARD.get());
 
-            this.dropSelf(HNCBlocks.PIZZA_OVEN.get());
+            this.add(HNCBlocks.PIZZA_OVEN.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCBlocks.PIZZA_OVEN.get())
+                                    .apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))
+                            .when(SurvivesExplosion.survivesExplosion())));
         }
 
         @Override
