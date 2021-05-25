@@ -83,20 +83,24 @@ public class HNCBlockStates extends BlockStateProvider
             oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, true).with(PizzaOvenBlock.LIT, true)
                     .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"))).addModel();
         }
+        this.simpleBlockItem(HNCBlocks.PIZZA_OVEN.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/pizza_oven")));
     }
 
     private void choppingBoard(ChoppingBoardBlock choppingBoard, String type, ChoppingBoardType choppingBoardType)
     {
         VariantBlockStateBuilder.PartialBlockstate partialState = this.getVariantBuilder(choppingBoard).partialState();
+        String path = "block/" + type + "_chopping_board";
+        ResourceLocation pathLoc = HNCMod.getLocation(path);
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
             partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, false)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent("block/" + type + "_chopping_board", HNCMod.getLocation("block/chopping_board"))
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent(path, pathLoc)
                     .texture("planks", new ResourceLocation("block/" + choppingBoardType.apply(type)))).addModel();
             partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, true)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent("block/" + type + "_chopping_board", HNCMod.getLocation("block/chopping_board"))
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent(path, pathLoc)
                     .texture("planks", new ResourceLocation("block/" + choppingBoardType.apply(type)))).addModel();
         }
+        this.simpleBlockItem(choppingBoard, this.itemModels().getExistingFile(pathLoc));
     }
 
     enum ChoppingBoardType

@@ -1,5 +1,5 @@
 {
-  "parent": "hamncheese:block/chopping_board",
+  "parent": "hamncheese:block/gold_chopping_board",
   "textures": {
     "planks": "minecraft:block/gold_block"
   }
