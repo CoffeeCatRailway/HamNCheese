@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " t ",
+    "tct",
+    "bbb"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:brick"
+    },
+    "t": {
+      "item": "minecraft:white_terracotta"
+    },
+    "c": {
+      "tag": "forge:campfires"
+    }
+  },
+  "result": {
+    "item": "hamncheese:pizza_oven"
+  }
+}

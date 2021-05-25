@@ -2,11 +2,14 @@ package coffeecatrailway.hamncheese.data.gen;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.registry.HNCItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
@@ -18,6 +21,7 @@ import javax.annotation.Nullable;
  * @author CoffeeCatRailway
  * Created: 17/03/2021
  */
+@SuppressWarnings("unchecked")
 public class HNCItemTags extends ItemTagsProvider
 {
     public static final ITag.INamedTag<Item> GEARS = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "gears"));
@@ -60,6 +64,8 @@ public class HNCItemTags extends ItemTagsProvider
     public static final ITag.INamedTag<Item> CROPS = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "crops"));
     public static final ITag.INamedTag<Item> CARBS = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "carbs"));
     public static final ITag.INamedTag<Item> SEEDS = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "seeds"));
+
+    public static final ITag.INamedTag<Item> CAMPFIRES = net.minecraft.tags.ItemTags.createOptional(new ResourceLocation("forge", "campfires"));
 
     public HNCItemTags(DataGenerator generator, BlockTagsProvider provider, @Nullable ExistingFileHelper fileHelper)
     {
@@ -110,5 +116,7 @@ public class HNCItemTags extends ItemTagsProvider
         this.tag(SEEDS).add(HNCItems.TOMATO_SEEDS.get());
 
         this.tag(MOUSE_BLACKLIST).add(Items.ROTTEN_FLESH, Items.SPIDER_EYE, Items.PUFFERFISH, HNCItems.MOUSE.get(), HNCItems.COOKED_MOUSE.get(), HNCItems.FOOD_SCRAPS.get());
+
+        this.tag(CAMPFIRES).add(Blocks.CAMPFIRE.asItem(), Blocks.SOUL_CAMPFIRE.asItem());
     }
 }
