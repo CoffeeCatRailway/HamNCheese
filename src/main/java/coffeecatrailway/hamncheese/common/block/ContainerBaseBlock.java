@@ -116,10 +116,10 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
             {
                 player.openMenu(provider);
                 player.awardStat(this.getInteractWithStat());
-                return ActionResultType.SUCCESS;
+                return ActionResultType.CONSUME;
             }
         }
-        return ActionResultType.PASS;
+        return ActionResultType.SUCCESS;
     }
 
     @Override
