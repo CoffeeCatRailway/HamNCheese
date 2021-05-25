@@ -70,7 +70,7 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
         BlockState state = super.getStateForPlacement(context);
-        return state.setValue(HORIZONTAL_FACING, context.getNearestLookingDirection());
+        return state.setValue(HORIZONTAL_FACING, context.getHorizontalDirection());
     }
 
     @Override
