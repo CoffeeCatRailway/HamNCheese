@@ -17,9 +17,9 @@ public class HNCFeatures
 {
     // Feature Config
     public static final BlockClusterFeatureConfig WILD_PINEAPPLE_PATCH_CONFIG = new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(HNCBlocks.PINEAPPLE_PLANT.get().defaultBlockState()),
-            new DoubleCropBlockPlacer()).tries(64).xspread(1).zspread(1).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL)).noProjection().build();
+            new DoubleCropBlockPlacer()).tries(10).xspread(2).zspread(2).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL)).noProjection().build();
     public static final BlockClusterFeatureConfig WILD_TOMATO_PATCH_CONFIG = new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(HNCBlocks.TOMATO_PLANT.get().defaultBlockState()),
-            new DoubleCropBlockPlacer()).tries(64).xspread(1).zspread(1).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
+            new DoubleCropBlockPlacer()).tries(10).xspread(2).zspread(2).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
 
     // Configured Feature
     public static final ConfiguredFeature<?, ?> WILD_PINEAPPLE_PATCH = Feature.RANDOM_PATCH.configured(WILD_PINEAPPLE_PATCH_CONFIG)
