@@ -90,17 +90,17 @@ public class HNCBlockStates extends BlockStateProvider
     {
         VariantBlockStateBuilder.PartialBlockstate partialState = this.getVariantBuilder(choppingBoard).partialState();
         String path = "block/" + type + "_chopping_board";
-        ResourceLocation pathLoc = HNCMod.getLocation(path);
+        ResourceLocation parent = HNCMod.getLocation("block/chopping_board");
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
             partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, false)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent(path, pathLoc)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent(path, parent)
                     .texture("planks", new ResourceLocation("block/" + choppingBoardType.apply(type)))).addModel();
             partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, true)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent(path, pathLoc)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent(path, parent)
                     .texture("planks", new ResourceLocation("block/" + choppingBoardType.apply(type)))).addModel();
         }
-        this.simpleBlockItem(choppingBoard, this.itemModels().getExistingFile(pathLoc));
+        this.simpleBlockItem(choppingBoard, this.itemModels().getExistingFile(HNCMod.getLocation(path)));
     }
 
     enum ChoppingBoardType
