@@ -8,6 +8,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IntArray;
 import net.minecraftforge.api.distmarker.Dist;
@@ -64,7 +65,53 @@ public class PizzaOvenContainer extends Container
     @Override
     public ItemStack quickMoveStack(PlayerEntity player, int index)
     {
-        return super.quickMoveStack(player, index); // TODO: Learn how to do this...
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem())
+        {
+            ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+            if (index == 12)
+            {
+                if (!this.moveItemStackTo(itemstack1, 13, 49, true))
+                    return ItemStack.EMPTY;
+                slot.onQuickCraft(itemstack1, itemstack);
+            } else if (index > 11)
+            {
+                if (itemstack1.isEdible())
+                {
+                    if (!this.moveItemStackTo(itemstack1, 0, 9, false))
+                        return ItemStack.EMPTY;
+                } else if (AbstractFurnaceTileEntity.isFuel(itemstack1))
+                {
+                    if (!this.moveItemStackTo(itemstack1, 9, 12, false))
+
+                        return ItemStack.EMPTY;
+                } else if (index >= 13 && index < 40)
+                {
+                    if (!this.moveItemStackTo(itemstack1, 40, 49, false))
+                        return ItemStack.EMPTY;
+                } else if (index >= 40 && index < 49 && !this.moveItemStackTo(itemstack1, 13, 40, false))
+                {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.moveItemStackTo(itemstack1, 13, 49, false))
+            {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemstack1.isEmpty())
+                slot.set(ItemStack.EMPTY);
+            else
+                slot.setChanged();
+
+            if (itemstack1.getCount() == itemstack.getCount())
+                return ItemStack.EMPTY;
+
+            slot.onTake(player, itemstack1);
+        }
+
+        return itemstack;
     }
 
     @OnlyIn(Dist.CLIENT)
