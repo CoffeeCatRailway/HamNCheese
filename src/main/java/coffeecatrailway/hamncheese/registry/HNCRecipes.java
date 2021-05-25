@@ -1,13 +1,14 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.common.item.crafting.*;
-import com.sun.org.apache.regexp.internal.RE;
+import coffeecatrailway.hamncheese.common.item.crafting.CrackerRecipe;
+import coffeecatrailway.hamncheese.common.item.crafting.PizzaOvenRecipe;
+import coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
+import coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -26,7 +27,7 @@ public class HNCRecipes
 
     public static IRecipeType<PizzaOvenRecipe> PIZZA_OVEN_TYPE;
 
-public static final RegistryObject<SpecialRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SpecialRecipeSerializer<>(PizzaOvenRecipe::new));
+    public static final RegistryObject<SpecialRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SpecialRecipeSerializer<>(PizzaOvenRecipe::new));
 
     public static final RegistryObject<SpecialRecipeSerializer<SandwichRecipe>> SANDWICH_SERIALIZER = RECIPE_SERIALIZERS.register("sandwich", () -> new SpecialRecipeSerializer<>(SandwichRecipe::new));
     public static final RegistryObject<SpecialRecipeSerializer<CrackerRecipe>> CRACKER_SERIALIZER = RECIPE_SERIALIZERS.register("cracker", () -> new SpecialRecipeSerializer<>(CrackerRecipe::new));

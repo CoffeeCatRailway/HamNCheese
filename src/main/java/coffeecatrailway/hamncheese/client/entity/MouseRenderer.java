@@ -1,6 +1,5 @@
 package coffeecatrailway.hamncheese.client.entity;
 
-import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

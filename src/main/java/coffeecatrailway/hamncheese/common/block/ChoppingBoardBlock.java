@@ -3,18 +3,13 @@ package coffeecatrailway.hamncheese.common.block;
 import io.github.ocelot.sonar.common.block.BaseBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IWaterLoggable;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraftforge.common.ToolType;
-
-import java.util.function.Supplier;
 
 /**
  * @author CoffeeCatRailway

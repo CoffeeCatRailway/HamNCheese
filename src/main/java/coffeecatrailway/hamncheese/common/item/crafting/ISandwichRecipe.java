@@ -2,7 +2,6 @@ package coffeecatrailway.hamncheese.common.item.crafting;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
-import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -11,13 +10,10 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.IntArray;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.function.Supplier;
 
 /**
  * @author CoffeeCatRailway

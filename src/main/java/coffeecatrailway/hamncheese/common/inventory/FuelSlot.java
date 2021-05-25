@@ -1,7 +1,6 @@
 package coffeecatrailway.hamncheese.common.inventory;
 
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.AbstractFurnaceContainer;
 import net.minecraft.inventory.container.FurnaceFuelSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
