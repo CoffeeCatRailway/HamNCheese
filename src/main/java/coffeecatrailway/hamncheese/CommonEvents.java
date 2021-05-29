@@ -19,11 +19,13 @@ import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.OcelotEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -197,12 +199,16 @@ public class CommonEvents
     @SubscribeEvent
     public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
     {
-        Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(event.getPlayer().getRandom());
-        ChoppingBoardManager.CHOPPING_BOARDS.forEach((key, board) -> {
-            if (event.getItemStack().getToolTypes().contains(board.getToolType()) && event.getWorld().getBlockState(event.getPos()).getBlock() == board.getStripBlock())
+        PlayerEntity player = event.getPlayer();
+        BlockPos pos = event.getPos();
+        ItemStack stack = event.getItemStack();
+        World level = event.getWorld();
+        ChoppingBoardManager.CHOPPING_BOARDS.values().forEach(board -> {
+            if (stack.getToolTypes().contains(board.getToolType()) && level.getBlockState(pos).getBlock() == board.getStripBlock())
             {
-                event.getWorld().setBlock(event.getPos(), board.getResult().getBlock().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, direction), Constants.BlockFlags.DEFAULT);
-                event.getWorld().playSound(event.getPlayer(), event.getPos(), board.getStripSound(), SoundCategory.BLOCKS, 1f, 1f);
+                level.setBlock(pos, board.getResult().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(player.getRandom())), Constants.BlockFlags.DEFAULT);
+                level.playSound(player, pos, board.getStripSound(), SoundCategory.BLOCKS, 1f, 1f);
+                stack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(event.getHand()));
             }
         });
     }
