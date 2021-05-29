@@ -47,14 +47,10 @@ public class HNCBlockStates extends BlockStateProvider
         for (age = 0; age < 10; age++)
         {
             tomatoPlant.with(TomatoPlantBlock.AGE, age).with(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER)
-                    .modelForState().modelFile(this.models().withExistingParent("block/tomato_plant_bottom_stage_" + age, "block/crop")
-                    .texture("crop", HNCMod.getLocation("block/tomato_plant_bottom_stage_" + age))).addModel();
+                    .modelForState().modelFile(this.models().crop("block/tomato_plant_bottom_stage_" + age, HNCMod.getLocation("block/tomato_plant_bottom_stage_" + age))).addModel();
 
-            VariantBlockStateBuilder.PartialBlockstate partialState = tomatoPlant.with(TomatoPlantBlock.AGE, age).with(TomatoPlantBlock.HALF, DoubleBlockHalf.UPPER);
-            if (age > 1)
-                partialState.modelForState().modelFile(this.models().crop("block/tomato_plant_top_stage_" + age, HNCMod.getLocation("block/tomato_plant_top_stage_" + (age - 2)))).addModel();
-            else
-                partialState.modelForState().modelFile(this.models().withExistingParent("block/tomato_plant_top_stage_" + age, "block/air")).addModel();
+            tomatoPlant.with(TomatoPlantBlock.AGE, age).with(TomatoPlantBlock.HALF, DoubleBlockHalf.UPPER)
+                    .modelForState().modelFile(this.models().crop("block/tomato_plant_top_stage_" + age, HNCMod.getLocation("block/tomato_plant_top_stage_" + age))).addModel();
         }
 
         this.choppingBoard(HNCBlocks.OAK_CHOPPING_BOARD.get(), "oak", ChoppingBoardType.PLANKS);

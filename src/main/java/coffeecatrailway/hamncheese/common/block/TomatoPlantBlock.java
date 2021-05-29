@@ -4,17 +4,22 @@ import coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.Constants;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 /**
@@ -25,30 +30,7 @@ public class TomatoPlantBlock extends AbstractDoubleCropBlock
 {
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 9);
 
-    private static final VoxelShape[] SHAPES_TOP = new VoxelShape[]{
-            Block.box(0d, 0d, 0d, 16d, 1d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 1d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 5d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 10d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d)
-    };
-    private static final VoxelShape[] SHAPES_BOTTOM = new VoxelShape[]{
-            Block.box(0d, 0d, 0d, 16d, 8d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 15d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d),
-            Block.box(0d, 0d, 0d, 16d, 16d, 16d)
-    };
+    private static final VoxelShape SHAPE = VoxelShapes.block();
 
     public TomatoPlantBlock(Properties properties)
     {
@@ -70,13 +52,19 @@ public class TomatoPlantBlock extends AbstractDoubleCropBlock
     @Override
     protected VoxelShape[] getTopShapes()
     {
-        return SHAPES_TOP;
+        return new VoxelShape[]{};
     }
 
     @Override
     protected VoxelShape[] getBottomShapes()
     {
-        return SHAPES_BOTTOM;
+        return new VoxelShape[]{};
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx)
+    {
+        return SHAPE;
     }
 
     @Override
@@ -132,11 +120,17 @@ public class TomatoPlantBlock extends AbstractDoubleCropBlock
             if (ForgeHooks.onCropsGrowPre(world, pos, state, random.nextInt((int) (25f / growthSpeed) + 1) == 0))
             {
                 int age = state.getValue(AGE) + 1;
-                if (age > 1)
-                    world.setBlock(pos.above(), this.getStateForAge(age, DoubleBlockHalf.UPPER), Constants.BlockFlags.BLOCK_UPDATE);
+                world.setBlock(pos.above(), this.getStateForAge(age, DoubleBlockHalf.UPPER), Constants.BlockFlags.BLOCK_UPDATE);
                 world.setBlock(pos, this.getStateForAge(age, DoubleBlockHalf.LOWER), Constants.BlockFlags.BLOCK_UPDATE);
                 ForgeHooks.onCropsGrowPost(world, pos, state);
             }
         }
+    }
+
+    @Override
+    public void setPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+    {
+        super.setPlacedBy(world, pos, state, placer, stack);
+        world.setBlock(pos.above(), state.setValue(HALF, DoubleBlockHalf.UPPER), Constants.BlockFlags.DEFAULT);
     }
 }
