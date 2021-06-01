@@ -1,6 +1,6 @@
 {
-  "stripBlock": "minecraft:polished_blackstone_pressure_plate",
-  "result": "hamncheese:polished_blackstone_chopping_board",
-  "stripSound": "block.stone.place",
+  "pressurePlate": "minecraft:polished_blackstone_pressure_plate",
+  "board": "hamncheese:polished_blackstone_chopping_board",
+  "sound": "block.stone.place",
   "toolType": "pickaxe"
 }

@@ -204,10 +204,10 @@ public class CommonEvents
         ItemStack stack = event.getItemStack();
         World level = event.getWorld();
         ChoppingBoardManager.CHOPPING_BOARDS.values().forEach(board -> {
-            if (stack.getToolTypes().contains(board.getToolType()) && level.getBlockState(pos).getBlock() == board.getStripBlock())
+            if (stack.getToolTypes().contains(board.getToolType()) && level.getBlockState(pos).getBlock() == board.getPressurePlate())
             {
-                level.setBlock(pos, board.getResult().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(player.getRandom())), Constants.BlockFlags.DEFAULT);
-                level.playSound(player, pos, board.getStripSound(), SoundCategory.BLOCKS, 1f, 1f);
+                level.setBlock(pos, board.getBoard().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(player.getRandom())), Constants.BlockFlags.DEFAULT);
+                level.playSound(player, pos, board.getSound(), SoundCategory.BLOCKS, 1f, 1f);
                 stack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(event.getHand()));
             }
         });

@@ -4,6 +4,7 @@ import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.ToolType;
@@ -15,9 +16,9 @@ import net.minecraftforge.common.ToolType;
 public class ChoppingBoard
 {
     public static final Codec<ChoppingBoard> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Registry.BLOCK.fieldOf("stripBlock").forGetter(board -> board.stripBlock),
-            Registry.BLOCK.fieldOf("result").forGetter(board -> board.result),
-            SoundEvent.CODEC.fieldOf("stripSound").forGetter(board -> board.stripSound),
+            Registry.BLOCK.fieldOf("pressurePlate").forGetter(board -> board.pressurePlate),
+            Registry.BLOCK.fieldOf("board").forGetter(board -> board.board),
+            SoundEvent.CODEC.fieldOf("sound").forGetter(board -> board.sound),
             Codec.STRING.fieldOf("toolType").forGetter(board -> board.toolType)
     ).apply(instance, (stripBlock, result, soundEvent, toolType) -> {
         if (result instanceof ChoppingBoardBlock)
@@ -26,32 +27,32 @@ public class ChoppingBoard
             throw new IllegalStateException("Result must be of type 'Chopping Board'");
     }));
 
-    private final Block stripBlock;
-    private final ChoppingBoardBlock result;
-    private final SoundEvent stripSound;
+    private final Block pressurePlate;
+    private final ChoppingBoardBlock board;
+    private final SoundEvent sound;
     private final String toolType;
 
-    public ChoppingBoard(Block stripBlock, ChoppingBoardBlock result, SoundEvent stripSound, String toolType)
+    public ChoppingBoard(Block pressurePlate, ChoppingBoardBlock board, SoundEvent sound, String toolType)
     {
-        this.stripBlock = stripBlock;
-        this.result = result;
-        this.stripSound = stripSound;
+        this.pressurePlate = pressurePlate;
+        this.board = board;
+        this.sound = sound;
         this.toolType = toolType;
     }
 
-    public Block getStripBlock()
+    public Block getPressurePlate()
     {
-        return this.stripBlock;
+        return this.pressurePlate;
     }
 
-    public ChoppingBoardBlock getResult()
+    public ChoppingBoardBlock getBoard()
     {
-        return this.result;
+        return this.board;
     }
 
-    public SoundEvent getStripSound()
+    public SoundEvent getSound()
     {
-        return this.stripSound;
+        return this.sound;
     }
 
     public ToolType getToolType()

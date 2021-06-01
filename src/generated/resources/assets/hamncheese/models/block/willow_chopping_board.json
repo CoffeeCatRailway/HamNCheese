@@ -1,0 +1,6 @@
+{
+  "parent": "hamncheese:block/chopping_board",
+  "textures": {
+    "planks": "biomesoplenty:block/willow_planks"
+  }
+}

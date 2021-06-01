@@ -1,6 +1,6 @@
 {
-  "stripBlock": "minecraft:heavy_weighted_pressure_plate",
-  "result": "hamncheese:iron_chopping_board",
-  "stripSound": "block.metal.place",
+  "pressurePlate": "minecraft:heavy_weighted_pressure_plate",
+  "board": "hamncheese:iron_chopping_board",
+  "sound": "block.metal.place",
   "toolType": "pickaxe"
 }

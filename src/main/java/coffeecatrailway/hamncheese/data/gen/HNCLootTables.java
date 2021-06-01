@@ -23,6 +23,7 @@ import net.minecraft.loot.conditions.SurvivesExplosion;
 import net.minecraft.loot.functions.*;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.common.data.ForgeLootTableProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -167,6 +168,18 @@ public class HNCLootTables extends ForgeLootTableProvider
             this.dropSelf(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get());
             this.dropSelf(HNCBlocks.GOLD_CHOPPING_BOARD.get());
             this.dropSelf(HNCBlocks.IRON_CHOPPING_BOARD.get());
+
+            this.dropSelf(HNCBlocks.FIR_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.REDWOOD_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.CHERRY_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.MAHOGANY_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.JACARANDA_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.PALM_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.WILLOW_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.DEAD_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.MAGIC_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.UMBRAN_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.HELLBARK_CHOPPING_BOARD.get());
 
             this.add(HNCBlocks.PIZZA_OVEN.get(), LootTable.lootTable()
                     .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))

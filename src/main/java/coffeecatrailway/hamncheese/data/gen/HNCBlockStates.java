@@ -10,6 +10,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -67,6 +68,18 @@ public class HNCBlockStates extends BlockStateProvider
         this.choppingBoard(HNCBlocks.GOLD_CHOPPING_BOARD.get(), "gold", ChoppingBoardType.BLOCK);
         this.choppingBoard(HNCBlocks.IRON_CHOPPING_BOARD.get(), "iron", ChoppingBoardType.BLOCK);
 
+        this.choppingBoard(HNCBlocks.FIR_CHOPPING_BOARD.get(), "fir", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.REDWOOD_CHOPPING_BOARD.get(), "redwood", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.CHERRY_CHOPPING_BOARD.get(), "cherry", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.MAHOGANY_CHOPPING_BOARD.get(), "mahogany", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.JACARANDA_CHOPPING_BOARD.get(), "jacaranda", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.PALM_CHOPPING_BOARD.get(), "palm", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.WILLOW_CHOPPING_BOARD.get(), "willow", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.DEAD_CHOPPING_BOARD.get(), "dead", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.MAGIC_CHOPPING_BOARD.get(), "magic", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.UMBRAN_CHOPPING_BOARD.get(), "umbran", ChoppingBoardType.PLANKS, "biomesoplenty");
+        this.choppingBoard(HNCBlocks.HELLBARK_CHOPPING_BOARD.get(), "hellbark", ChoppingBoardType.PLANKS, "biomesoplenty");
+
         VariantBlockStateBuilder.PartialBlockstate oven = this.getVariantBuilder(HNCBlocks.PIZZA_OVEN.get()).partialState();
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
@@ -84,17 +97,21 @@ public class HNCBlockStates extends BlockStateProvider
 
     private void choppingBoard(ChoppingBoardBlock choppingBoard, String type, ChoppingBoardType choppingBoardType)
     {
+        choppingBoard(choppingBoard, type, choppingBoardType, "minecraft");
+    }
+
+    private void choppingBoard(ChoppingBoardBlock choppingBoard, String type, ChoppingBoardType choppingBoardType, String planksModId)
+    {
         VariantBlockStateBuilder.PartialBlockstate partialState = this.getVariantBuilder(choppingBoard).partialState();
         String path = "block/" + type + "_chopping_board";
         ResourceLocation parent = HNCMod.getLocation("block/chopping_board");
+        BlockModelBuilder model = this.models().withExistingParent(path, parent).texture("planks", new ResourceLocation(planksModId, "block/" + choppingBoardType.apply(type)));
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
             partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, false)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent(path, parent)
-                    .texture("planks", new ResourceLocation("block/" + choppingBoardType.apply(type)))).addModel();
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(model).addModel();
             partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, true)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().withExistingParent(path, parent)
-                    .texture("planks", new ResourceLocation("block/" + choppingBoardType.apply(type)))).addModel();
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(model).addModel();
         }
         this.simpleBlockItem(choppingBoard, this.itemModels().getExistingFile(HNCMod.getLocation(path)));
     }

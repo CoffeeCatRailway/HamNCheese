@@ -1,8 +1,8 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -29,10 +29,7 @@ public class HNCProfessions
     protected static final DeferredRegister<PointOfInterestType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, HNCMod.MOD_ID);
     protected static final DeferredRegister<VillagerProfession> PROFESSIONS = DeferredRegister.create(ForgeRegistries.PROFESSIONS, HNCMod.MOD_ID);
 
-    private static final Supplier<Set<BlockState>> CHOPPING_BOARDS = () -> ImmutableList.of(HNCBlocks.OAK_CHOPPING_BOARD.get(), HNCBlocks.BIRCH_CHOPPING_BOARD.get(), HNCBlocks.SPRUCE_CHOPPING_BOARD.get(), HNCBlocks.JUNGLE_CHOPPING_BOARD.get(), HNCBlocks.ACACIA_CHOPPING_BOARD.get(), HNCBlocks.DARK_OAK_CHOPPING_BOARD.get(), HNCBlocks.WARPED_CHOPPING_BOARD.get(), HNCBlocks.CRIMSON_CHOPPING_BOARD.get(), HNCBlocks.STONE_CHOPPING_BOARD.get(), HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get(), HNCBlocks.GOLD_CHOPPING_BOARD.get(), HNCBlocks.IRON_CHOPPING_BOARD.get()).stream()
-            .flatMap(board -> board.getStateDefinition().getPossibleStates().stream()).collect(Collectors.toSet());
-
-    public static final RegistryObject<PointOfInterestType> CHEF_POI = registerPoi("chef", CHOPPING_BOARDS, 1, 1);
+    public static final RegistryObject<PointOfInterestType> CHEF_POI = registerPoi("chef", () -> ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block instanceof ChoppingBoardBlock).flatMap(board -> board.getStateDefinition().getPossibleStates().stream()).collect(Collectors.toSet()), 1, 1);
     public static final RegistryObject<VillagerProfession> CHEF = registerProfession("chef", CHEF_POI, SoundEvents.VILLAGER_WORK_BUTCHER);
 
     private static RegistryObject<VillagerProfession> registerProfession(String id, RegistryObject<PointOfInterestType> poi, SoundEvent sound)

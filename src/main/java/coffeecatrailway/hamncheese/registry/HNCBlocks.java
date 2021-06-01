@@ -6,6 +6,7 @@ import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
 import coffeecatrailway.hamncheese.common.block.PizzaOvenBlock;
 import coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
+import coffeecatrailway.hamncheese.integration.registry.HNCBlocksBOP;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -14,6 +15,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -52,7 +54,26 @@ public class HNCBlocks
 
     public static final RegistryObject<PizzaOvenBlock> PIZZA_OVEN = register("pizza_oven", () -> new PizzaOvenBlock(AbstractBlock.Properties.copy(Blocks.WHITE_TERRACOTTA)), prop -> prop);
 
-    private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)
+    // Biomes O' Plenty
+    public static RegistryObject<ChoppingBoardBlock> FIR_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> REDWOOD_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> CHERRY_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> MAHOGANY_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> JACARANDA_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> PALM_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> WILLOW_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> DEAD_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> MAGIC_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> UMBRAN_CHOPPING_BOARD;
+    public static RegistryObject<ChoppingBoardBlock> HELLBARK_CHOPPING_BOARD;
+
+    static
+    {
+        if (ModList.get().isLoaded("biomesoplenty"))
+            HNCBlocksBOP.load();
+    }
+
+    public static <T extends Block> RegistryObject<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)
     {
         return registerWithItem(id, block, (object, prop) -> new BlockItem(object.get(), properties.apply(prop)));
     }

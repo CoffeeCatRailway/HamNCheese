@@ -72,11 +72,6 @@ minecraft {
     }
 }
 
-sourceSets.main.resources {
-    srcDir 'src/generated/resources'
-    exclude "**/*.ase", "**/*.bbmodel"
-}
-
 configurations {
     shade
 }
@@ -95,10 +90,18 @@ repositories {
     maven { // Hwyla
         url = "https://maven.tehnut.info"
     }
+    maven { // BOP
+        name = "Maxanier"
+        url = "https://maxanier.de/maven2/"
+    }
     maven { // Sonar
         name = "Jitpack"
         url = "https://jitpack.io"
     }
+}
+
+sourceSets.main.resources {
+    srcDir "src/generated/resources"
 }
 
 dependencies {
@@ -112,6 +115,8 @@ dependencies {
 
     compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwylaVersion}:api")
     runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwylaVersion}")
+
+    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3300293")
 
     runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
     compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}:api"

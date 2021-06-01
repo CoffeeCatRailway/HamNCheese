@@ -1,6 +1,6 @@
 {
-  "stripBlock": "minecraft:jungle_pressure_plate",
-  "result": "hamncheese:jungle_chopping_board",
-  "stripSound": "block.wood.place",
+  "pressurePlate": "minecraft:jungle_pressure_plate",
+  "board": "hamncheese:jungle_chopping_board",
+  "sound": "block.wood.place",
   "toolType": "axe"
 }
