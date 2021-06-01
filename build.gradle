@@ -28,8 +28,6 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
     mappings channel: project.mappingsChannel.toString(), version: project.mappingsVersion.toString()
-    
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
@@ -91,8 +89,7 @@ repositories {
         url = "https://maven.tehnut.info"
     }
     maven { // BOP
-        name = "Maxanier"
-        url = "https://maxanier.de/maven2/"
+        url = "https://cursemaven.com"
     }
     maven { // Sonar
         name = "Jitpack"
@@ -126,6 +123,8 @@ dependencies {
 shadowJar {
     configurations = [project.configurations.shade]
     relocate 'io.github.ocelot', 'io.github.ocelot.lib'
+
+    exclude(["**/*.ase", "**/*.bbmodel", "**/assets/biomesoplenty"])
 }
 
 processResources {
