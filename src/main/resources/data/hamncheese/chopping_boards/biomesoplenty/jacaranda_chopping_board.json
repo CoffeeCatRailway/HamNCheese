@@ -1,0 +1,7 @@
+{
+  "pressurePlate": "biomesoplenty:jacaranda_pressure_plate",
+  "board": "hamncheese:jacaranda_chopping_board",
+  "sound": "block.wood.place",
+  "toolType": "axe",
+  "modId": "biomesoplenty"
+}

@@ -26,4 +26,4 @@ forge*changelog.txt
 src/generated/resources/.cache/cache
 *.ase
 *.bbmodel
-src/main/resources
+src/main/resources/assets/biomesoplenty

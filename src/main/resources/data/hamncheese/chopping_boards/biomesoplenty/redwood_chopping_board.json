@@ -1,0 +1,7 @@
+{
+  "pressurePlate": "biomesoplenty:redwood_pressure_plate",
+  "board": "hamncheese:redwood_chopping_board",
+  "sound": "block.wood.place",
+  "toolType": "axe",
+  "modId": "biomesoplenty"
+}
