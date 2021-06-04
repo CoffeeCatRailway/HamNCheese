@@ -51,6 +51,7 @@ public class ClientEvents
         RenderTypeLookup.setRenderLayer(HNCBlocks.IRON_CHOPPING_BOARD.get(), cutoutMipped);
 
         RenderTypeLookup.setRenderLayer(HNCBlocks.PIZZA_OVEN.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.GRILL.get(), cutoutMipped);
     }
 
     private static void entityRenderers()
