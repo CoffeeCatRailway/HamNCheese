@@ -1,6 +1,7 @@
 {
   "pressurePlate": "minecraft:warped_pressure_plate",
   "board": "hamncheese:warped_chopping_board",
-  "sound": "block.wood.place",
-  "toolType": "axe"
+  "sound": "minecraft:block.wood.place",
+  "toolType": "axe",
+  "modId": "minecraft"
 }

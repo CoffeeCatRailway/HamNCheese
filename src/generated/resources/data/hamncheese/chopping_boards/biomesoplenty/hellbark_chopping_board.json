@@ -1,7 +1,7 @@
 {
   "pressurePlate": "biomesoplenty:hellbark_pressure_plate",
   "board": "hamncheese:hellbark_chopping_board",
-  "sound": "block.wood.place",
+  "sound": "minecraft:block.wood.place",
   "toolType": "axe",
   "modId": "biomesoplenty"
 }

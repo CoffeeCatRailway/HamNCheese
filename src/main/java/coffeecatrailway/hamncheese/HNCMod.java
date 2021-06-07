@@ -81,6 +81,7 @@ public class HNCMod
         generator.addProvider(new HNCRecipeGen(generator));
         generator.addProvider(new HNCItemModels(generator));
         generator.addProvider(new HNCBlockStates(generator, existingFileHelper));
+        generator.addProvider(new HNCChoppingBoards(generator));
     }
 
     public static ResourceLocation getLocation(String path)
