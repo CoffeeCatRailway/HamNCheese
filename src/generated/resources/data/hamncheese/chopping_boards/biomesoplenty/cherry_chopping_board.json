@@ -1,7 +1,7 @@
 {
   "pressurePlate": "biomesoplenty:cherry_pressure_plate",
   "board": "hamncheese:cherry_chopping_board",
-  "sound": "block.wood.place",
+  "sound": "minecraft:block.wood.place",
   "toolType": "axe",
   "modId": "biomesoplenty"
 }
