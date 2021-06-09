@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.tileentity.GrillTileEntity;
 import coffeecatrailway.hamncheese.common.tileentity.PizzaOvenTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,6 +20,7 @@ public class HNCTileEntities
     protected static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, HNCMod.MOD_ID);
 
     public static final RegistryObject<TileEntityType<PizzaOvenTileEntity>> PIZZA_OVEN = TILE_ENTITIES.register("pizza_oven", () -> TileEntityType.Builder.of(PizzaOvenTileEntity::new, HNCBlocks.PIZZA_OVEN.get()).build(null));
+    public static final RegistryObject<TileEntityType<GrillTileEntity>> GRILL = TILE_ENTITIES.register("grill", () -> TileEntityType.Builder.of(GrillTileEntity::new, HNCBlocks.GRILL.get()).build(null));
 
     public static void load(IEventBus bus)
     {
