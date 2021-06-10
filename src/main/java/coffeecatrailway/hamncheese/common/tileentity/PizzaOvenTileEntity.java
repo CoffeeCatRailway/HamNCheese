@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
  * @author CoffeeCatRailway
  * Created: 11/05/2021
  */
-public class PizzaOvenTileEntity extends HNCCookerTileEntity
+public class PizzaOvenTileEntity extends CookerTileEntity
 {
     private static final int[] SLOTS_UP = new int[]{
             0, 1, 2,
@@ -115,5 +115,4 @@ public class PizzaOvenTileEntity extends HNCCookerTileEntity
                     ingredient.shrink(1);
         }
     }
-
 }

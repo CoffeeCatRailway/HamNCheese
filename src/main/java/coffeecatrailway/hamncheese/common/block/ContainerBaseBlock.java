@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.common.block;
 
-import coffeecatrailway.hamncheese.common.tileentity.HNCCookerTileEntity;
+import coffeecatrailway.hamncheese.common.tileentity.CookerTileEntity;
 import io.github.ocelot.sonar.common.block.BaseBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -49,9 +49,9 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
         if (!state.is(newState.getBlock()))
         {
             TileEntity tileentity = world.getBlockEntity(pos);
-            if (tileentity instanceof HNCCookerTileEntity)
+            if (tileentity instanceof CookerTileEntity)
             {
-                InventoryHelper.dropContents(world, pos, (HNCCookerTileEntity) tileentity);
+                InventoryHelper.dropContents(world, pos, (CookerTileEntity) tileentity);
                 world.updateNeighbourForOutputSignal(pos, this);
             }
             super.onRemove(state, world, pos, newState, p_196243_5_);

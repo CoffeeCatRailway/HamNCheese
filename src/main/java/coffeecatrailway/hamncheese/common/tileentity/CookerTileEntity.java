@@ -48,7 +48,7 @@ import java.util.Map;
  * Created: 11/05/2021
  */
 @SuppressWarnings("unchecked")
-public abstract class HNCCookerTileEntity extends LockableTileEntity implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity
+public abstract class CookerTileEntity extends LockableTileEntity implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity
 {
     protected final ItemStackHandler inventory;
 
@@ -64,13 +64,13 @@ public abstract class HNCCookerTileEntity extends LockableTileEntity implements 
             switch (index)
             {
                 case 0:
-                    return HNCCookerTileEntity.this.burnTime;
+                    return CookerTileEntity.this.burnTime;
                 case 1:
-                    return HNCCookerTileEntity.this.burnTimeTotal;
+                    return CookerTileEntity.this.burnTimeTotal;
                 case 2:
-                    return HNCCookerTileEntity.this.cookTime;
+                    return CookerTileEntity.this.cookTime;
                 case 3:
-                    return HNCCookerTileEntity.this.cookTimeTotal;
+                    return CookerTileEntity.this.cookTimeTotal;
                 default:
                     return 0;
             }
@@ -82,16 +82,16 @@ public abstract class HNCCookerTileEntity extends LockableTileEntity implements 
             switch (index)
             {
                 case 0:
-                    HNCCookerTileEntity.this.burnTime = value;
+                    CookerTileEntity.this.burnTime = value;
                     break;
                 case 1:
-                    HNCCookerTileEntity.this.burnTimeTotal = value;
+                    CookerTileEntity.this.burnTimeTotal = value;
                     break;
                 case 2:
-                    HNCCookerTileEntity.this.cookTime = value;
+                    CookerTileEntity.this.cookTime = value;
                     break;
                 case 3:
-                    HNCCookerTileEntity.this.cookTimeTotal = value;
+                    CookerTileEntity.this.cookTimeTotal = value;
                     break;
             }
         }
@@ -108,7 +108,7 @@ public abstract class HNCCookerTileEntity extends LockableTileEntity implements 
 
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
-    public HNCCookerTileEntity(TileEntityType<?> type, int inventorySize, IRecipeType<? extends IRecipe<?>> recipeType)
+    public CookerTileEntity(TileEntityType<?> type, int inventorySize, IRecipeType<? extends IRecipe<?>> recipeType)
     {
         super(type);
         this.inventory = new ItemStackHandler(inventorySize)
@@ -117,7 +117,7 @@ public abstract class HNCCookerTileEntity extends LockableTileEntity implements 
             protected void onContentsChanged(int slot)
             {
                 super.onContentsChanged(slot);
-                HNCCookerTileEntity.this.sendUpdates(HNCCookerTileEntity.this);
+                CookerTileEntity.this.sendUpdates(CookerTileEntity.this);
             }
         };
         this.recipeType = (IRecipeType<IRecipe<IInventory>>) recipeType;
