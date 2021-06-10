@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.common.block;
 
+import coffeecatrailway.hamncheese.common.tileentity.GrillTileEntity;
 import coffeecatrailway.hamncheese.registry.HNCStats;
 import io.github.ocelot.sonar.common.util.VoxelShapeHelper;
 import net.minecraft.block.BlockState;
@@ -58,7 +59,7 @@ public class GrillBlock extends ContainerBaseBlock
     @Override
     protected TileEntity getTileEntity(BlockState state, IBlockReader world)
     {
-        return null;
+        return new GrillTileEntity();
     }
 
     @Override
