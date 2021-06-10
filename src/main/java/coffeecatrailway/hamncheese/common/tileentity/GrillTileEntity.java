@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.common.tileentity;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.inventory.GrillContainer;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import coffeecatrailway.hamncheese.registry.HNCTileEntities;
 import net.minecraft.entity.player.PlayerInventory;
@@ -37,7 +38,7 @@ public class GrillTileEntity extends CookerTileEntity
     @Override
     protected Container createMenu(int id, PlayerInventory playerInventory)
     {
-        return null;
+        return new GrillContainer(id, playerInventory, this, this.data);
     }
 
     @Override

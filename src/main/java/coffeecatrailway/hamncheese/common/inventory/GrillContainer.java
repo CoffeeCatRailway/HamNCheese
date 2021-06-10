@@ -8,6 +8,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.IntArray;
 
 /**
@@ -21,7 +22,7 @@ public class GrillContainer extends CookerContainer
         this(id, playerInventory, new Inventory(10), new IntArray(4));
     }
 
-    public GrillContainer(int id, PlayerInventory playerInventory, IInventory inventory, IntArray data)
+    public GrillContainer(int id, PlayerInventory playerInventory, IInventory inventory, IIntArray data)
     {
         super(HNCContainers.GRILL.get(), id, playerInventory, inventory, data);
     }
@@ -63,7 +64,7 @@ public class GrillContainer extends CookerContainer
                 if (!this.moveItemStackTo(itemstack1, 10, 46, true))
                     return ItemStack.EMPTY;
                 slot.onQuickCraft(itemstack1, itemstack);
-            } else if (index > 11)
+            } else if (index > 9)
             {
                 if (itemstack1.isEdible())
                 {
