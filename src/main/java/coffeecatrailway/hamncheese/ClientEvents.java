@@ -62,5 +62,6 @@ public class ClientEvents
     private static void registerScreen()
     {
         ScreenManager.register(HNCContainers.PIZZA_OVEN.get(), PizzaOvenScreen::new);
+        ScreenManager.register(HNCContainers.GRILL.get(), GrillScreen::new);
     }
 }
