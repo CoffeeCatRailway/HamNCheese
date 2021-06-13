@@ -2,6 +2,7 @@ package coffeecatrailway.hamncheese.common.tileentity;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.inventory.GrillContainer;
+import coffeecatrailway.hamncheese.common.item.SandwichItem;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import coffeecatrailway.hamncheese.registry.HNCTileEntities;
 import net.minecraft.entity.player.PlayerInventory;
@@ -75,40 +76,55 @@ public class GrillTileEntity extends CookerTileEntity
                 return false;
             else
             {
-                ItemStack output = this.getItem(12);
-                if (output.isEmpty() || (output.getCount() + result.getCount() <= this.getMaxStackSize() && output.getCount() + result.getCount() <= output.getMaxStackSize()))
-                    return true;
-                else if (!output.areShareTagsEqual(result))
-                    return false;
-                else
-                    return output.getCount() + result.getCount() <= output.getMaxStackSize();
+                boolean ret = false;
+                for (int i = 0; i < 4; i++)
+                {
+                    ItemStack outStack = this.getItem(i + 6);
+                    if (outStack.isEmpty() || (outStack.getCount() + result.getCount() <= this.getMaxStackSize() && outStack.getCount() + result.getCount() <= outStack.getMaxStackSize()))
+                        ret = true;
+                    else if (!outStack.areShareTagsEqual(result))
+                        ret = false;
+                    else
+                        ret = outStack.getCount() + result.getCount() <= outStack.getMaxStackSize();
+                }
+                return ret;
             }
-        } else
-            return false;
+        }
+        return false;
     }
 
     @Override
     protected void smeltRecipe(@Nullable IRecipe<IInventory> iRecipe)
     {
-        if (this.canSmelt(iRecipe))
+        for (int i = 0; i < 4; i++)
         {
-            ItemStack[] ingredients = new ItemStack[9];
-            for (int i = 0; i < 9; i++)
-                ingredients[i] = this.getItem(i);
+            if (this.canSmelt(iRecipe))
+            {
+                ItemStack stack = this.getItem(i);
+                if (SandwichItem.isUntoastedSandwich(stack))
+                {
+                    ItemStack result = iRecipe.assemble(this);
+                    for (int j = 6; j < 10; j++)
+                    {
+                        ItemStack outStack = this.getItem(j);
+                        if (outStack.isEmpty())
+                        {
+                            this.setItem(j, result.copy());
+                            break;
+                        } else if (outStack.areShareTagsEqual(result) && outStack.getCount() + result.getCount() <= this.getMaxStackSize() && outStack.getCount() + result.getCount() <= outStack.getMaxStackSize())
+                        {
+                            outStack.grow(1);
+                            break;
+                        }
+                    }
 
-            ItemStack result = iRecipe.assemble(this);
-            ItemStack output = this.getItem(12);
-            if (output.isEmpty())
-                this.setItem(12, result.copy());
-            else if (output.areShareTagsEqual(result))
-                output.grow(result.getCount());
+                    if (this.hasLevel() && !this.level.isClientSide())
+                        this.setRecipeUsed(iRecipe);
 
-            if (this.hasLevel() && !this.level.isClientSide())
-                this.setRecipeUsed(iRecipe);
-
-            for (ItemStack ingredient : ingredients)
-                if (!ingredient.isEmpty())
-                    ingredient.shrink(1);
+                    if (!stack.isEmpty())
+                        stack.shrink(1);
+                }
+            }
         }
     }
 }
