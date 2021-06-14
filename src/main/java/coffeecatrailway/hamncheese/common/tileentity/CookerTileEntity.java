@@ -129,7 +129,7 @@ public abstract class CookerTileEntity extends LockableTileEntity implements ISi
 
     protected abstract int[] getFuelSlots();
 
-    protected abstract int getCookTimeTotal(); // TODO: make cookTimeTotal a config value
+    protected abstract int getCookTimeTotal();
 
     protected abstract boolean canSmelt(@Nullable IRecipe<IInventory> iRecipe);
 

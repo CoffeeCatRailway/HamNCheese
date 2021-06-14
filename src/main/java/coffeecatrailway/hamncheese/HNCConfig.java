@@ -96,14 +96,13 @@ public class HNCConfig
                     .defineInRange("desertRestaurantWeight", 8, 1, Integer.MAX_VALUE);
             this.taigaRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a taiga village").translation(CONFIG + "generation.village.taigaRestaurantWeight")
                     .defineInRange("taigaRestaurantWeight", 8, 1, Integer.MAX_VALUE);
-            builder.pop(2);
 
-            builder.push("villagers"); // TODO: Combine with generation.village
-            this.allowButcherTrades = builder.comment("Allow butchers to trade emeralds for cooking tools").translation(CONFIG + "villagers.allowButcherTrades")
+            builder.push("trading");
+            this.allowButcherTrades = builder.comment("Allow butchers to trade emeralds for cooking tools").translation(CONFIG + "generation.villagers.trading.allowButcherTrades")
                     .define("allowButcherTrades", true);
-            this.allowFarmerTrades = builder.comment("Allow farmers to trade emeralds for foods").translation(CONFIG + "villagers.allowFarmerTrades")
+            this.allowFarmerTrades = builder.comment("Allow farmers to trade emeralds for foods").translation(CONFIG + "generation.villagers.trading.allowFarmerTrades")
                     .define("allowFarmerTrades", true);
-            builder.pop();
+            builder.pop(3);
         }
 
         public boolean canSpawnMouse()
