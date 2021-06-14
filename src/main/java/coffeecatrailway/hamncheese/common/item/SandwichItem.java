@@ -2,7 +2,6 @@ package coffeecatrailway.hamncheese.common.item;
 
 import coffeecatrailway.hamncheese.registry.HNCFoods;
 import coffeecatrailway.hamncheese.registry.HNCItems;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 /**

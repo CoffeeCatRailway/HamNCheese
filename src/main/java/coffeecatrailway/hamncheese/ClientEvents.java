@@ -3,7 +3,6 @@ package coffeecatrailway.hamncheese;
 import coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
-import coffeecatrailway.hamncheese.integration.registry.HNCBlocksBOP;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCContainers;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
@@ -12,7 +11,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 

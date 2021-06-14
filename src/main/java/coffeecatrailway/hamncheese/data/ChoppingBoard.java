@@ -4,7 +4,6 @@ import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.ToolType;
