@@ -55,13 +55,13 @@ public class PizzaOvenScreen extends ContainerScreen<PizzaOvenContainer>
         int leftPos = this.leftPos;
         int topPos = this.topPos;
         this.blit(matrixStack, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight);
-        if (this.getMenu().isBurning())
+        if (this.menu.isBurning())
         {
-            int burnTime = this.getMenu().getBurnLeftScaled();
+            int burnTime = this.menu.getBurnLeftScaled();
             this.blit(matrixStack, leftPos + 88, topPos + 36 + 12 - burnTime, 176, 12 - burnTime, 14, burnTime + 1);
         }
 
-        int cookProgress = this.getMenu().getCookProgressionScaled();
+        int cookProgress = this.menu.getCookProgressionScaled();
         this.blit(matrixStack, leftPos + 88, topPos + 18, 176, 14, cookProgress + 1, 16);
     }
 }
