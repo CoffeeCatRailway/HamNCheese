@@ -4,12 +4,10 @@ import coffeecatrailway.hamncheese.registry.HNCContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.util.IIntArray;
-import net.minecraft.util.IntArray;
 
 /**
  * @author CoffeeCatRailway
@@ -19,12 +17,12 @@ public class GrillContainer extends CookerContainer
 {
     public GrillContainer(int id, PlayerInventory playerInventory)
     {
-        this(id, playerInventory, new Inventory(10), new IntArray(4));
+        super(HNCContainers.GRILL.get(), id, playerInventory, 10);
     }
 
     public GrillContainer(int id, PlayerInventory playerInventory, IInventory inventory, IIntArray data)
     {
-        super(HNCContainers.GRILL.get(), id, playerInventory, inventory, data);
+        super(HNCContainers.GRILL.get(), id, playerInventory, 10, inventory, data);
     }
 
     @Override
@@ -33,14 +31,14 @@ public class GrillContainer extends CookerContainer
         int i, j;
         for (i = 0; i < 2; i++)
             for (j = 0; j < 2; j++)
-                this.addSlot(new Slot(this.inventory, j * 2 + i, 31 + j * 18, 18 + i * 18));
+                this.addSlot(new Slot(this.container, j * 2 + i, 31 + j * 18, 18 + i * 18));
 
-        this.addSlot(new FuelSlot(this.inventory, 4, 71, 61));
-        this.addSlot(new FuelSlot(this.inventory, 5, 89, 61));
+        this.addSlot(new FuelSlot(this.container, 4, 71, 61));
+        this.addSlot(new FuelSlot(this.container, 5, 89, 61));
 
         for (i = 0; i < 2; i++)
             for (j = 0; j < 2; j++)
-                this.addSlot(new ResultSlot(playerInventory.player, this.inventory, j * 2 + i + 6, 111 + j * 18, 18 + i * 18));
+                this.addSlot(new ResultSlot(playerInventory.player, this.container, j * 2 + i + 6, 111 + j * 18, 18 + i * 18));
 
         for (i = 0; i < 3; i++)
             for (j = 0; j < 9; j++)

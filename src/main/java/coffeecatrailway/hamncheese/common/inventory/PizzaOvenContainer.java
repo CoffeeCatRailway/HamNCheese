@@ -4,12 +4,10 @@ import coffeecatrailway.hamncheese.registry.HNCContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.util.IIntArray;
-import net.minecraft.util.IntArray;
 
 /**
  * @author CoffeeCatRailway
@@ -19,12 +17,12 @@ public class PizzaOvenContainer extends CookerContainer
 {
     public PizzaOvenContainer(int id, PlayerInventory playerInventory)
     {
-        this(id, playerInventory, new Inventory(13), new IntArray(4));
+        super(HNCContainers.PIZZA_OVEN.get(), id, playerInventory, 13);
     }
 
     public PizzaOvenContainer(int id, PlayerInventory playerInventory, IInventory inventory, IIntArray data)
     {
-        super(HNCContainers.PIZZA_OVEN.get(), id, playerInventory, inventory, data);
+        super(HNCContainers.PIZZA_OVEN.get(), id, playerInventory, 13, inventory, data);
     }
 
     @Override
@@ -33,12 +31,12 @@ public class PizzaOvenContainer extends CookerContainer
         int i, j;
         for (i = 0; i < 3; i++)
             for (j = 0; j < 3; j++)
-                this.addSlot(new Slot(this.inventory, j * 3 + i, 8 + j * 18, 8 + i * 18));
+                this.addSlot(new Slot(this.container, j * 3 + i, 8 + j * 18, 8 + i * 18));
 
-        this.addSlot(new FuelSlot(this.inventory, 9, 70, 52));
-        this.addSlot(new FuelSlot(this.inventory, 10, 88, 52));
-        this.addSlot(new FuelSlot(this.inventory, 11, 106, 52));
-        this.addSlot(new ResultSlot(playerInventory.player, this.inventory, 12, 136, 19));
+        this.addSlot(new FuelSlot(this.container, 9, 70, 52));
+        this.addSlot(new FuelSlot(this.container, 10, 88, 52));
+        this.addSlot(new FuelSlot(this.container, 11, 106, 52));
+        this.addSlot(new ResultSlot(playerInventory.player, this.container, 12, 136, 19));
 
         for (i = 0; i < 3; i++)
             for (j = 0; j < 9; j++)

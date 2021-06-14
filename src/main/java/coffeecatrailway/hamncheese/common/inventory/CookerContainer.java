@@ -1,12 +1,13 @@
 package coffeecatrailway.hamncheese.common.inventory;
 
-import com.mojang.datafixers.TypeRewriteRule;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.IntArray;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -18,19 +19,25 @@ import javax.annotation.Nullable;
  */
 public abstract class CookerContainer extends Container
 {
-    protected final IInventory inventory;
+    protected final IInventory container;
     private final IIntArray data;
 
-    public CookerContainer(@Nullable ContainerType<?> type, int id, PlayerInventory playerInventory, IInventory inventory, IIntArray data)
+    public CookerContainer(@Nullable ContainerType<?> type, int id, PlayerInventory playerInventory, int size)
+    {
+        this(type, id, playerInventory, size, new Inventory(size), new IntArray(4));
+    }
+
+    public CookerContainer(@Nullable ContainerType<?> type, int id, PlayerInventory playerInventory, int size, IInventory container, IIntArray data)
     {
         super(type, id);
-        checkContainerSize(inventory, inventory.getContainerSize());
-        checkContainerDataCount(data, data.getCount());
+        checkContainerSize(container, size);
+        checkContainerDataCount(data, 4);
 
-        this.inventory = inventory;
+        this.container = container;
         this.data = data;
 
         this.addSlots(playerInventory);
+        this.addDataSlots(this.data);
     }
 
     protected abstract void addSlots(PlayerInventory playerInventory);
@@ -38,7 +45,7 @@ public abstract class CookerContainer extends Container
     @Override
     public boolean stillValid(PlayerEntity player)
     {
-        return this.inventory.stillValid(player);
+        return this.container.stillValid(player);
     }
 
     @OnlyIn(Dist.CLIENT)
