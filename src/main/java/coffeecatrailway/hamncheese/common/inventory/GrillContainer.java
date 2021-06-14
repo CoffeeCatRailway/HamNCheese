@@ -11,39 +11,41 @@ import net.minecraft.util.IIntArray;
 
 /**
  * @author CoffeeCatRailway
- * Created: 21/05/2021
+ * Created: 9/06/2021
  */
-public class PizzaOvenContainer extends CookerContainer
+public class GrillContainer extends CookerContainer
 {
-    public PizzaOvenContainer(int id, PlayerInventory playerInventory)
+    public GrillContainer(int id, PlayerInventory playerInventory)
     {
-        super(HNCContainers.PIZZA_OVEN.get(), id, playerInventory, 13);
+        super(HNCContainers.GRILL.get(), id, playerInventory, 10);
     }
 
-    public PizzaOvenContainer(int id, PlayerInventory playerInventory, IInventory inventory, IIntArray data)
+    public GrillContainer(int id, PlayerInventory playerInventory, IInventory inventory, IIntArray data)
     {
-        super(HNCContainers.PIZZA_OVEN.get(), id, playerInventory, 13, inventory, data);
+        super(HNCContainers.GRILL.get(), id, playerInventory, 10, inventory, data);
     }
 
     @Override
     protected void addSlots(PlayerInventory playerInventory)
     {
         int i, j;
-        for (i = 0; i < 3; i++)
-            for (j = 0; j < 3; j++)
-                this.addSlot(new Slot(this.container, j * 3 + i, 8 + j * 18, 8 + i * 18));
+        for (i = 0; i < 2; i++)
+            for (j = 0; j < 2; j++)
+                this.addSlot(new Slot(this.container, j * 2 + i, 31 + j * 18, 18 + i * 18));
 
-        this.addSlot(new FuelSlot(this.container, 9, 70, 52));
-        this.addSlot(new FuelSlot(this.container, 10, 88, 52));
-        this.addSlot(new FuelSlot(this.container, 11, 106, 52));
-        this.addSlot(new ResultSlot(playerInventory.player, this.container, 12, 136, 19));
+        this.addSlot(new FuelSlot(this.container, 4, 71, 61));
+        this.addSlot(new FuelSlot(this.container, 5, 89, 61));
+
+        for (i = 0; i < 2; i++)
+            for (j = 0; j < 2; j++)
+                this.addSlot(new ResultSlot(playerInventory.player, this.container, j * 2 + i + 6, 111 + j * 18, 18 + i * 18));
 
         for (i = 0; i < 3; i++)
             for (j = 0; j < 9; j++)
-                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 89 + i * 18));
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 
         for (int k = 0; k < 9; k++)
-            this.addSlot(new Slot(playerInventory, k, 8 + k * 18, 147));
+            this.addSlot(new Slot(playerInventory, k, 8 + k * 18, 142));
     }
 
     @Override
@@ -55,30 +57,30 @@ public class PizzaOvenContainer extends CookerContainer
         {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            if (index == 12)
+            if (index == 6)
             {
-                if (!this.moveItemStackTo(itemstack1, 13, 49, true))
+                if (!this.moveItemStackTo(itemstack1, 10, 46, true))
                     return ItemStack.EMPTY;
                 slot.onQuickCraft(itemstack1, itemstack);
-            } else if (index > 11)
+            } else if (index > 9)
             {
                 if (itemstack1.isEdible())
                 {
-                    if (!this.moveItemStackTo(itemstack1, 0, 9, false))
+                    if (!this.moveItemStackTo(itemstack1, 0, 4, false))
                         return ItemStack.EMPTY;
                 } else if (AbstractFurnaceTileEntity.isFuel(itemstack1))
                 {
-                    if (!this.moveItemStackTo(itemstack1, 9, 12, false))
+                    if (!this.moveItemStackTo(itemstack1, 4, 10, false))
                         return ItemStack.EMPTY;
-                } else if (index >= 13 && index < 40)
+                } else if (index >= 10 && index < 37)
                 {
-                    if (!this.moveItemStackTo(itemstack1, 40, 49, false))
+                    if (!this.moveItemStackTo(itemstack1, 37, 46, false))
                         return ItemStack.EMPTY;
-                } else if (index >= 40 && index < 49 && !this.moveItemStackTo(itemstack1, 13, 40, false))
+                } else if (index >= 37 && index < 46 && !this.moveItemStackTo(itemstack1, 10, 37, false))
                 {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemstack1, 13, 49, false))
+            } else if (!this.moveItemStackTo(itemstack1, 10, 46, false))
             {
                 return ItemStack.EMPTY;
             }

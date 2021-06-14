@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese;
 
 import coffeecatrailway.hamncheese.client.entity.MouseRenderer;
+import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.integration.registry.HNCBlocksBOP;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
@@ -47,5 +48,6 @@ public class ClientEvents
     private static void registerScreen()
     {
         ScreenManager.register(HNCContainers.PIZZA_OVEN.get(), PizzaOvenScreen::new);
+        ScreenManager.register(HNCContainers.GRILL.get(), GrillScreen::new);
     }
 }

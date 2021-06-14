@@ -1,10 +1,7 @@
 package coffeecatrailway.hamncheese.data.gen;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
-import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
-import coffeecatrailway.hamncheese.common.block.PizzaOvenBlock;
-import coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
+import coffeecatrailway.hamncheese.common.block.*;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.DoubleBlockHalf;
@@ -12,6 +9,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -80,19 +78,40 @@ public class HNCBlockStates extends BlockStateProvider
         this.choppingBoard(HNCBlocks.UMBRAN_CHOPPING_BOARD.get(), "umbran", ChoppingBoardType.PLANKS, "biomesoplenty");
         this.choppingBoard(HNCBlocks.HELLBARK_CHOPPING_BOARD.get(), "hellbark", ChoppingBoardType.PLANKS, "biomesoplenty");
 
+        // Pizza Oven & Grill - Initial
         VariantBlockStateBuilder.PartialBlockstate oven = this.getVariantBuilder(HNCBlocks.PIZZA_OVEN.get()).partialState();
+        ModelFile ovenModel = this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"));
+
+        VariantBlockStateBuilder.PartialBlockstate grill = this.getVariantBuilder(HNCBlocks.GRILL.get()).partialState();
+        ModelFile grillModel = this.models().getExistingFile(HNCMod.getLocation("block/grill"));
+
+        // Add models
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
+            // Pizza Oven
             oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, false).with(PizzaOvenBlock.LIT, false)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"))).addModel();
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(ovenModel).addModel();
             oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, false).with(PizzaOvenBlock.LIT, true)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"))).addModel();
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(ovenModel).addModel();
             oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, true).with(PizzaOvenBlock.LIT, false)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"))).addModel();
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(ovenModel).addModel();
             oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, true).with(PizzaOvenBlock.LIT, true)
-                    .modelForState().rotationY((int) direction.toYRot()).modelFile(this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"))).addModel();
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(ovenModel).addModel();
+
+            // Grill
+            grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, false).with(GrillBlock.LIT, false)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
+            grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, false).with(GrillBlock.LIT, true)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
+            grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, true).with(GrillBlock.LIT, false)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
+            grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, true).with(GrillBlock.LIT, true)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
         }
+
+        // Generate blockstates
         this.simpleBlockItem(HNCBlocks.PIZZA_OVEN.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/pizza_oven")));
+        this.simpleBlockItem(HNCBlocks.GRILL.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/grill")));
     }
 
     private void choppingBoard(ChoppingBoardBlock choppingBoard, String type, ChoppingBoardType choppingBoardType)

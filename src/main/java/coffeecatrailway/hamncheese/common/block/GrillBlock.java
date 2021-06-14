@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.common.block;
 
-import coffeecatrailway.hamncheese.common.tileentity.PizzaOvenTileEntity;
+import coffeecatrailway.hamncheese.common.tileentity.GrillTileEntity;
 import coffeecatrailway.hamncheese.registry.HNCStats;
 import io.github.ocelot.sonar.common.util.VoxelShapeHelper;
 import net.minecraft.block.BlockState;
@@ -24,9 +24,9 @@ import java.util.Random;
 
 /**
  * @author CoffeeCatRailway
- * Created: 10/05/2021
+ * Created: 3/06/2021
  */
-public class PizzaOvenBlock extends ContainerBaseBlock
+public class GrillBlock extends ContainerBaseBlock
 {
     private static final VoxelShape[] SHAPES = createShapes();
 
@@ -36,15 +36,16 @@ public class PizzaOvenBlock extends ContainerBaseBlock
 
         for (Direction direction : Direction.Plane.HORIZONTAL)
             shapes.add(new VoxelShapeHelper.Builder().append(
-                    VoxelShapeHelper.makeCuboidShape(1d, 0d, 0d, 15d, 8d, 15d, direction),
-                    VoxelShapeHelper.makeCuboidShape(3d, 8d, 3d, 13d, 10d, 13d, direction),
-                    VoxelShapeHelper.makeCuboidShape(6.5d, 10d, 3.5d, 9.5d, 14d, 6.5d, direction)
+                    VoxelShapeHelper.makeCuboidShape(0d, 11d, 0d, 16d, 16d, 16d, direction),
+                    VoxelShapeHelper.makeCuboidShape(1d, 0d, 1d, 3d, 11d, 15d, direction),
+                    VoxelShapeHelper.makeCuboidShape(13d, 0d, 1d, 15d, 11d, 15d, direction),
+                    VoxelShapeHelper.makeCuboidShape(3d, 6.5d, 4.5d, 12.5d, 8.5d, 13d, direction)
             ));
 
         return shapes.stream().map(VoxelShapeHelper.Builder::build).toArray(VoxelShape[]::new);
     }
 
-    public PizzaOvenBlock(Properties properties)
+    public GrillBlock(Properties properties)
     {
         super(properties);
     }
@@ -58,13 +59,13 @@ public class PizzaOvenBlock extends ContainerBaseBlock
     @Override
     protected TileEntity getTileEntity(BlockState state, IBlockReader world)
     {
-        return new PizzaOvenTileEntity();
+        return new GrillTileEntity();
     }
 
     @Override
     protected ResourceLocation getInteractWithStat()
     {
-        return HNCStats.INTERACT_PIZZA_OVEN;
+        return HNCStats.INTERACT_GRILL;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -72,13 +73,13 @@ public class PizzaOvenBlock extends ContainerBaseBlock
     public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
         if (state.getValue(LIT)) {
             double x = pos.getX();
-            double y = (double) pos.getY() + .1d;
+            double y = (double) pos.getY() + .95d;
             double z = pos.getZ();
             if (rand.nextDouble() < .1d)
                 world.playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1f, 1f, false);
 
-            double xo = rand.nextDouble() * .8d + .2d;
-            double zo = rand.nextDouble() * .8d + .2d;
+            double xo = rand.nextDouble() * .9d + .1d;
+            double zo = rand.nextDouble() * .9d + .1d;
             world.addParticle(ParticleTypes.SMOKE, x + xo, y, z + zo, 0d, 0d, 0d);
             world.addParticle(ParticleTypes.FLAME, x + xo, y, z + zo, 0d, 0d, 0d);
         }

@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.inventory.GrillContainer;
 import coffeecatrailway.hamncheese.common.inventory.PizzaOvenContainer;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.inventory.container.ContainerType;
@@ -22,6 +23,7 @@ public class HNCContainers
     protected static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, HNCMod.MOD_ID);
 
     public static final RegistryObject<ContainerType<PizzaOvenContainer>> PIZZA_OVEN = register("pizza_oven", () -> new ContainerType<>(PizzaOvenContainer::new));
+    public static final RegistryObject<ContainerType<GrillContainer>> GRILL = register("grill", () -> new ContainerType<>(GrillContainer::new));
 
     private static <T extends ContainerType<?>> RegistryObject<T> register(String id, Supplier<T> container)
     {

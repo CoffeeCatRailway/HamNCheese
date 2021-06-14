@@ -1,7 +1,7 @@
 package coffeecatrailway.hamncheese.client.gui.screen;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.common.inventory.PizzaOvenContainer;
+import coffeecatrailway.hamncheese.common.inventory.GrillContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -11,24 +11,24 @@ import net.minecraft.util.text.ITextComponent;
 
 /**
  * @author CoffeeCatRailway
- * Created: 22/05/2021
+ * Created: 10/06/2021
  */
-public class PizzaOvenScreen extends ContainerScreen<PizzaOvenContainer>
+public class GrillScreen extends ContainerScreen<GrillContainer>
 {
-    public static final ResourceLocation TEXTURE = HNCMod.getLocation("textures/gui/container/pizza_oven.png");
+    public static final ResourceLocation TEXTURE = HNCMod.getLocation("textures/gui/container/grill.png");
 
-    public PizzaOvenScreen(PizzaOvenContainer container, PlayerInventory playerInventory, ITextComponent title)
+    public GrillScreen(GrillContainer container, PlayerInventory playerInventory, ITextComponent title)
     {
         super(container, playerInventory, title);
         this.imageWidth = 176;
-        this.imageHeight = 171;
+        this.imageHeight = 166;
     }
 
     @Override
     protected void init()
     {
         super.init();
-        this.titleLabelX = (this.imageWidth / 2 - this.font.width(this.title) / 2) + 9;
+        this.titleLabelX = (this.imageWidth / 2 - this.font.width(this.title) / 2);
         this.inventoryLabelY = this.imageHeight - 93;
     }
 
@@ -38,13 +38,6 @@ public class PizzaOvenScreen extends ContainerScreen<PizzaOvenContainer>
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         this.renderTooltip(matrixStack, mouseX, mouseY);
-    }
-
-    @Override
-    protected void renderLabels(MatrixStack matrixStack, int mouseX, int mouseY)
-    {
-        this.font.drawShadow(matrixStack, this.title, (float) this.titleLabelX, (float) this.titleLabelY, 0xd6d6d6);
-        this.font.draw(matrixStack, this.inventory.getDisplayName(), (float) this.inventoryLabelX, (float) this.inventoryLabelY, 0x404040);
     }
 
     @Override
@@ -58,10 +51,10 @@ public class PizzaOvenScreen extends ContainerScreen<PizzaOvenContainer>
         if (this.menu.isBurning())
         {
             int burnTime = this.menu.getBurnLeftScaled();
-            this.blit(matrixStack, leftPos + 88, topPos + 36 + 12 - burnTime, 176, 12 - burnTime, 14, burnTime + 1);
+            this.blit(matrixStack, leftPos + 80, topPos + 45 + 12 - burnTime, 176, 12 - burnTime, 14, burnTime + 1);
         }
 
         int cookProgress = this.menu.getCookProgressionScaled();
-        this.blit(matrixStack, leftPos + 88, topPos + 18, 176, 14, cookProgress + 1, 16);
+        this.blit(matrixStack, leftPos + 76, topPos + 26, 176, 14, cookProgress + 1, 16);
     }
 }

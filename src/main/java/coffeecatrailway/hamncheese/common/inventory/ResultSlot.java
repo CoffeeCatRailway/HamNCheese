@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.common.inventory;
 
-import coffeecatrailway.hamncheese.common.tileentity.HNCLockableTileEntity;
+import coffeecatrailway.hamncheese.common.tileentity.CookerTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.FurnaceResultSlot;
@@ -37,8 +37,8 @@ public class ResultSlot extends FurnaceResultSlot
     @Override
     protected void checkTakeAchievements(ItemStack stack) {
         stack.onCraftedBy(this.player.level, this.player, this.removeCount);
-        if (!this.player.level.isClientSide() && this.container instanceof HNCLockableTileEntity) {
-            ((HNCLockableTileEntity) this.container).giveExperience(this.player);
+        if (!this.player.level.isClientSide() && this.container instanceof CookerTileEntity) {
+            ((CookerTileEntity) this.container).giveExperience(this.player);
         }
 
         this.removeCount = 0;

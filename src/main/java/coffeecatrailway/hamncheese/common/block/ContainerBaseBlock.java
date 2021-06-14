@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.common.block;
 
-import coffeecatrailway.hamncheese.common.tileentity.HNCLockableTileEntity;
+import coffeecatrailway.hamncheese.common.tileentity.CookerTileEntity;
 import io.github.ocelot.sonar.common.block.BaseBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -39,9 +39,7 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
     public ContainerBaseBlock(Properties properties)
     {
         super(properties);
-        BlockState state = this.getStateDefinition().any().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(WATERLOGGED, false);
-        if (this.hasLitState())
-            state = state.setValue(LIT, false);
+        BlockState state = this.getStateDefinition().any().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(WATERLOGGED, false).setValue(LIT, false);
         this.registerDefaultState(state);
     }
 
@@ -51,9 +49,9 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
         if (!state.is(newState.getBlock()))
         {
             TileEntity tileentity = world.getBlockEntity(pos);
-            if (tileentity instanceof HNCLockableTileEntity)
+            if (tileentity instanceof CookerTileEntity)
             {
-                InventoryHelper.dropContents(world, pos, (HNCLockableTileEntity) tileentity);
+                InventoryHelper.dropContents(world, pos, (CookerTileEntity) tileentity);
                 world.updateNeighbourForOutputSignal(pos, this);
             }
             super.onRemove(state, world, pos, newState, p_196243_5_);
@@ -63,7 +61,7 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
     @Override
     public int getLightValue(BlockState state, IBlockReader world, BlockPos pos)
     {
-        return state.getValue(LIT) && this.hasLitState() ? super.getLightValue(state, world, pos) : 0;
+        return state.getValue(LIT) ? super.getLightValue(state, world, pos) : 0;
     }
 
     @Override
@@ -76,9 +74,7 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
     {
-        builder.add(HORIZONTAL_FACING, WATERLOGGED);
-        if (this.hasLitState())
-            builder.add(LIT);
+        builder.add(HORIZONTAL_FACING, WATERLOGGED, LIT);
     }
 
     @Override
@@ -131,8 +127,6 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
     protected abstract TileEntity getTileEntity(BlockState state, IBlockReader world);
 
     protected abstract ResourceLocation getInteractWithStat();
-
-    protected abstract boolean hasLitState();
 
     @Nullable
     @Override

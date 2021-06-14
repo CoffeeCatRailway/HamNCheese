@@ -18,6 +18,9 @@ public class HNCConfig
 
         public ForgeConfigSpec.DoubleValue cookedFoodModifier;
 
+        public ForgeConfigSpec.IntValue pizzaOvenCookTimeTotal;
+        public ForgeConfigSpec.IntValue grillCookTimeTotal;
+
         public ForgeConfigSpec.BooleanValue generateWildPineapples;
         public ForgeConfigSpec.IntValue chanceWildPineapples;
 
@@ -48,6 +51,13 @@ public class HNCConfig
 
             this.cookedFoodModifier = builder.comment("The amount of how much the saturation changes when grilled/cooked").translation(CONFIG + "item.cookedFoodModifier")
                     .defineInRange("cookedFoodModifier", 1.5d, 0.5d, 10d);
+            builder.pop();
+
+            builder.push("block");
+            this.pizzaOvenCookTimeTotal = builder.comment("Total cook time for the Pizza Oven").translation(CONFIG + "block.pizzaOvenCookTimeTotal")
+                    .defineInRange("pizzaOvenCookTimeTotal", 200, 1, Integer.MAX_VALUE);
+            this.grillCookTimeTotal = builder.comment("Total cook time for the Grill").translation(CONFIG + "block.grillCookTimeTotal")
+                    .defineInRange("grillCookTimeTotal", 200, 1, Integer.MAX_VALUE);
             builder.pop();
 
             builder.push(Lists.newArrayList("generation", "crops", "wildPineapples"));
@@ -88,7 +98,7 @@ public class HNCConfig
                     .defineInRange("taigaRestaurantWeight", 8, 1, Integer.MAX_VALUE);
             builder.pop(2);
 
-            builder.push("villagers");
+            builder.push("villagers"); // TODO: Combine with generation.village
             this.allowButcherTrades = builder.comment("Allow butchers to trade emeralds for cooking tools").translation(CONFIG + "villagers.allowButcherTrades")
                     .define("allowButcherTrades", true);
             this.allowFarmerTrades = builder.comment("Allow farmers to trade emeralds for foods").translation(CONFIG + "villagers.allowFarmerTrades")

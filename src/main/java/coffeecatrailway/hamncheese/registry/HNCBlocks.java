@@ -1,10 +1,7 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
-import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
-import coffeecatrailway.hamncheese.common.block.PizzaOvenBlock;
-import coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
+import coffeecatrailway.hamncheese.common.block.*;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import coffeecatrailway.hamncheese.integration.registry.HNCBlocksBOP;
 import net.minecraft.block.AbstractBlock;
@@ -53,6 +50,7 @@ public class HNCBlocks
     public static final RegistryObject<ChoppingBoardBlock> IRON_CHOPPING_BOARD = register("iron_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
 
     public static final RegistryObject<PizzaOvenBlock> PIZZA_OVEN = register("pizza_oven", () -> new PizzaOvenBlock(AbstractBlock.Properties.copy(Blocks.WHITE_TERRACOTTA)), prop -> prop);
+    public static final RegistryObject<GrillBlock> GRILL = register("grill", () -> new GrillBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
 
     // Biomes O' Plenty
     public static RegistryObject<ChoppingBoardBlock> FIR_CHOPPING_BOARD;

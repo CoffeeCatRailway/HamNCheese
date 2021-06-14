@@ -20,12 +20,14 @@ public class HNCStats
     private static final Logger LOGGER = HNCMod.getLogger("Stats");
 
     public static ResourceLocation INTERACT_PIZZA_OVEN;
+    public static ResourceLocation INTERACT_GRILL;
 
     public static void register(RegistryEvent.Register<StatType<?>> event)
     {
         if (!event.getName().equals(ForgeRegistries.STAT_TYPES.getRegistryName())) return;
 
         INTERACT_PIZZA_OVEN = register("interact_pizza_oven", "Interactions with Pizza Oven", IStatFormatter.DEFAULT);
+        INTERACT_GRILL = register("interact_grill", "Interactions with Grill", IStatFormatter.DEFAULT);
 
         LOGGER.debug("Custom stats registered");
     }
