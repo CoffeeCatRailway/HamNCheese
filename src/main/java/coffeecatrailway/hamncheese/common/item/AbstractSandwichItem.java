@@ -69,8 +69,6 @@ public class AbstractSandwichItem extends Item
         ITextComponent name = super.getName(stack);
         if (ingredients.size() > 0)
             name = ItemStack.of((CompoundNBT) ingredients.get(0)).getHoverName().copy().append(" ").append(super.getName(stack));
-        if (this.sandwichProperties.isToasted(nbt))
-            name = new TranslationTextComponent("item.hamncheese.sandwich.toasted").append(" ").append(name);
         return name;
     }
 
@@ -201,7 +199,7 @@ public class AbstractSandwichItem extends Item
             return this.hasTwoBuns;
         }
 
-        private boolean isToasted(CompoundNBT nbt)
+        public boolean isToasted(CompoundNBT nbt)
         {
             return this.canBeToasted && nbt.contains(AbstractSandwichItem.TAG_TOASTED) && nbt.getBoolean(AbstractSandwichItem.TAG_TOASTED);
         }
