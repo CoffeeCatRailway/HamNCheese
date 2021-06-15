@@ -85,9 +85,6 @@ repositories {
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
     }
-    maven { // Hwyla
-        url = "https://maven.tehnut.info"
-    }
     maven { // BOP
         url = "https://cursemaven.com"
     }
@@ -114,6 +111,9 @@ dependencies {
     runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwylaVersion}")
 
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:${project.bopVersion}")
+
+//    runtimeOnly "curse.maven:configured-457570:3340535"
+//    runtimeOnly "curse.maven:catalogue-459701:3335979"
 
     runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
     compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}:api"
