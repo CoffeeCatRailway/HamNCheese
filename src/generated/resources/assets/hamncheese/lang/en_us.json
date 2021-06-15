@@ -73,5 +73,6 @@
   "item.hamncheese.wooden_gear": "Wooden Gear",
   "itemGroup.hamncheese": "Ham N' Cheese",
   "stat.hamncheese.interact_grill": "Interactions with Grill",
-  "stat.hamncheese.interact_pizza_oven": "Interactions with Pizza Oven"
+  "stat.hamncheese.interact_pizza_oven": "Interactions with Pizza Oven",
+  "top.hamncheese.progress": "Progress: "
 }

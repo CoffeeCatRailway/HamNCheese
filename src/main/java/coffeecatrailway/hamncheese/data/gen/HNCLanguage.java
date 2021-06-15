@@ -34,6 +34,7 @@ public class HNCLanguage extends LanguageProvider
     {
         this.add("itemGroup." + HNCMod.MOD_ID, "Ham N' Cheese");
         this.add("item.hamncheese.sandwich.toasted", "Toasted");
+        this.add("top.hamncheese.progress", "Progress: ");
         EXTRA.forEach(this::add);
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));
