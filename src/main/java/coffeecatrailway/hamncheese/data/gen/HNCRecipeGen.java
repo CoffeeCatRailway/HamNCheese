@@ -8,6 +8,7 @@ import net.minecraft.data.*;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 
@@ -121,5 +122,9 @@ public class HNCRecipeGen extends RecipeProvider
         ShapedRecipeBuilder.shaped(HNCBlocks.PIZZA_OVEN.get()).define('b', Items.BRICK).define('t', Blocks.WHITE_TERRACOTTA).define('c', Ingredient.of(HNCItemTags.CAMPFIRES))
                 .pattern(" t ").pattern("tct").pattern("bbb").unlockedBy("has_bricks", has(Items.BRICK)).unlockedBy("has_terracotta", has(Blocks.WHITE_TERRACOTTA))
                 .unlockedBy("has_campfire", has(HNCItemTags.CAMPFIRES)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(HNCBlocks.GRILL.get()).define('i', Tags.Items.INGOTS_IRON).define('r', Tags.Items.DUSTS_REDSTONE).define('s', Blocks.SMOKER).define('b', Blocks.IRON_BARS)
+                .pattern("i i").pattern("rsi").pattern("b b").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_redstone", has(Tags.Items.DUSTS_REDSTONE))
+                .unlockedBy("has_smoker", has(Blocks.SMOKER)).unlockedBy("has_bars", has(Blocks.IRON_BARS)).save(consumer);
     }
 }
