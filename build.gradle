@@ -81,6 +81,10 @@ repositories {
     maven { // JustEnoughItems
         url = "https://dvs1.progwml6.com/files/maven/"
     }
+    maven { // JustEnoughItems fallback
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
     maven { // Top
         name 'tterrag maven'
         url "https://maven.tterrag.com/"

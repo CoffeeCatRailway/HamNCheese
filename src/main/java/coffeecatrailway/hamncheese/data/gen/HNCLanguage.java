@@ -16,6 +16,7 @@ import java.util.Map;
  * @author CoffeeCatRailway
  * Created: 17/03/2021
  */
+@SuppressWarnings("unchecked")
 public class HNCLanguage extends LanguageProvider
 {
     public static final Map<String, String> EXTRA = new HashMap<>();
@@ -36,6 +37,8 @@ public class HNCLanguage extends LanguageProvider
         this.add("item.hamncheese.sandwich.toasted", "Toasted");
         this.add("top.hamncheese.progress", "Progress: ");
         this.add("top.hamncheese.chop_chop", "Chop! Chop!");
+        this.add("jei.hamncheese.chopping_board.how", "A chopping board is made by right-clicking a pressure plate with it's respective tool type.");
+        this.add("jei.hamncheese.chopping_board.example", "Example: Right-clicking a wooden pressure plate with an axe will turn it into a wooden chopping board.");
         EXTRA.forEach(this::add);
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));
@@ -49,7 +52,7 @@ public class HNCLanguage extends LanguageProvider
         int i = 0;
         for (String name : names)
         {
-            builder.append(name.substring(0, 1).toUpperCase() + name.substring(1));
+            builder.append(name.substring(0, 1).toUpperCase()).append(name.substring(1));
             i++;
             if (i != names.length)
                 builder.append(" ");

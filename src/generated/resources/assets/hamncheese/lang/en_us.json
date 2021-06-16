@@ -72,6 +72,8 @@
   "item.hamncheese.unbaked_pizza_base": "Unbaked Pizza Base",
   "item.hamncheese.wooden_gear": "Wooden Gear",
   "itemGroup.hamncheese": "Ham N' Cheese",
+  "jei.hamncheese.chopping_board.example": "Example: Right-clicking a wooden pressure plate with an axe will turn it into a wooden chopping board.",
+  "jei.hamncheese.chopping_board.how": "A chopping board is made by right-clicking a pressure plate with it's respective tool type.",
   "stat.hamncheese.interact_grill": "Interactions with Grill",
   "stat.hamncheese.interact_pizza_oven": "Interactions with Pizza Oven",
   "top.hamncheese.chop_chop": "Chop! Chop!",
