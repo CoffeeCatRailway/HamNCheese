@@ -1,16 +1,16 @@
 package coffeecatrailway.hamncheese.integration.jei;
 
 import coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
-import coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
-import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
-import coffeecatrailway.hamncheese.registry.HNCItems;
+import coffeecatrailway.hamncheese.common.item.crafting.AbstractSandwichRecipe;
 import com.google.common.collect.Lists;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -19,31 +19,37 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author CoffeeCatRailway
  * Created: 17/06/2021
  */
-public class SandwichCraftingExtension<T extends SandwichRecipe> implements ICraftingCategoryExtension
+public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> implements ICraftingCategoryExtension
 {
-    private static final List<ItemStack> FOODS = ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.isEdible() && !HNCItemTags.BREAD_SLICE.contains(item) && !(item instanceof AbstractSandwichItem)).map(ItemStack::new).collect(Collectors.toList());
+    private final List<ItemStack> foods;
     private final T recipe;
+    private final ITag.INamedTag<Item> bunTag;
+    private final Supplier<? extends IItemProvider> defaultItem;
 
-    public SandwichCraftingExtension(T recipe)
+    public SandwichCraftingExtension(T recipe, ITag.INamedTag<Item> bunTag, Supplier<? extends IItemProvider> defaultItem)
     {
         this.recipe = recipe;
+        this.bunTag = bunTag;
+        this.defaultItem = defaultItem;
+
+        this.foods = ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.isEdible() && !this.bunTag.contains(item) && !(item instanceof AbstractSandwichItem)).map(ItemStack::new).collect(Collectors.toList());
     }
 
     @Override
     public void setIngredients(IIngredients ingredients)
     {
-        List<ItemStack> breadSlice = HNCItemTags.BREAD_SLICE.getValues().stream().map(ItemStack::new).collect(Collectors.toList());
+        List<ItemStack> breadSlice = this.bunTag.getValues().stream().map(ItemStack::new).collect(Collectors.toList());
         Random random = new Random(42L);
         if (Minecraft.getInstance().level != null)
             random = Minecraft.getInstance().level.random;
-        List<ItemStack> selected = this.pickNRandomElements(new ArrayList<>(FOODS), random.nextInt(6) + 1, random);
+        List<ItemStack> selected = this.pickNRandomElements(new ArrayList<>(foods), random.nextInt(6) + 1, random);
         List<List<ItemStack>> inputs = new ArrayList<>();
 
         inputs.add(breadSlice);
@@ -51,7 +57,7 @@ public class SandwichCraftingExtension<T extends SandwichRecipe> implements ICra
         inputs.add(breadSlice);
         ingredients.setInputLists(VanillaTypes.ITEM, inputs);
 
-        ItemStack sandwich = new ItemStack(HNCItems.SANDWICH.get());
+        ItemStack sandwich = new ItemStack(this.defaultItem.get());
         selected.forEach(stack -> AbstractSandwichItem.addIngredient(sandwich, stack));
         ingredients.setOutput(VanillaTypes.ITEM, sandwich);
     }

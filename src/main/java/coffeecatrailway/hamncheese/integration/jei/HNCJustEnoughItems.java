@@ -2,7 +2,10 @@ package coffeecatrailway.hamncheese.integration.jei;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
+import coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
 import coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
+import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
+import coffeecatrailway.hamncheese.registry.HNCItems;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -35,7 +38,8 @@ public class HNCJustEnoughItems implements IModPlugin
     @Override
     public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration reg)
     {
-        reg.getCraftingCategory().addCategoryExtension(SandwichRecipe.class, SpecialRecipe::isSpecial, SandwichCraftingExtension::new);
+        reg.getCraftingCategory().addCategoryExtension(SandwichRecipe.class, SpecialRecipe::isSpecial, recipe -> new SandwichCraftingExtension<>(recipe, HNCItemTags.BREAD_SLICE, HNCItems.SANDWICH));
+        reg.getCraftingCategory().addCategoryExtension(PizzaRecipe.class, SpecialRecipe::isSpecial, recipe -> new SandwichCraftingExtension<>(recipe, HNCItemTags.PIZZA, HNCItems.PIZZA));
     }
 
     @Override
