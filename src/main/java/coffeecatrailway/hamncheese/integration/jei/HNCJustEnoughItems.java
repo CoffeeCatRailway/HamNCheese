@@ -2,6 +2,7 @@ package coffeecatrailway.hamncheese.integration.jei;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
+import coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -9,6 +10,7 @@ import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,6 +30,12 @@ public class HNCJustEnoughItems implements IModPlugin
     public ResourceLocation getPluginUid()
     {
         return UID;
+    }
+
+    @Override
+    public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration reg)
+    {
+        reg.getCraftingCategory().addCategoryExtension(SandwichRecipe.class, SpecialRecipe::isSpecial, SandwichCraftingExtension::new);
     }
 
     @Override
