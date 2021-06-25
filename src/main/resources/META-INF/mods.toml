@@ -10,7 +10,7 @@ displayName="${name}"
 logoFile="logo.png"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/coffeecheese"
 authors="${author}"
-credits="ManWithoutTaste for mouse model"
+credits="ManWithoutTaste for mouse model & any others who've helped!"
 description='''
 Adds in lots of ham and cheese related foods.
 

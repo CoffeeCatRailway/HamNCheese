@@ -111,9 +111,6 @@ dependencies {
     compileOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}:api")
     runtimeOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}")
 
-    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwylaVersion}:api")
-    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${project.hwylaVersion}")
-
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:${project.bopVersion}")
 
 //    runtimeOnly "curse.maven:configured-457570:3340535"
