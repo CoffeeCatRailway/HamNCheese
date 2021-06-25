@@ -18,6 +18,9 @@ Discord: https://discord.com/invite/JM4NjRzZPS
 Credit to 'https://github.com/SystemZeeWorkshop/modding-template'
 '''
 
+[modproperties.hamncheese]
+catalogueItemIcon="hamncheese:block_of_cheese"
+
 [[dependencies.hamncheese]]
 modId="forge"
 mandatory=true
