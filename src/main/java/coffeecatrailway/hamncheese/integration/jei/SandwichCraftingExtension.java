@@ -32,6 +32,8 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
     private final T recipe;
     private final ITag.INamedTag<Item> bunTag;
     private final Supplier<? extends IItemProvider> defaultItem;
+    private boolean hasTwoBuns = true;
+    private ItemStack neededItem = ItemStack.EMPTY;
 
     public SandwichCraftingExtension(T recipe, ITag.INamedTag<Item> bunTag, Supplier<? extends IItemProvider> defaultItem)
     {
@@ -53,8 +55,11 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
         List<List<ItemStack>> inputs = new ArrayList<>();
 
         inputs.add(breadSlice);
+        if (!this.neededItem.isEmpty())
+            inputs.add(Lists.newArrayList(this.neededItem));
         selected.forEach(stack -> inputs.add(Lists.newArrayList(stack)));
-        inputs.add(breadSlice);
+        if (this.hasTwoBuns)
+            inputs.add(breadSlice);
         ingredients.setInputLists(VanillaTypes.ITEM, inputs);
 
         ItemStack sandwich = new ItemStack(this.defaultItem.get());
@@ -69,12 +74,25 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
         return recipe.getId();
     }
 
-    protected  <E> List<E> pickNRandomElements(List<E> list, int amount, Random random) {
+    protected <E> List<E> pickNRandomElements(List<E> list, int amount, Random random) {
         int length = list.size();
-        if (length < amount) return new ArrayList<>();
+        List<E> elements = new ArrayList<>();
+        if (length < amount) return elements;
 
         for (int i = length - 1; i >= length - amount; i--)
-            Collections.swap(list, i , random.nextInt(i + 1));
-        return list.subList(length - amount, length);
+            elements.add(list.get(random.nextInt(length - 1)));
+        return elements;
+    }
+
+    public SandwichCraftingExtension<T> hasOneBun()
+    {
+        this.hasTwoBuns = false;
+        return this;
+    }
+
+    public SandwichCraftingExtension<T> setNeededItem(Item neededItem)
+    {
+        this.neededItem = new ItemStack(neededItem);
+        return this;
     }
 }
