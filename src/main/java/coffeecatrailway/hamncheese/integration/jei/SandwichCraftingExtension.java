@@ -43,10 +43,7 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
     public void setIngredients(IIngredients ingredients)
     {
         List<ItemStack> breadSlice = this.bunTag.getValues().stream().map(ItemStack::new).collect(Collectors.toList());
-        Random random = new Random(42L);
-        if (Minecraft.getInstance().level != null)
-            random = Minecraft.getInstance().level.random;
-        List<ItemStack> selected = FoodsGetter.pickFoods(random.nextInt(6) + 1, random);
+        List<ItemStack> selected = FoodsGetter.pickFoods(7);
         List<List<ItemStack>> inputs = new ArrayList<>();
 
         inputs.add(breadSlice);

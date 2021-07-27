@@ -5,7 +5,6 @@ import coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import coffeecatrailway.hamncheese.common.item.crafting.GrillRecipe;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCItems;
-import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -19,7 +18,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -79,12 +77,8 @@ public class GrillRecipeCategory implements IRecipeCategory<GrillRecipe>
     @Override
     public void setIngredients(GrillRecipe recipe, IIngredients ingredients)
     {
-        Random random = new Random(41L);
-        if (Minecraft.getInstance().level != null)
-            random = Minecraft.getInstance().level.random;
-        List<ItemStack> selected = FoodsGetter.pickFoods(random.nextInt(6) + 1, random);
         ItemStack sandwich = new ItemStack(HNCItems.SANDWICH.get());
-        selected.forEach(stack -> AbstractSandwichItem.addIngredient(sandwich, stack));
+        FoodsGetter.pickFoods(7).forEach(stack -> AbstractSandwichItem.addIngredient(sandwich, stack));
         ingredients.setInput(VanillaTypes.ITEM, sandwich);
 
         ItemStack toasted = sandwich.copy();

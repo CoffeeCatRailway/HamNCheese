@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.integration.jei;
 import coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import coffeecatrailway.hamncheese.registry.HNCItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -17,11 +18,15 @@ public class FoodsGetter
 {
     private static List<ItemStack> FOODS = new ArrayList<>();
 
-    public static List<ItemStack> pickFoods(int amount, Random random)
+    public static List<ItemStack> pickFoods(int amount)
     {
+        Random random = new Random(41L);
+        if (Minecraft.getInstance().level != null)
+            random = Minecraft.getInstance().level.random;
+
         if (FOODS.isEmpty())
             FOODS = ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.isEdible() && !HNCItemTags.JEI_FOOD_BLACKLIST.contains(item) && !(item instanceof AbstractSandwichItem)).map(ItemStack::new).collect(Collectors.toList());
-        return pickNRandomElements(FOODS, amount, random);
+        return pickNRandomElements(FOODS, random.nextInt(amount) + 1, random);
     }
 
     private static <E> List<E> pickNRandomElements(List<E> list, int amount, Random random)
