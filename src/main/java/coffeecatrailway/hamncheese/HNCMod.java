@@ -15,6 +15,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -46,7 +47,7 @@ public class HNCMod
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         Sonar.init(bus);
-        bus.addListener(ClientEvents::init);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> bus.addListener(ClientEvents::init));
         bus.addListener(CommonEvents::init);
         bus.addListener(this::onGatherData);
 
