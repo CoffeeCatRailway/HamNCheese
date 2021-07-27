@@ -120,6 +120,6 @@ public class HNCItemTags extends ItemTagsProvider
 
         this.tag(CAMPFIRES).add(Blocks.CAMPFIRE.asItem(), Blocks.SOUL_CAMPFIRE.asItem());
 
-        this.tag(JEI_FOOD_BLACKLIST).addTags(BREAD_SLICE, CRACKER, PIZZA).add(HNCItems.CRACKER_DUMMY.get(), HNCItems.BAKED_PIZZA_DUMMY.get());
+        this.tag(JEI_FOOD_BLACKLIST).addTags(BREAD_SLICE, CRACKER, PIZZA, TOMATO_SAUCE).add(HNCItems.CRACKER_DUMMY.get(), HNCItems.BAKED_PIZZA_DUMMY.get());
     }
 }
