@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:bread_slice",
+    "#forge:cracker",
+    "#forge:pizza",
+    "hamncheese:cracker_dummy",
+    "hamncheese:baked_pizza_dummy"
+  ]
+}

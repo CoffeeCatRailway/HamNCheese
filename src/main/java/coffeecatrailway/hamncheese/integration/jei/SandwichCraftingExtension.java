@@ -12,11 +12,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
@@ -28,7 +26,6 @@ import java.util.stream.Collectors;
  */
 public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> implements ICraftingCategoryExtension
 {
-    private final List<ItemStack> foods;
     private final T recipe;
     private final ITag.INamedTag<Item> bunTag;
     private final Supplier<? extends IItemProvider> defaultItem;
@@ -40,8 +37,6 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
         this.recipe = recipe;
         this.bunTag = bunTag;
         this.defaultItem = defaultItem;
-
-        this.foods = ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.isEdible() && !this.bunTag.contains(item) && !(item instanceof AbstractSandwichItem)).map(ItemStack::new).collect(Collectors.toList());
     }
 
     @Override
@@ -51,7 +46,7 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
         Random random = new Random(42L);
         if (Minecraft.getInstance().level != null)
             random = Minecraft.getInstance().level.random;
-        List<ItemStack> selected = this.pickNRandomElements(new ArrayList<>(foods), random.nextInt(6) + 1, random);
+        List<ItemStack> selected = FoodsGetter.pickFoods(random.nextInt(6) + 1, random);
         List<List<ItemStack>> inputs = new ArrayList<>();
 
         inputs.add(breadSlice);
@@ -72,16 +67,6 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
     public ResourceLocation getRegistryName()
     {
         return recipe.getId();
-    }
-
-    protected <E> List<E> pickNRandomElements(List<E> list, int amount, Random random) {
-        int length = list.size();
-        List<E> elements = new ArrayList<>();
-        if (length < amount) return elements;
-
-        for (int i = length - 1; i >= length - amount; i--)
-            elements.add(list.get(random.nextInt(length - 1)));
-        return elements;
     }
 
     public SandwichCraftingExtension<T> hasOneBun()
