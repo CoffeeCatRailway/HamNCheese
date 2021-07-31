@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.common.tileentity;
 
+import coffeecatrailway.hamncheese.HNCConfig;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.inventory.GrillContainer;
 import coffeecatrailway.hamncheese.common.item.SandwichItem;
@@ -63,7 +64,7 @@ public class GrillTileEntity extends CookerTileEntity
     @Override
     protected int getCookTimeTotal()
     {
-        return HNCMod.SERVER_CONFIG.grillCookTimeTotal.get();
+        return HNCConfig.SERVER.grillCookTimeTotal.get();
     }
 
     @Override

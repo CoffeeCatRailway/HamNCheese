@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.registry;
 
+import coffeecatrailway.hamncheese.HNCConfig;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
@@ -53,14 +54,14 @@ public class HNCEntities
 
     public static void registerSpawnPlacements()
     {
-        if (HNCMod.SERVER_CONFIG.canSpawnMouse())
+        if (HNCConfig.SERVER.canSpawnMouse())
             EntitySpawnPlacementRegistry.register(MOUSE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::checkMobSpawnRules);
     }
 
     public static void addEntitySpawns(BiomeLoadingEvent event)
     {
-        if (HNCMod.SERVER_CONFIG.canSpawnMouse())
-            event.getSpawns().getSpawner(MOUSE.get().getCategory()).add(new MobSpawnInfo.Spawners(MOUSE.get(), HNCMod.SERVER_CONFIG.mouseSpawnWeight.get(), HNCMod.SERVER_CONFIG.mouseMinCount.get(), HNCMod.SERVER_CONFIG.mouseMaxCount.get()));
+        if (HNCConfig.SERVER.canSpawnMouse())
+            event.getSpawns().getSpawner(MOUSE.get().getCategory()).add(new MobSpawnInfo.Spawners(MOUSE.get(), HNCConfig.SERVER.mouseSpawnWeight.get(), HNCConfig.SERVER.mouseMinCount.get(), HNCConfig.SERVER.mouseMaxCount.get()));
     }
 
     public static void load(IEventBus bus)

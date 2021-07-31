@@ -2,6 +2,10 @@ package coffeecatrailway.hamncheese;
 
 import com.google.common.collect.Lists;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.config.ModConfig;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author CoffeeCatRailway
@@ -9,7 +13,19 @@ import net.minecraftforge.common.ForgeConfigSpec;
  */
 public class HNCConfig
 {
+    public static Server SERVER;
+    private static final ForgeConfigSpec SERVER_SPEC;
+
     private static final String CONFIG = "config." + HNCMod.MOD_ID + ".";
+    private static final Logger LOGGER = HNCMod.getLogger("Config");
+
+    static
+    {
+        final Pair<Server, ForgeConfigSpec> server = new ForgeConfigSpec.Builder().configure(HNCConfig.Server::new);
+        SERVER_SPEC = server.getRight();
+        SERVER = server.getLeft();
+        LOGGER.info("Register config(s)");
+    }
 
     public static class Server
     {
@@ -108,6 +124,11 @@ public class HNCConfig
         public boolean canSpawnMouse()
         {
             return this.mouseMaxCount.get() != 0 && this.mouseMinCount.get() <= this.mouseMaxCount.get();
+        }
+
+        public static void init(ModLoadingContext context)
+        {
+            context.registerConfig(ModConfig.Type.SERVER, SERVER_SPEC);
         }
     }
 }

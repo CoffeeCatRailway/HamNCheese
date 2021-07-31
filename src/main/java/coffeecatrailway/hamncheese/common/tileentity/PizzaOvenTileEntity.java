@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.common.tileentity;
 
+import coffeecatrailway.hamncheese.HNCConfig;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.inventory.PizzaOvenContainer;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
@@ -66,7 +67,7 @@ public class PizzaOvenTileEntity extends CookerTileEntity
     @Override
     protected int getCookTimeTotal()
     {
-        return HNCMod.SERVER_CONFIG.pizzaOvenCookTimeTotal.get();
+        return HNCConfig.SERVER.pizzaOvenCookTimeTotal.get();
     }
 
     @Override

@@ -59,7 +59,7 @@ public class CommonEvents
         if (ModList.get().isLoaded("theoneprobe"))
             InterModComms.sendTo("theoneprobe", "getTheOneProbe", HNCTheOneProbe::new);
 
-        if (HNCMod.SERVER_CONFIG.generateVillageRestaurants.get())
+        if (HNCConfig.SERVER.generateVillageRestaurants.get())
             VillagePoolsHelper.bootstrap();
 
         event.enqueueWork(() -> {
@@ -113,10 +113,10 @@ public class CommonEvents
 
         if (climate.temperature >= .5f && climate.temperature < 1f)
         {
-            if (HNCMod.SERVER_CONFIG.generateWildPineapples.get())
+            if (HNCConfig.SERVER.generateWildPineapples.get())
                 builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_PINEAPPLE_PATCH);
 
-            if (HNCMod.SERVER_CONFIG.generateWildTomatoes.get())
+            if (HNCConfig.SERVER.generateWildTomatoes.get())
                 builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_TOMATO_PATCH);
         }
 
@@ -153,7 +153,7 @@ public class CommonEvents
             trades.get(4).add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.PINEAPPLE_RING.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.PINEAPPLE_BIT.get(), HNCItems.HAM_SLICE.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.PINEAPPLE_BIT.get(), HNCItems.HAM_SLICE.get()), true, "Pineapple Pizza", 3, 4, 25, 15));
         }
         // Vanilla
-        if (HNCMod.SERVER_CONFIG.allowButcherTrades.get() && event.getType() == VillagerProfession.BUTCHER)
+        if (HNCConfig.SERVER.allowButcherTrades.get() && event.getType() == VillagerProfession.BUTCHER)
         {
             trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.HAM_SLICE.get(), 14, 16, 2));
             trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.BACON.get(), 14, 16, 2));
@@ -165,7 +165,7 @@ public class CommonEvents
             trades.get(2).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.GRIND_STONES.get(), 1, 16, 5));
             trades.get(3).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.KNIFE.get(), 1, 8, 5));
         }
-        if (HNCMod.SERVER_CONFIG.allowFarmerTrades.get() && event.getType() == VillagerProfession.FARMER)
+        if (HNCConfig.SERVER.allowFarmerTrades.get() && event.getType() == VillagerProfession.FARMER)
         {
             trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.TOMATO_SEEDS.get(), 18, 16, 2));
             trades.get(1).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.PINEAPPLE_PLANT.get(), 18, 16, 2));
@@ -187,7 +187,7 @@ public class CommonEvents
             EggEntity egg = (EggEntity) event.getThrowable();
             World level = egg.level;
             if (!level.isClientSide)
-                if (MathHelper.nextDouble(level.random, 0d, 1d) <= HNCMod.SERVER_CONFIG.crackedEggSpawnChance.get())
+                if (MathHelper.nextDouble(level.random, 0d, 1d) <= HNCConfig.SERVER.crackedEggSpawnChance.get())
                     level.addFreshEntity(new ItemEntity(level, egg.getX(), egg.getY(), egg.getZ(), new ItemStack(HNCItems.CRACKED_EGG.get())));
         }
     }

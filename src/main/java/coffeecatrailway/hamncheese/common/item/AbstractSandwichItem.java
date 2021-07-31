@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.common.item;
 
-import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.HNCConfig;
 import coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import coffeecatrailway.hamncheese.registry.HNCFoods;
 import com.mojang.datafixers.util.Pair;
@@ -18,7 +18,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -136,7 +135,7 @@ public class AbstractSandwichItem extends Item
             added.setCount(1);
 
             ListNBT ingredients = sandwich.getOrCreateTag().getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
-            if (ingredients.size() <= HNCMod.SERVER_CONFIG.maxSandwichIngredientCraftCount.get())
+            if (ingredients.size() <= HNCConfig.SERVER.maxSandwichIngredientCraftCount.get())
                 ingredients.add(added.save(new CompoundNBT()));
         }
         return sandwich;

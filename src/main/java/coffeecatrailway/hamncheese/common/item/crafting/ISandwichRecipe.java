@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.common.item.crafting;
 
-import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.HNCConfig;
 import coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.inventory.IInventory;
@@ -65,7 +65,7 @@ public interface ISandwichRecipe<T extends IInventory> extends IRecipe<T>
                     }
                 }
             }
-            return bunCount == maxBunCount && ingredientCount > 0 && ingredientCount <= HNCMod.SERVER_CONFIG.maxSandwichIngredientCraftCount.get() && hasNeededItem;
+            return bunCount == maxBunCount && ingredientCount > 0 && ingredientCount <= HNCConfig.SERVER.maxSandwichIngredientCraftCount.get() && hasNeededItem;
         }
         return false;
     }

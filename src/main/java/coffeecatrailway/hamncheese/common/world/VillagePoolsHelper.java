@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.common.world;
 
+import coffeecatrailway.hamncheese.HNCConfig;
 import coffeecatrailway.hamncheese.HNCMod;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.util.ResourceLocation;
@@ -29,11 +30,11 @@ public class VillagePoolsHelper
         DesertVillagePools.bootstrap();
         TaigaVillagePools.bootstrap();
 
-        addPiece("plains", HNCMod.SERVER_CONFIG.plainsRestaurantWeight.get());
-        addPiece("desert", HNCMod.SERVER_CONFIG.desertRestaurantWeight.get());
-        addPiece("savanna", HNCMod.SERVER_CONFIG.savannaRestaurantWeight.get());
-        addPiece("snowy", HNCMod.SERVER_CONFIG.snowyRestaurantWeight.get());
-        addPiece("taiga", HNCMod.SERVER_CONFIG.taigaRestaurantWeight.get());
+        addPiece("plains", HNCConfig.SERVER.plainsRestaurantWeight.get());
+        addPiece("desert", HNCConfig.SERVER.desertRestaurantWeight.get());
+        addPiece("savanna", HNCConfig.SERVER.savannaRestaurantWeight.get());
+        addPiece("snowy", HNCConfig.SERVER.snowyRestaurantWeight.get());
+        addPiece("taiga", HNCConfig.SERVER.taigaRestaurantWeight.get());
     }
 
     private static void addPiece(final String biome, final int weight)

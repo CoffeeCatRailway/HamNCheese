@@ -11,17 +11,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,8 +28,6 @@ public class HNCMod
 {
     public static final String MOD_ID = "hamncheese";
     private static final Logger LOGGER = getLogger("");
-
-    public static HNCConfig.Server SERVER_CONFIG;
 
     public static final ItemGroup GROUP_ALL = new ItemGroup(HNCMod.MOD_ID)
     {
@@ -49,12 +45,8 @@ public class HNCMod
         Sonar.init(bus);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> bus.addListener(ClientEvents::init));
         bus.addListener(CommonEvents::init);
+        bus.addListener(this::dedicatedServerSetup);
         bus.addListener(this::onGatherData);
-
-        final Pair<HNCConfig.Server, ForgeConfigSpec> server = new ForgeConfigSpec.Builder().configure(HNCConfig.Server::new);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, server.getRight());
-        SERVER_CONFIG = server.getLeft();
-        LOGGER.info("Register configs");
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -67,6 +59,11 @@ public class HNCMod
         bus.addGenericListener(StatType.class, HNCStats::register);
         HNCTileEntities.load(bus);
         HNCContainers.load(bus);
+    }
+
+    private void dedicatedServerSetup(FMLDedicatedServerSetupEvent event)
+    {
+        HNCConfig.Server.init(ModLoadingContext.get());
     }
 
     private void onGatherData(GatherDataEvent event)

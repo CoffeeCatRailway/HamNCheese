@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.registry;
 
-import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.HNCConfig;
 import coffeecatrailway.hamncheese.common.world.DoubleCropBlockPlacer;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Blocks;
@@ -23,9 +23,9 @@ public class HNCFeatures
 
     // Configured Feature
     public static final ConfiguredFeature<?, ?> WILD_PINEAPPLE_PATCH = Feature.RANDOM_PATCH.configured(WILD_PINEAPPLE_PATCH_CONFIG)
-            .decorated(Features.Placements.HEIGHTMAP).chance(HNCMod.SERVER_CONFIG.chanceWildPineapples.get());
+            .decorated(Features.Placements.HEIGHTMAP).chance(HNCConfig.SERVER.chanceWildPineapples.get());
     public static final ConfiguredFeature<?, ?> WILD_TOMATO_PATCH = Feature.RANDOM_PATCH.configured(WILD_TOMATO_PATCH_CONFIG)
-            .decorated(Features.Placements.HEIGHTMAP).chance(HNCMod.SERVER_CONFIG.chanceWildTomatoes.get());
+            .decorated(Features.Placements.HEIGHTMAP).chance(HNCConfig.SERVER.chanceWildTomatoes.get());
 
     // Configured Feature
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> registerConfiguredFeature(String id, ConfiguredFeature<FC, ?> configuredFeature)

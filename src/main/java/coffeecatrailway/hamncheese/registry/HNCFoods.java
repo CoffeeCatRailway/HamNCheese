@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.registry;
 
-import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.HNCConfig;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.item.Food;
 import net.minecraft.item.Foods;
@@ -93,7 +93,7 @@ public class HNCFoods
 
     private static float cookedModifier(boolean cooked)
     {
-        return (float) (cooked ? HNCMod.SERVER_CONFIG.cookedFoodModifier.get() : 1f);
+        return (float) (cooked ? HNCConfig.SERVER.cookedFoodModifier.get() : 1f);
     }
 
     private static Food.Builder copyFood(Food copy)
