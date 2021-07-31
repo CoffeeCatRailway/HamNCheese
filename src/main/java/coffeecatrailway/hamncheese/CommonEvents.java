@@ -113,6 +113,8 @@ public class CommonEvents
 
         if (climate.temperature >= .5f && climate.temperature < 1f)
         {
+            if (!HNCConfig.SERVER.biomeCategoryWhitelist.get().contains(event.getCategory()))
+                return;
             if (HNCConfig.SERVER.generateWildPineapples.get())
                 builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_PINEAPPLE_PATCH);
 

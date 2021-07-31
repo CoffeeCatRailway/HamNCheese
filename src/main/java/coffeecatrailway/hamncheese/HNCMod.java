@@ -17,7 +17,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -45,8 +44,8 @@ public class HNCMod
         Sonar.init(bus);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> bus.addListener(ClientEvents::init));
         bus.addListener(CommonEvents::init);
-        bus.addListener(this::dedicatedServerSetup);
         bus.addListener(this::onGatherData);
+        HNCConfig.Server.init(ModLoadingContext.get());
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -59,11 +58,6 @@ public class HNCMod
         bus.addGenericListener(StatType.class, HNCStats::register);
         HNCTileEntities.load(bus);
         HNCContainers.load(bus);
-    }
-
-    private void dedicatedServerSetup(FMLDedicatedServerSetupEvent event)
-    {
-        HNCConfig.Server.init(ModLoadingContext.get());
     }
 
     private void onGatherData(GatherDataEvent event)

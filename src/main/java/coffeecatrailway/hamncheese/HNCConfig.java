@@ -1,11 +1,15 @@
 package coffeecatrailway.hamncheese;
 
 import com.google.common.collect.Lists;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author CoffeeCatRailway
@@ -21,7 +25,7 @@ public class HNCConfig
 
     static
     {
-        final Pair<Server, ForgeConfigSpec> server = new ForgeConfigSpec.Builder().configure(HNCConfig.Server::new);
+        Pair<Server, ForgeConfigSpec> server = new ForgeConfigSpec.Builder().configure(HNCConfig.Server::new);
         SERVER_SPEC = server.getRight();
         SERVER = server.getLeft();
         LOGGER.info("Register config(s)");
@@ -46,6 +50,7 @@ public class HNCConfig
         public ForgeConfigSpec.IntValue mouseSpawnWeight;
         public ForgeConfigSpec.IntValue mouseMinCount;
         public ForgeConfigSpec.IntValue mouseMaxCount;
+        public ForgeConfigSpec.ConfigValue<List<? extends Biome.Category>> biomeCategoryWhitelist;
 
         public ForgeConfigSpec.BooleanValue generateVillageRestaurants;
         public ForgeConfigSpec.IntValue plainsRestaurantWeight;
@@ -97,6 +102,9 @@ public class HNCConfig
                     .defineInRange("mouseMinCount", 2, 0, Integer.MAX_VALUE);
             this.mouseMaxCount = builder.comment("The maximum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMaxCount")
                     .defineInRange("mouseMaxCount", 4, 0, Integer.MAX_VALUE);
+            this.biomeCategoryWhitelist = builder.comment("What biome categories mise can spawn in").translation(CONFIG + "generation.mouse.biomeCategoryWhitelist")
+                    .defineList("biomeCategoryWhitelist", Lists.newArrayList(Biome.Category.EXTREME_HILLS, Biome.Category.FOREST, Biome.Category.MUSHROOM, Biome.Category.JUNGLE, Biome.Category.PLAINS),
+                            o -> Arrays.stream(Biome.Category.values()).anyMatch(cat -> o instanceof Biome.Category && cat.equals(o)));
             builder.pop();
 
             builder.push("village");
