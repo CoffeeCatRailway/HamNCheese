@@ -43,7 +43,7 @@ public class HNCFoods
 
     public static final Food PINEAPPLE = new Food.Builder().nutrition(12).saturationMod(.5f).build();
     public static final Food PINEAPPLE_RING = divide(PINEAPPLE, 4f).build();
-    public static final Food PINEAPPLE_BIT = divide(PINEAPPLE_RING, 3f).build();
+    public static final Food PINEAPPLE_BIT = divide(PINEAPPLE_RING, 3f).fast().build();
 
     public static final Food TOMATO = new Food.Builder().nutrition(4).saturationMod(.3f).build();
     public static final Food TOMATO_SAUCE = combine(.5f, false, TOMATO, INGREDIENT, INGREDIENT).build();
@@ -55,7 +55,7 @@ public class HNCFoods
     public static final Food MOUSE = new Food.Builder().nutrition(2).saturationMod(.3f).meat().effect(HUNGER_EFFECT, .3f).build();
     public static final Food COOKED_MOUSE =  new Food.Builder().nutrition(4).saturationMod(.6f).meat().build();
 
-    public static final Food FOOD_SCRAPS = new Food.Builder().nutrition(1).saturationMod(.2f).build();
+    public static final Food FOOD_SCRAPS = new Food.Builder().nutrition(1).saturationMod(.2f).fast().build();
 
     private static Food.Builder divide(Food copy, float amount)
     {
