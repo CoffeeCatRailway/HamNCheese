@@ -47,6 +47,9 @@ public class HNCConfig
         public ForgeConfigSpec.BooleanValue generateWildTomatoes;
         public ForgeConfigSpec.IntValue chanceWildTomatoes;
 
+        public ForgeConfigSpec.BooleanValue generateWildCorn;
+        public ForgeConfigSpec.IntValue chanceWildCorn;
+
         public ForgeConfigSpec.IntValue mouseSpawnWeight;
         public ForgeConfigSpec.IntValue mouseMinCount;
         public ForgeConfigSpec.IntValue mouseMaxCount;
@@ -93,6 +96,13 @@ public class HNCConfig
                     .define("generateWildTomatoes", true);
             this.chanceWildTomatoes = builder.comment("Tomato generation chance").translation(CONFIG + "generation.wildTomatoes.chanceWildTomatoes")
                     .defineInRange("chanceWildTomatoes", 8, 0, Integer.MAX_VALUE);
+            builder.pop();
+
+            builder.push("wildCorn");
+            this.generateWildCorn = builder.comment("Generate corn plants in biomes with a temperature of .5 to 1").translation(CONFIG + "generation.crops.wildCorn.generateWildCorn")
+                    .define("generateWildCorn", true);
+            this.chanceWildCorn = builder.comment("Corn plant generation chance").translation(CONFIG + "generation.wildCorn.chanceWildCorn")
+                    .defineInRange("chanceWildCorn", 8, 0, Integer.MAX_VALUE);
             builder.pop(2);
 
             builder.push("mouse");

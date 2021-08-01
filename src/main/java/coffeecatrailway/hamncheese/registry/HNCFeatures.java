@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 
@@ -20,12 +21,16 @@ public class HNCFeatures
             new DoubleCropBlockPlacer()).tries(10).xspread(2).zspread(2).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL)).noProjection().build();
     public static final BlockClusterFeatureConfig WILD_TOMATO_PATCH_CONFIG = new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(HNCBlocks.TOMATO_PLANT.get().defaultBlockState()),
             new DoubleCropBlockPlacer()).tries(10).xspread(2).zspread(2).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
+    public static final BlockClusterFeatureConfig WILD_CORN_PATCH_CONFIG = new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(HNCBlocks.CORN_PLANT.get().defaultBlockState()),
+            new DoubleCropBlockPlacer()).tries(10).xspread(2).zspread(2).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
 
     // Configured Feature
     public static final ConfiguredFeature<?, ?> WILD_PINEAPPLE_PATCH = Feature.RANDOM_PATCH.configured(WILD_PINEAPPLE_PATCH_CONFIG)
             .decorated(Features.Placements.HEIGHTMAP).chance(HNCConfig.SERVER.chanceWildPineapples.get());
     public static final ConfiguredFeature<?, ?> WILD_TOMATO_PATCH = Feature.RANDOM_PATCH.configured(WILD_TOMATO_PATCH_CONFIG)
             .decorated(Features.Placements.HEIGHTMAP).chance(HNCConfig.SERVER.chanceWildTomatoes.get());
+    public static final ConfiguredFeature<?, ?> WILD_CORN_PATCH = Feature.RANDOM_PATCH.configured(WILD_CORN_PATCH_CONFIG)
+            .decorated(Features.Placements.HEIGHTMAP).chance(HNCConfig.SERVER.chanceWildCorn.get());
 
     // Configured Feature
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> registerConfiguredFeature(String id, ConfiguredFeature<FC, ?> configuredFeature)
@@ -37,5 +42,6 @@ public class HNCFeatures
     {
         registerConfiguredFeature("wild_pineapple_patch", WILD_PINEAPPLE_PATCH);
         registerConfiguredFeature("wild_tomato_patch", WILD_TOMATO_PATCH);
+        registerConfiguredFeature("wild_corn_patch", WILD_CORN_PATCH);
     }
 }

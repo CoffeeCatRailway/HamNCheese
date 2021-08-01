@@ -60,6 +60,8 @@ public class HNCEntities
 
     public static void addEntitySpawns(BiomeLoadingEvent event)
     {
+        if (!HNCConfig.SERVER.biomeCategoryWhitelist.get().contains(event.getCategory()))
+            return;
         if (HNCConfig.SERVER.canSpawnMouse())
             event.getSpawns().getSpawner(MOUSE.get().getCategory()).add(new MobSpawnInfo.Spawners(MOUSE.get(), HNCConfig.SERVER.mouseSpawnWeight.get(), HNCConfig.SERVER.mouseMinCount.get(), HNCConfig.SERVER.mouseMaxCount.get()));
     }

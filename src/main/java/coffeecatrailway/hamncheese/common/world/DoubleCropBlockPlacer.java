@@ -26,7 +26,6 @@ public class DoubleCropBlockPlacer extends BlockPlacer
     public void place(IWorld world, BlockPos pos, BlockState state, Random random)
     {
         AbstractDoubleCropBlock block = (AbstractDoubleCropBlock) state.getBlock();
-//        world.setBlock(pos.below(), Blocks.FARMLAND.defaultBlockState(), Constants.BlockFlags.BLOCK_UPDATE);
         world.setBlock(pos.above(), block.defaultBlockState().setValue(AbstractDoubleCropBlock.HALF, DoubleBlockHalf.UPPER).setValue(block.getAgeProperty(), block.getMaxAge()), Constants.BlockFlags.BLOCK_UPDATE);
         world.setBlock(pos, block.defaultBlockState().setValue(AbstractDoubleCropBlock.HALF, DoubleBlockHalf.LOWER).setValue(block.getAgeProperty(), block.getMaxAge()), Constants.BlockFlags.BLOCK_UPDATE);
     }

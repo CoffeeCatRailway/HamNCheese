@@ -116,13 +116,14 @@ public class CommonEvents
 
         if (climate.temperature >= .5f && climate.temperature < 1f)
         {
-            if (!HNCConfig.SERVER.biomeCategoryWhitelist.get().contains(event.getCategory()))
-                return;
             if (HNCConfig.SERVER.generateWildPineapples.get())
                 builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_PINEAPPLE_PATCH);
 
             if (HNCConfig.SERVER.generateWildTomatoes.get())
                 builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_TOMATO_PATCH);
+
+            if (HNCConfig.SERVER.generateWildCorn.get())
+                builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_CORN_PATCH);
         }
 
         HNCEntities.addEntitySpawns(event);
