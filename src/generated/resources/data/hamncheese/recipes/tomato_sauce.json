@@ -8,7 +8,7 @@
       "item": "minecraft:pumpkin_seeds"
     },
     {
-      "item": "hamncheese:tomato"
+      "tag": "forge:tomato"
     }
   ],
   "result": {

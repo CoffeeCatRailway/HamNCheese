@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "hamncheese:tomato"
+            "tag": "forge:tomato"
           }
         ]
       }
