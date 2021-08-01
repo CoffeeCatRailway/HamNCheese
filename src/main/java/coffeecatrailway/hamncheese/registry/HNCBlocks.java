@@ -34,6 +34,7 @@ public class HNCBlocks
 
     public static final RegistryObject<PineapplePlantBlock> PINEAPPLE_PLANT = registerPlant("pineapple_plant", PineapplePlantBlock::new);
     public static final RegistryObject<TomatoPlantBlock> TOMATO_PLANT = registerPlant("tomato_plant", TomatoPlantBlock::new);
+    public static final RegistryObject<CornPlantBlock> CORN_PLANT = registerPlant("corn_plant", CornPlantBlock::new);
 
     public static final RegistryObject<ChoppingBoardBlock> OAK_CHOPPING_BOARD = register("oak_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS)), prop -> prop);
     public static final RegistryObject<ChoppingBoardBlock> BIRCH_CHOPPING_BOARD = register("birch_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)), prop -> prop);

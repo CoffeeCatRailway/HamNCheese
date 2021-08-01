@@ -29,7 +29,7 @@ public class HNCBlockTags extends BlockTagsProvider
     @Override
     protected void addTags()
     {
-        this.tag(BlockTags.CROPS).add(HNCBlocks.PINEAPPLE_PLANT.get(), HNCBlocks.TOMATO_PLANT.get());
+        this.tag(BlockTags.CROPS).add(HNCBlocks.PINEAPPLE_PLANT.get(), HNCBlocks.TOMATO_PLANT.get(), HNCBlocks.CORN_PLANT.get());
 
         this.tag(MOUSE_SEARCH).add(Blocks.BARREL).addTags(Tags.Blocks.CHESTS, BlockTags.SHULKER_BOXES);
     }

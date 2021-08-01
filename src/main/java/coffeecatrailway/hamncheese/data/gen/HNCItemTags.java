@@ -114,11 +114,11 @@ public class HNCItemTags extends ItemTagsProvider
         this.tag(TOMATO).addTag(TOMATO_MOD);
         this.tag(TOMATO_SAUCE).add(HNCItems.TOMATO_SAUCE.get());
 
-        this.tag(CROPS).addTags(PINEAPPLE_MOD, TOMATO_MOD);
         this.tag(CORN_COB_MOD).add(HNCItems.CORN_COB.get());
         this.tag(CORN_COB).addTag(CORN_COB_MOD);
 
         this.tag(FRUITS).addTags(PINEAPPLE_MOD, TOMATO_MOD, CORN_COB_MOD);
+        this.tag(CROPS).addTags(PINEAPPLE_MOD, TOMATO_MOD, CORN_COB_MOD);
         this.tag(CARBS).add(HNCItems.BREAD_SLICE.get(), HNCItems.TOAST.get());
         this.tag(SEEDS).add(HNCItems.TOMATO_SEEDS.get());
 

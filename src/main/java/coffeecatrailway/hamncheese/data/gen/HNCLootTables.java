@@ -156,6 +156,18 @@ public class HNCLootTables extends ForgeLootTableProvider
                                             .hasProperty(PineapplePlantBlock.AGE, 9))))
                     .apply(ExplosionDecay.explosionDecay()));
 
+            this.add(HNCBlocks.CORN_PLANT.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.CORN_COB.get())
+                                    .apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 2))
+                                    .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.CORN_PLANT.get())
+                                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                    .hasProperty(PineapplePlantBlock.AGE, 6).hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)))
+                                    .otherwise(ItemLootEntry.lootTableItem(HNCItems.CORN_COB.get())
+                                            .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.CORN_PLANT.get())
+                                                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER))))))
+                    .apply(ExplosionDecay.explosionDecay()));
+
             this.dropSelf(HNCBlocks.OAK_CHOPPING_BOARD.get());
             this.dropSelf(HNCBlocks.BIRCH_CHOPPING_BOARD.get());
             this.dropSelf(HNCBlocks.SPRUCE_CHOPPING_BOARD.get());

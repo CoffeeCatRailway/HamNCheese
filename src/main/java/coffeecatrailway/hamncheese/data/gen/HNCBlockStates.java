@@ -35,11 +35,11 @@ public class HNCBlockStates extends BlockStateProvider
         {
             pineapplePlant.with(PineapplePlantBlock.AGE, age).with(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)
                     .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_bottom_stage_" + age, HNCMod.getLocation("block/pineapple_plant_bottom"))
-                    .texture("plant", HNCMod.getLocation("block/pineapple_plant_stage_" + age))).addModel();
+                            .texture("plant", HNCMod.getLocation("block/pineapple_plant_stage_" + age))).addModel();
 
             pineapplePlant.with(PineapplePlantBlock.AGE, age).with(PineapplePlantBlock.HALF, DoubleBlockHalf.UPPER)
                     .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_top_stage_" + age, HNCMod.getLocation("block/pineapple_plant_top"))
-                    .texture("pineapple", HNCMod.getLocation("block/pineapple_stage_" + age))).addModel();
+                            .texture("pineapple", HNCMod.getLocation("block/pineapple_stage_" + age))).addModel();
         }
 
         VariantBlockStateBuilder.PartialBlockstate tomatoPlant = this.getVariantBuilder(HNCBlocks.TOMATO_PLANT.get()).partialState();
@@ -50,6 +50,19 @@ public class HNCBlockStates extends BlockStateProvider
 
             tomatoPlant.with(TomatoPlantBlock.AGE, age).with(TomatoPlantBlock.HALF, DoubleBlockHalf.UPPER)
                     .modelForState().modelFile(this.models().crop("block/tomato_plant_top_stage_" + age, HNCMod.getLocation("block/tomato_plant_top_stage_" + age))).addModel();
+        }
+
+        VariantBlockStateBuilder.PartialBlockstate cornPlant = this.getVariantBuilder(HNCBlocks.CORN_PLANT.get()).partialState();
+        for (age = 0; age < 7; age++)
+        {
+            cornPlant.with(CornPlantBlock.AGE, age).with(CornPlantBlock.HALF, DoubleBlockHalf.LOWER)
+                    .modelForState().modelFile(this.models().cross("block/corn_plant_bottom_stage_" + age, HNCMod.getLocation("block/corn_plant_bottom_stage_" + age))).addModel();
+
+            if (age > 2)
+                cornPlant.with(CornPlantBlock.AGE, age).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER)
+                        .modelForState().modelFile(this.models().cross("block/corn_plant_top_stage_" + age, HNCMod.getLocation("block/corn_plant_top_stage_" + age))).addModel();
+            else
+                cornPlant.with(CornPlantBlock.AGE, age).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(this.models().getExistingFile(new ResourceLocation("block/air"))).addModel();
         }
 
         this.choppingBoard(HNCBlocks.OAK_CHOPPING_BOARD.get(), "oak", ChoppingBoardType.PLANKS);
