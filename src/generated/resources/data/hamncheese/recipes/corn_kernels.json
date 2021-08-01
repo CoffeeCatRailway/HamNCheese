@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "hamncheese:knife"
+    },
+    {
+      "item": "hamncheese:corn_cob"
+    }
+  ],
+  "result": {
+    "item": "hamncheese:corn_kernels",
+    "count": 8
+  }
+}

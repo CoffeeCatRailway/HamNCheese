@@ -83,6 +83,10 @@ public class HNCItems
     public static final RegistryObject<Item> TOMATO_SAUCE = registerIdAsName("tomato_sauce", prop -> new Item(prop.food(HNCFoods.TOMATO_SAUCE).stacksTo(1)));
     public static final RegistryObject<Item> TOMATO_SLICE = registerIdAsName("tomato_slice", prop -> new Item(prop.food(HNCFoods.TOMATO_SLICE)));
 
+    public static final RegistryObject<Item> CORN_COB = registerIdAsName("corn_cob", prop -> new BlockNamedItem(HNCBlocks.CORN_PLANT.get(), prop.food(HNCFoods.CORN_COB).stacksTo(32)));
+    public static final RegistryObject<Item> CORN_KERNELS = registerIdAsName("corn_kernels", prop -> new Item(prop.food(HNCFoods.CORN_KERNELS)));
+    public static final RegistryObject<Item> DRIED_CORN_KERNELS = registerIdAsName("dried_corn_kernels", prop -> new Item(prop.food(HNCFoods.CORN_KERNELS)));
+
     public static final RegistryObject<Item> MOUSE = registerIdAsName("mouse", prop -> new Item(prop.food(HNCFoods.MOUSE)));
     public static final RegistryObject<Item> COOKED_MOUSE = registerIdAsName("cooked_mouse", prop -> new Item(prop.food(HNCFoods.COOKED_MOUSE)));
 

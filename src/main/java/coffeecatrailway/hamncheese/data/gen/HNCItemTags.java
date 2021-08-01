@@ -57,6 +57,9 @@ public class HNCItemTags extends ItemTagsProvider
     public static final ITag.INamedTag<Item> TOMATO = ItemTags.createOptional(new ResourceLocation("forge", "tomato"));
     public static final ITag.INamedTag<Item> TOMATO_SAUCE = ItemTags.createOptional(new ResourceLocation("forge", "tomato_sauce"));
 
+    public static final ITag.INamedTag<Item> CORN_COB_MOD = ItemTags.createOptional(HNCMod.getLocation("corn_cob"));
+    public static final ITag.INamedTag<Item> CORN_COB = ItemTags.createOptional(new ResourceLocation("forge", "corn_cob"));
+
     public static final ITag.INamedTag<Item> MOUSE_BLACKLIST = ItemTags.createOptional(HNCMod.getLocation("mouse_blacklist"));
 
     public static final ITag.INamedTag<Item> FRUITS = ItemTags.createOptional(new ResourceLocation("forge", "fruits"));
@@ -111,8 +114,11 @@ public class HNCItemTags extends ItemTagsProvider
         this.tag(TOMATO).addTag(TOMATO_MOD);
         this.tag(TOMATO_SAUCE).add(HNCItems.TOMATO_SAUCE.get());
 
-        this.tag(FRUITS).addTags(PINEAPPLE_MOD, TOMATO_MOD);
         this.tag(CROPS).addTags(PINEAPPLE_MOD, TOMATO_MOD);
+        this.tag(CORN_COB_MOD).add(HNCItems.CORN_COB.get());
+        this.tag(CORN_COB).addTag(CORN_COB_MOD);
+
+        this.tag(FRUITS).addTags(PINEAPPLE_MOD, TOMATO_MOD, CORN_COB_MOD);
         this.tag(CARBS).add(HNCItems.BREAD_SLICE.get(), HNCItems.TOAST.get());
         this.tag(SEEDS).add(HNCItems.TOMATO_SEEDS.get());
 

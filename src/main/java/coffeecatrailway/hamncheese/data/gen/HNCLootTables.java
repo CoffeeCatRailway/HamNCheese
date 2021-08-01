@@ -72,6 +72,8 @@ public class HNCLootTables extends ForgeLootTableProvider
                                     .apply(SetCount.setCount(new RandomValueRange(1, 5))))
                             .add(ItemLootEntry.lootTableItem(HNCItems.PINEAPPLE_PLANT.get()).setWeight(10)
                                     .apply(SetCount.setCount(new RandomValueRange(1, 8))))
+                            .add(ItemLootEntry.lootTableItem(HNCItems.CORN_COB.get()).setWeight(10)
+                                    .apply(SetCount.setCount(new RandomValueRange(1, 8))))
                             .add(ItemLootEntry.lootTableItem(HNCItems.TOMATO_SEEDS.get()).setWeight(10)
                                     .apply(SetCount.setCount(new RandomValueRange(1, 8))))
                             .add(ItemLootEntry.lootTableItem(Items.BREAD).setWeight(8)

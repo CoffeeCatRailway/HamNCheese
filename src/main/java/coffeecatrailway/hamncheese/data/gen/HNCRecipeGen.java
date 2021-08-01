@@ -104,17 +104,21 @@ public class HNCRecipeGen extends RecipeProvider
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 50, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HNCMod.getLocation("cooked_bacon_smoking"));
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HNCMod.getLocation("cooked_bacon_campfire"));
 
-        ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_RING.get(), 4).requires(HNCItems.KNIFE.get()).requires(HNCItems.PINEAPPLE.get()).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE.get()))
+        ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_RING.get(), 4).requires(HNCItems.KNIFE.get()).requires(HNCItemTags.PINEAPPLE).unlockedBy("has_pineapple", has(HNCItemTags.PINEAPPLE))
                 .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_BIT.get(), 3).requires(HNCItems.KNIFE.get()).requires(HNCItems.PINEAPPLE_RING.get()).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE_RING.get()))
                 .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
 
-        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SAUCE.get()).requires(Items.BOWL).requires(Items.PUMPKIN_SEEDS).requires(HNCItems.TOMATO.get()).unlockedBy("has_bowl", has(Items.BOWL))
-                .unlockedBy("has_pumpkin_seeds", has(Items.PUMPKIN_SEEDS)).unlockedBy("has_tomato", has(HNCItems.TOMATO.get())).save(consumer);
-        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItems.KNIFE.get()).requires(HNCItems.TOMATO.get()).unlockedBy("has_knife", has(HNCItems.KNIFE.get()))
-                .unlockedBy("has_tomato", has(HNCItems.TOMATO.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SAUCE.get()).requires(Items.BOWL).requires(Items.PUMPKIN_SEEDS).requires(HNCItemTags.TOMATO).unlockedBy("has_bowl", has(Items.BOWL))
+                .unlockedBy("has_pumpkin_seeds", has(Items.PUMPKIN_SEEDS)).unlockedBy("has_tomato", has(HNCItemTags.TOMATO)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItems.KNIFE.get()).requires(HNCItemTags.TOMATO).unlockedBy("has_knife", has(HNCItems.KNIFE.get()))
+                .unlockedBy("has_tomato", has(HNCItemTags.TOMATO)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SEEDS.get(), 4).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_tomato_slice", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
 
+        ShapelessRecipeBuilder.shapeless(HNCItems.CORN_KERNELS.get(), 8).requires(HNCItems.KNIFE.get()).requires(HNCItems.CORN_COB.get()).unlockedBy("has_knife", has(HNCItems.KNIFE.get()))
+                .unlockedBy("has_corn_cob", has(HNCItemTags.CORN_COB)).save(consumer);
+        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.CORN_KERNELS.get()), HNCItems.DRIED_CORN_KERNELS.get(), .2f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_corn_kernels", has(HNCItems.CORN_KERNELS.get())).save(consumer, HNCMod.getLocation("dried_corn_kernals"));
+        
         CookingRecipeBuilder.smelting(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 100).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HNCMod.getLocation("cooked_mouse"));
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 50, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HNCMod.getLocation("cooked_mouse_smoking"));
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HNCMod.getLocation("cooked_mouse_campfire"));

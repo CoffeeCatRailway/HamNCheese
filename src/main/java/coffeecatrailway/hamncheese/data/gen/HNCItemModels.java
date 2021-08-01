@@ -107,6 +107,10 @@ public class HNCItemModels implements IDataProvider
         this.generateFlatItem(HNCItems.TOMATO_SAUCE.get(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.TOMATO_SLICE.get(), StockModelShapes.FLAT_ITEM);
 
+        this.generateFlatItem(HNCItems.CORN_COB.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.CORN_KERNELS.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.DRIED_CORN_KERNELS.get(), StockModelShapes.FLAT_ITEM);
+
         this.generateFlatItem(HNCItems.MOUSE.get(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.COOKED_MOUSE.get(), StockModelShapes.FLAT_ITEM);
 
