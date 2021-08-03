@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "p p",
+    "rpr"
+  ],
+  "key": {
+    "p": {
+      "item": "minecraft:paper"
+    },
+    "r": {
+      "tag": "forge:dyes/red"
+    }
+  },
+  "result": {
+    "item": "hamncheese:popcorn_bag"
+  }
+}

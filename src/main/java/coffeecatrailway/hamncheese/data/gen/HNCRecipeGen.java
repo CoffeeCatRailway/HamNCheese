@@ -130,5 +130,12 @@ public class HNCRecipeGen extends RecipeProvider
         ShapedRecipeBuilder.shaped(HNCBlocks.GRILL.get()).define('i', Tags.Items.INGOTS_IRON).define('r', Tags.Items.DUSTS_REDSTONE).define('s', Blocks.SMOKER).define('b', Blocks.IRON_BARS)
                 .pattern("i i").pattern("rsi").pattern("b b").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_redstone", has(Tags.Items.DUSTS_REDSTONE))
                 .unlockedBy("has_smoker", has(Blocks.SMOKER)).unlockedBy("has_bars", has(Blocks.IRON_BARS)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(HNCBlocks.POPCORN_MACHINE.get()).define('i', Tags.Items.INGOTS_IRON).define('r', Blocks.RED_CONCRETE).define('w', Blocks.WHITE_CONCRETE).define('b', Items.BUCKET).define('g', Blocks.GLASS_PANE)
+                .pattern("rwr").pattern("gbg").pattern("i i").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_red_concrete", has(Blocks.RED_CONCRETE))
+                .unlockedBy("has_white_concrete", has(Blocks.WHITE_CONCRETE)).unlockedBy("has_bucket", has(Items.BUCKET)).unlockedBy("has_glass_pane", has(Blocks.GLASS_PANE)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(HNCItems.POPCORN_BAG.get()).define('p', Items.PAPER).define('r', Tags.Items.DYES_RED)
+                .pattern("p p").pattern("rpr").unlockedBy("has_paper", has(Items.PAPER)).unlockedBy("has_red_dye", has(Tags.Items.DYES_RED)).save(consumer);
     }
 }
