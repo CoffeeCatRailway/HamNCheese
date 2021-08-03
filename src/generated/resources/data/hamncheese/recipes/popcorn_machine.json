@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "rwr",
+    "gbg",
+    "i i"
+  ],
+  "key": {
+    "i": {
+      "tag": "forge:ingots/iron"
+    },
+    "r": {
+      "item": "minecraft:red_concrete"
+    },
+    "w": {
+      "item": "minecraft:white_concrete"
+    },
+    "b": {
+      "item": "minecraft:bucket"
+    },
+    "g": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "result": {
+    "item": "hamncheese:popcorn_machine"
+  }
+}
