@@ -52,6 +52,7 @@ public class HNCBlocks
 
     public static final RegistryObject<PizzaOvenBlock> PIZZA_OVEN = register("pizza_oven", () -> new PizzaOvenBlock(AbstractBlock.Properties.copy(Blocks.WHITE_TERRACOTTA)), prop -> prop);
     public static final RegistryObject<GrillBlock> GRILL = register("grill", () -> new GrillBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
+    public static final RegistryObject<PopcornMachineBlock> POPCORN_MACHINE = register("popcorn_machine", () -> new PopcornMachineBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
 
     // Biomes O' Plenty
     public static RegistryObject<ChoppingBoardBlock> FIR_CHOPPING_BOARD;

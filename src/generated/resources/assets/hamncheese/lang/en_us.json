@@ -20,6 +20,7 @@
   "block.hamncheese.pineapple_plant": "Pineapple Plant",
   "block.hamncheese.pizza_oven": "Pizza Oven",
   "block.hamncheese.polished_blackstone_chopping_board": "Polished Blackstone Chopping Board",
+  "block.hamncheese.popcorn_machine": "Popcorn Machine",
   "block.hamncheese.redwood_chopping_board": "Redwood Chopping Board",
   "block.hamncheese.spruce_chopping_board": "Spruce Chopping Board",
   "block.hamncheese.stone_chopping_board": "Stone Chopping Board",
@@ -80,6 +81,7 @@
   "jei.hamncheese.chopping_board.how": "A chopping board is made by right-clicking a pressure plate with it's respective tool type.",
   "stat.hamncheese.interact_grill": "Interactions with Grill",
   "stat.hamncheese.interact_pizza_oven": "Interactions with Pizza Oven",
+  "stat.hamncheese.interact_popcorn_machine": "Interactions with Popcorn Machine",
   "top.hamncheese.chop_chop": "Chop! Chop!",
   "top.hamncheese.progress": "Progress: "
 }

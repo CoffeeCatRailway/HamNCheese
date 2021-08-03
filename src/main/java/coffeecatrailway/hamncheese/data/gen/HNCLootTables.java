@@ -205,6 +205,12 @@ public class HNCLootTables extends ForgeLootTableProvider
                             .add(ItemLootEntry.lootTableItem(HNCBlocks.GRILL.get())
                                     .apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))
                             .when(SurvivesExplosion.survivesExplosion())));
+
+            this.add(HNCBlocks.POPCORN_MACHINE.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCBlocks.POPCORN_MACHINE.get())
+                                    .apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))
+                            .when(SurvivesExplosion.survivesExplosion())));
         }
 
         @Override

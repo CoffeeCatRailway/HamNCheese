@@ -98,6 +98,9 @@ public class HNCBlockStates extends BlockStateProvider
         VariantBlockStateBuilder.PartialBlockstate grill = this.getVariantBuilder(HNCBlocks.GRILL.get()).partialState();
         ModelFile grillModel = this.models().getExistingFile(HNCMod.getLocation("block/grill"));
 
+        VariantBlockStateBuilder.PartialBlockstate popcorn = this.getVariantBuilder(HNCBlocks.POPCORN_MACHINE.get()).partialState();
+        ModelFile popcornModel = this.models().getExistingFile(HNCMod.getLocation("block/popcorn_machine"));
+
         // Add models
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
@@ -120,11 +123,22 @@ public class HNCBlockStates extends BlockStateProvider
                     .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
             grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, true).with(GrillBlock.LIT, true)
                     .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
+
+            // Grill
+            popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, false).with(PopcornMachineBlock.LIT, false)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModel).addModel();
+            popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, false).with(PopcornMachineBlock.LIT, true)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModel).addModel();
+            popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, true).with(PopcornMachineBlock.LIT, false)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModel).addModel();
+            popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, true).with(PopcornMachineBlock.LIT, true)
+                    .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModel).addModel();
         }
 
         // Generate blockstates
         this.simpleBlockItem(HNCBlocks.PIZZA_OVEN.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/pizza_oven")));
         this.simpleBlockItem(HNCBlocks.GRILL.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/grill")));
+        this.simpleBlockItem(HNCBlocks.POPCORN_MACHINE.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/popcorn_machine")));
     }
 
     private void choppingBoard(ChoppingBoardBlock choppingBoard, String type, ChoppingBoardType choppingBoardType)

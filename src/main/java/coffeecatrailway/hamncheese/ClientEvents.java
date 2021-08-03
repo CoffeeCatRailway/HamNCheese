@@ -37,6 +37,8 @@ public class ClientEvents
         RenderTypeLookup.setRenderLayer(HNCBlocks.PINEAPPLE_PLANT.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(HNCBlocks.TOMATO_PLANT.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(HNCBlocks.CORN_PLANT.get(), cutoutMipped);
+
+        RenderTypeLookup.setRenderLayer(HNCBlocks.POPCORN_MACHINE.get(), cutoutMipped);
     }
 
     private static void entityRenderers()
