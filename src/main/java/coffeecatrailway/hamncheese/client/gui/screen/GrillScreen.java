@@ -8,11 +8,14 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * @author CoffeeCatRailway
  * Created: 10/06/2021
  */
+@OnlyIn(Dist.CLIENT)
 public class GrillScreen extends ContainerScreen<GrillContainer>
 {
     public static final ResourceLocation TEXTURE = HNCMod.getLocation("textures/gui/container/grill.png");
