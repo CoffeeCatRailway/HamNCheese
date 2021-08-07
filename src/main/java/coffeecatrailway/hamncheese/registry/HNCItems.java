@@ -87,6 +87,7 @@ public class HNCItems
     public static final RegistryObject<Item> CORN_KERNELS = registerIdAsName("corn_kernels", prop -> new Item(prop.food(HNCFoods.CORN_KERNELS)));
     public static final RegistryObject<Item> DRIED_CORN_KERNELS = registerIdAsName("dried_corn_kernels", prop -> new Item(prop.food(HNCFoods.CORN_KERNELS)));
 
+    public static final RegistryObject<Item> CHEESY_POPCORN = registerIdAsName("cheesy_popcorn", prop -> new Item(prop.food(HNCFoods.CHEESY_POPCORN).stacksTo(32)));
     public static final RegistryObject<Item> POPCORN_BAG = registerIdAsName("popcorn_bag", Item::new);
 
     public static final RegistryObject<Item> MOUSE = registerIdAsName("mouse", prop -> new Item(prop.food(HNCFoods.MOUSE)));
