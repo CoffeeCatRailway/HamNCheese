@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.common.block;
 
+import coffeecatrailway.hamncheese.common.tileentity.PopcornMachineTileEntity;
 import coffeecatrailway.hamncheese.registry.HNCStats;
 import io.github.ocelot.sonar.common.util.VoxelShapeHelper;
 import net.minecraft.block.BlockState;
@@ -38,7 +39,7 @@ public class PopcornMachineBlock extends ContainerBaseBlock
     @Override
     protected TileEntity getTileEntity(BlockState state, IBlockReader world)
     {
-        return null;
+        return new PopcornMachineTileEntity();
     }
 
     @Override

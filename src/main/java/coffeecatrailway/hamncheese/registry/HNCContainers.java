@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.registry;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.inventory.GrillContainer;
 import coffeecatrailway.hamncheese.common.inventory.PizzaOvenContainer;
+import coffeecatrailway.hamncheese.common.inventory.PopcornMachineContainer;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -24,11 +25,17 @@ public class HNCContainers
 
     public static final RegistryObject<ContainerType<PizzaOvenContainer>> PIZZA_OVEN = register("pizza_oven", () -> new ContainerType<>(PizzaOvenContainer::new));
     public static final RegistryObject<ContainerType<GrillContainer>> GRILL = register("grill", () -> new ContainerType<>(GrillContainer::new));
+    public static final RegistryObject<ContainerType<PopcornMachineContainer>> POPCORN_MACHINE = register("popcorn_machine", () -> new ContainerType<>(PopcornMachineContainer::new), "Popcorn");
 
     private static <T extends ContainerType<?>> RegistryObject<T> register(String id, Supplier<T> container)
     {
+        return register(id, container, HNCLanguage.capitalize(id));
+    }
+
+    private static <T extends ContainerType<?>> RegistryObject<T> register(String id, Supplier<T> container, String name)
+        {
         RegistryObject<T> object = CONTAINERS.register(id, container);
-        HNCLanguage.EXTRA.put("container." + HNCMod.MOD_ID + "." + object.getId().getPath(), HNCLanguage.capitalize(id));
+        HNCLanguage.EXTRA.put("container." + HNCMod.MOD_ID + "." + object.getId().getPath(), name);
         return object;
     }
 

@@ -1,6 +1,6 @@
 package coffeecatrailway.hamncheese.common.inventory;
 
-import coffeecatrailway.hamncheese.common.tileentity.CookerTileEntity;
+import coffeecatrailway.hamncheese.common.tileentity.TickableLockableTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.FurnaceResultSlot;
@@ -16,29 +16,34 @@ public class ResultSlot extends FurnaceResultSlot
     private final PlayerEntity player;
     private int removeCount;
 
-    public ResultSlot(PlayerEntity player, IInventory inventory, int index, int xPosition, int yPosition) {
-        super(player, inventory, index, xPosition, yPosition);
+    public ResultSlot(PlayerEntity player, IInventory inventory, int index, int x, int y)
+    {
+        super(player, inventory, index, x, y);
         this.player = player;
     }
 
     @Override
-    public ItemStack remove(int amount) {
+    public ItemStack remove(int amount)
+    {
         if (this.hasItem())
             this.removeCount += Math.min(amount, this.getItem().getCount());
         return super.remove(amount);
     }
 
     @Override
-    protected void onQuickCraft(ItemStack stack, int amount) {
+    protected void onQuickCraft(ItemStack stack, int amount)
+    {
         this.removeCount += amount;
         this.checkTakeAchievements(stack);
     }
 
     @Override
-    protected void checkTakeAchievements(ItemStack stack) {
+    protected void checkTakeAchievements(ItemStack stack)
+    {
         stack.onCraftedBy(this.player.level, this.player, this.removeCount);
-        if (!this.player.level.isClientSide() && this.container instanceof CookerTileEntity) {
-            ((CookerTileEntity) this.container).giveExperience(this.player);
+        if (!this.player.level.isClientSide() && this.container instanceof TickableLockableTileEntity)
+        {
+            ((TickableLockableTileEntity) this.container).giveExperience(this.player);
         }
 
         this.removeCount = 0;
