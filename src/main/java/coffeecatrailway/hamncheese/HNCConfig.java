@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author CoffeeCatRailway
@@ -114,7 +115,7 @@ public class HNCConfig
                     .defineInRange("mouseMaxCount", 4, 0, Integer.MAX_VALUE);
             this.biomeCategoryWhitelist = builder.comment("What biome categories mise can spawn in").translation(CONFIG + "generation.mouse.biomeCategoryWhitelist")
                     .defineList("biomeCategoryWhitelist", Lists.newArrayList(Biome.Category.EXTREME_HILLS, Biome.Category.FOREST, Biome.Category.MUSHROOM, Biome.Category.JUNGLE, Biome.Category.PLAINS),
-                            o -> Arrays.stream(Biome.Category.values()).anyMatch(cat -> o instanceof Biome.Category && cat.equals(o)));
+                            o -> o instanceof String && Arrays.stream(Biome.Category.values()).anyMatch(cat -> cat.getName().toLowerCase(Locale.ROOT).equals(((String) o).toLowerCase(Locale.ROOT))));
             builder.pop();
 
             builder.push("village");
