@@ -31,6 +31,8 @@
   "container.hamncheese.grill": "Grill",
   "container.hamncheese.pizza_oven": "Pizza Oven",
   "container.hamncheese.popcorn_machine": "Popcorn",
+  "container.hamncheese.popcorn_machine.flavour": "Flavour: %s/1000mb",
+  "container.hamncheese.popcorn_machine.popcorn": "Popcorn: %s/500",
   "entity.hamncheese.mouse": "Mouse",
   "entity.minecraft.villager.hamncheese.chef": "Chef",
   "item.hamncheese.bacon": "Raw Bacon",

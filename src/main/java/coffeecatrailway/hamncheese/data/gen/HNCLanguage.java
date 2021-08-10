@@ -6,6 +6,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.item.Item;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -39,11 +41,23 @@ public class HNCLanguage extends LanguageProvider
         this.add("top.hamncheese.chop_chop", "Chop! Chop!");
         this.add("jei.hamncheese.chopping_board.how", "A chopping board is made by right-clicking a pressure plate with it's respective tool type.");
         this.add("jei.hamncheese.chopping_board.example", "Example: Right-clicking a wooden pressure plate with an axe will turn it into a wooden chopping board.");
+        this.add("container.hamncheese.popcorn_machine.flavour", "Flavour: %s/1000mb");
+        this.add("container.hamncheese.popcorn_machine.popcorn", "Popcorn: %s/500");
         EXTRA.forEach(this::add);
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));
         ENTITIES.forEach((entity, name) -> this.add(entity.get(), name));
         PROFESSIONS.forEach((profession, name) -> this.add("entity.minecraft.villager." + HNCMod.MOD_ID + "." + profession.get(), name));
+    }
+
+    public static ITextComponent getFlavour(int flavour)
+    {
+        return new TranslationTextComponent("container.hamncheese.popcorn_machine.flavour", flavour);
+    }
+
+    public static ITextComponent getPopcorn(int popcorn)
+    {
+        return new TranslationTextComponent("container.hamncheese.popcorn_machine.popcorn", popcorn);
     }
 
     public static String capitalize(String id) {

@@ -153,4 +153,16 @@ public class PopcornMachineContainer extends Container
     {
         return this.data.get(1) * 26 / 500;
     }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getFlavour()
+    {
+        return this.data.get(0);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getPopcorn()
+    {
+        return this.data.get(1);
+    }
 }

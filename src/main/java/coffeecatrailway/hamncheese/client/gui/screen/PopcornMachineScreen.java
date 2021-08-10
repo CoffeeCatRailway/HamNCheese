@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.client.gui.screen;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.inventory.GrillContainer;
 import coffeecatrailway.hamncheese.common.inventory.PopcornMachineContainer;
+import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -42,6 +43,16 @@ public class PopcornMachineScreen extends ContainerScreen<PopcornMachineContaine
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         this.renderTooltip(matrixStack, mouseX, mouseY);
+    }
+
+    @Override
+    protected void renderTooltip(MatrixStack matrixStack, int mouseX, int mouseY)
+    {
+        super.renderTooltip(matrixStack, mouseX, mouseY);
+        if (this.isHovering(74, 23, 28, 26, mouseX, mouseY))
+            this.renderTooltip(matrixStack, HNCLanguage.getPopcorn(this.menu.getPopcorn()), mouseX, mouseY);
+        if (this.isHovering(19, 28, 8, 22, mouseX, mouseY))
+            this.renderTooltip(matrixStack, HNCLanguage.getFlavour(this.menu.getFlavour()), mouseX, mouseY);
     }
 
     @Override
