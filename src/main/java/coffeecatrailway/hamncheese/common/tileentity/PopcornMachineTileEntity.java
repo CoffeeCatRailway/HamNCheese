@@ -10,6 +10,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -32,7 +33,8 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
     private static final int[] SLOTS_BAG = new int[]{3};
     private static final int[] SLOTS_DOWN = new int[]{4};
 
-    private int flavourAmount;
+    private int flavour;
+    private ResourceLocation flavourId = HNCMod.getLocation("none");
     private int popcornAmount;
     public final IIntArray data = new IIntArray()
     {
@@ -42,7 +44,7 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
             switch (index)
             {
                 case 0:
-                    return PopcornMachineTileEntity.this.flavourAmount;
+                    return PopcornMachineTileEntity.this.flavour;
                 case 1:
                     return PopcornMachineTileEntity.this.popcornAmount;
                 default:
@@ -56,7 +58,7 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
             switch (index)
             {
                 case 0:
-                    PopcornMachineTileEntity.this.flavourAmount = value;
+                    PopcornMachineTileEntity.this.flavour = value;
                     break;
                 case 1:
                     PopcornMachineTileEntity.this.popcornAmount = value;
@@ -105,14 +107,24 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
     @Override
     public void tick()
     {
+    }
 
+    public int getPopcorn()
+    {
+        return this.popcornAmount;
+    }
+
+    public boolean hasFlavour(ResourceLocation flavourId, int flavour)
+    {
+        return this.flavourId.equals(flavourId) && this.flavour >= flavour;
     }
 
     @Override
     public void load(BlockState state, CompoundNBT compound)
     {
         super.load(state, compound);
-        this.flavourAmount = compound.getInt("Flavour");
+        this.flavour = compound.getInt("Flavour");
+        this.flavourId = new ResourceLocation(compound.getString("FlavourId"));
         this.popcornAmount = compound.getInt("Popcorn");
     }
 
@@ -120,7 +132,8 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
     public CompoundNBT save(CompoundNBT compound)
     {
         super.save(compound);
-        compound.putInt("Flavour", this.flavourAmount);
+        compound.putInt("Flavour", this.flavour);
+        compound.putString("FlavourId", this.flavourId.toString());
         compound.putInt("Popcorn", this.popcornAmount);
         return compound;
     }

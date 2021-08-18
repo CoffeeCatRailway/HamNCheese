@@ -25,7 +25,6 @@ import java.util.Optional;
  * @author CoffeeCatRailway
  * Created: 3/05/2021
  */
-@Mod.EventBusSubscriber(modid = HNCMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ChoppingBoardManager extends JsonReloadListener
 {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
@@ -39,22 +38,14 @@ public class ChoppingBoardManager extends JsonReloadListener
         super(GSON, "chopping_boards");
     }
 
-    @SubscribeEvent
-    public static void onReloadListener(AddReloadListenerEvent event)
-    {
-        event.addListener(INSTANCE);
-    }
-
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> elements, IResourceManager resourceManager, IProfiler profiler)
     {
         CHOPPING_BOARDS.clear();
-        for (Map.Entry<ResourceLocation, JsonElement> entry : elements.entrySet())
-        {
-            final ResourceLocation key = entry.getKey();
+        elements.forEach((location, element) -> {
             try
             {
-                JsonObject object = JSONUtils.convertToJsonObject(entry.getValue(), "top element");
+                JsonObject object = JSONUtils.convertToJsonObject(element, "top element");
                 String modId = "minecraft";
                 boolean modLoadedFlag = true;
                 if (object.has("modId"))
@@ -65,17 +56,21 @@ public class ChoppingBoardManager extends JsonReloadListener
 
                 if (modLoadedFlag)
                 {
-                    final Optional<ChoppingBoard> result = JsonOps.INSTANCE.withParser(ChoppingBoard.CODEC).apply(entry.getValue()).result();
+                    final Optional<ChoppingBoard> result = JsonOps.INSTANCE.withParser(ChoppingBoard.CODEC).apply(element).result();
                     if (result.isPresent())
-                        CHOPPING_BOARDS.put(key, result.get());
-                    else
-                        LOGGER.info("Failed to load JSON for {}", key);
+                    {
+                        if (CHOPPING_BOARDS.containsKey(location))
+                            LOGGER.error("Recipe {} already exists", location);
+                        else
+                            CHOPPING_BOARDS.put(location, result.get());
+                    } else
+                        LOGGER.info("Failed to load JSON for {}", location);
                 } else
-                    LOGGER.warn("Skipped recipe {} as mod \"{}\" was not present", key, modId);
+                    LOGGER.warn("Skipped recipe {} as mod \"{}\" was not present", location, modId);
             } catch (Exception e)
             {
-                LOGGER.error("Exception occurred while processing JSON for {}", key, e);
+                LOGGER.error("Exception occurred while processing JSON for {}", location, e);
             }
-        }
+        });
     }
 }

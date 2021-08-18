@@ -5,6 +5,7 @@ import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
+import coffeecatrailway.hamncheese.data.PopcornFlavourManager;
 import coffeecatrailway.hamncheese.integration.top.HNCTheOneProbe;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
 import coffeecatrailway.hamncheese.registry.HNCFeatures;
@@ -34,6 +35,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -106,6 +108,13 @@ public class CommonEvents
         ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE.get(), .65f);
         ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO.get(), .65f);
         ComposterBlock.COMPOSTABLES.put(HNCItems.CORN_COB.get(), .65f);
+    }
+
+    @SubscribeEvent
+    public static void onReloadListener(AddReloadListenerEvent event)
+    {
+        event.addListener(ChoppingBoardManager.INSTANCE);
+        event.addListener(PopcornFlavourManager.INSTANCE);
     }
 
     @SubscribeEvent

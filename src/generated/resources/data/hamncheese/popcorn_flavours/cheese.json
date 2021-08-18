@@ -1,0 +1,5 @@
+{
+  "name": "popcorn_flavour.hamncheese.cheese",
+  "guiTexture": "hamncheese:gui/container/popcorn_flavour/cheese.png",
+  "ingredient": "hamncheese:cheese_slice"
+}

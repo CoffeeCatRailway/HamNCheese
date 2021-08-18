@@ -66,7 +66,6 @@ public class HNCMod
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         HNCBlockTags blockTags = new HNCBlockTags(generator, existingFileHelper);
 
-        generator.addProvider(new HNCLanguage(generator));
         generator.addProvider(new HNCItemTags(generator, blockTags, existingFileHelper));
         generator.addProvider(blockTags);
         generator.addProvider(new HNCLootTables(generator));
@@ -74,6 +73,8 @@ public class HNCMod
         generator.addProvider(new HNCItemModels(generator));
         generator.addProvider(new HNCBlockStates(generator, existingFileHelper));
         generator.addProvider(new HNCChoppingBoards(generator));
+        generator.addProvider(new HNCPopcornFlavoursGen(generator));
+        generator.addProvider(new HNCLanguage(generator));
     }
 
     public static ResourceLocation getLocation(String path)
