@@ -70,7 +70,7 @@ public class GrillTileEntity extends CookerTileEntity
     @Override
     protected boolean canSmelt(@Nullable IRecipe<IInventory> iRecipe)
     {
-        if (iRecipe != null && this.hasItems())
+        if (iRecipe != null && this.hasItems(0, this.getTableSlots().length))
         {
             ItemStack result = iRecipe.assemble(this);
             if (result.isEmpty())

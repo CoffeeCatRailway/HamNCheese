@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.client.resources.JsonReloadListener;
+import net.minecraft.item.ItemStack;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
@@ -14,6 +15,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -30,6 +32,8 @@ public class PopcornFlavourManager extends JsonReloadListener
     public static final PopcornFlavourManager INSTANCE = new PopcornFlavourManager();
     public static final Map<ResourceLocation, PopcornFlavour> FLAVOURS = new HashMap<>();
 
+    public static final ResourceLocation NONE_ID = HNCMod.getLocation("none");
+
     public PopcornFlavourManager()
     {
         super(GSON, "popcorn_flavours");
@@ -45,10 +49,10 @@ public class PopcornFlavourManager extends JsonReloadListener
                 final Optional<PopcornFlavour> result = JsonOps.INSTANCE.withParser(PopcornFlavour.CODEC).apply(element).result();
                 if (result.isPresent())
                 {
-                    if (FLAVOURS.containsKey(location))
-                        LOGGER.error("Flavour {} already exists", location);
+                    if (FLAVOURS.containsKey(result.get().getId()))
+                        LOGGER.error("Flavour {} already exists", result.get().getId());
                     else
-                        FLAVOURS.put(location, result.get());
+                        FLAVOURS.put(result.get().getId(), result.get());
                 } else
                     LOGGER.warn("Skipped flavour {}", location);
             } catch (Exception e)
@@ -56,5 +60,13 @@ public class PopcornFlavourManager extends JsonReloadListener
                 LOGGER.error("Exception occurred while processing JSON for {}", location, e);
             }
         });
+    }
+
+    @Nullable
+    public static PopcornFlavour getFlavourFromIngredient(ItemStack ingredient)
+    {
+        if (ingredient.isEmpty())
+            return null;
+        return FLAVOURS.values().stream().filter(flavour -> flavour.getIngredient().equals(ingredient.getItem())).findFirst().orElse(null);
     }
 }

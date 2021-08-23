@@ -146,7 +146,7 @@ public abstract class CookerTileEntity extends TickableLockableTileEntity
         {
             ItemStack fuelStack = this.getNextFuelStack().getFirst();
             int fuelSlot = this.getNextFuelStack().getSecond();
-            if (this.isBurning() || !fuelStack.isEmpty() && this.hasItems())
+            if (this.isBurning() || !fuelStack.isEmpty() && this.hasItems(0, this.getTableSlots().length))
             {
                 IRecipe<IInventory> iRecipe = this.level.getRecipeManager().getRecipeFor(this.recipeType, this, this.level).orElse(null);
                 if (!this.isBurning() && this.canSmelt(iRecipe))
@@ -229,14 +229,6 @@ public abstract class CookerTileEntity extends TickableLockableTileEntity
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         return compound;
-    }
-
-    public boolean hasItems()
-    {
-        for (int i = 0; i < this.getTableSlots().length; i++)
-            if (!this.getItem(i).isEmpty())
-                return true;
-        return false;
     }
 
     private Pair<ItemStack, Integer> getNextFuelStack()

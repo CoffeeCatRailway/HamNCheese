@@ -24,9 +24,11 @@ public class HNCRecipes
 
     public static IRecipeType<PizzaOvenRecipe> PIZZA_OVEN_TYPE;
     public static IRecipeType<GrillRecipe> GRILL_TYPE;
+    public static IRecipeType<PopcornRecipe> POPCORN_TYPE;
 
     public static final RegistryObject<SpecialRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SpecialRecipeSerializer<>(PizzaOvenRecipe::new));
     public static final RegistryObject<SpecialRecipeSerializer<GrillRecipe>> GRILL_SERIALIZER = RECIPE_SERIALIZERS.register("grill", () -> new SpecialRecipeSerializer<>(GrillRecipe::new));
+    public static final RegistryObject<PopcornRecipe.Serializer> POPCORN_SERIALIZER = RECIPE_SERIALIZERS.register("popcorn", PopcornRecipe.Serializer::new);
 
     public static final RegistryObject<SpecialRecipeSerializer<SandwichRecipe>> SANDWICH_SERIALIZER = RECIPE_SERIALIZERS.register("sandwich", () -> new SpecialRecipeSerializer<>(SandwichRecipe::new));
     public static final RegistryObject<SpecialRecipeSerializer<CrackerRecipe>> CRACKER_SERIALIZER = RECIPE_SERIALIZERS.register("cracker", () -> new SpecialRecipeSerializer<>(CrackerRecipe::new));
@@ -49,6 +51,7 @@ public class HNCRecipes
         LOGGER.debug("Loaded");
         PIZZA_OVEN_TYPE = registerType("pizza_oven");
         GRILL_TYPE = registerType("grill");
+        POPCORN_TYPE = registerType("popcorn");
         RECIPE_SERIALIZERS.register(bus);
     }
 }

@@ -73,7 +73,7 @@ public class PizzaOvenTileEntity extends CookerTileEntity
     @Override
     protected boolean canSmelt(@Nullable IRecipe<IInventory> iRecipe)
     {
-        if (iRecipe != null && this.hasItems())
+        if (iRecipe != null && this.hasItems(0, this.getTableSlots().length))
         {
             ItemStack result = iRecipe.assemble(this);
             if (result.isEmpty())
@@ -81,12 +81,13 @@ public class PizzaOvenTileEntity extends CookerTileEntity
             else
             {
                 ItemStack output = this.getItem(12);
-                if (output.isEmpty() || (output.getCount() + result.getCount() <= this.getMaxStackSize() && output.getCount() + result.getCount() <= output.getMaxStackSize()))
+                int combinedCount = output.getCount() + result.getCount();
+                if (output.isEmpty() || (combinedCount <= this.getMaxStackSize() && combinedCount <= output.getMaxStackSize()))
                     return true;
                 else if (!output.areShareTagsEqual(result))
                     return false;
                 else
-                    return output.getCount() + result.getCount() <= output.getMaxStackSize();
+                    return combinedCount <= output.getMaxStackSize();
             }
         } else
             return false;

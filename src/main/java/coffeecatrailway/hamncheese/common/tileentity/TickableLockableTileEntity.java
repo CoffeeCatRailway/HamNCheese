@@ -250,4 +250,28 @@ public abstract class TickableLockableTileEntity extends LockableTileEntity impl
         compound.put("RecipesUsed", recipesUsedNbt);
         return compound;
     }
+
+    protected boolean hasItems(int startSlot, int endSlot)
+    {
+        return this.hasItems(startSlot, endSlot, false);
+    }
+
+    protected boolean hasItems(int startSlot, int endSlot, boolean all)
+    {
+        if (startSlot >= endSlot)
+            return false;
+        if (all)
+        {
+            for (int i = startSlot; i < endSlot; i++)
+                if (this.getItem(i).isEmpty())
+                    return false;
+            return true;
+        } else
+        {
+            for (int i = startSlot; i < endSlot; i++)
+                if (!this.getItem(i).isEmpty())
+                    return true;
+            return false;
+        }
+    }
 }

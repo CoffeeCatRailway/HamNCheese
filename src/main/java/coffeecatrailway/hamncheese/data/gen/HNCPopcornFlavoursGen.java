@@ -58,15 +58,16 @@ public class HNCPopcornFlavoursGen implements IDataProvider
 
     private void start()
     {
-        this.addFlavour("cheese", new PopcornFlavour("popcorn_flavour.hamncheese.cheese", HNCMod.getLocation("gui/container/popcorn_flavour/cheese.png"), HNCItems.CHEESE_SLICE.get()));
+        this.addFlavour("cheese", "popcorn_flavour.hamncheese.cheese", "gui/container/popcorn_flavour/cheese.png", HNCItems.CHEESE_SLICE.get(), 100);
     }
 
-    private void addFlavour(String name, PopcornFlavour flavour)
+    private void addFlavour(String name, String nameKey, String guiTexture, Item ingredient, int amount)
     {
+        PopcornFlavour flavour = new PopcornFlavour(HNCMod.getLocation(name), nameKey, HNCMod.getLocation(guiTexture), ingredient, amount);
         Optional<JsonElement> optional = JsonOps.INSTANCE.withEncoder(PopcornFlavour.CODEC).apply(flavour).result();
         if (optional.isPresent() && optional.get().isJsonObject())
         {
-            HNCLanguage.EXTRA.put(flavour.getName().getKey(), HNCLanguage.capitalize(name));
+            HNCLanguage.EXTRA.put(nameKey, HNCLanguage.capitalize(name));
             this.toSerialize.put(name, optional.get().getAsJsonObject());
         } else
             LOGGER.error("Couldn't save popcorn flavour {}", flavour);

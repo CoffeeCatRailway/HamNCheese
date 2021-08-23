@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.common.inventory;
 
 import coffeecatrailway.hamncheese.client.AtlasStitch;
+import coffeecatrailway.hamncheese.common.tileentity.PopcornMachineTileEntity;
 import coffeecatrailway.hamncheese.registry.HNCContainers;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import com.mojang.datafixers.util.Pair;
@@ -145,13 +146,13 @@ public class PopcornMachineContainer extends Container
     @OnlyIn(Dist.CLIENT)
     public int getFlavourScaled()
     {
-        return this.data.get(0) * 22 / 1000;
+        return this.data.get(0) * 22 / PopcornMachineTileEntity.MAX_FLAVOUR;
     }
 
     @OnlyIn(Dist.CLIENT)
     public int getPopcornScaled()
     {
-        return this.data.get(1) * 26 / 500;
+        return this.data.get(1) * 26 / PopcornMachineTileEntity.MAX_POPCORN;
     }
 
     @OnlyIn(Dist.CLIENT)
