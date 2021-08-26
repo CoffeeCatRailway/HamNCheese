@@ -1,8 +1,6 @@
 package coffeecatrailway.hamncheese.common.item.crafting;
 
-import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.tileentity.PopcornMachineTileEntity;
-import coffeecatrailway.hamncheese.data.PopcornFlavourManager;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import com.google.gson.JsonObject;
 import net.minecraft.item.ItemStack;
@@ -21,28 +19,18 @@ import javax.annotation.Nullable;
  */
 public class PopcornRecipe implements IRecipe<PopcornMachineTileEntity>
 {
-    private static final JsonObject FLAVOUR_NONE = new JsonObject();
-
-    static
-    {
-        FLAVOUR_NONE.addProperty("amount", 0);
-        FLAVOUR_NONE.addProperty("id", PopcornFlavourManager.NONE_ID.toString());
-    }
-
     private final ResourceLocation id;
 
     private final int popcorn;
-    private final int flavour;
-    private final ResourceLocation flavourId;
+    private final Ingredient flavouring;
     private final Ingredient seasoning;
     private final ItemStack result;
 
-    public PopcornRecipe(ResourceLocation id, int popcorn, int flavour, ResourceLocation flavourId, Ingredient seasoning, ItemStack result)
+    public PopcornRecipe(ResourceLocation id, int popcorn, Ingredient flavouring, Ingredient seasoning, ItemStack result)
     {
         this.id = id;
         this.popcorn = popcorn;
-        this.flavour = flavour;
-        this.flavourId = flavourId;
+        this.flavouring = flavouring;
         this.seasoning = seasoning;
         this.result = result;
     }
@@ -50,7 +38,7 @@ public class PopcornRecipe implements IRecipe<PopcornMachineTileEntity>
     @Override
     public boolean matches(PopcornMachineTileEntity tile, World level)
     {
-        return this.seasoning.test(tile.getItem(2)) && tile.getPopcorn() >= this.popcorn && tile.hasFlavour(this.flavourId, this.flavour);
+        return this.seasoning.test(tile.getItem(PopcornMachineTileEntity.SLOT_SEASONING)) && tile.getPopcorn() >= this.popcorn && this.flavouring.test(tile.getItem(PopcornMachineTileEntity.SLOT_FLAVOURING));
     }
 
     @Override
@@ -76,14 +64,9 @@ public class PopcornRecipe implements IRecipe<PopcornMachineTileEntity>
         return this.popcorn;
     }
 
-    public int getFlavour()
+    public Ingredient getFlavouring()
     {
-        return this.flavour;
-    }
-
-    public ResourceLocation getFlavourId()
-    {
-        return this.flavourId;
+        return this.flavouring;
     }
 
     public Ingredient getSeasoning()
@@ -115,12 +98,12 @@ public class PopcornRecipe implements IRecipe<PopcornMachineTileEntity>
         public PopcornRecipe fromJson(ResourceLocation id, JsonObject json)
         {
             int popcorn = JSONUtils.getAsInt(json, "popcorn");
-            JsonObject flavourObj = JSONUtils.getAsJsonObject(json, "flavour", FLAVOUR_NONE);
-            int flavour = JSONUtils.getAsInt(flavourObj, "amount", 0);
-            ResourceLocation flavourId = new ResourceLocation(JSONUtils.getAsString(flavourObj, "id", PopcornFlavourManager.NONE_ID.toString()));
+            Ingredient flavouring = Ingredient.EMPTY;
+            if (json.has("flavouring"))
+                flavouring = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "flavouring"));
             Ingredient seasoning = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "seasoning"));
             ItemStack result = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
-            return new PopcornRecipe(id, popcorn, flavour, flavourId, seasoning, result);
+            return new PopcornRecipe(id, popcorn, flavouring, seasoning, result);
         }
 
         @Nullable
@@ -128,19 +111,22 @@ public class PopcornRecipe implements IRecipe<PopcornMachineTileEntity>
         public PopcornRecipe fromNetwork(ResourceLocation id, PacketBuffer buffer)
         {
             int popcorn = buffer.readVarInt();
-            int flavour = buffer.readVarInt();
-            ResourceLocation flavourId = buffer.readResourceLocation();
+            Ingredient flavouring = Ingredient.EMPTY;
+            if (!buffer.readBoolean())
+                flavouring = Ingredient.fromNetwork(buffer);
             Ingredient seasoning = Ingredient.fromNetwork(buffer);
             ItemStack result = buffer.readItem();
-            return new PopcornRecipe(id, popcorn, flavour, flavourId, seasoning, result);
+            return new PopcornRecipe(id, popcorn, flavouring, seasoning, result);
         }
 
         @Override
         public void toNetwork(PacketBuffer buffer, PopcornRecipe recipe)
         {
             buffer.writeVarInt(recipe.popcorn);
-            buffer.writeVarInt(recipe.flavour);
-            buffer.writeResourceLocation(recipe.flavourId);
+            if (recipe.flavouring.isEmpty())
+                buffer.writeBoolean(true);
+            else
+                recipe.flavouring.toNetwork(buffer);
             recipe.seasoning.toNetwork(buffer);
             buffer.writeItem(recipe.result);
         }

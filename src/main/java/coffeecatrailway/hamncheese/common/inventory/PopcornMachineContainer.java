@@ -146,7 +146,7 @@ public class PopcornMachineContainer extends Container
     @OnlyIn(Dist.CLIENT)
     public int getFlavourScaled()
     {
-        return this.data.get(0) * 22 / PopcornMachineTileEntity.MAX_FLAVOUR;
+        return this.data.get(0) * 22 / PopcornMachineTileEntity.MAX_FLAVOUR_TIME;
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -4,8 +4,6 @@ import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.PopcornMachineBlock;
 import coffeecatrailway.hamncheese.common.inventory.PopcornMachineContainer;
 import coffeecatrailway.hamncheese.common.item.crafting.PopcornRecipe;
-import coffeecatrailway.hamncheese.data.PopcornFlavour;
-import coffeecatrailway.hamncheese.data.PopcornFlavourManager;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import coffeecatrailway.hamncheese.registry.HNCTileEntities;
 import net.minecraft.block.BlockState;
@@ -16,7 +14,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -27,7 +25,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 
 /**
  * @author CoffeeCatRailway
@@ -36,18 +33,15 @@ import java.util.Arrays;
 public class PopcornMachineTileEntity extends TickableLockableTileEntity
 {
     public static final int MAX_POPCORN = 500;
-    public static final int MAX_FLAVOUR = 1000;
+    public static final int MAX_FLAVOUR_TIME = 200;
 
-    private static final int SLOT_KERNELS = 0;
-    private static final int SLOT_FLAVOUR = 1;
-    private static final int SLOT_SEASONING = 2;
-    private static final int SLOT_BAG = 3;
-    private static final int SLOT_DOWN = 4;
+    public static final int SLOT_KERNELS = 0;
+    public static final int SLOT_FLAVOURING = 1;
+    public static final int SLOT_SEASONING = 2;
+    public static final int SLOT_BAG = 3;
+    public static final int SLOT_DOWN = 4;
 
-    private int workTime;
-
-    private int flavour;
-    private ResourceLocation flavourId = PopcornFlavourManager.NONE_ID;
+    private int flavourTime;
     private int popcornAmount;
     public final IIntArray data = new IIntArray()
     {
@@ -57,7 +51,7 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
             switch (index)
             {
                 case 0:
-                    return PopcornMachineTileEntity.this.flavour;
+                    return PopcornMachineTileEntity.this.flavourTime;
                 case 1:
                     return PopcornMachineTileEntity.this.popcornAmount;
                 default:
@@ -71,7 +65,7 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
             switch (index)
             {
                 case 0:
-                    PopcornMachineTileEntity.this.flavour = value;
+                    PopcornMachineTileEntity.this.flavourTime = value;
                     break;
                 case 1:
                     PopcornMachineTileEntity.this.popcornAmount = value;
@@ -130,7 +124,7 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
                 slot = SLOT_BAG;
                 break;
             case EAST:
-                slot = SLOT_FLAVOUR;
+                slot = SLOT_FLAVOURING;
                 break;
             default:
                 slot = SLOT_SEASONING;
@@ -142,39 +136,18 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
     @Override
     public void tick()
     {
-        boolean workingFlag = this.isWorking();
         boolean updateFlag = false;
-        boolean secondFlag = this.level.getGameTime() % 20L == 0L;
-        if (workingFlag && this.hasLevel() && secondFlag)
-        {
-            this.workTime--;
-            this.sendUpdates(this);
-        }
+        boolean flavourFlag = this.flavourTime > 0;
 
         if (this.hasLevel() && !this.level.isClientSide())
         {
-            ItemStack kernelsStack = this.getItem(SLOT_KERNELS);
-            if (secondFlag && !kernelsStack.isEmpty() && this.popcornAmount + 50 <= MAX_POPCORN)
-            {
-                kernelsStack.shrink(1);
-                this.popcornAmount += 50;
-            }
-
-            ItemStack flavourStack = this.getItem(SLOT_FLAVOUR);
-            PopcornFlavour flavour = PopcornFlavourManager.getFlavourFromIngredient(flavourStack);
-            if (secondFlag && !flavourStack.isEmpty() && flavour != null && (this.flavourId.equals(flavour.getId()) || this.flavourId.equals(PopcornFlavourManager.NONE_ID)) && this.flavour + flavour.getAmount() <= MAX_FLAVOUR)
-            {
-                flavourStack.shrink(1);
-                this.flavourId = flavour.getId();
-                this.flavour += flavour.getAmount();
-            }
-
-            if (this.isWorking() || !this.getItem(SLOT_BAG).isEmpty() && !this.getItem(SLOT_SEASONING).isEmpty())
+            if (!this.getItem(SLOT_BAG).isEmpty() && !this.getItem(SLOT_SEASONING).isEmpty())
             {
                 this.recipe = this.level.getRecipeManager().getRecipeFor(HNCRecipes.POPCORN_TYPE, this, this.level).orElse(null);
-                if (!this.isWorking() && this.canWork())
+                if (this.canWork())
                 {
-                    if (this.workTime <= 0 && this.recipe != null)
+                    this.flavourTime++;
+                    if (this.flavourTime >= MAX_FLAVOUR_TIME)
                     {
                         ItemStack result = this.recipe.assemble(this);
                         ItemStack output = this.getItem(SLOT_DOWN);
@@ -187,25 +160,29 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
                         this.setRecipeUsed(this.recipe);
 
                         this.popcornAmount -= this.recipe.getPopcorn();
-                        if (!this.flavourId.equals(PopcornFlavourManager.NONE_ID))
-                            this.flavour -= this.recipe.getFlavour();
+                        this.getItem(SLOT_FLAVOURING).shrink(1);
                         this.getItem(SLOT_SEASONING).shrink(2);
                         this.getItem(SLOT_BAG).shrink(result.getCount());
 
+                        this.flavourTime = 0;
                         updateFlag = true;
                         this.sendUpdates(this);
-                    } else
-                    {
-                        this.workTime = 200;
-                        updateFlag = true;
                     }
+                } else
+                {
+                    this.flavourTime = 0;
+                    this.sendUpdates(this);
                 }
+            } else if (this.flavourTime > 0)
+            {
+                this.flavourTime -= MathHelper.clamp(this.flavourTime - 2, 0, MAX_FLAVOUR_TIME);
+                this.sendUpdates(this);
             }
 
-            if (workingFlag != this.isWorking())
+            if (flavourFlag != this.flavourTime > 0)
             {
                 updateFlag = true;
-                this.level.setBlock(this.getBlockPos(), this.level.getBlockState(this.getBlockPos()).setValue(PopcornMachineBlock.LIT, this.isWorking()), Constants.BlockFlags.DEFAULT);
+                this.level.setBlock(this.getBlockPos(), this.level.getBlockState(this.getBlockPos()).setValue(PopcornMachineBlock.LIT, this.flavourTime > 0), Constants.BlockFlags.DEFAULT);
             }
         }
 
@@ -213,24 +190,19 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
             this.sendUpdates(this);
     }
 
-    private boolean isWorking()
-    {
-        return this.workTime > 0;
-    }
-
     private boolean canWork()
     {
-        if (this.recipe != null && this.hasItems(SLOT_SEASONING, SLOT_BAG, true))
+        if (this.recipe != null)
         {
             if (this.popcornAmount < this.recipe.getPopcorn())
                 return false;
-            if (!this.flavourId.equals(PopcornFlavourManager.NONE_ID))
-                if (!this.flavourId.equals(this.recipe.getFlavourId()) && this.flavour < this.recipe.getFlavour())
-                    return false;
-            ItemStack seasoning = this.getItem(SLOT_SEASONING);
-            if (!this.recipe.getSeasoning().test(seasoning) && seasoning.getCount() < 2)
+            ItemStack flavouring = this.getItem(SLOT_FLAVOURING);
+            if ((!flavouring.isEmpty() && this.recipe.getFlavouring().isEmpty()) || !this.recipe.getFlavouring().test(flavouring))
                 return false;
-            if (Arrays.stream(this.recipe.getSeasoning().getItems()).map(ItemStack::getCount).noneMatch(count -> seasoning.getCount() >= count))
+            ItemStack seasoning = this.getItem(SLOT_SEASONING);
+            if (seasoning.getCount() < 2 || !this.recipe.getSeasoning().test(seasoning))
+                return false;
+            if (this.getItem(SLOT_BAG).getCount() < this.recipe.getResultItem().getCount())
                 return false;
 
             ItemStack result = this.recipe.assemble(this);
@@ -240,7 +212,9 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
             {
                 ItemStack output = this.getItem(SLOT_DOWN);
                 int combinedCount = output.getCount() + result.getCount();
-                if (output.isEmpty() || (combinedCount <= this.getMaxStackSize() && combinedCount <= output.getMaxStackSize()))
+                if (!output.isEmpty() && output.getItem() != result.getItem())
+                    return false;
+                else if (output.isEmpty() || (combinedCount <= this.getMaxStackSize() && combinedCount <= output.getMaxStackSize()))
                     return true;
                 else if (!output.areShareTagsEqual(result))
                     return false;
@@ -256,18 +230,11 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
         return this.popcornAmount;
     }
 
-    public boolean hasFlavour(ResourceLocation flavourId, int flavour)
-    {
-        return this.flavourId.equals(flavourId) && this.flavour >= flavour;
-    }
-
     @Override
     public void load(BlockState state, CompoundNBT compound)
     {
         super.load(state, compound);
-        this.workTime = compound.getInt("WorkTime");
-        this.flavour = compound.getInt("Flavour");
-        this.flavourId = new ResourceLocation(compound.getString("FlavourId"));
+        this.flavourTime = compound.getInt("FlavourTime");
         this.popcornAmount = compound.getInt("Popcorn");
     }
 
@@ -275,9 +242,7 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
     public CompoundNBT save(CompoundNBT compound)
     {
         super.save(compound);
-        compound.putInt("WorkTime", this.workTime);
-        compound.putInt("Flavour", this.flavour);
-        compound.putString("FlavourId", this.flavourId.toString());
+        compound.putInt("FlavourTime", this.flavourTime);
         compound.putInt("Popcorn", this.popcornAmount);
         return compound;
     }

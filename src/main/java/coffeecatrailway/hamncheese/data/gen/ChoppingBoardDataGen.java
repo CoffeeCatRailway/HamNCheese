@@ -26,14 +26,14 @@ import java.util.Optional;
 /**
  * @author vemerion
  */
-public class HNCChoppingBoards implements IDataProvider {
+public class ChoppingBoardDataGen implements IDataProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Logger LOGGER = LogManager.getLogger();
 
     private Map<String, JsonElement> toSerialize = new HashMap<>();
     private DataGenerator generator;
 
-    public HNCChoppingBoards(DataGenerator generator) {
+    public ChoppingBoardDataGen(DataGenerator generator) {
         this.generator = generator;
     }
 

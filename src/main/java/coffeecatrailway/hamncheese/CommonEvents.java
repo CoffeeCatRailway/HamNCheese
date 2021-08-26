@@ -5,7 +5,6 @@ import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
-import coffeecatrailway.hamncheese.data.PopcornFlavourManager;
 import coffeecatrailway.hamncheese.integration.top.HNCTheOneProbe;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
 import coffeecatrailway.hamncheese.registry.HNCFeatures;
@@ -114,7 +113,6 @@ public class CommonEvents
     public static void onReloadListener(AddReloadListenerEvent event)
     {
         event.addListener(ChoppingBoardManager.INSTANCE);
-        event.addListener(PopcornFlavourManager.INSTANCE);
     }
 
     @SubscribeEvent

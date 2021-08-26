@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.data.gen;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.tileentity.PopcornMachineTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
@@ -41,8 +42,8 @@ public class HNCLanguage extends LanguageProvider
         this.add("top.hamncheese.chop_chop", "Chop! Chop!");
         this.add("jei.hamncheese.chopping_board.how", "A chopping board is made by right-clicking a pressure plate with it's respective tool type.");
         this.add("jei.hamncheese.chopping_board.example", "Example: Right-clicking a wooden pressure plate with an axe will turn it into a wooden chopping board.");
-        this.add("container.hamncheese.popcorn_machine.flavour", "Flavour: %s/1000mb");
-        this.add("container.hamncheese.popcorn_machine.popcorn", "Popcorn: %s/500");
+        this.add("container.hamncheese.popcorn_machine.flavour", "Flavour: %s/" + PopcornMachineTileEntity.MAX_FLAVOUR_TIME + "mb");
+        this.add("container.hamncheese.popcorn_machine.popcorn", "Popcorn: %s/" + PopcornMachineTileEntity.MAX_POPCORN);
         EXTRA.forEach(this::add);
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));

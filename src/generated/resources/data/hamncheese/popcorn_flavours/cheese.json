@@ -1,7 +1,0 @@
-{
-  "guiTexture": "hamncheese:gui/container/popcorn_flavour/cheese.png",
-  "ingredient": "hamncheese:cheese_slice",
-  "amount": 100,
-  "id": "hamncheese:cheese",
-  "name": "popcorn_flavour.hamncheese.cheese"
-}

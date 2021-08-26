@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.data.gen;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCItems;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
 import net.minecraft.item.Items;
@@ -10,6 +11,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -137,5 +139,12 @@ public class HNCRecipeGen extends RecipeProvider
 
         ShapedRecipeBuilder.shaped(HNCItems.POPCORN_BAG.get()).define('p', Items.PAPER).define('r', Tags.Items.DYES_RED)
                 .pattern("p p").pattern("rpr").unlockedBy("has_paper", has(Items.PAPER)).unlockedBy("has_red_dye", has(Tags.Items.DYES_RED)).save(consumer);
+        PopcornRecipeBuilder.popcorn(HNCItems.CHEESY_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT)).flavouring(Ingredient.of(HNCItems.CHEESE_SLICE.get()))
+                .unlockedBy("has_cheese_slice", has(HNCItems.CHEESE_SLICE.get())).unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
+    }
+
+    public static InventoryChangeTrigger.Instance hasPublic(IItemProvider item)
+    {
+        return has(item);
     }
 }
