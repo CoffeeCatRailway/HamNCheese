@@ -1,0 +1,13 @@
+{
+  "type": "hamncheese:popcorn",
+  "popcorn": 75,
+  "flavouring": {
+    "tag": "forge:sugar"
+  },
+  "seasoning": {
+    "tag": "forge:salt"
+  },
+  "result": {
+    "item": "hamncheese:caramel_popcorn"
+  }
+}

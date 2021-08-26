@@ -139,8 +139,13 @@ public class HNCRecipeGen extends RecipeProvider
 
         ShapedRecipeBuilder.shaped(HNCItems.POPCORN_BAG.get()).define('p', Items.PAPER).define('r', Tags.Items.DYES_RED)
                 .pattern("p p").pattern("rpr").unlockedBy("has_paper", has(Items.PAPER)).unlockedBy("has_red_dye", has(Tags.Items.DYES_RED)).save(consumer);
+
+        PopcornRecipeBuilder.popcorn(HNCItems.POPCORN.get(), 2, 50, Ingredient.of(HNCItemTags.SALT))
+                .unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
         PopcornRecipeBuilder.popcorn(HNCItems.CHEESY_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT)).flavouring(Ingredient.of(HNCItems.CHEESE_SLICE.get()))
                 .unlockedBy("has_cheese_slice", has(HNCItems.CHEESE_SLICE.get())).unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
+        PopcornRecipeBuilder.popcorn(HNCItems.CARAMEL_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT)).flavouring(Ingredient.of(HNCItemTags.SUGAR))
+                .unlockedBy("has_sugar", has(HNCItemTags.SUGAR)).unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
     }
 
     public static InventoryChangeTrigger.Instance hasPublic(IItemProvider item)

@@ -52,7 +52,9 @@ public class HNCFoods
     public static final Food CORN_COB = new Food.Builder().nutrition(8).saturationMod(.5f).build();
     public static final Food CORN_KERNELS = divide(CORN_COB, 8f, 2f).build();
 
-    public static final Food CHEESY_POPCORN = times(combine(1f, false, CORN_KERNELS, CHEESE_SLICE, INGREDIENT).build(), 1f, .5f).build();
+    public static final Food POPCORN = times(combine(1f, false, CORN_KERNELS, INGREDIENT).build(), 1f, .5f).build();
+    public static final Food CHEESY_POPCORN = times(combine(1f, false, POPCORN, CHEESE_SLICE).build(), 1f, .5f).build();
+    public static final Food CARAMEL_POPCORN = times(combine(1f, false, POPCORN, INGREDIENT).build(), 1f, .5f).build();
 
     public static final Food MOUSE = new Food.Builder().nutrition(2).saturationMod(.3f).meat().effect(HUNGER_EFFECT, .3f).build();
     public static final Food COOKED_MOUSE =  new Food.Builder().nutrition(4).saturationMod(.6f).meat().build();

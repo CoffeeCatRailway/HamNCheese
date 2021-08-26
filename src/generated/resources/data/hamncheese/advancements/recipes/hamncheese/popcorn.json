@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:popcorn"
+    ]
+  },
+  "criteria": {
+    "has_salt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:salt"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:popcorn"
+      }
+    },
+    "has_bag": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:popcorn_bag"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_salt",
+      "has_the_recipe",
+      "has_bag"
+    ]
+  ]
+}
