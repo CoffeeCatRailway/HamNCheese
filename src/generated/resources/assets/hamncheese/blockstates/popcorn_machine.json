@@ -1,63 +1,63 @@
 {
   "variants": {
     "facing=north,lit=false,waterlogged=false": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_empty",
       "y": 180
     },
     "facing=south,lit=false,waterlogged=false": {
-      "model": "hamncheese:block/popcorn_machine"
+      "model": "hamncheese:block/popcorn_machine_empty"
     },
     "facing=west,lit=false,waterlogged=false": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_empty",
       "y": 90
     },
     "facing=east,lit=false,waterlogged=false": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_empty",
       "y": 270
     },
     "facing=north,lit=true,waterlogged=false": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_full",
       "y": 180
     },
     "facing=south,lit=true,waterlogged=false": {
-      "model": "hamncheese:block/popcorn_machine"
+      "model": "hamncheese:block/popcorn_machine_full"
     },
     "facing=west,lit=true,waterlogged=false": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_full",
       "y": 90
     },
     "facing=east,lit=true,waterlogged=false": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_full",
       "y": 270
     },
     "facing=north,lit=false,waterlogged=true": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_empty",
       "y": 180
     },
     "facing=south,lit=false,waterlogged=true": {
-      "model": "hamncheese:block/popcorn_machine"
+      "model": "hamncheese:block/popcorn_machine_empty"
     },
     "facing=west,lit=false,waterlogged=true": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_empty",
       "y": 90
     },
     "facing=east,lit=false,waterlogged=true": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_empty",
       "y": 270
     },
     "facing=north,lit=true,waterlogged=true": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_full",
       "y": 180
     },
     "facing=south,lit=true,waterlogged=true": {
-      "model": "hamncheese:block/popcorn_machine"
+      "model": "hamncheese:block/popcorn_machine_full"
     },
     "facing=west,lit=true,waterlogged=true": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_full",
       "y": 90
     },
     "facing=east,lit=true,waterlogged=true": {
-      "model": "hamncheese:block/popcorn_machine",
+      "model": "hamncheese:block/popcorn_machine_full",
       "y": 270
     }
   }

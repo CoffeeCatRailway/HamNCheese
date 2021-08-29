@@ -137,7 +137,7 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
     public void tick()
     {
         boolean updateFlag = false;
-        boolean flavourFlag = this.flavourTime > 0;
+        boolean popcornFlag = this.popcornAmount > 0;
 
         if (this.hasLevel() && !this.level.isClientSide())
         {
@@ -186,10 +186,10 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
                 this.sendUpdates(this);
             }
 
-            if (flavourFlag != this.flavourTime > 0)
+            if (popcornFlag != this.popcornAmount > 0)
             {
                 updateFlag = true;
-                this.level.setBlock(this.getBlockPos(), this.level.getBlockState(this.getBlockPos()).setValue(PopcornMachineBlock.LIT, this.flavourTime > 0), Constants.BlockFlags.DEFAULT);
+                this.level.setBlock(this.getBlockPos(), this.level.getBlockState(this.getBlockPos()).setValue(PopcornMachineBlock.LIT, this.popcornAmount > 0), Constants.BlockFlags.DEFAULT);
             }
         }
 

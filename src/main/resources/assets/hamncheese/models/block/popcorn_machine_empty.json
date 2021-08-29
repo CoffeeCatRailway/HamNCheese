@@ -1,0 +1,8 @@
+{
+  "parent": "hamncheese:block/popcorn_machine",
+  "textures": {
+    "popcorn": "hamncheese:block/popcorn_empty",
+    "kernels": "hamncheese:block/empty",
+    "bucket": "hamncheese:block/popcorn_machine_empty"
+  }
+}
