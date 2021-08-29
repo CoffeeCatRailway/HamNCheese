@@ -141,6 +141,13 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
 
         if (this.hasLevel() && !this.level.isClientSide())
         {
+            ItemStack kernelsStack = this.getItem(SLOT_KERNELS);
+            if (!kernelsStack.isEmpty() && this.level.getGameTime() % 5L == 0L && this.popcornAmount + 50 <= MAX_POPCORN)
+            {
+                kernelsStack.shrink(1);
+                this.popcornAmount += 50;
+            }
+
             if (!this.getItem(SLOT_BAG).isEmpty() && !this.getItem(SLOT_SEASONING).isEmpty())
             {
                 this.recipe = this.level.getRecipeManager().getRecipeFor(HNCRecipes.POPCORN_TYPE, this, this.level).orElse(null);
