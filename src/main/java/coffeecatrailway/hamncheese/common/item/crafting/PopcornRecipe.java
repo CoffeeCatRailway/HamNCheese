@@ -111,9 +111,7 @@ public class PopcornRecipe implements IRecipe<PopcornMachineTileEntity>
         public PopcornRecipe fromNetwork(ResourceLocation id, PacketBuffer buffer)
         {
             int popcorn = buffer.readVarInt();
-            Ingredient flavouring = Ingredient.EMPTY;
-            if (!buffer.readBoolean())
-                flavouring = Ingredient.fromNetwork(buffer);
+            Ingredient flavouring = Ingredient.fromNetwork(buffer);
             Ingredient seasoning = Ingredient.fromNetwork(buffer);
             ItemStack result = buffer.readItem();
             return new PopcornRecipe(id, popcorn, flavouring, seasoning, result);
@@ -123,10 +121,7 @@ public class PopcornRecipe implements IRecipe<PopcornMachineTileEntity>
         public void toNetwork(PacketBuffer buffer, PopcornRecipe recipe)
         {
             buffer.writeVarInt(recipe.popcorn);
-            if (recipe.flavouring.isEmpty())
-                buffer.writeBoolean(true);
-            else
-                recipe.flavouring.toNetwork(buffer);
+            recipe.flavouring.toNetwork(buffer);
             recipe.seasoning.toNetwork(buffer);
             buffer.writeItem(recipe.result);
         }
