@@ -41,7 +41,7 @@ public class HNCRecipes
             @Override
             public String toString()
             {
-                return id;
+                return Registry.RECIPE_TYPE.getKey(this).toString();
             }
         });
     }
