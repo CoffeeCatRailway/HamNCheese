@@ -19,7 +19,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "${project.version}-${project.mcVersion}"
+version = project.version
 group = 'coffeecatrailway.' + project.modId
 archivesBaseName = project.modId
 
