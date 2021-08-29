@@ -42,10 +42,10 @@ public class HNCMod
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         Sonar.init(bus);
+        HNCConfig.Server.init(ModLoadingContext.get());
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> bus.addListener(ClientEvents::init));
         bus.addListener(CommonEvents::init);
         bus.addListener(this::onGatherData);
-        HNCConfig.Server.init(ModLoadingContext.get());
 
         MinecraftForge.EVENT_BUS.register(this);
 

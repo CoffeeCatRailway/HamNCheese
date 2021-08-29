@@ -19,18 +19,10 @@ import java.util.Locale;
 public class HNCConfig
 {
     public static Server SERVER;
-    private static final ForgeConfigSpec SERVER_SPEC;
+    private static ForgeConfigSpec SERVER_SPEC;
 
     private static final String CONFIG = "config." + HNCMod.MOD_ID + ".";
     private static final Logger LOGGER = HNCMod.getLogger("Config");
-
-    static
-    {
-        Pair<Server, ForgeConfigSpec> server = new ForgeConfigSpec.Builder().configure(HNCConfig.Server::new);
-        SERVER_SPEC = server.getRight();
-        SERVER = server.getLeft();
-        LOGGER.info("Register config(s)");
-    }
 
     public static class Server
     {
@@ -147,6 +139,13 @@ public class HNCConfig
 
         public static void init(ModLoadingContext context)
         {
+            if (SERVER_SPEC == null)
+            {
+                Pair<Server, ForgeConfigSpec> server = new ForgeConfigSpec.Builder().configure(HNCConfig.Server::new);
+                SERVER_SPEC = server.getRight();
+                SERVER = server.getLeft();
+                LOGGER.info("Register config(s)");
+            }
             context.registerConfig(ModConfig.Type.SERVER, SERVER_SPEC);
         }
     }
