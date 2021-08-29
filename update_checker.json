@@ -1,16 +1,16 @@
 {
   "homepage": "https://www.curseforge.com/minecraft/mc-mods/coffeecheese",
   "1.16.5": {
-    "2.0.0": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3281605",
-    "2.0.1": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3283911",
-    "2.0.2": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3286151",
-    "2.0.3": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3303403",
-    "2.0.4": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3303459",
-    "2.0.5": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3315977",
-    "2.0.6": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3404815"
+    "2.0.0-1.16.5": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3281605",
+    "2.0.1-1.16.5": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3283911",
+    "2.0.2-1.16.5": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3286151",
+    "2.0.3-1.16.5": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3303403",
+    "2.0.4-1.16.5": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3303459",
+    "2.0.5-1.16.5": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3315977",
+    "2.0.6-1.16.5": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3404815"
   },
   "promos": {
-    "1.16.5-latest": "2.0.6",
-    "1.16.5-recommended": "2.0.6"
+    "1.16.5-latest": "2.0.6-1.16.5",
+    "1.16.5-recommended": "2.0.6-1.16.5"
   }
 }
