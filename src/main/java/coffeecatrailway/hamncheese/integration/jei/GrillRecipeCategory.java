@@ -35,12 +35,12 @@ public class GrillRecipeCategory implements IRecipeCategory<GrillRecipe>
 
     public GrillRecipeCategory(IGuiHelper guiHelper)
     {
-        background = guiHelper.createDrawable(GrillScreen.TEXTURE, 29, 16, 118, 63);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(HNCBlocks.GRILL.get()));
+        this.background = guiHelper.createDrawable(GrillScreen.TEXTURE, 29, 16, 118, 63);
+        this.icon = guiHelper.createDrawableIngredient(new ItemStack(HNCBlocks.GRILL.get()));
 
-        flame = guiHelper.drawableBuilder(GrillScreen.TEXTURE, 176, 0, 14, 14)
+        this.flame = guiHelper.drawableBuilder(GrillScreen.TEXTURE, 176, 0, 14, 14)
                 .buildAnimated(200, IDrawableAnimated.StartDirection.TOP, true);
-        arrow = guiHelper.drawableBuilder(GrillScreen.TEXTURE, 176, 14, 24, 17)
+        this.arrow = guiHelper.drawableBuilder(GrillScreen.TEXTURE, 176, 14, 24, 17)
                 .buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
@@ -98,7 +98,7 @@ public class GrillRecipeCategory implements IRecipeCategory<GrillRecipe>
     @Override
     public void draw(GrillRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY)
     {
-        flame.draw(matrixStack, 51, 29);
-        arrow.draw(matrixStack, 47, 10);
+        this.flame.draw(matrixStack, 51, 29);
+        this.arrow.draw(matrixStack, 47, 10);
     }
 }
