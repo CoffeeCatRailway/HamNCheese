@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.integration.jei;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
+import coffeecatrailway.hamncheese.client.gui.screen.PopcornMachineScreen;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.item.crafting.CrackerRecipe;
 import coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
@@ -39,6 +40,7 @@ public class HNCJustEnoughItems implements IModPlugin
 
     protected static final ResourceLocation GRILL_UID = HNCMod.getLocation("category/grill");
     protected static final ResourceLocation OVEN_UID = HNCMod.getLocation("category/oven");
+    protected static final ResourceLocation POPCORN_UID = HNCMod.getLocation("category/popcorn");
 
     @Override
     public ResourceLocation getPluginUid()
@@ -60,6 +62,7 @@ public class HNCJustEnoughItems implements IModPlugin
         IGuiHelper guiHelper = reg.getJeiHelpers().getGuiHelper();
         reg.addRecipeCategories(new GrillRecipeCategory(guiHelper));
         reg.addRecipeCategories(new OvenRecipeCategory(guiHelper));
+        reg.addRecipeCategories(new PopcornRecipeCategory(guiHelper));
     }
 
     @Override
@@ -71,6 +74,7 @@ public class HNCJustEnoughItems implements IModPlugin
 
         reg.addRecipes(getRecipesOfType(HNCRecipes.GRILL_TYPE), GRILL_UID);
         reg.addRecipes(getRecipesOfType(HNCRecipes.PIZZA_OVEN_TYPE), OVEN_UID);
+        reg.addRecipes(getRecipesOfType(HNCRecipes.POPCORN_TYPE), POPCORN_UID);
     }
 
     private static List<IRecipe<?>> getRecipesOfType(IRecipeType<?> type)
@@ -83,6 +87,7 @@ public class HNCJustEnoughItems implements IModPlugin
     {
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.GRILL.get()), GRILL_UID);
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.PIZZA_OVEN.get()), OVEN_UID);
+        reg.addRecipeCatalyst(new ItemStack(HNCBlocks.POPCORN_MACHINE.get()), POPCORN_UID);
     }
 
     @Override
@@ -90,5 +95,6 @@ public class HNCJustEnoughItems implements IModPlugin
     {
         reg.addRecipeClickArea(GrillScreen.class, 76, 26, 24, 17, GRILL_UID);
         reg.addRecipeClickArea(PizzaOvenScreen.class, 88, 18, 24, 17, OVEN_UID);
+        reg.addRecipeClickArea(PopcornMachineScreen.class, 109, 4, 61, 12, POPCORN_UID);
     }
 }
