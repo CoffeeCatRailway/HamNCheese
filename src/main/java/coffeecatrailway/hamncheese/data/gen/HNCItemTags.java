@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.data.gen;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.BlockTagsProvider;
@@ -82,7 +83,7 @@ public class HNCItemTags extends ItemTagsProvider
         this.tag(WHEAT).add(Items.WHEAT);
         this.tag(SUGAR).add(Items.SUGAR);
 
-        this.tag(CHEESE).add(HNCItems.BLOCK_OF_CHEESE.get(), HNCItems.CHEESE_SLICE.get());
+        this.tag(CHEESE).add(HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), HNCItems.CHEESE_SLICE.get());
 
         this.tag(SALT).add(HNCItems.ROCK_SALT.get());
         this.tag(FLOUR).add(HNCItems.FLOUR.get());

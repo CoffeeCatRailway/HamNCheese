@@ -80,7 +80,7 @@ public class HNCLootTables extends ForgeLootTableProvider
                                     .apply(SetCount.setCount(new RandomValueRange(1, 4))))
                             .add(ItemLootEntry.lootTableItem(HNCItems.BREAD_SLICE.get()).setWeight(10)
                                     .apply(SetCount.setCount(new RandomValueRange(1, 8))))
-                            .add(ItemLootEntry.lootTableItem(HNCItems.BLOCK_OF_CHEESE.get()).setWeight(8)
+                            .add(ItemLootEntry.lootTableItem(HNCBlocks.BLOCK_OF_CHEESE.get()).setWeight(8)
                                     .apply(SetCount.setCount(new RandomValueRange(1, 8))))
                             .add(ItemLootEntry.lootTableItem(HNCItems.CHEESE_SLICE.get()).setWeight(10)
                                     .apply(SetCount.setCount(new RandomValueRange(1, 4))))
@@ -211,6 +211,8 @@ public class HNCLootTables extends ForgeLootTableProvider
                             .add(ItemLootEntry.lootTableItem(HNCBlocks.POPCORN_MACHINE.get())
                                     .apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))
                             .when(SurvivesExplosion.survivesExplosion())));
+
+            this.add(HNCBlocks.BLOCK_OF_CHEESE.get(), noDrop());
         }
 
         @Override

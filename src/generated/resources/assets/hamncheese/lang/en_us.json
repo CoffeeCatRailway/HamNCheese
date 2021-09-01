@@ -1,6 +1,7 @@
 {
   "block.hamncheese.acacia_chopping_board": "Acacia Chopping Board",
   "block.hamncheese.birch_chopping_board": "Birch Chopping Board",
+  "block.hamncheese.block_of_cheese": "Block Of Cheese",
   "block.hamncheese.cherry_chopping_board": "Cherry Chopping Board",
   "block.hamncheese.corn_plant": "Corn Plant",
   "block.hamncheese.crimson_chopping_board": "Crimson Chopping Board",
@@ -37,7 +38,6 @@
   "entity.minecraft.villager.hamncheese.chef": "Chef",
   "item.hamncheese.bacon": "Raw Bacon",
   "item.hamncheese.baked_pizza_dummy": "Baked Pizza Dummy",
-  "item.hamncheese.block_of_cheese": "Block Of Cheese",
   "item.hamncheese.bread_slice": "Bread Slice",
   "item.hamncheese.caramel_popcorn": "Caramel Popcorn",
   "item.hamncheese.cheese_slice": "Cheese Slice",

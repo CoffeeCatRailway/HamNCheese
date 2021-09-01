@@ -140,6 +140,12 @@ public class HNCBlockStates extends BlockStateProvider
         this.simpleBlockItem(HNCBlocks.PIZZA_OVEN.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/pizza_oven")));
         this.simpleBlockItem(HNCBlocks.GRILL.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/grill")));
         this.simpleBlockItem(HNCBlocks.POPCORN_MACHINE.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/popcorn_machine_full")));
+
+        // Misc
+        VariantBlockStateBuilder.PartialBlockstate cheese = this.getVariantBuilder(HNCBlocks.BLOCK_OF_CHEESE.get()).partialState();
+        cheese.with(CheeseBlock.BITES, 0).modelForState().modelFile(this.itemModels().getExistingFile(HNCMod.getLocation("block/block_of_cheese"))).addModel();
+        for (int i = 1; i < 4; i++)
+            cheese.with(CheeseBlock.BITES, i).modelForState().modelFile(this.itemModels().getExistingFile(HNCMod.getLocation("block/block_of_cheese_slice" + i))).addModel();
     }
 
     private void choppingBoard(ChoppingBoardBlock choppingBoard, String type, ChoppingBoardType choppingBoardType)

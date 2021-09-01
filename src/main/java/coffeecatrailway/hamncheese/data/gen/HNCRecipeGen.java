@@ -59,9 +59,9 @@ public class HNCRecipeGen extends RecipeProvider
         /*
          * Foods
          */
-        ShapelessRecipeBuilder.shapeless(HNCItems.BLOCK_OF_CHEESE.get(), 2).requires(Items.MILK_BUCKET).requires(HNCItems.CURDLER.get()).unlockedBy("has_milk", has(Items.MILK_BUCKET))
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.BLOCK_OF_CHEESE.get(), 2).requires(Items.MILK_BUCKET).requires(HNCItems.CURDLER.get()).unlockedBy("has_milk", has(Items.MILK_BUCKET))
                 .unlockedBy("has_curdler", has(HNCItems.CURDLER.get())).save(consumer);
-        ShapelessRecipeBuilder.shapeless(HNCItems.CHEESE_SLICE.get(), 3).requires(HNCItems.BLOCK_OF_CHEESE.get()).requires(HNCItems.KNIFE.get()).unlockedBy("has_cheese", has(HNCItems.BLOCK_OF_CHEESE.get()))
+        ShapelessRecipeBuilder.shapeless(HNCItems.CHEESE_SLICE.get(), 3).requires(HNCBlocks.BLOCK_OF_CHEESE.get()).requires(HNCItems.KNIFE.get()).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.ROCK_SALT.get(), 2).requires(HNCItems.GRIND_STONES.get()).requires(Tags.Items.STONE).unlockedBy("has_stone", has(Tags.Items.STONE))

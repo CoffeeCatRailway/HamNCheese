@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.data.gen;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
@@ -68,7 +69,7 @@ public class HNCItemModels implements IDataProvider
         /*
          * Foods
          */
-        this.generateFlatItem(HNCItems.BLOCK_OF_CHEESE.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.CHEESE_SLICE.get(), StockModelShapes.FLAT_ITEM);
 
         this.generateFlatItem(HNCItems.ROCK_SALT.get(), StockModelShapes.FLAT_ITEM);

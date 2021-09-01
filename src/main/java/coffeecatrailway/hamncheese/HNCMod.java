@@ -34,7 +34,7 @@ public class HNCMod
         @OnlyIn(Dist.CLIENT)
         public ItemStack makeIcon()
         {
-            return new ItemStack(HNCItems.BLOCK_OF_CHEESE.get());
+            return new ItemStack(HNCBlocks.BLOCK_OF_CHEESE.get());
         }
     };
 

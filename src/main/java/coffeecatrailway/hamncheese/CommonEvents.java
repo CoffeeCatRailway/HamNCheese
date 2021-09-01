@@ -6,10 +6,7 @@ import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.integration.top.HNCTheOneProbe;
-import coffeecatrailway.hamncheese.registry.HNCEntities;
-import coffeecatrailway.hamncheese.registry.HNCFeatures;
-import coffeecatrailway.hamncheese.registry.HNCItems;
-import coffeecatrailway.hamncheese.registry.HNCProfessions;
+import coffeecatrailway.hamncheese.registry.*;
 import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.ComposterBlock;
@@ -92,7 +89,7 @@ public class CommonEvents
         ComposterBlock.COMPOSTABLES.put(HNCItems.GREEN_EGG.get(), .4f);
 
         // 50% chance
-        ComposterBlock.COMPOSTABLES.put(HNCItems.BLOCK_OF_CHEESE.get(), .5f);
+        ComposterBlock.COMPOSTABLES.put(HNCBlocks.BLOCK_OF_CHEESE.get(), .5f);
         ComposterBlock.COMPOSTABLES.put(HNCItems.DOUGH.get(), .5f);
         ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_PIZZA_BASE.get(), .5f);
         ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_BREAD.get(), .5f);

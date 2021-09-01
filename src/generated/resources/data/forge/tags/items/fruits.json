@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#hamncheese:pineapple",
-    "#hamncheese:tomato",
-    "#hamncheese:corn_cob"
+    "#forge:pineapple",
+    "#forge:tomato",
+    "#forge:corn_cob"
   ]
 }

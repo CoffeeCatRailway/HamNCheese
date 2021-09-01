@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.registry;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.item.*;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
@@ -40,7 +41,6 @@ public class HNCItems
     /*
      * Foods
      */
-    public static final RegistryObject<Item> BLOCK_OF_CHEESE = registerIdAsName("block_of_cheese", prop -> new Item(prop.food(HNCFoods.BLOCK_OF_CHEESE).stacksTo(16)));
     public static final RegistryObject<Item> CHEESE_SLICE = registerIdAsName("cheese_slice", prop -> new Item(prop.food(HNCFoods.CHEESE_SLICE).stacksTo(32)));
 
     public static final RegistryObject<Item> ROCK_SALT = registerIdAsName("rock_salt", prop -> new Item(prop.food(HNCFoods.INGREDIENT)));
