@@ -1,6 +1,5 @@
 package coffeecatrailway.hamncheese.common.block;
 
-import coffeecatrailway.hamncheese.common.tileentity.CookerTileEntity;
 import coffeecatrailway.hamncheese.common.tileentity.TickableLockableTileEntity;
 import io.github.ocelot.sonar.common.block.BaseBlock;
 import net.minecraft.block.Block;

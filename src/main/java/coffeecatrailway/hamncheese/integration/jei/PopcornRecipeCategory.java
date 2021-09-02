@@ -1,6 +1,5 @@
 package coffeecatrailway.hamncheese.integration.jei;
 
-import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PopcornMachineScreen;
 import coffeecatrailway.hamncheese.common.inventory.PopcornMachineContainer;
 import coffeecatrailway.hamncheese.common.item.crafting.PopcornRecipe;
@@ -18,7 +17,6 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;

@@ -2,12 +2,13 @@ package coffeecatrailway.hamncheese.integration.jei;
 
 import coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
-import coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**

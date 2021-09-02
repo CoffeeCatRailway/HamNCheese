@@ -1,7 +1,6 @@
 package coffeecatrailway.hamncheese.client.gui.screen;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.common.inventory.GrillContainer;
 import coffeecatrailway.hamncheese.common.inventory.PopcornMachineContainer;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import com.mojang.blaze3d.matrix.MatrixStack;

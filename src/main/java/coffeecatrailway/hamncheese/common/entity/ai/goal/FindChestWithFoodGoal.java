@@ -61,29 +61,30 @@ public class FindChestWithFoodGoal extends MoveToBlockGoal
     @Override
     public void tick()
     {
+        World level = this.mob.level;
         if (this.isReachedTarget())
         {
             if (this.ticker >= 40)
-                this.eatFoodInChest(this.mob.level, this.mob);
+                this.eatFoodInChest(level, this.mob);
             else
                 this.ticker++;
         } else
         {
-            if (this.mob.level.random.nextFloat() < .05f)
+            if (level.random.nextFloat() < .05f)
                 this.mob.playSound(SoundEvents.FOX_SNIFF, 1f, 1f);
         }
         super.tick();
     }
 
-    private void eatFoodInChest(World world, CreatureEntity entity)
+    private void eatFoodInChest(World level, CreatureEntity entity)
     {
-        if (ForgeEventFactory.getMobGriefingEvent(world, entity))
+        if (ForgeEventFactory.getMobGriefingEvent(level, entity))
         {
-            LazyOptional<IItemHandler> chestCap = this.getChest(world, this.blockPos);
-            chestCap.ifPresent(handler -> {
-                for (int i = 0; i < handler.getSlots(); i++)
+            LazyOptional<IItemHandler> lootContainer = this.getLootContainer(level, this.blockPos);
+            lootContainer.ifPresent(handler -> {
+                for (int i = 0; i < level.random.nextInt(handler.getSlots() / 2 + 1) + handler.getSlots() / 2; i++)
                 {
-                    if (world.random.nextFloat() < .05f)
+                    if (level.random.nextFloat() < .05f)
                     {
                         ItemStack stack = handler.getStackInSlot(i);
                         Item item = stack.getItem();
@@ -91,11 +92,11 @@ public class FindChestWithFoodGoal extends MoveToBlockGoal
                         {
                             if (!stack.isEmpty() && item.isEdible() && item.getFoodProperties() != null)
                             {
-                                stack = entity.eat(world, stack);
+                                stack = entity.eat(level, stack);
                                 stack.grow(1);
                                 int count = stack.getCount();
                                 handler.extractItem(i, count, false);
-                                handler.insertItem(i, new ItemStack(HNCItems.FOOD_SCRAPS.get(), world.random.nextInt(count + 1)), false);
+                                handler.insertItem(i, new ItemStack(HNCItems.FOOD_SCRAPS.get(), level.random.nextInt(count + 1)), false);
 
                                 entity.heal(item.getFoodProperties().getNutrition() / 2f);
                             }
@@ -107,12 +108,12 @@ public class FindChestWithFoodGoal extends MoveToBlockGoal
     }
 
     @Override
-    protected boolean isValidTarget(IWorldReader world, BlockPos pos)
+    protected boolean isValidTarget(IWorldReader reader, BlockPos pos)
     {
-        LazyOptional<IItemHandler> chestCap = this.getChest(world, pos);
-        if (chestCap.isPresent())
+        LazyOptional<IItemHandler> lootContainer = this.getLootContainer(reader, pos);
+        if (lootContainer.isPresent())
         {
-            IItemHandler handler = chestCap.orElseThrow(() -> new NullPointerException("Inventory Capability was null when present!"));
+            IItemHandler handler = lootContainer.orElseThrow(() -> new NullPointerException("Inventory Capability was null when present!"));
             for (int i = 0; i < handler.getSlots(); i++)
             {
                 ItemStack stack = handler.getStackInSlot(i);
@@ -123,14 +124,14 @@ public class FindChestWithFoodGoal extends MoveToBlockGoal
         return false;
     }
 
-    private LazyOptional<IItemHandler> getChest(IWorldReader world, BlockPos pos)
+    private LazyOptional<IItemHandler> getLootContainer(IWorldReader reader, BlockPos pos)
     {
-        BlockState state = world.getBlockState(pos);
+        BlockState state = reader.getBlockState(pos);
         if (state.is(HNCBlockTags.MOUSE_SEARCH) && !state.is(Tags.Blocks.CHESTS_ENDER))
         {
             if (state.hasTileEntity())
             {
-                TileEntity tile = world.getBlockEntity(pos);
+                TileEntity tile = reader.getBlockEntity(pos);
                 if (tile instanceof LockableLootTileEntity && tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent())
                     return tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
             }

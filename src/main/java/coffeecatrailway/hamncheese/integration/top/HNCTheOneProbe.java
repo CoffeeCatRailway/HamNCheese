@@ -2,7 +2,6 @@ package coffeecatrailway.hamncheese.integration.top;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
-import coffeecatrailway.hamncheese.common.item.crafting.PopcornRecipe;
 import coffeecatrailway.hamncheese.common.tileentity.GrillTileEntity;
 import coffeecatrailway.hamncheese.common.tileentity.PizzaOvenTileEntity;
 import coffeecatrailway.hamncheese.common.tileentity.PopcornMachineTileEntity;
@@ -16,7 +15,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
