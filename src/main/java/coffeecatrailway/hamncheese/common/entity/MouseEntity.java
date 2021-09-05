@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.common.entity;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.entity.ai.goal.FindCheeseGoal;
 import coffeecatrailway.hamncheese.common.entity.ai.goal.FindChestWithFoodGoal;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
 import com.google.common.collect.Lists;
@@ -104,6 +105,7 @@ public class MouseEntity extends AnimalEntity
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, CatEntity.class, 12f, .8d, 1d));
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, OcelotEntity.class, 12f, .8d, 1d));
         this.goalSelector.addGoal(2, new FindChestWithFoodGoal(this, 1.2f, 12, 2));
+        this.goalSelector.addGoal(2, new FindCheeseGoal(this, 1.2f, 15, 3));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, .6d));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 2f));
         this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
