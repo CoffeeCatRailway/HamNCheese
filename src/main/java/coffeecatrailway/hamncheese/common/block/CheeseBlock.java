@@ -23,6 +23,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 
 /**
  * @author CoffeeCatRailway
@@ -79,7 +80,7 @@ public class CheeseBlock extends Block
             player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
             int i = state.getValue(BITES);
             if (i < 3)
-                level.setBlock(blockPos, state.setValue(BITES, Integer.valueOf(i + 1)), 3);
+                level.setBlock(blockPos, state.setValue(BITES, i + 1), Constants.BlockFlags.DEFAULT);
             else
                 level.removeBlock(blockPos, false);
 
