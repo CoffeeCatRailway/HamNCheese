@@ -1,0 +1,172 @@
+{
+  "variants": {
+    "facing=north,waterlogged=false": [
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_0",
+        "y": 180,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_1",
+        "y": 180,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_2",
+        "y": 180,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_3",
+        "y": 180,
+        "weight": 25
+      }
+    ],
+    "facing=south,waterlogged=false": [
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_0",
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_1",
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_2",
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_3",
+        "weight": 25
+      }
+    ],
+    "facing=west,waterlogged=false": [
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_0",
+        "y": 90,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_1",
+        "y": 90,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_2",
+        "y": 90,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_3",
+        "y": 90,
+        "weight": 25
+      }
+    ],
+    "facing=east,waterlogged=false": [
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_0",
+        "y": 270,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_1",
+        "y": 270,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_2",
+        "y": 270,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_3",
+        "y": 270,
+        "weight": 25
+      }
+    ],
+    "facing=north,waterlogged=true": [
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_0",
+        "y": 180,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_1",
+        "y": 180,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_2",
+        "y": 180,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_3",
+        "y": 180,
+        "weight": 25
+      }
+    ],
+    "facing=south,waterlogged=true": [
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_0",
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_1",
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_2",
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_3",
+        "weight": 25
+      }
+    ],
+    "facing=west,waterlogged=true": [
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_0",
+        "y": 90,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_1",
+        "y": 90,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_2",
+        "y": 90,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_3",
+        "y": 90,
+        "weight": 25
+      }
+    ],
+    "facing=east,waterlogged=true": [
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_0",
+        "y": 270,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_1",
+        "y": 270,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_2",
+        "y": 270,
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/mangrove_chopping_board_3",
+        "y": 270,
+        "weight": 25
+      }
+    ]
+  }
+}

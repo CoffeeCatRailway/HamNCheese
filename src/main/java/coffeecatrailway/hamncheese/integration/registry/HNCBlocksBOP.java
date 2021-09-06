@@ -17,17 +17,17 @@ public class HNCBlocksBOP
 
     public static void load()
     {
-        HNCBlocks.FIR_CHOPPING_BOARD = HNCBlocks.register("fir_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.fir_planks)), prop -> prop);
-        HNCBlocks.REDWOOD_CHOPPING_BOARD = HNCBlocks.register("redwood_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.redwood_planks)), prop -> prop);
-        HNCBlocks.CHERRY_CHOPPING_BOARD = HNCBlocks.register("cherry_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.cherry_planks)), prop -> prop);
-        HNCBlocks.MAHOGANY_CHOPPING_BOARD = HNCBlocks.register("mahogany_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.mahogany_planks)), prop -> prop);
-        HNCBlocks.JACARANDA_CHOPPING_BOARD = HNCBlocks.register("jacaranda_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.jacaranda_planks)), prop -> prop);
-        HNCBlocks.PALM_CHOPPING_BOARD = HNCBlocks.register("palm_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.palm_planks)), prop -> prop);
-        HNCBlocks.WILLOW_CHOPPING_BOARD = HNCBlocks.register("willow_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.willow_planks)), prop -> prop);
-        HNCBlocks.DEAD_CHOPPING_BOARD = HNCBlocks.register("dead_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.dead_planks)), prop -> prop);
-        HNCBlocks.MAGIC_CHOPPING_BOARD = HNCBlocks.register("magic_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.magic_planks)), prop -> prop);
-        HNCBlocks.UMBRAN_CHOPPING_BOARD = HNCBlocks.register("umbran_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.umbran_planks)), prop -> prop);
-        HNCBlocks.HELLBARK_CHOPPING_BOARD = HNCBlocks.register("hellbark_chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(BOPBlocks.hellbark_planks)), prop -> prop);
+        HNCBlocks.FIR_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("fir_chopping_board", () -> BOPBlocks.fir_planks);
+        HNCBlocks.REDWOOD_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("redwood_chopping_board", () -> BOPBlocks.redwood_planks);
+        HNCBlocks.CHERRY_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("cherry_chopping_board", () -> BOPBlocks.cherry_planks);
+        HNCBlocks.MAHOGANY_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("mahogany_chopping_board", () -> BOPBlocks.mahogany_planks);
+        HNCBlocks.JACARANDA_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("jacaranda_chopping_board", () -> BOPBlocks.jacaranda_planks);
+        HNCBlocks.PALM_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("palm_chopping_board", () -> BOPBlocks.palm_planks);
+        HNCBlocks.WILLOW_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("willow_chopping_board", () -> BOPBlocks.willow_planks);
+        HNCBlocks.DEAD_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("dead_chopping_board", () -> BOPBlocks.dead_planks);
+        HNCBlocks.MAGIC_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("magic_chopping_board", () -> BOPBlocks.magic_planks);
+        HNCBlocks.UMBRAN_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("umbran_chopping_board", () -> BOPBlocks.umbran_planks);
+        HNCBlocks.HELLBARK_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("hellbark_chopping_board", () -> BOPBlocks.hellbark_planks);
 
         LOGGER.debug("Loaded");
     }

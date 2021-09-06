@@ -112,6 +112,8 @@ dependencies {
     runtimeOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}")
 
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:${project.bopVersion}")
+    implementation fg.deobf("curse.maven:druidcraft-340991:${project.druidcraftVersion}")
+    implementation fg.deobf("curse.maven:the-twilight-forest-227639:${project.twilightVersion}")
 
     runtimeOnly fg.deobf("curse.maven:catalogue-459701:3335979")
 
@@ -124,7 +126,7 @@ shadowJar {
     configurations = [project.configurations.shade]
     relocate 'io.github.ocelot', 'io.github.ocelot.lib'
 
-    exclude(["**/*.ase", "**/*.bbmodel", "**/assets/biomesoplenty"])
+    exclude(["**/*.ase", "**/*.bbmodel", "**/assets/biomesoplenty", "**/assets/twilightforest", "**/assets/druidcraft"])
 }
 
 processResources {

@@ -194,6 +194,18 @@ public class HNCLootTables extends ForgeLootTableProvider
             this.dropSelf(HNCBlocks.UMBRAN_CHOPPING_BOARD.get());
             this.dropSelf(HNCBlocks.HELLBARK_CHOPPING_BOARD.get());
 
+            this.dropSelf(HNCBlocks.TWILIGHT_OAK_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.CANOPY_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.MANGROVE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.DARK_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.TIME_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.TRANS_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.MINE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.SORT_CHOPPING_BOARD.get());
+
+            this.dropSelf(HNCBlocks.DARKWOOD_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.ELDER_CHOPPING_BOARD.get());
+
             this.add(HNCBlocks.PIZZA_OVEN.get(), LootTable.lootTable()
                     .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
                             .add(ItemLootEntry.lootTableItem(HNCBlocks.PIZZA_OVEN.get())

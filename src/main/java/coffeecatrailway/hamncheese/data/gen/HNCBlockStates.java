@@ -91,6 +91,18 @@ public class HNCBlockStates extends BlockStateProvider
         this.choppingBoard(HNCBlocks.UMBRAN_CHOPPING_BOARD.get(), "umbran", ChoppingBoardType.PLANKS, "biomesoplenty");
         this.choppingBoard(HNCBlocks.HELLBARK_CHOPPING_BOARD.get(), "hellbark", ChoppingBoardType.PLANKS, "biomesoplenty");
 
+        this.choppingBoardTF(HNCBlocks.TWILIGHT_OAK_CHOPPING_BOARD.get(), "twilight_oak");
+        this.choppingBoardTF(HNCBlocks.CANOPY_CHOPPING_BOARD.get(), "canopy");
+        this.choppingBoardTF(HNCBlocks.MANGROVE_CHOPPING_BOARD.get(), "mangrove");
+        this.choppingBoardTF(HNCBlocks.DARK_CHOPPING_BOARD.get(), "dark");
+        this.choppingBoardTF(HNCBlocks.TIME_CHOPPING_BOARD.get(), "time");
+        this.choppingBoardTF(HNCBlocks.TRANS_CHOPPING_BOARD.get(), "trans");
+        this.choppingBoardTF(HNCBlocks.MINE_CHOPPING_BOARD.get(), "mine");
+        this.choppingBoardTF(HNCBlocks.SORT_CHOPPING_BOARD.get(), "sort");
+
+        this.choppingBoard(HNCBlocks.DARKWOOD_CHOPPING_BOARD.get(), "darkwood", ChoppingBoardType.PLANKS, "druidcraft");
+        this.choppingBoard(HNCBlocks.ELDER_CHOPPING_BOARD.get(), "elder", ChoppingBoardType.PLANKS, "druidcraft");
+
         // Pizza Oven & Grill - Initial
         VariantBlockStateBuilder.PartialBlockstate oven = this.getVariantBuilder(HNCBlocks.PIZZA_OVEN.get()).partialState();
         ModelFile ovenModel = this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"));
@@ -148,17 +160,17 @@ public class HNCBlockStates extends BlockStateProvider
             cheese.with(CheeseBlock.BITES, i).modelForState().modelFile(this.itemModels().getExistingFile(HNCMod.getLocation("block/block_of_cheese_slice" + i))).addModel();
     }
 
-    private void choppingBoard(ChoppingBoardBlock choppingBoard, String type, ChoppingBoardType choppingBoardType)
+    private void choppingBoard(ChoppingBoardBlock choppingBoard, String id, ChoppingBoardType choppingBoardType)
     {
-        choppingBoard(choppingBoard, type, choppingBoardType, "minecraft");
+        choppingBoard(choppingBoard, id, choppingBoardType, "minecraft");
     }
 
-    private void choppingBoard(ChoppingBoardBlock choppingBoard, String type, ChoppingBoardType choppingBoardType, String planksModId)
+    private void choppingBoard(ChoppingBoardBlock choppingBoard, String id, ChoppingBoardType choppingBoardType, String planksModId)
     {
         VariantBlockStateBuilder.PartialBlockstate partialState = this.getVariantBuilder(choppingBoard).partialState();
-        String path = "block/" + type + "_chopping_board";
+        String path = "block/" + id + "_chopping_board";
         ResourceLocation parent = HNCMod.getLocation("block/chopping_board");
-        BlockModelBuilder model = this.models().withExistingParent(path, parent).texture("planks", new ResourceLocation(planksModId, "block/" + choppingBoardType.apply(type)));
+        BlockModelBuilder model = this.models().withExistingParent(path, parent).texture("planks", new ResourceLocation(planksModId, "block/" + choppingBoardType.apply(id, true)));
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
             partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, false)
@@ -168,21 +180,47 @@ public class HNCBlockStates extends BlockStateProvider
         }
         this.simpleBlockItem(choppingBoard, this.itemModels().getExistingFile(HNCMod.getLocation(path)));
     }
+    
+    private void choppingBoardTF(ChoppingBoardBlock choppingBoard, String id)
+    {
+        VariantBlockStateBuilder.PartialBlockstate partialState = this.getVariantBuilder(choppingBoard).partialState();
+        String path = "block/" + id + "_chopping_board";
+        ResourceLocation parent = HNCMod.getLocation("block/chopping_board");
+        Function<Integer, BlockModelBuilder> model = inc -> this.models().withExistingParent(path + "_" + inc, parent).texture("planks", new ResourceLocation("twilightforest", "block/wood/" + ChoppingBoardType.PLANKS.apply(id.equals("dark") ? "darkwood" : id, false) + "_" + inc));
+        for (Direction direction : Direction.Plane.HORIZONTAL)
+        {
+            partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, false).addModels(
+                    partialState.modelForState().rotationY((int) direction.toYRot()).modelFile(model.apply(0)).weight(25).buildLast(),
+                    partialState.modelForState().rotationY((int) direction.toYRot()).modelFile(model.apply(1)).weight(25).buildLast(),
+                    partialState.modelForState().rotationY((int) direction.toYRot()).modelFile(model.apply(2)).weight(25).buildLast(),
+                    partialState.modelForState().rotationY((int) direction.toYRot()).modelFile(model.apply(3)).weight(25).buildLast()
+            );
+            partialState.with(ChoppingBoardBlock.HORIZONTAL_FACING, direction).with(ChoppingBoardBlock.WATERLOGGED, true).addModels(
+                    partialState.modelForState().rotationY((int) direction.toYRot()).modelFile(model.apply(0)).weight(25).buildLast(),
+                    partialState.modelForState().rotationY((int) direction.toYRot()).modelFile(model.apply(1)).weight(25).buildLast(),
+                    partialState.modelForState().rotationY((int) direction.toYRot()).modelFile(model.apply(2)).weight(25).buildLast(),
+                    partialState.modelForState().rotationY((int) direction.toYRot()).modelFile(model.apply(3)).weight(25).buildLast()
+            );
+        }
+        this.simpleBlockItem(choppingBoard, this.itemModels().getExistingFile(HNCMod.getLocation(path + "_0")));
+    }
 
     enum ChoppingBoardType
     {
-        EMPTY(type -> type + ""), PLANKS(type -> type + "_planks"), BLOCK(type -> type + "_block");
+        EMPTY(""), PLANKS("planks"), BLOCK("block");
 
-        final Function<String, String> textureFactory;
+        final String fix;
 
-        ChoppingBoardType(Function<String, String> textureFactory)
+        ChoppingBoardType(String fix)
         {
-            this.textureFactory = textureFactory;
+            this.fix = fix;
         }
 
-        String apply(String type)
+        String apply(String id, boolean suffix)
         {
-            return this.textureFactory.apply(type);
+            if (this == EMPTY)
+                return id;
+            return suffix ? id + "_" + this.fix : this.fix + "_" + id;
         }
     }
 }

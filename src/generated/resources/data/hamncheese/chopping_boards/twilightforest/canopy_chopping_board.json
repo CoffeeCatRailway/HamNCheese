@@ -1,0 +1,7 @@
+{
+  "pressurePlate": "twilightforest:canopy_plate",
+  "board": "hamncheese:canopy_chopping_board",
+  "sound": "minecraft:block.wood.place",
+  "toolType": "axe",
+  "modId": "twilightforest"
+}

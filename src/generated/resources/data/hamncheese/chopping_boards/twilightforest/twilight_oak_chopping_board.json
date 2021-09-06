@@ -1,0 +1,7 @@
+{
+  "pressurePlate": "twilightforest:twilight_oak_plate",
+  "board": "hamncheese:twilight_oak_chopping_board",
+  "sound": "minecraft:block.wood.place",
+  "toolType": "axe",
+  "modId": "twilightforest"
+}

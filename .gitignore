@@ -27,3 +27,5 @@ src/generated/resources/.cache/cache
 *.ase
 *.bbmodel
 src/main/resources/assets/biomesoplenty
+src/main/resources/assets/twilightforest
+src/main/resources/assets/druidcraft
