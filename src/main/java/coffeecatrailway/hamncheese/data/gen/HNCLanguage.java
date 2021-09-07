@@ -61,7 +61,8 @@ public class HNCLanguage extends LanguageProvider
         return new TranslationTextComponent("container.hamncheese.popcorn_machine.popcorn", popcorn);
     }
 
-    public static String capitalize(String id) {
+    public static String capitalize(String id)
+    {
         String[] names = id.split("_");
         StringBuilder builder = new StringBuilder();
         int i = 0;

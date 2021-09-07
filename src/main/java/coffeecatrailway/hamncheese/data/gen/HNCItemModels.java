@@ -7,6 +7,7 @@ import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -53,22 +54,16 @@ public class HNCItemModels implements IDataProvider
 
     private void register()
     {
-        /*
-         * Crafting Ingredients
-         */
+        // Crafting Ingredients
         this.generateFlatItem(HNCItems.WOODEN_GEAR.get(), StockModelShapes.FLAT_ITEM);
 
-        /*
-         * Tools
-         */
+        // Tools
         this.generateFlatItem(HNCItems.CURDLER.get(), StockModelShapes.FLAT_HANDHELD_ITEM);
         this.generateFlatItem(HNCItems.ROLLING_PIN.get(), StockModelShapes.FLAT_HANDHELD_ITEM);
         this.generateFlatItem(HNCItems.GRIND_STONES.get(), StockModelShapes.FLAT_HANDHELD_ITEM);
         this.generateFlatItem(HNCItems.KNIFE.get(), StockModelShapes.FLAT_HANDHELD_ITEM);
 
-        /*
-         * Foods
-         */
+        // Foods
         this.generateFlatItem(HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.CHEESE_SLICE.get(), StockModelShapes.FLAT_ITEM);
 
@@ -121,6 +116,11 @@ public class HNCItemModels implements IDataProvider
         this.generateFlatItem(HNCItems.COOKED_MOUSE.get(), StockModelShapes.FLAT_ITEM);
 
         this.generateFlatItem(HNCItems.FOOD_SCRAPS.get(), StockModelShapes.FLAT_ITEM);
+
+        // Misc
+        this.generateFlatItem(HNCBlocks.MAPLE_SAPLING.get().asItem(), HNCMod.getLocation("block/maple_sapling"), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCBlocks.MAPLE_SIGN.get().asItem(), HNCMod.getLocation("item/maple_sign"), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCBlocks.MAPLE_DOOR.get().asItem(), HNCMod.getLocation("item/maple_door"), StockModelShapes.FLAT_ITEM);
     }
 
     private void generateFlatItem(Item item, ModelsUtil modelsUtil)

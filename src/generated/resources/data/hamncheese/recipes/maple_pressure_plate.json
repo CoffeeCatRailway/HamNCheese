@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_pressure_plate",
+  "pattern": [
+    "pp"
+  ],
+  "key": {
+    "p": {
+      "item": "hamncheese:maple_planks"
+    }
+  },
+  "result": {
+    "item": "hamncheese:maple_pressure_plate"
+  }
+}

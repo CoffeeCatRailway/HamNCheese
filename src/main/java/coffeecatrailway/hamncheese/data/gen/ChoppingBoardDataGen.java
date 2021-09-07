@@ -69,6 +69,8 @@ public class ChoppingBoardDataGen implements IDataProvider {
         addChoppingBoard(new ChoppingBoard(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE, HNCBlocks.GOLD_CHOPPING_BOARD.get(), SoundEvents.METAL_PLACE, "pickaxe"));
         addChoppingBoard(new ChoppingBoard(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE, HNCBlocks.IRON_CHOPPING_BOARD.get(), SoundEvents.METAL_PLACE, "pickaxe"));
 
+        addChoppingBoard(new ChoppingBoard(HNCBlocks.MAPLE_PRESSURE_PLATE.get(), HNCBlocks.MAPLE_CHOPPING_BOARD.get(), SoundEvents.WOOD_PLACE, "axe"));
+
         addChoppingBoard(new ChoppingBoard(BOPBlocks.fir_pressure_plate, HNCBlocks.FIR_CHOPPING_BOARD.get(), SoundEvents.WOOD_PLACE, "axe"), "biomesoplenty");
         addChoppingBoard(new ChoppingBoard(BOPBlocks.redwood_pressure_plate, HNCBlocks.REDWOOD_CHOPPING_BOARD.get(), SoundEvents.WOOD_PLACE, "axe"), "biomesoplenty");
         addChoppingBoard(new ChoppingBoard(BOPBlocks.cherry_pressure_plate, HNCBlocks.CHERRY_CHOPPING_BOARD.get(), SoundEvents.WOOD_PLACE, "axe"), "biomesoplenty");

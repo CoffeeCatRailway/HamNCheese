@@ -9,6 +9,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
@@ -69,6 +70,8 @@ public class HNCItemTags extends ItemTagsProvider
 
     public static final ITag.INamedTag<Item> JEI_FOOD_BLACKLIST = ItemTags.createOptional(HNCMod.getLocation("jei_food_blacklist"));
 
+    public static final ITag.INamedTag<Item> MAPLE_LOGS = ItemTags.createOptional(HNCMod.getLocation("maple_logs"));
+
     public HNCItemTags(DataGenerator generator, BlockTagsProvider provider, @Nullable ExistingFileHelper fileHelper)
     {
         super(generator, provider, HNCMod.MOD_ID, fileHelper);
@@ -122,5 +125,20 @@ public class HNCItemTags extends ItemTagsProvider
         this.tag(CAMPFIRES).add(Blocks.CAMPFIRE.asItem(), Blocks.SOUL_CAMPFIRE.asItem());
 
         this.tag(JEI_FOOD_BLACKLIST).addTags(BREAD_SLICE, CRACKER, PIZZA, TOMATO_SAUCE).add(HNCItems.CRACKER_DUMMY.get(), HNCItems.BAKED_PIZZA_DUMMY.get());
+
+        this.tag(ItemTags.PLANKS).add(HNCBlocks.MAPLE_PLANKS.get().asItem());
+        this.tag(ItemTags.WOODEN_BUTTONS).add(HNCBlocks.MAPLE_BUTTON.get().asItem());
+        this.tag(ItemTags.WOODEN_DOORS).add(HNCBlocks.MAPLE_DOOR.get().asItem());
+        this.tag(ItemTags.WOODEN_STAIRS).add(HNCBlocks.MAPLE_STAIRS.get().asItem());
+        this.tag(ItemTags.WOODEN_SLABS).add(HNCBlocks.MAPLE_SLAB.get().asItem());
+        this.tag(ItemTags.WOODEN_FENCES).add(HNCBlocks.MAPLE_FENCE.get().asItem());
+        this.tag(ItemTags.SAPLINGS).add(HNCBlocks.MAPLE_SAPLING.get().asItem());
+        this.tag(MAPLE_LOGS).add(HNCBlocks.MAPLE_LOG.get().asItem(), HNCBlocks.MAPLE_WOOD.get().asItem(), HNCBlocks.STRIPPED_MAPLE_LOG.get().asItem(), HNCBlocks.STRIPPED_MAPLE_WOOD.get().asItem());
+        this.tag(ItemTags.LOGS_THAT_BURN).addTag(MAPLE_LOGS);
+        this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(HNCBlocks.MAPLE_PRESSURE_PLATE.get().asItem());
+        this.tag(ItemTags.LEAVES).add(HNCBlocks.MAPLE_LEAVES.get().asItem());
+        this.tag(ItemTags.WOODEN_TRAPDOORS).add(HNCBlocks.MAPLE_TRAPDOOR.get().asItem());
+        this.tag(ItemTags.SIGNS).add(HNCBlocks.MAPLE_SIGN.get().asItem());
+//        this.tag(ItemTags.BOATS).add(HNCItems.MAPLE_BOAT);
     }
 }

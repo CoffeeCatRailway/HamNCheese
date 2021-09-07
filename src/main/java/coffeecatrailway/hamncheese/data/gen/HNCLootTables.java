@@ -225,6 +225,26 @@ public class HNCLootTables extends ForgeLootTableProvider
                             .when(SurvivesExplosion.survivesExplosion())));
 
             this.add(HNCBlocks.BLOCK_OF_CHEESE.get(), noDrop());
+
+            this.dropSelf(HNCBlocks.MAPLE_LOG.get());
+            this.dropSelf(HNCBlocks.MAPLE_WOOD.get());
+            this.dropSelf(HNCBlocks.STRIPPED_MAPLE_LOG.get());
+            this.dropSelf(HNCBlocks.STRIPPED_MAPLE_WOOD.get());
+            this.add(HNCBlocks.MAPLE_LEAVES.get(), (block) -> createLeavesDrops(block, HNCBlocks.MAPLE_SAPLING.get(), .05f, .0625f, .083333336f, .1f));
+            this.dropSelf(HNCBlocks.MAPLE_SAPLING.get());
+            this.dropPottedContents(HNCBlocks.POTTED_MAPLE_SAPLING.get());
+            this.dropSelf(HNCBlocks.MAPLE_PLANKS.get());
+            this.dropSelf(HNCBlocks.MAPLE_STAIRS.get());
+            this.dropSelf(HNCBlocks.MAPLE_SLAB.get());
+            this.dropSelf(HNCBlocks.MAPLE_SIGN.get());
+            this.add(HNCBlocks.MAPLE_WALL_SIGN.get(), noDrop());
+            this.dropSelf(HNCBlocks.MAPLE_PRESSURE_PLATE.get());
+            this.dropSelf(HNCBlocks.MAPLE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.MAPLE_BUTTON.get());
+            this.dropSelf(HNCBlocks.MAPLE_FENCE.get());
+            this.dropSelf(HNCBlocks.MAPLE_FENCE_GATE.get());
+            this.dropSelf(HNCBlocks.MAPLE_TRAPDOOR.get());
+            this.add(HNCBlocks.MAPLE_DOOR.get(), BlockLootTables::createDoorTable);
         }
 
         @Override

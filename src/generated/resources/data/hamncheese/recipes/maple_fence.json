@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence",
+  "pattern": [
+    "psp",
+    "psp"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "p": {
+      "item": "hamncheese:maple_planks"
+    }
+  },
+  "result": {
+    "item": "hamncheese:maple_fence",
+    "count": 3
+  }
+}

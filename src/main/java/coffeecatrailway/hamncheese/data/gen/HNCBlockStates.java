@@ -3,7 +3,11 @@ package coffeecatrailway.hamncheese.data.gen;
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.*;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -29,40 +33,40 @@ public class HNCBlockStates extends BlockStateProvider
     @Override
     protected void registerStatesAndModels()
     {
-        int age;
+        int i;
         VariantBlockStateBuilder.PartialBlockstate pineapplePlant = this.getVariantBuilder(HNCBlocks.PINEAPPLE_PLANT.get()).partialState();
-        for (age = 0; age < 5; age++)
+        for (i = 0; i < 5; i++)
         {
-            pineapplePlant.with(PineapplePlantBlock.AGE, age).with(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)
-                    .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_bottom_stage_" + age, HNCMod.getLocation("block/pineapple_plant_bottom"))
-                            .texture("plant", HNCMod.getLocation("block/pineapple_plant_stage_" + age))).addModel();
+            pineapplePlant.with(PineapplePlantBlock.AGE, i).with(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)
+                    .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_bottom_stage_" + i, HNCMod.getLocation("block/pineapple_plant_bottom"))
+                            .texture("plant", HNCMod.getLocation("block/pineapple_plant_stage_" + i))).addModel();
 
-            pineapplePlant.with(PineapplePlantBlock.AGE, age).with(PineapplePlantBlock.HALF, DoubleBlockHalf.UPPER)
-                    .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_top_stage_" + age, HNCMod.getLocation("block/pineapple_plant_top"))
-                            .texture("pineapple", HNCMod.getLocation("block/pineapple_stage_" + age))).addModel();
+            pineapplePlant.with(PineapplePlantBlock.AGE, i).with(PineapplePlantBlock.HALF, DoubleBlockHalf.UPPER)
+                    .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_top_stage_" + i, HNCMod.getLocation("block/pineapple_plant_top"))
+                            .texture("pineapple", HNCMod.getLocation("block/pineapple_stage_" + i))).addModel();
         }
 
         VariantBlockStateBuilder.PartialBlockstate tomatoPlant = this.getVariantBuilder(HNCBlocks.TOMATO_PLANT.get()).partialState();
-        for (age = 0; age < 10; age++)
+        for (i = 0; i < 10; i++)
         {
-            tomatoPlant.with(TomatoPlantBlock.AGE, age).with(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER)
-                    .modelForState().modelFile(this.models().crop("block/tomato_plant_bottom_stage_" + age, HNCMod.getLocation("block/tomato_plant_bottom_stage_" + age))).addModel();
+            tomatoPlant.with(TomatoPlantBlock.AGE, i).with(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER)
+                    .modelForState().modelFile(this.models().crop("block/tomato_plant_bottom_stage_" + i, HNCMod.getLocation("block/tomato_plant_bottom_stage_" + i))).addModel();
 
-            tomatoPlant.with(TomatoPlantBlock.AGE, age).with(TomatoPlantBlock.HALF, DoubleBlockHalf.UPPER)
-                    .modelForState().modelFile(this.models().crop("block/tomato_plant_top_stage_" + age, HNCMod.getLocation("block/tomato_plant_top_stage_" + age))).addModel();
+            tomatoPlant.with(TomatoPlantBlock.AGE, i).with(TomatoPlantBlock.HALF, DoubleBlockHalf.UPPER)
+                    .modelForState().modelFile(this.models().crop("block/tomato_plant_top_stage_" + i, HNCMod.getLocation("block/tomato_plant_top_stage_" + i))).addModel();
         }
 
         VariantBlockStateBuilder.PartialBlockstate cornPlant = this.getVariantBuilder(HNCBlocks.CORN_PLANT.get()).partialState();
-        for (age = 0; age < 7; age++)
+        for (i = 0; i < 7; i++)
         {
-            cornPlant.with(CornPlantBlock.AGE, age).with(CornPlantBlock.HALF, DoubleBlockHalf.LOWER)
-                    .modelForState().modelFile(this.models().cross("block/corn_plant_bottom_stage_" + age, HNCMod.getLocation("block/corn_plant_bottom_stage_" + age))).addModel();
+            cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.LOWER)
+                    .modelForState().modelFile(this.models().cross("block/corn_plant_bottom_stage_" + i, HNCMod.getLocation("block/corn_plant_bottom_stage_" + i))).addModel();
 
-            if (age > 2)
-                cornPlant.with(CornPlantBlock.AGE, age).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER)
-                        .modelForState().modelFile(this.models().cross("block/corn_plant_top_stage_" + age, HNCMod.getLocation("block/corn_plant_top_stage_" + age))).addModel();
+            if (i > 2)
+                cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER)
+                        .modelForState().modelFile(this.models().cross("block/corn_plant_top_stage_" + i, HNCMod.getLocation("block/corn_plant_top_stage_" + i))).addModel();
             else
-                cornPlant.with(CornPlantBlock.AGE, age).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(this.models().getExistingFile(new ResourceLocation("block/air"))).addModel();
+                cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(this.models().getExistingFile(new ResourceLocation("block/air"))).addModel();
         }
 
         this.choppingBoard(HNCBlocks.OAK_CHOPPING_BOARD.get(), "oak", ChoppingBoardType.PLANKS);
@@ -156,8 +160,110 @@ public class HNCBlockStates extends BlockStateProvider
         // Misc
         VariantBlockStateBuilder.PartialBlockstate cheese = this.getVariantBuilder(HNCBlocks.BLOCK_OF_CHEESE.get()).partialState();
         cheese.with(CheeseBlock.BITES, 0).modelForState().modelFile(this.itemModels().getExistingFile(HNCMod.getLocation("block/block_of_cheese"))).addModel();
-        for (int i = 1; i < 4; i++)
+        for (i = 1; i < 4; i++)
             cheese.with(CheeseBlock.BITES, i).modelForState().modelFile(this.itemModels().getExistingFile(HNCMod.getLocation("block/block_of_cheese_slice" + i))).addModel();
+
+        this.axisBlock(HNCBlocks.MAPLE_LOG.get());
+        this.toItem(HNCBlocks.MAPLE_LOG.get());
+
+        this.axisBlock(HNCBlocks.MAPLE_WOOD.get(), HNCMod.getLocation("block/maple_log_side"), HNCMod.getLocation("block/maple_log_side"));
+        this.toItem(HNCBlocks.MAPLE_WOOD.get());
+
+        this.axisBlock(HNCBlocks.STRIPPED_MAPLE_LOG.get());
+        this.toItem(HNCBlocks.STRIPPED_MAPLE_LOG.get());
+
+        this.axisBlock(HNCBlocks.STRIPPED_MAPLE_WOOD.get(), HNCMod.getLocation("block/stripped_maple_log_side"), HNCMod.getLocation("block/stripped_maple_log_side"));
+        this.toItem(HNCBlocks.STRIPPED_MAPLE_WOOD.get());
+
+        this.simpleBlock(HNCBlocks.MAPLE_LEAVES.get());
+        this.toItem(HNCBlocks.MAPLE_LEAVES.get());
+
+        this.getVariantBuilder(HNCBlocks.MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/maple_sapling", "block/cross").texture("cross", HNCMod.getLocation("block/maple_sapling"))).addModel();
+        this.getVariantBuilder(HNCBlocks.POTTED_MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/potted_maple_sapling", "block/flower_pot_cross").texture("plant", HNCMod.getLocation("block/maple_sapling"))).addModel();
+
+        this.simpleBlock(HNCBlocks.MAPLE_PLANKS.get());
+        this.toItem(HNCBlocks.MAPLE_PLANKS.get());
+
+        this.stairsBlock(HNCBlocks.MAPLE_STAIRS.get(), HNCMod.getLocation("block/maple_planks"));
+        this.toItem(HNCBlocks.MAPLE_STAIRS.get());
+
+        this.slabBlock(HNCBlocks.MAPLE_SLAB.get(), HNCMod.getLocation("block/maple_planks"), HNCMod.getLocation("block/maple_planks"));
+        this.toItem(HNCBlocks.MAPLE_SLAB.get());
+
+        ModelFile signModel = this.models().getBuilder("block/maple_sign").texture("particle", this.blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
+        this.getVariantBuilder(HNCBlocks.MAPLE_SIGN.get()).partialState().modelForState().modelFile(signModel).addModel();
+        this.getVariantBuilder(HNCBlocks.MAPLE_WALL_SIGN.get()).partialState().modelForState().modelFile(signModel).addModel();
+
+        String platePath = HNCBlocks.MAPLE_PRESSURE_PLATE.get().getRegistryName().getPath();
+        ModelFile plateUp = this.models().singleTexture(platePath, new ResourceLocation("block/pressure_plate_up"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
+        ModelFile plateDown = this.models().singleTexture(platePath + "_down", new ResourceLocation("block/pressure_plate_down"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
+        this.getVariantBuilder(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(plateUp).addModel().partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(plateDown).addModel();
+        this.itemModels().getBuilder(platePath).parent(plateUp);
+
+        this.choppingBoard(HNCBlocks.MAPLE_CHOPPING_BOARD.get(), "maple", ChoppingBoardType.PLANKS, HNCMod.MOD_ID);
+
+        String buttonPath = HNCBlocks.MAPLE_BUTTON.get().getRegistryName().getPath();
+        ModelFile buttonModel = this.models().singleTexture(buttonPath, new ResourceLocation("block/button"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
+        ModelFile buttonPressedModel = this.models().singleTexture(buttonPath + "_pressed", new ResourceLocation("block/button_pressed"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
+        ModelFile buttonInventoryModel = this.models().singleTexture(buttonPath + "_inventory", new ResourceLocation("block/button_inventory"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
+        VariantBlockStateBuilder builder = this.getVariantBuilder(HNCBlocks.MAPLE_BUTTON.get());
+        for (Direction dir : Direction.Plane.HORIZONTAL)
+        {
+            for (AttachFace face : AttachFace.values())
+            {
+                int rotX = 0;
+                switch (face)
+                {
+                    case CEILING:
+                        rotX = 180;
+                        break;
+                    case WALL:
+                        rotX = 90;
+                        break;
+                }
+                int rotY = 180;
+                switch (dir)
+                {
+                    case EAST:
+                        rotY = 90;
+                        break;
+                    case WEST:
+                        rotY = 270;
+                        break;
+                    case NORTH:
+                        rotY = 0;
+                        break;
+                }
+                builder.partialState().with(WoodButtonBlock.FACE, face).with(WoodButtonBlock.FACING, dir)
+                        .with(WoodButtonBlock.POWERED, true).modelForState().rotationX(rotX).rotationY(rotY).modelFile(buttonPressedModel).addModel();
+                builder.partialState().with(WoodButtonBlock.FACE, face).with(WoodButtonBlock.FACING, dir)
+                        .with(WoodButtonBlock.POWERED, false).modelForState().rotationX(rotX).rotationY(rotY).modelFile(buttonModel).addModel();
+            }
+        }
+        this.itemModels().getBuilder(buttonPath).parent(buttonInventoryModel);
+
+        this.fenceBlock(HNCBlocks.MAPLE_FENCE.get(), blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
+        this.models().withExistingParent("block/maple_fence_inventory", "block/fence_inventory").texture("texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
+        this.toItem(HNCBlocks.MAPLE_FENCE.get(), HNCMod.getLocation("block/maple_fence_inventory"));
+
+        this.fenceGateBlock(HNCBlocks.MAPLE_FENCE_GATE.get(), blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
+        this.toItem(HNCBlocks.MAPLE_FENCE_GATE.get(), HNCMod.getLocation("block/maple_fence_gate"));
+
+        this.trapdoorBlock(HNCBlocks.MAPLE_TRAPDOOR.get(), HNCMod.getLocation("block/maple_trapdoor"), true);
+        this.toItem(HNCBlocks.MAPLE_TRAPDOOR.get(), HNCMod.getLocation("block/maple_trapdoor_bottom"));
+
+        this.doorBlock(HNCBlocks.MAPLE_DOOR.get(), HNCMod.getLocation("block/maple_door_bottom"), HNCMod.getLocation("block/maple_door_top"));
+    }
+
+    private void toItem(Block block)
+    {
+        this.toItem(block, HNCMod.getLocation("block/" + block.getRegistryName().getPath()));
+    }
+
+    private void toItem(Block block, ResourceLocation model)
+    {
+        String path = block.getRegistryName().getPath();
+        this.itemModels().withExistingParent(path, model);
     }
 
     private void choppingBoard(ChoppingBoardBlock choppingBoard, String id, ChoppingBoardType choppingBoardType)
@@ -180,7 +286,7 @@ public class HNCBlockStates extends BlockStateProvider
         }
         this.simpleBlockItem(choppingBoard, this.itemModels().getExistingFile(HNCMod.getLocation(path)));
     }
-    
+
     private void choppingBoardTF(ChoppingBoardBlock choppingBoard, String id)
     {
         VariantBlockStateBuilder.PartialBlockstate partialState = this.getVariantBuilder(choppingBoard).partialState();
