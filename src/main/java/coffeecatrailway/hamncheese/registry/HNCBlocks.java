@@ -2,6 +2,7 @@ package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.*;
+import coffeecatrailway.hamncheese.common.block.trees.MapleTree;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import coffeecatrailway.hamncheese.integration.registry.HNCBlocksBOP;
 import coffeecatrailway.hamncheese.integration.registry.HNCBlocksDC;
@@ -67,7 +68,7 @@ public class HNCBlocks
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_MAPLE_LOG = registerLog("stripped_maple_log", MaterialColor.SAND);
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_MAPLE_WOOD = registerLog("stripped_maple_wood", MaterialColor.SAND);
     public static final RegistryObject<LeavesBlock> MAPLE_LEAVES = register("maple_leaves", () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.COLOR_RED).strength(.2f).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn((state, reader, blockPos, entityType) -> entityType == EntityType.OCELOT || entityType == EntityType.PARROT).isSuffocating((state, reader, blockPos) -> false).isViewBlocking((state, reader, blockPos) -> false)), prop -> prop);
-    public static final RegistryObject<SaplingBlock> MAPLE_SAPLING = register("maple_sapling", () -> new SaplingBlock(new OakTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)), prop -> prop);
+    public static final RegistryObject<SaplingBlock> MAPLE_SAPLING = register("maple_sapling", () -> new SaplingBlock(new MapleTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)), prop -> prop);
     public static final RegistryObject<FlowerPotBlock> POTTED_MAPLE_SAPLING = registerWithItem("potted_maple_sapling", () -> new FlowerPotBlock(null, MAPLE_SAPLING, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion()), null);
     public static final RegistryObject<Block> MAPLE_PLANKS = register("maple_planks", () -> new Block(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
     public static final RegistryObject<StairsBlock> MAPLE_STAIRS = register("maple_stairs", () -> new StairsBlock(() -> MAPLE_PLANKS.get().defaultBlockState(), AbstractBlock.Properties.copy(MAPLE_PLANKS.get())), prop -> prop);

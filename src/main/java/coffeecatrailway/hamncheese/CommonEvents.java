@@ -130,6 +130,9 @@ public class CommonEvents
                 builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.WILD_CORN_PATCH);
         }
 
+        if (event.getCategory() == Biome.Category.PLAINS || event.getCategory() == Biome.Category.RIVER)
+            builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, HNCFeatures.PLAINS_RIVER_MAPLE_TREE);
+
         HNCEntities.addEntitySpawns(event);
     }
 
