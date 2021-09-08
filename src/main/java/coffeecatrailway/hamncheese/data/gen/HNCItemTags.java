@@ -139,6 +139,6 @@ public class HNCItemTags extends ItemTagsProvider
         this.tag(ItemTags.LEAVES).add(HNCBlocks.MAPLE_LEAVES.get().asItem());
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(HNCBlocks.MAPLE_TRAPDOOR.get().asItem());
         this.tag(ItemTags.SIGNS).add(HNCBlocks.MAPLE_SIGN.get().asItem());
-//        this.tag(ItemTags.BOATS).add(HNCItems.MAPLE_BOAT);
+        this.tag(ItemTags.BOATS).add(HNCItems.MAPLE_BOAT.get());
     }
 }

@@ -158,6 +158,7 @@ public class HNCRecipeGen extends RecipeProvider
         ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_FENCE_GATE.get()).define('s', Items.STICK).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("sps").pattern("sps").group("wooden_fence_gate").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
         ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_TRAPDOOR.get(), 2).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("ppp").pattern("ppp").group("wooden_trapdoor").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
         ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_DOOR.get(), 3).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("pp").pattern("pp").pattern("pp").group("wooden_door").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.MAPLE_BOAT.get()).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("p p").pattern("ppp").group("boat").unlockedBy("in_water", insideOf(Blocks.WATER)).save(consumer);
     }
 
     public static InventoryChangeTrigger.Instance hasPublic(IItemProvider item)

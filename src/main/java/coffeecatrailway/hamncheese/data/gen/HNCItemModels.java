@@ -121,6 +121,7 @@ public class HNCItemModels implements IDataProvider
         this.generateFlatItem(HNCBlocks.MAPLE_SAPLING.get().asItem(), HNCMod.getLocation("block/maple_sapling"), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCBlocks.MAPLE_SIGN.get().asItem(), HNCMod.getLocation("item/maple_sign"), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCBlocks.MAPLE_DOOR.get().asItem(), HNCMod.getLocation("item/maple_door"), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.MAPLE_BOAT.get(), StockModelShapes.FLAT_ITEM);
     }
 
     private void generateFlatItem(Item item, ModelsUtil modelsUtil)

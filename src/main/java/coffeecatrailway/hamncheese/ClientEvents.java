@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese;
 
+import coffeecatrailway.hamncheese.client.entity.HNCBoatEntityRenderer;
 import coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
@@ -59,6 +60,7 @@ public class ClientEvents
     private static void entityRenderers()
     {
         RenderingRegistry.registerEntityRenderingHandler(HNCEntities.MOUSE.get(), MouseRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(HNCEntities.MAPLE_BOAT.get(), HNCBoatEntityRenderer::new);
     }
 
     private static void registerScreen()

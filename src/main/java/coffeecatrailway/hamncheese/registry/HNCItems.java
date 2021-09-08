@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import coffeecatrailway.hamncheese.common.item.*;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.item.BlockNamedItem;
@@ -24,22 +25,16 @@ public class HNCItems
     private static final Logger LOGGER = HNCMod.getLogger("Items");
     protected static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HNCMod.MOD_ID);
 
-    /*
-     * Crafting Ingredients
-     */
+    // Crafting Ingredients
     public static final RegistryObject<Item> WOODEN_GEAR = registerIdAsName("wooden_gear", Item::new);
 
-    /*
-     * Tools
-     */
+    // Tools
     public static final RegistryObject<CraftingToolItem> CURDLER = registerIdAsName("curdler", prop -> new CraftingToolItem(ItemTier.WOOD, 2, 2.5f, prop));
     public static final RegistryObject<CraftingToolItem> ROLLING_PIN = registerIdAsName("rolling_pin", prop -> new CraftingToolItem(ItemTier.WOOD, 1, 2.5f, prop));
     public static final RegistryObject<CraftingToolItem> GRIND_STONES = registerIdAsName("grind_stones", prop -> new CraftingToolItem(ItemTier.STONE, 2, 2.7f, prop));
     public static final RegistryObject<CraftingToolItem> KNIFE = registerIdAsName("knife", prop -> new CraftingToolItem(ItemTier.IRON, 1, 2.5f, prop));
 
-    /*
-     * Foods
-     */
+    // Foods
     public static final RegistryObject<Item> CHEESE_SLICE = registerIdAsName("cheese_slice", prop -> new Item(prop.food(HNCFoods.CHEESE_SLICE).stacksTo(32)));
 
     public static final RegistryObject<Item> ROCK_SALT = registerIdAsName("rock_salt", prop -> new Item(prop.food(HNCFoods.INGREDIENT)));
@@ -95,6 +90,9 @@ public class HNCItems
     public static final RegistryObject<Item> COOKED_MOUSE = registerIdAsName("cooked_mouse", prop -> new Item(prop.food(HNCFoods.COOKED_MOUSE)));
 
     public static final RegistryObject<Item> FOOD_SCRAPS = registerIdAsName("food_scraps", prop -> new Item(prop.food(HNCFoods.FOOD_SCRAPS)));
+
+    // Misc
+    public static final RegistryObject<HNCBoatItem> MAPLE_BOAT = registerIdAsName("maple_boat", prop -> new HNCBoatItem(HNCBoatEntity.ModType.MAPLE, prop.food(HNCFoods.FOOD_SCRAPS)));
 
     protected static <T extends Item> RegistryObject<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
     {

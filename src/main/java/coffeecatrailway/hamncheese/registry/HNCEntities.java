@@ -2,6 +2,7 @@ package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCConfig;
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import io.github.ocelot.sonar.common.item.SpawnEggItemBase;
@@ -36,13 +37,20 @@ public class HNCEntities
 
     public static final Set<Runnable> ATTRIBUTE_MAPS = new HashSet<>();
 
-    public static final RegistryObject<EntityType<MouseEntity>> MOUSE = register("mouse", MouseEntity::new, EntityClassification.AMBIENT, builder -> builder.sized(.8f, .5f).clientTrackingRange(10));
+    public static final RegistryObject<EntityType<MouseEntity>> MOUSE = registerWithEgg("mouse", MouseEntity::new, EntityClassification.AMBIENT, 0xffffff, 0x7a3205, builder -> builder.sized(.8f, .5f).clientTrackingRange(10));
+    public static final RegistryObject<EntityType<HNCBoatEntity>> MAPLE_BOAT = register("maple_boat", HNCBoatEntity::new, EntityClassification.MISC, builder -> builder.sized(1.375f, 0.5625f));
+
+    private static <E extends Entity> RegistryObject<EntityType<E>> registerWithEgg(String id, BiFunction<EntityType<E>, World, E> entityFactory, EntityClassification classification, int bgColor, int spotColor, Function<EntityType.Builder<E>, EntityType.Builder<E>> factory)
+    {
+        RegistryObject<EntityType<E>> object = register(id, entityFactory, classification, factory);
+        HNCItems.registerIdAsName(id + "_spawn_egg", prop -> new SpawnEggItemBase<>(object, bgColor, spotColor, true, prop));
+        return object;
+    }
 
     private static <E extends Entity> RegistryObject<EntityType<E>> register(String id, BiFunction<EntityType<E>, World, E> entityFactory, EntityClassification classification, Function<EntityType.Builder<E>, EntityType.Builder<E>> factory)
     {
         RegistryObject<EntityType<E>> object = ENTITIES.register(id, () -> factory.apply(EntityType.Builder.<E>of(entityFactory::apply, classification)).build(HNCMod.getLocation(id).toString()));
         HNCLanguage.ENTITIES.put(object, HNCLanguage.capitalize(id));
-        HNCItems.registerIdAsName(id + "_spawn_egg", prop -> new SpawnEggItemBase<>(object, 0xffffff, 0x7a3205, true, prop));
         return object;
     }
 
