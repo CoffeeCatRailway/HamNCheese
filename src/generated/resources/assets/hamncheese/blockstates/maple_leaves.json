@@ -1,7 +1,26 @@
 {
   "variants": {
-    "": {
-      "model": "hamncheese:block/maple_leaves"
-    }
+    "": [
+      {
+        "model": "hamncheese:block/maple_leaves_0",
+        "weight": 25
+      },
+      {
+        "model": "hamncheese:block/maple_leaves_1",
+        "weight": 75
+      },
+      {
+        "model": "hamncheese:block/maple_leaves_2",
+        "weight": 75
+      },
+      {
+        "model": "hamncheese:block/maple_leaves_3",
+        "weight": 75
+      },
+      {
+        "model": "hamncheese:block/maple_leaves_4",
+        "weight": 75
+      }
+    ]
   }
 }

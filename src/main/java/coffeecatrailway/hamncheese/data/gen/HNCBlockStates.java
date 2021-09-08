@@ -11,10 +11,7 @@ import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.BlockModelBuilder;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
+import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Function;
@@ -175,8 +172,14 @@ public class HNCBlockStates extends BlockStateProvider
         this.axisBlock(HNCBlocks.STRIPPED_MAPLE_WOOD.get(), HNCMod.getLocation("block/stripped_maple_log_side"), HNCMod.getLocation("block/stripped_maple_log_side"));
         this.toItem(HNCBlocks.STRIPPED_MAPLE_WOOD.get());
 
-        this.simpleBlock(HNCBlocks.MAPLE_LEAVES.get());
-        this.toItem(HNCBlocks.MAPLE_LEAVES.get());
+        VariantBlockStateBuilder.PartialBlockstate leaves = this.getVariantBuilder(HNCBlocks.MAPLE_LEAVES.get()).partialState();
+        Function<Integer, ModelFile> leavesFunction = (j) -> this.models().cubeAll("maple_leaves_" + j, HNCMod.getLocation("block/maple_leaves_" + j));
+        ConfiguredModel[] leavesModels = new ConfiguredModel[5];
+        leavesModels[0] = leaves.modelForState().weight(25).modelFile(leavesFunction.apply(0)).buildLast();
+        for (i = 1; i < 5; i++)
+            leavesModels[i] = leaves.modelForState().weight(75).modelFile(leavesFunction.apply(i)).buildLast();
+        leaves.addModels(leavesModels);
+        this.toItem(HNCBlocks.MAPLE_LEAVES.get(), HNCMod.getLocation("block/maple_leaves_0"));
 
         this.getVariantBuilder(HNCBlocks.MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/maple_sapling", "block/cross").texture("cross", HNCMod.getLocation("block/maple_sapling"))).addModel();
         this.getVariantBuilder(HNCBlocks.POTTED_MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/potted_maple_sapling", "block/flower_pot_cross").texture("plant", HNCMod.getLocation("block/maple_sapling"))).addModel();
