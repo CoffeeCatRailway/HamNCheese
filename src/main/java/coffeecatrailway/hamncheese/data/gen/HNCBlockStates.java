@@ -174,10 +174,10 @@ public class HNCBlockStates extends BlockStateProvider
 
         VariantBlockStateBuilder.PartialBlockstate leaves = this.getVariantBuilder(HNCBlocks.MAPLE_LEAVES.get()).partialState();
         Function<Integer, ModelFile> leavesFunction = (j) -> this.models().cubeAll("maple_leaves_" + j, HNCMod.getLocation("block/maple_leaves_" + j));
-        ConfiguredModel[] leavesModels = new ConfiguredModel[5];
+        ConfiguredModel[] leavesModels = new ConfiguredModel[9];
         leavesModels[0] = leaves.modelForState().weight(25).modelFile(leavesFunction.apply(0)).buildLast();
-        for (i = 1; i < 5; i++)
-            leavesModels[i] = leaves.modelForState().weight(75).modelFile(leavesFunction.apply(i)).buildLast();
+        for (i = 1; i < 9; i++)
+            leavesModels[i] = leaves.modelForState().weight((i % 2 == 0) ? 75 : 50).modelFile(leavesFunction.apply(i)).buildLast();
         leaves.addModels(leavesModels);
         this.toItem(HNCBlocks.MAPLE_LEAVES.get(), HNCMod.getLocation("block/maple_leaves_0"));
 
