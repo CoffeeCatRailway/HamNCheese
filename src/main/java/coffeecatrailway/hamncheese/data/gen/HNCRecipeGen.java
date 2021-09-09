@@ -50,7 +50,7 @@ public class HNCRecipeGen extends RecipeProvider
                 .unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN)).unlockedBy("has_planks", has(net.minecraft.tags.ItemTags.PLANKS)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.GRIND_STONES.get(), 2)
-                .requires(Tags.Items.STONE).unlockedBy("has_stone", has(Tags.Items.STONE)).save(consumer);
+                .requires(Tags.Items.COBBLESTONE).unlockedBy("has_cobble", has(Tags.Items.COBBLESTONE)).save(consumer);
 
         ShapedRecipeBuilder.shaped(HNCItems.KNIFE.get()).define('s', Tags.Items.RODS_WOODEN).define('i', Tags.Items.INGOTS_IRON).pattern("  i").pattern(" i ").pattern("s  ")
                 .unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN)).unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
