@@ -55,6 +55,8 @@ public class ClientEvents
         RenderTypeLookup.setRenderLayer(HNCBlocks.POTTED_MAPLE_SAPLING.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(HNCBlocks.MAPLE_TRAPDOOR.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(HNCBlocks.MAPLE_DOOR.get(), cutoutMipped);
+
+        RenderTypeLookup.setRenderLayer(HNCBlocks.TREE_TAP.get(), cutoutMipped);
     }
 
     private static void entityRenderers()

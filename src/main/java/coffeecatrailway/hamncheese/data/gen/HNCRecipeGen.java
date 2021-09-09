@@ -163,6 +163,7 @@ public class HNCRecipeGen extends RecipeProvider
         ShapedRecipeBuilder.shaped(HNCItems.MAPLE_BOAT.get()).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("p p").pattern("ppp").group("boat").unlockedBy("in_water", insideOf(Blocks.WATER)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.MAPLE_SYRUP.get()).requires(HNCItems.MAPLE_SAP_BOTTLE.get()).requires(HNCItemTags.SUGAR).unlockedBy("has_sap", has(HNCItems.MAPLE_SAP_BOTTLE.get())).unlockedBy("has_sugar", has(HNCItemTags.SUGAR)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCBlocks.TREE_TAP.get()).define('i', Tags.Items.INGOTS_IRON).define('n', Tags.Items.NUGGETS_IRON).pattern(" n").pattern("ii").pattern(" n").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_iron_nugget", has(Tags.Items.NUGGETS_IRON)).save(consumer);
     }
 
     public static InventoryChangeTrigger.Instance hasPublic(IItemProvider item)

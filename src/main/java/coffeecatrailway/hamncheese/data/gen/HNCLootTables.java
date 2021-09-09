@@ -245,6 +245,8 @@ public class HNCLootTables extends ForgeLootTableProvider
             this.dropSelf(HNCBlocks.MAPLE_FENCE_GATE.get());
             this.dropSelf(HNCBlocks.MAPLE_TRAPDOOR.get());
             this.add(HNCBlocks.MAPLE_DOOR.get(), BlockLootTables::createDoorTable);
+
+            this.dropSelf(HNCBlocks.TREE_TAP.get()); // TODO: BUCKET!
         }
 
         @Override

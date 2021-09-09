@@ -83,6 +83,8 @@ public class HNCBlocks
     public static final RegistryObject<TrapDoorBlock> MAPLE_TRAPDOOR = register("maple_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).strength(3f).sound(SoundType.WOOD).noOcclusion().isValidSpawn((state, reader, blockPos, entityType) -> false)), prop -> prop);
     public static final RegistryObject<DoorBlock> MAPLE_DOOR = register("maple_door", () -> new DoorBlock(AbstractBlock.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(3f).sound(SoundType.WOOD).noOcclusion()), prop -> prop);
 
+    public static final RegistryObject<TreeTapBlock> TREE_TAP = register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)), prop -> prop.stacksTo(16));
+
     // Biomes O' Plenty
     public static RegistryObject<ChoppingBoardBlock> FIR_CHOPPING_BOARD;
     public static RegistryObject<ChoppingBoardBlock> REDWOOD_CHOPPING_BOARD;

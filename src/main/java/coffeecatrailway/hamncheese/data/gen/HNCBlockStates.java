@@ -209,7 +209,7 @@ public class HNCBlockStates extends BlockStateProvider
         ModelFile buttonModel = this.models().singleTexture(buttonPath, new ResourceLocation("block/button"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
         ModelFile buttonPressedModel = this.models().singleTexture(buttonPath + "_pressed", new ResourceLocation("block/button_pressed"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
         ModelFile buttonInventoryModel = this.models().singleTexture(buttonPath + "_inventory", new ResourceLocation("block/button_inventory"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-        VariantBlockStateBuilder builder = this.getVariantBuilder(HNCBlocks.MAPLE_BUTTON.get());
+        VariantBlockStateBuilder button = this.getVariantBuilder(HNCBlocks.MAPLE_BUTTON.get());
         for (Direction dir : Direction.Plane.HORIZONTAL)
         {
             for (AttachFace face : AttachFace.values())
@@ -237,9 +237,9 @@ public class HNCBlockStates extends BlockStateProvider
                         rotY = 0;
                         break;
                 }
-                builder.partialState().with(WoodButtonBlock.FACE, face).with(WoodButtonBlock.FACING, dir)
+                button.partialState().with(WoodButtonBlock.FACE, face).with(WoodButtonBlock.FACING, dir)
                         .with(WoodButtonBlock.POWERED, true).modelForState().rotationX(rotX).rotationY(rotY).modelFile(buttonPressedModel).addModel();
-                builder.partialState().with(WoodButtonBlock.FACE, face).with(WoodButtonBlock.FACING, dir)
+                button.partialState().with(WoodButtonBlock.FACE, face).with(WoodButtonBlock.FACING, dir)
                         .with(WoodButtonBlock.POWERED, false).modelForState().rotationX(rotX).rotationY(rotY).modelFile(buttonModel).addModel();
             }
         }
@@ -256,6 +256,23 @@ public class HNCBlockStates extends BlockStateProvider
         this.toItem(HNCBlocks.MAPLE_TRAPDOOR.get(), HNCMod.getLocation("block/maple_trapdoor_bottom"));
 
         this.doorBlock(HNCBlocks.MAPLE_DOOR.get(), HNCMod.getLocation("block/maple_door_bottom"), HNCMod.getLocation("block/maple_door_top"));
+
+        VariantBlockStateBuilder.PartialBlockstate tap = this.getVariantBuilder(HNCBlocks.TREE_TAP.get()).partialState();
+        ModelFile tapModel = this.models().getExistingFile(HNCMod.getLocation("block/tree_tap"));
+        ModelFile[] tapModelLevels = new ModelFile[4];
+        for (i = 0; i < 4; i++)
+            tapModelLevels[i] = this.models().getExistingFile(HNCMod.getLocation("block/tree_tap_level_" + i));
+        for (Direction direction : Direction.Plane.HORIZONTAL)
+        {
+            for (i = 0; i < 4; i++)
+            {
+                tap.with(TreeTapBlock.HORIZONTAL_FACING, direction).with(TreeTapBlock.SAP_LEVEL, i).with(TreeTapBlock.BUCKET, false)
+                        .modelForState().rotationY((int) direction.getOpposite().toYRot()).modelFile(tapModel).addModel();
+                tap.with(TreeTapBlock.HORIZONTAL_FACING, direction).with(TreeTapBlock.SAP_LEVEL, i).with(TreeTapBlock.BUCKET, true)
+                        .modelForState().rotationY((int) direction.getOpposite().toYRot()).modelFile(tapModelLevels[i]).addModel();
+            }
+        }
+        this.toItem(HNCBlocks.TREE_TAP.get(), HNCMod.getLocation("block/tree_tap_level_3"));
     }
 
     private void toItem(Block block)

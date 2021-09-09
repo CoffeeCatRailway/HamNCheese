@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "bucket=false,facing=north,sap_level=0": {
+      "model": "hamncheese:block/tree_tap"
+    },
+    "bucket=true,facing=north,sap_level=0": {
+      "model": "hamncheese:block/tree_tap_level_0"
+    },
+    "bucket=false,facing=south,sap_level=0": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 180
+    },
+    "bucket=true,facing=south,sap_level=0": {
+      "model": "hamncheese:block/tree_tap_level_0",
+      "y": 180
+    },
+    "bucket=false,facing=west,sap_level=0": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 270
+    },
+    "bucket=true,facing=west,sap_level=0": {
+      "model": "hamncheese:block/tree_tap_level_0",
+      "y": 270
+    },
+    "bucket=false,facing=east,sap_level=0": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 90
+    },
+    "bucket=true,facing=east,sap_level=0": {
+      "model": "hamncheese:block/tree_tap_level_0",
+      "y": 90
+    },
+    "bucket=false,facing=north,sap_level=1": {
+      "model": "hamncheese:block/tree_tap"
+    },
+    "bucket=true,facing=north,sap_level=1": {
+      "model": "hamncheese:block/tree_tap_level_1"
+    },
+    "bucket=false,facing=south,sap_level=1": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 180
+    },
+    "bucket=true,facing=south,sap_level=1": {
+      "model": "hamncheese:block/tree_tap_level_1",
+      "y": 180
+    },
+    "bucket=false,facing=west,sap_level=1": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 270
+    },
+    "bucket=true,facing=west,sap_level=1": {
+      "model": "hamncheese:block/tree_tap_level_1",
+      "y": 270
+    },
+    "bucket=false,facing=east,sap_level=1": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 90
+    },
+    "bucket=true,facing=east,sap_level=1": {
+      "model": "hamncheese:block/tree_tap_level_1",
+      "y": 90
+    },
+    "bucket=false,facing=north,sap_level=2": {
+      "model": "hamncheese:block/tree_tap"
+    },
+    "bucket=true,facing=north,sap_level=2": {
+      "model": "hamncheese:block/tree_tap_level_2"
+    },
+    "bucket=false,facing=south,sap_level=2": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 180
+    },
+    "bucket=true,facing=south,sap_level=2": {
+      "model": "hamncheese:block/tree_tap_level_2",
+      "y": 180
+    },
+    "bucket=false,facing=west,sap_level=2": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 270
+    },
+    "bucket=true,facing=west,sap_level=2": {
+      "model": "hamncheese:block/tree_tap_level_2",
+      "y": 270
+    },
+    "bucket=false,facing=east,sap_level=2": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 90
+    },
+    "bucket=true,facing=east,sap_level=2": {
+      "model": "hamncheese:block/tree_tap_level_2",
+      "y": 90
+    },
+    "bucket=false,facing=north,sap_level=3": {
+      "model": "hamncheese:block/tree_tap"
+    },
+    "bucket=true,facing=north,sap_level=3": {
+      "model": "hamncheese:block/tree_tap_level_3"
+    },
+    "bucket=false,facing=south,sap_level=3": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 180
+    },
+    "bucket=true,facing=south,sap_level=3": {
+      "model": "hamncheese:block/tree_tap_level_3",
+      "y": 180
+    },
+    "bucket=false,facing=west,sap_level=3": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 270
+    },
+    "bucket=true,facing=west,sap_level=3": {
+      "model": "hamncheese:block/tree_tap_level_3",
+      "y": 270
+    },
+    "bucket=false,facing=east,sap_level=3": {
+      "model": "hamncheese:block/tree_tap",
+      "y": 90
+    },
+    "bucket=true,facing=east,sap_level=3": {
+      "model": "hamncheese:block/tree_tap_level_3",
+      "y": 90
+    }
+  }
+}

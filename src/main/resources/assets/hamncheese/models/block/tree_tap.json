@@ -1,0 +1,60 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"particle": "hamncheese:block/tree_tap",
+		"tap": "hamncheese:block/tree_tap"
+	},
+	"elements": [
+		{
+			"name": "back",
+			"from": [6, 12, 15.85],
+			"to": [10, 16, 15.85],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 4.5, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 4, 4], "texture": "#tap"}
+			}
+		},
+		{
+			"name": "funel_out",
+			"from": [6.5, 13, 12],
+			"to": [9.5, 15, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 4.5, 0]},
+			"faces": {
+				"north": {"uv": [11, 4, 14, 6], "texture": "#tap"},
+				"east": {"uv": [4, 0, 6, 4], "rotation": 270, "texture": "#tap"},
+				"west": {"uv": [9, 0, 11, 4], "rotation": 90, "texture": "#tap"},
+				"up": {"uv": [6, 0, 9, 4], "rotation": 180, "texture": "#tap"},
+				"down": {"uv": [11, 0, 14, 4], "texture": "#tap"}
+			}
+		},
+		{
+			"name": "funel_in",
+			"from": [7.5, 15, 12],
+			"to": [8.5, 14, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 4.5, 0]},
+			"faces": {
+				"east": {"uv": [6, 4, 7, 8], "rotation": 270, "texture": "#tap"},
+				"west": {"uv": [8, 4, 9, 8], "rotation": 90, "texture": "#tap"},
+				"up": {"uv": [7, 4, 8, 8], "rotation": 180, "texture": "#tap"}
+			}
+		},
+		{
+			"name": "hook",
+			"from": [8, 11, 12],
+			"to": [8, 14, 16],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 12.5, 16]},
+			"faces": {
+				"east": {"uv": [0, 4, 3, 8], "rotation": 270, "texture": "#tap"},
+				"west": {"uv": [3, 4, 6, 8], "rotation": 90, "texture": "#tap"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "tap",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}
