@@ -7,6 +7,7 @@ import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
+import net.minecraft.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -84,6 +85,7 @@ public class HNCItems
     public static final RegistryObject<Item> POPCORN = registerIdAsName("popcorn", prop -> new Item(prop.food(HNCFoods.POPCORN).stacksTo(32)));
     public static final RegistryObject<Item> CHEESY_POPCORN = registerIdAsName("cheesy_popcorn", prop -> new Item(prop.food(HNCFoods.CHEESY_POPCORN).stacksTo(32)));
     public static final RegistryObject<Item> CARAMEL_POPCORN = registerIdAsName("caramel_popcorn", prop -> new Item(prop.food(HNCFoods.CARAMEL_POPCORN).stacksTo(32)));
+    public static final RegistryObject<Item> MAPLE_POPCORN = registerIdAsName("maple_popcorn", prop -> new Item(prop.food(HNCFoods.MAPLE_POPCORN).stacksTo(32)));
     public static final RegistryObject<Item> POPCORN_BAG = registerIdAsName("popcorn_bag", Item::new);
 
     public static final RegistryObject<Item> MOUSE = registerIdAsName("mouse", prop -> new Item(prop.food(HNCFoods.MOUSE)));
@@ -93,6 +95,9 @@ public class HNCItems
 
     // Misc
     public static final RegistryObject<HNCBoatItem> MAPLE_BOAT = registerIdAsName("maple_boat", prop -> new HNCBoatItem(HNCBoatEntity.ModType.MAPLE, prop.food(HNCFoods.FOOD_SCRAPS)));
+
+    public static final RegistryObject<FoodBottleItem> MAPLE_SAP_BOTTLE = registerIdAsName("maple_sap_bottle", prop -> new FoodBottleItem(prop.food(HNCFoods.MAPLE_SAP_BOTTLE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
+    public static final RegistryObject<FoodBottleItem> MAPLE_SYRUP = registerIdAsName("maple_syrup", prop -> new FoodBottleItem(prop.food(HNCFoods.MAPLE_SYRUP).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 
     protected static <T extends Item> RegistryObject<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
     {

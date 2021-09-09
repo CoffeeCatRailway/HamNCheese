@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:maple_syrup"
+    ]
+  },
+  "criteria": {
+    "has_sap": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "hamncheese:maple_sap_bottle"
+          }
+        ]
+      }
+    },
+    "has_sugar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:sugar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:maple_syrup"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sap",
+      "has_sugar",
+      "has_the_recipe"
+    ]
+  ]
+}

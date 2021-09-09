@@ -110,6 +110,7 @@ public class HNCItemModels implements IDataProvider
         this.generateFlatItem(HNCItems.POPCORN.get(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.CHEESY_POPCORN.get(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.CARAMEL_POPCORN.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.MAPLE_POPCORN.get(), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCItems.POPCORN_BAG.get(), StockModelShapes.FLAT_ITEM);
 
         this.generateFlatItem(HNCItems.MOUSE.get(), StockModelShapes.FLAT_ITEM);
@@ -121,7 +122,11 @@ public class HNCItemModels implements IDataProvider
         this.generateFlatItem(HNCBlocks.MAPLE_SAPLING.get().asItem(), HNCMod.getLocation("block/maple_sapling"), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCBlocks.MAPLE_SIGN.get().asItem(), HNCMod.getLocation("item/maple_sign"), StockModelShapes.FLAT_ITEM);
         this.generateFlatItem(HNCBlocks.MAPLE_DOOR.get().asItem(), HNCMod.getLocation("item/maple_door"), StockModelShapes.FLAT_ITEM);
+
         this.generateFlatItem(HNCItems.MAPLE_BOAT.get(), StockModelShapes.FLAT_ITEM);
+
+        this.generateFlatItem(HNCItems.MAPLE_SAP_BOTTLE.get(), StockModelShapes.FLAT_ITEM);
+        this.generateFlatItem(HNCItems.MAPLE_SYRUP.get(), StockModelShapes.FLAT_ITEM);
     }
 
     private void generateFlatItem(Item item, ModelsUtil modelsUtil)

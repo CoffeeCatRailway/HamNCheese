@@ -61,6 +61,10 @@ public class HNCFoods
 
     public static final Food FOOD_SCRAPS = new Food.Builder().nutrition(1).saturationMod(.2f).build();
 
+    public static final Food MAPLE_SAP_BOTTLE = new Food.Builder().nutrition(6).saturationMod(.1f).build();
+    public static final Food MAPLE_SYRUP = combine(1f, false, MAPLE_SAP_BOTTLE, INGREDIENT).build();
+    public static final Food MAPLE_POPCORN = times(combine(1f, false, MAPLE_SYRUP, INGREDIENT).build(), 1f, .5f).build();
+
     private static Food.Builder divide(Food copy, float amount)
     {
         return divide(copy, amount, amount);

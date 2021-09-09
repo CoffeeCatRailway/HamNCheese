@@ -145,6 +145,8 @@ public class HNCRecipeGen extends RecipeProvider
                 .unlockedBy("has_cheese_slice", has(HNCItems.CHEESE_SLICE.get())).unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
         PopcornRecipeBuilder.popcorn(HNCItems.CARAMEL_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT)).flavouring(Ingredient.of(HNCItemTags.SUGAR))
                 .unlockedBy("has_sugar", has(HNCItemTags.SUGAR)).unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
+        PopcornRecipeBuilder.popcorn(HNCItems.MAPLE_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT)).flavouring(Ingredient.of(HNCItems.MAPLE_SYRUP.get()))
+                .unlockedBy("has_syrup", has(HNCItems.MAPLE_SYRUP.get())).unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
 
         ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_WOOD.get(), 3).define('l', HNCBlocks.MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.MAPLE_LOG.get())).save(consumer);
         ShapedRecipeBuilder.shaped(HNCBlocks.STRIPPED_MAPLE_WOOD.get(), 3).define('l', HNCBlocks.STRIPPED_MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.STRIPPED_MAPLE_LOG.get())).save(consumer);
@@ -159,6 +161,8 @@ public class HNCRecipeGen extends RecipeProvider
         ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_TRAPDOOR.get(), 2).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("ppp").pattern("ppp").group("wooden_trapdoor").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
         ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_DOOR.get(), 3).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("pp").pattern("pp").pattern("pp").group("wooden_door").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
         ShapedRecipeBuilder.shaped(HNCItems.MAPLE_BOAT.get()).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("p p").pattern("ppp").group("boat").unlockedBy("in_water", insideOf(Blocks.WATER)).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(HNCItems.MAPLE_SYRUP.get()).requires(HNCItems.MAPLE_SAP_BOTTLE.get()).requires(HNCItemTags.SUGAR).unlockedBy("has_sap", has(HNCItems.MAPLE_SAP_BOTTLE.get())).unlockedBy("has_sugar", has(HNCItemTags.SUGAR)).save(consumer);
     }
 
     public static InventoryChangeTrigger.Instance hasPublic(IItemProvider item)
