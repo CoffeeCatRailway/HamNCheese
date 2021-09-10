@@ -143,6 +143,13 @@ public class TreeTapBlock extends BaseBlock
                     this.setSapLevel(level, pos, state, 0, true);
                     return ActionResultType.SUCCESS;
                 }
+                if (handStack.getItem().equals(HNCItems.MAPLE_SAP_BUCKET.get()))
+                {
+                    handStack.shrink(1);
+                    level.playSound(null, pos, SoundEvents.ARMOR_EQUIP_CHAIN, SoundCategory.BLOCKS, 1f, 1f);
+                    this.setSapLevel(level, pos, state, 3, true);
+                    return ActionResultType.SUCCESS;
+                }
             }
         }
         return ActionResultType.PASS;
