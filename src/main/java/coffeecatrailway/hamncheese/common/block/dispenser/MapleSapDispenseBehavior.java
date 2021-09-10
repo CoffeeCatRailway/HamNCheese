@@ -15,6 +15,8 @@ import net.minecraft.world.World;
  */
 public class MapleSapDispenseBehavior extends DefaultDispenseItemBehavior
 {
+    private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
+
     @Override
     protected ItemStack execute(IBlockSource source, ItemStack stack)
     {
@@ -25,6 +27,6 @@ public class MapleSapDispenseBehavior extends DefaultDispenseItemBehavior
             bucket.checkExtraContent(level, stack, blockpos);
             return new ItemStack(Items.BUCKET);
         } else
-            return super.dispense(source, stack);
+            return this.defaultBehavior.dispense(source, stack);
     }
 }

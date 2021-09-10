@@ -1,7 +1,9 @@
 package coffeecatrailway.hamncheese;
 
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
+import coffeecatrailway.hamncheese.common.block.dispenser.HNCDispenseBoatBehavior;
 import coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
+import coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
@@ -70,6 +72,7 @@ public class CommonEvents
         HNCEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);
         HNCEntities.registerSpawnPlacements();
 
+        DispenserBlock.registerBehavior(HNCItems.MAPLE_BOAT.get(), new HNCDispenseBoatBehavior(HNCBoatEntity.ModType.MAPLE));
         DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BUCKET.get(), new MapleSapDispenseBehavior());
     }
 
