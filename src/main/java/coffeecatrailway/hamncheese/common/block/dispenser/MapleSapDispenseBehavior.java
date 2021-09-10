@@ -25,6 +25,6 @@ public class MapleSapDispenseBehavior extends DefaultDispenseItemBehavior
             bucket.checkExtraContent(level, stack, blockpos);
             return new ItemStack(Items.BUCKET);
         } else
-            return super.execute(source, stack);
+            return super.dispense(source, stack);
     }
 }
