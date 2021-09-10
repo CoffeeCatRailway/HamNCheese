@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese;
 
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
+import coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
@@ -10,6 +11,7 @@ import coffeecatrailway.hamncheese.registry.*;
 import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.ComposterBlock;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.item.ItemEntity;
@@ -67,6 +69,8 @@ public class CommonEvents
 
         HNCEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);
         HNCEntities.registerSpawnPlacements();
+
+        DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BUCKET.get(), new MapleSapDispenseBehavior());
     }
 
     public static void registerCompostables()

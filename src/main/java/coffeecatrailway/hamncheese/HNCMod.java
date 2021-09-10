@@ -58,6 +58,7 @@ public class HNCMod
         bus.addGenericListener(StatType.class, HNCStats::register);
         HNCTileEntities.load(bus);
         HNCContainers.load(bus);
+        HNCFluids.load(bus);
     }
 
     private void onGatherData(GatherDataEvent event)

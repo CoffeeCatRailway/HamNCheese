@@ -5,10 +5,7 @@ import coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PopcornMachineScreen;
-import coffeecatrailway.hamncheese.registry.HNCBlocks;
-import coffeecatrailway.hamncheese.registry.HNCContainers;
-import coffeecatrailway.hamncheese.registry.HNCEntities;
-import coffeecatrailway.hamncheese.registry.HNCTileEntities;
+import coffeecatrailway.hamncheese.registry.*;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
@@ -57,6 +54,11 @@ public class ClientEvents
         RenderTypeLookup.setRenderLayer(HNCBlocks.MAPLE_DOOR.get(), cutoutMipped);
 
         RenderTypeLookup.setRenderLayer(HNCBlocks.TREE_TAP.get(), cutoutMipped);
+
+        RenderType translucent = RenderType.translucent();
+
+        RenderTypeLookup.setRenderLayer(HNCFluids.MAPLE_SAP.get(), translucent);
+        RenderTypeLookup.setRenderLayer(HNCFluids.MAPLE_SAP_FLOWING.get(), translucent);
     }
 
     private static void entityRenderers()

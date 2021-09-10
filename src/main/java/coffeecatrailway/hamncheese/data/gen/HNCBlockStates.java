@@ -273,6 +273,9 @@ public class HNCBlockStates extends BlockStateProvider
             }
         }
         this.toItem(HNCBlocks.TREE_TAP.get(), HNCMod.getLocation("block/tree_tap_level_3"));
+
+        ModelFile mapleSapModel = this.models().getBuilder("block/maple_sap").texture("particle", HNCMod.getLocation("block/maple_sap_still"));
+        this.getVariantBuilder(HNCBlocks.MAPLE_SAP.get()).partialState().modelForState().modelFile(mapleSapModel).addModel();
     }
 
     private void toItem(Block block)

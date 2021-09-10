@@ -36,14 +36,15 @@ public class HNCLanguage extends LanguageProvider
     @Override
     protected void addTranslations()
     {
-        this.add("itemGroup.hamncheese", "Ham N' Cheese");
-        this.add("item.hamncheese.sandwich.toasted", "Toasted");
-        this.add("top.hamncheese.progress", "Progress: ");
-        this.add("top.hamncheese.chop_chop", "Chop! Chop!");
-        this.add("jei.hamncheese.chopping_board.how", "A chopping board is made by right-clicking a pressure plate with it's respective tool type.");
-        this.add("jei.hamncheese.chopping_board.example", "Example: Right-clicking a wooden pressure plate with an axe will turn it into a wooden chopping board.");
-        this.add("container.hamncheese.popcorn_machine.flavour", "Flavour: %s/" + PopcornMachineTileEntity.MAX_FLAVOUR_TIME + "mb");
-        this.add("container.hamncheese.popcorn_machine.popcorn", "Popcorn: %s/" + PopcornMachineTileEntity.MAX_POPCORN);
+        this.add("itemGroup." + HNCMod.MOD_ID + "", "Ham N' Cheese");
+        this.add("item." + HNCMod.MOD_ID + ".sandwich.toasted", "Toasted");
+        this.add("top." + HNCMod.MOD_ID + ".progress", "Progress: ");
+        this.add("top." + HNCMod.MOD_ID + ".chop_chop", "Chop! Chop!");
+        this.add("jei." + HNCMod.MOD_ID + ".chopping_board.how", "A chopping board is made by right-clicking a pressure plate with it's respective tool type.");
+        this.add("jei." + HNCMod.MOD_ID + ".chopping_board.example", "Example: Right-clicking a wooden pressure plate with an axe will turn it into a wooden chopping board.");
+        this.add("container." + HNCMod.MOD_ID + ".popcorn_machine.flavour", "Flavour: %s/" + PopcornMachineTileEntity.MAX_FLAVOUR_TIME + "mb");
+        this.add("container." + HNCMod.MOD_ID + ".popcorn_machine.popcorn", "Popcorn: %s/" + PopcornMachineTileEntity.MAX_POPCORN);
+        this.add("fluid." + HNCMod.MOD_ID + ".maple_sap", "Maple Sap");
         EXTRA.forEach(this::add);
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));
@@ -53,12 +54,12 @@ public class HNCLanguage extends LanguageProvider
 
     public static ITextComponent getFlavour(int flavour)
     {
-        return new TranslationTextComponent("container.hamncheese.popcorn_machine.flavour", flavour);
+        return new TranslationTextComponent("container." + HNCMod.MOD_ID + ".popcorn_machine.flavour", flavour);
     }
 
     public static ITextComponent getPopcorn(int popcorn)
     {
-        return new TranslationTextComponent("container.hamncheese.popcorn_machine.popcorn", popcorn);
+        return new TranslationTextComponent("container." + HNCMod.MOD_ID + ".popcorn_machine.popcorn", popcorn);
     }
 
     public static String capitalize(String id)

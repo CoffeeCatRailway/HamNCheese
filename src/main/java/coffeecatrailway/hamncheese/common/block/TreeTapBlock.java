@@ -108,8 +108,7 @@ public class TreeTapBlock extends BaseBlock
                 if (sapLevel == 3)
                 {
                     handStack.shrink(1);
-//                    this.givePlayerItem(player, new ItemStack(HNCItems.MAPLE_BUCKET.get())); TODO: Add sap fluid
-                    this.givePlayerItem(player, new ItemStack(Items.LAVA_BUCKET));
+                    this.givePlayerItem(player, new ItemStack(HNCItems.MAPLE_SAP_BUCKET.get()));
                     level.playSound(null, pos, SoundEvents.ARMOR_EQUIP_CHAIN, SoundCategory.BLOCKS, 1f, 1f);
                     this.setSapLevel(level, pos, state, 0, false);
                     return ActionResultType.SUCCESS;
