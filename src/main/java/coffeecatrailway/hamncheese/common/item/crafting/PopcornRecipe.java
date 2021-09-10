@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese.common.item.crafting;
 import coffeecatrailway.hamncheese.common.tileentity.PopcornMachineTileEntity;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
@@ -12,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 /**
  * @author CoffeeCatRailway
@@ -102,6 +104,8 @@ public class PopcornRecipe implements IRecipe<PopcornMachineTileEntity>
             if (json.has("flavouring"))
                 flavouring = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "flavouring"));
             Ingredient seasoning = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "seasoning"));
+            if (Arrays.stream(seasoning.getItems()).noneMatch(stack -> !stack.hasContainerItem() || stack.getMaxStackSize() >= 2))
+                throw new JsonParseException("Popcorn recipe " + id + " seasoning has a container item or can't stack up to or above 2");
             ItemStack result = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
             return new PopcornRecipe(id, popcorn, flavouring, seasoning, result);
         }

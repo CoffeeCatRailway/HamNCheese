@@ -167,7 +167,11 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
                         this.setRecipeUsed(this.recipe);
 
                         this.popcornAmount -= this.recipe.getPopcorn();
-                        this.getItem(SLOT_FLAVOURING).shrink(1);
+                        ItemStack flavouring = this.getItem(SLOT_FLAVOURING);
+                        if (flavouring.hasContainerItem())
+                            this.setItem(SLOT_FLAVOURING, flavouring.getContainerItem().copy());
+                        else
+                            flavouring.shrink(1);
                         this.getItem(SLOT_SEASONING).shrink(2);
                         this.getItem(SLOT_BAG).shrink(result.getCount());
 
@@ -204,7 +208,7 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
             if (this.popcornAmount < this.recipe.getPopcorn())
                 return false;
             ItemStack flavouring = this.getItem(SLOT_FLAVOURING);
-            if ((!flavouring.isEmpty() && this.recipe.getFlavouring().isEmpty()) || !this.recipe.getFlavouring().test(flavouring))
+            if ((!flavouring.isEmpty() && this.recipe.getFlavouring().isEmpty()) || !this.recipe.getFlavouring().test(flavouring) || (flavouring.hasContainerItem() && flavouring.getCount() > 1))
                 return false;
             ItemStack seasoning = this.getItem(SLOT_SEASONING);
             if (seasoning.getCount() < 2 || !this.recipe.getSeasoning().test(seasoning))
