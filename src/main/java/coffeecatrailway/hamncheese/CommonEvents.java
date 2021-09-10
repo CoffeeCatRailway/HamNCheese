@@ -89,6 +89,8 @@ public class CommonEvents
         ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO_SEEDS.get(), .3f);
         ComposterBlock.COMPOSTABLES.put(HNCItems.FOOD_SCRAPS.get(), .3f);
         ComposterBlock.COMPOSTABLES.put(HNCItems.CORN_KERNELS.get(), .3f);
+        ComposterBlock.COMPOSTABLES.put(HNCBlocks.MAPLE_LEAVES.get(), .3f);
+        ComposterBlock.COMPOSTABLES.put(HNCBlocks.MAPLE_SAPLING.get(), .3f);
 
         // 40% chance
         ComposterBlock.COMPOSTABLES.put(HNCItems.CRACKED_EGG.get(), .4f);
