@@ -10,6 +10,7 @@ import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
@@ -68,6 +69,25 @@ public class TreeTapBlock extends BaseBlock
     public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
     {
         return SHAPES[state.getValue(HORIZONTAL_FACING).getOpposite().get2DDataValue() + (state.getValue(BUCKET) ? 4 : 0)];
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
+    {
+        List<ItemStack> drops = super.getDrops(state, builder);
+        if (state.getValue(BUCKET))
+        {
+            switch (state.getValue(SAP_LEVEL))
+            {
+                case 3:
+                    drops.add(new ItemStack(HNCItems.MAPLE_SAP_BUCKET.get()));
+                    break;
+                default:
+                    drops.add(new ItemStack(Items.BUCKET));
+                    break;
+            }
+        }
+        return drops;
     }
 
     @Override
