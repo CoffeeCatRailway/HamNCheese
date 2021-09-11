@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.common.item;
 
+import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.registry.HNCFoods;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.item.ItemStack;
@@ -22,7 +23,7 @@ public class SandwichItem extends AbstractSandwichItem
     {
         ITextComponent name = super.getName(stack);
         if (this.sandwichProperties.isToasted(stack.getOrCreateTag()))
-            name = new TranslationTextComponent("item.hamncheese.sandwich.toasted").append(" ").append(name);
+            name = new TranslationTextComponent("item." + HNCMod.MOD_ID + ".sandwich.toasted").append(" ").append(name);
         return name;
     }
 

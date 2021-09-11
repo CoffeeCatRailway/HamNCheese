@@ -10,8 +10,10 @@ import coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
 import coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
 import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
+import coffeecatrailway.hamncheese.registry.HNCFluids;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
+import com.google.common.collect.Lists;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -22,8 +24,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.SpecialRecipe;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
@@ -69,8 +74,11 @@ public class HNCJustEnoughItems implements IModPlugin
     public void registerRecipes(IRecipeRegistration reg)
     {
         reg.addIngredientInfo(ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block instanceof ChoppingBoardBlock).map(ItemStack::new).collect(Collectors.toList()), VanillaTypes.ITEM,
-                new TranslationTextComponent("jei.hamncheese.chopping_board.how"),
-                new TranslationTextComponent("jei.hamncheese.chopping_board.example"));
+                new TranslationTextComponent("jei." + HNCMod.MOD_ID + ".chopping_board.how"),
+                new TranslationTextComponent("jei." + HNCMod.MOD_ID + ".chopping_board.example"));
+
+        reg.addIngredientInfo(Lists.<IItemProvider>newArrayList(HNCItems.MAPLE_SAP_BOTTLE.get(), HNCItems.MAPLE_SAP_BUCKET.get(), HNCBlocks.TREE_TAP.get()).stream().map(ItemStack::new).collect(Collectors.toList()),
+                VanillaTypes.ITEM, new TranslationTextComponent("jei." + HNCMod.MOD_ID + ".maple_sap"));
 
         reg.addRecipes(getRecipesOfType(HNCRecipes.GRILL_TYPE), GRILL_UID);
         reg.addRecipes(getRecipesOfType(HNCRecipes.PIZZA_OVEN_TYPE), OVEN_UID);
