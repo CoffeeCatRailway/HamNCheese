@@ -11,7 +11,6 @@ import coffeecatrailway.hamncheese.integration.registry.HNCBlocksTF;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.trees.OakTree;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -75,7 +74,7 @@ public class HNCBlocks
     public static final RegistryObject<StairsBlock> MAPLE_STAIRS = register("maple_stairs", () -> new StairsBlock(() -> MAPLE_PLANKS.get().defaultBlockState(), AbstractBlock.Properties.copy(MAPLE_PLANKS.get())), prop -> prop);
     public static final RegistryObject<SlabBlock> MAPLE_SLAB = register("maple_slab", () -> new SlabBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
     public static final RegistryObject<HNCStandingSignBlock> MAPLE_SIGN = registerWithItem("maple_sign", () -> new HNCStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1f).sound(SoundType.WOOD), MAPLE_WOOD_TYPE), (sign, prop) -> new SignItem(prop.stacksTo(16), sign.get(), HNCBlocks.MAPLE_WALL_SIGN.get()));
-    public static final RegistryObject<HNCWallSignBlock> MAPLE_WALL_SIGN = registerWithItemAndName("maple_wall_sign", () -> new HNCWallSignBlock(AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(MAPLE_SIGN), MAPLE_WOOD_TYPE), null, null);
+    public static final RegistryObject<HNCWallSignBlock> MAPLE_WALL_SIGN = registerWithItemAndName("maple_wall_sign", () -> new HNCWallSignBlock(AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1f).sound(SoundType.WOOD).lootFrom(MAPLE_SIGN), MAPLE_WOOD_TYPE), null, null);
     public static final RegistryObject<PressurePlateBlock> MAPLE_PRESSURE_PLATE = register("maple_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).noCollission().strength(.5f).sound(SoundType.WOOD)), prop -> prop);
     public static final RegistryObject<ChoppingBoardBlock> MAPLE_CHOPPING_BOARD = registerChoppingBoard("maple_chopping_board", MAPLE_PLANKS);
     public static final RegistryObject<WoodButtonBlock> MAPLE_BUTTON = register("maple_button", () -> new WoodButtonBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(.5f).sound(SoundType.WOOD)), prop -> prop);
@@ -84,7 +83,7 @@ public class HNCBlocks
     public static final RegistryObject<TrapDoorBlock> MAPLE_TRAPDOOR = register("maple_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).strength(3f).sound(SoundType.WOOD).noOcclusion().isValidSpawn((state, reader, blockPos, entityType) -> false)), prop -> prop);
     public static final RegistryObject<DoorBlock> MAPLE_DOOR = register("maple_door", () -> new DoorBlock(AbstractBlock.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(3f).sound(SoundType.WOOD).noOcclusion()), prop -> prop);
 
-    public static final RegistryObject<TreeTapBlock> TREE_TAP = register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)), prop -> prop.stacksTo(16));
+    public static final RegistryObject<TreeTapBlock> TREE_TAP = register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5f, 6f).sound(SoundType.METAL)), prop -> prop.stacksTo(16));
     public static final RegistryObject<MapleSapFluidBlock> MAPLE_SAP = registerWithItem("maple_sap", () -> new MapleSapFluidBlock(HNCFluids.MAPLE_SAP_FLOWING, AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100f)), null);
 
     // Biomes O' Plenty
