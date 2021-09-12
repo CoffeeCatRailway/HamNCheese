@@ -8,6 +8,7 @@ import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
+import coffeecatrailway.hamncheese.data.gen.HNCFluidTags;
 import coffeecatrailway.hamncheese.integration.top.HNCTheOneProbe;
 import coffeecatrailway.hamncheese.registry.*;
 import com.google.common.collect.ImmutableList;
@@ -25,11 +26,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -113,6 +115,53 @@ public class CommonEvents
         ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE.get(), .65f);
         ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO.get(), .65f);
         ComposterBlock.COMPOSTABLES.put(HNCItems.CORN_COB.get(), .65f);
+    }
+
+    @SubscribeEvent
+    public static void onItemRightClick(PlayerInteractEvent.RightClickItem event)
+    {
+        World level = event.getWorld();
+        PlayerEntity player = event.getPlayer();
+        ItemStack stack = event.getItemStack();
+        if (!stack.getItem().equals(Items.GLASS_BOTTLE))
+            return;
+
+        RayTraceResult rayTraceResult = getPlayerPOVHitResult(level, player, RayTraceContext.FluidMode.SOURCE_ONLY);
+        if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK)
+        {
+            BlockPos pos = ((BlockRayTraceResult) rayTraceResult).getBlockPos();
+            if (!level.mayInteract(player, pos))
+                return;
+            if (level.getFluidState(pos).is(HNCFluidTags.MAPLE_SAP))
+            {
+                if (level.isClientSide())
+                    level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundCategory.NEUTRAL, 1f, 1f);
+                else
+                {
+                    stack.shrink(1);
+                    ItemStack sapStack = new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get());
+                    if (!player.inventory.add(sapStack))
+                        player.drop(sapStack, false);
+                }
+            }
+        }
+    }
+
+    // From: net.minecraft.item.GlassBottleItem
+    private static BlockRayTraceResult getPlayerPOVHitResult(World level, PlayerEntity player, RayTraceContext.FluidMode mode)
+    {
+        float f = player.xRot;
+        float f1 = player.yRot;
+        Vector3d vector3d = player.getEyePosition(1f);
+        float f2 = MathHelper.cos(-f1 * ((float) Math.PI / 180f) - (float) Math.PI);
+        float f3 = MathHelper.sin(-f1 * ((float) Math.PI / 180f) - (float) Math.PI);
+        float f4 = -MathHelper.cos(-f * ((float) Math.PI / 180f));
+        float f5 = MathHelper.sin(-f * ((float) Math.PI / 180f));
+        float f6 = f3 * f4;
+        float f7 = f2 * f4;
+        double d0 = player.getAttribute(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get()).getValue();
+        Vector3d vector3d1 = vector3d.add((double) f6 * d0, (double) f5 * d0, (double) f7 * d0);
+        return level.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.OUTLINE, mode, player));
     }
 
     @SubscribeEvent

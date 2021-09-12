@@ -69,6 +69,7 @@ public class HNCMod
 
         generator.addProvider(new HNCItemTags(generator, blockTags, existingFileHelper));
         generator.addProvider(blockTags);
+        generator.addProvider(new HNCFluidTags(generator, existingFileHelper));
         generator.addProvider(new HNCLootTables(generator));
         generator.addProvider(new HNCRecipeGen(generator));
         generator.addProvider(new HNCItemModels(generator));

@@ -123,7 +123,7 @@
   "itemGroup.hamncheese": "Ham N' Cheese",
   "jei.hamncheese.chopping_board.example": "Example: Right-clicking a wooden pressure plate with an axe will turn it into a wooden chopping board.",
   "jei.hamncheese.chopping_board.how": "A chopping board is made by right-clicking a pressure plate with it's respective tool type.",
-  "jei.hamncheese.maple_sap": "Maple sap is made by placing a tree tap on a maple log then right-clicking with an empty bucket",
+  "jei.hamncheese.maple_sap": "Maple sap is made by placing a tree tap on a maple log, then by right-clicking with an empty bucket",
   "stat.hamncheese.interact_grill": "Interactions with Grill",
   "stat.hamncheese.interact_pizza_oven": "Interactions with Pizza Oven",
   "stat.hamncheese.interact_popcorn_machine": "Interactions with Popcorn Machine",
