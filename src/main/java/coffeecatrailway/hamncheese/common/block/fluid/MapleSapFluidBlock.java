@@ -1,5 +1,6 @@
 package coffeecatrailway.hamncheese.common.block.fluid;
 
+import coffeecatrailway.hamncheese.HNCConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.entity.Entity;
@@ -24,6 +25,7 @@ public class MapleSapFluidBlock extends FlowingFluidBlock
     @Override
     public void entityInside(BlockState state, World level, BlockPos pos, Entity entity)
     {
-        entity.makeStuckInBlock(state, new Vector3d(.9d, .8d, .9d));
+        if (HNCConfig.SERVER.mapleSapStuck.get())
+            entity.makeStuckInBlock(state, new Vector3d(.9d, .8d, .9d));
     }
 }

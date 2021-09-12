@@ -35,6 +35,8 @@ public class HNCConfig
         public ForgeConfigSpec.IntValue pizzaOvenCookTimeTotal;
         public ForgeConfigSpec.IntValue grillCookTimeTotal;
 
+        public ForgeConfigSpec.BooleanValue mapleSapStuck;
+
         public ForgeConfigSpec.BooleanValue generateWildPineapples;
         public ForgeConfigSpec.IntValue chanceWildPineapples;
 
@@ -76,6 +78,9 @@ public class HNCConfig
                     .defineInRange("pizzaOvenCookTimeTotal", 200, 1, Integer.MAX_VALUE);
             this.grillCookTimeTotal = builder.comment("Total cook time for the Grill").translation(CONFIG + "block.grillCookTimeTotal")
                     .defineInRange("grillCookTimeTotal", 200, 1, Integer.MAX_VALUE);
+
+            this.mapleSapStuck = builder.comment("True if you want to be players stuck in maple sap").translation(CONFIG + "block.mapleSapStuck")
+                    .define("mapleSapStuck", true);
             builder.pop();
 
             builder.push(Lists.newArrayList("generation", "crops", "wildPineapples"));
