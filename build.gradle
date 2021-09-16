@@ -153,13 +153,8 @@ processResources {
     inputs.property("version", project.version)
     inputs.property("name", project.name)
     inputs.property("author", project.author)
-    from(sourceSets.main.resources.srcDirs) {
-        include 'META-INF/mods.toml'
+    filesMatching(["META-INF/mods.toml", "pack.mcmeta", (String) "${project.modId}.mixin.json"]) {
         expand 'modId': project.modId, 'version': project.version, 'name': project.name, 'author': project.author
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'META-INF/mods.toml'
     }
 
     // Minify json resources
