@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.block.dispenser.HNCDispenseBoatBehavior;
 import coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
+import coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavior;
 import coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
@@ -10,11 +11,13 @@ import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.data.gen.HNCFluidTags;
 import coffeecatrailway.hamncheese.integration.top.HNCTheOneProbe;
+import coffeecatrailway.hamncheese.mixin.AccessorDispenserBlock;
 import coffeecatrailway.hamncheese.registry.*;
 import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.item.ItemEntity;
@@ -26,7 +29,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -69,13 +71,15 @@ public class CommonEvents
         event.enqueueWork(() -> {
             registerCompostables();
             HNCFeatures.registerConfiguredFeatures();
+
+            IDispenseItemBehavior behavior = AccessorDispenserBlock.getDispenseBehaviorRegistry().get(Items.GLASS_BOTTLE);
+            DispenserBlock.registerBehavior(Items.GLASS_BOTTLE, new TreeTapDispenseBehavior.GlassBottle(behavior));
+            DispenserBlock.registerBehavior(HNCItems.MAPLE_BOAT.get(), new HNCDispenseBoatBehavior(HNCBoatEntity.ModType.MAPLE));
+            DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BUCKET.get(), new MapleSapDispenseBehavior());
         });
 
         HNCEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);
         HNCEntities.registerSpawnPlacements();
-
-        DispenserBlock.registerBehavior(HNCItems.MAPLE_BOAT.get(), new HNCDispenseBoatBehavior(HNCBoatEntity.ModType.MAPLE));
-        DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BUCKET.get(), new MapleSapDispenseBehavior());
     }
 
     public static void registerCompostables()

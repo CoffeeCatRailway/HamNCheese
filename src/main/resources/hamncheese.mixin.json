@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "coffeecatrailway.hamncheese.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "refmap": "hamncheese.refmap.json",
+  "mixins": [
+    "AccessorDispenserBlock"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
