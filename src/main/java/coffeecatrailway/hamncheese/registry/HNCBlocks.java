@@ -43,19 +43,19 @@ public class HNCBlocks
     public static final RegistryObject<TomatoPlantBlock> TOMATO_PLANT = registerPlant("tomato_plant", TomatoPlantBlock::new);
     public static final RegistryObject<CornPlantBlock> CORN_PLANT = registerPlant("corn_plant", CornPlantBlock::new);
 
-    public static final RegistryObject<ChoppingBoardBlock> OAK_CHOPPING_BOARD = registerChoppingBoard("oak_chopping_board", () -> Blocks.OAK_PLANKS);
-    public static final RegistryObject<ChoppingBoardBlock> BIRCH_CHOPPING_BOARD = registerChoppingBoard("birch_chopping_board", () -> Blocks.BIRCH_PLANKS);
-    public static final RegistryObject<ChoppingBoardBlock> SPRUCE_CHOPPING_BOARD = registerChoppingBoard("spruce_chopping_board", () -> Blocks.SPRUCE_PLANKS);
-    public static final RegistryObject<ChoppingBoardBlock> JUNGLE_CHOPPING_BOARD = registerChoppingBoard("jungle_chopping_board", () -> Blocks.JUNGLE_PLANKS);
-    public static final RegistryObject<ChoppingBoardBlock> ACACIA_CHOPPING_BOARD = registerChoppingBoard("acacia_chopping_board", () -> Blocks.ACACIA_PLANKS);
-    public static final RegistryObject<ChoppingBoardBlock> DARK_OAK_CHOPPING_BOARD = registerChoppingBoard("dark_oak_chopping_board", () -> Blocks.DARK_OAK_PLANKS);
-    public static final RegistryObject<ChoppingBoardBlock> CRIMSON_CHOPPING_BOARD = registerChoppingBoard("crimson_chopping_board", () -> Blocks.CRIMSON_PLANKS);
-    public static final RegistryObject<ChoppingBoardBlock> WARPED_CHOPPING_BOARD = registerChoppingBoard("warped_chopping_board", () -> Blocks.WARPED_PLANKS);
-
-    public static final RegistryObject<ChoppingBoardBlock> STONE_CHOPPING_BOARD = registerChoppingBoard("stone_chopping_board", () -> Blocks.STONE);
-    public static final RegistryObject<ChoppingBoardBlock> POLISHED_BLACKSTONE_CHOPPING_BOARD = registerChoppingBoard("polished_blackstone_chopping_board", () -> Blocks.POLISHED_BLACKSTONE);
-    public static final RegistryObject<ChoppingBoardBlock> GOLD_CHOPPING_BOARD = registerChoppingBoard("gold_chopping_board", () -> Blocks.GOLD_BLOCK);
-    public static final RegistryObject<ChoppingBoardBlock> IRON_CHOPPING_BOARD = registerChoppingBoard("iron_chopping_board", () -> Blocks.IRON_BLOCK);
+//    public static final RegistryObject<ChoppingBoardBlock> OAK_CHOPPING_BOARD = registerChoppingBoard("oak_chopping_board", () -> Blocks.OAK_PLANKS);
+//    public static final RegistryObject<ChoppingBoardBlock> BIRCH_CHOPPING_BOARD = registerChoppingBoard("birch_chopping_board", () -> Blocks.BIRCH_PLANKS);
+//    public static final RegistryObject<ChoppingBoardBlock> SPRUCE_CHOPPING_BOARD = registerChoppingBoard("spruce_chopping_board", () -> Blocks.SPRUCE_PLANKS);
+//    public static final RegistryObject<ChoppingBoardBlock> JUNGLE_CHOPPING_BOARD = registerChoppingBoard("jungle_chopping_board", () -> Blocks.JUNGLE_PLANKS);
+//    public static final RegistryObject<ChoppingBoardBlock> ACACIA_CHOPPING_BOARD = registerChoppingBoard("acacia_chopping_board", () -> Blocks.ACACIA_PLANKS);
+//    public static final RegistryObject<ChoppingBoardBlock> DARK_OAK_CHOPPING_BOARD = registerChoppingBoard("dark_oak_chopping_board", () -> Blocks.DARK_OAK_PLANKS);
+//    public static final RegistryObject<ChoppingBoardBlock> CRIMSON_CHOPPING_BOARD = registerChoppingBoard("crimson_chopping_board", () -> Blocks.CRIMSON_PLANKS);
+//    public static final RegistryObject<ChoppingBoardBlock> WARPED_CHOPPING_BOARD = registerChoppingBoard("warped_chopping_board", () -> Blocks.WARPED_PLANKS);
+//
+//    public static final RegistryObject<ChoppingBoardBlock> STONE_CHOPPING_BOARD = registerChoppingBoard("stone_chopping_board", () -> Blocks.STONE);
+//    public static final RegistryObject<ChoppingBoardBlock> POLISHED_BLACKSTONE_CHOPPING_BOARD = registerChoppingBoard("polished_blackstone_chopping_board", () -> Blocks.POLISHED_BLACKSTONE);
+//    public static final RegistryObject<ChoppingBoardBlock> GOLD_CHOPPING_BOARD = registerChoppingBoard("gold_chopping_board", () -> Blocks.GOLD_BLOCK);
+//    public static final RegistryObject<ChoppingBoardBlock> IRON_CHOPPING_BOARD = registerChoppingBoard("iron_chopping_board", () -> Blocks.IRON_BLOCK);
 
     public static final RegistryObject<PizzaOvenBlock> PIZZA_OVEN = register("pizza_oven", () -> new PizzaOvenBlock(AbstractBlock.Properties.copy(Blocks.WHITE_TERRACOTTA)), prop -> prop);
     public static final RegistryObject<GrillBlock> GRILL = register("grill", () -> new GrillBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
@@ -76,7 +76,7 @@ public class HNCBlocks
     public static final RegistryObject<HNCStandingSignBlock> MAPLE_SIGN = registerWithItem("maple_sign", () -> new HNCStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1f).sound(SoundType.WOOD), MAPLE_WOOD_TYPE), (sign, prop) -> new SignItem(prop.stacksTo(16), sign.get(), HNCBlocks.MAPLE_WALL_SIGN.get()));
     public static final RegistryObject<HNCWallSignBlock> MAPLE_WALL_SIGN = registerWithItemAndName("maple_wall_sign", () -> new HNCWallSignBlock(AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1f).sound(SoundType.WOOD).lootFrom(MAPLE_SIGN), MAPLE_WOOD_TYPE), null, null);
     public static final RegistryObject<PressurePlateBlock> MAPLE_PRESSURE_PLATE = register("maple_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).noCollission().strength(.5f).sound(SoundType.WOOD)), prop -> prop);
-    public static final RegistryObject<ChoppingBoardBlock> MAPLE_CHOPPING_BOARD = registerChoppingBoard("maple_chopping_board", MAPLE_PLANKS);
+//    public static final RegistryObject<ChoppingBoardBlock> MAPLE_CHOPPING_BOARD = registerChoppingBoard("maple_chopping_board", MAPLE_PLANKS);
     public static final RegistryObject<WoodButtonBlock> MAPLE_BUTTON = register("maple_button", () -> new WoodButtonBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(.5f).sound(SoundType.WOOD)), prop -> prop);
     public static final RegistryObject<FenceBlock> MAPLE_FENCE = register("maple_fence", () -> new FenceBlock(AbstractBlock.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
     public static final RegistryObject<FenceGateBlock> MAPLE_FENCE_GATE = register("maple_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
@@ -87,41 +87,41 @@ public class HNCBlocks
     public static final RegistryObject<MapleSapFluidBlock> MAPLE_SAP = registerWithItem("maple_sap", () -> new MapleSapFluidBlock(HNCFluids.MAPLE_SAP_FLOWING, AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100f)), null);
 
     // Biomes O' Plenty
-    public static RegistryObject<ChoppingBoardBlock> FIR_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> REDWOOD_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> CHERRY_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> MAHOGANY_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> JACARANDA_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> PALM_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> WILLOW_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> DEAD_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> MAGIC_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> UMBRAN_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> HELLBARK_CHOPPING_BOARD;
-
-    // Twilight Forest
-    public static RegistryObject<ChoppingBoardBlock> TWILIGHT_OAK_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> CANOPY_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> MANGROVE_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> DARK_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> TIME_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> TRANS_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> MINE_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> SORT_CHOPPING_BOARD;
-
-    // Druidcraft
-    public static RegistryObject<ChoppingBoardBlock> DARKWOOD_CHOPPING_BOARD;
-    public static RegistryObject<ChoppingBoardBlock> ELDER_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> FIR_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> REDWOOD_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> CHERRY_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> MAHOGANY_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> JACARANDA_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> PALM_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> WILLOW_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> DEAD_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> MAGIC_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> UMBRAN_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> HELLBARK_CHOPPING_BOARD;
+//
+//    // Twilight Forest
+//    public static RegistryObject<ChoppingBoardBlock> TWILIGHT_OAK_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> CANOPY_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> MANGROVE_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> DARK_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> TIME_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> TRANS_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> MINE_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> SORT_CHOPPING_BOARD;
+//
+//    // Druidcraft
+//    public static RegistryObject<ChoppingBoardBlock> DARKWOOD_CHOPPING_BOARD;
+//    public static RegistryObject<ChoppingBoardBlock> ELDER_CHOPPING_BOARD;
 
     static
     {
-        ModList list = ModList.get();
-        if (list.isLoaded("biomesoplenty"))
-            HNCBlocksBOP.load();
-        if (list.isLoaded("twilightforest"))
-            HNCBlocksTF.load();
-        if (list.isLoaded("druidcraft"))
-            HNCBlocksDC.load();
+//        ModList list = ModList.get();
+//        if (list.isLoaded("biomesoplenty"))
+//            HNCBlocksBOP.load();
+//        if (list.isLoaded("twilightforest"))
+//            HNCBlocksTF.load();
+//        if (list.isLoaded("druidcraft"))
+//            HNCBlocksDC.load();
     }
 
     private static RegistryObject<RotatedPillarBlock> registerLog(String id, MaterialColor color)

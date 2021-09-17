@@ -16,8 +16,8 @@ public class HNCBlocksDC
 
     public static void load()
     {
-        HNCBlocks.DARKWOOD_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("darkwood_chopping_board", () -> BlockRegistry.darkwood_planks);
-        HNCBlocks.ELDER_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("elder_chopping_board", () -> BlockRegistry.elder_planks);
+//        HNCBlocks.DARKWOOD_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("darkwood_chopping_board", () -> BlockRegistry.darkwood_planks);
+//        HNCBlocks.ELDER_CHOPPING_BOARD = HNCBlocks.registerChoppingBoard("elder_chopping_board", () -> BlockRegistry.elder_planks);
 
         LOGGER.debug("Loaded");
     }

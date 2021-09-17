@@ -1,7 +1,0 @@
-{
-  "pressurePlate": "biomesoplenty:willow_pressure_plate",
-  "board": "hamncheese:willow_chopping_board",
-  "sound": "minecraft:block.wood.place",
-  "toolType": "axe",
-  "modId": "biomesoplenty"
-}

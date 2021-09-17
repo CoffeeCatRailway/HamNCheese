@@ -287,20 +287,20 @@ public class CommonEvents
             ((OcelotEntity) entity).targetSelector.addGoal(1, new NearestAttackableTargetGoal<>((OcelotEntity) entity, MouseEntity.class, false));
     }
 
-    @SubscribeEvent
-    public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
-    {
-        PlayerEntity player = event.getPlayer();
-        BlockPos pos = event.getPos();
-        ItemStack stack = event.getItemStack();
-        World level = event.getWorld();
-        ChoppingBoardManager.CHOPPING_BOARDS.values().forEach(board -> {
-            if (stack.getToolTypes().contains(board.getToolType()) && level.getBlockState(pos).getBlock() == board.getPressurePlate())
-            {
-                level.setBlock(pos, board.getBoard().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(player.getRandom())), Constants.BlockFlags.DEFAULT);
-                level.playSound(player, pos, board.getSound(), SoundCategory.BLOCKS, 1f, 1f);
-                stack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(event.getHand()));
-            }
-        });
-    }
+//    @SubscribeEvent
+//    public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
+//    {
+//        PlayerEntity player = event.getPlayer();
+//        BlockPos pos = event.getPos();
+//        ItemStack stack = event.getItemStack();
+//        World level = event.getWorld();
+//        ChoppingBoardManager.INSTANCE.getBoards().values().forEach(board -> {
+//            if (stack.getToolTypes().contains(board.getToolType()) && level.getBlockState(pos).getBlock() == board.getPressurePlate())
+//            {
+//                level.setBlock(pos, board.getBase().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(player.getRandom())), Constants.BlockFlags.DEFAULT);
+//                level.playSound(player, pos, board.getConvertSound(), SoundCategory.BLOCKS, 1f, 1f);
+//                stack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(event.getHand()));
+//            }
+//        });
+//    }
 }

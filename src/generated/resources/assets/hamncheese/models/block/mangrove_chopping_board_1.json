@@ -1,6 +1,0 @@
-{
-  "parent": "hamncheese:block/chopping_board",
-  "textures": {
-    "planks": "twilightforest:block/wood/planks_mangrove_1"
-  }
-}

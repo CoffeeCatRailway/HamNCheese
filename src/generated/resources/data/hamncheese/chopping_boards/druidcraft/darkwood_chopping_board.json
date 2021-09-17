@@ -1,7 +1,0 @@
-{
-  "pressurePlate": "druidcraft:darkwood_pressure_plate",
-  "board": "hamncheese:darkwood_chopping_board",
-  "sound": "minecraft:block.wood.place",
-  "toolType": "axe",
-  "modId": "druidcraft"
-}
