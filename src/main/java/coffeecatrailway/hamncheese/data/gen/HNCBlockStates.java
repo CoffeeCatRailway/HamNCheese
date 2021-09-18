@@ -4,6 +4,7 @@ import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.*;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.data.DataGenerator;
@@ -66,44 +67,6 @@ public class HNCBlockStates extends BlockStateProvider
                 cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(this.models().getExistingFile(new ResourceLocation("block/air"))).addModel();
         }
 
-//        this.choppingBoard(HNCBlocks.OAK_CHOPPING_BOARD.get(), "oak", ChoppingBoardType.PLANKS);
-//        this.choppingBoard(HNCBlocks.BIRCH_CHOPPING_BOARD.get(), "birch", ChoppingBoardType.PLANKS);
-//        this.choppingBoard(HNCBlocks.SPRUCE_CHOPPING_BOARD.get(), "spruce", ChoppingBoardType.PLANKS);
-//        this.choppingBoard(HNCBlocks.JUNGLE_CHOPPING_BOARD.get(), "jungle", ChoppingBoardType.PLANKS);
-//        this.choppingBoard(HNCBlocks.ACACIA_CHOPPING_BOARD.get(), "acacia", ChoppingBoardType.PLANKS);
-//        this.choppingBoard(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get(), "dark_oak", ChoppingBoardType.PLANKS);
-//        this.choppingBoard(HNCBlocks.CRIMSON_CHOPPING_BOARD.get(), "crimson", ChoppingBoardType.PLANKS);
-//        this.choppingBoard(HNCBlocks.WARPED_CHOPPING_BOARD.get(), "warped", ChoppingBoardType.PLANKS);
-//
-//        this.choppingBoard(HNCBlocks.STONE_CHOPPING_BOARD.get(), "stone", ChoppingBoardType.EMPTY);
-//        this.choppingBoard(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get(), "polished_blackstone", ChoppingBoardType.EMPTY);
-//        this.choppingBoard(HNCBlocks.GOLD_CHOPPING_BOARD.get(), "gold", ChoppingBoardType.BLOCK);
-//        this.choppingBoard(HNCBlocks.IRON_CHOPPING_BOARD.get(), "iron", ChoppingBoardType.BLOCK);
-//
-//        this.choppingBoard(HNCBlocks.FIR_CHOPPING_BOARD.get(), "fir", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.REDWOOD_CHOPPING_BOARD.get(), "redwood", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.CHERRY_CHOPPING_BOARD.get(), "cherry", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.MAHOGANY_CHOPPING_BOARD.get(), "mahogany", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.JACARANDA_CHOPPING_BOARD.get(), "jacaranda", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.PALM_CHOPPING_BOARD.get(), "palm", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.WILLOW_CHOPPING_BOARD.get(), "willow", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.DEAD_CHOPPING_BOARD.get(), "dead", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.MAGIC_CHOPPING_BOARD.get(), "magic", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.UMBRAN_CHOPPING_BOARD.get(), "umbran", ChoppingBoardType.PLANKS, "biomesoplenty");
-//        this.choppingBoard(HNCBlocks.HELLBARK_CHOPPING_BOARD.get(), "hellbark", ChoppingBoardType.PLANKS, "biomesoplenty");
-//
-//        this.choppingBoardTF(HNCBlocks.TWILIGHT_OAK_CHOPPING_BOARD.get(), "twilight_oak");
-//        this.choppingBoardTF(HNCBlocks.CANOPY_CHOPPING_BOARD.get(), "canopy");
-//        this.choppingBoardTF(HNCBlocks.MANGROVE_CHOPPING_BOARD.get(), "mangrove");
-//        this.choppingBoardTF(HNCBlocks.DARK_CHOPPING_BOARD.get(), "dark");
-//        this.choppingBoardTF(HNCBlocks.TIME_CHOPPING_BOARD.get(), "time");
-//        this.choppingBoardTF(HNCBlocks.TRANS_CHOPPING_BOARD.get(), "trans");
-//        this.choppingBoardTF(HNCBlocks.MINE_CHOPPING_BOARD.get(), "mine");
-//        this.choppingBoardTF(HNCBlocks.SORT_CHOPPING_BOARD.get(), "sort");
-//
-//        this.choppingBoard(HNCBlocks.DARKWOOD_CHOPPING_BOARD.get(), "darkwood", ChoppingBoardType.PLANKS, "druidcraft");
-//        this.choppingBoard(HNCBlocks.ELDER_CHOPPING_BOARD.get(), "elder", ChoppingBoardType.PLANKS, "druidcraft");
-
         // Pizza Oven & Grill - Initial
         VariantBlockStateBuilder.PartialBlockstate oven = this.getVariantBuilder(HNCBlocks.PIZZA_OVEN.get()).partialState();
         ModelFile ovenModel = this.models().getExistingFile(HNCMod.getLocation("block/pizza_oven"));
@@ -155,6 +118,9 @@ public class HNCBlockStates extends BlockStateProvider
         this.simpleBlockItem(HNCBlocks.POPCORN_MACHINE.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/popcorn_machine_full")));
 
         // Misc
+        ModelFile choppingBoardModel = this.models().getBuilder("block/chopping_board").texture("particle", this.blockTexture(Blocks.OAK_PLANKS));
+        this.getVariantBuilder(HNCBlocks.CHOPPING_BOARD.get()).partialState().modelForState().modelFile(choppingBoardModel).addModel();
+
         VariantBlockStateBuilder.PartialBlockstate cheese = this.getVariantBuilder(HNCBlocks.BLOCK_OF_CHEESE.get()).partialState();
         cheese.with(CheeseBlock.BITES, 0).modelForState().modelFile(this.itemModels().getExistingFile(HNCMod.getLocation("block/block_of_cheese"))).addModel();
         for (i = 1; i < 4; i++)
@@ -202,8 +168,6 @@ public class HNCBlockStates extends BlockStateProvider
         ModelFile plateDown = this.models().singleTexture(platePath + "_down", new ResourceLocation("block/pressure_plate_down"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
         this.getVariantBuilder(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(plateUp).addModel().partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(plateDown).addModel();
         this.itemModels().getBuilder(platePath).parent(plateUp);
-
-//        this.choppingBoard(HNCBlocks.MAPLE_CHOPPING_BOARD.get(), "maple", ChoppingBoardType.PLANKS, HNCMod.MOD_ID);
 
         String buttonPath = HNCBlocks.MAPLE_BUTTON.get().getRegistryName().getPath();
         ModelFile buttonModel = this.models().singleTexture(buttonPath, new ResourceLocation("block/button"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
