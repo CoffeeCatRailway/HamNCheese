@@ -1,0 +1,6 @@
+{
+  "mod": "twilightforest",
+  "pressure_plate": "twilightforest:mangrove_plate",
+  "convert_sound": "minecraft:block.wood.place",
+  "tool_type": "axe"
+}

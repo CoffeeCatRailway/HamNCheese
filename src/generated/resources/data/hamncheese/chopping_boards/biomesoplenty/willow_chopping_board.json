@@ -1,0 +1,6 @@
+{
+  "mod": "biomesoplenty",
+  "pressure_plate": "biomesoplenty:willow_pressure_plate",
+  "convert_sound": "minecraft:block.wood.place",
+  "tool_type": "axe"
+}
