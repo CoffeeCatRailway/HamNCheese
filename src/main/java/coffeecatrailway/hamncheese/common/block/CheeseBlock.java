@@ -44,7 +44,7 @@ public class CheeseBlock extends Block
     public CheeseBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(BITES, 0));
+        this.registerDefaultState(this.defaultBlockState().setValue(BITES, 0));
     }
 
     @Override

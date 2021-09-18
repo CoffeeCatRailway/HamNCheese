@@ -1,5 +1,6 @@
 {
   "block.hamncheese.block_of_cheese": "Block Of Cheese",
+  "block.hamncheese.chopping_board": "Chopping Board",
   "block.hamncheese.corn_plant": "Corn Plant",
   "block.hamncheese.grill": "Grill",
   "block.hamncheese.maple_button": "Maple Button",
@@ -25,6 +26,7 @@
   "block.hamncheese.stripped_maple_wood": "Stripped Maple Wood",
   "block.hamncheese.tomato_plant": "Tomato Plant",
   "block.hamncheese.tree_tap": "Tree Tap",
+  "block.hamncheesefrom": "From: ",
   "container.hamncheese.grill": "Grill",
   "container.hamncheese.pizza_oven": "Pizza Oven",
   "container.hamncheese.popcorn_machine": "Popcorn",

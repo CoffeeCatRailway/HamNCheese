@@ -6,6 +6,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
+import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
@@ -28,39 +30,45 @@ public class ChoppingBoardManager extends JsonReloadListener
     private static final Logger LOGGER = HNCMod.getLogger("ChoppingBoardManager");
 
     public static final ChoppingBoardManager INSTANCE = new ChoppingBoardManager();
-    public static final Map<ResourceLocation, ChoppingBoard> CHOPPING_BOARDS = new HashMap<>();
+    private static final Map<ResourceLocation, ChoppingBoard> BOARDS = new Object2ObjectArrayMap<>();
 
     public ChoppingBoardManager()
     {
         super(GSON, "chopping_boards");
     }
 
+    public Map<ResourceLocation, ChoppingBoard> getBoards()
+    {
+        return BOARDS;
+    }
+
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> elements, IResourceManager resourceManager, IProfiler profiler)
     {
-        CHOPPING_BOARDS.clear();
+        BOARDS.clear();
         elements.forEach((location, element) -> {
+            if (BOARDS.containsKey(location))
+            {
+                LOGGER.error("Recipe {} already exists", location);
+                return;
+            }
             try
             {
                 JsonObject object = JSONUtils.convertToJsonObject(element, "top element");
                 String modId = "minecraft";
-                boolean modLoadedFlag = true;
-                if (object.has("modId"))
+                boolean loadFlag = true;
+                if (object.has("mod"))
                 {
-                    modId = JSONUtils.getAsString(object, "modId");
-                    modLoadedFlag = ModList.get().isLoaded(modId);
+                    modId = JSONUtils.getAsString(object, "mod");
+                    loadFlag = ModList.get().isLoaded(modId);
                 }
 
-                if (modLoadedFlag)
+                if (loadFlag)
                 {
                     final Optional<ChoppingBoard> result = JsonOps.INSTANCE.withParser(ChoppingBoard.CODEC).apply(element).result();
                     if (result.isPresent())
-                    {
-                        if (CHOPPING_BOARDS.containsKey(location))
-                            LOGGER.error("Recipe {} already exists", location);
-                        else
-                            CHOPPING_BOARDS.put(location, result.get());
-                    } else
+                        BOARDS.put(location, result.get());
+                    else
                         LOGGER.info("Failed to load JSON for {}", location);
                 } else
                     LOGGER.warn("Skipped recipe {} as mod \"{}\" was not present", location, modId);

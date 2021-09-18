@@ -1,6 +1,5 @@
 package coffeecatrailway.hamncheese.data;
 
-import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
@@ -15,28 +14,28 @@ import net.minecraftforge.common.ToolType;
 public class ChoppingBoard
 {
     public static final Codec<ChoppingBoard> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Registry.BLOCK.fieldOf("pressurePlate").forGetter(board -> board.pressurePlate),
-            Registry.BLOCK.fieldOf("board").forGetter(board -> board.board),
-            SoundEvent.CODEC.fieldOf("sound").forGetter(board -> board.sound),
-            Codec.STRING.fieldOf("toolType").forGetter(board -> board.toolType)
-    ).apply(instance, (stripBlock, result, soundEvent, toolType) -> {
-        if (result instanceof ChoppingBoardBlock)
-            return new ChoppingBoard(stripBlock, (ChoppingBoardBlock) result, soundEvent, toolType);
-        else
-            throw new IllegalStateException("Result must be of type 'Chopping Board'");
-    }));
+            Codec.STRING.optionalFieldOf("mod", "minecraft").forGetter(board -> board.modId),
+            Registry.BLOCK.fieldOf("pressure_plate").forGetter(board -> board.pressurePlate),
+            SoundEvent.CODEC.fieldOf("convert_sound").forGetter(board -> board.convertSound),
+            Codec.STRING.fieldOf("tool_type").forGetter(board -> board.toolType)
+    ).apply(instance, ChoppingBoard::new));
 
+    private final String modId;
     private final Block pressurePlate;
-    private final ChoppingBoardBlock board;
-    private final SoundEvent sound;
+    private final SoundEvent convertSound;
     private final String toolType;
 
-    public ChoppingBoard(Block pressurePlate, ChoppingBoardBlock board, SoundEvent sound, String toolType)
-    {
+    public ChoppingBoard(String modId, Block pressurePlate, SoundEvent convertSound, String toolType)
+        {
+        this.modId = modId;
         this.pressurePlate = pressurePlate;
-        this.board = board;
-        this.sound = sound;
+        this.convertSound = convertSound;
         this.toolType = toolType;
+    }
+
+    public String getModId()
+    {
+        return this.modId;
     }
 
     public Block getPressurePlate()
@@ -44,14 +43,9 @@ public class ChoppingBoard
         return this.pressurePlate;
     }
 
-    public ChoppingBoardBlock getBoard()
+    public SoundEvent getConvertSound()
     {
-        return this.board;
-    }
-
-    public SoundEvent getSound()
-    {
-        return this.sound;
+        return this.convertSound;
     }
 
     public ToolType getToolType()

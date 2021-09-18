@@ -1,7 +1,5 @@
 {
-  "pressurePlate": "minecraft:oak_pressure_plate",
-  "board": "hamncheese:oak_chopping_board",
-  "sound": "minecraft:block.wood.place",
-  "toolType": "axe",
-  "modId": "minecraft"
+  "pressure_plate": "minecraft:oak_pressure_plate",
+  "convert_sound": "minecraft:block.wood.place",
+  "tool_type": "axe"
 }

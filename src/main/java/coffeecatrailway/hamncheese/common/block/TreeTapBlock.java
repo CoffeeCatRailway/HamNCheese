@@ -62,7 +62,7 @@ public class TreeTapBlock extends BaseBlock
     public TreeTapBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(SAP_LEVEL, 0).setValue(BUCKET, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(SAP_LEVEL, 0).setValue(BUCKET, false));
     }
 
     @Override

@@ -39,7 +39,7 @@ public abstract class ContainerBaseBlock extends BaseBlock implements IWaterLogg
     public ContainerBaseBlock(Properties properties)
     {
         super(properties);
-        BlockState state = this.getStateDefinition().any().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(WATERLOGGED, false).setValue(LIT, false);
+        BlockState state = this.defaultBlockState().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(WATERLOGGED, false).setValue(LIT, false);
         this.registerDefaultState(state);
     }
 

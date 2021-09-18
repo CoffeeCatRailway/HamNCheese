@@ -38,6 +38,7 @@ public class HNCLanguage extends LanguageProvider
     {
         this.add("itemGroup." + HNCMod.MOD_ID + "", "Ham N' Cheese");
         this.add("item." + HNCMod.MOD_ID + ".sandwich.toasted", "Toasted");
+        this.add("block." + HNCMod.MOD_ID + "from", "From: ");
         this.add("top." + HNCMod.MOD_ID + ".progress", "Progress: ");
         this.add("top." + HNCMod.MOD_ID + ".chop_chop", "Chop! Chop!");
         this.add("jei." + HNCMod.MOD_ID + ".chopping_board.how", "A chopping board is made by right-clicking a pressure plate with it's respective tool type.");

@@ -37,7 +37,7 @@ public abstract class AbstractDoubleCropBlock extends BushBlock implements IGrow
     public AbstractDoubleCropBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(this.getAgeProperty(), 0).setValue(HALF, DoubleBlockHalf.LOWER));
+        this.registerDefaultState(this.defaultBlockState().setValue(this.getAgeProperty(), 0).setValue(HALF, DoubleBlockHalf.LOWER));
     }
 
     public abstract IntegerProperty getAgeProperty();
