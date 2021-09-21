@@ -118,8 +118,8 @@ public class HNCBlockStates extends BlockStateProvider
         this.simpleBlockItem(HNCBlocks.POPCORN_MACHINE.get(), this.itemModels().getExistingFile(HNCMod.getLocation("block/popcorn_machine_full")));
 
         // Misc
-        ModelFile choppingBoardModel = this.models().getBuilder("block/chopping_board").texture("particle", this.blockTexture(Blocks.OAK_PLANKS));
-        this.getVariantBuilder(HNCBlocks.CHOPPING_BOARD.get()).partialState().modelForState().modelFile(choppingBoardModel).addModel();
+        this.getVariantBuilder(HNCBlocks.CHOPPING_BOARD.get()).partialState().modelForState().modelFile(this.models().getExistingFile(HNCMod.getLocation("block/chopping_board"))).addModel();
+        this.toItem(HNCBlocks.CHOPPING_BOARD.get());
 
         VariantBlockStateBuilder.PartialBlockstate cheese = this.getVariantBuilder(HNCBlocks.BLOCK_OF_CHEESE.get()).partialState();
         cheese.with(CheeseBlock.BITES, 0).modelForState().modelFile(this.itemModels().getExistingFile(HNCMod.getLocation("block/block_of_cheese"))).addModel();

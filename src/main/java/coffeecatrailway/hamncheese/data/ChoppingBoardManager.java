@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
+import net.minecraft.block.Block;
 import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
@@ -16,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 import org.apache.logging.log4j.Logger;
 
-import java.util.HashMap;
+import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class ChoppingBoardManager extends JsonReloadListener
     private static final Logger LOGGER = HNCMod.getLogger("ChoppingBoardManager");
 
     public static final ChoppingBoardManager INSTANCE = new ChoppingBoardManager();
-    private static final Map<ResourceLocation, ChoppingBoard> BOARDS = new Object2ObjectArrayMap<>();
+    private static final Object2ObjectMap<ResourceLocation, ChoppingBoard> BOARDS = new Object2ObjectArrayMap<>();
 
     public ChoppingBoardManager()
     {
@@ -67,8 +68,11 @@ public class ChoppingBoardManager extends JsonReloadListener
                 {
                     final Optional<ChoppingBoard> result = JsonOps.INSTANCE.withParser(ChoppingBoard.CODEC).apply(element).result();
                     if (result.isPresent())
-                        BOARDS.put(location, result.get());
-                    else
+                    {
+                        ChoppingBoard board = result.get();
+                        board.setId(location);
+                        BOARDS.put(location, board);
+                    } else
                         LOGGER.info("Failed to load JSON for {}", location);
                 } else
                     LOGGER.warn("Skipped recipe {} as mod \"{}\" was not present", location, modId);
@@ -77,5 +81,11 @@ public class ChoppingBoardManager extends JsonReloadListener
                 LOGGER.error("Exception occurred while processing JSON for {}", location, e);
             }
         });
+    }
+
+    @Nullable
+    public static ChoppingBoard getBoardByPressurePlate(Block pressurePlate)
+    {
+        return ChoppingBoardManager.INSTANCE.getBoards().values().stream().filter(board -> board.getPressurePlate().is(pressurePlate)).findFirst().orElse(null);
     }
 }

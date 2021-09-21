@@ -7,7 +7,9 @@ import coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavio
 import coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
+import coffeecatrailway.hamncheese.common.tileentity.ChoppingBoardTileEntity;
 import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
+import coffeecatrailway.hamncheese.data.ChoppingBoard;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.data.gen.HNCFluidTags;
 import coffeecatrailway.hamncheese.integration.top.HNCTheOneProbe;
@@ -17,7 +19,6 @@ import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
@@ -30,6 +31,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -287,20 +289,23 @@ public class CommonEvents
             ((OcelotEntity) entity).targetSelector.addGoal(1, new NearestAttackableTargetGoal<>((OcelotEntity) entity, MouseEntity.class, false));
     }
 
-//    @SubscribeEvent
-//    public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
-//    {
-//        PlayerEntity player = event.getPlayer();
-//        BlockPos pos = event.getPos();
-//        ItemStack stack = event.getItemStack();
-//        World level = event.getWorld();
-//        ChoppingBoardManager.INSTANCE.getBoards().values().forEach(board -> {
-//            if (stack.getToolTypes().contains(board.getToolType()) && level.getBlockState(pos).getBlock() == board.getPressurePlate())
-//            {
-//                level.setBlock(pos, board.getBase().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(player.getRandom())), Constants.BlockFlags.DEFAULT);
-//                level.playSound(player, pos, board.getConvertSound(), SoundCategory.BLOCKS, 1f, 1f);
-//                stack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(event.getHand()));
-//            }
-//        });
-//    }
+    @SubscribeEvent
+    public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
+    {
+        PlayerEntity player = event.getPlayer();
+        BlockPos pos = event.getPos();
+        ItemStack stack = event.getItemStack();
+        World level = event.getWorld();
+        ChoppingBoard board = ChoppingBoardManager.getBoardByPressurePlate(level.getBlockState(pos).getBlock());
+        if (board != null && stack.getToolTypes().contains(board.getToolType()))
+        {
+            level.setBlock(pos, HNCBlocks.CHOPPING_BOARD.get().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(player.getRandom())), Constants.BlockFlags.DEFAULT);
+            TileEntity tile = level.getBlockEntity(pos);
+            if (tile instanceof ChoppingBoardTileEntity)
+                ((ChoppingBoardTileEntity) tile).setBoardId(board.getId());
+
+            level.playSound(player, pos, board.getConvertSound(), SoundCategory.BLOCKS, 1f, 1f);
+            stack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(event.getHand()));
+        }
+    }
 }

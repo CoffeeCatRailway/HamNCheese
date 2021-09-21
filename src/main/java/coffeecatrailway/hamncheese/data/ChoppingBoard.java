@@ -3,8 +3,11 @@ package coffeecatrailway.hamncheese.data;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
 /**
@@ -27,15 +30,22 @@ public class ChoppingBoard
 
     public ChoppingBoard(String modId, Block pressurePlate, SoundEvent convertSound, String toolType)
         {
+    private ResourceLocation id;
+
         this.modId = modId;
         this.pressurePlate = pressurePlate;
         this.convertSound = convertSound;
         this.toolType = toolType;
     }
 
-    public String getModId()
+    protected void setId(ResourceLocation id)
     {
-        return this.modId;
+        this.id = id;
+    }
+
+    public ResourceLocation getId()
+    {
+        return this.id;
     }
 
     public Block getPressurePlate()
