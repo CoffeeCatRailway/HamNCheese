@@ -5,7 +5,6 @@ import coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PopcornMachineScreen;
-import coffeecatrailway.hamncheese.client.tileentity.ChoppingBoardTileEntityRenderer;
 import coffeecatrailway.hamncheese.registry.*;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.Minecraft;
@@ -30,7 +29,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
  * Created: 7/04/2021
  */
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = HNCMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = HNCMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientEvents
 {
     public static void init(final FMLClientSetupEvent event)
@@ -43,7 +42,6 @@ public class ClientEvents
         registerScreen();
 
         ClientRegistry.bindTileEntityRenderer(HNCTileEntities.SIGN.get(), SignTileEntityRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(HNCTileEntities.CHOPPING_BOARD.get(), ChoppingBoardTileEntityRenderer::new);
     }
 
     private static void renderLayers()
@@ -86,6 +84,5 @@ public class ClientEvents
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event)
     {
-        ModelLoader.addSpecialModel(HNCMod.getLocation("block/chopping_board_visual"));
     }
 }
