@@ -1,16 +1,23 @@
 package coffeecatrailway.hamncheese.common.tileentity;
 
-import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.model.ModelDataManager;
+import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.client.model.data.ModelDataMap;
+import net.minecraftforge.client.model.data.ModelProperty;
 import net.minecraftforge.common.util.Constants;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Objects;
 
 /**
  * @author CoffeeCatRailway
@@ -18,36 +25,59 @@ import net.minecraftforge.common.util.Constants;
  */
 public class ChoppingBoardTileEntity extends TileEntity
 {
-    private ResourceLocation boardId = HNCMod.getLocation("oak_chopping_board");
+    public static final ModelProperty<ResourceLocation> BOARD_ID = new ModelProperty<>();
+
+    private ResourceLocation boardId;
 
     public ChoppingBoardTileEntity()
     {
         super(HNCTileEntities.CHOPPING_BOARD.get());
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public void fromItem(ItemStack stack)
+    @Override
+    public CompoundNBT getUpdateTag()
     {
-        CompoundNBT nbt = stack.getOrCreateTagElement("BlockEntityTag");
-        if (nbt.contains("BoardId", Constants.NBT.TAG_STRING))
-            this.boardId = new ResourceLocation(nbt.getString("BoardId"));
-        else
-            this.boardId = HNCMod.getLocation("oak_chopping_board");
+        return this.saveBoardId(super.getUpdateTag());
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket()
+    {
+        return new SUpdateTileEntityPacket(this.worldPosition, 1, this.getUpdateTag());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt)
+    {
+        ResourceLocation oldBoardId = this.boardId;
+        CompoundNBT nbt = pkt.getTag();
+        this.handleUpdateTag(this.getBlockState(), nbt);
+        if (!Objects.equals(oldBoardId, this.boardId))
+        {
+            ModelDataManager.requestModelDataRefresh(this);
+            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+        }
+    }
+
+    @Nonnull
+    @Override
+    public IModelData getModelData()
+    {
+        return new ModelDataMap.Builder().withInitial(BOARD_ID, this.getBoardId()).build();
     }
 
     @Override
     public CompoundNBT save(CompoundNBT nbt)
     {
-        super.save(nbt);
-        nbt.putString("BoardId", this.boardId.toString());
-        return nbt;
+        return this.saveBoardId(super.save(nbt));
     }
 
     @Override
     public void load(BlockState state, CompoundNBT nbt)
     {
         super.load(state, nbt);
-        this.boardId = new ResourceLocation(nbt.getString("BoardId"));
+        this.loadBoardId(nbt);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -56,10 +86,32 @@ public class ChoppingBoardTileEntity extends TileEntity
         return this.boardId;
     }
 
+    public void setBoardId(ResourceLocation boardId)
+    {
+        this.boardId = boardId;
+        this.setChanged();
+        this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+    }
+
     public ItemStack getItem()
     {
         ItemStack stack = new ItemStack(HNCBlocks.CHOPPING_BOARD.get());
-        stack.getOrCreateTagElement("BlockEntityTag").putString("BoardId", this.boardId.toString());
+        this.saveBoardId(stack.getOrCreateTagElement("BlockEntityTag"));
         return stack;
+    }
+
+    private CompoundNBT saveBoardId(CompoundNBT nbt)
+    {
+        if (this.boardId != null)
+            nbt.putString("BoardId", this.boardId.toString());
+        return nbt;
+    }
+
+    private boolean loadBoardId(CompoundNBT nbt)
+    {
+        boolean flag = nbt.contains("BoardId", Constants.NBT.TAG_STRING);
+        if (flag)
+            this.boardId = new ResourceLocation(nbt.getString("BoardId"));
+        return flag;
     }
 }

@@ -103,12 +103,6 @@ public class ChoppingBoardBlock extends BaseBlock implements IWaterLoggable
     }
 
     @Override
-    public BlockRenderType getRenderShape(BlockState state)
-    {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
-    }
-
-    @Override
     public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context)
     {
         switch (state.getValue(HORIZONTAL_FACING))

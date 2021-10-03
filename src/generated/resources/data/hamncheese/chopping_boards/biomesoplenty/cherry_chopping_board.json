@@ -1,6 +1,7 @@
 {
-  "mod": "biomesoplenty",
-  "pressure_plate": "biomesoplenty:cherry_pressure_plate",
   "convert_sound": "minecraft:block.wood.place",
-  "tool_type": "axe"
+  "texture": "biomesoplenty:block/cherry_planks",
+  "tool_type": "axe",
+  "mod": "biomesoplenty",
+  "pressure_plate": "biomesoplenty:cherry_pressure_plate"
 }

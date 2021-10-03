@@ -20,21 +20,24 @@ public class ChoppingBoard
             Codec.STRING.optionalFieldOf("mod", "minecraft").forGetter(board -> board.modId),
             Registry.BLOCK.fieldOf("pressure_plate").forGetter(board -> board.pressurePlate),
             SoundEvent.CODEC.fieldOf("convert_sound").forGetter(board -> board.convertSound),
+            ResourceLocation.CODEC.fieldOf("texture").forGetter(board -> board.texture),
             Codec.STRING.fieldOf("tool_type").forGetter(board -> board.toolType)
     ).apply(instance, ChoppingBoard::new));
 
     private final String modId;
     private final Block pressurePlate;
     private final SoundEvent convertSound;
+    private final ResourceLocation texture;
     private final String toolType;
 
-    public ChoppingBoard(String modId, Block pressurePlate, SoundEvent convertSound, String toolType)
-        {
     private ResourceLocation id;
 
+    public ChoppingBoard(String modId, Block pressurePlate, SoundEvent convertSound, ResourceLocation texture, String toolType)
+    {
         this.modId = modId;
         this.pressurePlate = pressurePlate;
         this.convertSound = convertSound;
+        this.texture = texture;
         this.toolType = toolType;
     }
 
@@ -56,6 +59,12 @@ public class ChoppingBoard
     public SoundEvent getConvertSound()
     {
         return this.convertSound;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public ResourceLocation getTexture()
+    {
+        return texture;
     }
 
     public ToolType getToolType()

@@ -1,5 +1,6 @@
 {
-  "pressure_plate": "minecraft:heavy_weighted_pressure_plate",
   "convert_sound": "minecraft:block.metal.place",
-  "tool_type": "pickaxe"
+  "texture": "minecraft:block/gold_block",
+  "tool_type": "pickaxe",
+  "pressure_plate": "minecraft:heavy_weighted_pressure_plate"
 }

@@ -1,6 +1,7 @@
 {
-  "mod": "twilightforest",
-  "pressure_plate": "twilightforest:trans_plate",
   "convert_sound": "minecraft:block.wood.place",
-  "tool_type": "axe"
+  "texture": "twilightforest:block/trans_planks",
+  "tool_type": "axe",
+  "mod": "twilightforest",
+  "pressure_plate": "twilightforest:trans_plate"
 }

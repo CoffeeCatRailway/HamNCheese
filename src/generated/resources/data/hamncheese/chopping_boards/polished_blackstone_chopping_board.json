@@ -1,5 +1,6 @@
 {
-  "pressure_plate": "minecraft:polished_blackstone_pressure_plate",
   "convert_sound": "minecraft:block.stone.place",
-  "tool_type": "pickaxe"
+  "texture": "minecraft:block/polished_blackstone",
+  "tool_type": "pickaxe",
+  "pressure_plate": "minecraft:polished_blackstone_pressure_plate"
 }

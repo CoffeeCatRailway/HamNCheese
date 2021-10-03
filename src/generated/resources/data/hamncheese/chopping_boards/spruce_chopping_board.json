@@ -1,5 +1,6 @@
 {
-  "pressure_plate": "minecraft:spruce_pressure_plate",
   "convert_sound": "minecraft:block.wood.place",
-  "tool_type": "axe"
+  "texture": "minecraft:block/spruce_planks",
+  "tool_type": "axe",
+  "pressure_plate": "minecraft:spruce_pressure_plate"
 }

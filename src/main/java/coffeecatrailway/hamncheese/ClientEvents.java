@@ -46,6 +46,8 @@ public class ClientEvents
 
     private static void renderLayers()
     {
+        RenderTypeLookup.setRenderLayer(HNCBlocks.CHOPPING_BOARD.get(), (type) -> true);
+
         RenderType cutoutMipped = RenderType.cutoutMipped();
 
         RenderTypeLookup.setRenderLayer(HNCBlocks.PINEAPPLE_PLANT.get(), cutoutMipped);
