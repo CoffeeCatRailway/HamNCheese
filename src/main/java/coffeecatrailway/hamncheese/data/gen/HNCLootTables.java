@@ -182,29 +182,29 @@ public class HNCLootTables extends ForgeLootTableProvider
             this.dropSelf(HNCBlocks.GOLD_CHOPPING_BOARD.get());
             this.dropSelf(HNCBlocks.IRON_CHOPPING_BOARD.get());
 
-            this.dropSelf(HNCBlocks.FIR_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.REDWOOD_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.CHERRY_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.MAHOGANY_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.JACARANDA_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.PALM_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.WILLOW_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.DEAD_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.MAGIC_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.UMBRAN_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.HELLBARK_CHOPPING_BOARD.get());
-
-            this.dropSelf(HNCBlocks.TWILIGHT_OAK_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.CANOPY_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.MANGROVE_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.DARK_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.TIME_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.TRANS_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.MINE_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.SORT_CHOPPING_BOARD.get());
-
-            this.dropSelf(HNCBlocks.DARKWOOD_CHOPPING_BOARD.get());
-            this.dropSelf(HNCBlocks.ELDER_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.FIR_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.REDWOOD_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.CHERRY_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.MAHOGANY_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.JACARANDA_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.PALM_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.WILLOW_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.DEAD_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.MAGIC_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.UMBRAN_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.HELLBARK_CHOPPING_BOARD.get());
+//
+//            this.dropSelf(HNCBlocks.TWILIGHT_OAK_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.CANOPY_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.MANGROVE_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.DARK_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.TIME_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.TRANS_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.MINE_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.SORT_CHOPPING_BOARD.get());
+//
+//            this.dropSelf(HNCBlocks.DARKWOOD_CHOPPING_BOARD.get());
+//            this.dropSelf(HNCBlocks.ELDER_CHOPPING_BOARD.get());
 
             this.add(HNCBlocks.PIZZA_OVEN.get(), LootTable.lootTable()
                     .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))

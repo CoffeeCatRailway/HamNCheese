@@ -1,0 +1,7 @@
+{
+  "pressurePlate": "minecraft:stone_pressure_plate",
+  "board": "hamncheese:stone_chopping_board",
+  "sound": "minecraft:block.stone.place",
+  "toolType": "pickaxe",
+  "modId": "minecraft"
+}

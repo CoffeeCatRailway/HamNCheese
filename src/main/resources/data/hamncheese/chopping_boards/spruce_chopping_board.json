@@ -1,0 +1,7 @@
+{
+  "pressurePlate": "minecraft:spruce_pressure_plate",
+  "board": "hamncheese:spruce_chopping_board",
+  "sound": "minecraft:block.wood.place",
+  "toolType": "axe",
+  "modId": "minecraft"
+}

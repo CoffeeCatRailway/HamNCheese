@@ -80,29 +80,29 @@ public class HNCBlockStates extends BlockStateProvider
         this.choppingBoard(HNCBlocks.GOLD_CHOPPING_BOARD.get(), "gold", ChoppingBoardType.BLOCK);
         this.choppingBoard(HNCBlocks.IRON_CHOPPING_BOARD.get(), "iron", ChoppingBoardType.BLOCK);
 
-        this.choppingBoard(HNCBlocks.FIR_CHOPPING_BOARD.get(), "fir", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.REDWOOD_CHOPPING_BOARD.get(), "redwood", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.CHERRY_CHOPPING_BOARD.get(), "cherry", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.MAHOGANY_CHOPPING_BOARD.get(), "mahogany", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.JACARANDA_CHOPPING_BOARD.get(), "jacaranda", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.PALM_CHOPPING_BOARD.get(), "palm", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.WILLOW_CHOPPING_BOARD.get(), "willow", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.DEAD_CHOPPING_BOARD.get(), "dead", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.MAGIC_CHOPPING_BOARD.get(), "magic", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.UMBRAN_CHOPPING_BOARD.get(), "umbran", ChoppingBoardType.PLANKS, "biomesoplenty");
-        this.choppingBoard(HNCBlocks.HELLBARK_CHOPPING_BOARD.get(), "hellbark", ChoppingBoardType.PLANKS, "biomesoplenty");
-
-        this.choppingBoardTF(HNCBlocks.TWILIGHT_OAK_CHOPPING_BOARD.get(), "twilight_oak");
-        this.choppingBoardTF(HNCBlocks.CANOPY_CHOPPING_BOARD.get(), "canopy");
-        this.choppingBoardTF(HNCBlocks.MANGROVE_CHOPPING_BOARD.get(), "mangrove");
-        this.choppingBoardTF(HNCBlocks.DARK_CHOPPING_BOARD.get(), "dark");
-        this.choppingBoardTF(HNCBlocks.TIME_CHOPPING_BOARD.get(), "time");
-        this.choppingBoardTF(HNCBlocks.TRANS_CHOPPING_BOARD.get(), "trans");
-        this.choppingBoardTF(HNCBlocks.MINE_CHOPPING_BOARD.get(), "mine");
-        this.choppingBoardTF(HNCBlocks.SORT_CHOPPING_BOARD.get(), "sort");
-
-        this.choppingBoard(HNCBlocks.DARKWOOD_CHOPPING_BOARD.get(), "darkwood", ChoppingBoardType.PLANKS, "druidcraft");
-        this.choppingBoard(HNCBlocks.ELDER_CHOPPING_BOARD.get(), "elder", ChoppingBoardType.PLANKS, "druidcraft");
+//        this.choppingBoard(HNCBlocks.FIR_CHOPPING_BOARD.get(), "fir", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.REDWOOD_CHOPPING_BOARD.get(), "redwood", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.CHERRY_CHOPPING_BOARD.get(), "cherry", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.MAHOGANY_CHOPPING_BOARD.get(), "mahogany", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.JACARANDA_CHOPPING_BOARD.get(), "jacaranda", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.PALM_CHOPPING_BOARD.get(), "palm", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.WILLOW_CHOPPING_BOARD.get(), "willow", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.DEAD_CHOPPING_BOARD.get(), "dead", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.MAGIC_CHOPPING_BOARD.get(), "magic", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.UMBRAN_CHOPPING_BOARD.get(), "umbran", ChoppingBoardType.PLANKS, "biomesoplenty");
+//        this.choppingBoard(HNCBlocks.HELLBARK_CHOPPING_BOARD.get(), "hellbark", ChoppingBoardType.PLANKS, "biomesoplenty");
+//
+//        this.choppingBoardTF(HNCBlocks.TWILIGHT_OAK_CHOPPING_BOARD.get(), "twilight_oak");
+//        this.choppingBoardTF(HNCBlocks.CANOPY_CHOPPING_BOARD.get(), "canopy");
+//        this.choppingBoardTF(HNCBlocks.MANGROVE_CHOPPING_BOARD.get(), "mangrove");
+//        this.choppingBoardTF(HNCBlocks.DARK_CHOPPING_BOARD.get(), "dark");
+//        this.choppingBoardTF(HNCBlocks.TIME_CHOPPING_BOARD.get(), "time");
+//        this.choppingBoardTF(HNCBlocks.TRANS_CHOPPING_BOARD.get(), "trans");
+//        this.choppingBoardTF(HNCBlocks.MINE_CHOPPING_BOARD.get(), "mine");
+//        this.choppingBoardTF(HNCBlocks.SORT_CHOPPING_BOARD.get(), "sort");
+//
+//        this.choppingBoard(HNCBlocks.DARKWOOD_CHOPPING_BOARD.get(), "darkwood", ChoppingBoardType.PLANKS, "druidcraft");
+//        this.choppingBoard(HNCBlocks.ELDER_CHOPPING_BOARD.get(), "elder", ChoppingBoardType.PLANKS, "druidcraft");
 
         // Pizza Oven & Grill - Initial
         VariantBlockStateBuilder.PartialBlockstate oven = this.getVariantBuilder(HNCBlocks.PIZZA_OVEN.get()).partialState();
