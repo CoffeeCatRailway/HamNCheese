@@ -1,8 +1,11 @@
 package coffeecatrailway.hamncheese.common.tileentity;
 
+import coffeecatrailway.hamncheese.data.ChoppingBoard;
+import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCTileEntities;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
@@ -64,7 +67,7 @@ public class ChoppingBoardTileEntity extends TileEntity
     @Override
     public IModelData getModelData()
     {
-        return new ModelDataMap.Builder().withInitial(BOARD_ID, this.getBoardId()).build();
+        return new ModelDataMap.Builder().withInitial(BOARD_ID, this.boardId).build();
     }
 
     @Override
@@ -80,7 +83,15 @@ public class ChoppingBoardTileEntity extends TileEntity
         this.loadBoardId(nbt);
     }
 
-    @OnlyIn(Dist.CLIENT)
+//    @OnlyIn(Dist.CLIENT)
+//    public void fromItem(ItemStack stack)
+//    {
+//        CompoundNBT nbt = stack.getOrCreateTagElement("BlockEntityTag");
+//        if (!this.loadBoardId(nbt))
+//            this.boardId = HNCMod.getLocation("oak_chopping_board");
+//    }
+
+    @Nullable
     public ResourceLocation getBoardId()
     {
         return this.boardId;
@@ -90,7 +101,8 @@ public class ChoppingBoardTileEntity extends TileEntity
     {
         this.boardId = boardId;
         this.setChanged();
-        this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+        if (this.level != null)
+            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
     }
 
     public ItemStack getItem()
@@ -104,14 +116,16 @@ public class ChoppingBoardTileEntity extends TileEntity
     {
         if (this.boardId != null)
             nbt.putString("BoardId", this.boardId.toString());
+        else
+            nbt.putString("BoardId", ChoppingBoard.DEFAULT.getId().toString());
         return nbt;
     }
 
-    private boolean loadBoardId(CompoundNBT nbt)
+    private void loadBoardId(CompoundNBT nbt)
     {
-        boolean flag = nbt.contains("BoardId", Constants.NBT.TAG_STRING);
-        if (flag)
-            this.boardId = new ResourceLocation(nbt.getString("BoardId"));
-        return flag;
+        if (nbt.contains("BoardId", Constants.NBT.TAG_STRING))
+            this.setBoardId(new ResourceLocation(nbt.getString("BoardId")));
+        else
+            this.setBoardId(ChoppingBoard.DEFAULT.getId());
     }
 }

@@ -47,6 +47,7 @@ public class ChoppingBoardManager extends JsonReloadListener
     protected void apply(Map<ResourceLocation, JsonElement> elements, IResourceManager resourceManager, IProfiler profiler)
     {
         BOARDS.clear();
+        BOARDS.computeIfAbsent(HNCMod.getLocation("stone_chopping_board"), ChoppingBoard.DEFAULT::setId);
         elements.forEach((location, element) -> {
             if (BOARDS.containsKey(location))
             {
@@ -68,11 +69,8 @@ public class ChoppingBoardManager extends JsonReloadListener
                 {
                     final Optional<ChoppingBoard> result = JsonOps.INSTANCE.withParser(ChoppingBoard.CODEC).apply(element).result();
                     if (result.isPresent())
-                    {
-                        ChoppingBoard board = result.get();
-                        board.setId(location);
-                        BOARDS.put(location, board);
-                    } else
+                        BOARDS.computeIfAbsent(location, id -> result.get().setId(id));
+                    else
                         LOGGER.info("Failed to load JSON for {}", location);
                 } else
                     LOGGER.warn("Skipped recipe {} as mod \"{}\" was not present", location, modId);

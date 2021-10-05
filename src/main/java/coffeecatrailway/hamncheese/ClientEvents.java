@@ -5,19 +5,17 @@ import coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PopcornMachineScreen;
+import coffeecatrailway.hamncheese.client.model.ChoppingBoardModelLoader;
 import coffeecatrailway.hamncheese.registry.*;
-import net.minecraft.block.WoodType;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -86,5 +84,6 @@ public class ClientEvents
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event)
     {
+        ModelLoaderRegistry.registerLoader(HNCMod.getLocation("chopping_board_loader"), ChoppingBoardModelLoader.INSTANCE);
     }
 }
