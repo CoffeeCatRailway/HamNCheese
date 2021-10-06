@@ -10,10 +10,11 @@
     "2.0.6-1.16.5": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3404815",
     "2.1.0": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3442634",
     "2.1.1": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3445478",
-    "2.2.0": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3457197"
+    "2.2.0": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3457197",
+    "2.2.1": "https://www.curseforge.com/minecraft/mc-mods/hamncheese/files/3482814"
   },
   "promos": {
-    "1.16.5-latest": "2.2.0",
-    "1.16.5-recommended": "2.2.0"
+    "1.16.5-latest": "2.2.1",
+    "1.16.5-recommended": "2.2.1"
   }
 }
