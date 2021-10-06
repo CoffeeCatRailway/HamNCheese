@@ -107,7 +107,7 @@ public class HNCConfig
             builder.push("mouse");
             this.mouseSpawnWeight = builder.comment("The weight of mice spawning").translation(CONFIG + "generation.mouse.mouseSpawnWeight")
                     .defineInRange("mouseSpawnWeight", 10, 1, Integer.MAX_VALUE);
-            this.mouseMinCount = builder.comment("The minimum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMinCount")
+            this.mouseMinCount = builder.comment("NOTE: If either of the 'count' values are 0 or lower mice will not spawn!", "The minimum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMinCount")
                     .defineInRange("mouseMinCount", 2, 0, Integer.MAX_VALUE);
             this.mouseMaxCount = builder.comment("The maximum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMaxCount")
                     .defineInRange("mouseMaxCount", 4, 0, Integer.MAX_VALUE);
@@ -140,7 +140,7 @@ public class HNCConfig
 
         public boolean canSpawnMouse()
         {
-            return this.mouseMaxCount.get() != 0 && this.mouseMinCount.get() <= this.mouseMaxCount.get();
+            return this.mouseMinCount.get() > 0 && this.mouseMaxCount.get() > 0 && this.mouseMaxCount.get() >= this.mouseMinCount.get();
         }
 
         public static void init(ModLoadingContext context)

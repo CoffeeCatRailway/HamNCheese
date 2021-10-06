@@ -21,6 +21,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -62,16 +63,19 @@ public class HNCEntities
 
     public static void registerSpawnPlacements()
     {
-        if (HNCConfig.SERVER.canSpawnMouse())
-            EntitySpawnPlacementRegistry.register(MOUSE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(MOUSE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                (type, level, reason, pos, random) -> MobEntity.checkMobSpawnRules(type, level, reason, pos, random) && HNCConfig.SERVER.canSpawnMouse());
     }
 
     public static void addEntitySpawns(BiomeLoadingEvent event)
     {
         if (!HNCConfig.SERVER.biomeCategoryWhitelist.get().contains(event.getCategory().getName()))
             return;
+        List<MobSpawnInfo.Spawners> mouseSpawns = event.getSpawns().getSpawner(MOUSE.get().getCategory());
         if (HNCConfig.SERVER.canSpawnMouse())
-            event.getSpawns().getSpawner(MOUSE.get().getCategory()).add(new MobSpawnInfo.Spawners(MOUSE.get(), HNCConfig.SERVER.mouseSpawnWeight.get(), HNCConfig.SERVER.mouseMinCount.get(), HNCConfig.SERVER.mouseMaxCount.get()));
+            mouseSpawns.add(new MobSpawnInfo.Spawners(MOUSE.get(), HNCConfig.SERVER.mouseSpawnWeight.get(), HNCConfig.SERVER.mouseMinCount.get(), HNCConfig.SERVER.mouseMaxCount.get()));
+        else
+            mouseSpawns.clear();
     }
 
     public static void load(IEventBus bus)
