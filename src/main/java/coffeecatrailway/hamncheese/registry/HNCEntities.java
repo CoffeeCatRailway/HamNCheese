@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
@@ -75,7 +76,11 @@ public class HNCEntities
         if (HNCConfig.SERVER.canSpawnMouse())
             mouseSpawns.add(new MobSpawnInfo.Spawners(MOUSE.get(), HNCConfig.SERVER.mouseSpawnWeight.get(), HNCConfig.SERVER.mouseMinCount.get(), HNCConfig.SERVER.mouseMaxCount.get()));
         else
-            mouseSpawns.clear();
+        {
+            Set<MobSpawnInfo.Spawners> spawns = mouseSpawns.stream().filter(spawners -> spawners.type.equals(MOUSE.get())).collect(Collectors.toSet());
+            if (spawns.size() > 0)
+                mouseSpawns.removeAll(spawns);
+        }
     }
 
     public static void load(IEventBus bus)
