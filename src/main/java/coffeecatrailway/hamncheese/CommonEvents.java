@@ -11,13 +11,11 @@ import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.data.gen.HNCFluidTags;
 import coffeecatrailway.hamncheese.integration.top.HNCTheOneProbe;
-import coffeecatrailway.hamncheese.mixin.AccessorDispenserBlock;
 import coffeecatrailway.hamncheese.registry.*;
 import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
@@ -28,6 +26,7 @@ import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.EggEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Direction;
@@ -76,20 +75,25 @@ public class CommonEvents
             DispenserBlock.registerBehavior(HNCItems.MAPLE_BOAT.get(), new HNCDispenseBoatBehavior(HNCBoatEntity.ModType.MAPLE));
             DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BUCKET.get(), new MapleSapDispenseBehavior());
 
-            IDispenseItemBehavior behavior = AccessorDispenserBlock.getDispenseBehaviorRegistry().get(Items.GLASS_BOTTLE);
+            IDispenseItemBehavior behavior = getBehavior(Items.GLASS_BOTTLE);
             DispenserBlock.registerBehavior(Items.GLASS_BOTTLE, new TreeTapDispenseBehavior.GlassBottle(behavior));
 
-            behavior = AccessorDispenserBlock.getDispenseBehaviorRegistry().get(Items.BUCKET);
+            behavior = getBehavior(Items.BUCKET);
             DispenserBlock.registerBehavior(Items.BUCKET, new TreeTapDispenseBehavior.Bucket(behavior));
 
             DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BOTTLE.get(), new TreeTapDispenseBehavior.MapleSapBottle());
 
-            behavior = AccessorDispenserBlock.getDispenseBehaviorRegistry().get(HNCItems.MAPLE_SAP_BUCKET.get());
+            behavior = getBehavior(HNCItems.MAPLE_SAP_BUCKET.get());
             DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BUCKET.get(), new TreeTapDispenseBehavior.MapleSapBucket(behavior));
         });
 
         HNCEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);
         HNCEntities.registerSpawnPlacements();
+    }
+
+    private static IDispenseItemBehavior getBehavior(Item item)
+    {
+        return DispenserBlock.DISPENSER_REGISTRY.get(item);
     }
 
     public static void registerCompostables()

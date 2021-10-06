@@ -91,7 +91,7 @@ public class HNCItems
     public static final RegistryObject<Item> FOOD_SCRAPS = registerIdAsName("food_scraps", prop -> new Item(prop.food(HNCFoods.FOOD_SCRAPS)));
 
     // Misc
-    public static final RegistryObject<HNCBoatItem> MAPLE_BOAT = registerIdAsName("maple_boat", prop -> new HNCBoatItem(HNCBoatEntity.ModType.MAPLE, prop.food(HNCFoods.FOOD_SCRAPS)));
+    public static final RegistryObject<HNCBoatItem> MAPLE_BOAT = registerIdAsName("maple_boat", prop -> new HNCBoatItem(HNCBoatEntity.ModType.MAPLE, prop));
 
     public static final RegistryObject<BucketItem> MAPLE_SAP_BUCKET = registerIdAsName("maple_sap_bucket", prop -> new BucketItem(HNCFluids.MAPLE_SAP, prop.craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<FoodBottleItem> MAPLE_SAP_BOTTLE = registerIdAsName("maple_sap_bottle", prop -> new FoodBottleItem(prop.food(HNCFoods.MAPLE_SAP_BOTTLE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1)));
