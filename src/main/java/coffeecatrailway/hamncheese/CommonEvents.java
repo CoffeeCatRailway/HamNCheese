@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.block.dispenser.HNCDispenseBoatBehavior;
 import coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
+import coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
 import coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavior;
 import coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
@@ -85,6 +86,10 @@ public class CommonEvents
 
             behavior = getBehavior(HNCItems.MAPLE_SAP_BUCKET.get());
             DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BUCKET.get(), new TreeTapDispenseBehavior.MapleSapBucket(behavior));
+
+            DispenserBlock.registerBehavior(HNCItems.SANDWICH.get(), new SandwichExplodeBehavior(HNCItems.BREAD_SLICE.get(), HNCItems.TOAST.get(), true));
+            DispenserBlock.registerBehavior(HNCItems.CRACKER.get(), new SandwichExplodeBehavior(HNCItems.CRACKER.get(), HNCItems.CRACKER.get(), false));
+            DispenserBlock.registerBehavior(HNCItems.PIZZA.get(), new SandwichExplodeBehavior(HNCItems.UNBAKED_PIZZA_BASE.get(), HNCItems.BAKED_PIZZA_DUMMY.get(), false, HNCConfig.SERVER.dispenseTomatoSauce.get() ? new Item[]{HNCItems.TOMATO_SAUCE.get()} : new Item[]{}));
         });
 
         HNCEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);

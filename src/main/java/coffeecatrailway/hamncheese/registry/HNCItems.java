@@ -41,7 +41,7 @@ public class HNCItems
     public static final RegistryObject<Item> DOUGH = registerIdAsName("dough", prop -> new Item(prop.food(HNCFoods.DOUGH)));
 
     public static final RegistryObject<Item> UNBAKED_PIZZA_BASE = registerIdAsName("unbaked_pizza_base", prop -> new Item(prop.food(HNCFoods.DOUGH).stacksTo(32)));
-    public static final RegistryObject<Item> BAKED_PIZZA_DUMMY = registerIdAsName("baked_pizza_dummy", prop -> new Item(prop.food(HNCFoods.PIZZA).tab(null)));
+    public static final RegistryObject<Item> BAKED_PIZZA_DUMMY = registerWithName("baked_pizza_dummy", "Baked Pizza Base", prop -> new Item(prop.food(HNCFoods.BREAD_SLICE)));
     public static final RegistryObject<PizzaItem> PIZZA = registerIdAsName("pizza", prop -> new PizzaItem(prop.tab(null).stacksTo(8)));
 
     public static final RegistryObject<Item> UNBAKED_BREAD = registerIdAsName("unbaked_bread", prop -> new Item(prop.food(HNCFoods.DOUGH)));

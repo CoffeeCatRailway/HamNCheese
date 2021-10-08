@@ -37,6 +37,8 @@ public class HNCConfig
 
         public ForgeConfigSpec.BooleanValue mapleSapStuck;
 
+        public ForgeConfigSpec.BooleanValue dispenseTomatoSauce;
+
         public ForgeConfigSpec.BooleanValue generateWildPineapples;
         public ForgeConfigSpec.IntValue chanceWildPineapples;
 
@@ -81,7 +83,11 @@ public class HNCConfig
 
             this.mapleSapStuck = builder.comment("True if you want to be players stuck in maple sap").translation(CONFIG + "block.mapleSapStuck")
                     .define("mapleSapStuck", true);
-            builder.pop();
+
+            builder.push("dispenser");
+            this.dispenseTomatoSauce = builder.comment("Whether or not tomato sauce is dispensed along with the pizza").translation(CONFIG + "block.dispenser.dispenseTomatoSauce")
+                    .define("dispenseTomatoSauce", false);
+            builder.pop(2);
 
             builder.push(Lists.newArrayList("generation", "crops", "wildPineapples"));
             this.generateWildPineapples = builder.comment("Generate pineapples in biomes with a temperature of .5 to 1").translation(CONFIG + "generation.crops.wildPineapples.generateWildPineapples")
