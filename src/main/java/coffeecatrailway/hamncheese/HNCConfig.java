@@ -37,6 +37,8 @@ public class HNCConfig
 
         public ForgeConfigSpec.BooleanValue mapleSapStuck;
 
+        public ForgeConfigSpec.BooleanValue dispenseTomatoSauce;
+
         public ForgeConfigSpec.BooleanValue generateWildPineapples;
         public ForgeConfigSpec.IntValue chanceWildPineapples;
 
@@ -81,7 +83,11 @@ public class HNCConfig
 
             this.mapleSapStuck = builder.comment("True if you want to be players stuck in maple sap").translation(CONFIG + "block.mapleSapStuck")
                     .define("mapleSapStuck", true);
-            builder.pop();
+
+            builder.push("dispenser");
+            this.dispenseTomatoSauce = builder.comment("Whether or not tomato sauce is dispensed along with the pizza").translation(CONFIG + "block.dispenser.dispenseTomatoSauce")
+                    .define("dispenseTomatoSauce", false);
+            builder.pop(2);
 
             builder.push(Lists.newArrayList("generation", "crops", "wildPineapples"));
             this.generateWildPineapples = builder.comment("Generate pineapples in biomes with a temperature of .5 to 1").translation(CONFIG + "generation.crops.wildPineapples.generateWildPineapples")
@@ -107,7 +113,7 @@ public class HNCConfig
             builder.push("mouse");
             this.mouseSpawnWeight = builder.comment("The weight of mice spawning").translation(CONFIG + "generation.mouse.mouseSpawnWeight")
                     .defineInRange("mouseSpawnWeight", 10, 1, Integer.MAX_VALUE);
-            this.mouseMinCount = builder.comment("The minimum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMinCount")
+            this.mouseMinCount = builder.comment("NOTE: If either of the 'count' values are 0 or lower mice will not spawn!", "The minimum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMinCount")
                     .defineInRange("mouseMinCount", 2, 0, Integer.MAX_VALUE);
             this.mouseMaxCount = builder.comment("The maximum amount of mice that can spawn").translation(CONFIG + "generation.mouse.mouseMaxCount")
                     .defineInRange("mouseMaxCount", 4, 0, Integer.MAX_VALUE);
@@ -140,7 +146,7 @@ public class HNCConfig
 
         public boolean canSpawnMouse()
         {
-            return this.mouseMaxCount.get() != 0 && this.mouseMinCount.get() <= this.mouseMaxCount.get();
+            return this.mouseMinCount.get() > 0 && this.mouseMaxCount.get() > 0 && this.mouseMaxCount.get() >= this.mouseMinCount.get();
         }
 
         public static void init(ModLoadingContext context)

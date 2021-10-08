@@ -4,12 +4,10 @@ import groovy.json.JsonSlurper
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 
@@ -18,7 +16,6 @@ plugins {
 }
 
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
@@ -39,9 +36,6 @@ minecraft {
             workingDirectory project.file('run/client')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            arg "-mixin.config=hamncheese.mixin.json"
 
             mods {
                 hamncheese {
@@ -54,9 +48,6 @@ minecraft {
             workingDirectory project.file('run/server')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            arg "-mixin.config=hamncheese.mixin.json"
 
             mods {
                 hamncheese {
@@ -70,8 +61,6 @@ minecraft {
             property 'forge.logging.markers', ''
             property 'forge.logging.console.level', 'debug'
 
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             args '--mod', '' + project.modId, '--all', '--output', '"' + rootProject.file('src/generated/resources/') + '"', '--existing', '"' + rootProject.file('src/main/resources') + '"'
 
             mods {
@@ -81,10 +70,6 @@ minecraft {
             }
         }
     }
-}
-
-mixin {
-    add sourceSets.main, "${project.modId}.refmap.json"
 }
 
 configurations {
@@ -128,17 +113,15 @@ dependencies {
     compileOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}:api")
     runtimeOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}")
 
-    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:${project.bopVersion}")
-    implementation fg.deobf("curse.maven:druidcraft-340991:${project.druidcraftVersion}")
-    implementation fg.deobf("curse.maven:the-twilight-forest-227639:${project.twilightVersion}")
+    compileOnly fg.deobf("curse.maven:biomes-o-plenty-220318:${project.bopVersion}")
+    compileOnly fg.deobf("curse.maven:druidcraft-340991:${project.druidcraftVersion}")
+    compileOnly fg.deobf("curse.maven:the-twilight-forest-227639:${project.twilightVersion}")
 
     runtimeOnly fg.deobf("curse.maven:catalogue-459701:3335979")
 
     runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
     compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}:api"
     shade "com.github.Ocelot5836:Sonar:${project.sonar}"
-
-    annotationProcessor 'org.spongepowered:mixin:0.8.3:processor'
 }
 
 shadowJar {
@@ -174,14 +157,9 @@ jar {
                 "Implementation-Title"    : "${project.name}",
                 "Implementation-Version"  : "${project.version}",
                 "Implementation-Vendor"   : "${project.author}",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
-                "TweakOrder"              : 0,
-                "MixinConfigs"            : "${project.modId}.mixin.json"
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
-
-    rename "mixin.refmap.json", "${project.modId}.refmap.json"
 
     enabled = false
     dependsOn(shadowJar { classifier = null })

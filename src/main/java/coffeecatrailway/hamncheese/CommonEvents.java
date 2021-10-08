@@ -3,6 +3,7 @@ package coffeecatrailway.hamncheese;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.block.dispenser.HNCDispenseBoatBehavior;
 import coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
+import coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
 import coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavior;
 import coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
@@ -13,7 +14,6 @@ import coffeecatrailway.hamncheese.data.ChoppingBoard;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.data.gen.HNCFluidTags;
 import coffeecatrailway.hamncheese.integration.top.HNCTheOneProbe;
-import coffeecatrailway.hamncheese.mixin.AccessorDispenserBlock;
 import coffeecatrailway.hamncheese.registry.*;
 import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -29,6 +29,7 @@ import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.EggEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
@@ -78,20 +79,29 @@ public class CommonEvents
             DispenserBlock.registerBehavior(HNCItems.MAPLE_BOAT.get(), new HNCDispenseBoatBehavior(HNCBoatEntity.ModType.MAPLE));
             DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BUCKET.get(), new MapleSapDispenseBehavior());
 
-            IDispenseItemBehavior behavior = AccessorDispenserBlock.getDispenseBehaviorRegistry().get(Items.GLASS_BOTTLE);
+            IDispenseItemBehavior behavior = getBehavior(Items.GLASS_BOTTLE);
             DispenserBlock.registerBehavior(Items.GLASS_BOTTLE, new TreeTapDispenseBehavior.GlassBottle(behavior));
 
-            behavior = AccessorDispenserBlock.getDispenseBehaviorRegistry().get(Items.BUCKET);
+            behavior = getBehavior(Items.BUCKET);
             DispenserBlock.registerBehavior(Items.BUCKET, new TreeTapDispenseBehavior.Bucket(behavior));
 
             DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BOTTLE.get(), new TreeTapDispenseBehavior.MapleSapBottle());
 
-            behavior = AccessorDispenserBlock.getDispenseBehaviorRegistry().get(HNCItems.MAPLE_SAP_BUCKET.get());
+            behavior = getBehavior(HNCItems.MAPLE_SAP_BUCKET.get());
             DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BUCKET.get(), new TreeTapDispenseBehavior.MapleSapBucket(behavior));
+
+            DispenserBlock.registerBehavior(HNCItems.SANDWICH.get(), new SandwichExplodeBehavior(HNCItems.BREAD_SLICE.get(), HNCItems.TOAST.get(), true));
+            DispenserBlock.registerBehavior(HNCItems.CRACKER.get(), new SandwichExplodeBehavior(HNCItems.CRACKER.get(), HNCItems.CRACKER.get(), false));
+            DispenserBlock.registerBehavior(HNCItems.PIZZA.get(), new SandwichExplodeBehavior(HNCItems.UNBAKED_PIZZA_BASE.get(), HNCItems.BAKED_PIZZA_DUMMY.get(), false, HNCConfig.SERVER.dispenseTomatoSauce.get() ? new Item[]{HNCItems.TOMATO_SAUCE.get()} : new Item[]{}));
         });
 
         HNCEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);
         HNCEntities.registerSpawnPlacements();
+    }
+
+    private static IDispenseItemBehavior getBehavior(Item item)
+    {
+        return DispenserBlock.DISPENSER_REGISTRY.get(item);
     }
 
     public static void registerCompostables()

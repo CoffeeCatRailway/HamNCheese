@@ -1,0 +1,7 @@
+{
+  "pressurePlate": "minecraft:crimson_pressure_plate",
+  "board": "hamncheese:crimson_chopping_board",
+  "sound": "minecraft:block.wood.place",
+  "toolType": "axe",
+  "modId": "minecraft"
+}

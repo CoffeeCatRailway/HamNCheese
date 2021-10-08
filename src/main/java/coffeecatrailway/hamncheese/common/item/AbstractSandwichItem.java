@@ -141,11 +141,14 @@ public class AbstractSandwichItem extends Item
         return sandwich;
     }
 
-    public static boolean areStacksEqual(ItemStack stack1, ItemStack stack2)
+    public static Set<ItemStack> getIngredients(ItemStack stack)
     {
-        if (!(stack1.getItem() instanceof AbstractSandwichItem) || !(stack2.getItem() instanceof AbstractSandwichItem))
-            return false;
-        return ItemStack.isSame(stack1, stack2) && stack1.getItem() == stack2.getItem();
+        CompoundNBT nbt = stack.getOrCreateTag();
+        if (!(stack.getItem() instanceof AbstractSandwichItem) || !nbt.contains(TAG_INGREDIENTS, Constants.NBT.TAG_LIST))
+            return new HashSet<>();
+
+        ListNBT nbtIngredients = nbt.getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
+        return nbtIngredients.stream().filter(ingredient -> ingredient instanceof CompoundNBT).map(ingredient -> ItemStack.of((CompoundNBT) ingredient)).collect(Collectors.toSet());
     }
 
     public static class SandwichProperties
