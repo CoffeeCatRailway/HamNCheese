@@ -1,7 +1,0 @@
-{
-  "convert_sound": "minecraft:block.wood.place",
-  "texture": "twilightforest:block/sort_planks",
-  "tool_type": "axe",
-  "mod": "twilightforest",
-  "pressure_plate": "twilightforest:sort_plate"
-}

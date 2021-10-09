@@ -1,6 +1,6 @@
 {
   "convert_sound": "minecraft:block.wood.place",
-  "texture": "twilightforest:block/twilight_oak_planks",
+  "model": "hamncheese:chopping_board/twilight_oak",
   "tool_type": "axe",
   "mod": "twilightforest",
   "pressure_plate": "twilightforest:twilight_oak_plate"

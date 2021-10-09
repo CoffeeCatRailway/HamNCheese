@@ -1,7 +1,0 @@
-{
-  "convert_sound": "minecraft:block.wood.place",
-  "texture": "biomesoplenty:block/palm_planks",
-  "tool_type": "axe",
-  "mod": "biomesoplenty",
-  "pressure_plate": "biomesoplenty:palm_pressure_plate"
-}

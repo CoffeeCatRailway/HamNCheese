@@ -1,7 +1,0 @@
-{
-  "convert_sound": "minecraft:block.wood.place",
-  "texture": "druidcraft:block/elder_planks",
-  "tool_type": "axe",
-  "mod": "druidcraft",
-  "pressure_plate": "druidcraft:elder_pressure_plate"
-}

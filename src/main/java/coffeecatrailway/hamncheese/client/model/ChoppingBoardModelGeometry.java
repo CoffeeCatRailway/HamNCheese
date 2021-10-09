@@ -4,7 +4,6 @@ import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.renderer.model.*;
 import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.renderer.texture.MissingTextureSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,7 +14,6 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.geometry.ISimpleModelGeometry;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -50,6 +48,7 @@ public class ChoppingBoardModelGeometry implements ISimpleModelGeometry<Chopping
     @Override
     public Collection<RenderMaterial> getTextures(IModelConfiguration owner, Function<ResourceLocation, IUnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors)
     {
-        return ChoppingBoardManager.INSTANCE.getBoards().values().stream().map(board -> new RenderMaterial(AtlasTexture.LOCATION_BLOCKS, board.getTexture())).collect(Collectors.toSet());
+        return this.proxy.getTextures(owner, modelGetter, missingTextureErrors);
+//        return ChoppingBoardManager.INSTANCE.getBoards().values().stream().map(board -> new RenderMaterial(AtlasTexture.LOCATION_BLOCKS, board.getModel())).collect(Collectors.toSet());
     }
 }

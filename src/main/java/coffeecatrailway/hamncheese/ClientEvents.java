@@ -6,21 +6,27 @@ import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PopcornMachineScreen;
 import coffeecatrailway.hamncheese.client.model.ChoppingBoardModelLoader;
+import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.registry.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
+import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
@@ -84,6 +90,10 @@ public class ClientEvents
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event)
     {
+        for (ResourceLocation location : Minecraft.getInstance().getResourceManager().listResources("models/chopping_board", s -> s.endsWith(".json")))
+            ModelLoader.addSpecialModel(new ResourceLocation(location.getNamespace(), location.getPath().substring(7, location.getPath().length() - 5)));
+//        ChoppingBoardManager.INSTANCE.getBoards().values().forEach(board -> ModelLoader.addSpecialModel(board.getModel()));
+//        ModelLoader.addSpecialModel(HNCMod.getLocation("block/chopping_board_visual"));
         ModelLoaderRegistry.registerLoader(HNCMod.getLocation("chopping_board_loader"), ChoppingBoardModelLoader.INSTANCE);
     }
 }

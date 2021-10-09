@@ -1,7 +1,0 @@
-{
-  "convert_sound": "minecraft:block.wood.place",
-  "texture": "biomesoplenty:block/hellbark_planks",
-  "tool_type": "axe",
-  "mod": "biomesoplenty",
-  "pressure_plate": "biomesoplenty:hellbark_pressure_plate"
-}

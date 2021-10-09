@@ -4,16 +4,10 @@ import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.tileentity.ChoppingBoardTileEntity;
 import coffeecatrailway.hamncheese.data.ChoppingBoard;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
-import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.BakedQuad;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.model.ItemOverrideList;
-import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.client.renderer.model.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -26,7 +20,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
@@ -45,14 +38,20 @@ public class ChoppingBoardModel implements IDynamicBakedModel
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData)
     {
-        return this.baseModel.getQuads(state, side, rand, extraData).stream().map(quad -> new BakedQuadRetextured(quad, this.getParticleTexture(extraData))).collect(Collectors.toList());
+        IBakedModel model = this.getBoardModel(extraData);
+        return model.getQuads(state, side, rand, extraData);
+    }
+
+    private IBakedModel getBoardModel(@Nonnull IModelData data)
+    {
+        return Minecraft.getInstance().getModelManager().getModel(ChoppingBoardManager.INSTANCE.getById(data.getData(ChoppingBoardTileEntity.BOARD_ID)).getModel());
     }
 
     @Nonnull
     @Override
     public IModelData getModelData(@Nonnull IBlockDisplayReader level, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull IModelData tileData)
     {
-        ResourceLocation boardId = HNCMod.getLocation("oak_chopping_board");
+        ResourceLocation boardId = ChoppingBoard.DEFAULT.getId();
         TileEntity tile = level.getBlockEntity(pos);
         if (tile instanceof ChoppingBoardTileEntity)
             boardId = ((ChoppingBoardTileEntity) tile).getBoardId();
@@ -105,13 +104,6 @@ public class ChoppingBoardModel implements IDynamicBakedModel
     @Override
     public TextureAtlasSprite getParticleTexture(@Nonnull IModelData data)
     {
-        if (data.hasProperty(ChoppingBoardTileEntity.BOARD_ID))
-        {
-            ChoppingBoardManager manager = ChoppingBoardManager.INSTANCE;
-            ResourceLocation boardId = data.getData(ChoppingBoardTileEntity.BOARD_ID);
-            if (boardId != null && manager.getBoards().containsKey(boardId))
-                return Minecraft.getInstance().getTextureAtlas(AtlasTexture.LOCATION_BLOCKS).apply(manager.getBoards().get(boardId).getTexture());
-        }
-        return Minecraft.getInstance().getTextureAtlas(AtlasTexture.LOCATION_BLOCKS).apply(ChoppingBoard.DEFAULT.getTexture());
+        return this.getBoardModel(data).getParticleTexture(data);
     }
 }

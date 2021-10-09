@@ -1,6 +1,6 @@
 {
   "convert_sound": "minecraft:block.wood.place",
-  "texture": "minecraft:block/jungle_planks",
+  "model": "hamncheese:chopping_board/jungle",
   "tool_type": "axe",
   "pressure_plate": "minecraft:jungle_pressure_plate"
 }

@@ -17,9 +17,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 
 /**
  * @author CoffeeCatRailway
@@ -38,9 +38,14 @@ public class ChoppingBoardManager extends JsonReloadListener
         super(GSON, "chopping_boards");
     }
 
-    public Map<ResourceLocation, ChoppingBoard> getBoards()
+    public void forEach(BiConsumer<ResourceLocation, ChoppingBoard> action)
     {
-        return BOARDS;
+        BOARDS.forEach(action);
+    }
+
+    public ChoppingBoard getById(ResourceLocation id)
+    {
+        return BOARDS.getOrDefault(id, ChoppingBoard.DEFAULT);
     }
 
     @Override
@@ -81,9 +86,8 @@ public class ChoppingBoardManager extends JsonReloadListener
         });
     }
 
-    @Nullable
     public static ChoppingBoard getBoardByPressurePlate(Block pressurePlate)
     {
-        return ChoppingBoardManager.INSTANCE.getBoards().values().stream().filter(board -> board.getPressurePlate().is(pressurePlate)).findFirst().orElse(null);
+        return BOARDS.values().stream().filter(board -> board.getPressurePlate().is(pressurePlate)).findFirst().orElse(ChoppingBoard.DEFAULT);
     }
 }

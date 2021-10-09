@@ -1,6 +1,6 @@
 {
   "convert_sound": "minecraft:block.wood.place",
-  "texture": "minecraft:block/birch_planks",
+  "model": "hamncheese:chopping_board/birch",
   "tool_type": "axe",
   "pressure_plate": "minecraft:birch_pressure_plate"
 }

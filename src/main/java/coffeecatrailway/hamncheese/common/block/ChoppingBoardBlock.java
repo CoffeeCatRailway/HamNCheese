@@ -53,7 +53,7 @@ public class ChoppingBoardBlock extends BaseBlock implements IWaterLoggable
     {
         if (group.equals(HNCMod.GROUP_ALL))
         {
-            ChoppingBoardManager.INSTANCE.getBoards().forEach((id, board) -> {
+            ChoppingBoardManager.INSTANCE.forEach((id, board) -> {
                 ItemStack stack = new ItemStack(HNCBlocks.CHOPPING_BOARD.get());
                 stack.getOrCreateTagElement("BlockEntityTag").putString("BoardId", id.toString());
                 stacks.add(stack);
@@ -65,12 +65,8 @@ public class ChoppingBoardBlock extends BaseBlock implements IWaterLoggable
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader reader, List<ITextComponent> lines, ITooltipFlag flag)
     {
-        ChoppingBoard board = ChoppingBoardManager.INSTANCE.getBoards().get(new ResourceLocation(stack.getOrCreateTagElement("BlockEntityTag").getString("BoardId")));
-        IFormattableTextComponent from = new TranslationTextComponent("block." + HNCMod.MOD_ID + "from");
-        if (board != null)
-            from.append(board.getPressurePlate().getName());
-        else
-            from.append("N/A");
+        ChoppingBoard board = ChoppingBoardManager.INSTANCE.getById(new ResourceLocation(stack.getOrCreateTagElement("BlockEntityTag").getString("BoardId")));
+        IFormattableTextComponent from = new TranslationTextComponent("block." + HNCMod.MOD_ID + "from").append(board.getPressurePlate().getName());
         lines.add(from.withStyle(TextFormatting.DARK_GRAY));
     }
 

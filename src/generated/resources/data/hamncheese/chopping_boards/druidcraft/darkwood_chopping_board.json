@@ -1,0 +1,7 @@
+{
+  "convert_sound": "minecraft:block.wood.place",
+  "model": "hamncheese:chopping_board/darkwood",
+  "tool_type": "axe",
+  "mod": "druidcraft",
+  "pressure_plate": "druidcraft:darkwood_pressure_plate"
+}

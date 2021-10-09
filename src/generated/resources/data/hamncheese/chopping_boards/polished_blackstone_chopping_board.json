@@ -1,6 +1,6 @@
 {
   "convert_sound": "minecraft:block.stone.place",
-  "texture": "minecraft:block/polished_blackstone",
+  "model": "hamncheese:chopping_board/polished_blackstone",
   "tool_type": "pickaxe",
   "pressure_plate": "minecraft:polished_blackstone_pressure_plate"
 }

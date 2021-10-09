@@ -1,0 +1,7 @@
+{
+  "convert_sound": "minecraft:block.wood.place",
+  "model": "hamncheese:chopping_board/mahogany",
+  "tool_type": "axe",
+  "mod": "biomesoplenty",
+  "pressure_plate": "biomesoplenty:mahogany_pressure_plate"
+}

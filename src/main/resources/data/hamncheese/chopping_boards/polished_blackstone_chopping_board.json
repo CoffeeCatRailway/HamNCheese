@@ -1,7 +1,0 @@
-{
-  "pressurePlate": "minecraft:polished_blackstone_pressure_plate",
-  "board": "hamncheese:polished_blackstone_chopping_board",
-  "sound": "minecraft:block.stone.place",
-  "toolType": "pickaxe",
-  "modId": "minecraft"
-}

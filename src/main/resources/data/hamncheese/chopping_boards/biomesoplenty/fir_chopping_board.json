@@ -1,7 +1,0 @@
-{
-  "convert_sound": "minecraft:block.wood.place",
-  "texture": "biomesoplenty:block/fir_planks",
-  "tool_type": "axe",
-  "mod": "biomesoplenty",
-  "pressure_plate": "biomesoplenty:fir_pressure_plate"
-}
