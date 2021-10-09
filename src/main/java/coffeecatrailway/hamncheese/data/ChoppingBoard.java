@@ -1,10 +1,13 @@
 package coffeecatrailway.hamncheese.data;
 
+import coffeecatrailway.hamncheese.HNCMod;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -23,6 +26,7 @@ public class ChoppingBoard
             ResourceLocation.CODEC.fieldOf("texture").forGetter(board -> board.texture),
             Codec.STRING.fieldOf("tool_type").forGetter(board -> board.toolType)
     ).apply(instance, ChoppingBoard::new));
+    public static final ChoppingBoard DEFAULT = new ChoppingBoard("minecraft", Blocks.STONE_PRESSURE_PLATE, SoundEvents.STONE_PLACE, new ResourceLocation("block/stone"), "pickaxe");
 
     private final String modId;
     private final Block pressurePlate;
@@ -41,9 +45,10 @@ public class ChoppingBoard
         this.toolType = toolType;
     }
 
-    protected void setId(ResourceLocation id)
+    protected ChoppingBoard setId(ResourceLocation id)
     {
         this.id = id;
+        return this;
     }
 
     public ResourceLocation getId()
