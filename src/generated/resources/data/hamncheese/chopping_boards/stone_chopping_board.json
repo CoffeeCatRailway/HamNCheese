@@ -1,0 +1,6 @@
+{
+  "convert_sound": "minecraft:block.stone.place",
+  "texture": "minecraft:block/stone",
+  "tool_type": "pickaxe",
+  "pressure_plate": "minecraft:stone_pressure_plate"
+}

@@ -1,5 +1,4 @@
 {
-    "loader": "hamncheese:chopping_board_loader",
 	"textures": {
 		"particle": "hamncheese:block/maple_planks"
 	},
