@@ -75,8 +75,8 @@ public class ChoppingBoardDataGen implements IDataProvider
 
 //        this.addChoppingBoard("stone_chopping_board", Blocks.STONE_PRESSURE_PLATE, SoundEvents.STONE_PLACE, new ResourceLocation("chopping_board/stone"), "pickaxe");
         this.addChoppingBoard("polished_blackstone_chopping_board", Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE, SoundEvents.STONE_PLACE, HNCMod.getLocation("chopping_board/polished_blackstone"), "pickaxe");
-        this.addChoppingBoard("light_weighted_chopping_board", Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE, SoundEvents.METAL_PLACE, HNCMod.getLocation("chopping_board/iron"), "pickaxe");
-        this.addChoppingBoard("heavy_weighted_chopping_board", Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE, SoundEvents.METAL_PLACE, HNCMod.getLocation("chopping_board/gold"), "pickaxe");
+        this.addChoppingBoard("light_weighted_chopping_board", Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE, SoundEvents.METAL_PLACE, HNCMod.getLocation("chopping_board/gold"), "pickaxe");
+        this.addChoppingBoard("heavy_weighted_chopping_board", Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE, SoundEvents.METAL_PLACE, HNCMod.getLocation("chopping_board/iron"), "pickaxe");
 
         this.addChoppingBoard("maple_chopping_board", HNCBlocks.MAPLE_PRESSURE_PLATE.get(), SoundEvents.WOOD_PLACE, HNCMod.getLocation("chopping_board/maple"), "axe");
 
