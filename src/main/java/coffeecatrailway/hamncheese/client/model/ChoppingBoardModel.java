@@ -1,18 +1,29 @@
 package coffeecatrailway.hamncheese.client.model;
 
-import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.tileentity.ChoppingBoardTileEntity;
 import coffeecatrailway.hamncheese.data.ChoppingBoard;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
+import com.mojang.datafixers.util.Pair;
+import it.unimi.dsi.fastutil.floats.Float2ObjectArrayMap;
+import it.unimi.dsi.fastutil.floats.Float2ObjectMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.*;
+import net.minecraft.client.renderer.model.BakedQuad;
+import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Quaternion;
+import net.minecraft.util.math.vector.TransformationMatrix;
 import net.minecraft.world.IBlockDisplayReader;
+import net.minecraftforge.client.model.QuadTransformer;
 import net.minecraftforge.client.model.data.IDynamicBakedModel;
 import net.minecraftforge.client.model.data.IModelData;
 
@@ -27,24 +38,48 @@ import java.util.Random;
  */
 public class ChoppingBoardModel implements IDynamicBakedModel
 {
+    private static final Object2ObjectMap<Pair<Float, ResourceLocation>, List<BakedQuad>> BAKED_QUADS = new Object2ObjectArrayMap<>();
+
     private final IBakedModel baseModel;
 
     public ChoppingBoardModel(IBakedModel baseModel)
     {
         this.baseModel = baseModel;
+        BAKED_QUADS.clear();
+    }
+
+    private static QuadTransformer angleToTransformer(float angle)
+    {
+        return new QuadTransformer(new TransformationMatrix(null, new Quaternion(0, angle, 0, true), null, null).blockCenterToCorner());
     }
 
     @Nonnull
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData)
     {
-        IBakedModel model = this.getBoardModel(extraData);
-        return model.getQuads(state, side, rand, extraData);
+        float angle = 0f;
+        if (state != null)
+        {
+            Direction direction = state.getValue(ChoppingBoardBlock.HORIZONTAL_FACING);
+            if (direction == Direction.EAST || direction == Direction.WEST)
+                direction = direction.getOpposite();
+            angle = direction.toYRot();
+        }
+        Pair<Float, ResourceLocation> identifier = Pair.of(angle, this.getBoard(extraData).getModel());
+        BAKED_QUADS.computeIfAbsent(identifier, identifierIn -> angleToTransformer(identifierIn.getFirst()).processMany(this.getModel(identifierIn.getSecond()).getQuads(state, side, rand, extraData)));
+        if (BAKED_QUADS.get(identifier).isEmpty())
+            BAKED_QUADS.replace(identifier, angleToTransformer(identifier.getFirst()).processMany(this.getModel(identifier.getSecond()).getQuads(state, side, rand, extraData)));
+        return BAKED_QUADS.get(identifier); // TODO: Fix item models
     }
 
-    private IBakedModel getBoardModel(@Nonnull IModelData data)
+    private ChoppingBoard getBoard(@Nonnull IModelData data)
     {
-        return Minecraft.getInstance().getModelManager().getModel(ChoppingBoardManager.INSTANCE.getById(data.getData(ChoppingBoardTileEntity.BOARD_ID)).getModel());
+        return ChoppingBoardManager.INSTANCE.getById(data.getData(ChoppingBoardTileEntity.BOARD_ID));
+    }
+
+    private IBakedModel getModel(ResourceLocation modelLocation)
+    {
+        return Minecraft.getInstance().getModelManager().getModel(modelLocation);
     }
 
     @Nonnull
@@ -104,6 +139,6 @@ public class ChoppingBoardModel implements IDynamicBakedModel
     @Override
     public TextureAtlasSprite getParticleTexture(@Nonnull IModelData data)
     {
-        return this.getBoardModel(data).getParticleTexture(data);
+        return this.getModel(this.getBoard(data).getModel()).getParticleTexture(data);
     }
 }
