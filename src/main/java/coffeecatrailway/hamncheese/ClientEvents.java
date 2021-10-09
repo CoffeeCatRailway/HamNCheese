@@ -6,7 +6,6 @@ import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PopcornMachineScreen;
 import coffeecatrailway.hamncheese.client.model.ChoppingBoardModelLoader;
-import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
@@ -25,8 +24,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-
-import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
@@ -92,8 +89,6 @@ public class ClientEvents
     {
         for (ResourceLocation location : Minecraft.getInstance().getResourceManager().listResources("models/chopping_board", s -> s.endsWith(".json")))
             ModelLoader.addSpecialModel(new ResourceLocation(location.getNamespace(), location.getPath().substring(7, location.getPath().length() - 5)));
-//        ChoppingBoardManager.INSTANCE.getBoards().values().forEach(board -> ModelLoader.addSpecialModel(board.getModel()));
-//        ModelLoader.addSpecialModel(HNCMod.getLocation("block/chopping_board_visual"));
         ModelLoaderRegistry.registerLoader(HNCMod.getLocation("chopping_board_loader"), ChoppingBoardModelLoader.INSTANCE);
     }
 }

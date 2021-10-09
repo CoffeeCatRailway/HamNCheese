@@ -1,11 +1,9 @@
 package coffeecatrailway.hamncheese.common.tileentity;
 
 import coffeecatrailway.hamncheese.data.ChoppingBoard;
-import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCTileEntities;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
@@ -82,14 +80,6 @@ public class ChoppingBoardTileEntity extends TileEntity
         super.load(state, nbt);
         this.loadBoardId(nbt);
     }
-
-//    @OnlyIn(Dist.CLIENT)
-//    public void fromItem(ItemStack stack)
-//    {
-//        CompoundNBT nbt = stack.getOrCreateTagElement("BlockEntityTag");
-//        if (!this.loadBoardId(nbt))
-//            this.boardId = HNCMod.getLocation("oak_chopping_board");
-//    }
 
     @Nullable
     public ResourceLocation getBoardId()
