@@ -66,7 +66,7 @@ public class ChoppingBoardModel implements IDynamicBakedModel
         }
 
         this.bake(state, side, rand, extraData);
-        return BAKED_QUADS.get(Pair.of(angle, this.getBoard(extraData).getModel())); // TODO: Fix item models
+        return BAKED_QUADS.get(Pair.of(angle, this.getBoard(extraData).getModel()));
     }
 
     private void bake(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData)
@@ -76,8 +76,9 @@ public class ChoppingBoardModel implements IDynamicBakedModel
             for (Direction direction : Direction.Plane.HORIZONTAL)
             {
                 Pair<Float, ResourceLocation> identifier = Pair.of(direction.toYRot(), board.getModel());
-                BAKED_QUADS.computeIfAbsent(identifier, identifierIn -> angleToTransformer(identifierIn.getFirst()).processMany(this.getModel(identifierIn.getSecond()).getQuads(state, side, rand, extraData)));
-                if (BAKED_QUADS.get(identifier).isEmpty())
+                if (!BAKED_QUADS.containsKey(identifier))
+                    BAKED_QUADS.putIfAbsent(identifier, angleToTransformer(identifier.getFirst()).processMany(this.getModel(identifier.getSecond()).getQuads(state, side, rand, extraData)));
+                else if (BAKED_QUADS.get(identifier).isEmpty())
                     BAKED_QUADS.replace(identifier, angleToTransformer(identifier.getFirst()).processMany(this.getModel(identifier.getSecond()).getQuads(state, side, rand, extraData)));
             }
         });
