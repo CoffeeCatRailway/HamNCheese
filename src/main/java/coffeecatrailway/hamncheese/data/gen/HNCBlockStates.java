@@ -121,7 +121,7 @@ public class HNCBlockStates extends BlockStateProvider
         this.toItem(HNCBlocks.PIZZA_OVEN.get());
         this.toItem(HNCBlocks.GRILL.get());
         this.toItem(HNCBlocks.POPCORN_MACHINE.get(), HNCMod.getLocation("block/popcorn_machine_full"));
-        this.toItem(HNCBlocks.CHOPPING_BOARD.get());
+//        this.toItem(HNCBlocks.CHOPPING_BOARD.get());
 
         this.choppingBoard("oak", new ResourceLocation("block/oak_planks"));
         this.choppingBoard("birch", new ResourceLocation("block/birch_planks"));

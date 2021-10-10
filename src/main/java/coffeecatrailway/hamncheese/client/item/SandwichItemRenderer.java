@@ -24,6 +24,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,7 @@ import java.util.stream.Collectors;
  * Created: 1/04/2021
  */
 @OnlyIn(Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = HNCMod.MOD_ID, value = Dist.CLIENT)
 public class SandwichItemRenderer extends ItemStackTileEntityRenderer
 {
     private static final Random RANDOM = new Random(42);
@@ -149,7 +151,7 @@ public class SandwichItemRenderer extends ItemStackTileEntityRenderer
     }
 
     @SubscribeEvent
-    public void onReload(TagsUpdatedEvent event)
+    public static void onReload(TagsUpdatedEvent event)
     {
         if (!INGREDIENT_CACHE.isEmpty())
             INGREDIENT_CACHE.clear();

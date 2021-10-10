@@ -65,7 +65,12 @@ public class ChoppingBoardTileEntity extends TileEntity
     @Override
     public IModelData getModelData()
     {
-        return new ModelDataMap.Builder().withInitial(BOARD_ID, this.boardId).build();
+        return getModelData(this.boardId);
+    }
+
+    public static IModelData getModelData(ResourceLocation boardId)
+    {
+        return new ModelDataMap.Builder().withInitial(BOARD_ID, boardId).build();
     }
 
     @Override

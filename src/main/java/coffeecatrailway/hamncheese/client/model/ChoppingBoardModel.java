@@ -5,8 +5,6 @@ import coffeecatrailway.hamncheese.common.tileentity.ChoppingBoardTileEntity;
 import coffeecatrailway.hamncheese.data.ChoppingBoard;
 import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import com.mojang.datafixers.util.Pair;
-import it.unimi.dsi.fastutil.floats.Float2ObjectArrayMap;
-import it.unimi.dsi.fastutil.floats.Float2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import net.minecraft.block.BlockState;
@@ -39,6 +37,7 @@ import java.util.Random;
 public class ChoppingBoardModel implements IDynamicBakedModel
 {
     private static final Object2ObjectMap<Pair<Float, ResourceLocation>, List<BakedQuad>> BAKED_QUADS = new Object2ObjectArrayMap<>();
+    public static final Random RANDOM = new Random(42);
 
     private final IBakedModel baseModel;
 
@@ -65,11 +64,23 @@ public class ChoppingBoardModel implements IDynamicBakedModel
                 direction = direction.getOpposite();
             angle = direction.toYRot();
         }
-        Pair<Float, ResourceLocation> identifier = Pair.of(angle, this.getBoard(extraData).getModel());
-        BAKED_QUADS.computeIfAbsent(identifier, identifierIn -> angleToTransformer(identifierIn.getFirst()).processMany(this.getModel(identifierIn.getSecond()).getQuads(state, side, rand, extraData)));
-        if (BAKED_QUADS.get(identifier).isEmpty())
-            BAKED_QUADS.replace(identifier, angleToTransformer(identifier.getFirst()).processMany(this.getModel(identifier.getSecond()).getQuads(state, side, rand, extraData)));
-        return BAKED_QUADS.get(identifier); // TODO: Fix item models
+
+        this.bake(state, side, rand, extraData);
+        return BAKED_QUADS.get(Pair.of(angle, this.getBoard(extraData).getModel())); // TODO: Fix item models
+    }
+
+    private void bake(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData)
+    {
+        // TODO: Optimise... later...
+        ChoppingBoardManager.INSTANCE.forEach((id, board) -> {
+            for (Direction direction : Direction.Plane.HORIZONTAL)
+            {
+                Pair<Float, ResourceLocation> identifier = Pair.of(direction.toYRot(), board.getModel());
+                BAKED_QUADS.computeIfAbsent(identifier, identifierIn -> angleToTransformer(identifierIn.getFirst()).processMany(this.getModel(identifierIn.getSecond()).getQuads(state, side, rand, extraData)));
+                if (BAKED_QUADS.get(identifier).isEmpty())
+                    BAKED_QUADS.replace(identifier, angleToTransformer(identifier.getFirst()).processMany(this.getModel(identifier.getSecond()).getQuads(state, side, rand, extraData)));
+            }
+        });
     }
 
     private ChoppingBoard getBoard(@Nonnull IModelData data)

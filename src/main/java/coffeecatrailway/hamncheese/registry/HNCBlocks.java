@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.client.item.ChoppingBoardItemRenderer;
 import coffeecatrailway.hamncheese.common.block.*;
 import coffeecatrailway.hamncheese.common.block.fluid.MapleSapFluidBlock;
 import coffeecatrailway.hamncheese.common.block.trees.MapleTree;
@@ -39,7 +40,7 @@ public class HNCBlocks
     public static final RegistryObject<TomatoPlantBlock> TOMATO_PLANT = registerPlant("tomato_plant", TomatoPlantBlock::new);
     public static final RegistryObject<CornPlantBlock> CORN_PLANT = registerPlant("corn_plant", CornPlantBlock::new);
 
-    public static final RegistryObject<ChoppingBoardBlock> CHOPPING_BOARD = register("chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS).strength(.5f).sound(SoundType.WOOD)), prop -> prop);
+    public static final RegistryObject<ChoppingBoardBlock> CHOPPING_BOARD = register("chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS).strength(.5f).sound(SoundType.WOOD)), prop -> prop.setISTER(() -> ChoppingBoardItemRenderer::new));
 
     public static final RegistryObject<PizzaOvenBlock> PIZZA_OVEN = register("pizza_oven", () -> new PizzaOvenBlock(AbstractBlock.Properties.copy(Blocks.WHITE_TERRACOTTA)), prop -> prop);
     public static final RegistryObject<GrillBlock> GRILL = register("grill", () -> new GrillBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);

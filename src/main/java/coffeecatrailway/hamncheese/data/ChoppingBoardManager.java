@@ -38,6 +38,11 @@ public class ChoppingBoardManager extends JsonReloadListener
         super(GSON, "chopping_boards");
     }
 
+    public int size()
+    {
+        return BOARDS.size();
+    }
+
     public void forEach(BiConsumer<ResourceLocation, ChoppingBoard> action)
     {
         BOARDS.forEach(action);
