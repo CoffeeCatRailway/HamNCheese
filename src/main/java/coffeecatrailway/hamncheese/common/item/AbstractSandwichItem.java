@@ -55,7 +55,7 @@ public class AbstractSandwichItem extends Item
         if (!stackNbt.contains(TAG_INGREDIENTS))
             stackNbt.put(TAG_INGREDIENTS, new ListNBT());
 
-        if (this.sandwichProperties.canBeToasted && !stackNbt.contains(TAG_TOASTED))
+        if (this.sandwichProperties.canBeToasted && !stackNbt.contains(TAG_TOASTED, Constants.NBT.TAG_BYTE))
             stackNbt.putBoolean(TAG_TOASTED, false);
         return super.initCapabilities(stack, nbt);
     }

@@ -107,8 +107,9 @@ public class HNCVillagerTrades
             ItemStack sandwichStack = new ItemStack(this.sandwich.get(), this.numberOfItems);
             if (this.name != null)
                 sandwichStack.setHoverName(new StringTextComponent(this.name));
-            this.ingredients.forEach(item -> AbstractSandwichItem.addIngredient(sandwichStack, new ItemStack(item)));
-            return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), sandwichStack, this.maxUses, this.villagerXp, .05f);
+            this.ingredients.forEach(item -> AbstractSandwichItem.addIngredient(sandwichStack, new ItemStack(item)).copy());
+            sandwichStack.getOrCreateTag().putBoolean(AbstractSandwichItem.TAG_TOASTED, this.toasted);
+            return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), sandwichStack.copy(), this.maxUses, this.villagerXp, .05f);
         }
     }
 }
