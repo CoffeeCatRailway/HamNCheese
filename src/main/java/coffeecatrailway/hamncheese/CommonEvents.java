@@ -307,7 +307,7 @@ public class CommonEvents
         ItemStack stack = event.getItemStack();
         World level = event.getWorld();
         ChoppingBoard board = ChoppingBoardManager.getBoardByPressurePlate(level.getBlockState(pos).getBlock());
-        if (stack.getToolTypes().contains(board.getToolType()))
+        if (level.getBlockState(pos).getBlock() == board.getPressurePlate() && stack.getToolTypes().contains(board.getToolType()))
         {
             level.setBlock(pos, HNCBlocks.CHOPPING_BOARD.get().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(player.getRandom())), Constants.BlockFlags.DEFAULT);
             TileEntity tile = level.getBlockEntity(pos);
