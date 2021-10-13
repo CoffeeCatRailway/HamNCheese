@@ -55,6 +55,7 @@ public class HNCBlockStates extends BlockStateProvider
         }
 
         VariantBlockStateBuilder.PartialBlockstate cornPlant = this.getVariantBuilder(HNCBlocks.CORN_PLANT.get()).partialState();
+        ModelFile emptyCorn = this.emptyBlockModelWithParticle("corn_plant_top_stage_0", HNCMod.getLocation("block/corn_plant_bottom_stage_0"));
         for (i = 0; i < 7; i++)
         {
             cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.LOWER)
@@ -64,7 +65,7 @@ public class HNCBlockStates extends BlockStateProvider
                 cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER)
                         .modelForState().modelFile(this.models().cross("block/corn_plant_top_stage_" + i, HNCMod.getLocation("block/corn_plant_top_stage_" + i))).addModel();
             else
-                cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(this.models().getExistingFile(new ResourceLocation("block/air"))).addModel();
+                cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(emptyCorn).addModel();
         }
 
         // Horizontal Blocks - Initial
@@ -282,6 +283,11 @@ public class HNCBlockStates extends BlockStateProvider
 
         ModelFile mapleSapModel = this.models().getBuilder("block/maple_sap").texture("particle", HNCMod.getLocation("block/maple_sap_still"));
         this.getVariantBuilder(HNCBlocks.MAPLE_SAP.get()).partialState().modelForState().modelFile(mapleSapModel).addModel();
+    }
+
+    private BlockModelBuilder emptyBlockModelWithParticle(String name, ResourceLocation particle)
+    {
+        return this.models().withExistingParent("block/" + name, new ResourceLocation("block/air")).texture("particle", particle);
     }
 
     private void choppingBoard(String name, ResourceLocation texture)
