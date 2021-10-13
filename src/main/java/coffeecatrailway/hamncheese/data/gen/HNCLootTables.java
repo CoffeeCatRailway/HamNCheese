@@ -1,6 +1,7 @@
 package coffeecatrailway.hamncheese.data.gen;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.block.CurdlerBlock;
 import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
@@ -168,12 +169,6 @@ public class HNCLootTables extends ForgeLootTableProvider
                                                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER))))))
                     .apply(ExplosionDecay.explosionDecay()));
 
-            this.add(HNCBlocks.CHOPPING_BOARD.get(), LootTable.lootTable()
-                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
-                            .add(ItemLootEntry.lootTableItem(HNCBlocks.CHOPPING_BOARD.get())
-                                    .apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("BoardId", "BlockEntityTag.BoardId", CopyNbt.Action.REPLACE)))
-                            .when(SurvivesExplosion.survivesExplosion())));
-
             this.add(HNCBlocks.PIZZA_OVEN.get(), LootTable.lootTable()
                     .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
                             .add(ItemLootEntry.lootTableItem(HNCBlocks.PIZZA_OVEN.get())
@@ -190,6 +185,21 @@ public class HNCLootTables extends ForgeLootTableProvider
                     .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
                             .add(ItemLootEntry.lootTableItem(HNCBlocks.POPCORN_MACHINE.get())
                                     .apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))
+                            .when(SurvivesExplosion.survivesExplosion())));
+
+            this.add(HNCBlocks.CHOPPING_BOARD.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCBlocks.CHOPPING_BOARD.get())
+                                    .apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("BoardId", "BlockEntityTag.BoardId", CopyNbt.Action.REPLACE)))
+                            .when(SurvivesExplosion.survivesExplosion())));
+
+            this.add(HNCBlocks.CURDLER.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                            .add(ItemLootEntry.lootTableItem(HNCBlocks.CURDLER.get())
+                                    .apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY))
+                                    .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.CURDLER.get())
+                                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                    .hasProperty(CurdlerBlock.HALF, DoubleBlockHalf.LOWER))))
                             .when(SurvivesExplosion.survivesExplosion())));
 
             this.add(HNCBlocks.BLOCK_OF_CHEESE.get(), noDrop());

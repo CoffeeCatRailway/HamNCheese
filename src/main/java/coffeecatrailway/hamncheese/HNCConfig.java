@@ -37,6 +37,8 @@ public class HNCConfig
 
         public ForgeConfigSpec.BooleanValue mapleSapStuck;
 
+        public ForgeConfigSpec.DoubleValue crankExhaustion;
+
         public ForgeConfigSpec.BooleanValue dispenseTomatoSauce;
 
         public ForgeConfigSpec.BooleanValue generateWildPineapples;
@@ -83,6 +85,9 @@ public class HNCConfig
 
             this.mapleSapStuck = builder.comment("True if you want to be players stuck in maple sap").translation(CONFIG + "block.mapleSapStuck")
                     .define("mapleSapStuck", true);
+
+            this.crankExhaustion = builder.comment("Player exhaustion when using the curdler").translation(CONFIG + "block.crankExhaustion")
+                    .defineInRange("crankExhaustion", .1f, 0f, 1f);
 
             builder.push("dispenser");
             this.dispenseTomatoSauce = builder.comment("Whether or not tomato sauce is dispensed along with the pizza").translation(CONFIG + "block.dispenser.dispenseTomatoSauce")

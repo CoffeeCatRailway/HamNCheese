@@ -1,11 +1,12 @@
 package coffeecatrailway.hamncheese;
 
+import coffeecatrailway.hamncheese.client.block.tile.CurdlerTileEntityRenderer;
 import coffeecatrailway.hamncheese.client.entity.HNCBoatEntityRenderer;
 import coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PopcornMachineScreen;
-import coffeecatrailway.hamncheese.client.model.ChoppingBoardModelLoader;
+import coffeecatrailway.hamncheese.client.block.model.ChoppingBoardModelLoader;
 import coffeecatrailway.hamncheese.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
@@ -38,6 +39,7 @@ public class ClientEvents
         event.enqueueWork(() -> {
             renderLayers();
             Atlases.addWoodType(HNCBlocks.MAPLE_WOOD_TYPE);
+            ClientRegistry.bindTileEntityRenderer(HNCTileEntities.CURDLER.get(), CurdlerTileEntityRenderer::new);
         });
         entityRenderers();
         registerScreen();
@@ -89,6 +91,7 @@ public class ClientEvents
     {
         for (ResourceLocation location : Minecraft.getInstance().getResourceManager().listResources("models/chopping_board", s -> s.endsWith(".json")))
             ModelLoader.addSpecialModel(new ResourceLocation(location.getNamespace(), location.getPath().substring(7, location.getPath().length() - 5)));
+        ModelLoader.addSpecialModel(HNCMod.getLocation("block/cheese_curdler_crank"));
         ModelLoaderRegistry.registerLoader(HNCMod.getLocation("chopping_board_loader"), ChoppingBoardModelLoader.INSTANCE);
     }
 }

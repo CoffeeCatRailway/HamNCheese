@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "hamncheese:block/cheese_curdler_top"
+    },
+    "half=lower": {
+      "model": "hamncheese:block/cheese_curdler_basin"
+    }
+  }
+}

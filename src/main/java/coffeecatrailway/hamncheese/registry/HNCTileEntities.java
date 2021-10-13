@@ -27,6 +27,7 @@ public class HNCTileEntities
     public static final RegistryObject<TileEntityType<PizzaOvenTileEntity>> PIZZA_OVEN = register("pizza_oven", PizzaOvenTileEntity::new, HNCBlocks.PIZZA_OVEN);
     public static final RegistryObject<TileEntityType<GrillTileEntity>> GRILL = register("grill", GrillTileEntity::new, HNCBlocks.GRILL);
     public static final RegistryObject<TileEntityType<PopcornMachineTileEntity>> POPCORN_MACHINE = register("popcorn_machine", PopcornMachineTileEntity::new, HNCBlocks.POPCORN_MACHINE);
+    public static final RegistryObject<TileEntityType<CurdlerTileEntity>> CURDLER = register("curdler", CurdlerTileEntity::new, HNCBlocks.CURDLER);
 
     public static final RegistryObject<TileEntityType<HNCSignTileEntity>> SIGN = register("sign", HNCSignTileEntity::new, HNCBlocks.MAPLE_SIGN, HNCBlocks.MAPLE_WALL_SIGN);
 

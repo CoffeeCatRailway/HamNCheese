@@ -46,6 +46,8 @@ public class HNCBlocks
     public static final RegistryObject<GrillBlock> GRILL = register("grill", () -> new GrillBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
     public static final RegistryObject<PopcornMachineBlock> POPCORN_MACHINE = register("popcorn_machine", () -> new PopcornMachineBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
 
+    public static final RegistryObject<CurdlerBlock> CURDLER = register("cheese_curdler", () -> new CurdlerBlock(AbstractBlock.Properties.copy(Blocks.BARREL)), prop -> prop);
+
     public static final RegistryObject<CheeseBlock> BLOCK_OF_CHEESE = register("block_of_cheese", () -> new CheeseBlock(AbstractBlock.Properties.copy(Blocks.CAKE)), prop -> prop.food(HNCFoods.BLOCK_OF_CHEESE).stacksTo(16));
 
     public static final RegistryObject<RotatedPillarBlock> MAPLE_LOG = registerLog("maple_log", MaterialColor.SAND, MaterialColor.COLOR_BROWN);

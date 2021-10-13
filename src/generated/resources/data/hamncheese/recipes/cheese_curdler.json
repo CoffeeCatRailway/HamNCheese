@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ss",
+    "pgp",
+    "nbn"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:barrel"
+    },
+    "n": {
+      "tag": "forge:nuggets/iron"
+    },
+    "p": {
+      "tag": "minecraft:planks"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    },
+    "g": {
+      "tag": "forge:gears/wooden"
+    }
+  },
+  "result": {
+    "item": "hamncheese:cheese_curdler"
+  }
+}

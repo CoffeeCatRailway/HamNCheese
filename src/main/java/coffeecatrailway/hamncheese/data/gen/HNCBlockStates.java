@@ -122,7 +122,11 @@ public class HNCBlockStates extends BlockStateProvider
         this.toItem(HNCBlocks.PIZZA_OVEN.get());
         this.toItem(HNCBlocks.GRILL.get());
         this.toItem(HNCBlocks.POPCORN_MACHINE.get(), HNCMod.getLocation("block/popcorn_machine_full"));
-//        this.toItem(HNCBlocks.CHOPPING_BOARD.get());
+
+        VariantBlockStateBuilder.PartialBlockstate curdler = this.getVariantBuilder(HNCBlocks.CURDLER.get()).partialState();
+        curdler.with(CurdlerBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(this.emptyBlockModelWithParticle("cheese_curdler_top", HNCMod.getLocation("block/curdler_side"))).addModel();
+        curdler.with(CurdlerBlock.HALF, DoubleBlockHalf.LOWER).modelForState().modelFile(this.models().getExistingFile(HNCMod.getLocation("block/cheese_curdler_basin"))).addModel();
+        this.toItem(HNCBlocks.CURDLER.get(), HNCMod.getLocation("block/cheese_curdler_basin"));
 
         this.choppingBoard("oak", new ResourceLocation("block/oak_planks"));
         this.choppingBoard("birch", new ResourceLocation("block/birch_planks"));

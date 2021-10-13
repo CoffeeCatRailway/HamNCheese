@@ -164,6 +164,8 @@ public class HNCRecipeGen extends RecipeProvider
 
         ShapelessRecipeBuilder.shapeless(HNCItems.MAPLE_SYRUP.get()).requires(HNCItems.MAPLE_SAP_BOTTLE.get()).requires(HNCItemTags.SUGAR).unlockedBy("has_sap", has(HNCItems.MAPLE_SAP_BOTTLE.get())).unlockedBy("has_sugar", has(HNCItemTags.SUGAR)).save(consumer);
         ShapedRecipeBuilder.shaped(HNCBlocks.TREE_TAP.get()).define('i', Tags.Items.INGOTS_IRON).define('n', Tags.Items.NUGGETS_IRON).pattern(" n").pattern("ii").pattern(" n").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_iron_nugget", has(Tags.Items.NUGGETS_IRON)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(HNCBlocks.CURDLER.get()).define('b', Blocks.BARREL).define('n', Tags.Items.NUGGETS_IRON).define('p', ItemTags.PLANKS).define('s', Tags.Items.RODS_WOODEN).define('g', HNCItemTags.GEARS_WOODEN).pattern(" ss").pattern("pgp").pattern("nbn").unlockedBy("has_barrel", has(Blocks.BARREL)).unlockedBy("has_iron_nugget", has(Tags.Items.NUGGETS_IRON)).unlockedBy("has_gear", has(HNCItemTags.GEARS_WOODEN)).save(consumer);
     }
 
     public static InventoryChangeTrigger.Instance hasPublic(IItemProvider item)

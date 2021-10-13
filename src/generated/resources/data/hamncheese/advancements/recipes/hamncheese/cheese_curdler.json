@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:cheese_curdler"
+    ]
+  },
+  "criteria": {
+    "has_barrel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:barrel"
+          }
+        ]
+      }
+    },
+    "has_iron_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:nuggets/iron"
+          }
+        ]
+      }
+    },
+    "has_gear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gears/wooden"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:cheese_curdler"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_barrel",
+      "has_iron_nugget",
+      "has_gear",
+      "has_the_recipe"
+    ]
+  ]
+}
