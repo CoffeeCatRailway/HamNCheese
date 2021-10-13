@@ -1,4 +1,4 @@
-package coffeecatrailway.hamncheese.client.model;
+package coffeecatrailway.hamncheese.client.block.model;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;

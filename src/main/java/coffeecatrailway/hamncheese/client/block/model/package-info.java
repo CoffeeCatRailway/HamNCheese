@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package coffeecatrailway.hamncheese.client.model;
+package coffeecatrailway.hamncheese.client.block.model;
 
 import mcp.MethodsReturnNonnullByDefault;
 

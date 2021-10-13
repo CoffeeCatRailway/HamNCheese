@@ -1,4 +1,4 @@
-package coffeecatrailway.hamncheese.client.model;
+package coffeecatrailway.hamncheese.client.block.model;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.renderer.model.*;

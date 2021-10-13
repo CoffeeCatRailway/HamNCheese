@@ -1,4 +1,4 @@
-package coffeecatrailway.hamncheese.client.model;
+package coffeecatrailway.hamncheese.client.block.model;
 
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.tileentity.ChoppingBoardTileEntity;
