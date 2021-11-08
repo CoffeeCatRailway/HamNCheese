@@ -15,9 +15,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
@@ -27,9 +25,13 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 /**
  * @author CoffeeCatRailway
@@ -54,9 +56,25 @@ public class CurdlerBlock extends Block
         TileEntity tile = level.getBlockEntity(state.getValue(HALF) == DoubleBlockHalf.UPPER ? pos.below() : pos);
         if (tile instanceof CurdlerTileEntity)
         {
-            ((CurdlerTileEntity) tile).turn();
-            player.causeFoodExhaustion(HNCConfig.SERVER.crankExhaustion.get().floatValue());
-            return ActionResultType.SUCCESS;
+            CurdlerTileEntity curdler = (CurdlerTileEntity) tile;
+            ItemStack heldStack = player.getItemInHand(hand);
+            Optional<FluidStack> heldFluid = FluidUtil.getFluidContained(heldStack);
+            int emptySpace = curdler.getMilkCapacity() - curdler.getMilk();
+
+            if (heldStack.isEmpty())
+            {
+                curdler.turn();
+                player.causeFoodExhaustion(HNCConfig.SERVER.crankExhaustion.get().floatValue());
+                return ActionResultType.SUCCESS;
+            } else if (heldFluid.isPresent() && heldFluid.get().getRawFluid() == ForgeMod.MILK.get() && emptySpace >= heldFluid.get().getAmount())
+            {
+                curdler.addMilk(heldFluid.get().getAmount());
+                level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundCategory.BLOCKS, 1f, 1f);
+                if (!player.isCreative())
+                    player.setItemInHand(hand, heldStack.getContainerItem());
+                return ActionResultType.SUCCESS;
+            }
+            return ActionResultType.PASS;
         }
         return super.use(state, level, pos, player, hand, hit);
     }

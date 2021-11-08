@@ -1,7 +1,7 @@
 package coffeecatrailway.hamncheese.client.item;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.client.model.ChoppingBoardModel;
+import coffeecatrailway.hamncheese.client.block.model.ChoppingBoardModel;
 import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.tileentity.ChoppingBoardTileEntity;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;

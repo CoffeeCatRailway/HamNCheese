@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -40,6 +41,8 @@ public class HNCMod
 
     public HNCMod()
     {
+        ForgeMod.enableMilkFluid();
+
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         Sonar.init(bus);
         HNCConfig.Server.init(ModLoadingContext.get());

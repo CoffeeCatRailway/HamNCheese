@@ -39,17 +39,17 @@ public class ClientEvents
         event.enqueueWork(() -> {
             renderLayers();
             Atlases.addWoodType(HNCBlocks.MAPLE_WOOD_TYPE);
-            ClientRegistry.bindTileEntityRenderer(HNCTileEntities.CURDLER.get(), CurdlerTileEntityRenderer::new);
         });
         entityRenderers();
         registerScreen();
 
+        ClientRegistry.bindTileEntityRenderer(HNCTileEntities.CURDLER.get(), CurdlerTileEntityRenderer::new);
         ClientRegistry.bindTileEntityRenderer(HNCTileEntities.SIGN.get(), SignTileEntityRenderer::new);
     }
 
     private static void renderLayers()
     {
-        RenderTypeLookup.setRenderLayer(HNCBlocks.CHOPPING_BOARD.get(), (type) -> true);
+        RenderTypeLookup.setRenderLayer(HNCBlocks.CHOPPING_BOARD.get(), (type) -> true); // TODO: Change
 
         RenderType cutoutMipped = RenderType.cutoutMipped();
 
