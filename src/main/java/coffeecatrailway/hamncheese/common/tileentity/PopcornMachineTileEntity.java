@@ -4,6 +4,7 @@ import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.PopcornMachineBlock;
 import coffeecatrailway.hamncheese.common.inventory.PopcornMachineContainer;
 import coffeecatrailway.hamncheese.common.item.crafting.PopcornRecipe;
+import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import coffeecatrailway.hamncheese.registry.HNCTileEntities;
 import net.minecraft.block.BlockState;
@@ -142,7 +143,7 @@ public class PopcornMachineTileEntity extends TickableLockableTileEntity
         if (this.hasLevel() && !this.level.isClientSide())
         {
             ItemStack kernelsStack = this.getItem(SLOT_KERNELS);
-            if (!kernelsStack.isEmpty() && this.level.getGameTime() % 5L == 0L && this.popcornAmount + 50 <= MAX_POPCORN)
+            if (kernelsStack.getItem().equals(HNCItems.DRIED_CORN_KERNELS.get()) && kernelsStack.getCount() > 0 && this.level.getGameTime() % 5L == 0L && this.popcornAmount + 50 <= MAX_POPCORN)
             {
                 kernelsStack.shrink(1);
                 this.popcornAmount += 50;
