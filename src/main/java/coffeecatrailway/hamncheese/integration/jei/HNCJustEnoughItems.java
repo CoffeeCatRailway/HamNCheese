@@ -10,7 +10,6 @@ import coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
 import coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
 import coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
-import coffeecatrailway.hamncheese.registry.HNCFluids;
 import coffeecatrailway.hamncheese.registry.HNCItems;
 import coffeecatrailway.hamncheese.registry.HNCRecipes;
 import com.google.common.collect.Lists;
@@ -27,8 +26,6 @@ import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;

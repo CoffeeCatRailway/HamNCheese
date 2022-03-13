@@ -57,7 +57,7 @@ public class HNCFoods
     public static final Food CARAMEL_POPCORN = times(combine(1f, false, POPCORN, INGREDIENT).build(), 1f, .5f).build();
 
     public static final Food MOUSE = new Food.Builder().nutrition(2).saturationMod(.3f).meat().effect(HUNGER_EFFECT, .3f).build();
-    public static final Food COOKED_MOUSE =  new Food.Builder().nutrition(4).saturationMod(.6f).meat().build();
+    public static final Food COOKED_MOUSE = new Food.Builder().nutrition(4).saturationMod(.6f).meat().build();
 
     public static final Food FOOD_SCRAPS = new Food.Builder().nutrition(1).saturationMod(.2f).build();
 

@@ -1,12 +1,12 @@
 package coffeecatrailway.hamncheese;
 
+import coffeecatrailway.hamncheese.client.block.model.ChoppingBoardModelLoader;
 import coffeecatrailway.hamncheese.client.block.tile.CurdlerTileEntityRenderer;
 import coffeecatrailway.hamncheese.client.entity.HNCBoatEntityRenderer;
 import coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import coffeecatrailway.hamncheese.client.gui.screen.GrillScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PizzaOvenScreen;
 import coffeecatrailway.hamncheese.client.gui.screen.PopcornMachineScreen;
-import coffeecatrailway.hamncheese.client.block.model.ChoppingBoardModelLoader;
 import coffeecatrailway.hamncheese.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;

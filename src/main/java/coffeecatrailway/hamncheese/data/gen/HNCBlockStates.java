@@ -4,7 +4,6 @@ import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.*;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.data.DataGenerator;
