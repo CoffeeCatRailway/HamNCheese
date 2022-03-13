@@ -8,7 +8,6 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeMod;
@@ -27,7 +26,7 @@ import org.apache.logging.log4j.Logger;
 public class HNCMod
 {
     public static final String MOD_ID = "hamncheese";
-    private static final Logger LOGGER = getLogger("");
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public static final ItemGroup GROUP_ALL = new ItemGroup(HNCMod.MOD_ID)
     {
@@ -84,10 +83,5 @@ public class HNCMod
     public static ResourceLocation getLocation(String path)
     {
         return new ResourceLocation(HNCMod.MOD_ID, path);
-    }
-
-    public static Logger getLogger(String name)
-    {
-        return LogManager.getLogger(HNCMod.MOD_ID + (!StringUtils.isNullOrEmpty(name) ? "-" + name : ""));
     }
 }

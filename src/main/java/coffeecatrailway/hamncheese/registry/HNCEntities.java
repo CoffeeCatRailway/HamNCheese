@@ -18,6 +18,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
@@ -34,7 +35,7 @@ import java.util.stream.Collectors;
 @Mod.EventBusSubscriber(modid = HNCMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class HNCEntities
 {
-    private static final Logger LOGGER = HNCMod.getLogger("Entities");
+    private static final Logger LOGGER = LogManager.getLogger();
     protected static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, HNCMod.MOD_ID);
 
     public static final Set<Runnable> ATTRIBUTE_MAPS = new HashSet<>();

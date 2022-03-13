@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
@@ -19,7 +20,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class HNCRecipes
 {
-    private static final Logger LOGGER = HNCMod.getLogger("Recipes");
+    private static final Logger LOGGER = LogManager.getLogger();
     private static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, HNCMod.MOD_ID);
 
     public static IRecipeType<PizzaOvenRecipe> PIZZA_OVEN_TYPE;

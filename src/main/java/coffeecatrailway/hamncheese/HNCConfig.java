@@ -6,11 +6,11 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -23,7 +23,7 @@ public class HNCConfig
     private static ForgeConfigSpec SERVER_SPEC;
 
     private static final String CONFIG = "config." + HNCMod.MOD_ID + ".";
-    private static final Logger LOGGER = HNCMod.getLogger("Config");
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public static class Server
     {
