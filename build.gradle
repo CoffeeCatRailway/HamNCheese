@@ -91,8 +91,11 @@ repositories {
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
     }
-    maven { // BOP
+    maven { // BOP, Druidcraft, Twilight Forest
         url = "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
     }
     maven { // Sonar
         name = "Jitpack"
@@ -113,11 +116,11 @@ dependencies {
     compileOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}:api")
     runtimeOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}")
 
-    compileOnly fg.deobf("curse.maven:biomes-o-plenty-220318:${project.bopVersion}")
-    compileOnly fg.deobf("curse.maven:druidcraft-340991:${project.druidcraftVersion}")
-    compileOnly fg.deobf("curse.maven:the-twilight-forest-227639:${project.twilightVersion}")
-
-    runtimeOnly fg.deobf("curse.maven:catalogue-459701:3335979")
+    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3360574")
+//    implementation fg.deobf("curse.maven:druidcraft-340991:3177267")
+    implementation fg.deobf("curse.maven:the-twilight-forest-227639:3575220")
+    implementation fg.deobf("curse.maven:catalogue-459701:3529457")
+    implementation fg.deobf("curse.maven:appleskin-248787:3686480")
 
     runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
     compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}:api"
