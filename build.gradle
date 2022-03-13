@@ -119,8 +119,11 @@ dependencies {
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3360574")
 //    implementation fg.deobf("curse.maven:druidcraft-340991:3177267")
     implementation fg.deobf("curse.maven:the-twilight-forest-227639:3575220")
-    implementation fg.deobf("curse.maven:catalogue-459701:3529457")
+
     implementation fg.deobf("curse.maven:appleskin-248787:3686480")
+
+    implementation fg.deobf("curse.maven:catalogue-459701:3529457")
+    implementation fg.deobf("curse.maven:configured-457570:3546348")
 
     runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
     compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}:api"

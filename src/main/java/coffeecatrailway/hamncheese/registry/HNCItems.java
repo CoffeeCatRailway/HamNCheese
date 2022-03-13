@@ -79,11 +79,11 @@ public class HNCItems
     public static final RegistryObject<Item> CORN_KERNELS = registerIdAsName("corn_kernels", prop -> new Item(prop.food(HNCFoods.CORN_KERNELS)));
     public static final RegistryObject<Item> DRIED_CORN_KERNELS = registerIdAsName("dried_corn_kernels", prop -> new Item(prop.food(HNCFoods.CORN_KERNELS)));
 
-    public static final RegistryObject<Item> POPCORN = registerIdAsName("popcorn", prop -> new Item(prop.food(HNCFoods.POPCORN).stacksTo(32)));
-    public static final RegistryObject<Item> CHEESY_POPCORN = registerIdAsName("cheesy_popcorn", prop -> new Item(prop.food(HNCFoods.CHEESY_POPCORN).stacksTo(32)));
-    public static final RegistryObject<Item> CARAMEL_POPCORN = registerIdAsName("caramel_popcorn", prop -> new Item(prop.food(HNCFoods.CARAMEL_POPCORN).stacksTo(32)));
-    public static final RegistryObject<Item> MAPLE_POPCORN = registerIdAsName("maple_popcorn", prop -> new Item(prop.food(HNCFoods.MAPLE_POPCORN).stacksTo(32)));
     public static final RegistryObject<Item> POPCORN_BAG = registerIdAsName("popcorn_bag", Item::new);
+    public static final RegistryObject<PopcornItem> POPCORN = registerIdAsName("popcorn", prop -> new PopcornItem(prop.food(HNCFoods.POPCORN)));
+    public static final RegistryObject<PopcornItem> CHEESY_POPCORN = registerIdAsName("cheesy_popcorn", prop -> new PopcornItem(prop.food(HNCFoods.CHEESY_POPCORN)));
+    public static final RegistryObject<PopcornItem> CARAMEL_POPCORN = registerIdAsName("caramel_popcorn", prop -> new PopcornItem(prop.food(HNCFoods.CARAMEL_POPCORN)));
+    public static final RegistryObject<PopcornItem> MAPLE_POPCORN = registerIdAsName("maple_popcorn", prop -> new PopcornItem(prop.food(HNCFoods.MAPLE_POPCORN)));
 
     public static final RegistryObject<Item> MOUSE = registerIdAsName("mouse", prop -> new Item(prop.food(HNCFoods.MOUSE)));
     public static final RegistryObject<Item> COOKED_MOUSE = registerIdAsName("cooked_mouse", prop -> new Item(prop.food(HNCFoods.COOKED_MOUSE)));
