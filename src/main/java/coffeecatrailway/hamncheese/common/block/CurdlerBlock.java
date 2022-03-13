@@ -60,17 +60,19 @@ public class CurdlerBlock extends Block
             ItemStack heldStack = player.getItemInHand(hand);
             Optional<FluidStack> heldFluid = FluidUtil.getFluidContained(heldStack);
             int emptySpace = curdler.getMilkCapacity() - curdler.getMilk();
+            boolean notCreative = !player.isCreative();
 
-            if (heldStack.isEmpty())
+            if (heldStack.isEmpty() && curdler.getMilk() > 0)
             {
                 curdler.turn();
-                player.causeFoodExhaustion(HNCConfig.SERVER.crankExhaustion.get().floatValue());
+                if (notCreative)
+                    player.causeFoodExhaustion(HNCConfig.SERVER.crankExhaustion.get().floatValue());
                 return ActionResultType.SUCCESS;
             } else if (heldFluid.isPresent() && heldFluid.get().getRawFluid() == ForgeMod.MILK.get() && emptySpace >= heldFluid.get().getAmount())
             {
                 curdler.addMilk(heldFluid.get().getAmount());
                 level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundCategory.BLOCKS, 1f, 1f);
-                if (!player.isCreative())
+                if (notCreative)
                     player.setItemInHand(hand, heldStack.getContainerItem());
                 return ActionResultType.SUCCESS;
             }
