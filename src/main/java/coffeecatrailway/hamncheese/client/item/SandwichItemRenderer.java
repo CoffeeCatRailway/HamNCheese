@@ -44,7 +44,7 @@ public class SandwichItemRenderer extends ItemStackTileEntityRenderer
     private static final Map<String, ItemStack> INGREDIENT_CACHE = new HashMap<>();
 
     private static final ResourceLocation PIZZA_SAUCE = HNCMod.getLocation("textures/item/pizza_sauce.png");
-    private static List<Pair<Float, Float>> PIZZA_INGREDIENT_POS = Lists.newArrayList(
+    private static final List<Pair<Float, Float>> PIZZA_INGREDIENT_POS = Lists.newArrayList(
             Pair.of(-.5f, .2f),
             Pair.of(.25f, -.58f),
             Pair.of(.75f, .75f)

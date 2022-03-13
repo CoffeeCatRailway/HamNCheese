@@ -137,6 +137,7 @@ public class AbstractSandwichItem extends Item
             ListNBT ingredients = sandwich.getOrCreateTag().getList(TAG_INGREDIENTS, Constants.NBT.TAG_COMPOUND);
             if (ingredients.size() <= HNCConfig.SERVER.maxSandwichIngredientCraftCount.get())
                 ingredients.add(added.save(new CompoundNBT()));
+            sandwich.getOrCreateTag().put(TAG_INGREDIENTS, ingredients);
         }
         return sandwich;
     }
