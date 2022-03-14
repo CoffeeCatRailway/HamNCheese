@@ -11,11 +11,13 @@ logoFile="logo.png"
 updateJSONURL="https://raw.githubusercontent.com/CoffeeCatRailway/HamNCheese/main/update_checker.json"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/coffeecheese"
 authors="${author}"
-credits="ManWithoutTaste for mouse model & any others who've helped!"
+credits="ManWithoutTaste for mouse model & any/all others who've helped!"
 description='''
 Adds in lots of ham and cheese related foods.
 
-Discord: https://discord.com/invite/JM4NjRzZPS
+Please note, I only upload to CurseForge & Modrinth!
+
+Discord: https://discord.gg/GkeexxWnyz
 Credit to 'https://github.com/SystemZeeWorkshop/modding-template'
 '''
 
@@ -40,18 +42,6 @@ mandatory=false
 versionRange="[7,]"
 ordering="NONE"
 side="CLIENT"
-[[dependencies.hamncheese]]
-modId="biomesoplenty"
-mandatory=false
-versionRange="[1.16.5-13,]"
-ordering="AFTER"
-side="BOTH"
-[[dependencies.hamncheese]]
-modId="druidcraft"
-mandatory=false
-versionRange="[0.4,]"
-ordering="AFTER"
-side="BOTH"
 [[dependencies.hamncheese]]
 modId="theoneprobe"
 mandatory=false
