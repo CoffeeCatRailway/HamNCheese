@@ -7,8 +7,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.World;
 
@@ -42,7 +40,7 @@ public class PopcornItem extends Item
         {
             if (entity instanceof PlayerEntity && !((PlayerEntity) entity).abilities.instabuild)
             {
-                ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
+                ItemStack itemstack = new ItemStack(HNCItems.POPCORN_BAG.get());
                 PlayerEntity playerentity = (PlayerEntity) entity;
                 if (!playerentity.inventory.add(itemstack))
                     playerentity.drop(itemstack, false);
