@@ -2,7 +2,11 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": {
+        "min": 2.0,
+        "max": 3.0,
+        "type": "minecraft:uniform"
+      },
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -14,7 +18,8 @@
                   "condition": "minecraft:block_state_property",
                   "block": "hamncheese:tomato_plant",
                   "properties": {
-                    "age": "9"
+                    "age": "9",
+                    "half": "lower"
                   }
                 }
               ],
@@ -33,6 +38,15 @@
             },
             {
               "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "hamncheese:tomato_plant",
+                  "properties": {
+                    "half": "lower"
+                  }
+                }
+              ],
               "name": "hamncheese:tomato_seeds"
             }
           ]
@@ -40,7 +54,11 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": {
+        "min": 2.0,
+        "max": 3.0,
+        "type": "minecraft:uniform"
+      },
       "entries": [
         {
           "type": "minecraft:item",
@@ -63,7 +81,8 @@
           "condition": "minecraft:block_state_property",
           "block": "hamncheese:tomato_plant",
           "properties": {
-            "age": "9"
+            "age": "9",
+            "half": "lower"
           }
         }
       ]

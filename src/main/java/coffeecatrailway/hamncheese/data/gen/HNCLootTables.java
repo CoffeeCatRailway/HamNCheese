@@ -1,7 +1,9 @@
 package coffeecatrailway.hamncheese.data.gen;
 
 import coffeecatrailway.hamncheese.HNCMod;
+import coffeecatrailway.hamncheese.common.block.CornPlantBlock;
 import coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
+import coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import coffeecatrailway.hamncheese.registry.HNCEntities;
 import coffeecatrailway.hamncheese.registry.HNCItems;
@@ -141,19 +143,21 @@ public class HNCLootTables extends ForgeLootTableProvider
                     .apply(ExplosionDecay.explosionDecay()));
 
             this.add(HNCBlocks.TOMATO_PLANT.get(), LootTable.lootTable()
-                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                    .withPool(LootPool.lootPool().setRolls(new RandomValueRange(2, 3))
                             .add(ItemLootEntry.lootTableItem(HNCItems.TOMATO.get())
                                     .apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 3))
                                     .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.TOMATO_PLANT.get())
                                             .setProperties(StatePropertiesPredicate.Builder.properties()
-                                                    .hasProperty(PineapplePlantBlock.AGE, 9)))
-                                    .otherwise(ItemLootEntry.lootTableItem(HNCItems.TOMATO_SEEDS.get()))))
-                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
+                                                    .hasProperty(TomatoPlantBlock.AGE, 9).hasProperty(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER)))
+                                    .otherwise(ItemLootEntry.lootTableItem(HNCItems.TOMATO_SEEDS.get())
+                                            .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.TOMATO_PLANT.get())
+                                            .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER))))))
+                    .withPool(LootPool.lootPool().setRolls(new RandomValueRange(2, 3))
                             .add(ItemLootEntry.lootTableItem(HNCItems.TOMATO_SEEDS.get())
                                     .apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 3)))
                             .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.TOMATO_PLANT.get())
                                     .setProperties(StatePropertiesPredicate.Builder.properties()
-                                            .hasProperty(PineapplePlantBlock.AGE, 9))))
+                                            .hasProperty(TomatoPlantBlock.AGE, 9).hasProperty(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER))))
                     .apply(ExplosionDecay.explosionDecay()));
 
             this.add(HNCBlocks.CORN_PLANT.get(), LootTable.lootTable()
@@ -162,10 +166,10 @@ public class HNCLootTables extends ForgeLootTableProvider
                                     .apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 2))
                                     .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.CORN_PLANT.get())
                                             .setProperties(StatePropertiesPredicate.Builder.properties()
-                                                    .hasProperty(PineapplePlantBlock.AGE, 6).hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)))
+                                                    .hasProperty(CornPlantBlock.AGE, 6).hasProperty(CornPlantBlock.HALF, DoubleBlockHalf.LOWER)))
                                     .otherwise(ItemLootEntry.lootTableItem(HNCItems.CORN_COB.get())
                                             .when(BlockStateProperty.hasBlockStateProperties(HNCBlocks.CORN_PLANT.get())
-                                                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER))))))
+                                                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornPlantBlock.HALF, DoubleBlockHalf.LOWER))))))
                     .apply(ExplosionDecay.explosionDecay()));
 
             this.dropSelf(HNCBlocks.OAK_CHOPPING_BOARD.get());
