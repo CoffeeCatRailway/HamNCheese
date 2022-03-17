@@ -9,6 +9,7 @@
     }
   ],
   "result": {
-    "item": "hamncheese:bread_slice"
+    "item": "hamncheese:bread_slice",
+    "count": 3
   }
 }

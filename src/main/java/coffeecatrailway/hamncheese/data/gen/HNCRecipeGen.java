@@ -75,7 +75,7 @@ public class HNCRecipeGen extends RecipeProvider
 
         ShapedRecipeBuilder.shaped(HNCItems.UNBAKED_BREAD.get(), 2).define('d', HNCItemTags.DOUGH).pattern("ddd").unlockedBy("has_dough", has(HNCItemTags.DOUGH)).save(consumer);
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_BREAD.get()), Items.BREAD, .35f, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_bread", has(HNCItems.UNBAKED_BREAD.get())).save(consumer, HNCMod.getLocation("bread_smoking"));
-        ShapelessRecipeBuilder.shapeless(HNCItems.BREAD_SLICE.get()).requires(HNCItems.KNIFE.get()).requires(Items.BREAD).unlockedBy("has_bread", has(Items.BREAD)).unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.BREAD_SLICE.get(), 3).requires(HNCItems.KNIFE.get()).requires(Items.BREAD).unlockedBy("has_bread", has(Items.BREAD)).unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HNCMod.getLocation("toast_smoking"));
         CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HNCMod.getLocation("toast_campfire"));
 
