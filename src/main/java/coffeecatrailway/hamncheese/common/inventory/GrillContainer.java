@@ -57,7 +57,7 @@ public class GrillContainer extends CookerContainer
         {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            if (index == 6)
+            if (index == 6 || index == 7 || index == 8 || index == 9)
             {
                 if (!this.moveItemStackTo(itemstack1, 10, 46, true))
                     return ItemStack.EMPTY;

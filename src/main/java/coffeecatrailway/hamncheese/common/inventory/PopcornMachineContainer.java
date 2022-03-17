@@ -45,6 +45,12 @@ public class PopcornMachineContainer extends Container
 
         this.addSlot(new Slot(this.container, 0, 46, 12)
         {
+            @Override
+            public boolean mayPlace(ItemStack stack)
+            {
+                return stack.getItem().equals(HNCItems.DRIED_CORN_KERNELS.get());
+            }
+
             @OnlyIn(Dist.CLIENT)
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon()
             {
@@ -67,8 +73,14 @@ public class PopcornMachineContainer extends Container
                 return Pair.of(PlayerContainer.BLOCK_ATLAS, AtlasStitch.SEASONING);
             }
         });
-        this.addSlot(new FilteredSlot(this.container, 3, 121, 55, stack -> stack.getItem() == HNCItems.POPCORN_BAG.get())
+        this.addSlot(new Slot(this.container, 3, 121, 55)
         {
+            @Override
+            public boolean mayPlace(ItemStack stack)
+            {
+                return stack.getItem().equals(HNCItems.POPCORN_BAG.get());
+            }
+
             @OnlyIn(Dist.CLIENT)
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon()
             {
