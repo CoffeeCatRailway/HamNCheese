@@ -1,7 +1,0 @@
-{
-  "convert_sound": "minecraft:block.wood.place",
-  "model": "hamncheese:chopping_board/mine",
-  "tool_type": "axe",
-  "mod": "twilightforest",
-  "pressure_plate": "twilightforest:mine_plate"
-}

@@ -1,11 +1,11 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.client.item.ChoppingBoardItemRenderer;
 import coffeecatrailway.hamncheese.common.block.*;
 import coffeecatrailway.hamncheese.common.block.fluid.MapleSapFluidBlock;
 import coffeecatrailway.hamncheese.common.block.trees.MapleTree;
 import coffeecatrailway.hamncheese.data.gen.HNCLanguage;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -14,6 +14,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.SignItem;
 import net.minecraft.util.Direction;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -21,6 +22,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -40,7 +43,19 @@ public class HNCBlocks
     public static final RegistryObject<TomatoPlantBlock> TOMATO_PLANT = registerPlant("tomato_plant", TomatoPlantBlock::new);
     public static final RegistryObject<CornPlantBlock> CORN_PLANT = registerPlant("corn_plant", CornPlantBlock::new);
 
-    public static final RegistryObject<ChoppingBoardBlock> CHOPPING_BOARD = register("chopping_board", () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS).strength(.5f).sound(SoundType.WOOD)), prop -> prop.setISTER(() -> ChoppingBoardItemRenderer::new));
+    public static final RegistryObject<ChoppingBoardBlock> OAK_CHOPPING_BOARD = registerChoppingBoard("oak_chopping_board", () -> Blocks.OAK_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> BIRCH_CHOPPING_BOARD = registerChoppingBoard("birch_chopping_board", () -> Blocks.BIRCH_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> SPRUCE_CHOPPING_BOARD = registerChoppingBoard("spruce_chopping_board", () -> Blocks.SPRUCE_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> JUNGLE_CHOPPING_BOARD = registerChoppingBoard("jungle_chopping_board", () -> Blocks.JUNGLE_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> ACACIA_CHOPPING_BOARD = registerChoppingBoard("acacia_chopping_board", () -> Blocks.ACACIA_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> DARK_OAK_CHOPPING_BOARD = registerChoppingBoard("dark_oak_chopping_board", () -> Blocks.DARK_OAK_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> CRIMSON_CHOPPING_BOARD = registerChoppingBoard("crimson_chopping_board", () -> Blocks.CRIMSON_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> WARPED_CHOPPING_BOARD = registerChoppingBoard("warped_chopping_board", () -> Blocks.WARPED_PRESSURE_PLATE);
+
+    public static final RegistryObject<ChoppingBoardBlock> STONE_CHOPPING_BOARD = registerChoppingBoard("stone_chopping_board", () -> Blocks.STONE_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> POLISHED_BLACKSTONE_CHOPPING_BOARD = registerChoppingBoard("polished_blackstone_chopping_board", () -> Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> GOLD_CHOPPING_BOARD = registerChoppingBoard("gold_chopping_board", () -> Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE);
+    public static final RegistryObject<ChoppingBoardBlock> IRON_CHOPPING_BOARD = registerChoppingBoard("iron_chopping_board", () -> Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE);
 
     public static final RegistryObject<PizzaOvenBlock> PIZZA_OVEN = register("pizza_oven", () -> new PizzaOvenBlock(AbstractBlock.Properties.copy(Blocks.WHITE_TERRACOTTA)), prop -> prop);
     public static final RegistryObject<GrillBlock> GRILL = register("grill", () -> new GrillBlock(AbstractBlock.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
@@ -67,6 +82,8 @@ public class HNCBlocks
     public static final RegistryObject<TrapDoorBlock> MAPLE_TRAPDOOR = register("maple_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).strength(3f).sound(SoundType.WOOD).noOcclusion().isValidSpawn((state, reader, blockPos, entityType) -> false)), prop -> prop);
     public static final RegistryObject<DoorBlock> MAPLE_DOOR = register("maple_door", () -> new DoorBlock(AbstractBlock.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(3f).sound(SoundType.WOOD).noOcclusion()), prop -> prop);
 
+    public static final RegistryObject<ChoppingBoardBlock> MAPLE_CHOPPING_BOARD = registerChoppingBoard("maple_chopping_board", HNCBlocks.MAPLE_PRESSURE_PLATE);
+
     public static final RegistryObject<TreeTapBlock> TREE_TAP = register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5f, 6f).sound(SoundType.METAL)), prop -> prop.stacksTo(16));
     public static final RegistryObject<MapleSapFluidBlock> MAPLE_SAP = registerWithItem("maple_sap", () -> new MapleSapFluidBlock(HNCFluids.MAPLE_SAP_FLOWING, AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100f)), null);
 
@@ -83,6 +100,11 @@ public class HNCBlocks
         Function<BlockState, MaterialColor> finalColorFunction = colorFunction;
         return register(id, () -> new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD, finalColorFunction)
                 .strength(2f).sound(SoundType.WOOD)), prop -> prop);
+    }
+
+    public static <T extends Block> RegistryObject<ChoppingBoardBlock> registerChoppingBoard(String id, Supplier<T> base)
+    {
+        return register(id, () -> new ChoppingBoardBlock(AbstractBlock.Properties.copy(base.get()).strength(.5f)), prop -> prop);
     }
 
     public static <T extends Block> RegistryObject<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)

@@ -1,6 +1,0 @@
-{
-  "parent": "hamncheese:chopping_board/stone",
-  "textures": {
-    "particle": "minecraft:block/jungle_planks"
-  }
-}

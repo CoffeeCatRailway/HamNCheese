@@ -1,6 +1,0 @@
-{
-  "parent": "hamncheese:chopping_board/stone",
-  "textures": {
-    "particle": "biomesoplenty:block/mahogany_planks"
-  }
-}

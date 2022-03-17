@@ -74,7 +74,6 @@ public class HNCMod
         generator.addProvider(new HNCRecipeGen(generator));
         generator.addProvider(new HNCItemModels(generator));
         generator.addProvider(new HNCBlockStates(generator, existingFileHelper));
-        generator.addProvider(new ChoppingBoardDataGen(generator));
         generator.addProvider(new HNCLanguage(generator));
     }
 

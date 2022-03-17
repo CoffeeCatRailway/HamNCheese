@@ -1,6 +1,0 @@
-{
-  "convert_sound": "minecraft:block.metal.place",
-  "model": "hamncheese:chopping_board/gold",
-  "tool_type": "pickaxe",
-  "pressure_plate": "minecraft:light_weighted_pressure_plate"
-}

@@ -4,7 +4,6 @@ import coffeecatrailway.hamncheese.HNCMod;
 import coffeecatrailway.hamncheese.common.block.*;
 import coffeecatrailway.hamncheese.registry.HNCBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.data.DataGenerator;
@@ -12,7 +11,10 @@ import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.*;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Function;
@@ -78,9 +80,6 @@ public class HNCBlockStates extends BlockStateProvider
         ModelFile popcornModelFull = this.models().getExistingFile(HNCMod.getLocation("block/popcorn_machine_full"));
         ModelFile popcornModelEmpty = this.models().getExistingFile(HNCMod.getLocation("block/popcorn_machine_empty"));
 
-        VariantBlockStateBuilder.PartialBlockstate choppingBoard = this.getVariantBuilder(HNCBlocks.CHOPPING_BOARD.get()).partialState();
-        ModelFile choppingBoardModel = this.models().getExistingFile(HNCMod.getLocation("block/chopping_board"));
-
         // Add models
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
@@ -113,54 +112,27 @@ public class HNCBlockStates extends BlockStateProvider
                     .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelEmpty).addModel();
             popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, true).with(PopcornMachineBlock.LIT, true)
                     .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelFull).addModel();
-
-            // Chopping Board
-            choppingBoard.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).modelForState().rotationY((int) direction.toYRot()).modelFile(choppingBoardModel).addModel();
         }
 
         this.toItem(HNCBlocks.PIZZA_OVEN.get());
         this.toItem(HNCBlocks.GRILL.get());
         this.toItem(HNCBlocks.POPCORN_MACHINE.get(), HNCMod.getLocation("block/popcorn_machine_full"));
-//        this.toItem(HNCBlocks.CHOPPING_BOARD.get());
 
-        this.choppingBoard("oak", new ResourceLocation("block/oak_planks"));
-        this.choppingBoard("birch", new ResourceLocation("block/birch_planks"));
-        this.choppingBoard("spruce", new ResourceLocation("block/spruce_planks"));
-        this.choppingBoard("jungle", new ResourceLocation("block/jungle_planks"));
-        this.choppingBoard("acacia", new ResourceLocation("block/acacia_planks"));
-        this.choppingBoard("dark_oak", new ResourceLocation("block/dark_oak_planks"));
-        this.choppingBoard("crimson", new ResourceLocation("block/crimson_planks"));
-        this.choppingBoard("warped", new ResourceLocation("block/warped_planks"));
+        this.choppingBoard("oak", new ResourceLocation("block/oak_planks"), HNCBlocks.OAK_CHOPPING_BOARD.get());
+        this.choppingBoard("birch", new ResourceLocation("block/birch_planks"), HNCBlocks.BIRCH_CHOPPING_BOARD.get());
+        this.choppingBoard("spruce", new ResourceLocation("block/spruce_planks"), HNCBlocks.SPRUCE_CHOPPING_BOARD.get());
+        this.choppingBoard("jungle", new ResourceLocation("block/jungle_planks"), HNCBlocks.JUNGLE_CHOPPING_BOARD.get());
+        this.choppingBoard("acacia", new ResourceLocation("block/acacia_planks"), HNCBlocks.ACACIA_CHOPPING_BOARD.get());
+        this.choppingBoard("dark_oak", new ResourceLocation("block/dark_oak_planks"), HNCBlocks.DARK_OAK_CHOPPING_BOARD.get());
+        this.choppingBoard("crimson", new ResourceLocation("block/crimson_planks"), HNCBlocks.CRIMSON_CHOPPING_BOARD.get());
+        this.choppingBoard("warped", new ResourceLocation("block/warped_planks"), HNCBlocks.WARPED_CHOPPING_BOARD.get());
 
-        this.choppingBoard("polished_blackstone", new ResourceLocation("block/polished_blackstone"));
-        this.choppingBoard("iron", new ResourceLocation("block/iron_block"));
-        this.choppingBoard("gold", new ResourceLocation("block/gold_block"));
+        this.choppingBoard("stone", new ResourceLocation("block/stone"), HNCBlocks.STONE_CHOPPING_BOARD.get());
+        this.choppingBoard("polished_blackstone", new ResourceLocation("block/polished_blackstone"), HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get());
+        this.choppingBoard("iron", new ResourceLocation("block/iron_block"), HNCBlocks.IRON_CHOPPING_BOARD.get());
+        this.choppingBoard("gold", new ResourceLocation("block/gold_block"), HNCBlocks.GOLD_CHOPPING_BOARD.get());
 
-        this.choppingBoard("maple", HNCMod.getLocation("block/maple_planks"));
-
-        this.choppingBoard("fir", new ResourceLocation("biomesoplenty", "block/fir_planks"));
-        this.choppingBoard("redwood", new ResourceLocation("biomesoplenty", "block/redwood_planks"));
-        this.choppingBoard("cherry", new ResourceLocation("biomesoplenty", "block/cherry_planks"));
-        this.choppingBoard("mahogany", new ResourceLocation("biomesoplenty", "block/mahogany_planks"));
-        this.choppingBoard("jacaranda", new ResourceLocation("biomesoplenty", "block/jacaranda_planks"));
-        this.choppingBoard("palm", new ResourceLocation("biomesoplenty", "block/palm_planks"));
-        this.choppingBoard("willow", new ResourceLocation("biomesoplenty", "block/willow_planks"));
-        this.choppingBoard("dead", new ResourceLocation("biomesoplenty", "block/dead_planks"));
-        this.choppingBoard("magic", new ResourceLocation("biomesoplenty", "block/magic_planks"));
-        this.choppingBoard("umbran", new ResourceLocation("biomesoplenty", "block/umbran_planks"));
-        this.choppingBoard("hellbark", new ResourceLocation("biomesoplenty", "block/hellbark_planks"));
-
-        this.choppingBoard("twilight_oak", new ResourceLocation("twilightforest", "block/wood/planks_twilight_oak_0"));
-        this.choppingBoard("canopy", new ResourceLocation("twilightforest", "block/wood/planks_canopy_0"));
-        this.choppingBoard("mangrove", new ResourceLocation("twilightforest", "block/wood/planks_mangrove_0"));
-        this.choppingBoard("dark", new ResourceLocation("twilightforest", "block/wood/planks_darkwood_0"));
-        this.choppingBoard("time", new ResourceLocation("twilightforest", "block/wood/planks_time_0"));
-        this.choppingBoard("trans", new ResourceLocation("twilightforest", "block/wood/planks_trans_0"));
-        this.choppingBoard("mine", new ResourceLocation("twilightforest", "block/wood/planks_mine_0"));
-        this.choppingBoard("sort", new ResourceLocation("twilightforest", "block/wood/planks_sort_0"));
-
-        this.choppingBoard("darkwood", new ResourceLocation("druidcraft", "block/darkwood_planks"));
-        this.choppingBoard("elder", new ResourceLocation("druidcraft", "block/elder_planks"));
+        this.choppingBoard("maple", HNCMod.getLocation("block/maple_planks"), HNCBlocks.MAPLE_CHOPPING_BOARD.get());
 
         // Misc
         VariantBlockStateBuilder.PartialBlockstate cheese = this.getVariantBuilder(HNCBlocks.BLOCK_OF_CHEESE.get()).partialState();
@@ -284,9 +256,16 @@ public class HNCBlockStates extends BlockStateProvider
         this.getVariantBuilder(HNCBlocks.MAPLE_SAP.get()).partialState().modelForState().modelFile(mapleSapModel).addModel();
     }
 
-    private void choppingBoard(String name, ResourceLocation texture)
+    private void choppingBoard(String name, ResourceLocation texture, ChoppingBoardBlock board)
     {
-        this.models().withExistingParent("chopping_board/" + name, HNCMod.getLocation("chopping_board/stone")).texture("particle", texture);
+        VariantBlockStateBuilder.PartialBlockstate choppingBoard = this.getVariantBuilder(board).partialState();
+        ModelFile choppingBoardModel = this.models().withExistingParent("block/" + name + "_chopping_board", HNCMod.getLocation("block/chopping_board")).texture("board", texture);
+
+        // Add models
+        for (Direction direction : Direction.Plane.HORIZONTAL)
+            choppingBoard.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).modelForState().rotationY((int) direction.toYRot()).modelFile(choppingBoardModel).addModel();
+
+        this.toItem(board);
     }
 
     private void toItem(Block block)

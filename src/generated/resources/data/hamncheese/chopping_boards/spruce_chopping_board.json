@@ -1,6 +1,0 @@
-{
-  "convert_sound": "minecraft:block.wood.place",
-  "model": "hamncheese:chopping_board/spruce",
-  "tool_type": "axe",
-  "pressure_plate": "minecraft:spruce_pressure_plate"
-}

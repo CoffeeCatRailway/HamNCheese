@@ -116,9 +116,9 @@ dependencies {
     compileOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}:api")
     runtimeOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}")
 
-    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3360574")
+//    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3360574")
 //    implementation fg.deobf("curse.maven:druidcraft-340991:3177267")
-    implementation fg.deobf("curse.maven:the-twilight-forest-227639:3575220")
+//    implementation fg.deobf("curse.maven:the-twilight-forest-227639:3575220")
 
     implementation fg.deobf("curse.maven:appleskin-248787:3686480")
 

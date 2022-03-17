@@ -168,11 +168,21 @@ public class HNCLootTables extends ForgeLootTableProvider
                                                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER))))))
                     .apply(ExplosionDecay.explosionDecay()));
 
-            this.add(HNCBlocks.CHOPPING_BOARD.get(), LootTable.lootTable()
-                    .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))
-                            .add(ItemLootEntry.lootTableItem(HNCBlocks.CHOPPING_BOARD.get())
-                                    .apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY).copy("BoardId", "BlockEntityTag.BoardId", CopyNbt.Action.REPLACE)))
-                            .when(SurvivesExplosion.survivesExplosion())));
+            this.dropSelf(HNCBlocks.OAK_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.BIRCH_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.SPRUCE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.JUNGLE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.ACACIA_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.CRIMSON_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.WARPED_CHOPPING_BOARD.get());
+
+            this.dropSelf(HNCBlocks.STONE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.GOLD_CHOPPING_BOARD.get());
+            this.dropSelf(HNCBlocks.IRON_CHOPPING_BOARD.get());
+
+            this.dropSelf(HNCBlocks.MAPLE_CHOPPING_BOARD.get());
 
             this.add(HNCBlocks.PIZZA_OVEN.get(), LootTable.lootTable()
                     .withPool(LootPool.lootPool().setRolls(new ConstantRange(1))

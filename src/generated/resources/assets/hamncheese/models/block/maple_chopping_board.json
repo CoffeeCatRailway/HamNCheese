@@ -1,0 +1,6 @@
+{
+  "parent": "hamncheese:block/chopping_board",
+  "textures": {
+    "board": "hamncheese:block/maple_planks"
+  }
+}

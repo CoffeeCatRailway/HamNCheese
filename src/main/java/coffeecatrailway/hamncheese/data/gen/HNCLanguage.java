@@ -41,8 +41,6 @@ public class HNCLanguage extends LanguageProvider
         this.add("block." + HNCMod.MOD_ID + "from", "From: ");
         this.add("top." + HNCMod.MOD_ID + ".progress", "Progress: ");
         this.add("top." + HNCMod.MOD_ID + ".chop_chop", "Chop! Chop!");
-        this.add("jei." + HNCMod.MOD_ID + ".chopping_board.how", "A chopping board is made by right-clicking a pressure plate with it's respective tool type.");
-        this.add("jei." + HNCMod.MOD_ID + ".chopping_board.example", "Example: Right-clicking a wooden pressure plate with an axe will turn it into a wooden chopping board.");
         this.add("jei." + HNCMod.MOD_ID + ".maple_sap", "Maple sap is made by placing a tree tap on a maple log, then by right-clicking with an empty bucket");
         this.add("container." + HNCMod.MOD_ID + ".popcorn_machine.flavour", "Flavour: %s/" + PopcornMachineTileEntity.MAX_FLAVOUR_TIME + "mb");
         this.add("container." + HNCMod.MOD_ID + ".popcorn_machine.popcorn", "Popcorn: %s/" + PopcornMachineTileEntity.MAX_POPCORN);

@@ -1,6 +1,5 @@
 package coffeecatrailway.hamncheese;
 
-import coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import coffeecatrailway.hamncheese.common.block.dispenser.HNCDispenseBoatBehavior;
 import coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
 import coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
@@ -8,10 +7,7 @@ import coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavio
 import coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
-import coffeecatrailway.hamncheese.common.tileentity.ChoppingBoardTileEntity;
 import coffeecatrailway.hamncheese.common.world.VillagePoolsHelper;
-import coffeecatrailway.hamncheese.data.ChoppingBoard;
-import coffeecatrailway.hamncheese.data.ChoppingBoardManager;
 import coffeecatrailway.hamncheese.data.gen.HNCFluidTags;
 import coffeecatrailway.hamncheese.integration.top.HNCTheOneProbe;
 import coffeecatrailway.hamncheese.registry.*;
@@ -32,8 +28,6 @@ import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
@@ -41,9 +35,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
-import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -191,12 +183,6 @@ public class CommonEvents
     }
 
     @SubscribeEvent
-    public static void onReloadListener(AddReloadListenerEvent event)
-    {
-        event.addListener(ChoppingBoardManager.INSTANCE);
-    }
-
-    @SubscribeEvent
     public static void onBiomeLoad(BiomeLoadingEvent event)
     {
         BiomeGenerationSettingsBuilder builder = event.getGeneration();
@@ -297,25 +283,5 @@ public class CommonEvents
             ((CatEntity) entity).targetSelector.addGoal(1, new NearestAttackableTargetGoal<>((CatEntity) entity, MouseEntity.class, false));
         if (entity instanceof OcelotEntity)
             ((OcelotEntity) entity).targetSelector.addGoal(1, new NearestAttackableTargetGoal<>((OcelotEntity) entity, MouseEntity.class, false));
-    }
-
-    @SubscribeEvent
-    public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
-    {
-        PlayerEntity player = event.getPlayer();
-        BlockPos pos = event.getPos();
-        ItemStack stack = event.getItemStack();
-        World level = event.getWorld();
-        ChoppingBoard board = ChoppingBoardManager.getBoardByPressurePlate(level.getBlockState(pos).getBlock());
-        if (level.getBlockState(pos).getBlock() == board.getPressurePlate() && stack.getToolTypes().contains(board.getToolType()))
-        {
-            level.setBlock(pos, HNCBlocks.CHOPPING_BOARD.get().defaultBlockState().setValue(ChoppingBoardBlock.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(player.getRandom())), Constants.BlockFlags.DEFAULT);
-            TileEntity tile = level.getBlockEntity(pos);
-            if (tile instanceof ChoppingBoardTileEntity)
-                ((ChoppingBoardTileEntity) tile).setBoardId(board.getId());
-
-            level.playSound(player, pos, board.getConvertSound(), SoundCategory.BLOCKS, 1f, 1f);
-            stack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(event.getHand()));
-        }
     }
 }

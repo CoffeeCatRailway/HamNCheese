@@ -1,6 +1,0 @@
-{
-  "convert_sound": "minecraft:block.wood.place",
-  "model": "hamncheese:chopping_board/dark_oak",
-  "tool_type": "axe",
-  "pressure_plate": "minecraft:dark_oak_pressure_plate"
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "hamncheese:chopping_board/stone",
-  "textures": {
-    "particle": "twilightforest:block/wood/planks_darkwood_0"
-  }
-}

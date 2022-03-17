@@ -1,7 +1,10 @@
 package coffeecatrailway.hamncheese.registry;
 
 import coffeecatrailway.hamncheese.HNCMod;
-import coffeecatrailway.hamncheese.common.tileentity.*;
+import coffeecatrailway.hamncheese.common.tileentity.GrillTileEntity;
+import coffeecatrailway.hamncheese.common.tileentity.HNCSignTileEntity;
+import coffeecatrailway.hamncheese.common.tileentity.PizzaOvenTileEntity;
+import coffeecatrailway.hamncheese.common.tileentity.PopcornMachineTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -13,7 +16,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
@@ -30,10 +32,8 @@ public class HNCTileEntities
 
     public static final RegistryObject<TileEntityType<HNCSignTileEntity>> SIGN = register("sign", HNCSignTileEntity::new, HNCBlocks.MAPLE_SIGN, HNCBlocks.MAPLE_WALL_SIGN);
 
-    public static final RegistryObject<TileEntityType<ChoppingBoardTileEntity>> CHOPPING_BOARD = register("chopping_board", ChoppingBoardTileEntity::new, HNCBlocks.CHOPPING_BOARD);
-
     @SafeVarargs
-    private static  <T extends TileEntity> RegistryObject<TileEntityType<T>> register (String id, Supplier<T> tileEntity, Supplier<? extends Block>... blocks)
+    private static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(String id, Supplier<T> tileEntity, Supplier<? extends Block>... blocks)
     {
         return TILE_ENTITIES.register(id, () -> TileEntityType.Builder.of(tileEntity, Arrays.stream(blocks).map(Supplier::get).toArray(Block[]::new)).build(null));
     }

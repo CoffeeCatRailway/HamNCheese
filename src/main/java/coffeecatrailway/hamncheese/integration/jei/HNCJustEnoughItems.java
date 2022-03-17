@@ -73,10 +73,6 @@ public class HNCJustEnoughItems implements IModPlugin
     @Override
     public void registerRecipes(IRecipeRegistration reg)
     {
-        reg.addIngredientInfo(ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block instanceof ChoppingBoardBlock).map(ItemStack::new).collect(Collectors.toList()), VanillaTypes.ITEM,
-                new TranslationTextComponent("jei." + HNCMod.MOD_ID + ".chopping_board.how"),
-                new TranslationTextComponent("jei." + HNCMod.MOD_ID + ".chopping_board.example"));
-
         reg.addIngredientInfo(Lists.<IItemProvider>newArrayList(HNCItems.MAPLE_SAP_BOTTLE.get(), HNCItems.MAPLE_SAP_BUCKET.get(), HNCBlocks.TREE_TAP.get()).stream().map(ItemStack::new).collect(Collectors.toList()),
                 VanillaTypes.ITEM, new TranslationTextComponent("jei." + HNCMod.MOD_ID + ".maple_sap"));
 
