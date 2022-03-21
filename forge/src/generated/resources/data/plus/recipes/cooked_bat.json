@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "plus:bat"
-  },
-  "result": "plus:cooked_bat",
-  "experience": 0.35,
-  "cookingtime": 200
-}

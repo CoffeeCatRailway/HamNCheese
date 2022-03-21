@@ -1,6 +1,0 @@
-{
-  "conditions": [],
-  "lootTable": "plus:modifier/squid",
-  "entity": "minecraft:squid",
-  "type": "plus:pool_loot"
-}

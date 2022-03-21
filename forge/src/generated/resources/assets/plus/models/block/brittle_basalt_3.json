@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "plus:block/brittle_basalt_side_3",
-    "end": "plus:block/brittle_basalt_top_3"
-  }
-}

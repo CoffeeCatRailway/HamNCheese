@@ -1,8 +1,0 @@
-{
-  "type": "plus:saw_bench",
-  "ingredient": {
-    "item": "minecraft:warped_planks"
-  },
-  "result": "minecraft:warped_stairs",
-  "count": 1
-}

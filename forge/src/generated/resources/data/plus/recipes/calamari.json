@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "plus:squid"
-  },
-  "result": "plus:calamari",
-  "experience": 0.35,
-  "cookingtime": 200
-}

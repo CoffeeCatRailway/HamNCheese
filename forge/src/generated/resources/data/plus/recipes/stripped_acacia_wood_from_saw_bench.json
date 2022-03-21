@@ -1,8 +1,0 @@
-{
-  "type": "plus:saw_bench",
-  "ingredient": {
-    "item": "minecraft:acacia_wood"
-  },
-  "result": "minecraft:stripped_acacia_wood",
-  "count": 1
-}

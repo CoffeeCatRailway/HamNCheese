@@ -1,8 +1,0 @@
-{
-  "type": "plus:saw_bench",
-  "ingredient": {
-    "item": "minecraft:warped_slab"
-  },
-  "result": "minecraft:warped_pressure_plate",
-  "count": 3
-}

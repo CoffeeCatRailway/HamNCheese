@@ -1,6 +1,0 @@
-{
-  "conditions": [],
-  "lootTable": "plus:modifier/bat",
-  "entity": "minecraft:bat",
-  "type": "plus:pool_loot"
-}

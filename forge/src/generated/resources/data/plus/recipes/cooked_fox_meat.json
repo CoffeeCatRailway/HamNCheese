@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "plus:fox_meat"
-  },
-  "result": "plus:cooked_fox_meat",
-  "experience": 0.35,
-  "cookingtime": 200
-}

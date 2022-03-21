@@ -1,8 +1,0 @@
-{
-  "type": "plus:saw_bench",
-  "ingredient": {
-    "item": "minecraft:acacia_slab"
-  },
-  "result": "minecraft:acacia_pressure_plate",
-  "count": 3
-}

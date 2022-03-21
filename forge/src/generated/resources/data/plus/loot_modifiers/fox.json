@@ -1,6 +1,0 @@
-{
-  "conditions": [],
-  "lootTable": "plus:modifier/fox",
-  "entity": "minecraft:fox",
-  "type": "plus:pool_loot"
-}

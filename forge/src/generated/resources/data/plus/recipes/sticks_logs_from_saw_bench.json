@@ -1,8 +1,0 @@
-{
-  "type": "plus:saw_bench",
-  "ingredient": {
-    "tag": "minecraft:logs"
-  },
-  "result": "minecraft:stick",
-  "count": 12
-}
