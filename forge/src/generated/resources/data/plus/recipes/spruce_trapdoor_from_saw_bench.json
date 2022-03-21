@@ -1,0 +1,8 @@
+{
+  "type": "plus:saw_bench",
+  "ingredient": {
+    "item": "minecraft:spruce_slab"
+  },
+  "result": "minecraft:spruce_trapdoor",
+  "count": 2
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "plus:warmth_amulet"
+    ]
+  },
+  "criteria": {
+    "has_warmth_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "plus:warmth_crystal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_chain_link": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "plus:chain_link"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "plus:warmth_amulet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_warmth_crystal",
+      "has_chain_link",
+      "has_the_recipe"
+    ]
+  ]
+}

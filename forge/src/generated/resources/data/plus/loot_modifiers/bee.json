@@ -1,0 +1,6 @@
+{
+  "conditions": [],
+  "lootTable": "plus:modifier/bee",
+  "entity": "minecraft:bee",
+  "type": "plus:pool_loot"
+}

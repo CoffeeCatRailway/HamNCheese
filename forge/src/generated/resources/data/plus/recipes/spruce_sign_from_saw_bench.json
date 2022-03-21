@@ -1,0 +1,8 @@
+{
+  "type": "plus:saw_bench",
+  "ingredient": {
+    "item": "minecraft:spruce_planks"
+  },
+  "result": "minecraft:spruce_sign",
+  "count": 2
+}

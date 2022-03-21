@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/stonecutter",
+  "textures": {
+    "particle": "plus:block/saw_bench_bottom",
+    "bottom": "plus:block/saw_bench_bottom",
+    "top": "plus:block/saw_bench_top",
+    "side": "plus:block/saw_bench_side"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "plus:saw_bench",
+  "ingredient": {
+    "item": "minecraft:dark_oak_wood"
+  },
+  "result": "minecraft:stripped_dark_oak_wood",
+  "count": 1
+}

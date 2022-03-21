@@ -1,0 +1,8 @@
+{
+  "type": "plus:saw_bench",
+  "ingredient": {
+    "item": "minecraft:crimson_slab"
+  },
+  "result": "minecraft:crimson_pressure_plate",
+  "count": 3
+}

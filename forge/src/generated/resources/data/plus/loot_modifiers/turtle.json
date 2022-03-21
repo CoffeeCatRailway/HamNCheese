@@ -1,0 +1,6 @@
+{
+  "conditions": [],
+  "lootTable": "plus:modifier/turtle",
+  "entity": "minecraft:turtle",
+  "type": "plus:pool_loot"
+}

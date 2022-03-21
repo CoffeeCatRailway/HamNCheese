@@ -1,0 +1,8 @@
+{
+  "type": "plus:saw_bench",
+  "ingredient": {
+    "item": "minecraft:dark_oak_slab"
+  },
+  "result": "minecraft:dark_oak_pressure_plate",
+  "count": 3
+}

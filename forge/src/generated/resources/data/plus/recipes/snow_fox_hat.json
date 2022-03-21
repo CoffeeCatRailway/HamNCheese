@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "fff",
+    "f f",
+    " f "
+  ],
+  "key": {
+    "f": {
+      "item": "plus:snow_fox_fur"
+    }
+  },
+  "result": {
+    "item": "plus:snow_fox_hat"
+  }
+}

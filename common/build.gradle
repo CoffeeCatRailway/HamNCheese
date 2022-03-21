@@ -1,0 +1,30 @@
+dependencies {
+    // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
+    // Do NOT use other classes from fabric loader
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricLoaderVersion}"
+
+    modApi("gg.moonflower:pollen:${rootProject.pollenVersion}") { transitive = false }
+
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.reiVersion}"
+}
+
+architectury {
+    common()
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/${project.modId}.accesswidener")
+}
+
+sourceSets.main.resources {
+    srcDir project(":forge").file("src/generated/resources").absolutePath
+}
+
+publishing {
+    publications {
+        mavenCommon(MavenPublication) {
+            artifactId = project.archivesBaseName
+            from components.java
+        }
+    }
+}

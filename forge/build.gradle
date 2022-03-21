@@ -1,0 +1,142 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+archivesBaseName = "${rootProject.archivesBaseName}-${project.name}"
+
+loom {
+    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
+
+    runConfigs.configureEach {
+        if (name == "client" || name == "data")
+            runDir = "../run"
+        else if (name == "server")
+            runDir = "../run/server-forge"
+    }
+
+    forge {
+        mixinConfig "${project.modId}-common.mixins.json"
+        mixinConfig "${project.modId}.mixins.json"
+
+        convertAccessWideners.set(true)
+        extraAccessWideners.add("${project.modId}.accesswidener")
+
+        dataGen {
+            mod project.modId
+        }
+        launches {
+            data {
+                arg "--existing", project(":common").file("src/main/resources/").absolutePath
+            }
+        }
+    }
+
+    mixin {
+        defaultRefmapName = "${project.modId}-refmap.json"
+    }
+}
+
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentForge.extendsFrom common
+}
+
+repositories {
+    maven { // JustEnoughItems
+        name = "Progwml6 (Just Enough Items)"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven { // JustEnoughItems fallback
+        name = "JustEnoughItems fallback"
+        url = "https://modmaven.k-4u.nl"
+    }
+    maven { // Top
+        name 'tterrag maven'
+        url "https://maven.tterrag.com/"
+    }
+}
+
+dependencies {
+    forge "net.minecraftforge:forge:${rootProject.minecraftVersion}-${rootProject.forgeVersion}"
+
+    modApi("gg.moonflower:pollen-forge:${rootProject.pollenVersion}") { transitive = false }
+
+    //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.reiVersion}"
+    modImplementation("mezz.jei:jei-${rootProject.jeiVersion}") { transitive = false }
+//    modImplementation("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}") { transitive = false }
+
+    modRuntime("curse.maven:shutupexperimentalsettings-407174:3544525")
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+}
+
+processResources {
+    inputs.property "id", rootProject.modId
+    inputs.property "name", rootProject.modName
+    inputs.property "version", rootProject.modVersion
+    inputs.property "repo", rootProject.name
+
+    filesMatching(["META-INF/mods.toml", "pack.mcmeta"]) {
+        expand "id": rootProject.modId,
+                "name": rootProject.modName,
+                "version": rootProject.modVersion,
+                "repo": rootProject.name
+    }
+
+    doLast {
+        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
+            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
+        }
+    }
+}
+
+shadowJar {
+    exclude "fabric.mod.json"
+    exclude "archiectury.common.json"
+
+    configurations = [project.configurations.shadowCommon]
+    classifier "dev-shadow"
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+    classifier null
+}
+
+jar {
+    classifier "dev"
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
+}
+
+publishing {
+    publications {
+        mavenForge(MavenPublication) {
+            artifactId = project.archivesBaseName
+            from components.java
+        }
+    }
+}

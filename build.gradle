@@ -1,174 +1,59 @@
-import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
-
-buildscript {
-    repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-    }
-}
-
 plugins {
-    id 'com.github.johnrengelman.shadow' version '4.0.4'
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "0.10.0-SNAPSHOT" apply false
+    id "io.github.juuxel.loom-quiltflower-mini" version "1.0.0" apply false
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
+architectury {
+    minecraft = rootProject.minecraftVersion
+}
 
-version = project.version
-group = 'coffeecatrailway.' + project.modId
-archivesBaseName = project.modId
+subprojects {
+    apply plugin: "dev.architectury.loom"
+    apply plugin: "io.github.juuxel.loom-quiltflower-mini"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
+    loom {
+        silentMojangMappingsLicense()
+    }
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-minecraft {
-    mappings channel: project.mappingsChannel.toString(), version: project.mappingsVersion.toString()
-
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-    runs {
-        client {
-            workingDirectory project.file('run/client')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                hamncheese {
-                    source sourceSets.main
-                }
-            }
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraftVersion}"
+        mappings loom.layered() {
+            officialMojangMappings()
+//            parchment("org.parchmentmc.data:parchment-${rootProject.minecraftVersion}:${rootProject.parchmentVersion}")
         }
+    }
+}
 
-        server {
-            workingDirectory project.file('run/server')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
 
-            mods {
-                hamncheese {
-                    source sourceSets.main
-                }
-            }
-        }
+    archivesBaseName = rootProject.name
+    version = "${rootProject.minecraftVersion}-${rootProject.modVersion}"
+    group = rootProject.mavenGroup
 
-        data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', ''
-            property 'forge.logging.console.level', 'debug'
-
-            args '--mod', '' + project.modId, '--all', '--output', '"' + rootProject.file('src/generated/resources/') + '"', '--existing', '"' + rootProject.file('src/main/resources') + '"'
-
-            mods {
-                hamncheese {
-                    source sourceSets.main
-                }
+    repositories {
+		mavenLocal()
+        maven { url "https://jitpack.io" }
+        maven { url "https://repo.moonflower.gg/releases" }
+        maven { url "https://maven.parchmentmc.org" }
+        maven { url "https://maven.shedaniel.me/" }
+        maven {
+            url "https://www.cursemaven.com"
+            content {
+                includeGroup "curse.maven"
             }
         }
     }
-}
 
-configurations {
-    shade
-}
-
-repositories {
-    jcenter()
-    mavenLocal()
-
-    maven { // JustEnoughItems
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven { // JustEnoughItems fallback
-        name = "ModMaven"
-        url = "https://modmaven.k-4u.nl"
-    }
-    maven { // Top
-        name 'tterrag maven'
-        url "https://maven.tterrag.com/"
-    }
-    maven { // BOP, Druidcraft, Twilight Forest
-        url = "https://cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
-    maven { // Sonar
-        name = "Jitpack"
-        url = "https://jitpack.io"
-    }
-}
-
-sourceSets.main.resources {
-    srcDir "src/generated/resources"
-}
-
-dependencies {
-    minecraft "net.minecraftforge:forge:${project.mcVersion}-${project.forgeVersion}"
-
-    runtimeOnly fg.deobf("mezz.jei:jei-${project.jeiVersion}")
-    compileOnly fg.deobf("mezz.jei:jei-${project.jeiVersion}:api")
-
-    compileOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}:api")
-    runtimeOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}")
-
-//    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3360574")
-//    implementation fg.deobf("curse.maven:druidcraft-340991:3177267")
-//    implementation fg.deobf("curse.maven:the-twilight-forest-227639:3575220")
-
-    implementation fg.deobf("curse.maven:appleskin-248787:3686480")
-
-    implementation fg.deobf("curse.maven:catalogue-459701:3529457")
-    implementation fg.deobf("curse.maven:configured-457570:3546348")
-
-    runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
-    compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}:api"
-    shade "com.github.Ocelot5836:Sonar:${project.sonar}"
-}
-
-shadowJar {
-    configurations = [project.configurations.shade]
-    relocate 'io.github.ocelot', 'io.github.ocelot.lib'
-
-    exclude(["**/*.ase", "**/*.bbmodel", "**/assets/biomesoplenty", "**/assets/twilightforest", "**/assets/druidcraft"])
-}
-
-processResources {
-    inputs.property("modId", project.modId)
-    inputs.property("version", project.version)
-    inputs.property("name", project.name)
-    inputs.property("author", project.author)
-    filesMatching(["META-INF/mods.toml", "pack.mcmeta", (String) "${project.modId}.mixin.json"]) {
-        expand 'modId': project.modId, 'version': project.version, 'name': project.name, 'author': project.author
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release.set(17)
     }
 
-    // Minify json resources
-    doLast {
-        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
-            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
-        }
+    java {
+        withSourcesJar()
     }
 }
-
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : "${archivesBaseName}",
-                "Specification-Vendor"    : "${project.author}",
-                "Specification-Version"   : "${project.version}",
-                "Implementation-Title"    : "${project.name}",
-                "Implementation-Version"  : "${project.version}",
-                "Implementation-Vendor"   : "${project.author}",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-
-    enabled = false
-    dependsOn(shadowJar { classifier = null })
-}
-
-jar.finalizedBy('reobfJar')

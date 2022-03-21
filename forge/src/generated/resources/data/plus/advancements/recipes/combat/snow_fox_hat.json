@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "plus:snow_fox_hat"
+    ]
+  },
+  "criteria": {
+    "has_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "plus:snow_fox_fur"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "plus:snow_fox_hat"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fur",
+      "has_the_recipe"
+    ]
+  ]
+}

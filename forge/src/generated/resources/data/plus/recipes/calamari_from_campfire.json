@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "plus:squid"
+  },
+  "result": "plus:calamari",
+  "experience": 0.35,
+  "cookingtime": 600
+}

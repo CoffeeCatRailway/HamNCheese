@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "icon": "icon.png",
+  "description": "Adds in lots of ham and cheese related foods.\n\nPlease note, I only upload to CurseForge & Modrinth!\n\nDiscord: https://discord.gg/GkeexxWnyz\nCredit to 'https://github.com/SystemZeeWorkshop/modding-template'",
+  "authors": [ "CoffeeCatRailway" ],
+  "contributors": [ "Nyctoniac" ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/coffeecheese",
+	"issues": "https://github.com/CoffeeCatRailway/HamNCheese/issues",
+    "sources": "https://github.com/CoffeeCatRailway/HamNCheese/"
+  },
+  "license": "GPLv3",
+  "environment": "*",
+  "mixins": [
+    "${id}-common.mixins.json",
+    "${id}.mixins.json"
+  ],
+  "entrypoints": {
+    "main": [
+      "io.github.coffeecatrailway.hamncheese.fabric.HamNCheeseFabric"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": "1.16.x",
+    "pollen": "1.1.x"
+  }
+}

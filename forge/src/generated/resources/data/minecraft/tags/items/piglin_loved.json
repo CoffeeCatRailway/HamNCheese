@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "plus:rose_gold_block",
+    "plus:rose_gold_block",
+    "plus:raw_rose_gold",
+    "plus:rose_gold_ingot",
+    "plus:rose_gold_nugget",
+    "plus:rose_gold_sword",
+    "plus:rose_gold_shovel",
+    "plus:rose_gold_pickaxe",
+    "plus:rose_gold_axe",
+    "plus:rose_gold_hoe"
+  ]
+}

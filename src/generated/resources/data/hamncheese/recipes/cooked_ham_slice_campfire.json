@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "hamncheese:ham_slice"
-  },
-  "result": "hamncheese:cooked_ham_slice",
-  "experience": 0.35,
-  "cookingtime": 600
-}

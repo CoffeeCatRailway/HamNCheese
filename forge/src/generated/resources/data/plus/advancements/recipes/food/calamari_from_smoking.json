@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "plus:calamari_from_smoking"
+    ]
+  },
+  "criteria": {
+    "has_squid": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "plus:squid"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "plus:calamari_from_smoking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_squid",
+      "has_the_recipe"
+    ]
+  ]
+}

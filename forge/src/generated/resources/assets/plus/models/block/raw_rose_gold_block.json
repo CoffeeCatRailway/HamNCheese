@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "plus:block/raw_rose_gold_block"
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_rh",
-  "textures": {
-    "bottom": "hamncheese:block/maple_door_bottom",
-    "top": "hamncheese:block/maple_door_top"
-  }
-}

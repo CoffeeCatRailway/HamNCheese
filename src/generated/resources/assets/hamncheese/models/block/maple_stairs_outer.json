@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "hamncheese:block/maple_planks",
-    "bottom": "hamncheese:block/maple_planks",
-    "top": "hamncheese:block/maple_planks"
-  }
-}

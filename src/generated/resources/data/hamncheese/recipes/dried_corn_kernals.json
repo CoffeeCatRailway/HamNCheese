@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "hamncheese:corn_kernels"
-  },
-  "result": "hamncheese:dried_corn_kernels",
-  "experience": 0.2,
-  "cookingtime": 300
-}

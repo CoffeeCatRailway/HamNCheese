@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "plus:rose_gold_block",
+    "#forge:storage_blocks/rose_gold"
+  ]
+}

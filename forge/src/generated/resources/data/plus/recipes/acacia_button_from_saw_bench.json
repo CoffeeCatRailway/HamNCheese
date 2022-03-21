@@ -1,0 +1,8 @@
+{
+  "type": "plus:saw_bench",
+  "ingredient": {
+    "item": "minecraft:acacia_planks"
+  },
+  "result": "minecraft:acacia_button",
+  "count": 3
+}

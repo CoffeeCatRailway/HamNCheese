@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "hamncheese:bread_slice"
-  },
-  "result": "hamncheese:toast",
-  "experience": 0.35,
-  "cookingtime": 100
-}

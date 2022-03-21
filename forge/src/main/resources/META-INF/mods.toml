@@ -1,0 +1,59 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="https://www.gnu.org/licenses/gpl-3.0.en.html"
+issueTrackerURL="https://github.com/CoffeeCatRailway/HamNCheese/issues"
+
+[[mods]]
+modId = "${id}"
+version = "${version}"
+displayName = "${name}"
+logoFile = "icon.png"
+updateJSONURL = "https://raw.githubusercontent.com/CoffeeCatRailway/HamNCheese/main/update_checker.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/coffeecheese"
+authors = "CoffeeCatRailway"
+credits = "Nyctoniac for mouse model & any/all others who've helped!"
+description = '''
+Adds in lots of ham and cheese related foods.
+
+Please note, I only upload to CurseForge & Modrinth!
+
+Discord: https://discord.gg/GkeexxWnyz
+'''
+
+[modproperties.hamncheese]
+catalogueItemIcon="hamncheese:block_of_cheese"
+
+[[dependencies.${id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[36,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "pollen"
+mandatory = true
+versionRange = "[1,)"
+ordering = "BEFORE"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "jei"
+mandatory = false
+versionRange = "[7,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hamncheese]]
+modId="theoneprobe"
+mandatory=false
+versionRange="[1.16-3.1,]"
+ordering="NONE"
+side="BOTH"

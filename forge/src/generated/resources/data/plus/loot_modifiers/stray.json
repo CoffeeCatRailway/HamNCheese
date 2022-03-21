@@ -1,0 +1,6 @@
+{
+  "conditions": [],
+  "lootTable": "plus:modifier/stray",
+  "entity": "minecraft:stray",
+  "type": "plus:pool_loot"
+}
