@@ -1,12 +1,18 @@
 package io.github.coffeecatrailway.hamncheese;
 
+import gg.moonflower.pollen.api.config.ConfigManager;
+import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
 import net.minecraft.resources.ResourceLocation;
 
+/**
+ * @author CoffeeCatRailway
+ * Created: 21/03/2022
+ */
 public class HamNCheese
 {
     public static final String MOD_ID = "hamncheese";
-//    public static PlusConfig.Server CONFIG_SERVER = ConfigManager.register(MOD_ID, PollinatedConfigType.SERVER, PlusConfig.Server::new);
+    public static HNCConfig.Server CONFIG_SERVER = ConfigManager.register(MOD_ID, PollinatedConfigType.SERVER, HNCConfig.Server::new);
     public static final Platform PLATFORM = Platform.builder(MOD_ID)
             .clientInit(HamNCheese::onClientInit)
             .clientPostInit(HamNCheese::onClientPostInit)

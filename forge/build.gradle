@@ -57,10 +57,10 @@ repositories {
         name = "Progwml6 (Just Enough Items)"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
-    maven { // JustEnoughItems fallback
-        name = "JustEnoughItems fallback"
-        url = "https://modmaven.k-4u.nl"
-    }
+//    maven { // JustEnoughItems fallback
+//        name = "JustEnoughItems fallback"
+//        url = "https://modmaven.k-4u.nl"
+//    }
     maven { // Top
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
@@ -77,6 +77,7 @@ dependencies {
 //    modImplementation("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}") { transitive = false }
 
     modRuntime("curse.maven:shutupexperimentalsettings-407174:3544525")
+    modRuntime("curse.maven:configured-457570:3640884")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
