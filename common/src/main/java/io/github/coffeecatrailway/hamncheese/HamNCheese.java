@@ -3,6 +3,9 @@ package io.github.coffeecatrailway.hamncheese;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
+import gg.moonflower.pollen.api.util.PollinatedModContainer;
+import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 
 /**
@@ -18,7 +21,7 @@ public class HamNCheese
             .clientPostInit(HamNCheese::onClientPostInit)
             .commonInit(HamNCheese::onCommonInit)
             .commonPostInit(HamNCheese::onCommonPostInit)
-//            .dataInit(Plus::onDataInit)
+            .dataInit(HamNCheese::onDataInit)
             .build();
 
     public static void onClientInit()
@@ -48,16 +51,16 @@ public class HamNCheese
     {
     }
 
-//    public static void onDataInit(Platform.DataSetupContext ctx)
-//    {
-//        DataGenerator generator = ctx.getGenerator();
-//        PollinatedModContainer container = ctx.getMod();
+    public static void onDataInit(Platform.DataSetupContext ctx)
+    {
+        DataGenerator generator = ctx.getGenerator();
+        PollinatedModContainer container = ctx.getMod();
 //        PlusBlockTags blockTags = new PlusBlockTags(generator, container);
 //        generator.addProvider(blockTags);
 //        generator.addProvider(new PlusItemTags(generator, container, blockTags));
 //        generator.addProvider(new PlusItemModels(generator, container));
-//        generator.addProvider(new PlusLanguage(generator, container));
-//    }
+        generator.addProvider(new HNCLanguage(generator, container));
+    }
 
     public static ResourceLocation getLocation(String path)
     {
