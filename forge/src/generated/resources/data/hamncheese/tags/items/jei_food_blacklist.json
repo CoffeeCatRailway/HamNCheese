@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:bread_slice",
+    "#forge:cracker",
+    "#forge:pizza",
+    "#forge:tomato_sauce"
+  ]
+}

@@ -35,7 +35,7 @@ public class HNCLanguage extends PollinatedLanguageProvider
     @Override
     protected void registerTranslations()
     {
-        this.add("itemGroup." + HamNCheese.MOD_ID + "", "Ham N' Cheese");
+        this.add("itemGroup." + HamNCheese.MOD_ID, "Ham N' Cheese");
         this.add("item." + HamNCheese.MOD_ID + ".sandwich.toasted", "Toasted");
         this.add("block." + HamNCheese.MOD_ID + ".from", "From: ");
         this.add("top." + HamNCheese.MOD_ID + ".progress", "Progress: ");
