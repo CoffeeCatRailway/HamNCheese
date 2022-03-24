@@ -4,9 +4,7 @@ import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
-import io.github.coffeecatrailway.hamncheese.data.gen.HNCBlockTags;
-import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
-import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
+import io.github.coffeecatrailway.hamncheese.data.gen.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 
@@ -61,6 +59,7 @@ public class HamNCheese
         generator.addProvider(blockTags);
         generator.addProvider(new HNCItemTags(generator, container, blockTags));
 //        generator.addProvider(new PlusItemModels(generator, container));
+        generator.addProvider(new HNCFluidTags(generator, container));
         generator.addProvider(new HNCLanguage(generator, container));
     }
 
