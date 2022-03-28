@@ -18,6 +18,7 @@ loom {
 
 sourceSets.main.resources {
     srcDir project(":forge").file("src/generated/resources").absolutePath
+    exclude project(":forge").file("src/generated/resources/.cache").absolutePath
 }
 
 publishing {
