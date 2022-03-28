@@ -58,9 +58,10 @@ public class HamNCheese
         HNCBlockTags blockTags = new HNCBlockTags(generator, container);
         generator.addProvider(blockTags);
         generator.addProvider(new HNCItemTags(generator, container, blockTags));
-//        generator.addProvider(new PlusItemModels(generator, container));
         generator.addProvider(new HNCFluidTags(generator, container));
+        generator.addProvider(new HNCModels(generator, container));
         generator.addProvider(new HNCLanguage(generator, container));
+        generator.addProvider(new HNCRecipeProvider(generator));
     }
 
     public static ResourceLocation getLocation(String path)

@@ -33,7 +33,5 @@ public class HamNCheeseForge
 //        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 //        generator.addProvider(new PlusLootTables(generator));
 //        generator.addProvider(new PlusBlockStates(generator, existingFileHelper));
-//        generator.addProvider(new PlusLootModifierProvider(generator));
-//        generator.addProvider(new PlusRecipeProvider(generator));
 //    }
 }

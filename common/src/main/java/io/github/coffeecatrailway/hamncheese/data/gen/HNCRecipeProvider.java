@@ -1,0 +1,174 @@
+package io.github.coffeecatrailway.hamncheese.data.gen;
+
+import gg.moonflower.pollen.api.datagen.provider.PollinatedRecipeProvider;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.recipes.FinishedRecipe;
+
+import java.util.function.Consumer;
+
+/**
+ * @author CoffeeCatRailway
+ * Created: 24/03/2022
+ */
+public class HNCRecipeProvider extends PollinatedRecipeProvider
+{
+    public HNCRecipeProvider(DataGenerator generator)
+    {
+        super(generator);
+    }
+
+    @Override
+    protected void buildRecipes(Consumer<FinishedRecipe> consumer)
+    {
+        /*
+         * Crafting Ingredients
+         */
+//        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_GEAR.get(), 4).define('s', Tags.Items.RODS_WOODEN).define('p', net.minecraft.tags.ItemTags.PLANKS)
+//                .pattern(" s ").pattern("sps").pattern(" s ").unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN))
+//                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+
+        /*
+         * Tools
+         */
+//        ShapedRecipeBuilder.shaped(HNCItems.CURDLER.get()).define('s', Tags.Items.RODS_WOODEN).define('g', HNCItemTags.GEARS_WOODEN)
+//                .pattern("s").pattern("s").pattern("g").unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN))
+//                .unlockedBy("has_gears", has(HNCItemTags.GEARS_WOODEN)).save(consumer, HNCMod.getLocation("curdler_alternate"));
+//        ShapedRecipeBuilder.shaped(HNCItems.CURDLER.get()).define('s', Tags.Items.RODS_WOODEN).define('g', HNCItemTags.GEARS_WOODEN)
+//                .pattern("g").pattern("s").pattern("s").unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN))
+//                .unlockedBy("has_gears", has(HNCItemTags.GEARS_WOODEN)).save(consumer);
+//
+//        ShapedRecipeBuilder.shaped(HNCItems.ROLLING_PIN.get()).define('s', Tags.Items.RODS_WOODEN).define('p', net.minecraft.tags.ItemTags.PLANKS).pattern("sps")
+//                .unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN)).unlockedBy("has_planks", has(net.minecraft.tags.ItemTags.PLANKS)).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCItems.GRIND_STONES.get(), 2)
+//                .requires(Tags.Items.COBBLESTONE).unlockedBy("has_cobble", has(Tags.Items.COBBLESTONE)).save(consumer);
+//
+//        ShapedRecipeBuilder.shaped(HNCItems.KNIFE.get()).define('s', Tags.Items.RODS_WOODEN).define('i', Tags.Items.INGOTS_IRON).pattern("  i").pattern(" i ").pattern("s  ")
+//                .unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN)).unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+
+        /*
+         * Foods
+         */
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.BLOCK_OF_CHEESE.get(), 2).requires(Items.MILK_BUCKET).requires(HNCItems.CURDLER.get()).unlockedBy("has_milk", has(Items.MILK_BUCKET))
+//                .unlockedBy("has_curdler", has(HNCItems.CURDLER.get())).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCItems.CHEESE_SLICE.get(), 3).requires(HNCBlocks.BLOCK_OF_CHEESE.get()).requires(HNCItems.KNIFE.get()).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_CHEESE.get()))
+//                .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCItems.ROCK_SALT.get(), 2).requires(HNCItems.GRIND_STONES.get()).requires(Tags.Items.STONE).unlockedBy("has_stone", has(Tags.Items.STONE))
+//                .unlockedBy("has_gind_stones", has(HNCItems.GRIND_STONES.get())).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCItems.FLOUR.get(), 3).requires(HNCItems.GRIND_STONES.get()).requires(HNCItemTags.WHEAT).unlockedBy("has_wheat", has(HNCItemTags.WHEAT))
+//                .unlockedBy("has_gind_stones", has(HNCItems.GRIND_STONES.get())).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCItems.DOUGH.get(), 2).requires(HNCItemTags.WHEAT).requires(HNCItemTags.SUGAR).requires(HNCItemTags.SALT).requires(HNCItemTags.FLOUR).unlockedBy("has_wheat", has(HNCItemTags.WHEAT))
+//                .unlockedBy("has_sugar", has(HNCItemTags.SUGAR)).unlockedBy("has_salt", has(HNCItemTags.SALT)).unlockedBy("has_flour", has(HNCItemTags.FLOUR)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_PIZZA_BASE.get()).requires(HNCItems.ROLLING_PIN.get()).requires(HNCItems.DOUGH.get()).unlockedBy("has_dough", has(HNCItems.DOUGH.get()))
+//                .unlockedBy("has_rolling_pin", has(HNCItems.ROLLING_PIN.get())).save(consumer);
+//
+//        ShapedRecipeBuilder.shaped(HNCItems.UNBAKED_BREAD.get(), 2).define('d', HNCItemTags.DOUGH).pattern("ddd").unlockedBy("has_dough", has(HNCItemTags.DOUGH)).save(consumer);
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_BREAD.get()), Items.BREAD, .35f, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_bread", has(HNCItems.UNBAKED_BREAD.get())).save(consumer, HNCMod.getLocation("bread_smoking"));
+//        ShapelessRecipeBuilder.shapeless(HNCItems.BREAD_SLICE.get(), 3).requires(HNCItems.KNIFE.get()).requires(Items.BREAD).unlockedBy("has_bread", has(Items.BREAD)).unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HNCMod.getLocation("toast_smoking"));
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HNCMod.getLocation("toast_campfire"));
+//
+//        ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_CRACKER.get(), 2).requires(HNCItemTags.WHEAT).requires(HNCItemTags.SALT).requires(HNCItemTags.FLOUR).unlockedBy("has_wheat", has(HNCItemTags.WHEAT))
+//                .unlockedBy("has_salt", has(HNCItemTags.SALT)).unlockedBy("has_flour", has(HNCItemTags.FLOUR)).save(consumer);
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_CRACKER.get()), HNCItems.CRACKER.get(), .35f, 50, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_cracker", has(HNCItems.UNBAKED_CRACKER.get())).save(consumer, HNCMod.getLocation("cracker_smoking"));
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_CRACKER.get()), HNCItems.CRACKER.get(), .35f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_unbaked_cracker", has(HNCItems.UNBAKED_CRACKER.get())).save(consumer, HNCMod.getLocation("cracker_campfire"));
+//
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.CRACKED_EGG.get()), HNCItems.COOKED_EGG.get(), .15f, 50, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_cracked_egg", has(HNCItems.CRACKED_EGG.get())).save(consumer, HNCMod.getLocation("cooked_egg_smoking"));
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.CRACKED_EGG.get()), HNCItems.COOKED_EGG.get(), .15f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_cracked_egg", has(HNCItems.CRACKED_EGG.get())).save(consumer, HNCMod.getLocation("cooked_egg_campfire"));
+//        ShapelessRecipeBuilder.shapeless(HNCItems.GREEN_EGG.get()).requires(Tags.Items.DYES_GREEN).requires(HNCItems.CRACKED_EGG.get()).unlockedBy("has_egg", has(HNCItems.CRACKED_EGG.get()))
+//                .unlockedBy("has_dye", has(Tags.Items.DYES_GREEN)).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCItems.HAM_SLICE.get(), 3).requires(HNCItems.KNIFE.get()).requires(Items.PORKCHOP).unlockedBy("has_knife", has(HNCItems.KNIFE.get()))
+//                .unlockedBy("has_porkchop", has(Items.PORKCHOP)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCItems.COOKED_HAM_SLICE.get(), 3).requires(HNCItems.KNIFE.get()).requires(Items.COOKED_PORKCHOP).unlockedBy("has_knife", has(HNCItems.KNIFE.get()))
+//                .unlockedBy("has_cooked_porkchop", has(Items.COOKED_PORKCHOP)).save(consumer);
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.HAM_SLICE.get()), HNCItems.COOKED_HAM_SLICE.get(), .35f, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ham_slice", has(HNCItems.HAM_SLICE.get())).save(consumer, HNCMod.getLocation("cooked_ham_slice_smoking"));
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.HAM_SLICE.get()), HNCItems.COOKED_HAM_SLICE.get(), .35f, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ham_slice", has(HNCItems.HAM_SLICE.get())).save(consumer, HNCMod.getLocation("cooked_ham_slice_campfire"));
+//        ShapelessRecipeBuilder.shapeless(HNCItems.GREEN_HAM_SLICE.get()).requires(Tags.Items.DYES_GREEN).requires(HNCItems.HAM_SLICE.get()).unlockedBy("has_ham", has(HNCItems.HAM_SLICE.get()))
+//                .unlockedBy("has_dye", has(Tags.Items.DYES_GREEN)).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCItems.BACON.get(), 2).requires(HNCItems.KNIFE.get()).requires(HNCItems.HAM_SLICE.get()).unlockedBy("has_ham", has(HNCItems.HAM_SLICE.get()))
+//                .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCItems.COOKED_BACON.get(), 2).requires(HNCItems.KNIFE.get()).requires(HNCItems.COOKED_HAM_SLICE.get()).unlockedBy("has_ham", has(HNCItems.COOKED_HAM_SLICE.get()))
+//                .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer, HNCMod.getLocation("cooked_bacon_kinfe"));
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 50, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HNCMod.getLocation("cooked_bacon_smoking"));
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HNCMod.getLocation("cooked_bacon_campfire"));
+//
+//        ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_RING.get(), 4).requires(HNCItems.KNIFE.get()).requires(HNCItemTags.PINEAPPLE).unlockedBy("has_pineapple", has(HNCItemTags.PINEAPPLE))
+//                .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_BIT.get(), 3).requires(HNCItems.KNIFE.get()).requires(HNCItems.PINEAPPLE_RING.get()).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE_RING.get()))
+//                .unlockedBy("has_knife", has(HNCItems.KNIFE.get())).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SAUCE.get()).requires(Items.BOWL).requires(Items.PUMPKIN_SEEDS).requires(HNCItemTags.TOMATO).unlockedBy("has_bowl", has(Items.BOWL))
+//                .unlockedBy("has_pumpkin_seeds", has(Items.PUMPKIN_SEEDS)).unlockedBy("has_tomato", has(HNCItemTags.TOMATO)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItems.KNIFE.get()).requires(HNCItemTags.TOMATO).unlockedBy("has_knife", has(HNCItems.KNIFE.get()))
+//                .unlockedBy("has_tomato", has(HNCItemTags.TOMATO)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SEEDS.get(), 4).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_tomato_slice", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCItems.CORN_KERNELS.get(), 8).requires(HNCItems.KNIFE.get()).requires(HNCItems.CORN_COB.get()).unlockedBy("has_knife", has(HNCItems.KNIFE.get()))
+//                .unlockedBy("has_corn_cob", has(HNCItemTags.CORN_COB)).save(consumer);
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.CORN_KERNELS.get()), HNCItems.DRIED_CORN_KERNELS.get(), .2f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_corn_kernels", has(HNCItems.CORN_KERNELS.get())).save(consumer, HNCMod.getLocation("dried_corn_kernals"));
+//
+//        CookingRecipeBuilder.smelting(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 100).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HNCMod.getLocation("cooked_mouse"));
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 50, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HNCMod.getLocation("cooked_mouse_smoking"));
+//        CookingRecipeBuilder.cooking(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 300, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HNCMod.getLocation("cooked_mouse_campfire"));
+//
+//        ShapedRecipeBuilder.shaped(HNCBlocks.PIZZA_OVEN.get()).define('b', Items.BRICK).define('t', Blocks.WHITE_TERRACOTTA).define('c', Ingredient.of(HNCItemTags.CAMPFIRES))
+//                .pattern(" t ").pattern("tct").pattern("bbb").unlockedBy("has_bricks", has(Items.BRICK)).unlockedBy("has_terracotta", has(Blocks.WHITE_TERRACOTTA))
+//                .unlockedBy("has_campfire", has(HNCItemTags.CAMPFIRES)).save(consumer);
+//
+//        ShapedRecipeBuilder.shaped(HNCBlocks.GRILL.get()).define('i', Tags.Items.INGOTS_IRON).define('r', Tags.Items.DUSTS_REDSTONE).define('s', Blocks.SMOKER).define('b', Blocks.IRON_BARS)
+//                .pattern("i i").pattern("rsi").pattern("b b").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_redstone", has(Tags.Items.DUSTS_REDSTONE))
+//                .unlockedBy("has_smoker", has(Blocks.SMOKER)).unlockedBy("has_bars", has(Blocks.IRON_BARS)).save(consumer);
+//
+//        ShapedRecipeBuilder.shaped(HNCBlocks.POPCORN_MACHINE.get()).define('i', Tags.Items.INGOTS_IRON).define('r', Blocks.RED_CONCRETE).define('w', Blocks.WHITE_CONCRETE).define('b', Items.BUCKET).define('g', Blocks.GLASS_PANE)
+//                .pattern("rwr").pattern("gbg").pattern("i i").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_red_concrete", has(Blocks.RED_CONCRETE))
+//                .unlockedBy("has_white_concrete", has(Blocks.WHITE_CONCRETE)).unlockedBy("has_bucket", has(Items.BUCKET)).unlockedBy("has_glass_pane", has(Blocks.GLASS_PANE)).save(consumer);
+//
+//        ShapedRecipeBuilder.shaped(HNCItems.POPCORN_BAG.get()).define('p', Items.PAPER).define('r', Tags.Items.DYES_RED)
+//                .pattern("p p").pattern("rpr").unlockedBy("has_paper", has(Items.PAPER)).unlockedBy("has_red_dye", has(Tags.Items.DYES_RED)).save(consumer);
+//
+//        PopcornRecipeBuilder.popcorn(HNCItems.POPCORN.get(), 2, 50, Ingredient.of(HNCItemTags.SALT))
+//                .unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
+//        PopcornRecipeBuilder.popcorn(HNCItems.CHEESY_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT)).flavouring(Ingredient.of(HNCItems.CHEESE_SLICE.get()))
+//                .unlockedBy("has_cheese_slice", has(HNCItems.CHEESE_SLICE.get())).unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
+//        PopcornRecipeBuilder.popcorn(HNCItems.CARAMEL_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT)).flavouring(Ingredient.of(HNCItemTags.SUGAR))
+//                .unlockedBy("has_sugar", has(HNCItemTags.SUGAR)).unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
+//        PopcornRecipeBuilder.popcorn(HNCItems.MAPLE_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT)).flavouring(Ingredient.of(HNCItems.MAPLE_SYRUP.get()))
+//                .unlockedBy("has_syrup", has(HNCItems.MAPLE_SYRUP.get())).unlockedBy("has_salt", has(HNCItemTags.SALT)).save(consumer);
+//
+//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_WOOD.get(), 3).define('l', HNCBlocks.MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.MAPLE_LOG.get())).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCBlocks.STRIPPED_MAPLE_WOOD.get(), 3).define('l', HNCBlocks.STRIPPED_MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.STRIPPED_MAPLE_LOG.get())).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_PLANKS.get(), 4).requires(Ingredient.of(HNCItemTags.MAPLE_LOGS)).group("planks").unlockedBy("has_log", has(HNCItemTags.MAPLE_LOGS)).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_STAIRS.get(), 4).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("p  ").pattern("pp ").pattern("ppp").group("wooden_stairs").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_SLAB.get(), 6).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("ppp").group("wooden_slab").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_SIGN.get(), 3).group("sign").define('p', HNCBlocks.MAPLE_PLANKS.get()).define('s', Items.STICK).pattern("ppp").pattern("ppp").pattern(" s ").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("pp").group("wooden_pressure_plate").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_BUTTON.get()).requires(HNCBlocks.MAPLE_PLANKS.get()).group("wooden_button").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_FENCE.get(), 3).define('s', Items.STICK).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("psp").pattern("psp").group("wooden_fence").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_FENCE_GATE.get()).define('s', Items.STICK).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("sps").pattern("sps").group("wooden_fence_gate").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_TRAPDOOR.get(), 2).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("ppp").pattern("ppp").group("wooden_trapdoor").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_DOOR.get(), 3).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("pp").pattern("pp").pattern("pp").group("wooden_door").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+//        ShapedRecipeBuilder.shaped(HNCItems.MAPLE_BOAT.get()).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("p p").pattern("ppp").group("boat").unlockedBy("in_water", insideOf(Blocks.WATER)).save(consumer);
+//
+//        ShapedRecipeBuilder.shaped(HNCBlocks.TREE_TAP.get()).define('i', Tags.Items.INGOTS_IRON).define('n', Tags.Items.NUGGETS_IRON).pattern(" n").pattern("ii").pattern(" n").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_iron_nugget", has(Tags.Items.NUGGETS_IRON)).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.OAK_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.OAK_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.OAK_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.BIRCH_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.BIRCH_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.BIRCH_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.SPRUCE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.SPRUCE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.SPRUCE_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.JUNGLE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.JUNGLE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.JUNGLE_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.ACACIA_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.ACACIA_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.ACACIA_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.DARK_OAK_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.DARK_OAK_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.CRIMSON_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.CRIMSON_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.CRIMSON_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.WARPED_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.WARPED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.WARPED_PRESSURE_PLATE)).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.STONE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.STONE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.STONE_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.GOLD_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE)).save(consumer);
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.IRON_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)).save(consumer);
+//
+//        ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_CHOPPING_BOARD.get()).group("chopping_board").requires(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).unlockedBy("has_pressure_plate", has(HNCBlocks.MAPLE_PRESSURE_PLATE.get())).save(consumer);
+    }
+}
