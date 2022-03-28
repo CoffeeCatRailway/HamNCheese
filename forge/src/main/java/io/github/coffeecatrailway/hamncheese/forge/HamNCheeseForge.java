@@ -16,7 +16,6 @@ public class HamNCheeseForge
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::onClientSetup);
         bus.addListener(this::onCommonSetup);
-//        bus.addListener(this::onGatherData);
     }
 
     private void onClientSetup(final FMLClientSetupEvent event)
@@ -26,12 +25,4 @@ public class HamNCheeseForge
     private void onCommonSetup(final FMLCommonSetupEvent event)
     {
     }
-
-//    private void onGatherData(GatherDataEvent event)
-//    {
-//        DataGenerator generator = event.getGenerator();
-//        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-//        generator.addProvider(new PlusLootTables(generator));
-//        generator.addProvider(new PlusBlockStates(generator, existingFileHelper));
-//    }
 }

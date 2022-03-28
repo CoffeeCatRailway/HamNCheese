@@ -53,7 +53,7 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
         this.tag(BlockTags.CROPS);//.add(HNCBlocks.PINEAPPLE_PLANT.get(), HNCBlocks.TOMATO_PLANT.get(), HNCBlocks.CORN_PLANT.get());
 
         this.tag(CHESTS).addOptionalTag(new ResourceLocation("forge", "chests"));
-        this.tag(MOUSE_SEARCH).add(Blocks.BARREL).addTag(CHESTS);//, BlockTags.SHULKER_BOXES);
+        this.tag(MOUSE_SEARCH).add(Blocks.BARREL).addTag(CHESTS, BlockTags.SHULKER_BOXES);
 
         this.tag(PLANKS);//.add(HNCBlocks.MAPLE_PLANKS.get());
         this.tag(WOODEN_BUTTONS);//.add(HNCBlocks.MAPLE_BUTTON.get());

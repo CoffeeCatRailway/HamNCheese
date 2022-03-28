@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "minecraft:barrel",
-    "#c:chests"
+    "#c:chests",
+    "#minecraft:shulker_boxes"
   ]
 }

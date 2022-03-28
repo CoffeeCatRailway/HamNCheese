@@ -21,6 +21,9 @@
   "entrypoints": {
     "main": [
       "io.github.coffeecatrailway.hamncheese.fabric.HamNCheeseFabric"
+    ],
+    "fabric-datagen": [
+      "io.github.coffeecatrailway.hamncheese.fabric.HamNCheeseData"
     ]
   },
   "depends": {

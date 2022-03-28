@@ -22,10 +22,27 @@ loom {
             runDir = "../run/server-fabric"
     }
 
+    runs {
+        datagen {
+            client()
+
+            name "Minecraft Data"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${project(":forge").file("src/generated/resources/").absolutePath}"
+            vmArg "-Dfabric-api.datagen.modid=${project.modId}"
+//            property "ExistingData", project(":common").file("src/main/resources/").absolutePath
+
+//            ideConfigGenerated = true
+//            runDir "build/datagen"
+//            source sourceSets.main
+        }
+    }
+
     mixin {
         defaultRefmapName = "${project.modId}-refmap.json"
     }
 }
+//assemble.dependsOn runDatagen
 
 configurations {
     common
