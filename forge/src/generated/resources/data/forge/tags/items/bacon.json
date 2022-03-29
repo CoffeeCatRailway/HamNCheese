@@ -1,4 +1,7 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "hamncheese:bacon",
+    "hamncheese:cooked_bacon"
+  ]
 }

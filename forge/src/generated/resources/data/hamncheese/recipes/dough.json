@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:grain"
+    },
+    {
+      "tag": "c:sugar"
+    },
+    {
+      "tag": "c:salt"
+    },
+    {
+      "tag": "c:flour"
+    }
+  ],
+  "result": {
+    "item": "hamncheese:dough",
+    "count": 2
+  }
+}

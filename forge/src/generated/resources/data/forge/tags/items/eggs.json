@@ -1,4 +1,7 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "hamncheese:cracked_egg",
+    "hamncheese:cooked_egg"
+  ]
 }

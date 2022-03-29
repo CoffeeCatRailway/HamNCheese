@@ -1,12 +1,16 @@
 package io.github.coffeecatrailway.hamncheese;
 
+import gg.moonflower.pollen.api.client.util.CreativeModeTabBuilder;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
+import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 /**
  * @author CoffeeCatRailway
@@ -23,6 +27,8 @@ public class HamNCheese
             .commonPostInit(HamNCheese::onCommonPostInit)
             .dataInit(HamNCheese::onDataInit)
             .build();
+
+    public static final CreativeModeTab TAB = CreativeModeTabBuilder.builder(getLocation("tab")).setIcon(() -> new ItemStack(HNCItems.CHEESE_SLICE.get())).build();
 
     public static void onClientInit()
     {
@@ -41,7 +47,7 @@ public class HamNCheese
     public static void onCommonInit()
     {
 //        PlusBlocks.load(PLATFORM);
-//        PlusItems.load(PLATFORM);
+        HNCItems.load(PLATFORM);
 //        PlusEnchantments.load(PLATFORM);
 //        PlusMenuTypes.load(PLATFORM);
 //        PlusRecipes.load(PLATFORM);

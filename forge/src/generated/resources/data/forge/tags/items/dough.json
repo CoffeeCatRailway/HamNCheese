@@ -1,4 +1,7 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "hamncheese:dough",
+    "hamncheese:unbaked_pizza_base"
+  ]
 }
