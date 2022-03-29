@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sps"
+  ],
+  "key": {
+    "s": {
+      "tag": "c:wood_sticks"
+    },
+    "p": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "hamncheese:rolling_pin"
+  }
+}

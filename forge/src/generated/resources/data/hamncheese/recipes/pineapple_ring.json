@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:knives"
+    },
+    {
+      "tag": "c:fruits/pineapples"
+    }
+  ],
+  "result": {
+    "item": "hamncheese:pineapple_ring",
+    "count": 4
+  }
+}

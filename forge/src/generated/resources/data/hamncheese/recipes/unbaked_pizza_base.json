@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "hamncheese:rolling_pin"
+    },
+    {
+      "item": "hamncheese:dough"
+    }
+  ],
+  "result": {
+    "item": "hamncheese:unbaked_pizza_base"
+  }
+}

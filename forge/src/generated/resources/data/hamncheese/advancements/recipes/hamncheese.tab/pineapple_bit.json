@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:pineapple_bit"
+    ]
+  },
+  "criteria": {
+    "has_pineapple": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:pineapple_ring"
+            ]
+          }
+        ]
+      }
+    },
+    "has_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:knives"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:pineapple_bit"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pineapple",
+      "has_knife",
+      "has_the_recipe"
+    ]
+  ]
+}

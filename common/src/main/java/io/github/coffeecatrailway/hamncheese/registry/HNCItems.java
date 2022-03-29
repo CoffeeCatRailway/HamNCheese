@@ -1,17 +1,22 @@
 package io.github.coffeecatrailway.hamncheese.registry;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.item.CraftingToolItem;
 import io.github.coffeecatrailway.hamncheese.common.item.FoodBottleItem;
 import io.github.coffeecatrailway.hamncheese.common.item.GreenFoodItem;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCBlockTags;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.core.Registry;
+import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.block.Block;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,10 +36,10 @@ public class HNCItems
     public static final Supplier<Item> WOODEN_GEAR = registerIdAsName("wooden_gear", Item::new);
 
     // Tools
-//    public static final Supplier<CraftingToolItem> CURDLER = registerIdAsName("curdler", prop -> new CraftingToolItem(ItemTier.WOOD, 2, 2.5f, prop));
-//    public static final Supplier<CraftingToolItem> ROLLING_PIN = registerIdAsName("rolling_pin", prop -> new CraftingToolItem(ItemTier.WOOD, 1, 2.5f, prop));
-//    public static final Supplier<CraftingToolItem> GRIND_STONES = registerIdAsName("grind_stones", prop -> new CraftingToolItem(ItemTier.STONE, 2, 2.7f, prop));
-//    public static final Supplier<CraftingToolItem> KNIFE = registerIdAsName("knife", prop -> new CraftingToolItem(ItemTier.IRON, 1, 2.5f, prop));
+    public static final Supplier<CraftingToolItem> CURDLER = registerIdAsName("curdler", getCraftingToolItem(2f, 2.5d, Tiers.WOOD, null));
+    public static final Supplier<CraftingToolItem> ROLLING_PIN = registerIdAsName("rolling_pin", getCraftingToolItem(1f, 2.5d, Tiers.WOOD, null));
+    public static final Supplier<CraftingToolItem> GRIND_STONES = registerIdAsName("grind_stones", getCraftingToolItem(2f, 2.7d, Tiers.STONE, null));
+    public static final Supplier<CraftingToolItem> KNIFE = registerIdAsName("knife", getCraftingToolItem(1f, 2.5d, Tiers.IRON, HNCBlockTags.MINEABLE_WITH_KNIFE));
 
     // Foods
     public static final Supplier<Item> CHEESE_SLICE = registerIdAsName("cheese_slice", prop -> new Item(prop.food(HNCFoods.CHEESE_SLICE).stacksTo(32)));
@@ -119,6 +124,14 @@ public class HNCItems
         return object;
     }
 
+    // Mod loader sided items
+    @ExpectPlatform
+    private static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks)
+    {
+        throw new AssertionError();
+    }
+
+    // Load items
     public static void load(Platform platform)
     {
         LOGGER.debug("Loaded");

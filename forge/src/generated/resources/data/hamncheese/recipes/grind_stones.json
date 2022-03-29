@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:stones"
+    }
+  ],
+  "result": {
+    "item": "hamncheese:grind_stones",
+    "count": 2
+  }
+}
