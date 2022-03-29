@@ -30,6 +30,7 @@ public class HNCModels extends PollinatedModelProvider
     {
         super(generator, container);
         this.addGenerator((blockStateOutput, modelOutput, skippedAutoModelsOutput) -> new ItemModelGenerator(modelOutput));
+        this.addGenerator(BlockModelGenerator::new);
     }
 
     private static class ItemModelGenerator extends PollinatedItemModelGenerator
@@ -46,10 +47,10 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.WOODEN_GEAR.get(), ModelTemplates.FLAT_ITEM);
 
             // Tools
-//            this.generateFlatItem(HNCItems.CURDLER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-//            this.generateFlatItem(HNCItems.ROLLING_PIN.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-//            this.generateFlatItem(HNCItems.GRIND_STONES.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-//            this.generateFlatItem(HNCItems.KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.CURDLER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.ROLLING_PIN.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.GRIND_STONES.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
             // Foods
 //            this.generateFlatItem(HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
@@ -72,11 +73,11 @@ public class HNCModels extends PollinatedModelProvider
 
             this.generateFlatItem(HNCItems.CRACKED_EGG.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.COOKED_EGG.get(), ModelTemplates.FLAT_ITEM);
-//            this.generateFlatItem(HNCItems.GREEN_EGG.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.GREEN_EGG.get(), ModelTemplates.FLAT_ITEM);
 
             this.generateFlatItem(HNCItems.HAM_SLICE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.COOKED_HAM_SLICE.get(), ModelTemplates.FLAT_ITEM);
-//            this.generateFlatItem(HNCItems.GREEN_HAM_SLICE.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.GREEN_HAM_SLICE.get(), ModelTemplates.FLAT_ITEM);
 
             this.generateFlatItem(HNCItems.BACON.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.COOKED_BACON.get(), ModelTemplates.FLAT_ITEM);
@@ -114,8 +115,8 @@ public class HNCModels extends PollinatedModelProvider
 //            this.generateFlatItem(HNCItems.MAPLE_BOAT.get(), ModelTemplates.FLAT_ITEM);
 
 //            this.generateFlatItem(HNCItems.MAPLE_SAP_BUCKET.get(), ModelTemplates.FLAT_ITEM);
-//            this.generateFlatItem(HNCItems.MAPLE_SAP_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
-//            this.generateFlatItem(HNCItems.MAPLE_SYRUP.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.MAPLE_SAP_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.MAPLE_SYRUP.get(), ModelTemplates.FLAT_ITEM);
         }
 
         private void generateFlatItem(Item item, ResourceLocation texture, ModelTemplate modelTemplate)
@@ -143,9 +144,5 @@ public class HNCModels extends PollinatedModelProvider
 //
         }
 
-        private void generateFlatItem(Item item, ResourceLocation texture, ModelTemplate modelTemplate)
-        {
-            modelTemplate.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(texture), this.getModelOutput());
-        }
     }
 }

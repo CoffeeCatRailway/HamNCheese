@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "hamncheese:bacon"
+  },
+  "result": "hamncheese:cooked_bacon",
+  "experience": 0.2,
+  "cookingtime": 50
+}

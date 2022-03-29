@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:dried_corn_kernals"
+    ]
+  },
+  "criteria": {
+    "has_corn_kernels": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:corn_kernels"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:dried_corn_kernals"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_corn_kernels",
+      "has_the_recipe"
+    ]
+  ]
+}

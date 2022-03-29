@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:cooked_egg_smoking"
+    ]
+  },
+  "criteria": {
+    "has_cracked_egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:cracked_egg"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:cooked_egg_smoking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_egg",
+      "has_the_recipe"
+    ]
+  ]
+}

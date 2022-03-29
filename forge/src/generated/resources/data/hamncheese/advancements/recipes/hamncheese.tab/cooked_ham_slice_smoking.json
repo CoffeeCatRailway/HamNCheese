@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:cooked_ham_slice_smoking"
+    ]
+  },
+  "criteria": {
+    "has_ham_slice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:ham_slice"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:cooked_ham_slice_smoking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ham_slice",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "hamncheese:unbaked_bread"
+  },
+  "result": "minecraft:bread",
+  "experience": 0.35,
+  "cookingtime": 100
+}

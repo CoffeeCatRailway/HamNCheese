@@ -115,6 +115,10 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     private static final Tag.Named<Item> REDSTONE_DUSTS = TagRegistry.bindItem(new ResourceLocation("forge", "dusts/redstone"));
     public static final Tag.Named<Item> REDSTONE_DUSTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "redstone_dusts"));
 
+    private static final Tag.Named<Item> KNIVES_IRON = TagRegistry.bindItem(new ResourceLocation("forge", "knives/iron"));
+    private static final Tag.Named<Item> KNIVES = TagRegistry.bindItem(new ResourceLocation("forge", "knives"));
+    public static final Tag.Named<Item> KNIVES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "knives"));
+
     public HNCItemTags(DataGenerator dataGenerator, PollinatedModContainer container, BlockTagsProvider blockTags)
     {
         super(dataGenerator, container, blockTags);
@@ -153,12 +157,12 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(CRACKER);//.add(HNCItems.CRACKER.get());
         this.tag(CRACKER_COMMON).addTag(CRACKER);
 
-        this.tag(EGGS_FORGE).add(HNCItems.CRACKED_EGG.get(), HNCItems.COOKED_EGG.get());//, HNCItems.GREEN_EGG.get());
+        this.tag(EGGS_FORGE).add(HNCItems.CRACKED_EGG.get(), HNCItems.COOKED_EGG.get(), HNCItems.GREEN_EGG.get());
         this.tag(EGGS_COMMON).addTag(EGGS_FORGE);
         this.tag(CRACKED_EGG).addTag(EGGS_FORGE);
         this.tag(COOKED_EGG_COMMON);
 
-        this.tag(HAM).add(HNCItems.HAM_SLICE.get(), HNCItems.COOKED_HAM_SLICE.get());//, HNCItems.GREEN_HAM_SLICE.get());
+        this.tag(HAM).add(HNCItems.HAM_SLICE.get(), HNCItems.COOKED_HAM_SLICE.get(), HNCItems.GREEN_HAM_SLICE.get());
         this.tag(HAM_COMMON).addTag(HAM);
         this.tag(BACON).add(HNCItems.BACON.get(), HNCItems.COOKED_BACON.get());
         this.tag(BACON_COMMON).addTag(BACON);
@@ -230,5 +234,9 @@ public class HNCItemTags extends PollinatedItemTagsProvider
 
         this.tag(REDSTONE_DUSTS).add(Items.REDSTONE);
         this.tag(REDSTONE_DUSTS_COMMON).addTag(REDSTONE_DUSTS);
+
+        this.tag(KNIVES_IRON).add(HNCItems.KNIFE.get());
+        this.tag(KNIVES).addTag(KNIVES_IRON);
+        this.tag(KNIVES_COMMON).addTag(KNIVES);
     }
 }

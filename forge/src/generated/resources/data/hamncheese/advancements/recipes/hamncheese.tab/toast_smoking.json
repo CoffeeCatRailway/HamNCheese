@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:toast_smoking"
+    ]
+  },
+  "criteria": {
+    "has_bread_slice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:bread_slice"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:toast_smoking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bread_slice",
+      "has_the_recipe"
+    ]
+  ]
+}

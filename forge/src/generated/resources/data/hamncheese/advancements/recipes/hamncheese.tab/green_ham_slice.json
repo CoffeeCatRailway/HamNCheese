@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:green_ham_slice"
+    ]
+  },
+  "criteria": {
+    "has_ham": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:ham_slice"
+            ]
+          }
+        ]
+      }
+    },
+    "has_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:green_dyes"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:green_ham_slice"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ham",
+      "has_dye",
+      "has_the_recipe"
+    ]
+  ]
+}

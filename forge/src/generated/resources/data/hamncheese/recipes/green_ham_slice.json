@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:green_dyes"
+    },
+    {
+      "item": "hamncheese:ham_slice"
+    }
+  ],
+  "result": {
+    "item": "hamncheese:green_ham_slice"
+  }
+}

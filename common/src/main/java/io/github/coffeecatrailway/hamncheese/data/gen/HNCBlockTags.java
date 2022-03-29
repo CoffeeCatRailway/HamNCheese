@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.Blocks;
 public class HNCBlockTags extends PollinatedBlockTagsProvider
 {
     public static final Tag.Named<Block> MOUSE_SEARCH = TagRegistry.bindBlock(HamNCheese.getLocation("mouse_search"));
+    public static final Tag.Named<Block> MINEABLE_WITH_KNIFE = TagRegistry.bindBlock(HamNCheese.getLocation("mineable_with_knife"));
 
     // Minecraft
     public static final Tag.Named<Block> PLANKS = TagRegistry.bindBlock(new ResourceLocation("planks"));
@@ -54,6 +55,7 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
 
         this.tag(CHESTS).addOptionalTag(new ResourceLocation("forge", "chests"));
         this.tag(MOUSE_SEARCH).add(Blocks.BARREL).addTag(CHESTS, BlockTags.SHULKER_BOXES);
+        this.tag(MINEABLE_WITH_KNIFE);//.add(HNCBlock.BLOCK_OF_CHEESE.get());
 
         this.tag(PLANKS);//.add(HNCBlocks.MAPLE_PLANKS.get());
         this.tag(WOODEN_BUTTONS);//.add(HNCBlocks.MAPLE_BUTTON.get());
