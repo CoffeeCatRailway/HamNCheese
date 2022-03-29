@@ -23,7 +23,7 @@
       "io.github.coffeecatrailway.hamncheese.fabric.HamNCheeseFabric"
     ],
     "fabric-datagen": [
-      "io.github.coffeecatrailway.hamncheese.fabric.HamNCheeseData"
+      "io.github.coffeecatrailway.hamncheese.data.gen.fabric.HNCDataEntryPoint"
     ]
   },
   "depends": {
