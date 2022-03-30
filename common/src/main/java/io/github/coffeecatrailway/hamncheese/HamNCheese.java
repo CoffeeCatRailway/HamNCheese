@@ -4,7 +4,9 @@ import gg.moonflower.pollen.api.client.util.CreativeModeTabBuilder;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
+import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
+import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.data.DataGenerator;
@@ -32,6 +34,7 @@ public class HamNCheese
 
     public static void onClientInit()
     {
+        SandwichItemRenderer.init();
     }
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
@@ -42,6 +45,7 @@ public class HamNCheese
 //
 //        RenderTypeRegistry.register(PlusBlocks.SAW_BENCH.get(), RenderType.cutoutMipped());
 //        RenderTypeRegistry.register(PlusBlocks.GLOW_LANTERN.get(), RenderType.cutout());
+        ItemRendererRegistry.registerRenderer(HNCItems.SANDWICH.get(), SandwichItemRenderer.INSTANCE);
     }
 
     public static void onCommonInit()

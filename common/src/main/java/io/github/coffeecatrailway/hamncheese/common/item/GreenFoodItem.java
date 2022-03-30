@@ -28,7 +28,6 @@ public class GreenFoodItem extends Item
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag)
     {
         super.appendHoverText(stack, level, tooltip, flag);

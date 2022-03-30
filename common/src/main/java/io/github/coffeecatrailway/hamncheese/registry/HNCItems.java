@@ -4,10 +4,7 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
-import io.github.coffeecatrailway.hamncheese.common.item.CraftingToolItem;
-import io.github.coffeecatrailway.hamncheese.common.item.FoodBottleItem;
-import io.github.coffeecatrailway.hamncheese.common.item.GreenFoodItem;
-import io.github.coffeecatrailway.hamncheese.common.item.PopcornItem;
+import io.github.coffeecatrailway.hamncheese.common.item.*;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCBlockTags;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
@@ -73,7 +70,7 @@ public class HNCItems
     public static final Supplier<Item> BACON = registerWithName("bacon", "Raw Bacon", prop -> new Item(prop.food(HNCFoods.BACON).stacksTo(32)));
     public static final Supplier<Item> COOKED_BACON = registerWithName("cooked_bacon", "Bacon", prop -> new Item(prop.food(HNCFoods.COOKED_BACON).stacksTo(32)));
 
-//    public static final Supplier<SandwichItem> SANDWICH = registerIdAsName("sandwich", prop -> new SandwichItem(prop.tab(null).stacksTo(8)));
+    public static final Supplier<SandwichItem> SANDWICH = registerIdAsName("sandwich", prop -> new SandwichItem(prop.tab(null).stacksTo(8)));
 
     //    public static final Supplier<BlockNamedItem> PINEAPPLE_PLANT = registerIdAsName("pineapple_plant", prop -> new BlockNamedItem(HNCBlocks.PINEAPPLE_PLANT.get(), prop));
     public static final Supplier<Item> PINEAPPLE = registerIdAsName("pineapple", prop -> new Item(prop.food(HNCFoods.PINEAPPLE).stacksTo(16)));
