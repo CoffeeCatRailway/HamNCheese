@@ -97,10 +97,10 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.DRIED_CORN_KERNELS.get(), ModelTemplates.FLAT_ITEM);
 
             this.generateFlatItem(HNCItems.POPCORN_BAG.get(), ModelTemplates.FLAT_ITEM);
-//            this.generateFlatItem(HNCItems.POPCORN.get(), ModelTemplates.FLAT_ITEM);
-//            this.generateFlatItem(HNCItems.CHEESY_POPCORN.get(), ModelTemplates.FLAT_ITEM);
-//            this.generateFlatItem(HNCItems.CARAMEL_POPCORN.get(), ModelTemplates.FLAT_ITEM);
-//            this.generateFlatItem(HNCItems.MAPLE_POPCORN.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.POPCORN.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.CHEESY_POPCORN.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.CARAMEL_POPCORN.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.MAPLE_POPCORN.get(), ModelTemplates.FLAT_ITEM);
 
             this.generateFlatItem(HNCItems.MOUSE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.COOKED_MOUSE.get(), ModelTemplates.FLAT_ITEM);
