@@ -42,19 +42,18 @@ public class AbstractSandwichItem extends Item
         this.sandwichProperties = sandwichProperties;
     }
 
-//    @Nullable
-//    @Override
-//    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt)
-//    {
-//        CompoundTag stackNbt = stack.getOrCreateTag();
-//
-//        if (!stackNbt.contains(TAG_INGREDIENTS))
-//            stackNbt.put(TAG_INGREDIENTS, new ListNBT());
-//
-//        if (this.sandwichProperties.canBeToasted && !stackNbt.contains(TAG_TOASTED, NbtConstants.BYTE))
-//            stackNbt.putBoolean(TAG_TOASTED, false);
-//        return super.initCapabilities(stack, nbt);
-//    }
+    public static void init(ItemStack stack)
+    {
+        if (stack.getItem() instanceof AbstractSandwichItem)
+        {
+            CompoundTag tag = stack.getOrCreateTag();
+            if (!tag.contains(AbstractSandwichItem.TAG_INGREDIENTS))
+                tag.put(AbstractSandwichItem.TAG_INGREDIENTS, new ListTag());
+
+            if (((AbstractSandwichItem) stack.getItem()).sandwichProperties.canBeToasted && !tag.contains(AbstractSandwichItem.TAG_TOASTED, NbtConstants.BYTE))
+                tag.putBoolean(AbstractSandwichItem.TAG_TOASTED, false);
+        }
+    }
 
     @Override
     public Component getName(ItemStack stack)
@@ -200,11 +199,6 @@ public class AbstractSandwichItem extends Item
         public boolean isToasted(CompoundTag nbt)
         {
             return this.canBeToasted && nbt.contains(AbstractSandwichItem.TAG_TOASTED) && nbt.getBoolean(AbstractSandwichItem.TAG_TOASTED);
-        }
-
-        public boolean canBeToasted()
-        {
-            return this.canBeToasted;
         }
     }
 }

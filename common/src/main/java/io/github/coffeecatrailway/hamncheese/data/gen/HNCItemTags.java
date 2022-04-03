@@ -154,7 +154,7 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(BREAD).add(HNCItems.BREAD_SLICE.get());
         this.tag(BREAD_COMMON).addTag(BREAD);
 
-        this.tag(CRACKER);//.add(HNCItems.CRACKER.get());
+        this.tag(CRACKER).add(HNCItems.CRACKER.get());
         this.tag(CRACKER_COMMON).addTag(CRACKER);
 
         this.tag(EGGS_FORGE).add(HNCItems.CRACKED_EGG.get(), HNCItems.COOKED_EGG.get(), HNCItems.GREEN_EGG.get());

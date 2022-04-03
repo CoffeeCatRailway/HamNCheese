@@ -49,7 +49,7 @@ public class HNCItems
 
     public static final Supplier<Item> UNBAKED_PIZZA_BASE = registerIdAsName("unbaked_pizza_base", prop -> new Item(prop.food(HNCFoods.DOUGH).stacksTo(32)));
     public static final Supplier<Item> BAKED_PIZZA_DUMMY = registerWithName("baked_pizza_dummy", "Baked Pizza Base", prop -> new Item(prop.food(HNCFoods.BREAD_SLICE)));
-//    public static final Supplier<PizzaItem> PIZZA = registerIdAsName("pizza", prop -> new PizzaItem(prop.tab(null).stacksTo(8)));
+    public static final Supplier<PizzaItem> PIZZA = registerIdAsName("pizza", getPizzaItem());
 
     public static final Supplier<Item> UNBAKED_BREAD = registerIdAsName("unbaked_bread", prop -> new Item(prop.food(HNCFoods.DOUGH)));
     public static final Supplier<Item> BREAD_SLICE = registerIdAsName("bread_slice", prop -> new Item(prop.food(HNCFoods.BREAD_SLICE)));
@@ -57,7 +57,7 @@ public class HNCItems
 
     public static final Supplier<Item> UNBAKED_CRACKER = registerIdAsName("unbaked_cracker", prop -> new Item(prop.food(HNCFoods.DOUGH).stacksTo(16)));
     public static final Supplier<Item> CRACKER_DUMMY = registerIdAsName("cracker_dummy", prop -> new Item(prop.food(HNCFoods.CRACKER).tab(null)));
-//    public static final Supplier<CrackerItem> CRACKER = registerIdAsName("cracker", prop -> new CrackerItem(prop.stacksTo(16)));
+    public static final Supplier<CrackerItem> CRACKER = registerIdAsName("cracker", getCrackerItem());
 
     public static final Supplier<Item> CRACKED_EGG = registerIdAsName("cracked_egg", prop -> new Item(prop.food(HNCFoods.CRACKED_EGG).stacksTo(32)));
     public static final Supplier<Item> COOKED_EGG = registerIdAsName("cooked_egg", prop -> new Item(prop.food(HNCFoods.COOKED_EGG).stacksTo(32)));
@@ -70,7 +70,7 @@ public class HNCItems
     public static final Supplier<Item> BACON = registerWithName("bacon", "Raw Bacon", prop -> new Item(prop.food(HNCFoods.BACON).stacksTo(32)));
     public static final Supplier<Item> COOKED_BACON = registerWithName("cooked_bacon", "Bacon", prop -> new Item(prop.food(HNCFoods.COOKED_BACON).stacksTo(32)));
 
-    public static final Supplier<SandwichItem> SANDWICH = registerIdAsName("sandwich", prop -> new SandwichItem(prop.tab(null).stacksTo(8)));
+    public static final Supplier<SandwichItem> SANDWICH = registerIdAsName("sandwich", getSandwichItem());
 
     //    public static final Supplier<BlockNamedItem> PINEAPPLE_PLANT = registerIdAsName("pineapple_plant", prop -> new BlockNamedItem(HNCBlocks.PINEAPPLE_PLANT.get(), prop));
     public static final Supplier<Item> PINEAPPLE = registerIdAsName("pineapple", prop -> new Item(prop.food(HNCFoods.PINEAPPLE).stacksTo(16)));
@@ -125,6 +125,24 @@ public class HNCItems
     // Mod loader sided items
     @ExpectPlatform
     private static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks)
+    {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
+    private static Function<Item.Properties, PizzaItem> getPizzaItem()
+    {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
+    private static Function<Item.Properties, CrackerItem> getCrackerItem()
+    {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
+    private static Function<Item.Properties, SandwichItem> getSandwichItem()
     {
         throw new AssertionError();
     }

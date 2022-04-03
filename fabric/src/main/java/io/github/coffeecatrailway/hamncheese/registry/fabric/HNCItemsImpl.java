@@ -1,6 +1,9 @@
 package io.github.coffeecatrailway.hamncheese.registry.fabric;
 
+import io.github.coffeecatrailway.hamncheese.common.item.CrackerItem;
 import io.github.coffeecatrailway.hamncheese.common.item.CraftingToolItem;
+import io.github.coffeecatrailway.hamncheese.common.item.PizzaItem;
+import io.github.coffeecatrailway.hamncheese.common.item.SandwichItem;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
@@ -18,5 +21,20 @@ public class HNCItemsImpl
     public static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks)
     {
         return prop -> new CraftingToolItem(attackModifier, attackSpeed, tier, mineableBlocks, prop);
+    }
+
+    public static Function<Item.Properties, PizzaItem> getPizzaItem()
+    {
+        return PizzaItem::new;
+    }
+
+    public static Function<Item.Properties, CrackerItem> getCrackerItem()
+    {
+        return CrackerItem::new;
+    }
+
+    public static Function<Item.Properties, SandwichItem> getSandwichItem()
+    {
+        return SandwichItem::new;
     }
 }

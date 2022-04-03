@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:cracker_smoking"
+    ]
+  },
+  "criteria": {
+    "has_unbaked_cracker": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:unbaked_cracker"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:cracker_smoking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_unbaked_cracker",
+      "has_the_recipe"
+    ]
+  ]
+}

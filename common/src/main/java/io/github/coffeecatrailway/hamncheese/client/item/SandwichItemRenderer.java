@@ -2,31 +2,30 @@ package io.github.coffeecatrailway.hamncheese.client.item;
 
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import gg.moonflower.pollen.api.client.render.DynamicItemRenderer;
 import gg.moonflower.pollen.api.event.events.network.ClientNetworkEvents;
-import gg.moonflower.pollen.api.registry.resource.PollinatedPreparableReloadListener;
 import gg.moonflower.pollen.api.util.NbtConstants;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
+import io.github.coffeecatrailway.hamncheese.common.item.PizzaItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
@@ -82,52 +81,52 @@ public class SandwichItemRenderer implements DynamicItemRenderer
             // Render sandwich
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
             RANDOM.setSeed(42);
-//            if (sandwichItem instanceof PizzaItem)
-//            {
-//                // Render bun
-//                matrixStack.translate(0f, 0f, -(.06f * (ingredients.size() / 3f)) / 2f);
-//                itemRenderer.renderStatic(bun, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, typeBuffer);
-//
-//                // Render sauce
-//                matrixStack.pushPose();
-//                matrixStack.translate(0f, 0f, .0321f);
-//                Matrix4f matrixLast = matrixStack.last().pose();
-//                IVertexBuilder buffer = typeBuffer.getBuffer(RenderType.entityCutout(PIZZA_SAUCE));
-//
-//                buffer.vertex(matrixLast, .5f, .5f, 0f).color(1f, 1f, 1f, 1f).uv(0f, 0f)
-//                        .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(combinedLight).normal(0f, 1f, 0f).endVertex();
-//                buffer.vertex(matrixLast, -.5f, .5f, 0f).color(1f, 1f, 1f, 1f).uv(1f, 0f)
-//                        .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(combinedLight).normal(0f, 1f, 0f).endVertex();
-//                buffer.vertex(matrixLast, -.5f, -.5f, 0f).color(1f, 1f, 1f, 1f).uv(1f, 1f)
-//                        .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(combinedLight).normal(0f, 1f, 0f).endVertex();
-//                buffer.vertex(matrixLast, .5f, -.5f, 0f).color(1f, 1f, 1f, 1f).uv(0f, 1f)
-//                        .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(combinedLight).normal(0f, 1f, 0f).endVertex();
-//                matrixStack.popPose();
-//
-//                // Render ingredients
-//                matrixStack.pushPose();
-//                int counter = 0;
-//                matrixStack.scale(.3f, .3f, .3f);
-//                matrixStack.translate(0f, 0f, .06f);
-//                for (CompoundTag ingredient : ingredients)
-//                {
-//                    if (counter % 3 == 0)
-//                        matrixStack.translate(0f, 0f, .06f);
-//
-//                    Pair<Float, Float> pos = PIZZA_INGREDIENT_POS.get(counter % 3);
-//                    matrixStack.translate(pos.getFirst(), pos.getSecond(), 0f);
-//
-//                    float angle = (float) (RANDOM.nextFloat() * Math.PI * 2f);
-//                    matrixStack.mulPose(Vector3f.ZN.rotation(angle));
-//                    itemRenderer.renderStatic(this.ingredientCache.get(ingredient.getString("id")), ItemTransforms.TransformType.FIXED, packedLight, combinedOverlay, matrixStack, multiBufferSource, 0);
-//                    matrixStack.mulPose(Vector3f.ZP.rotation(angle));
-//
-//                    matrixStack.translate(-pos.getFirst(), -pos.getSecond(), 0f);
-//
-//                    counter++;
-//                }
-//                matrixStack.popPose();
-//            } else
+            if (sandwichItem instanceof PizzaItem)
+            {
+                // Render bun
+                matrixStack.translate(0f, 0f, -(.06f * ingredients.size() / 12f) / 2f);
+                itemRenderer.renderStatic(bun, ItemTransforms.TransformType.FIXED, packedLight, combinedOverlay, matrixStack, multiBufferSource, 0);
+
+                // Render sauce
+                matrixStack.pushPose();
+                matrixStack.translate(0f, 0f, .0321f);
+                Matrix4f matrixLast = matrixStack.last().pose();
+                VertexConsumer buffer = multiBufferSource.getBuffer(RenderType.entityCutout(PIZZA_SAUCE));
+
+                buffer.vertex(matrixLast, .5f, .5f, 0f).color(1f, 1f, 1f, 1f).uv(0f, 0f)
+                        .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(0f, 1f, 0f).endVertex();
+                buffer.vertex(matrixLast, -.5f, .5f, 0f).color(1f, 1f, 1f, 1f).uv(1f, 0f)
+                        .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(0f, 1f, 0f).endVertex();
+                buffer.vertex(matrixLast, -.5f, -.5f, 0f).color(1f, 1f, 1f, 1f).uv(1f, 1f)
+                        .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(0f, 1f, 0f).endVertex();
+                buffer.vertex(matrixLast, .5f, -.5f, 0f).color(1f, 1f, 1f, 1f).uv(0f, 1f)
+                        .overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(0f, 1f, 0f).endVertex();
+                matrixStack.popPose();
+
+                // Render ingredients
+                matrixStack.pushPose();
+                int counter = 0;
+                matrixStack.scale(.3f, .3f, .3f);
+                matrixStack.translate(0f, 0f, .06f);
+                for (CompoundTag ingredient : ingredients)
+                {
+                    if (counter % 3 == 0)
+                        matrixStack.translate(0f, 0f, .06f);
+
+                    Pair<Float, Float> pos = PIZZA_INGREDIENT_POS.get(counter % 3);
+                    matrixStack.translate(pos.getFirst(), pos.getSecond(), 0f);
+
+                    float angle = (float) (RANDOM.nextFloat() * Math.PI * 2f);
+                    matrixStack.mulPose(Vector3f.ZN.rotation(angle));
+                    itemRenderer.renderStatic(this.ingredientCache.get(ingredient.getString("id")), ItemTransforms.TransformType.FIXED, packedLight, combinedOverlay, matrixStack, multiBufferSource, 0);
+                    matrixStack.mulPose(Vector3f.ZP.rotation(angle));
+
+                    matrixStack.translate(-pos.getFirst(), -pos.getSecond(), 0f);
+
+                    counter++;
+                }
+                matrixStack.popPose();
+            } else
             {
                 // Render bun
                 matrixStack.translate(0f, 0f, -(.06f * ingredients.size()) / 2f);
