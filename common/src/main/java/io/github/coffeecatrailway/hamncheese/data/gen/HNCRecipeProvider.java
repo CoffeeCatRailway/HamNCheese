@@ -68,7 +68,7 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ShapelessRecipeBuilder.shapeless(HNCItems.FLOUR.get(), 3).requires(HNCItems.GRIND_STONES.get()).requires(HNCItemTags.GRAIN_COMMON).unlockedBy("has_wheat", has(HNCItemTags.GRAIN_COMMON))
                 .unlockedBy("has_gind_stones", has(HNCItems.GRIND_STONES.get())).save(consumer);
 
-        ShapelessRecipeBuilder.shapeless(HNCItems.DOUGH.get(), 2).requires(HNCItemTags.GRAIN_COMMON).requires(HNCItemTags.SUGAR_COMMON).requires(HNCItemTags.SALT_COMMON).requires(HNCItemTags.FLOUR_COMMON).unlockedBy("has_wheat", has(HNCItemTags.GRAIN_COMMON))
+        ShapelessRecipeBuilder.shapeless(HNCItems.DOUGH.get(), 3).requires(HNCItemTags.GRAIN_COMMON).requires(HNCItemTags.SUGAR_COMMON).requires(HNCItemTags.SALT_COMMON).requires(HNCItemTags.FLOUR_COMMON).unlockedBy("has_wheat", has(HNCItemTags.GRAIN_COMMON))
                 .unlockedBy("has_sugar", has(HNCItemTags.SUGAR_COMMON)).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).unlockedBy("has_flour", has(HNCItemTags.FLOUR_COMMON)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_PIZZA_BASE.get()).requires(HNCItems.ROLLING_PIN.get()).requires(HNCItems.DOUGH.get()).unlockedBy("has_dough", has(HNCItems.DOUGH.get()))
                 .unlockedBy("has_rolling_pin", has(HNCItems.ROLLING_PIN.get())).save(consumer);
@@ -81,8 +81,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 
         ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_CRACKER.get(), 2).requires(HNCItemTags.GRAIN_COMMON).requires(HNCItemTags.SALT_COMMON).requires(HNCItemTags.FLOUR_COMMON).unlockedBy("has_wheat", has(HNCItemTags.GRAIN_COMMON))
                 .unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).unlockedBy("has_flour", has(HNCItemTags.FLOUR_COMMON)).save(consumer);
-//        SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_CRACKER.get()), HNCItems.CRACKER.get(), .35f, 50, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_cracker", has(HNCItems.UNBAKED_CRACKER.get())).save(consumer, HamNCheese.getLocation("cracker_smoking"));
-//        SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_CRACKER.get()), HNCItems.CRACKER.get(), .35f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_unbaked_cracker", has(HNCItems.UNBAKED_CRACKER.get())).save(consumer, HamNCheese.getLocation("cracker_campfire"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_CRACKER.get()), HNCItems.CRACKER.get(), .35f, 50, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_cracker", has(HNCItems.UNBAKED_CRACKER.get())).save(consumer, HamNCheese.getLocation("cracker_smoking"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_CRACKER.get()), HNCItems.CRACKER.get(), .35f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_unbaked_cracker", has(HNCItems.UNBAKED_CRACKER.get())).save(consumer, HamNCheese.getLocation("cracker_campfire"));
 
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.CRACKED_EGG.get()), HNCItems.COOKED_EGG.get(), .15f, 50, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_cracked_egg", has(HNCItems.CRACKED_EGG.get())).save(consumer, HamNCheese.getLocation("cooked_egg_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.CRACKED_EGG.get()), HNCItems.COOKED_EGG.get(), .15f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_cracked_egg", has(HNCItems.CRACKED_EGG.get())).save(consumer, HamNCheese.getLocation("cooked_egg_campfire"));
