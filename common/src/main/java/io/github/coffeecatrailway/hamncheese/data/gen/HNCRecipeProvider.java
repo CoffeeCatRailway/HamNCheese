@@ -64,9 +64,9 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 //                .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.ROCK_SALT.get(), 2).requires(HNCItems.GRIND_STONES.get()).requires(HNCItemTags.STONE_COMMON).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON))
-                .unlockedBy("has_gind_stones", has(HNCItems.GRIND_STONES.get())).save(consumer);
+                .unlockedBy("has_grind_stones", has(HNCItems.GRIND_STONES.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.FLOUR.get(), 3).requires(HNCItems.GRIND_STONES.get()).requires(HNCItemTags.GRAIN_COMMON).unlockedBy("has_wheat", has(HNCItemTags.GRAIN_COMMON))
-                .unlockedBy("has_gind_stones", has(HNCItems.GRIND_STONES.get())).save(consumer);
+                .unlockedBy("has_grind_stones", has(HNCItems.GRIND_STONES.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.DOUGH.get(), 3).requires(HNCItemTags.GRAIN_COMMON).requires(HNCItemTags.SUGAR_COMMON).requires(HNCItemTags.SALT_COMMON).requires(HNCItemTags.FLOUR_COMMON).unlockedBy("has_wheat", has(HNCItemTags.GRAIN_COMMON))
                 .unlockedBy("has_sugar", has(HNCItemTags.SUGAR_COMMON)).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).unlockedBy("has_flour", has(HNCItemTags.FLOUR_COMMON)).save(consumer);

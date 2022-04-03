@@ -16,7 +16,7 @@
         ]
       }
     },
-    "has_gind_stones": {
+    "has_grind_stones": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -38,7 +38,7 @@
   "requirements": [
     [
       "has_stone",
-      "has_gind_stones",
+      "has_grind_stones",
       "has_the_recipe"
     ]
   ]
