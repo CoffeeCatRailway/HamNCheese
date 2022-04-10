@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[39,)"
 license="https://www.gnu.org/licenses/gpl-3.0.en.html"
 issueTrackerURL="https://github.com/CoffeeCatRailway/HamNCheese/issues"
 
@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "${name}"
 logoFile = "icon.png"
 updateJSONURL = "https://raw.githubusercontent.com/CoffeeCatRailway/HamNCheese/main/update_checker.json"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/coffeecheese"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/hamncheese"
 authors = "CoffeeCatRailway"
 credits = "Nyctoniac for mouse model & any/all others who've helped!"
 description = '''
@@ -20,20 +20,20 @@ Please note, I only upload to CurseForge & Modrinth!
 Discord: https://discord.gg/GkeexxWnyz
 '''
 
-[modproperties.hamncheese]
-catalogueItemIcon="hamncheese:block_of_cheese"
+[modproperties.${id}]
+catalogueItemIcon="${id}:block_of_cheese"
 
 [[dependencies.${id}]]
 modId = "forge"
 mandatory = true
-versionRange = "[36,)"
+versionRange = "[39,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${id}]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.16,)"
+versionRange = "[1.18,)"
 ordering = "NONE"
 side = "BOTH"
 
