@@ -9,6 +9,7 @@ import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
+import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -52,11 +53,16 @@ public class HamNCheese
 
     public static void onCommonInit()
     {
-//        PlusBlocks.load(PLATFORM);
+//        HNCBlocks.load(PLATFORM);
         HNCItems.load(PLATFORM);
-//        PlusEnchantments.load(PLATFORM);
-//        PlusMenuTypes.load(PLATFORM);
-//        PlusRecipes.load(PLATFORM);
+        HNCRecipes.load(PLATFORM);
+//        HNCBlockPlacerTypes.load(PLATFORM);
+//        HNCEntities.load(PLATFORM);
+//        HNCProfessions.load(PLATFORM);
+//        bus.addGenericListener(StatType.class, HNCStats::register);
+//        HNCTileEntities.load(PLATFORM);
+//        HNCContainers.load(PLATFORM);
+//        HNCFluids.load(PLATFORM);
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
