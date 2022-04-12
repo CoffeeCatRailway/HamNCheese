@@ -36,6 +36,8 @@ public class HNCLanguage extends PollinatedLanguageProvider
     {
         this.add("itemGroup." + HamNCheese.MOD_ID + ".tab", "Ham N' Cheese");
         this.add("item." + HamNCheese.MOD_ID + ".sandwich.toasted", "Toasted");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.hunger", "Hunger: %s");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.saturation", "Saturation: %s");
         this.add("block." + HamNCheese.MOD_ID + ".from", "From: ");
         this.add("top." + HamNCheese.MOD_ID + ".progress", "Progress: ");
         this.add("top." + HamNCheese.MOD_ID + ".chop_chop", "Chop! Chop!");

@@ -8,6 +8,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -21,6 +23,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -72,6 +75,14 @@ public class AbstractSandwichItem extends Item
         List<Item> ingredients = stack.getOrCreateTag().getList(TAG_INGREDIENTS, NbtConstants.COMPOUND).stream().map(nbt -> ItemStack.of((CompoundTag) nbt).getItem()).toList();
         Set<Item> ingredientSet = new HashSet<>(ingredients);
         ingredientSet.forEach(item -> tooltip.add(new ItemStack(item).getHoverName().copy().withStyle(ChatFormatting.GRAY).append(" x").append(String.valueOf(Collections.frequency(ingredients, item)))));
+
+        FoodProperties foodProperties = this.getFood(stack);
+        if (foodProperties.getNutrition() > 0 || foodProperties.getSaturationModifier() > 0f)
+        {
+            tooltip.add(new TextComponent(""));
+            tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.hunger", foodProperties.getNutrition()).withStyle(ChatFormatting.GRAY));
+            tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.saturation", new DecimalFormat("#.##").format(foodProperties.getSaturationModifier())).withStyle(ChatFormatting.GRAY));
+        }
     }
 
     @Override
