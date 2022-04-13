@@ -3,8 +3,10 @@ package io.github.coffeecatrailway.hamncheese.common.item;
 import com.mojang.datafixers.util.Pair;
 import gg.moonflower.pollen.api.util.NbtConstants;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFoods;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -72,17 +74,21 @@ public class AbstractSandwichItem extends Item
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag)
     {
-        List<Item> ingredients = stack.getOrCreateTag().getList(TAG_INGREDIENTS, NbtConstants.COMPOUND).stream().map(nbt -> ItemStack.of((CompoundTag) nbt).getItem()).toList();
-        Set<Item> ingredientSet = new HashSet<>(ingredients);
-        ingredientSet.forEach(item -> tooltip.add(new ItemStack(item).getHoverName().copy().withStyle(ChatFormatting.GRAY).append(" x").append(String.valueOf(Collections.frequency(ingredients, item)))));
+        if (getIngredients(stack).size() <= 0)
+            return;
+
+        if (Screen.hasShiftDown())
+        {
+            List<Item> ingredients = stack.getOrCreateTag().getList(TAG_INGREDIENTS, NbtConstants.COMPOUND).stream().map(nbt -> ItemStack.of((CompoundTag) nbt).getItem()).toList();
+            Set<Item> ingredientSet = new HashSet<>(ingredients);
+            ingredientSet.forEach(item -> tooltip.add(new TextComponent("- ").append(new ItemStack(item).getHoverName().copy().append(" x").append(String.valueOf(Collections.frequency(ingredients, item)))).withStyle(ChatFormatting.GRAY)));
+            tooltip.add(new TextComponent(""));
+        } else
+            tooltip.add(HNCLanguage.shiftInfo(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.info")));
 
         FoodProperties foodProperties = this.getFood(stack);
-        if (foodProperties.getNutrition() > 0 || foodProperties.getSaturationModifier() > 0f)
-        {
-            tooltip.add(new TextComponent(""));
-            tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.hunger", foodProperties.getNutrition()).withStyle(ChatFormatting.GRAY));
-            tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.saturation", new DecimalFormat("#.##").format(foodProperties.getSaturationModifier())).withStyle(ChatFormatting.GRAY));
-        }
+        tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.hunger", foodProperties.getNutrition()).withStyle(ChatFormatting.GRAY));
+        tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.saturation", new DecimalFormat("#.##").format(foodProperties.getSaturationModifier())).withStyle(ChatFormatting.GRAY));
     }
 
     @Override

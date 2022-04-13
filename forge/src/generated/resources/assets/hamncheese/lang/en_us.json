@@ -42,6 +42,7 @@
   "item.hamncheese.rolling_pin": "Rolling Pin",
   "item.hamncheese.sandwich": "Sandwich",
   "item.hamncheese.sandwich.hunger": "Hunger: %s",
+  "item.hamncheese.sandwich.info": "to show ingredients",
   "item.hamncheese.sandwich.saturation": "Saturation: %s",
   "item.hamncheese.sandwich.toasted": "Toasted",
   "item.hamncheese.toast": "Toast",
@@ -54,6 +55,5 @@
   "item.hamncheese.wooden_gear": "Wooden Gear",
   "itemGroup.hamncheese.tab": "Ham N' Cheese",
   "jei.hamncheese.maple_sap": "Maple sap is made by placing a tree tap on a maple log, then by right-clicking with an empty bucket",
-  "top.hamncheese.chop_chop": "Chop! Chop!",
-  "top.hamncheese.progress": "Progress: "
+  "tooltip.hamncheese.hold_shift": "[Hold SHIFT %s]"
 }
