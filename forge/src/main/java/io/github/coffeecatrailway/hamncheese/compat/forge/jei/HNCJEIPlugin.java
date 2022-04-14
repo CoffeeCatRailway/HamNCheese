@@ -1,29 +1,16 @@
 package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
 
-import com.google.common.collect.Lists;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.CrackerRecipe;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
-import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.registration.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TranslatableComponent;
+import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.ItemLike;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway

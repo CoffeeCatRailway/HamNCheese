@@ -2,8 +2,6 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.tags.PollinatedBlockTagsProvider;
 import gg.moonflower.pollen.api.registry.resource.TagRegistry;
-import gg.moonflower.pollen.api.resource.condition.PollinatedResourceCondition;
-import gg.moonflower.pollen.api.resource.condition.PollinatedResourceConditionProvider;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import net.minecraft.data.DataGenerator;

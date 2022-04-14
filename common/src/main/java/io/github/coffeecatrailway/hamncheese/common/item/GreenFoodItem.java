@@ -2,8 +2,6 @@ package io.github.coffeecatrailway.hamncheese.common.item;
 
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.food.FoodProperties;

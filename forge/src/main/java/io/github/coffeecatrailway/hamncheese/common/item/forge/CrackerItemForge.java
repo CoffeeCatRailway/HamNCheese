@@ -2,7 +2,6 @@ package io.github.coffeecatrailway.hamncheese.common.item.forge;
 
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import io.github.coffeecatrailway.hamncheese.common.item.CrackerItem;
-import io.github.coffeecatrailway.hamncheese.common.item.SandwichItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
