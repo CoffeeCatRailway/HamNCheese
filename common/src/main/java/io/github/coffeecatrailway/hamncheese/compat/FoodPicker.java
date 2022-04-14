@@ -1,23 +1,22 @@
-package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
+package io.github.coffeecatrailway.hamncheese.compat;
 
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Registry;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
  * Created: 19/07/2021
  */
-public class FoodsGetter
+public class FoodPicker
 {
-    private static List<ItemStack> FOODS = new ArrayList<>();
+    private static final List<ItemStack> FOODS = new ArrayList<>();
 
     public static List<ItemStack> pickFoods(int amount)
     {
@@ -26,7 +25,7 @@ public class FoodsGetter
             random = Minecraft.getInstance().level.random;
 
         if (FOODS.isEmpty())
-            FOODS = ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.isEdible() && !HNCItemTags.JEI_FOOD_BLACKLIST.contains(item) && !(item instanceof AbstractSandwichItem)).map(ItemStack::new).collect(Collectors.toList());
+            Registry.ITEM.stream().filter(item -> item.isEdible() && !HNCItemTags.JEI_FOOD_BLACKLIST.contains(item) && !(item instanceof AbstractSandwichItem)).map(ItemStack::new).forEach(FOODS::add);
         return pickNRandomElements(FOODS, random.nextInt(amount) + 1, random);
     }
 

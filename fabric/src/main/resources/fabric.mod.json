@@ -24,6 +24,9 @@
     ],
     "fabric-datagen": [
       "io.github.coffeecatrailway.hamncheese.data.gen.fabric.HNCDataEntryPoint"
+    ],
+    "rei": [
+      "io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.HNCREIClientPlugin"
     ]
   },
   "depends": {
