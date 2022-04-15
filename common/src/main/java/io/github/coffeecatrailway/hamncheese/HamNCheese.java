@@ -8,6 +8,7 @@ import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
+import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import net.minecraft.data.DataGenerator;
@@ -53,7 +54,7 @@ public class HamNCheese
 
     public static void onCommonInit()
     {
-//        HNCBlocks.load(PLATFORM);
+        HNCBlocks.load(PLATFORM);
         HNCItems.load(PLATFORM);
         HNCRecipes.load(PLATFORM);
 //        HNCBlockPlacerTypes.load(PLATFORM);
