@@ -260,78 +260,17 @@ public class HNCModels extends PollinatedModelProvider
 
 //            this.getVariantBuilder(HNCBlocks.MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/maple_sapling", "block/cross").texture("cross", HamNCheese.getLocation("block/maple_sapling"))).addModel();
 //            this.getVariantBuilder(HNCBlocks.POTTED_MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/potted_maple_sapling", "block/flower_pot_cross").texture("plant", HamNCheese.getLocation("block/maple_sapling"))).addModel();
-//
-//            this.simpleBlock(HNCBlocks.MAPLE_PLANKS.get());
-//            this.toItem(HNCBlocks.MAPLE_PLANKS.get());
-//
-//            this.stairsBlock(HNCBlocks.MAPLE_STAIRS.get(), HamNCheese.getLocation("block/maple_planks"));
-//            this.toItem(HNCBlocks.MAPLE_STAIRS.get());
-//
-//            this.slabBlock(HNCBlocks.MAPLE_SLAB.get(), HamNCheese.getLocation("block/maple_planks"), HamNCheese.getLocation("block/maple_planks"));
-//            this.toItem(HNCBlocks.MAPLE_SLAB.get());
-//
-//            ModelFile signModel = this.models().getBuilder("block/maple_sign").texture("particle", this.blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-//            this.getVariantBuilder(HNCBlocks.MAPLE_SIGN.get()).partialState().modelForState().modelFile(signModel).addModel();
-//            this.getVariantBuilder(HNCBlocks.MAPLE_WALL_SIGN.get()).partialState().modelForState().modelFile(signModel).addModel();
-//
-//            String platePath = HNCBlocks.MAPLE_PRESSURE_PLATE.get().getRegistryName().getPath();
-//            ModelFile plateUp = this.models().singleTexture(platePath, new ResourceLocation("block/pressure_plate_up"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-//            ModelFile plateDown = this.models().singleTexture(platePath + "_down", new ResourceLocation("block/pressure_plate_down"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-//            this.getVariantBuilder(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(plateUp).addModel().partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(plateDown).addModel();
-//            this.itemModels().getBuilder(platePath).parent(plateUp);
-//
-//            String buttonPath = HNCBlocks.MAPLE_BUTTON.get().getRegistryName().getPath();
-//            ModelFile buttonModel = this.models().singleTexture(buttonPath, new ResourceLocation("block/button"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-//            ModelFile buttonPressedModel = this.models().singleTexture(buttonPath + "_pressed", new ResourceLocation("block/button_pressed"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-//            ModelFile buttonInventoryModel = this.models().singleTexture(buttonPath + "_inventory", new ResourceLocation("block/button_inventory"), "texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-//            VariantBlockStateBuilder button = this.getVariantBuilder(HNCBlocks.MAPLE_BUTTON.get());
-//            for (Direction dir : Direction.Plane.HORIZONTAL)
-//            {
-//                for (AttachFace face : AttachFace.values())
-//                {
-//                    int rotX = 0;
-//                    switch (face)
-//                    {
-//                        case CEILING:
-//                            rotX = 180;
-//                            break;
-//                        case WALL:
-//                            rotX = 90;
-//                            break;
-//                    }
-//                    int rotY = 180;
-//                    switch (dir)
-//                    {
-//                        case EAST:
-//                            rotY = 90;
-//                            break;
-//                        case WEST:
-//                            rotY = 270;
-//                            break;
-//                        case NORTH:
-//                            rotY = 0;
-//                            break;
-//                    }
-//                    button.partialState().with(WoodButtonBlock.FACE, face).with(WoodButtonBlock.FACING, dir)
-//                            .with(WoodButtonBlock.POWERED, true).modelForState().rotationX(rotX).rotationY(rotY).modelFile(buttonPressedModel).addModel();
-//                    button.partialState().with(WoodButtonBlock.FACE, face).with(WoodButtonBlock.FACING, dir)
-//                            .with(WoodButtonBlock.POWERED, false).modelForState().rotationX(rotX).rotationY(rotY).modelFile(buttonModel).addModel();
-//                }
-//            }
-//            this.itemModels().getBuilder(buttonPath).parent(buttonInventoryModel);
-//
-//            this.fenceBlock(HNCBlocks.MAPLE_FENCE.get(), blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-//            this.models().withExistingParent("block/maple_fence_inventory", "block/fence_inventory").texture("texture", blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-//            this.toItem(HNCBlocks.MAPLE_FENCE.get(), HamNCheese.getLocation("block/maple_fence_inventory"));
-//
-//            this.fenceGateBlock(HNCBlocks.MAPLE_FENCE_GATE.get(), blockTexture(HNCBlocks.MAPLE_PLANKS.get()));
-//            this.toItem(HNCBlocks.MAPLE_FENCE_GATE.get(), HamNCheese.getLocation("block/maple_fence_gate"));
-//
-//            this.trapdoorBlock(HNCBlocks.MAPLE_TRAPDOOR.get(), HamNCheese.getLocation("block/maple_trapdoor"), true);
-//            this.toItem(HNCBlocks.MAPLE_TRAPDOOR.get(), HamNCheese.getLocation("block/maple_trapdoor_bottom"));
-//
-//            this.doorBlock(HNCBlocks.MAPLE_DOOR.get(), HamNCheese.getLocation("block/maple_door_bottom"), HamNCheese.getLocation("block/maple_door_top"));
-//
+
+            this.family(HNCBlocks.MAPLE_PLANKS.get())
+                    .stairs(HNCBlocks.MAPLE_STAIRS.get())
+                    .slab(HNCBlocks.MAPLE_SLAB.get())
+                    .pressurePlate(HNCBlocks.MAPLE_PRESSURE_PLATE.get())
+                    .button(HNCBlocks.MAPLE_BUTTON.get())
+                    .fence(HNCBlocks.MAPLE_FENCE.get())
+                    .fenceGate(HNCBlocks.MAPLE_FENCE_GATE.get());
+            createTrapdoor(HNCBlocks.MAPLE_TRAPDOOR.get());
+            createDoor(HNCBlocks.MAPLE_DOOR.get());
+
 //            VariantBlockStateBuilder.PartialBlockstate tap = this.getVariantBuilder(HNCBlocks.TREE_TAP.get()).partialState();
 //            ModelFile tapModel = this.models().getExistingFile(HamNCheese.getLocation("block/tree_tap"));
 //            ModelFile[] tapModelLevels = new ModelFile[4];
@@ -348,7 +287,7 @@ public class HNCModels extends PollinatedModelProvider
 //                }
 //            }
 //            this.toItem(HNCBlocks.TREE_TAP.get(), HamNCheese.getLocation("block/tree_tap_level_3"));
-//
+
 //            ModelFile mapleSapModel = this.models().getBuilder("block/maple_sap").texture("particle", HamNCheese.getLocation("block/maple_sap_still"));
 //            this.getVariantBuilder(HNCBlocks.MAPLE_SAP.get()).partialState().modelForState().modelFile(mapleSapModel).addModel();
         }

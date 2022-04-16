@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.block.*;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -41,6 +42,16 @@ public class HNCBlocks
     public static final Supplier<RotatedPillarBlock> STRIPPED_MAPLE_LOG = registerLog("stripped_maple_log", MaterialColor.SAND);
     public static final Supplier<RotatedPillarBlock> STRIPPED_MAPLE_WOOD = registerLog("stripped_maple_wood", MaterialColor.SAND);
     public static final Supplier<LeavesBlock> MAPLE_LEAVES = register("maple_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES, MaterialColor.COLOR_RED).strength(.2f).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn((state, reader, blockPos, entityType) -> entityType == EntityType.OCELOT || entityType == EntityType.PARROT).isSuffocating((state, reader, blockPos) -> false).isViewBlocking((state, reader, blockPos) -> false)), prop -> prop);
+    public static final Supplier<Block> MAPLE_PLANKS = register("maple_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
+    public static final Supplier<StairBlock> MAPLE_STAIRS = register("maple_stairs", () -> new StairBlockOverride(MAPLE_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(MAPLE_PLANKS.get())), prop -> prop);
+    public static final Supplier<SlabBlock> MAPLE_SLAB = register("maple_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
+    public static final Supplier<PressurePlateBlock> MAPLE_PRESSURE_PLATE = register("maple_pressure_plate", () -> new PressurePlateBlockOverride(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).noCollission().strength(.5f).sound(SoundType.WOOD)), prop -> prop);
+    public static final Supplier<WoodButtonBlock> MAPLE_BUTTON = register("maple_button", () -> new WoodButtonBlockOverride(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(.5f).sound(SoundType.WOOD)), prop -> prop);
+    public static final Supplier<FenceBlock> MAPLE_FENCE = register("maple_fence", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
+    public static final Supplier<FenceGateBlock> MAPLE_FENCE_GATE = register("maple_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
+    public static final Supplier<TrapDoorBlock> MAPLE_TRAPDOOR = register("maple_trapdoor", () -> new TrapDoorBlockOverride(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).strength(3f).sound(SoundType.WOOD).noOcclusion().isValidSpawn((state, reader, blockPos, entityType) -> false)), prop -> prop);
+    public static final Supplier<DoorBlock> MAPLE_DOOR = register("maple_door", () -> new DoorBlockOverride(BlockBehaviour.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(3f).sound(SoundType.WOOD).noOcclusion()), prop -> prop);
+
     private static Supplier<RotatedPillarBlock> registerLog(String id, MaterialColor color)
     {
         return registerLog(id, color, color);

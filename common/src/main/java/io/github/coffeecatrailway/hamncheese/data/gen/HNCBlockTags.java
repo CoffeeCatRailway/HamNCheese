@@ -56,21 +56,21 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
         this.tag(MOUSE_SEARCH).add(Blocks.BARREL).addTag(CHESTS, BlockTags.SHULKER_BOXES);
         this.tag(MINEABLE_WITH_KNIFE);//.add(HNCBlock.BLOCK_OF_CHEESE.get());
 
-        this.tag(PLANKS);//.add(HNCBlocks.MAPLE_PLANKS.get());
-        this.tag(WOODEN_BUTTONS);//.add(HNCBlocks.MAPLE_BUTTON.get());
-        this.tag(WOODEN_DOORS);//.add(HNCBlocks.MAPLE_DOOR.get());
-        this.tag(WOODEN_STAIRS);//.add(HNCBlocks.MAPLE_STAIRS.get());
-        this.tag(WOODEN_SLABS);//.add(HNCBlocks.MAPLE_SLAB.get());
-        this.tag(WOODEN_FENCES);//.add(HNCBlocks.MAPLE_FENCE.get());
+        this.tag(PLANKS).add(HNCBlocks.MAPLE_PLANKS.get());
+        this.tag(WOODEN_BUTTONS).add(HNCBlocks.MAPLE_BUTTON.get());
+        this.tag(WOODEN_DOORS).add(HNCBlocks.MAPLE_DOOR.get());
+        this.tag(WOODEN_STAIRS).add(HNCBlocks.MAPLE_STAIRS.get());
+        this.tag(WOODEN_SLABS).add(HNCBlocks.MAPLE_SLAB.get());
+        this.tag(WOODEN_FENCES).add(HNCBlocks.MAPLE_FENCE.get());
         this.tag(SAPLINGS);//.add(HNCBlocks.MAPLE_SAPLING.get());
         this.tag(MAPLE_LOGS).add(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());
         this.tag(LOGS_THAT_BURN).addTag(MAPLE_LOGS);
         this.tag(FLOWER_POTS);//.add(HNCBlocks.POTTED_MAPLE_SAPLING.get());
-        this.tag(WOODEN_PRESSURE_PLATES);//.add(HNCBlocks.MAPLE_PRESSURE_PLATE.get());
-        this.tag(WOODEN_TRAPDOORS);//.add(HNCBlocks.MAPLE_TRAPDOOR.get());
+        this.tag(WOODEN_PRESSURE_PLATES).add(HNCBlocks.MAPLE_PRESSURE_PLATE.get());
         this.tag(LEAVES).add(HNCBlocks.MAPLE_LEAVES.get());
+        this.tag(WOODEN_TRAPDOORS).add(HNCBlocks.MAPLE_TRAPDOOR.get());
         this.tag(STANDING_SIGNS);//.add(HNCBlocks.MAPLE_SIGN.get());
         this.tag(WALL_SIGNS);//.add(HNCBlocks.MAPLE_WALL_SIGN.get());
-        this.tag(FENCE_GATES);//.add(HNCBlocks.MAPLE_FENCE_GATE.get());
+        this.tag(FENCE_GATES).add(HNCBlocks.MAPLE_FENCE_GATE.get());
     }
 }
