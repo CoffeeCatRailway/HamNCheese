@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.PollinatedRecipeProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -12,6 +13,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Consumer;
 
@@ -149,11 +151,11 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 //        PopcornRecipeBuilder.popcorn(HNCItems.MAPLE_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItems.MAPLE_SYRUP.get()))
 //                .unlockedBy("has_syrup", has(HNCItems.MAPLE_SYRUP.get())).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
 
-//        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_WOOD.get(), 3).define('l', HNCBlocks.MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.MAPLE_LOG.get())).save(consumer);
-//        ShapedRecipeBuilder.shaped(HNCBlocks.STRIPPED_MAPLE_WOOD.get(), 3).define('l', HNCBlocks.STRIPPED_MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.STRIPPED_MAPLE_LOG.get())).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_PLANKS.get(), 4).requires(Ingredient.of(HNCItemTags.MAPLE_LOGS)).group("planks").unlockedBy("has_log", has(HNCItemTags.MAPLE_LOGS)).save(consumer);
 //        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_STAIRS.get(), 4).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("p  ").pattern("pp ").pattern("ppp").group("wooden_stairs").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
 //        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_SLAB.get(), 6).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("ppp").group("wooden_slab").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_WOOD.get(), 3).define('l', HNCBlocks.MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.MAPLE_LOG.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCBlocks.STRIPPED_MAPLE_WOOD.get(), 3).define('l', HNCBlocks.STRIPPED_MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.STRIPPED_MAPLE_LOG.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_PLANKS.get(), 4).requires(Ingredient.of(HNCItemTags.MAPLE_LOGS)).group("planks").unlockedBy("has_log", has(HNCItemTags.MAPLE_LOGS)).save(consumer);
 //        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_SIGN.get(), 3).group("sign").define('p', HNCBlocks.MAPLE_PLANKS.get()).define('s', Items.STICK).pattern("ppp").pattern("ppp").pattern(" s ").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
 //        ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("pp").group("wooden_pressure_plate").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
 //        ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_BUTTON.get()).requires(HNCBlocks.MAPLE_PLANKS.get()).group("wooden_button").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);

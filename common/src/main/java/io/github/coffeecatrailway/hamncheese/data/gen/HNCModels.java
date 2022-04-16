@@ -6,15 +6,17 @@ import gg.moonflower.pollen.api.datagen.provider.model.PollinatedItemModelGenera
 import gg.moonflower.pollen.api.datagen.provider.model.PollinatedModelProvider;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.models.blockstates.BlockStateGenerator;
-import net.minecraft.data.models.model.ModelLocationUtils;
-import net.minecraft.data.models.model.ModelTemplate;
-import net.minecraft.data.models.model.ModelTemplates;
-import net.minecraft.data.models.model.TextureMapping;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -135,7 +137,7 @@ public class HNCModels extends PollinatedModelProvider
         @Override
         public void run()
         {
-//            int i;
+            int i;
 //            VariantBlockStateBuilder.PartialBlockstate pineapplePlant = this.getVariantBuilder(HNCBlocks.PINEAPPLE_PLANT.get()).partialState();
 //            for (i = 0; i < 5; i++)
 //            {
@@ -235,34 +237,27 @@ public class HNCModels extends PollinatedModelProvider
 //            this.choppingBoard("gold", new ResourceLocation("block/gold_block"), HNCBlocks.GOLD_CHOPPING_BOARD.get());
 //
 //            this.choppingBoard("maple", HamNCheese.getLocation("block/maple_planks"), HNCBlocks.MAPLE_CHOPPING_BOARD.get());
-//
-//            // Misc
+
+            // Misc
 //            VariantBlockStateBuilder.PartialBlockstate cheese = this.getVariantBuilder(HNCBlocks.BLOCK_OF_CHEESE.get()).partialState();
 //            cheese.with(CheeseBlock.BITES, 0).modelForState().modelFile(this.itemModels().getExistingFile(HamNCheese.getLocation("block/block_of_cheese"))).addModel();
 //            for (i = 1; i < 4; i++)
 //                cheese.with(CheeseBlock.BITES, i).modelForState().modelFile(this.itemModels().getExistingFile(HamNCheese.getLocation("block/block_of_cheese_slice" + i))).addModel();
-//
-//            this.axisBlock(HNCBlocks.MAPLE_LOG.get());
-//            this.toItem(HNCBlocks.MAPLE_LOG.get());
-//
-//            this.axisBlock(HNCBlocks.MAPLE_WOOD.get(), HamNCheese.getLocation("block/maple_log_side"), HamNCheese.getLocation("block/maple_log_side"));
-//            this.toItem(HNCBlocks.MAPLE_WOOD.get());
-//
-//            this.axisBlock(HNCBlocks.STRIPPED_MAPLE_LOG.get());
-//            this.toItem(HNCBlocks.STRIPPED_MAPLE_LOG.get());
-//
-//            this.axisBlock(HNCBlocks.STRIPPED_MAPLE_WOOD.get(), HamNCheese.getLocation("block/stripped_maple_log_side"), HamNCheese.getLocation("block/stripped_maple_log_side"));
-//            this.toItem(HNCBlocks.STRIPPED_MAPLE_WOOD.get());
-//
-//            VariantBlockStateBuilder.PartialBlockstate leaves = this.getVariantBuilder(HNCBlocks.MAPLE_LEAVES.get()).partialState();
-//            Function<Integer, ModelFile> leavesFunction = (j) -> this.models().cubeAll("maple_leaves_" + j, HamNCheese.getLocation("block/maple_leaves_" + j));
-//            ConfiguredModel[] leavesModels = new ConfiguredModel[9];
-//            leavesModels[0] = leaves.modelForState().weight(25).modelFile(leavesFunction.apply(0)).buildLast();
-//            for (i = 1; i < 9; i++)
-//                leavesModels[i] = leaves.modelForState().weight((i % 2 == 0) ? 75 : 50).modelFile(leavesFunction.apply(i)).buildLast();
-//            leaves.addModels(leavesModels);
-//            this.toItem(HNCBlocks.MAPLE_LEAVES.get(), HamNCheese.getLocation("block/maple_leaves_0"));
-//
+
+            this.createRotatedPillarWithHorizontalVariant(HNCBlocks.MAPLE_LOG.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+            this.createWoodVariant(HNCBlocks.MAPLE_WOOD.get(), HamNCheese.getLocation("block/maple_log_side"));
+            this.createRotatedPillarWithHorizontalVariant(HNCBlocks.STRIPPED_MAPLE_LOG.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+            this.createWoodVariant(HNCBlocks.STRIPPED_MAPLE_WOOD.get(), HamNCheese.getLocation("block/stripped_maple_log_side"));
+
+            Variant[] leaves = new Variant[9];
+            for (i = 0; i < 9; i++)
+            {
+                int j = i;
+                leaves[i] = Variant.variant().with(VariantProperties.WEIGHT, (i % 2 == 0) ? 75 : 50).with(VariantProperties.MODEL, TexturedModel.LEAVES.get(HNCBlocks.MAPLE_LEAVES.get()).updateTextures(mapping -> mapping.put(TextureSlot.ALL, HamNCheese.getLocation("block/maple_leaves_" + j))).createWithSuffix(HNCBlocks.MAPLE_LEAVES.get(), "_" + i, this.getModelOutput()));
+            }
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.MAPLE_LEAVES.get(), leaves));
+            this.delegateItemModel(HNCBlocks.MAPLE_LEAVES.get(), HamNCheese.getLocation("block/maple_leaves_0"));
+
 //            this.getVariantBuilder(HNCBlocks.MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/maple_sapling", "block/cross").texture("cross", HamNCheese.getLocation("block/maple_sapling"))).addModel();
 //            this.getVariantBuilder(HNCBlocks.POTTED_MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/potted_maple_sapling", "block/flower_pot_cross").texture("plant", HamNCheese.getLocation("block/maple_sapling"))).addModel();
 //
@@ -369,5 +364,11 @@ public class HNCModels extends PollinatedModelProvider
 //
 //            this.toItem(board);
 //        }
+
+        private void createWoodVariant(Block block, ResourceLocation texture)
+        {
+            ResourceLocation resourceLocation = TexturedModel.CUBE.get(block).updateTextures(mapping -> mapping.put(TextureSlot.ALL, texture)).create(block, this.getModelOutput());
+            this.getBlockStateOutput().accept(createRotatedPillarWithHorizontalVariant(block, resourceLocation, resourceLocation));
+        }
     }
 }

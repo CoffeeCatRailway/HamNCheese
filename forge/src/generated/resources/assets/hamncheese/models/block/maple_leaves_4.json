@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "hamncheese:block/maple_leaves_4"
+  }
+}

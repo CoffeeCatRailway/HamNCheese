@@ -1,0 +1,42 @@
+{
+  "variants": {
+    "": [
+      {
+        "weight": 75,
+        "model": "hamncheese:block/maple_leaves_0"
+      },
+      {
+        "weight": 50,
+        "model": "hamncheese:block/maple_leaves_1"
+      },
+      {
+        "weight": 75,
+        "model": "hamncheese:block/maple_leaves_2"
+      },
+      {
+        "weight": 50,
+        "model": "hamncheese:block/maple_leaves_3"
+      },
+      {
+        "weight": 75,
+        "model": "hamncheese:block/maple_leaves_4"
+      },
+      {
+        "weight": 50,
+        "model": "hamncheese:block/maple_leaves_5"
+      },
+      {
+        "weight": 75,
+        "model": "hamncheese:block/maple_leaves_6"
+      },
+      {
+        "weight": 50,
+        "model": "hamncheese:block/maple_leaves_7"
+      },
+      {
+        "weight": 75,
+        "model": "hamncheese:block/maple_leaves_8"
+      }
+    ]
+  }
+}

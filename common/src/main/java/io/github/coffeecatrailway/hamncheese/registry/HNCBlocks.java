@@ -36,6 +36,26 @@ public class HNCBlocks
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final PollinatedRegistry<Block> BLOCKS = PollinatedRegistry.create(Registry.BLOCK, HamNCheese.MOD_ID);
 
+    public static final Supplier<RotatedPillarBlock> MAPLE_LOG = registerLog("maple_log", MaterialColor.SAND, MaterialColor.COLOR_BROWN);
+    public static final Supplier<RotatedPillarBlock> MAPLE_WOOD = registerLog("maple_wood", MaterialColor.COLOR_BROWN);
+    public static final Supplier<RotatedPillarBlock> STRIPPED_MAPLE_LOG = registerLog("stripped_maple_log", MaterialColor.SAND);
+    public static final Supplier<RotatedPillarBlock> STRIPPED_MAPLE_WOOD = registerLog("stripped_maple_wood", MaterialColor.SAND);
+    public static final Supplier<LeavesBlock> MAPLE_LEAVES = register("maple_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES, MaterialColor.COLOR_RED).strength(.2f).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn((state, reader, blockPos, entityType) -> entityType == EntityType.OCELOT || entityType == EntityType.PARROT).isSuffocating((state, reader, blockPos) -> false).isViewBlocking((state, reader, blockPos) -> false)), prop -> prop);
+    private static Supplier<RotatedPillarBlock> registerLog(String id, MaterialColor color)
+    {
+        return registerLog(id, color, color);
+    }
+
+    private static Supplier<RotatedPillarBlock> registerLog(String id, MaterialColor topColor, MaterialColor sideColor)
+    {
+        Function<BlockState, MaterialColor> colorFunction = (state) -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? topColor : sideColor;
+        if (topColor.equals(sideColor))
+            colorFunction = (state) -> topColor;
+        Function<BlockState, MaterialColor> finalColorFunction = colorFunction;
+        return register(id, () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, finalColorFunction)
+                .strength(2f).sound(SoundType.WOOD)), prop -> prop);
+    }
+
     public static <T extends Block> Supplier<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)
     {
         return registerWithItem(id, block, (object, prop) -> new BlockItem(object.get(), properties.apply(prop)));

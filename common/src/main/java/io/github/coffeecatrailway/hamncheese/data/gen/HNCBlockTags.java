@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.datagen.provider.tags.PollinatedBlockTagsProvide
 import gg.moonflower.pollen.api.registry.resource.TagRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -62,12 +63,12 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
         this.tag(WOODEN_SLABS);//.add(HNCBlocks.MAPLE_SLAB.get());
         this.tag(WOODEN_FENCES);//.add(HNCBlocks.MAPLE_FENCE.get());
         this.tag(SAPLINGS);//.add(HNCBlocks.MAPLE_SAPLING.get());
-        this.tag(MAPLE_LOGS);//.add(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());
+        this.tag(MAPLE_LOGS).add(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());
         this.tag(LOGS_THAT_BURN).addTag(MAPLE_LOGS);
         this.tag(FLOWER_POTS);//.add(HNCBlocks.POTTED_MAPLE_SAPLING.get());
         this.tag(WOODEN_PRESSURE_PLATES);//.add(HNCBlocks.MAPLE_PRESSURE_PLATE.get());
-        this.tag(LEAVES);//.add(HNCBlocks.MAPLE_LEAVES.get());
         this.tag(WOODEN_TRAPDOORS);//.add(HNCBlocks.MAPLE_TRAPDOOR.get());
+        this.tag(LEAVES).add(HNCBlocks.MAPLE_LEAVES.get());
         this.tag(STANDING_SIGNS);//.add(HNCBlocks.MAPLE_SIGN.get());
         this.tag(WALL_SIGNS);//.add(HNCBlocks.MAPLE_WALL_SIGN.get());
         this.tag(FENCE_GATES);//.add(HNCBlocks.MAPLE_FENCE_GATE.get());

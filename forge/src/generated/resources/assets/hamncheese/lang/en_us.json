@@ -1,5 +1,10 @@
 {
   "block.hamncheese.from": "From: ",
+  "block.hamncheese.maple_leaves": "Maple Leaves",
+  "block.hamncheese.maple_log": "Maple Log",
+  "block.hamncheese.maple_wood": "Maple Wood",
+  "block.hamncheese.stripped_maple_log": "Stripped Maple Log",
+  "block.hamncheese.stripped_maple_wood": "Stripped Maple Wood",
   "fluid.hamncheese.maple_sap": "Maple Sap",
   "item.hamncheese.bacon": "Raw Bacon",
   "item.hamncheese.baked_pizza_dummy": "Baked Pizza Base",
