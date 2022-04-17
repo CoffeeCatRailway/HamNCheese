@@ -1,6 +1,8 @@
 package io.github.coffeecatrailway.hamncheese.forge;
 
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -20,6 +22,7 @@ public class HamNCheeseForge
 
     private void onClientSetup(final FMLClientSetupEvent event)
     {
+        event.enqueueWork(() -> Sheets.addWoodType(HNCBlocks.MAPLE_WOOD_TYPE));
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event)

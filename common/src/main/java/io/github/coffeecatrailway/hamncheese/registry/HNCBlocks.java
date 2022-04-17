@@ -1,17 +1,21 @@
 package io.github.coffeecatrailway.hamncheese.registry;
 
-import com.mojang.datafixers.util.Pair;
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
+import gg.moonflower.pollen.core.Pollen;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.*;
+import io.github.coffeecatrailway.hamncheese.common.item.CraftingToolItem;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
+import net.minecraft.tags.Tag;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,8 +26,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -37,6 +39,8 @@ public class HNCBlocks
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final PollinatedRegistry<Block> BLOCKS = PollinatedRegistry.create(Registry.BLOCK, HamNCheese.MOD_ID);
 
+    public static final WoodType MAPLE_WOOD_TYPE = WoodType.register(new WoodType(getWoodTypeId()));
+
     public static final Supplier<RotatedPillarBlock> MAPLE_LOG = registerLog("maple_log", MaterialColor.SAND, MaterialColor.COLOR_BROWN);
     public static final Supplier<RotatedPillarBlock> MAPLE_WOOD = registerLog("maple_wood", MaterialColor.COLOR_BROWN);
     public static final Supplier<RotatedPillarBlock> STRIPPED_MAPLE_LOG = registerLog("stripped_maple_log", MaterialColor.SAND);
@@ -45,6 +49,8 @@ public class HNCBlocks
     public static final Supplier<Block> MAPLE_PLANKS = register("maple_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
     public static final Supplier<StairBlock> MAPLE_STAIRS = register("maple_stairs", () -> new StairBlockOverride(MAPLE_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(MAPLE_PLANKS.get())), prop -> prop);
     public static final Supplier<SlabBlock> MAPLE_SLAB = register("maple_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
+    public static final Supplier<HNCWallSignBlock> MAPLE_WALL_SIGN = registerWithItemAndName("maple_wall_sign", () -> new HNCWallSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1f).sound(SoundType.WOOD), MAPLE_WOOD_TYPE), null, null);
+    public static final Supplier<HNCStandingSignBlock> MAPLE_SIGN = registerWithItem("maple_sign", () -> new HNCStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1f).sound(SoundType.WOOD), MAPLE_WOOD_TYPE), (sign, prop) -> new SignItem(prop.stacksTo(16), sign.get(), HNCBlocks.MAPLE_WALL_SIGN.get()));
     public static final Supplier<PressurePlateBlock> MAPLE_PRESSURE_PLATE = register("maple_pressure_plate", () -> new PressurePlateBlockOverride(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).noCollission().strength(.5f).sound(SoundType.WOOD)), prop -> prop);
     public static final Supplier<WoodButtonBlock> MAPLE_BUTTON = register("maple_button", () -> new WoodButtonBlockOverride(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(.5f).sound(SoundType.WOOD)), prop -> prop);
     public static final Supplier<FenceBlock> MAPLE_FENCE = register("maple_fence", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(2f, 3f).sound(SoundType.WOOD)), prop -> prop);
@@ -85,6 +91,13 @@ public class HNCBlocks
         if (name != null)
             HNCLanguage.BLOCKS.put(object, name);
         return object;
+    }
+
+    // Mod loader sided methods
+    @ExpectPlatform
+    private static String getWoodTypeId()
+    {
+        return Platform.error();
     }
 
     public static void load(Platform platform)

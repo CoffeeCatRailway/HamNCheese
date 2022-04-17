@@ -4,16 +4,20 @@ import gg.moonflower.pollen.api.client.util.CreativeModeTabBuilder;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
+import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
+import io.github.coffeecatrailway.hamncheese.registry.HNCBlockEntities;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -40,6 +44,8 @@ public class HamNCheese
     public static void onClientInit()
     {
         SandwichItemRenderer.init();
+
+        BlockEntityRendererRegistry.register(HNCBlockEntities.SIGN, SignRenderer::new);
     }
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
@@ -65,7 +71,7 @@ public class HamNCheese
 //        HNCEntities.load(PLATFORM);
 //        HNCProfessions.load(PLATFORM);
 //        bus.addGenericListener(StatType.class, HNCStats::register);
-//        HNCTileEntities.load(PLATFORM);
+        HNCBlockEntities.load(PLATFORM);
 //        HNCContainers.load(PLATFORM);
 //        HNCFluids.load(PLATFORM);
     }

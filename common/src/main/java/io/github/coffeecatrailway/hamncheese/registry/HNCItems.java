@@ -126,25 +126,25 @@ public class HNCItems
     @ExpectPlatform
     private static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks)
     {
-        throw new AssertionError();
+        return Platform.error();
     }
 
     @ExpectPlatform
     private static Function<Item.Properties, PizzaItem> getPizzaItem()
     {
-        throw new AssertionError();
+        return Platform.error();
     }
 
     @ExpectPlatform
     private static Function<Item.Properties, CrackerItem> getCrackerItem()
     {
-        throw new AssertionError();
+        return Platform.error();
     }
 
     @ExpectPlatform
     private static Function<Item.Properties, SandwichItem> getSandwichItem()
     {
-        throw new AssertionError();
+        return Platform.error();
     }
 
     // Load items
