@@ -34,10 +34,17 @@ public class HNCItems
     public static final Supplier<Item> WOODEN_GEAR = registerIdAsName("wooden_gear", Item::new);
 
     // Tools
-    public static final Supplier<CraftingToolItem> CURDLER = registerIdAsName("curdler", getCraftingToolItem(2f, 2.5d, Tiers.WOOD, null));
-    public static final Supplier<CraftingToolItem> ROLLING_PIN = registerIdAsName("rolling_pin", getCraftingToolItem(1f, 2.5d, Tiers.WOOD, null));
-    public static final Supplier<CraftingToolItem> GRIND_STONES = registerIdAsName("grind_stones", getCraftingToolItem(2f, 2.7d, Tiers.STONE, null));
-    public static final Supplier<CraftingToolItem> KNIFE = registerIdAsName("knife", getCraftingToolItem(1f, 2.5d, Tiers.IRON, HNCBlockTags.MINEABLE_WITH_KNIFE));
+    public static final Supplier<CraftingToolItem> CURDLER = registerIdAsName("curdler", getCraftingToolItem(2f, 2.5d, Tiers.WOOD, null, prop -> prop.stacksTo(1)));
+    public static final Supplier<CraftingToolItem> ROLLING_PIN = registerIdAsName("rolling_pin", getCraftingToolItem(1f, 2.5d, Tiers.WOOD, null, prop -> prop.stacksTo(1)));
+    public static final Supplier<CraftingToolItem> GRIND_STONES = registerIdAsName("grind_stones", getCraftingToolItem(2f, 2.7d, Tiers.STONE, null, prop -> prop.stacksTo(1)));
+
+    public static final Supplier<CraftingToolItem> WOODEN_KNIFE = registerIdAsName("wooden_knife", getCraftingToolItem(1f, 2.5d, Tiers.WOOD, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.WOOD.getUses() / 2)));
+    public static final Supplier<CraftingToolItem> STONE_KNIFE = registerIdAsName("stone_knife", getCraftingToolItem(1f, 2.5d, Tiers.STONE, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.STONE.getUses() / 2)));
+    public static final Supplier<CraftingToolItem> COPPER_KNIFE = registerIdAsName("copper_knife", getCraftingToolItem(1f, 2.5d, Tiers.WOOD, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.WOOD.getUses() / 2)));
+    public static final Supplier<CraftingToolItem> GOLDEN_KNIFE = registerIdAsName("golden_knife", getCraftingToolItem(1f, 2.5d, Tiers.GOLD, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.GOLD.getUses() / 2)));
+    public static final Supplier<CraftingToolItem> IRON_KNIFE = registerIdAsName("iron_knife", getCraftingToolItem(1f, 2.5d, Tiers.IRON, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.IRON.getUses() / 2)));
+    public static final Supplier<CraftingToolItem> DIAMOND_KNIFE = registerIdAsName("diamond_knife", getCraftingToolItem(1f, 2.5d, Tiers.DIAMOND, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.DIAMOND.getUses() / 2)));
+    public static final Supplier<CraftingToolItem> NETHERITE_KNIFE = registerIdAsName("netherite_knife", getCraftingToolItem(1f, 2.5d, Tiers.NETHERITE, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.IRON.getUses())));
 
     // Foods
     public static final Supplier<Item> CHEESE_SLICE = registerIdAsName("cheese_slice", prop -> new Item(prop.food(HNCFoods.CHEESE_SLICE).stacksTo(32)));
@@ -124,7 +131,7 @@ public class HNCItems
 
     // Mod loader sided items
     @ExpectPlatform
-    private static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks)
+    private static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks, Function<Item.Properties, Item.Properties> factory)
     {
         return Platform.error();
     }

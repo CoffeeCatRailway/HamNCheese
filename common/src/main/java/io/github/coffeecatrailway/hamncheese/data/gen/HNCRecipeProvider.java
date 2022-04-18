@@ -5,15 +5,11 @@ import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Consumer;
 
@@ -54,8 +50,19 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ShapelessRecipeBuilder.shapeless(HNCItems.GRIND_STONES.get(), 2)
                 .requires(HNCItemTags.STONE_COMMON).unlockedBy("has_cobble", has(HNCItemTags.STONE_COMMON)).save(consumer);
 
-        ShapedRecipeBuilder.shaped(HNCItems.KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.IRON_INGOTS_COMMON).pattern("  i").pattern(" i ").pattern("s  ")
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', ItemTags.PLANKS).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.STONE_COMMON).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.COPPER_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.COPPER_INGOTS_COMMON).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_copper", has(HNCItemTags.COPPER_INGOTS_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.GOLDEN_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.GOLD_INGOTS_COMMON).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_gold", has(HNCItemTags.GOLD_INGOTS_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.IRON_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.IRON_INGOTS_COMMON).pattern(" i ").pattern("s  ")
                 .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.DIAMOND_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.DIAMONDS_COMMON).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_diamond", has(HNCItemTags.DIAMONDS_COMMON)).save(consumer);
+        netheriteSmithing(consumer, HNCItems.DIAMOND_KNIFE.get(), HNCItems.NETHERITE_KNIFE.get());
 
         /*
          * Foods

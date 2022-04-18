@@ -32,7 +32,7 @@ public class CraftingToolItem extends TieredItem implements Vanishable, SelfRema
 
     public CraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks, Properties properties)
     {
-        super(tier, properties.stacksTo(1));
+        super(tier, properties);
         this.mineableBlocks = mineableBlocks;
         this.mineSpeed = tier.getSpeed();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();

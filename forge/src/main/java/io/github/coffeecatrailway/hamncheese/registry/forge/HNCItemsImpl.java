@@ -22,9 +22,9 @@ import java.util.function.Function;
  */
 public class HNCItemsImpl
 {
-    public static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks)
+    public static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks, Function<Item.Properties, Item.Properties> factory)
     {
-        return prop -> new CraftingToolItemForge(attackModifier, attackSpeed, tier, mineableBlocks, prop);
+        return prop -> new CraftingToolItemForge(attackModifier, attackSpeed, tier, mineableBlocks, factory.apply(prop));
     }
 
     public static Function<Item.Properties, PizzaItem> getPizzaItem()

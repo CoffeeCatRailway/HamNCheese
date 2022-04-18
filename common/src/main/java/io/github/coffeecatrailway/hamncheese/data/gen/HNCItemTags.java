@@ -105,6 +105,16 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     private static final Tag.Named<Item> IRON_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/iron"));
     public static final Tag.Named<Item> IRON_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "iron_ingots"));
 
+    private static final Tag.Named<Item> COPPER_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/copper"));
+    private static final Tag.Named<Item> COPPER_INGOT = TagRegistry.bindItem(new ResourceLocation("c", "copper_ingot"));
+    public static final Tag.Named<Item> COPPER_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "copper_ingots"));
+
+    private static final Tag.Named<Item> GOLD_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/gold"));
+    public static final Tag.Named<Item> GOLD_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "gold_ingots"));
+
+    private static final Tag.Named<Item> DIAMOND_GEMS = TagRegistry.bindItem(new ResourceLocation("forge", "gems/diamond"));
+    public static final Tag.Named<Item> DIAMONDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "diamonds"));
+
     private static final Tag.Named<Item> GREEN_DYE = TagRegistry.bindItem(new ResourceLocation("forge", "dyes/green"));
     private static final Tag.Named<Item> GREEN_DYE_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "green_dye"));
     public static final Tag.Named<Item> GREEN_DYES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "green_dyes"));
@@ -116,7 +126,13 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     private static final Tag.Named<Item> REDSTONE_DUSTS = TagRegistry.bindItem(new ResourceLocation("forge", "dusts/redstone"));
     public static final Tag.Named<Item> REDSTONE_DUSTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "redstone_dusts"));
 
+    private static final Tag.Named<Item> KNIVES_WOOD = TagRegistry.bindItem(new ResourceLocation("forge", "knives/wooden"));
+    private static final Tag.Named<Item> KNIVES_STONE = TagRegistry.bindItem(new ResourceLocation("forge", "knives/stone"));
+    private static final Tag.Named<Item> KNIVES_COPPER = TagRegistry.bindItem(new ResourceLocation("forge", "knives/copper"));
+    private static final Tag.Named<Item> KNIVES_GOLD = TagRegistry.bindItem(new ResourceLocation("forge", "knives/golden"));
     private static final Tag.Named<Item> KNIVES_IRON = TagRegistry.bindItem(new ResourceLocation("forge", "knives/iron"));
+    private static final Tag.Named<Item> KNIVES_DIAMOND = TagRegistry.bindItem(new ResourceLocation("forge", "knives/diamond"));
+    private static final Tag.Named<Item> KNIVES_NETHERITE = TagRegistry.bindItem(new ResourceLocation("forge", "knives/metherite"));
     private static final Tag.Named<Item> KNIVES = TagRegistry.bindItem(new ResourceLocation("forge", "knives"));
     public static final Tag.Named<Item> KNIVES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "knives"));
 
@@ -225,6 +241,16 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(IRON_INGOTS).add(Items.IRON_INGOT);
         this.tag(IRON_INGOTS_COMMON).addTag(IRON_INGOTS);
 
+        this.tag(COPPER_INGOTS).add(Items.COPPER_INGOT);
+        this.tag(COPPER_INGOT).addTag(COPPER_INGOTS);
+        this.tag(COPPER_INGOTS_COMMON).addTag(COPPER_INGOT);
+
+        this.tag(GOLD_INGOTS).add(Items.GOLD_INGOT);
+        this.tag(GOLD_INGOTS_COMMON).addTag(GOLD_INGOTS);
+
+        this.tag(DIAMOND_GEMS).add(Items.DIAMOND);
+        this.tag(DIAMONDS_COMMON).addTag(DIAMOND_GEMS);
+
         this.tag(GREEN_DYE).add(Items.GREEN_DYE);
         this.tag(GREEN_DYE_FABRIC).addTag(GREEN_DYE);
         this.tag(GREEN_DYES_COMMON).addTag(GREEN_DYE_FABRIC);
@@ -236,8 +262,14 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(REDSTONE_DUSTS).add(Items.REDSTONE);
         this.tag(REDSTONE_DUSTS_COMMON).addTag(REDSTONE_DUSTS);
 
-        this.tag(KNIVES_IRON).add(HNCItems.KNIFE.get());
-        this.tag(KNIVES).addTag(KNIVES_IRON);
+        this.tag(KNIVES_WOOD).add(HNCItems.WOODEN_KNIFE.get());
+        this.tag(KNIVES_STONE).add(HNCItems.STONE_KNIFE.get());
+        this.tag(KNIVES_COPPER).add(HNCItems.COPPER_KNIFE.get());
+        this.tag(KNIVES_GOLD).add(HNCItems.GOLDEN_KNIFE.get());
+        this.tag(KNIVES_IRON).add(HNCItems.IRON_KNIFE.get());
+        this.tag(KNIVES_DIAMOND).add(HNCItems.DIAMOND_KNIFE.get());
+        this.tag(KNIVES_NETHERITE).add(HNCItems.NETHERITE_KNIFE.get());
+        this.tag(KNIVES).addTag(KNIVES_WOOD, KNIVES_STONE, KNIVES_COPPER, KNIVES_GOLD, KNIVES_IRON, KNIVES_DIAMOND, KNIVES_NETHERITE);
         this.tag(KNIVES_COMMON).addTag(KNIVES);
     }
 }

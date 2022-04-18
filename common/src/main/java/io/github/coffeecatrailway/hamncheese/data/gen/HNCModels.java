@@ -52,7 +52,14 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.CURDLER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
             this.generateFlatItem(HNCItems.ROLLING_PIN.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
             this.generateFlatItem(HNCItems.GRIND_STONES.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-            this.generateFlatItem(HNCItems.KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+
+            this.generateFlatItem(HNCItems.WOODEN_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.STONE_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.COPPER_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.GOLDEN_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.IRON_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.DIAMOND_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.NETHERITE_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
             // Foods
 //            this.generateFlatItem(HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);

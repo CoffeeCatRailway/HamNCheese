@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "hamncheese:knife"
+      "hamncheese:copper_knife"
     ]
   },
   "criteria": {
@@ -16,12 +16,12 @@
         ]
       }
     },
-    "has_iron": {
+    "has_copper": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "c:iron_ingots"
+            "tag": "c:copper_ingots"
           }
         ]
       }
@@ -29,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "hamncheese:knife"
+        "recipe": "hamncheese:copper_knife"
       }
     }
   },
   "requirements": [
     [
       "has_sticks",
-      "has_iron",
+      "has_copper",
       "has_the_recipe"
     ]
   ]

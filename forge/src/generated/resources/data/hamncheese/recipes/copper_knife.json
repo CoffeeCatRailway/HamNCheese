@@ -1,7 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "  i",
     " i ",
     "s  "
   ],
@@ -10,10 +9,10 @@
       "tag": "c:wood_sticks"
     },
     "i": {
-      "tag": "c:iron_ingots"
+      "tag": "c:copper_ingots"
     }
   },
   "result": {
-    "item": "hamncheese:knife"
+    "item": "hamncheese:copper_knife"
   }
 }
