@@ -10,13 +10,8 @@ import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
-import io.github.coffeecatrailway.hamncheese.registry.HNCBlockEntities;
-import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
-import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
-import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
+import io.github.coffeecatrailway.hamncheese.registry.*;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -54,6 +49,7 @@ public class HamNCheese
 //            ScreenRegistry.register(PlusMenuTypes.SAW_BENCH.get(), SawBenchScreen::new);
 //        });
 
+        RenderTypeRegistry.register(HNCBlocks.MAPLE_SAPLING.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.MAPLE_TRAPDOOR.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.MAPLE_DOOR.get(), RenderType.cutout());
 
@@ -78,6 +74,7 @@ public class HamNCheese
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
+        ctx.enqueueWork(() -> HNCFeatures.load(PLATFORM));
     }
 
     public static void onDataInit(Platform.DataSetupContext ctx)

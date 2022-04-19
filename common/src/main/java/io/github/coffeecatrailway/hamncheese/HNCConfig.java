@@ -31,6 +31,9 @@ public class HNCConfig
         // Blocks - Dispenser
         public final PollinatedConfigBuilder.ConfigValue<Boolean> dispenseTomatoSauce;
 
+        // Generation
+        public final PollinatedConfigBuilder.ConfigValue<Double> mapleTreeWeight;
+
         // Generation - Crops - Pineapples
         public final PollinatedConfigBuilder.ConfigValue<Boolean> generateWildPineapples;
         public final PollinatedConfigBuilder.ConfigValue<Integer> chanceWildPineapples;
@@ -87,7 +90,11 @@ public class HNCConfig
                     .define("dispenseTomatoSauce", false);
             builder.pop(2);
 
-            builder.push(Lists.newArrayList("generation", "crops", "wildPineapples"));
+            builder.push("generation");
+            this.mapleTreeWeight = builder.comment("Maple tree spawn weight (SERVER RESTART REQUIRED)")
+                    .defineInRange("mapleTreeWeight", .02d, 0, Float.MAX_VALUE);
+
+            builder.push(Lists.newArrayList("crops", "wildPineapples"));
             this.generateWildPineapples = builder.comment("Generate pineapples in biomes with a temperature of .5 to 1")
                     .define("generateWildPineapples", true);
             this.chanceWildPineapples = builder.comment("Pineapple generation chance")
