@@ -24,4 +24,5 @@ classes/
 *.bbmodel
 HNC-TODO.txt
 old
-forge/src/generated/resources/.cache/cache
+fabric/src/generated/resources/.cache/cache
+fabric/src/generated/resources/hamncheese.accesswidener
