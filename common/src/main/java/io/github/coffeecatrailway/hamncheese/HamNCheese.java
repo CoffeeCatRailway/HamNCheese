@@ -88,6 +88,7 @@ public class HamNCheese
         generator.addProvider(new HNCModels(generator, container));
         generator.addProvider(new HNCLanguage(generator, container));
         generator.addProvider(new HNCRecipeProvider(generator));
+        generator.addProvider(new HNCLootTableProvider(generator));
     }
 
     public static ResourceLocation getLocation(String path)
