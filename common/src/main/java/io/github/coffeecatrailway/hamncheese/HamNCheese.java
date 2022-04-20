@@ -50,6 +50,7 @@ public class HamNCheese
 //        });
 
         RenderTypeRegistry.register(HNCBlocks.MAPLE_SAPLING.get(), RenderType.cutout());
+        RenderTypeRegistry.register(HNCBlocks.POTTED_MAPLE_SAPLING.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.MAPLE_TRAPDOOR.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.MAPLE_DOOR.get(), RenderType.cutout());
 

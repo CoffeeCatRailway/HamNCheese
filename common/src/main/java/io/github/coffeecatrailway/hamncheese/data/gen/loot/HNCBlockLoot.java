@@ -199,6 +199,7 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
         this.dropSelf(HNCBlocks.STRIPPED_MAPLE_WOOD.get());
         this.add(HNCBlocks.MAPLE_LEAVES.get(), (block) -> createLeavesDrops(block, HNCBlocks.MAPLE_SAPLING.get(), .05f, .0625f, .083333336f, .1f));
         this.dropSelf(HNCBlocks.MAPLE_SAPLING.get());
+        this.dropPottedContents(HNCBlocks.POTTED_MAPLE_SAPLING.get());
         this.dropSelf(HNCBlocks.MAPLE_PLANKS.get());
         this.dropSelf(HNCBlocks.MAPLE_STAIRS.get());
         this.dropSelf(HNCBlocks.MAPLE_SLAB.get());

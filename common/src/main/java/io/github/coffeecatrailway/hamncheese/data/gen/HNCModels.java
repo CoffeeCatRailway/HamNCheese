@@ -117,10 +117,7 @@ public class HNCModels extends PollinatedModelProvider
 
             this.generateFlatItem(HNCItems.FOOD_SCRAPS.get(), ModelTemplates.FLAT_ITEM);
 
-//            // Misc
-            this.generateFlatItem(HNCBlocks.MAPLE_SAPLING.get().asItem(), HamNCheese.getLocation("block/maple_sapling"), ModelTemplates.FLAT_ITEM);
-//            this.generateFlatItem(HNCBlocks.MAPLE_DOOR.get().asItem(), HamNCheese.getLocation("item/maple_door"), ModelTemplates.FLAT_ITEM);
-
+            // Misc
 //            this.generateFlatItem(HNCItems.MAPLE_BOAT.get(), ModelTemplates.FLAT_ITEM);
 
 //            this.generateFlatItem(HNCItems.MAPLE_SAP_BUCKET.get(), ModelTemplates.FLAT_ITEM);
@@ -264,10 +261,7 @@ public class HNCModels extends PollinatedModelProvider
             }
             this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.MAPLE_LEAVES.get(), leaves));
             this.delegateItemModel(HNCBlocks.MAPLE_LEAVES.get(), HamNCheese.getLocation("block/maple_leaves_0"));
-
-            this.createCrossBlock(HNCBlocks.MAPLE_SAPLING.get(), BlockModelGenerators.TintState.NOT_TINTED);
-//            this.getVariantBuilder(HNCBlocks.MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/maple_sapling", "block/cross").texture("cross", HamNCheese.getLocation("block/maple_sapling"))).addModel();
-//            this.getVariantBuilder(HNCBlocks.POTTED_MAPLE_SAPLING.get()).partialState().modelForState().modelFile(this.models().withExistingParent("block/potted_maple_sapling", "block/flower_pot_cross").texture("plant", HamNCheese.getLocation("block/maple_sapling"))).addModel();
+            this.createPlant(HNCBlocks.MAPLE_SAPLING.get(), HNCBlocks.POTTED_MAPLE_SAPLING.get(), BlockModelGenerators.TintState.NOT_TINTED);
 
             this.family(HNCBlocks.MAPLE_PLANKS.get())
                     .stairs(HNCBlocks.MAPLE_STAIRS.get())
