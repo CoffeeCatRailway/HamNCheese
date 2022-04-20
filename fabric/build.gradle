@@ -12,8 +12,13 @@ architectury {
     fabric()
 }
 
+def generatedResources = project(":fabric").file("src/generated/resources/")
+def accessWidenerFile  = project(":common").file("src/main/resources/${project.modId}.accesswidener")
+
 loom {
-    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
+    mixin {
+        defaultRefmapName = "${project.modId}-refmap.json"
+    }
 
     runConfigs.configureEach {
         if (name == "client")
@@ -28,21 +33,16 @@ loom {
 
             name "Minecraft Data"
             vmArg "-Dfabric-api.datagen"
-            vmArg "-Dfabric-api.datagen.output-dir=${project(":forge").file("src/generated/resources/").absolutePath}"
+            vmArg "-Dfabric-api.datagen.output-dir=${generatedResources.absolutePath}"
             vmArg "-Dfabric-api.datagen.modid=${project.modId}"
-//            property "ExistingData", project(":common").file("src/main/resources/").absolutePath
-
-//            ideConfigGenerated = true
-//            runDir "build/datagen"
-//            source sourceSets.main
         }
     }
-
-    mixin {
-        defaultRefmapName = "${project.modId}-refmap.json"
-    }
+    accessWidenerPath.set(accessWidenerFile)
 }
-//assemble.dependsOn runDatagen
+
+sourceSets.main.resources {
+    srcDir generatedResources
+}
 
 configurations {
     common
@@ -74,7 +74,13 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
 
+task copyAccessWidener(type: Copy) {
+    from(accessWidenerFile)
+    into(generatedResources)
+}
+
 processResources {
+    dependsOn(copyAccessWidener)
     inputs.property "id", rootProject.modId
     inputs.property "name", rootProject.modName
     inputs.property "version", rootProject.modVersion
@@ -95,7 +101,7 @@ processResources {
 }
 
 shadowJar {
-    exclude "archiectury.common.json"
+    exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon]
     classifier "dev-shadow"
@@ -115,6 +121,7 @@ sourcesJar {
     def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
+    duplicatesStrategy(DuplicatesStrategy.INCLUDE)
 }
 
 components.java {
