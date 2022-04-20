@@ -1,3 +1,6 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
 dependencies {
     // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
     // Do NOT use other classes from fabric loader
@@ -19,6 +22,20 @@ loom {
 sourceSets.main.resources {
     srcDir project(":forge").file("src/generated/resources").absolutePath
     exclude project(":forge").file("src/generated/resources/.cache").absolutePath
+}
+
+processResources {
+    inputs.property "id", rootProject.modId
+
+    filesMatching("architectury.common.json") {
+        expand "id": rootProject.modId
+    }
+
+    doLast {
+        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
+            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
+        }
+    }
 }
 
 publishing {

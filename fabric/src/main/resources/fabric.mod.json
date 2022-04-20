@@ -7,6 +7,7 @@
   "description": "Adds in lots of ham and cheese related foods.\n\nPlease note, I only upload to CurseForge & Modrinth!\n\nDiscord: https://discord.gg/GkeexxWnyz\nCredit to 'https://github.com/SystemZeeWorkshop/modding-template'",
   "authors": [ "CoffeeCatRailway" ],
   "contributors": [ "Nyctoniac" ],
+  "accessWidener": "${id}.accesswidener",
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/coffeecheese",
 	"issues": "https://github.com/CoffeeCatRailway/HamNCheese/issues",
