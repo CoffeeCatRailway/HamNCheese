@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -69,12 +70,12 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
 
     private static LootTable.Builder createSingleItemTable(ItemLike itemLike)
     {
-        return LootTable.lootTable().withPool(applyExplosionCondition(itemLike, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(itemLike))));
+        return LootTable.lootTable().withPool(applyExplosionCondition(itemLike, LootPool.lootPool().setRolls(ConstantValue.exactly(1f)).add(LootItem.lootTableItem(itemLike))));
     }
 
     private static LootTable.Builder createSelfDropDispatchTable(Block block, LootItemCondition.Builder builder, LootPoolEntryContainer.Builder<?> builder2)
     {
-        return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).when(builder).otherwise(builder2)));
+        return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f)).add(LootItem.lootTableItem(block).when(builder).otherwise(builder2)));
     }
 
     private static LootTable.Builder createSilkTouchOrShearsDispatchTable(Block block, LootPoolEntryContainer.Builder<?> builder)
@@ -84,22 +85,22 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
 
     private static LootTable.Builder createSilkTouchOnlyTable(ItemLike itemLike)
     {
-        return LootTable.lootTable().withPool(LootPool.lootPool().when(HAS_SILK_TOUCH).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(itemLike)));
+        return LootTable.lootTable().withPool(LootPool.lootPool().when(HAS_SILK_TOUCH).setRolls(ConstantValue.exactly(1f)).add(LootItem.lootTableItem(itemLike)));
     }
 
     private static LootTable.Builder createPotFlowerItemTable(ItemLike itemLike)
     {
-        return LootTable.lootTable().withPool(applyExplosionCondition(Blocks.FLOWER_POT, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Blocks.FLOWER_POT)))).withPool(applyExplosionCondition(itemLike, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(itemLike))));
+        return LootTable.lootTable().withPool(applyExplosionCondition(Blocks.FLOWER_POT, LootPool.lootPool().setRolls(ConstantValue.exactly(1f)).add(LootItem.lootTableItem(Blocks.FLOWER_POT)))).withPool(applyExplosionCondition(itemLike, LootPool.lootPool().setRolls(ConstantValue.exactly(1f)).add(LootItem.lootTableItem(itemLike))));
     }
 
     private static <T extends Comparable<T> & StringRepresentable> LootTable.Builder createSinglePropConditionTable(Block block, Property<T> property, T comparable)
     {
-        return LootTable.lootTable().withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, comparable))))));
+        return LootTable.lootTable().withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1f)).add(LootItem.lootTableItem(block).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, comparable))))));
     }
 
     private static LootTable.Builder createLeavesDrops(Block block, Block block2, float... fs)
     {
-        return createSilkTouchOrShearsDispatchTable(block, applyExplosionCondition(block, LootItem.lootTableItem(block2)).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, fs))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
+        return createSilkTouchOrShearsDispatchTable(block, applyExplosionCondition(block, LootItem.lootTableItem(block2)).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, fs))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f)).when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 2f)))).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
     }
 
     public static LootTable.Builder noDrop()
@@ -191,10 +192,10 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
 //                                .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
 //                        .when(ExplosionCondition.survivesExplosion())));
 
-        this.dropSelf(HNCBlocks.BLOCK_OF_CHEESE.get());
-        this.dropSelf(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get());
-        this.dropSelf(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get());
-        this.dropSelf(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get());
+        this.blockOfCheese(HNCBlocks.BLOCK_OF_CHEESE.get());
+        this.blockOfCheese(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get());
+        this.blockOfCheese(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get());
+        this.blockOfCheese(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get());
 
         this.dropSelf(HNCBlocks.MAPLE_LOG.get());
         this.dropSelf(HNCBlocks.MAPLE_WOOD.get());
@@ -236,6 +237,17 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
 
         if (!this.map.isEmpty())
             throw new IllegalStateException("Created block loot tables for non-blocks: " + this.map.keySet());
+    }
+
+    private void blockOfCheese(CheeseBlock block)
+    {
+        this.add(block, LootTable.lootTable()
+                .withPool(applyExplosionCondition(block,
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                                .add(LootItem.lootTableItem(block))
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(CheeseBlock.BITES, 0))))));
     }
 
     public static LootTable.Builder createDoorTable(Block block)

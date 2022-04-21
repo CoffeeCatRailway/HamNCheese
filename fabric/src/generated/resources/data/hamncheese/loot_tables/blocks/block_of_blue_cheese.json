@@ -12,6 +12,13 @@
       ],
       "conditions": [
         {
+          "condition": "minecraft:block_state_property",
+          "block": "hamncheese:block_of_blue_cheese",
+          "properties": {
+            "bites": "0"
+          }
+        },
+        {
           "condition": "minecraft:survives_explosion"
         }
       ]
