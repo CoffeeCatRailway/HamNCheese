@@ -1,9 +1,11 @@
 package io.github.coffeecatrailway.hamncheese;
 
+import gg.moonflower.pollen.api.block.StrippedBlock;
 import gg.moonflower.pollen.api.client.util.CreativeModeTabBuilder;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
+import gg.moonflower.pollen.api.registry.StrippingRegistry;
 import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
@@ -76,6 +78,8 @@ public class HamNCheese
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
         ctx.enqueueWork(() -> HNCFeatures.load(PLATFORM));
+        StrippingRegistry.register(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get());
+        StrippingRegistry.register(HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());
     }
 
     public static void onDataInit(Platform.DataSetupContext ctx)
