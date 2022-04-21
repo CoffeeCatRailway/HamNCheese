@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "p p",
+    "ppp"
+  ],
+  "key": {
+    "p": {
+      "item": "hamncheese:maple_planks"
+    }
+  },
+  "result": {
+    "item": "hamncheese:maple_boat"
+  }
+}

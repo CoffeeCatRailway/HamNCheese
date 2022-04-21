@@ -229,7 +229,7 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(ItemTags.LEAVES).add(HNCBlocks.MAPLE_LEAVES.get().asItem());
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(HNCBlocks.MAPLE_TRAPDOOR.get().asItem());
         this.tag(ItemTags.SIGNS).add(HNCBlocks.MAPLE_SIGN.get().asItem());
-        this.tag(ItemTags.BOATS);//.add(HNCItems.MAPLE_BOAT.get());
+        this.tag(ItemTags.BOATS).add(HNCItems.MAPLE_BOAT.get()); // TODO: Check entity tags
 
         this.tag(RODS_WOODEN).add(Items.STICK);
         this.tag(RODS_WOODEN_FABRIC).addTag(RODS_WOODEN);

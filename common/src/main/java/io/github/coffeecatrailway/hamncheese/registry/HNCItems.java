@@ -4,6 +4,7 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import io.github.coffeecatrailway.hamncheese.common.item.*;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCBlockTags;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
@@ -108,7 +109,7 @@ public class HNCItems
     public static final Supplier<Item> FOOD_SCRAPS = registerIdAsName("food_scraps", prop -> new Item(prop.food(HNCFoods.FOOD_SCRAPS)));
 
     // Misc
-//    public static final Supplier<HNCBoatItem> MAPLE_BOAT = registerIdAsName("maple_boat", prop -> new HNCBoatItem(HNCBoatEntity.ModType.MAPLE, prop));
+    public static final Supplier<HNCBoatItem> MAPLE_BOAT = registerIdAsName("maple_boat", prop -> new HNCBoatItem(HNCBoatEntity.ModType.MAPLE, prop));
 
     //    public static final Supplier<BucketItem> MAPLE_SAP_BUCKET = registerIdAsName("maple_sap_bucket", prop -> new BucketItem(HNCFluids.MAPLE_SAP, prop.craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final Supplier<FoodBottleItem> MAPLE_SAP_BOTTLE = registerIdAsName("maple_sap_bottle", prop -> new FoodBottleItem(prop.food(HNCFoods.MAPLE_SAP_BOTTLE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1)));

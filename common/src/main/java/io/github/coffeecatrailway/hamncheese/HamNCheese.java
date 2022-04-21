@@ -7,18 +7,25 @@ import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.StrippingRegistry;
 import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
+import gg.moonflower.pollen.api.registry.client.EntityRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
+import io.github.coffeecatrailway.hamncheese.client.entity.HNCBoatEntityRenderer;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
+import io.github.coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
 import io.github.coffeecatrailway.hamncheese.registry.*;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.function.Supplier;
 
 /**
  * @author CoffeeCatRailway
@@ -41,6 +48,11 @@ public class HamNCheese
     public static void onClientInit()
     {
         SandwichItemRenderer.init();
+
+        EntityRendererRegistry.register(HNCEntities.MAPLE_BOAT, HNCBoatEntityRenderer::new);
+        Supplier<LayerDefinition> boatDefinition = BoatModel::createBodyModel;
+        for (HNCBoatEntity.ModType type : HNCBoatEntity.ModType.values())
+            EntityRendererRegistry.registerLayerDefinition(HNCBoatEntityRenderer.createModelLayer(type), boatDefinition);
 
         BlockEntityRendererRegistry.register(HNCBlockEntities.SIGN, SignRenderer::new);
     }
@@ -69,7 +81,7 @@ public class HamNCheese
         HNCItems.load(PLATFORM);
         HNCRecipes.load(PLATFORM);
 //        HNCBlockPlacerTypes.load(PLATFORM);
-//        HNCEntities.load(PLATFORM);
+        HNCEntities.load(PLATFORM);
 //        HNCProfessions.load(PLATFORM);
 //        bus.addGenericListener(StatType.class, HNCStats::register);
         HNCBlockEntities.load(PLATFORM);
