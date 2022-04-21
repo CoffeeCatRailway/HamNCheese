@@ -1,0 +1,7 @@
+{
+  "parent": "hamncheese:block/chopping_board",
+  "textures": {
+    "texture": "minecraft:block/dark_oak_planks",
+    "particle": "minecraft:block/dark_oak_planks"
+  }
+}

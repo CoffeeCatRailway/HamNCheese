@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "hamncheese:block/oak_chopping_board",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "hamncheese:block/oak_chopping_board",
+      "y": 0
+    },
+    "facing=south": {
+      "model": "hamncheese:block/oak_chopping_board",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "hamncheese:block/oak_chopping_board",
+      "y": 270
+    }
+  }
+}

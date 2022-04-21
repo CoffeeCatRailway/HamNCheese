@@ -38,6 +38,20 @@ public class HNCBlocks
 
     public static final WoodType MAPLE_WOOD_TYPE = WoodType.register(new WoodType(getWoodTypeId()));
 
+    public static final Supplier<ChoppingBoardBlock> OAK_CHOPPING_BOARD = registerChoppingBoard("oak_chopping_board", () -> Blocks.OAK_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> BIRCH_CHOPPING_BOARD = registerChoppingBoard("birch_chopping_board", () -> Blocks.BIRCH_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> SPRUCE_CHOPPING_BOARD = registerChoppingBoard("spruce_chopping_board", () -> Blocks.SPRUCE_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> JUNGLE_CHOPPING_BOARD = registerChoppingBoard("jungle_chopping_board", () -> Blocks.JUNGLE_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> ACACIA_CHOPPING_BOARD = registerChoppingBoard("acacia_chopping_board", () -> Blocks.ACACIA_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> DARK_OAK_CHOPPING_BOARD = registerChoppingBoard("dark_oak_chopping_board", () -> Blocks.DARK_OAK_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> CRIMSON_CHOPPING_BOARD = registerChoppingBoard("crimson_chopping_board", () -> Blocks.CRIMSON_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> WARPED_CHOPPING_BOARD = registerChoppingBoard("warped_chopping_board", () -> Blocks.WARPED_PRESSURE_PLATE);
+
+    public static final Supplier<ChoppingBoardBlock> STONE_CHOPPING_BOARD = registerChoppingBoard("stone_chopping_board", () -> Blocks.STONE_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> POLISHED_BLACKSTONE_CHOPPING_BOARD = registerChoppingBoard("polished_blackstone_chopping_board", () -> Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> GOLD_CHOPPING_BOARD = registerChoppingBoard("gold_chopping_board", () -> Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE);
+    public static final Supplier<ChoppingBoardBlock> IRON_CHOPPING_BOARD = registerChoppingBoard("iron_chopping_board", () -> Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE);
+
     public static final Supplier<RotatedPillarBlock> MAPLE_LOG = registerLog("maple_log", MaterialColor.SAND, MaterialColor.COLOR_BROWN);
     public static final Supplier<RotatedPillarBlock> MAPLE_WOOD = registerLog("maple_wood", MaterialColor.COLOR_BROWN);
     public static final Supplier<RotatedPillarBlock> STRIPPED_MAPLE_LOG = registerLog("stripped_maple_log", MaterialColor.SAND);
@@ -57,6 +71,8 @@ public class HNCBlocks
     public static final Supplier<TrapDoorBlock> MAPLE_TRAPDOOR = register("maple_trapdoor", () -> new TrapDoorBlockOverride(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).strength(3f).sound(SoundType.WOOD).noOcclusion().isValidSpawn((state, reader, blockPos, entityType) -> false)), prop -> prop);
     public static final Supplier<DoorBlock> MAPLE_DOOR = register("maple_door", () -> new DoorBlockOverride(BlockBehaviour.Properties.of(Material.WOOD, (state) -> MAPLE_PLANKS.get().defaultMaterialColor()).strength(3f).sound(SoundType.WOOD).noOcclusion()), prop -> prop);
 
+    public static final Supplier<ChoppingBoardBlock> MAPLE_CHOPPING_BOARD = registerChoppingBoard("maple_chopping_board", HNCBlocks.MAPLE_PRESSURE_PLATE);
+
     private static Supplier<RotatedPillarBlock> registerLog(String id, MaterialColor color)
     {
         return registerLog(id, color, color);
@@ -70,6 +86,11 @@ public class HNCBlocks
         Function<BlockState, MaterialColor> finalColorFunction = colorFunction;
         return register(id, () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, finalColorFunction)
                 .strength(2f).sound(SoundType.WOOD)), prop -> prop);
+    }
+
+    public static <T extends Block> Supplier<ChoppingBoardBlock> registerChoppingBoard(String id, Supplier<T> base)
+    {
+        return register(id, () -> new ChoppingBoardBlock(BlockBehaviour.Properties.copy(base.get()).strength(.5f)), prop -> prop);
     }
 
     public static <T extends Block> Supplier<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)

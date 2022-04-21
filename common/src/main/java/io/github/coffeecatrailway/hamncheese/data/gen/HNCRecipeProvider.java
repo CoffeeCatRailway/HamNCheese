@@ -10,6 +10,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Consumer;
 
@@ -50,17 +51,17 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ShapelessRecipeBuilder.shapeless(HNCItems.GRIND_STONES.get(), 2)
                 .requires(HNCItemTags.STONE_COMMON).unlockedBy("has_cobble", has(HNCItemTags.STONE_COMMON)).save(consumer);
 
-        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', ItemTags.PLANKS).pattern(" i ").pattern("s  ")
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', ItemTags.PLANKS).pattern(" i ").pattern("s  ")
                 .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.STONE_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.STONE_COMMON).pattern(" i ").pattern("s  ")
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.STONE_COMMON).pattern(" i ").pattern("s  ")
                 .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.COPPER_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.COPPER_INGOTS_COMMON).pattern(" i ").pattern("s  ")
+        ShapedRecipeBuilder.shaped(HNCItems.COPPER_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.COPPER_INGOTS_COMMON).pattern(" i ").pattern("s  ")
                 .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_copper", has(HNCItemTags.COPPER_INGOTS_COMMON)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.GOLDEN_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.GOLD_INGOTS_COMMON).pattern(" i ").pattern("s  ")
+        ShapedRecipeBuilder.shaped(HNCItems.GOLDEN_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.GOLD_INGOTS_COMMON).pattern(" i ").pattern("s  ")
                 .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_gold", has(HNCItemTags.GOLD_INGOTS_COMMON)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.IRON_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.IRON_INGOTS_COMMON).pattern(" i ").pattern("s  ")
+        ShapedRecipeBuilder.shaped(HNCItems.IRON_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.IRON_INGOTS_COMMON).pattern(" i ").pattern("s  ")
                 .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.DIAMOND_KNIFE.get()).define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.DIAMONDS_COMMON).pattern(" i ").pattern("s  ")
+        ShapedRecipeBuilder.shaped(HNCItems.DIAMOND_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.DIAMONDS_COMMON).pattern(" i ").pattern("s  ")
                 .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_diamond", has(HNCItemTags.DIAMONDS_COMMON)).save(consumer);
         netheriteSmithing(consumer, HNCItems.DIAMOND_KNIFE.get(), HNCItems.NETHERITE_KNIFE.get());
 
@@ -174,20 +175,20 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 
 //        ShapedRecipeBuilder.shaped(HNCBlocks.TREE_TAP.get()).define('i', HNCItemTags.IRON_INGOTS_COMMON).define('n', Tags.Items.NUGGETS_IRON).pattern(" n").pattern("ii").pattern(" n").unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).unlockedBy("has_iron_nugget", has(Tags.Items.NUGGETS_IRON)).save(consumer);
 
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.OAK_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.OAK_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.OAK_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.BIRCH_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.BIRCH_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.BIRCH_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.SPRUCE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.SPRUCE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.SPRUCE_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.JUNGLE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.JUNGLE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.JUNGLE_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.ACACIA_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.ACACIA_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.ACACIA_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.DARK_OAK_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.DARK_OAK_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.CRIMSON_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.CRIMSON_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.CRIMSON_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.WARPED_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.WARPED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.WARPED_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.OAK_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.OAK_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.OAK_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.BIRCH_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.BIRCH_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.BIRCH_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.SPRUCE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.SPRUCE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.SPRUCE_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.JUNGLE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.JUNGLE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.JUNGLE_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.ACACIA_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.ACACIA_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.ACACIA_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.DARK_OAK_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.DARK_OAK_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.CRIMSON_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.CRIMSON_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.CRIMSON_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.WARPED_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.WARPED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.WARPED_PRESSURE_PLATE)).save(consumer);
 
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.STONE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.STONE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.STONE_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.GOLD_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.IRON_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.STONE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.STONE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.STONE_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.GOLD_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.IRON_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)).save(consumer);
 
-//        ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_CHOPPING_BOARD.get()).group("chopping_board").requires(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).unlockedBy("has_pressure_plate", has(HNCBlocks.MAPLE_PRESSURE_PLATE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_CHOPPING_BOARD.get()).group("chopping_board").requires(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).unlockedBy("has_pressure_plate", has(HNCBlocks.MAPLE_PRESSURE_PLATE.get())).save(consumer);
     }
 }

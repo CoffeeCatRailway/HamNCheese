@@ -157,21 +157,21 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
 //                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornPlantBlock.HALF, DoubleBlockHalf.LOWER))))))
 //                .apply(applyExplosionDecay()));
 
-//        this.dropSelf(HNCBlocks.OAK_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.BIRCH_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.SPRUCE_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.JUNGLE_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.ACACIA_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.CRIMSON_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.WARPED_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.OAK_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.BIRCH_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.SPRUCE_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.JUNGLE_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.ACACIA_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.CRIMSON_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.WARPED_CHOPPING_BOARD.get());
 
-//        this.dropSelf(HNCBlocks.STONE_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.GOLD_CHOPPING_BOARD.get());
-//        this.dropSelf(HNCBlocks.IRON_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.STONE_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.GOLD_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.IRON_CHOPPING_BOARD.get());
 
-//        this.dropSelf(HNCBlocks.MAPLE_CHOPPING_BOARD.get());
+        this.dropSelf(HNCBlocks.MAPLE_CHOPPING_BOARD.get());
 
 //        this.add(HNCBlocks.PIZZA_OVEN.get(), block -> LootTable.lootTable()
 //                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))

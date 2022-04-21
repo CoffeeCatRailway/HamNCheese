@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:birch_chopping_board"
+    ]
+  },
+  "criteria": {
+    "has_pressure_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:birch_pressure_plate"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:birch_chopping_board"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pressure_plate",
+      "has_the_recipe"
+    ]
+  ]
+}
