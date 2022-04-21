@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:cheese_slice"
+    ]
+  },
+  "criteria": {
+    "has_cheese": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:block_of_cheese"
+            ]
+          }
+        ]
+      }
+    },
+    "has_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:knives"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:cheese_slice"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cheese",
+      "has_knife",
+      "has_the_recipe"
+    ]
+  ]
+}

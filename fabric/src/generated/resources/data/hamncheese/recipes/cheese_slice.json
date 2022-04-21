@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cheese_slice",
+  "ingredients": [
+    {
+      "item": "hamncheese:block_of_cheese"
+    },
+    {
+      "tag": "c:knives"
+    }
+  ],
+  "result": {
+    "item": "hamncheese:cheese_slice",
+    "count": 4
+  }
+}

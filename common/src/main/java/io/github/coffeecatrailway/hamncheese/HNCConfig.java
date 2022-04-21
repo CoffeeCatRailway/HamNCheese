@@ -28,6 +28,8 @@ public class HNCConfig
 
         public final PollinatedConfigBuilder.ConfigValue<Boolean> mapleSapStuck;
 
+        public final PollinatedConfigBuilder.ConfigValue<Double> blockOfCheeseChance;
+
         // Blocks - Dispenser
         public final PollinatedConfigBuilder.ConfigValue<Boolean> dispenseTomatoSauce;
 
@@ -84,6 +86,9 @@ public class HNCConfig
 
             this.mapleSapStuck = builder.comment("True if you want to be players stuck in maple sap")
                     .define("mapleSapStuck", true);
+
+            this.blockOfCheeseChance = builder.comment("Chance that a \"Block Of Cheese\" will turn into blue cheese", "Note: Larger the value less the chance")
+                    .defineInRange("blockOfCheeseChance", .9f, 0f, 1f);
 
             builder.push("dispenser");
             this.dispenseTomatoSauce = builder.comment("Whether or not tomato sauce is dispensed along with the pizza")

@@ -48,6 +48,9 @@ public class HNCItems
 
     // Foods
     public static final Supplier<Item> CHEESE_SLICE = registerIdAsName("cheese_slice", prop -> new Item(prop.food(HNCFoods.CHEESE_SLICE).stacksTo(32)));
+    public static final Supplier<Item> BLUE_CHEESE_SLICE = registerIdAsName("blue_cheese_slice", prop -> new Item(prop.food(HNCFoods.BLUE_CHEESE_SLICE).stacksTo(32)));
+    public static final Supplier<Item> GOUDA_CHEESE_SLICE = registerIdAsName("gouda_cheese_slice", prop -> new Item(prop.food(HNCFoods.GOUDA_CHEESE_SLICE).stacksTo(32)));
+    public static final Supplier<Item> SWISS_CHEESE_SLICE = registerIdAsName("swiss_cheese_slice", prop -> new Item(prop.food(HNCFoods.SWISS_CHEESE_SLICE).stacksTo(32)));
 
     public static final Supplier<Item> ROCK_SALT = registerIdAsName("rock_salt", prop -> new Item(prop.food(HNCFoods.INGREDIENT)));
     public static final Supplier<Item> FLOUR = registerIdAsName("flour", prop -> new Item(prop.food(HNCFoods.INGREDIENT)));

@@ -36,7 +36,7 @@ public class HamNCheese
             .dataInit(HamNCheese::onDataInit)
             .build();
 
-    public static final CreativeModeTab TAB = CreativeModeTabBuilder.builder(getLocation("tab")).setIcon(() -> new ItemStack(HNCItems.CHEESE_SLICE.get())).build();
+    public static final CreativeModeTab TAB = CreativeModeTabBuilder.builder(getLocation("tab")).setIcon(() -> new ItemStack(HNCBlocks.BLOCK_OF_CHEESE.get())).build();
 
     public static void onClientInit()
     {
@@ -50,6 +50,8 @@ public class HamNCheese
 //        ctx.enqueueWork(() -> {
 //            ScreenRegistry.register(PlusMenuTypes.SAW_BENCH.get(), SawBenchScreen::new);
 //        });
+
+        RenderTypeRegistry.register(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get(), RenderType.cutout());
 
         RenderTypeRegistry.register(HNCBlocks.MAPLE_SAPLING.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.POTTED_MAPLE_SAPLING.get(), RenderType.cutout());

@@ -1,9 +1,9 @@
 {
 	"textures": {
-		"bottom": "hamncheese:block/swiss_cheese_block_bottom",
-		"top": "hamncheese:block/cheese_block_top",
-		"particle": "hamncheese:block/cheese_block_inner",
-		"side": "hamncheese:block/cheese_block_side"
+		"bottom": "hamncheese:block/blue_cheese_block_bottom",
+		"top": "hamncheese:block/blue_cheese_block_top",
+		"particle": "hamncheese:block/blue_cheese_block_inner",
+		"side": "hamncheese:block/blue_cheese_block_side"
 	},
 	"elements": [
 		{

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hamncheese:item/swiss_cheese_slice"
+  }
+}

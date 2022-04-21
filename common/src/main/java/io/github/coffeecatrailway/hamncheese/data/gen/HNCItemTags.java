@@ -136,6 +136,9 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     private static final Tag.Named<Item> KNIVES = TagRegistry.bindItem(new ResourceLocation("forge", "knives"));
     public static final Tag.Named<Item> KNIVES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "knives"));
 
+    private static final Tag.Named<Item> SHEARS = TagRegistry.bindItem(new ResourceLocation("forge", "shears"));
+    public static final Tag.Named<Item> SHEARS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "shears"));
+
     public HNCItemTags(DataGenerator dataGenerator, PollinatedModContainer container, BlockTagsProvider blockTags)
     {
         super(dataGenerator, container, blockTags);
@@ -153,7 +156,7 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(SUGAR).add(Items.SUGAR);
         this.tag(SUGAR_COMMON).addTag(SUGAR);
 
-        this.tag(CHEESE).add(HNCItems.CHEESE_SLICE.get());//HNCBlocks.BLOCK_OF_CHEESE.get().asItem(),
+        this.tag(CHEESE).add(HNCItems.CHEESE_SLICE.get(), HNCItems.BLUE_CHEESE_SLICE.get(), HNCItems.GOUDA_CHEESE_SLICE.get(), HNCItems.SWISS_CHEESE_SLICE.get(), HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_BLUE_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_SWISS_CHEESE.get().asItem());
         this.tag(CHEESE_COMMON).addTag(CHEESE);
 
         this.tag(SALT).add(HNCItems.ROCK_SALT.get());
@@ -271,5 +274,8 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(KNIVES_NETHERITE).add(HNCItems.NETHERITE_KNIFE.get());
         this.tag(KNIVES).addTag(KNIVES_WOOD, KNIVES_STONE, KNIVES_COPPER, KNIVES_GOLD, KNIVES_IRON, KNIVES_DIAMOND, KNIVES_NETHERITE);
         this.tag(KNIVES_COMMON).addTag(KNIVES);
+
+        this.tag(SHEARS).add(Items.SHEARS);
+        this.tag(SHEARS_COMMON).addTag(SHEARS);
     }
 }

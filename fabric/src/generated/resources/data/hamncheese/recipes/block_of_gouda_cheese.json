@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "block_of_cheese",
+  "pattern": [
+    " r ",
+    "rcr",
+    " r "
+  ],
+  "key": {
+    "r": {
+      "tag": "c:red_dyes"
+    },
+    "c": {
+      "item": "hamncheese:block_of_cheese"
+    }
+  },
+  "result": {
+    "item": "hamncheese:block_of_gouda_cheese"
+  }
+}

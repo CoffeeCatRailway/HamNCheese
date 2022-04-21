@@ -6,6 +6,7 @@ import gg.moonflower.pollen.api.datagen.provider.model.PollinatedItemModelGenera
 import gg.moonflower.pollen.api.datagen.provider.model.PollinatedModelProvider;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
@@ -18,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -64,8 +66,10 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.NETHERITE_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
             // Foods
-//            this.generateFlatItem(HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.BLUE_CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.GOUDA_CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.SWISS_CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
 
             this.generateFlatItem(HNCItems.ROCK_SALT.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.FLOUR.get(), ModelTemplates.FLAT_ITEM);
@@ -244,10 +248,10 @@ public class HNCModels extends PollinatedModelProvider
             this.choppingBoard(HNCBlocks.MAPLE_CHOPPING_BOARD.get(), HNCBlocks.MAPLE_PLANKS.get());
 
             // Misc
-//            VariantBlockStateBuilder.PartialBlockstate cheese = this.getVariantBuilder(HNCBlocks.BLOCK_OF_CHEESE.get()).partialState();
-//            cheese.with(CheeseBlock.BITES, 0).modelForState().modelFile(this.itemModels().getExistingFile(HamNCheese.getLocation("block/block_of_cheese"))).addModel();
-//            for (i = 1; i < 4; i++)
-//                cheese.with(CheeseBlock.BITES, i).modelForState().modelFile(this.itemModels().getExistingFile(HamNCheese.getLocation("block/block_of_cheese_slice" + i))).addModel();
+            this.blockOfCheese(HNCBlocks.BLOCK_OF_CHEESE.get());
+            this.blockOfCheese(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get());
+            this.blockOfCheese(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get());
+            this.blockOfCheese(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get());
 
             this.createRotatedPillarWithHorizontalVariant(HNCBlocks.MAPLE_LOG.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
             this.createWoodVariant(HNCBlocks.MAPLE_WOOD.get(), HamNCheese.getLocation("block/maple_log_side"));
@@ -294,6 +298,17 @@ public class HNCModels extends PollinatedModelProvider
 
 //            ModelFile mapleSapModel = this.models().getBuilder("block/maple_sap").texture("particle", HamNCheese.getLocation("block/maple_sap_still"));
 //            this.getVariantBuilder(HNCBlocks.MAPLE_SAP.get()).partialState().modelForState().modelFile(mapleSapModel).addModel();
+        }
+
+        private void blockOfCheese(CheeseBlock block)
+        {
+            this.createSimpleFlatItemModel(block.asItem());
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(block)
+                    .with(PropertyDispatch.property(CheeseBlock.BITES)
+                            .select(0, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block)))
+                            .select(1, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_slice1")))
+                            .select(2, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_slice2")))
+                            .select(3, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_slice3")))));
         }
 
         private static final ModelTemplate CHOPPING_BOARD = new ModelTemplate(Optional.of(HamNCheese.getLocation("block/chopping_board")), Optional.empty(), TextureSlot.TEXTURE, TextureSlot.PARTICLE);

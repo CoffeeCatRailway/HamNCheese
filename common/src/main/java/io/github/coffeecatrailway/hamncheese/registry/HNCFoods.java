@@ -16,7 +16,16 @@ public class HNCFoods
     private static final MobEffectInstance HUNGER_EFFECT = new MobEffectInstance(MobEffects.HUNGER, 400, 1);
 
     public static final FoodProperties BLOCK_OF_CHEESE = new FoodProperties.Builder().nutrition(6).saturationMod(.1f).build();
-    public static final FoodProperties CHEESE_SLICE = divide(BLOCK_OF_CHEESE, 3f, 2f).build();
+    public static final FoodProperties CHEESE_SLICE = divide(BLOCK_OF_CHEESE, 4f, 2f).build();
+
+    public static final FoodProperties BLOCK_OF_BLUE_CHEESE = add(BLOCK_OF_CHEESE, 1, .1f).build();
+    public static final FoodProperties BLUE_CHEESE_SLICE = add(CHEESE_SLICE, 1, .1f).build();
+
+    public static final FoodProperties BLOCK_OF_GOUDA_CHEESE = add(BLOCK_OF_CHEESE, 0, .25f).build();
+    public static final FoodProperties GOUDA_CHEESE_SLICE = add(CHEESE_SLICE, 0, .25f).build();
+
+    public static final FoodProperties BLOCK_OF_SWISS_CHEESE = add(BLOCK_OF_CHEESE, -1, -.3f).build();
+    public static final FoodProperties SWISS_CHEESE_SLICE = add(CHEESE_SLICE, -1, -.3f).build();
 
     public static final FoodProperties INGREDIENT = new FoodProperties.Builder().nutrition(1).saturationMod(.5f).build();
     public static final FoodProperties DOUGH = times(INGREDIENT, 3f).build();
@@ -62,6 +71,11 @@ public class HNCFoods
     public static final FoodProperties MAPLE_SAP_BOTTLE = new FoodProperties.Builder().nutrition(6).saturationMod(.1f).build();
     public static final FoodProperties MAPLE_SYRUP = combine(1f, false, MAPLE_SAP_BOTTLE, INGREDIENT).build();
     public static final FoodProperties MAPLE_POPCORN = times(combine(1f, false, MAPLE_SYRUP, INGREDIENT).build(), 1f, .5f).build();
+
+    private static FoodProperties.Builder add(FoodProperties copy, int nutrition, float saturationMod)
+    {
+        return copyFoodProperties(copy).nutrition(copy.getNutrition() + nutrition).saturationMod(copy.getSaturationModifier() + saturationMod);
+    }
 
     private static FoodProperties.Builder divide(FoodProperties copy, float amount)
     {

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "hamncheese:block/block_of_gouda_cheese"
+    },
+    "bites=1": {
+      "model": "hamncheese:block/block_of_gouda_cheese_slice1"
+    },
+    "bites=2": {
+      "model": "hamncheese:block/block_of_gouda_cheese_slice2"
+    },
+    "bites=3": {
+      "model": "hamncheese:block/block_of_gouda_cheese_slice3"
+    }
+  }
+}

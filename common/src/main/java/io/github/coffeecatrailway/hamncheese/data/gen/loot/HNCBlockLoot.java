@@ -191,7 +191,10 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
 //                                .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
 //                        .when(ExplosionCondition.survivesExplosion())));
 
-//        this.add(HNCBlocks.BLOCK_OF_CHEESE.get(), noDrop());
+        this.dropSelf(HNCBlocks.BLOCK_OF_CHEESE.get());
+        this.dropSelf(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get());
+        this.dropSelf(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get());
+        this.dropSelf(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get());
 
         this.dropSelf(HNCBlocks.MAPLE_LOG.get());
         this.dropSelf(HNCBlocks.MAPLE_WOOD.get());

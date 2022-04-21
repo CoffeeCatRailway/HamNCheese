@@ -1,6 +1,13 @@
 {
   "replace": false,
   "values": [
-    "hamncheese:cheese_slice"
+    "hamncheese:cheese_slice",
+    "hamncheese:blue_cheese_slice",
+    "hamncheese:gouda_cheese_slice",
+    "hamncheese:swiss_cheese_slice",
+    "hamncheese:block_of_cheese",
+    "hamncheese:block_of_blue_cheese",
+    "hamncheese:block_of_gouda_cheese",
+    "hamncheese:block_of_swiss_cheese"
   ]
 }

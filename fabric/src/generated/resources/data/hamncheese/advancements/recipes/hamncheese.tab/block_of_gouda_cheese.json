@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:block_of_gouda_cheese"
+    ]
+  },
+  "criteria": {
+    "has_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:red_dyes"
+          }
+        ]
+      }
+    },
+    "has_cheese": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:block_of_cheese"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:block_of_gouda_cheese"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dye",
+      "has_cheese",
+      "has_the_recipe"
+    ]
+  ]
+}
