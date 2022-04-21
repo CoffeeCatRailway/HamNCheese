@@ -1,7 +1,8 @@
 {
 	"textures": {
 		"bottom": "hamncheese:block/swiss_cheese_block_bottom",
-		"top": "hamncheese:block/swiss_cheese_block_top",
+        "top": "hamncheese:block/swiss_cheese_block_top",
+        "particle": "hamncheese:block/swiss_cheese_block_top",
 		"side": "hamncheese:block/swiss_cheese_block_side",
 		"hole": "hamncheese:item/cheese_bits"
 	},
