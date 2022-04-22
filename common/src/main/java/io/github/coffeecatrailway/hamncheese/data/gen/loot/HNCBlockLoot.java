@@ -216,8 +216,7 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
         this.dropSelf(HNCBlocks.MAPLE_TRAPDOOR.get());
         this.add(HNCBlocks.MAPLE_DOOR.get(), HNCBlockLoot::createDoorTable);
 
-//        this.dropSelf(HNCBlocks.TREE_TAP.get());
-//        this.add(HNCBlocks.MAPLE_SAP.get(), noDrop());
+        this.dropSelf(HNCBlocks.TREE_TAP.get());
 
         Set<ResourceLocation> set = Sets.newHashSet();
         Set<ResourceLocation> blockKeys = Registry.BLOCK.keySet().stream().filter(entityType -> HamNCheese.MOD_ID.equals(entityType.getNamespace())).collect(Collectors.toSet());

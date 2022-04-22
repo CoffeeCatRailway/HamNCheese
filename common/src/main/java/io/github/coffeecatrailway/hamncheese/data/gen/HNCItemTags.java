@@ -105,6 +105,9 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     private static final Tag.Named<Item> IRON_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/iron"));
     public static final Tag.Named<Item> IRON_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "iron_ingots"));
 
+    private static final Tag.Named<Item> IRON_NUGGETS = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets/iron"));
+    public static final Tag.Named<Item> IRON_NUGGETS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "iron_nuggets"));
+
     private static final Tag.Named<Item> COPPER_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/copper"));
     private static final Tag.Named<Item> COPPER_INGOT = TagRegistry.bindItem(new ResourceLocation("c", "copper_ingot"));
     public static final Tag.Named<Item> COPPER_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "copper_ingots"));
@@ -229,7 +232,7 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(ItemTags.LEAVES).add(HNCBlocks.MAPLE_LEAVES.get().asItem());
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(HNCBlocks.MAPLE_TRAPDOOR.get().asItem());
         this.tag(ItemTags.SIGNS).add(HNCBlocks.MAPLE_SIGN.get().asItem());
-        this.tag(ItemTags.BOATS).add(HNCItems.MAPLE_BOAT.get()); // TODO: Check entity tags
+        this.tag(ItemTags.BOATS).add(HNCItems.MAPLE_BOAT.get());
 
         this.tag(RODS_WOODEN).add(Items.STICK);
         this.tag(RODS_WOODEN_FABRIC).addTag(RODS_WOODEN);
@@ -243,6 +246,9 @@ public class HNCItemTags extends PollinatedItemTagsProvider
 
         this.tag(IRON_INGOTS).add(Items.IRON_INGOT);
         this.tag(IRON_INGOTS_COMMON).addTag(IRON_INGOTS);
+
+        this.tag(IRON_NUGGETS).add(Items.IRON_NUGGET);
+        this.tag(IRON_NUGGETS_COMMON).addTag(IRON_NUGGETS);
 
         this.tag(COPPER_INGOTS).add(Items.COPPER_INGOT);
         this.tag(COPPER_INGOT).addTag(COPPER_INGOTS);

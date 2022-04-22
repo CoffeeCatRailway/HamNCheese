@@ -184,7 +184,7 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_DOOR.get(), 3).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("pp").pattern("pp").pattern("pp").group("wooden_door").unlockedBy("has_planks", has(HNCBlocks.MAPLE_PLANKS.get())).save(consumer);
         ShapedRecipeBuilder.shaped(HNCItems.MAPLE_BOAT.get()).define('p', HNCBlocks.MAPLE_PLANKS.get()).pattern("p p").pattern("ppp").group("boat").unlockedBy("in_water", insideOf(Blocks.WATER)).save(consumer);
 
-//        ShapedRecipeBuilder.shaped(HNCBlocks.TREE_TAP.get()).define('i', HNCItemTags.IRON_INGOTS_COMMON).define('n', Tags.Items.NUGGETS_IRON).pattern(" n").pattern("ii").pattern(" n").unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).unlockedBy("has_iron_nugget", has(Tags.Items.NUGGETS_IRON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCBlocks.TREE_TAP.get()).define('i', HNCItemTags.IRON_INGOTS_COMMON).define('n', HNCItemTags.IRON_NUGGETS_COMMON).pattern(" n").pattern("ii").pattern(" n").unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).unlockedBy("has_iron_nugget", has(HNCItemTags.IRON_NUGGETS_COMMON)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCBlocks.OAK_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.OAK_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.OAK_PRESSURE_PLATE)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCBlocks.BIRCH_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.BIRCH_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.BIRCH_PRESSURE_PLATE)).save(consumer);

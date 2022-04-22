@@ -78,6 +78,8 @@ public class HNCBlocks
 
     public static final Supplier<ChoppingBoardBlock> MAPLE_CHOPPING_BOARD = registerChoppingBoard("maple_chopping_board", HNCBlocks.MAPLE_PRESSURE_PLATE);
 
+    public static final Supplier<TreeTapBlock> TREE_TAP = register("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5f, 6f).sound(SoundType.METAL)), prop -> prop.stacksTo(16));
+
     private static Supplier<RotatedPillarBlock> registerLog(String id, MaterialColor color)
     {
         return registerLog(id, color, color);

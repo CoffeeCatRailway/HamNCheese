@@ -8,6 +8,7 @@ import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
+import io.github.coffeecatrailway.hamncheese.common.block.TreeTapBlock;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -140,6 +142,8 @@ public class HNCModels extends PollinatedModelProvider
 
     private static class BlockModelGenerator extends PollinatedBlockModelGenerator
     {
+        private static final ModelTemplate CHOPPING_BOARD = new ModelTemplate(Optional.of(HamNCheese.getLocation("block/chopping_board")), Optional.empty(), TextureSlot.TEXTURE, TextureSlot.PARTICLE);
+
         public BlockModelGenerator(Consumer<BlockStateGenerator> blockStateOutput, BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput, Consumer<Item> skippedAutoModelsOutput)
         {
             super(blockStateOutput, modelOutput, skippedAutoModelsOutput);
@@ -298,8 +302,16 @@ public class HNCModels extends PollinatedModelProvider
 //            }
 //            this.toItem(HNCBlocks.TREE_TAP.get(), HamNCheese.getLocation("block/tree_tap_level_3"));
 
-//            ModelFile mapleSapModel = this.models().getBuilder("block/maple_sap").texture("particle", HamNCheese.getLocation("block/maple_sap_still"));
-//            this.getVariantBuilder(HNCBlocks.MAPLE_SAP.get()).partialState().modelForState().modelFile(mapleSapModel).addModel();
+            Function<Integer, ResourceLocation> modelLocation = level -> HamNCheese.getLocation("block/tree_tap_level_" + level);
+            ResourceLocation tapModel = HamNCheese.getLocation("block/tree_tap");
+            PropertyDispatch.C3<Direction, Integer, Boolean> propertyDispatch = PropertyDispatch.properties(TreeTapBlock.FACING, TreeTapBlock.SAP_LEVEL, TreeTapBlock.BUCKET);
+            for (Direction direction : Direction.Plane.HORIZONTAL)
+                for (i = 0; i < 4; i++)
+                    propertyDispatch = propertyDispatch.select(direction, i, true, Variant.variant().with(VariantProperties.MODEL, modelLocation.apply(i)).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)))
+                            .select(direction, i, false, Variant.variant().with(VariantProperties.MODEL, tapModel).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)));
+
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.TREE_TAP.get()).with(propertyDispatch));
+            this.delegateItemModel(HNCBlocks.TREE_TAP.get(), modelLocation.apply(3));
         }
 
         private void blockOfCheese(CheeseBlock block)
@@ -313,7 +325,6 @@ public class HNCModels extends PollinatedModelProvider
                             .select(3, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_slice3")))));
         }
 
-        private static final ModelTemplate CHOPPING_BOARD = new ModelTemplate(Optional.of(HamNCheese.getLocation("block/chopping_board")), Optional.empty(), TextureSlot.TEXTURE, TextureSlot.PARTICLE);
 
         private void choppingBoard(ChoppingBoardBlock boardBlock, Block planksBlock)
         {

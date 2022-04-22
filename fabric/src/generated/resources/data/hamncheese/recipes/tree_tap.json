@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " n",
+    "ii",
+    " n"
+  ],
+  "key": {
+    "i": {
+      "tag": "c:iron_ingots"
+    },
+    "n": {
+      "tag": "c:iron_nuggets"
+    }
+  },
+  "result": {
+    "item": "hamncheese:tree_tap"
+  }
+}

@@ -76,6 +76,8 @@ public class HamNCheese
         RenderTypeRegistry.register(HNCBlocks.MAPLE_TRAPDOOR.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.MAPLE_DOOR.get(), RenderType.cutout());
 
+        RenderTypeRegistry.register(HNCBlocks.TREE_TAP.get(), RenderType.cutout());
+
         RenderTypeRegistry.register(HNCFluids.MAPLE_SAP.get(), RenderType.translucent());
         RenderTypeRegistry.register(HNCFluids.MAPLE_SAP_FLOWING.get(), RenderType.translucent());
 
