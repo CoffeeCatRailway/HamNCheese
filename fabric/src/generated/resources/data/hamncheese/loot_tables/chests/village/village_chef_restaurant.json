@@ -4,8 +4,8 @@
     {
       "rolls": {
         "type": "minecraft:uniform",
-        "min": 3.0,
-        "max": 8.0
+        "min": 2.0,
+        "max": 6.0
       },
       "bonus_rolls": 0.0,
       "entries": [
@@ -107,12 +107,140 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1.0,
+                "max": 8.0
+              },
+              "add": false
+            }
+          ],
+          "name": "hamncheese:block_of_cheese"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
                 "max": 4.0
               },
               "add": false
             }
           ],
           "name": "hamncheese:cheese_slice"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 8.0
+              },
+              "add": false
+            }
+          ],
+          "name": "hamncheese:block_of_blue_cheese"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 4.0
+              },
+              "add": false
+            }
+          ],
+          "name": "hamncheese:blue_cheese_slice"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 8.0
+              },
+              "add": false
+            }
+          ],
+          "name": "hamncheese:block_of_gouda_cheese"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 4.0
+              },
+              "add": false
+            }
+          ],
+          "name": "hamncheese:gouda_cheese_slice"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 8.0
+              },
+              "add": false
+            }
+          ],
+          "name": "hamncheese:block_of_swiss_cheese"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 4.0
+              },
+              "add": false
+            }
+          ],
+          "name": "hamncheese:swiss_cheese_slice"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0.0,
+                "max": 3.0
+              },
+              "add": false
+            }
+          ],
+          "name": "hamncheese:swiss_cheese_bits"
         },
         {
           "type": "minecraft:item",

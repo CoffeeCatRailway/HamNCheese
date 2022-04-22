@@ -4,7 +4,7 @@
         "top": "hamncheese:block/swiss_cheese_block_top",
         "particle": "hamncheese:block/swiss_cheese_block_top",
 		"side": "hamncheese:block/swiss_cheese_block_side",
-		"hole": "hamncheese:item/cheese_bits"
+		"hole": "hamncheese:item/swiss_cheese_bits"
 	},
 	"elements": [
 		{

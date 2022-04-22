@@ -70,6 +70,7 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.BLUE_CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.GOUDA_CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.SWISS_CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.SWISS_CHEESE_BITS.get(), ModelTemplates.FLAT_ITEM);
 
             this.generateFlatItem(HNCItems.ROCK_SALT.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.FLOUR.get(), ModelTemplates.FLAT_ITEM);

@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.hamncheese.data.gen.loot;
 
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.data.loot.ChestLoot;
 import net.minecraft.resources.ResourceLocation;
@@ -28,7 +29,7 @@ public class HNCChestLoot implements Consumer<BiConsumer<ResourceLocation, LootT
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> registry)
     {
         registry.accept(PLAINS_CHEF_RESTAURANT, LootTable.lootTable()
-                .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(3, 8))
+                .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(2, 6))
                                 .add(LootItem.lootTableItem(HNCItems.STONE_KNIFE.get()).setWeight(3))
                                 .add(LootItem.lootTableItem(HNCItems.COPPER_KNIFE.get()).setWeight(8))
                                 .add(LootItem.lootTableItem(HNCItems.IRON_KNIFE.get()).setWeight(2))
@@ -53,10 +54,27 @@ public class HNCChestLoot implements Consumer<BiConsumer<ResourceLocation, LootT
                                 .add(LootItem.lootTableItem(HNCItems.BREAD_SLICE.get()).setWeight(10)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))))
 
-//                        .add(LootItem.lootTableItem(HNCBlocks.BLOCK_OF_CHEESE.get()).setWeight(8)
-//                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))))
+                                .add(LootItem.lootTableItem(HNCBlocks.BLOCK_OF_CHEESE.get()).setWeight(10)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))))
                                 .add(LootItem.lootTableItem(HNCItems.CHEESE_SLICE.get()).setWeight(10)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))))
+
+                                .add(LootItem.lootTableItem(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get()).setWeight(8)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 8))))
+                                .add(LootItem.lootTableItem(HNCItems.BLUE_CHEESE_SLICE.get()).setWeight(8)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 4))))
+
+                                .add(LootItem.lootTableItem(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get()).setWeight(8)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 8))))
+                                .add(LootItem.lootTableItem(HNCItems.GOUDA_CHEESE_SLICE.get()).setWeight(8)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 4))))
+
+                                .add(LootItem.lootTableItem(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get()).setWeight(8)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 8))))
+                                .add(LootItem.lootTableItem(HNCItems.SWISS_CHEESE_SLICE.get()).setWeight(8)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 4))))
+                                .add(LootItem.lootTableItem(HNCItems.SWISS_CHEESE_BITS.get()).setWeight(8)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 3))))
 
                                 .add(LootItem.lootTableItem(Items.EMERALD).setWeight(2)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))))

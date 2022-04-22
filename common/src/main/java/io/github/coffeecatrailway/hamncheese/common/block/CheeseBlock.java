@@ -89,7 +89,7 @@ public class CheeseBlock extends Block
         {
             level.setBlock(pos, HNCBlocks.BLOCK_OF_SWISS_CHEESE.get().defaultBlockState().setValue(BITES, state.getValue(BITES)), 3);
             Random random = level.getRandom();
-            ItemEntity itemEntity = this.spawnAtLocation(new ItemStack(HNCItems.SWISS_CHEESE_SLICE.get(), random.nextInt(2) + 1), level, pos);
+            ItemEntity itemEntity = this.spawnAtLocation(new ItemStack(HNCItems.SWISS_CHEESE_BITS.get(), random.nextInt(2) + 1), level, pos);
             itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((random.nextFloat() - random.nextFloat()) * .1f, random.nextFloat() * .05f, (random.nextFloat() - random.nextFloat()) * .1f));
             return InteractionResult.SUCCESS;
         }
