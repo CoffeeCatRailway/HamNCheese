@@ -5,6 +5,7 @@ import gg.moonflower.pollen.api.client.util.CreativeModeTabBuilder;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
+import gg.moonflower.pollen.api.registry.FluidBehaviorRegistry;
 import gg.moonflower.pollen.api.registry.StrippingRegistry;
 import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
 import gg.moonflower.pollen.api.registry.client.EntityRendererRegistry;
@@ -16,6 +17,7 @@ import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.HNCDispenseBoatBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
 import io.github.coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
+import io.github.coffeecatrailway.hamncheese.common.material.MapleSapFluidBehavior;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
 import io.github.coffeecatrailway.hamncheese.registry.*;
 import net.minecraft.client.model.BoatModel;
@@ -74,6 +76,9 @@ public class HamNCheese
         RenderTypeRegistry.register(HNCBlocks.MAPLE_TRAPDOOR.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.MAPLE_DOOR.get(), RenderType.cutout());
 
+        RenderTypeRegistry.register(HNCFluids.MAPLE_SAP.get(), RenderType.translucent());
+        RenderTypeRegistry.register(HNCFluids.MAPLE_SAP_FLOWING.get(), RenderType.translucent());
+
         ItemRendererRegistry.registerRenderer(HNCItems.PIZZA.get(), SandwichItemRenderer.INSTANCE);
         ItemRendererRegistry.registerRenderer(HNCItems.CRACKER.get(), SandwichItemRenderer.INSTANCE);
         ItemRendererRegistry.registerRenderer(HNCItems.SANDWICH.get(), SandwichItemRenderer.INSTANCE);
@@ -90,7 +95,9 @@ public class HamNCheese
 //        bus.addGenericListener(StatType.class, HNCStats::register);
         HNCBlockEntities.load(PLATFORM);
 //        HNCContainers.load(PLATFORM);
-//        HNCFluids.load(PLATFORM);
+        HNCFluids.load(PLATFORM);
+
+        FluidBehaviorRegistry.register(HNCFluidTags.MAPLE_SAP, new MapleSapFluidBehavior());
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)

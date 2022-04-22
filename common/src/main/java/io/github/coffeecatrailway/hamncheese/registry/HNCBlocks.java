@@ -103,7 +103,7 @@ public class HNCBlocks
         return registerWithItem(id, block, (object, prop) -> new BlockItem(object.get(), properties.apply(prop)));
     }
 
-    private static <T extends Block> Supplier<T> registerWithItem(String id, Supplier<T> block, @Nullable BiFunction<Supplier<T>, Item.Properties, Item> item)
+    protected static <T extends Block> Supplier<T> registerWithItem(String id, Supplier<T> block, @Nullable BiFunction<Supplier<T>, Item.Properties, Item> item)
     {
         return registerWithItemAndName(id, block, item, HNCLanguage.capitalize(id));
     }

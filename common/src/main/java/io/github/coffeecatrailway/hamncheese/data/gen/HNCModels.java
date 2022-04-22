@@ -9,6 +9,7 @@ import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
+import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
@@ -126,7 +127,7 @@ public class HNCModels extends PollinatedModelProvider
             // Misc
             this.generateFlatItem(HNCItems.MAPLE_BOAT.get(), ModelTemplates.FLAT_ITEM);
 
-//            this.generateFlatItem(HNCItems.MAPLE_SAP_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCFluids.MAPLE_SAP_BUCKET.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.MAPLE_SAP_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.MAPLE_SYRUP.get(), ModelTemplates.FLAT_ITEM);
         }
