@@ -7,3 +7,5 @@ accessible method net/minecraft/data/models/model/TextureSlot create (Ljava/lang
 
 accessible field net/minecraft/world/entity/vehicle/Boat status Lnet/minecraft/world/entity/vehicle/Boat$Status;
 accessible field net/minecraft/world/entity/vehicle/Boat lastYd D
+
+accessible method net/minecraft/world/level/block/DispenserBlock getDispenseMethod (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/core/dispenser/DispenseItemBehavior;

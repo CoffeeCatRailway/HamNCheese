@@ -15,7 +15,9 @@ import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.entity.HNCBoatEntityRenderer;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.HNCDispenseBoatBehavior;
+import io.github.coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
+import io.github.coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import io.github.coffeecatrailway.hamncheese.common.material.MapleSapFluidBehavior;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
@@ -24,11 +26,15 @@ import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 
 import java.util.function.Supplier;
@@ -113,9 +119,27 @@ public class HamNCheese
             DispenserBlock.registerBehavior(HNCItems.SANDWICH.get(), new SandwichExplodeBehavior(HNCItems.BREAD_SLICE.get(), HNCItems.TOAST.get(), true));
             DispenserBlock.registerBehavior(HNCItems.CRACKER.get(), new SandwichExplodeBehavior(HNCItems.CRACKER.get(), HNCItems.CRACKER.get(), false));
             DispenserBlock.registerBehavior(HNCItems.PIZZA.get(), new SandwichExplodeBehavior(HNCItems.UNBAKED_PIZZA_BASE.get(), HNCItems.BAKED_PIZZA_DUMMY.get(), false, HamNCheese.CONFIG_SERVER.dispenseTomatoSauce.get() ? new Item[]{HNCItems.TOMATO_SAUCE.get()} : new Item[]{}));
+
+            DispenserBlock.registerBehavior(HNCFluids.MAPLE_SAP_BUCKET.get(), new MapleSapDispenseBehavior());
+
+            DispenseItemBehavior behavior = getBehavior(Items.GLASS_BOTTLE);
+            DispenserBlock.registerBehavior(Items.GLASS_BOTTLE, new TreeTapDispenseBehavior.GlassBottle(behavior));
+
+            behavior = getBehavior(Items.BUCKET);
+            DispenserBlock.registerBehavior(Items.BUCKET, new TreeTapDispenseBehavior.Bucket(behavior));
+
+            DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BOTTLE.get(), new TreeTapDispenseBehavior.MapleSapBottle());
+
+            behavior = getBehavior(HNCFluids.MAPLE_SAP_BUCKET.get());
+            DispenserBlock.registerBehavior(HNCFluids.MAPLE_SAP_BUCKET.get(), new TreeTapDispenseBehavior.MapleSapBucket(behavior));
         });
         StrippingRegistry.register(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get());
         StrippingRegistry.register(HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());
+    }
+
+    private static DispenseItemBehavior getBehavior(Item item)
+    {
+        return ((DispenserBlock) Blocks.DISPENSER).getDispenseMethod(new ItemStack(item));
     }
 
     public static void onDataInit(Platform.DataSetupContext ctx)
