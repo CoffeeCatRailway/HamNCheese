@@ -35,6 +35,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
 
 import java.util.function.Supplier;
@@ -132,6 +133,40 @@ public class HamNCheese
 
             behavior = getBehavior(HNCFluids.MAPLE_SAP_BUCKET.get());
             DispenserBlock.registerBehavior(HNCFluids.MAPLE_SAP_BUCKET.get(), new TreeTapDispenseBehavior.MapleSapBucket(behavior));
+
+            // Composter
+            // 30% chance
+            ComposterBlock.COMPOSTABLES.put(HNCItems.CHEESE_SLICE.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.HAM_SLICE.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_HAM_SLICE.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.GREEN_HAM_SLICE.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.BACON.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_BACON.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.FOOD_SCRAPS.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.CORN_KERNELS.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCBlocks.MAPLE_LEAVES.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCBlocks.MAPLE_SAPLING.get(), .3f);
+
+            // 40% chance
+            ComposterBlock.COMPOSTABLES.put(HNCItems.CRACKED_EGG.get(), .4f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_EGG.get(), .4f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.GREEN_EGG.get(), .4f);
+
+            // 50% chance
+            ComposterBlock.COMPOSTABLES.put(HNCBlocks.BLOCK_OF_CHEESE.get(), .5f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.DOUGH.get(), .5f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_PIZZA_BASE.get(), .5f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_BREAD.get(), .5f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.BREAD_SLICE.get(), .5f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.TOAST.get(), .5f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_CRACKER.get(), .5f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE_RING.get(), .5f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE_BIT.get(), .5f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO_SLICE.get(), .5f);
+
+            // 65% chance
+            ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE.get(), .65f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO.get(), .65f);
         });
         StrippingRegistry.register(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get());
         StrippingRegistry.register(HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());
@@ -140,6 +175,11 @@ public class HamNCheese
     private static DispenseItemBehavior getBehavior(Item item)
     {
         return ((DispenserBlock) Blocks.DISPENSER).getDispenseMethod(new ItemStack(item));
+    }
+
+    private static void addCompostable(float chance, ItemLike itemLike)
+    {
+        ComposterBlock.COMPOSTABLES.put(itemLike.asItem(), chance);
     }
 
     public static void onDataInit(Platform.DataSetupContext ctx)
