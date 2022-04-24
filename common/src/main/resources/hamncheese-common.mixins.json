@@ -6,7 +6,8 @@
   "client": [
   ],
   "mixins": [
-    "ItemMixin"
+    "ItemMixin",
+    "ThrownEggMixin"
   ],
   "injectors": {
     "defaultRequire": 1
