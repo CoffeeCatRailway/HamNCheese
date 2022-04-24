@@ -1,16 +1,13 @@
 package io.github.coffeecatrailway.hamncheese;
 
-import gg.moonflower.pollen.api.block.StrippedBlock;
+import com.google.common.collect.ImmutableList;
 import gg.moonflower.pollen.api.client.util.CreativeModeTabBuilder;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.FluidBehaviorRegistry;
 import gg.moonflower.pollen.api.registry.StrippingRegistry;
-import gg.moonflower.pollen.api.registry.client.BlockEntityRendererRegistry;
-import gg.moonflower.pollen.api.registry.client.EntityRendererRegistry;
-import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
-import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
+import gg.moonflower.pollen.api.registry.client.*;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.entity.HNCBoatEntityRenderer;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
@@ -22,8 +19,13 @@ import io.github.coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import io.github.coffeecatrailway.hamncheese.common.material.MapleSapFluidBehavior;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
 import io.github.coffeecatrailway.hamncheese.registry.*;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockTintCache;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
@@ -33,10 +35,16 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ColorResolver;
+import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 
 import java.util.function.Supplier;
 
@@ -58,6 +66,9 @@ public class HamNCheese
 
     public static final CreativeModeTab TAB = CreativeModeTabBuilder.builder(getLocation("tab")).setIcon(() -> new ItemStack(HNCBlocks.BLOCK_OF_CHEESE.get())).build();
 
+    @Environment(EnvType.CLIENT)
+    private static BlockTintCache MAPLE_TINT_CACHE;
+
     public static void onClientInit()
     {
         SandwichItemRenderer.init();
@@ -68,6 +79,22 @@ public class HamNCheese
             EntityRendererRegistry.registerLayerDefinition(HNCBoatEntityRenderer.createModelLayer(type), boatDefinition);
 
         BlockEntityRendererRegistry.register(HNCBlockEntities.SIGN, SignRenderer::new);
+
+        final ColorResolver mapleColorResolver = (biome, d, e) -> {
+            double f = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(2345L)), ImmutableList.of(0)).getValue(d * .0225d, e * .0225d, false);
+            return f < -.1d ? 0xEC4400 : 0xAE1800;
+        };
+
+        ColorRegistry.register((state, tintGetter, pos, tintIndex) -> {
+            ClientLevel clientLevel = Minecraft.getInstance().level;
+            if (((state.is(HNCBlocks.MAPLE_SAPLING.get()) || state.is(HNCBlocks.POTTED_MAPLE_SAPLING.get())) && tintIndex != 0) || clientLevel == null || pos == null)
+                return -1;
+            if (HamNCheese.MAPLE_TINT_CACHE == null)
+                HamNCheese.MAPLE_TINT_CACHE = new BlockTintCache(blockPos -> clientLevel.calculateBlockTint(blockPos, mapleColorResolver));
+            return HamNCheese.MAPLE_TINT_CACHE.getColor(pos);
+        }, HNCBlocks.MAPLE_LEAVES, HNCBlocks.MAPLE_SAPLING, HNCBlocks.POTTED_MAPLE_SAPLING);
+        ColorRegistry.register((itemStack, layer) -> 0xEC4400, HNCBlocks.MAPLE_LEAVES);
+        ColorRegistry.register((itemStack, layer) -> layer == 0 ? 0xEC4400 : -1, HNCBlocks.MAPLE_SAPLING);
     }
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)

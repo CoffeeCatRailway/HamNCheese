@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hamncheese:block/maple_sapling_leaves",
+    "layer1": "hamncheese:block/maple_sapling"
+  }
+}

@@ -272,7 +272,7 @@ public class HNCModels extends PollinatedModelProvider
             }
             this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.MAPLE_LEAVES.get(), leaves));
             this.delegateItemModel(HNCBlocks.MAPLE_LEAVES.get(), HamNCheese.getLocation("block/maple_leaves_0"));
-            this.createPlant(HNCBlocks.MAPLE_SAPLING.get(), HNCBlocks.POTTED_MAPLE_SAPLING.get(), BlockModelGenerators.TintState.NOT_TINTED);
+            this.skipAutoItemBlock(HNCBlocks.MAPLE_SAPLING.get());
 
             this.family(HNCBlocks.MAPLE_PLANKS.get())
                     .stairs(HNCBlocks.MAPLE_STAIRS.get())
