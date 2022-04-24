@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.CrackerRecipe;
+import io.github.coffeecatrailway.hamncheese.common.item.crafting.MapleSyrupRecipe;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
 import net.minecraft.core.Registry;
@@ -37,7 +38,7 @@ public class HNCRecipes
     public static final Supplier<SimpleRecipeSerializer<CrackerRecipe>> CRACKER_SERIALIZER = RECIPE_SERIALIZERS.register("cracker", () -> new SimpleRecipeSerializer<>(CrackerRecipe::new));
     public static final Supplier<SimpleRecipeSerializer<PizzaRecipe>> PIZZA_SERIALIZER = RECIPE_SERIALIZERS.register("pizza", () -> new SimpleRecipeSerializer<>(PizzaRecipe::new));
 
-//    public static final RegistryObject<SpecialRecipeSerializer<MapleSyrupRecipe>> MAPLE_SYRUP_SERIALIZER = RECIPE_SERIALIZERS.register("maple_syrup", () -> new SpecialRecipeSerializer<>(MapleSyrupRecipe::new));
+    public static final Supplier<SimpleRecipeSerializer<MapleSyrupRecipe>> MAPLE_SYRUP_SERIALIZER = RECIPE_SERIALIZERS.register("maple_syrup", () -> new SimpleRecipeSerializer<>(MapleSyrupRecipe::new));
 
 //    private static <R extends IRecipe<?>> IRecipeType<R> registerType(String id)
 //    {

@@ -2,15 +2,25 @@ package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
 
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.CrackerRecipe;
+import io.github.coffeecatrailway.hamncheese.common.item.crafting.MapleSyrupRecipe;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CustomRecipe;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * @author CoffeeCatRailway
@@ -37,6 +47,22 @@ public class HNCJEIPlugin implements IModPlugin
         reg.getCraftingCategory().addCategoryExtension(SandwichRecipe.class, CustomRecipe::isSpecial, recipe -> new SandwichCraftingExtension<>(recipe, HNCItemTags.BREAD_SLICE, HNCItems.SANDWICH));
         reg.getCraftingCategory().addCategoryExtension(CrackerRecipe.class, CustomRecipe::isSpecial, recipe -> new SandwichCraftingExtension<>(recipe, HNCItemTags.CRACKER_COMMON, HNCItems.CRACKER).hasOneBun());
         reg.getCraftingCategory().addCategoryExtension(PizzaRecipe.class, CustomRecipe::isSpecial, recipe -> new SandwichCraftingExtension<>(recipe, HNCItemTags.PIZZAS_COMMON, HNCItems.PIZZA).hasOneBun().setNeededItem(HNCItems.TOMATO_SAUCE.get()));
+
+        reg.getCraftingCategory().addCategoryExtension(MapleSyrupRecipe.class, CustomRecipe::isSpecial, recipe -> new ICraftingCategoryExtension()
+        {
+            @Override
+            public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper helper, IFocusGroup focuses)
+            {
+                helper.setInputs(builder, VanillaTypes.ITEM, List.of(List.of(new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get())), HNCItemTags.SUGAR_COMMON.getValues().stream().map(ItemStack::new).toList()), 2, 1);
+                helper.setOutputs(builder, VanillaTypes.ITEM, List.of(new ItemStack(HNCItems.MAPLE_SYRUP.get())));
+            }
+
+            @Override
+            public @Nullable ResourceLocation getRegistryName()
+            {
+                return recipe.getId();
+            }
+        });
     }
 
 //    @Override

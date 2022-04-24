@@ -12,6 +12,7 @@ import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomDisplay;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,6 +31,8 @@ public class HNCREIClientPlugin implements REIClientPlugin
         this.addSandwichDisplay(registry, HNCItemTags.BREAD_SLICE, true, HNCItems.SANDWICH.get());
         this.addSandwichDisplay(registry, HNCItemTags.CRACKER_COMMON, false, HNCItems.CRACKER.get());
         this.addSandwichDisplay(registry, HNCItemTags.PIZZAS_COMMON, false, HNCItems.PIZZA.get(), HNCItems.TOMATO_SAUCE.get());
+
+        registry.add(new DefaultCustomDisplay(null, List.of(EntryIngredients.of(HNCItems.MAPLE_SAP_BOTTLE.get()), EntryIngredients.ofIngredient(Ingredient.of(HNCItemTags.SUGAR_COMMON))), List.of(EntryIngredients.of(HNCItems.MAPLE_SYRUP.get()))));
     }
 
     private void addSandwichDisplay(DisplayRegistry registry, Tag.Named<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem)
