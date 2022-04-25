@@ -206,10 +206,10 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(CROPS_COMMON).addTag(CROPS);
         this.tag(CARBS).add(HNCItems.BREAD_SLICE.get(), HNCItems.TOAST.get());
         this.tag(CARBS_COMMON).addTag(CARBS);
-        this.tag(SEEDS);//.add(HNCItems.PINEAPPLE_PLANT.get(), HNCItems.TOMATO_SEEDS.get());
+        this.tag(SEEDS).add(HNCItems.PINEAPPLE_PLANT.get());//, HNCItems.TOMATO_SEEDS.get());
         this.tag(SEEDS_COMMON).addTag(SEEDS);
 
-        this.tag(PINEAPPLE_SEEDS_COMMON);//.add(HNCItems.PINEAPPLE_PLANT.get());
+        this.tag(PINEAPPLE_SEEDS_COMMON).add(HNCItems.PINEAPPLE_PLANT.get());
         this.tag(TOMATO_SEEDS_COMMON);//.add(HNCItems.TOMATO_SEEDS.get());
         this.tag(CORN_SEEDS_COMMON).addTag(CORN_COB);
 

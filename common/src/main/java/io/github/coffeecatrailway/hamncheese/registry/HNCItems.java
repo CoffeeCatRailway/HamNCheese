@@ -11,10 +11,7 @@ import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.core.Registry;
 import net.minecraft.tags.Tag;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -84,7 +81,7 @@ public class HNCItems
 
     public static final Supplier<SandwichItem> SANDWICH = registerIdAsName("sandwich", getSandwichItem());
 
-    //    public static final Supplier<BlockNamedItem> PINEAPPLE_PLANT = registerIdAsName("pineapple_plant", prop -> new BlockNamedItem(HNCBlocks.PINEAPPLE_PLANT.get(), prop));
+    public static final Supplier<ItemNameBlockItem> PINEAPPLE_PLANT = registerIdAsName("pineapple_plant", prop -> new ItemNameBlockItem(HNCBlocks.PINEAPPLE_PLANT.get(), prop));
     public static final Supplier<Item> PINEAPPLE = registerIdAsName("pineapple", prop -> new Item(prop.food(HNCFoods.PINEAPPLE).stacksTo(16)));
     public static final Supplier<Item> PINEAPPLE_RING = registerIdAsName("pineapple_ring", prop -> new Item(prop.food(HNCFoods.PINEAPPLE_RING).stacksTo(32)));
     public static final Supplier<Item> PINEAPPLE_BIT = registerIdAsName("pineapple_bit", prop -> new Item(prop.food(HNCFoods.PINEAPPLE_BIT).stacksTo(32)));

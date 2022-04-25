@@ -5,7 +5,9 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
+import io.github.coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
+import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
@@ -28,6 +30,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
@@ -111,22 +114,21 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
     @Override
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer)
     {
-//        this.add(HNCBlocks.PINEAPPLE_PLANT.get(), block -> LootTable.lootTable()
-//                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
-//                        .add(LootItem.lootTableItem(HNCItems.PINEAPPLE.get())
-//                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(HNCBlocks.PINEAPPLE_PLANT.get())
-//                                        .setProperties(StatePropertiesPredicate.Builder.properties()
-//                                                .hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.UPPER)
-//                                                .hasProperty(PineapplePlantBlock.AGE, 4)))
-//                                .otherwise(LootItem.lootTableItem(HNCItems.PINEAPPLE_PLANT.get()))))
-//                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
-//                        .add(LootItem.lootTableItem(HNCItems.PINEAPPLE_PLANT.get())
-//                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 3)))
-//                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(HNCBlocks.PINEAPPLE_PLANT.get())
-//                                .setProperties(StatePropertiesPredicate.Builder.properties()
-//                                        .hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)
-//                                        .hasProperty(PineapplePlantBlock.AGE, 4))))
-//                .apply(applyExplosionDecay()));
+        this.add(HNCBlocks.PINEAPPLE_PLANT.get(), block -> LootTable.lootTable()
+                .withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(HNCItems.PINEAPPLE.get())
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(HNCBlocks.PINEAPPLE_PLANT.get())
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.UPPER)
+                                                .hasProperty(PineapplePlantBlock.AGE, 4)))
+                                .otherwise(LootItem.lootTableItem(HNCItems.PINEAPPLE_PLANT.get())))))
+                .withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(HNCItems.PINEAPPLE_PLANT.get())
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 3)))
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(HNCBlocks.PINEAPPLE_PLANT.get())
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)
+                                        .hasProperty(PineapplePlantBlock.AGE, 4))))));
 
 //        this.add(HNCBlocks.TOMATO_PLANT.get(), block -> LootTable.lootTable()
 //                .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(2, 3))

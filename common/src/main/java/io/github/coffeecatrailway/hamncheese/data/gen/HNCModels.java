@@ -8,20 +8,20 @@ import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
+import io.github.coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.TreeTapBlock;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.blockstates.*;
 import net.minecraft.data.models.model.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -101,7 +101,7 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.BACON.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.COOKED_BACON.get(), ModelTemplates.FLAT_ITEM);
 
-//            this.generateFlatItem(HNCItems.PINEAPPLE_PLANT.get(), HamNCheese.getLocation("block/pineapple_stage_0"), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.PINEAPPLE_PLANT.get(), HamNCheese.getLocation("block/pineapple_stage_0"), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.PINEAPPLE.get(), HamNCheese.getLocation("block/pineapple_stage_4"), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.PINEAPPLE_RING.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.PINEAPPLE_BIT.get(), ModelTemplates.FLAT_ITEM);
@@ -144,6 +144,9 @@ public class HNCModels extends PollinatedModelProvider
     {
         private static final ModelTemplate CHOPPING_BOARD = new ModelTemplate(Optional.of(HamNCheese.getLocation("block/chopping_board")), Optional.empty(), TextureSlot.TEXTURE, TextureSlot.PARTICLE);
 
+        private static final ModelTemplate PINEAPPLE_BOTTOM = new ModelTemplate(Optional.of(HamNCheese.getLocation("block/pineapple_plant_bottom")), Optional.empty(), TextureSlot.TEXTURE, TextureSlot.PARTICLE);
+        private static final ModelTemplate PINEAPPLE_TOP = new ModelTemplate(Optional.of(HamNCheese.getLocation("block/pineapple_plant_top")), Optional.empty(), TextureSlot.TEXTURE, TextureSlot.PARTICLE);
+
         public BlockModelGenerator(Consumer<BlockStateGenerator> blockStateOutput, BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput, Consumer<Item> skippedAutoModelsOutput)
         {
             super(blockStateOutput, modelOutput, skippedAutoModelsOutput);
@@ -152,7 +155,29 @@ public class HNCModels extends PollinatedModelProvider
         @Override
         public void run()
         {
+            /* Base pineapple model(s) off this */
+//            TextureMapping textureMapping = TextureMapping.defaultTexture(TextureMapping.getBlockTexture(planksBlock));
+//            ResourceLocation modelLocation = CHOPPING_BOARD.create(boardBlock, textureMapping, this.getModelOutput());
+//
+//            PropertyDispatch.C1<Direction> propertyDispatch = PropertyDispatch.property(ChoppingBoardBlock.FACING);
+//            for (Direction direction : Direction.Plane.HORIZONTAL)
+//                propertyDispatch = propertyDispatch.select(direction, Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)));
+//
+//            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(boardBlock).with(propertyDispatch));
+//            this.delegateItemModel(boardBlock, modelLocation);
+
             int i;
+            Function<Integer, TextureMapping> pineapplePlantTexture = stage -> TextureMapping.defaultTexture(HamNCheese.getLocation("block/pineapple_plant_stage_" + stage));
+            Function<Integer, TextureMapping> pineappleTexture = stage -> TextureMapping.defaultTexture(HamNCheese.getLocation("block/pineapple_stage_" + stage));
+
+            PropertyDispatch.C2<DoubleBlockHalf, Integer> pineappleDispatch = PropertyDispatch.properties(PineapplePlantBlock.HALF, PineapplePlantBlock.AGE);
+            for (i = 0; i < 5; i++)
+            {
+                pineappleDispatch = pineappleDispatch.select(DoubleBlockHalf.LOWER, i, Variant.variant().with(VariantProperties.MODEL, PINEAPPLE_BOTTOM.createWithOverride(HNCBlocks.PINEAPPLE_PLANT.get(), "pineapple_plant_stage_" + i, pineapplePlantTexture.apply(i), this.getModelOutput())))
+                        .select(DoubleBlockHalf.UPPER, i, Variant.variant().with(VariantProperties.MODEL, PINEAPPLE_TOP.createWithOverride(HNCBlocks.PINEAPPLE_PLANT.get(), "pineapple_stage_" + i, pineappleTexture.apply(i), this.getModelOutput())));
+            }
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.PINEAPPLE_PLANT.get()).with(pineappleDispatch));
+
 //            VariantBlockStateBuilder.PartialBlockstate pineapplePlant = this.getVariantBuilder(HNCBlocks.PINEAPPLE_PLANT.get()).partialState();
 //            for (i = 0; i < 5; i++)
 //            {
@@ -164,7 +189,7 @@ public class HNCModels extends PollinatedModelProvider
 //                        .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_top_stage_" + i, HamNCheese.getLocation("block/pineapple_plant_top"))
 //                                .texture("pineapple", HamNCheese.getLocation("block/pineapple_stage_" + i))).addModel();
 //            }
-//
+
 //            VariantBlockStateBuilder.PartialBlockstate tomatoPlant = this.getVariantBuilder(HNCBlocks.TOMATO_PLANT.get()).partialState();
 //            for (i = 0; i < 10; i++)
 //            {
@@ -174,7 +199,7 @@ public class HNCModels extends PollinatedModelProvider
 //                tomatoPlant.with(TomatoPlantBlock.AGE, i).with(TomatoPlantBlock.HALF, DoubleBlockHalf.UPPER)
 //                        .modelForState().modelFile(this.models().crop("block/tomato_plant_top_stage_" + i, HamNCheese.getLocation("block/tomato_plant_top_stage_" + i))).addModel();
 //            }
-//
+
 //            VariantBlockStateBuilder.PartialBlockstate cornPlant = this.getVariantBuilder(HNCBlocks.CORN_PLANT.get()).partialState();
 //            for (i = 0; i < 7; i++)
 //            {
@@ -187,18 +212,18 @@ public class HNCModels extends PollinatedModelProvider
 //                else
 //                    cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(this.models().getExistingFile(new ResourceLocation("block/air"))).addModel();
 //            }
-//
+
 //            // Horizontal Blocks - Initial
 //            VariantBlockStateBuilder.PartialBlockstate oven = this.getVariantBuilder(HNCBlocks.PIZZA_OVEN.get()).partialState();
 //            ModelFile ovenModel = this.models().getExistingFile(HamNCheese.getLocation("block/pizza_oven"));
-//
+
 //            VariantBlockStateBuilder.PartialBlockstate grill = this.getVariantBuilder(HNCBlocks.GRILL.get()).partialState();
 //            ModelFile grillModel = this.models().getExistingFile(HamNCheese.getLocation("block/grill"));
-//
+
 //            VariantBlockStateBuilder.PartialBlockstate popcorn = this.getVariantBuilder(HNCBlocks.POPCORN_MACHINE.get()).partialState();
 //            ModelFile popcornModelFull = this.models().getExistingFile(HamNCheese.getLocation("block/popcorn_machine_full"));
 //            ModelFile popcornModelEmpty = this.models().getExistingFile(HamNCheese.getLocation("block/popcorn_machine_empty"));
-//
+
 //            // Add models
 //            for (Direction direction : Direction.Plane.HORIZONTAL)
 //            {
@@ -211,7 +236,7 @@ public class HNCModels extends PollinatedModelProvider
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(ovenModel).addModel();
 //                oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, true).with(PizzaOvenBlock.LIT, true)
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(ovenModel).addModel();
-//
+
 //                // Grill
 //                grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, false).with(GrillBlock.LIT, false)
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
@@ -221,7 +246,7 @@ public class HNCModels extends PollinatedModelProvider
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
 //                grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, true).with(GrillBlock.LIT, true)
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
-//
+
 //                // Popcorn Machine
 //                popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, false).with(PopcornMachineBlock.LIT, false)
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelEmpty).addModel();
@@ -232,11 +257,11 @@ public class HNCModels extends PollinatedModelProvider
 //                popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, true).with(PopcornMachineBlock.LIT, true)
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelFull).addModel();
 //            }
-//
+
 //            this.toItem(HNCBlocks.PIZZA_OVEN.get());
 //            this.toItem(HNCBlocks.GRILL.get());
 //            this.toItem(HNCBlocks.POPCORN_MACHINE.get(), HamNCheese.getLocation("block/popcorn_machine_full"));
-//
+
             this.choppingBoard(HNCBlocks.OAK_CHOPPING_BOARD.get(), Blocks.OAK_PLANKS);
             this.choppingBoard(HNCBlocks.BIRCH_CHOPPING_BOARD.get(), Blocks.BIRCH_PLANKS);
             this.choppingBoard(HNCBlocks.SPRUCE_CHOPPING_BOARD.get(), Blocks.SPRUCE_PLANKS);
@@ -245,12 +270,12 @@ public class HNCModels extends PollinatedModelProvider
             this.choppingBoard(HNCBlocks.DARK_OAK_CHOPPING_BOARD.get(), Blocks.DARK_OAK_PLANKS);
             this.choppingBoard(HNCBlocks.CRIMSON_CHOPPING_BOARD.get(), Blocks.CRIMSON_PLANKS);
             this.choppingBoard(HNCBlocks.WARPED_CHOPPING_BOARD.get(), Blocks.WARPED_PLANKS);
-//
+
             this.choppingBoard(HNCBlocks.STONE_CHOPPING_BOARD.get(), Blocks.STONE);
             this.choppingBoard(HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get(), Blocks.POLISHED_BLACKSTONE);
             this.choppingBoard(HNCBlocks.IRON_CHOPPING_BOARD.get(), Blocks.IRON_BLOCK);
             this.choppingBoard(HNCBlocks.GOLD_CHOPPING_BOARD.get(), Blocks.GOLD_BLOCK);
-//
+
             this.choppingBoard(HNCBlocks.MAPLE_CHOPPING_BOARD.get(), HNCBlocks.MAPLE_PLANKS.get());
 
             // Misc
@@ -285,32 +310,15 @@ public class HNCModels extends PollinatedModelProvider
             this.createOrientableTrapdoor(HNCBlocks.MAPLE_TRAPDOOR.get());
             this.createDoor(HNCBlocks.MAPLE_DOOR.get());
 
-//            VariantBlockStateBuilder.PartialBlockstate tap = this.getVariantBuilder(HNCBlocks.TREE_TAP.get()).partialState();
-//            ModelFile tapModel = this.models().getExistingFile(HamNCheese.getLocation("block/tree_tap"));
-//            ModelFile[] tapModelLevels = new ModelFile[4];
-//            for (i = 0; i < 4; i++)
-//                tapModelLevels[i] = this.models().getExistingFile(HamNCheese.getLocation("block/tree_tap_level_" + i));
-//            for (Direction direction : Direction.Plane.HORIZONTAL)
-//            {
-//                for (i = 0; i < 4; i++)
-//                {
-//                    tap.with(TreeTapBlock.HORIZONTAL_FACING, direction).with(TreeTapBlock.SAP_LEVEL, i).with(TreeTapBlock.BUCKET, false)
-//                            .modelForState().rotationY((int) direction.getOpposite().toYRot()).modelFile(tapModel).addModel();
-//                    tap.with(TreeTapBlock.HORIZONTAL_FACING, direction).with(TreeTapBlock.SAP_LEVEL, i).with(TreeTapBlock.BUCKET, true)
-//                            .modelForState().rotationY((int) direction.getOpposite().toYRot()).modelFile(tapModelLevels[i]).addModel();
-//                }
-//            }
-//            this.toItem(HNCBlocks.TREE_TAP.get(), HamNCheese.getLocation("block/tree_tap_level_3"));
-
             Function<Integer, ResourceLocation> modelLocation = level -> HamNCheese.getLocation("block/tree_tap_level_" + level);
             ResourceLocation tapModel = HamNCheese.getLocation("block/tree_tap");
-            PropertyDispatch.C3<Direction, Integer, Boolean> propertyDispatch = PropertyDispatch.properties(TreeTapBlock.FACING, TreeTapBlock.SAP_LEVEL, TreeTapBlock.BUCKET);
+            PropertyDispatch.C3<Direction, Integer, Boolean> treeTapDispatch = PropertyDispatch.properties(TreeTapBlock.FACING, TreeTapBlock.SAP_LEVEL, TreeTapBlock.BUCKET);
             for (Direction direction : Direction.Plane.HORIZONTAL)
                 for (i = 0; i < 4; i++)
-                    propertyDispatch = propertyDispatch.select(direction, i, true, Variant.variant().with(VariantProperties.MODEL, modelLocation.apply(i)).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)))
+                    treeTapDispatch = treeTapDispatch.select(direction, i, true, Variant.variant().with(VariantProperties.MODEL, modelLocation.apply(i)).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)))
                             .select(direction, i, false, Variant.variant().with(VariantProperties.MODEL, tapModel).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)));
 
-            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.TREE_TAP.get()).with(propertyDispatch));
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.TREE_TAP.get()).with(treeTapDispatch));
             this.delegateItemModel(HNCBlocks.TREE_TAP.get(), modelLocation.apply(3));
         }
 

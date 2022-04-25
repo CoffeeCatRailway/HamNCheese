@@ -105,6 +105,8 @@ public class HamNCheese
 
         RenderTypeRegistry.register(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get(), RenderType.cutout());
 
+        RenderTypeRegistry.register(HNCBlocks.PINEAPPLE_PLANT.get(), RenderType.cutout());
+
         RenderTypeRegistry.register(HNCBlocks.MAPLE_SAPLING.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.POTTED_MAPLE_SAPLING.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.MAPLE_TRAPDOOR.get(), RenderType.cutout());
@@ -169,6 +171,7 @@ public class HamNCheese
             ComposterBlock.COMPOSTABLES.put(HNCItems.GREEN_HAM_SLICE.get(), .3f);
             ComposterBlock.COMPOSTABLES.put(HNCItems.BACON.get(), .3f);
             ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_BACON.get(), .3f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE_PLANT.get(), .3f);
             ComposterBlock.COMPOSTABLES.put(HNCItems.FOOD_SCRAPS.get(), .3f);
             ComposterBlock.COMPOSTABLES.put(HNCItems.CORN_KERNELS.get(), .3f);
             ComposterBlock.COMPOSTABLES.put(HNCBlocks.MAPLE_LEAVES.get(), .3f);

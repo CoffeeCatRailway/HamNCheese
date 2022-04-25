@@ -38,6 +38,7 @@ public class HNCBlocks
 
     public static final WoodType MAPLE_WOOD_TYPE = WoodType.register(new WoodType(getWoodTypeId()));
 
+    public static final Supplier<PineapplePlantBlock> PINEAPPLE_PLANT = registerPlant("pineapple_plant", PineapplePlantBlock::new);
     public static final Supplier<ChoppingBoardBlock> OAK_CHOPPING_BOARD = registerChoppingBoard("oak_chopping_board", () -> Blocks.OAK_PRESSURE_PLATE);
     public static final Supplier<ChoppingBoardBlock> BIRCH_CHOPPING_BOARD = registerChoppingBoard("birch_chopping_board", () -> Blocks.BIRCH_PRESSURE_PLATE);
     public static final Supplier<ChoppingBoardBlock> SPRUCE_CHOPPING_BOARD = registerChoppingBoard("spruce_chopping_board", () -> Blocks.SPRUCE_PRESSURE_PLATE);
@@ -103,6 +104,11 @@ public class HNCBlocks
     public static <T extends Block> Supplier<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)
     {
         return registerWithItem(id, block, (object, prop) -> new BlockItem(object.get(), properties.apply(prop)));
+    }
+
+    private static <T extends Block> Supplier<T> registerPlant(String id, Function<BlockBehaviour.Properties, T> factory)
+    {
+        return registerWithItem(id, () -> factory.apply(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)), null);
     }
 
     protected static <T extends Block> Supplier<T> registerWithItem(String id, Supplier<T> block, @Nullable BiFunction<Supplier<T>, Item.Properties, Item> item)
