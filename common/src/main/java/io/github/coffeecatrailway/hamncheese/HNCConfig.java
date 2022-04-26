@@ -117,8 +117,8 @@ public class HNCConfig
             builder.pop(2);
 
             builder.push("generation");
-            this.mapleTreeWeight = builder.comment("Changes require a server restart!", "Maple tree spawn weight")
-                    .defineInRange("mapleTreeWeight", .02d, 0, Float.MAX_VALUE);
+            this.mapleTreeWeight = builder.comment("Changes require a server restart!", "Maple tree spawn weight. Note: Maple trees won't generate if set to '0'")
+                    .defineInRange("mapleTreeWeight", .02d, 0, 1f);
 
             builder.push(Lists.newArrayList("crops", "wildPineapples"));
             this.wildPineapplesGenerate = builder.comment("Whether pineapple are enabled or not")

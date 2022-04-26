@@ -1,5 +1,6 @@
 package io.github.coffeecatrailway.hamncheese.forge;
 
+import io.github.coffeecatrailway.hamncheese.HNCConfig;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFeatures;
 import net.minecraft.world.level.biome.Biome;
@@ -25,11 +26,12 @@ public class CommonEvents
     public static void onBiomeLoad(BiomeLoadingEvent event)
     {
         BiomeGenerationSettingsBuilder builder = event.getGeneration();
+        final HNCConfig.Server config = HamNCheese.CONFIG_SERVER;
 
-        if (event.getCategory() == Biome.BiomeCategory.PLAINS || event.getCategory() == Biome.BiomeCategory.RIVER)
+        if (config.mapleTreeWeight.get() > 0 && (event.getCategory() == Biome.BiomeCategory.PLAINS || event.getCategory() == Biome.BiomeCategory.RIVER))
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.MAPLE_TREE_PLACEMENT.get());
 
-        if (HamNCheese.CONFIG_SERVER.wildPineapplesGenerate.get() && HamNCheese.CONFIG_SERVER.wildPineapplesCategoryWhitelist.get().contains(event.getCategory()))
+        if (config.wildPineapplesGenerate.get() && config.wildPineapplesCategoryWhitelist.get().contains(event.getCategory()))
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.WILD_PINEAPPLE_PLACEMENT.get());
     }
 }
