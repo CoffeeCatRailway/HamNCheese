@@ -6,6 +6,8 @@ import net.minecraft.world.level.biome.Biome;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -16,6 +18,22 @@ public class HNCConfig
 {
     public static class Server
     {
+        private static final Set<String> CATEGORY_NAMES = Arrays.stream(Biome.BiomeCategory.values()).map(Biome.BiomeCategory::getName).collect(Collectors.toSet());
+        private static final String ALLOWED_CATEGORIES_COMMENT;
+
+        static {
+            int i = 0;
+            StringBuilder builder = new StringBuilder().append("Allowed categories: [");
+            for (String name : CATEGORY_NAMES)
+            {
+                builder.append(name);
+                if (i < CATEGORY_NAMES.size())
+                    builder.append(", ");
+                i++;
+            }
+            ALLOWED_CATEGORIES_COMMENT = builder.append("]").toString();
+        }
+
         // Items
         public final PollinatedConfigBuilder.ConfigValue<Double> crackedEggSpawnChance;
         public final PollinatedConfigBuilder.ConfigValue<Integer> maxSandwichIngredientCraftCount;
@@ -37,22 +55,25 @@ public class HNCConfig
         public final PollinatedConfigBuilder.ConfigValue<Double> mapleTreeWeight;
 
         // Generation - Crops - Pineapples
-        public final PollinatedConfigBuilder.ConfigValue<Boolean> generateWildPineapples;
-        public final PollinatedConfigBuilder.ConfigValue<Integer> chanceWildPineapples;
+        public final PollinatedConfigBuilder.ConfigValue<Boolean> wildPineapplesGenerate;
+        public final PollinatedConfigBuilder.ConfigValue<Integer> wildPineapplesChance;
+        public final PollinatedConfigBuilder.ConfigValue<Double> wildPineapplesProbability;
+        public final PollinatedConfigBuilder.ConfigValue<Integer> wildPineapplesSpread;
+        public final PollinatedConfigBuilder.ConfigValue<List<? extends Biome.BiomeCategory>> wildPineapplesCategoryWhitelist;
 
         // Crops - Tomatoes
-        public final PollinatedConfigBuilder.ConfigValue<Boolean> generateWildTomatoes;
-        public final PollinatedConfigBuilder.ConfigValue<Integer> chanceWildTomatoes;
+//        public final PollinatedConfigBuilder.ConfigValue<Boolean> generateWildTomatoes;
+//        public final PollinatedConfigBuilder.ConfigValue<Integer> chanceWildTomatoes;
 
         // Crops - Corn
-        public final PollinatedConfigBuilder.ConfigValue<Boolean> generateWildCorn;
-        public final PollinatedConfigBuilder.ConfigValue<Integer> chanceWildCorn;
+//        public final PollinatedConfigBuilder.ConfigValue<Boolean> generateWildCorn;
+//        public final PollinatedConfigBuilder.ConfigValue<Integer> chanceWildCorn;
 
         // Generation - Mouse
         public final PollinatedConfigBuilder.ConfigValue<Integer> mouseSpawnWeight;
         public final PollinatedConfigBuilder.ConfigValue<Integer> mouseMinCount;
         public final PollinatedConfigBuilder.ConfigValue<Integer> mouseMaxCount;
-        public final PollinatedConfigBuilder.ConfigValue<List<? extends String>> biomeCategoryWhitelist;
+        public final PollinatedConfigBuilder.ConfigValue<List<? extends Biome.BiomeCategory>> mouseCategoryWhitelist;
 
         // Generation - Villagers
         public final PollinatedConfigBuilder.ConfigValue<Boolean> generateVillageRestaurants;
@@ -96,28 +117,33 @@ public class HNCConfig
             builder.pop(2);
 
             builder.push("generation");
-            this.mapleTreeWeight = builder.comment("Maple tree spawn weight (SERVER RESTART REQUIRED)")
+            this.mapleTreeWeight = builder.comment("Changes require a server restart!", "Maple tree spawn weight")
                     .defineInRange("mapleTreeWeight", .02d, 0, Float.MAX_VALUE);
 
             builder.push(Lists.newArrayList("crops", "wildPineapples"));
-            this.generateWildPineapples = builder.comment("Generate pineapples in biomes with a temperature of .5 to 1")
-                    .define("generateWildPineapples", true);
-            this.chanceWildPineapples = builder.comment("Pineapple generation chance")
-                    .defineInRange("chanceWildPineapples", 4, 0, Integer.MAX_VALUE);
-            builder.pop();
-
-            builder.push("wildTomatoes");
-            this.generateWildTomatoes = builder.comment("Generate tomatoes in biomes with a temperature of .5 to 1")
-                    .define("generateWildTomatoes", true);
-            this.chanceWildTomatoes = builder.comment("Tomato generation chance")
-                    .defineInRange("chanceWildTomatoes", 8, 0, Integer.MAX_VALUE);
-            builder.pop();
-
-            builder.push("wildCorn");
-            this.generateWildCorn = builder.comment("Generate corn plants in biomes with a temperature of .5 to 1")
-                    .define("generateWildCorn", true);
-            this.chanceWildCorn = builder.comment("Corn plant generation chance")
-                    .defineInRange("chanceWildCorn", 8, 0, Integer.MAX_VALUE);
+            this.wildPineapplesGenerate = builder.comment("Whether pineapple are enabled or not")
+                    .define("wildPineapplesGenerate", true);
+            this.wildPineapplesChance = builder.comment("Patch spawn once every #")
+                    .defineInRange("wildPineapplesChance", 32, 0, Integer.MAX_VALUE);
+            this.wildPineapplesProbability = builder.comment("Probability of a plant spawning in a patch")
+                    .defineInRange("wildPineapplesProbability", .25f, 0f, 1f);
+            this.wildPineapplesSpread = builder.comment("Max spread of a patch")
+                    .defineInRange("wildPineapplesSpread", 4, 1, 10);
+            this.wildPineapplesCategoryWhitelist = this.defineCategoryWhitelist(builder, "wildPineapplesCategoryWhitelist", "What types of biomes pineapples will generate in", Biome.BiomeCategory.PLAINS, Biome.BiomeCategory.JUNGLE);
+//            builder.pop();
+//
+//            builder.push("wildTomatoes");
+//            this.generateWildTomatoes = builder.comment("Generate tomatoes in biomes with a temperature of .5 to 1")
+//                    .define("generateWildTomatoes", true);
+//            this.chanceWildTomatoes = builder.comment("Tomato generation chance")
+//                    .defineInRange("chanceWildTomatoes", 8, 0, Integer.MAX_VALUE);
+//            builder.pop();
+//
+//            builder.push("wildCorn");
+//            this.generateWildCorn = builder.comment("Generate corn plants in biomes with a temperature of .5 to 1")
+//                    .define("generateWildCorn", true);
+//            this.chanceWildCorn = builder.comment("Corn plant generation chance")
+//                    .defineInRange("chanceWildCorn", 8, 0, Integer.MAX_VALUE);
             builder.pop(2);
 
             builder.push("mouse");
@@ -127,9 +153,7 @@ public class HNCConfig
                     .defineInRange("mouseMinCount", 2, 0, Integer.MAX_VALUE);
             this.mouseMaxCount = builder.comment("The maximum amount of mice that can spawn")
                     .defineInRange("mouseMaxCount", 4, 0, Integer.MAX_VALUE);
-            List<String> categories = Lists.newArrayList(Biome.BiomeCategory.EXTREME_HILLS, Biome.BiomeCategory.FOREST, Biome.BiomeCategory.MUSHROOM, Biome.BiomeCategory.JUNGLE, Biome.BiomeCategory.PLAINS).stream().map(Biome.BiomeCategory::getName).collect(Collectors.toList());
-            this.biomeCategoryWhitelist = builder.comment("What biome categories mise can spawn in")
-                    .defineList("biomeCategoryWhitelist", categories, obj -> Arrays.stream(Biome.BiomeCategory.values()).map(Biome.BiomeCategory::getName).anyMatch(cat -> cat.equals(obj)));
+            this.mouseCategoryWhitelist = this.defineCategoryWhitelist(builder, "mouseCategoryWhitelist", "What types of biomes mise can spawn in", Biome.BiomeCategory.EXTREME_HILLS, Biome.BiomeCategory.FOREST, Biome.BiomeCategory.MUSHROOM, Biome.BiomeCategory.JUNGLE, Biome.BiomeCategory.PLAINS);
             builder.pop();
 
             builder.push("village");
@@ -157,6 +181,12 @@ public class HNCConfig
         public boolean canSpawnMouse()
         {
             return this.mouseMinCount.get() > 0 && this.mouseMaxCount.get() > 0 && this.mouseMaxCount.get() >= this.mouseMinCount.get();
+        }
+
+        private PollinatedConfigBuilder.ConfigValue<List<? extends Biome.BiomeCategory>> defineCategoryWhitelist(PollinatedConfigBuilder builder, String path, String comment, Biome.BiomeCategory... categories)
+        {
+            List<Biome.BiomeCategory> categoryList = Arrays.stream(categories).toList();
+            return builder.comment("Changes require a server restart!", ALLOWED_CATEGORIES_COMMENT, comment).defineList(path, categoryList, category -> CATEGORY_NAMES.contains(category.toString().toLowerCase(Locale.ROOT)));
         }
     }
 }

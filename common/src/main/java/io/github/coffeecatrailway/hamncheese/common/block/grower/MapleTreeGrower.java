@@ -15,6 +15,6 @@ public class MapleTreeGrower extends AbstractTreeGrower
     @Override
     protected ConfiguredFeature<?, ?> getConfiguredFeature(Random random, boolean hasFlowers)
     {
-        return HNCFeatures.MAPLE_TREE.get();
+        return HNCFeatures.Configured.MAPLE_TREE.get();
     }
 }

@@ -18,6 +18,9 @@ public class HamNCheeseFabric implements ModInitializer
         HamNCheese.PLATFORM.setup();
         WoodType.register(HNCBlocks.MAPLE_WOOD_TYPE);
 
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.BiomeCategory.PLAINS, Biome.BiomeCategory.RIVER), GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.MAPLE_TREE_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.BiomeCategory.PLAINS, Biome.BiomeCategory.RIVER), GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.MAPLE_TREE_KEY);
+
+        if (HamNCheese.CONFIG_SERVER.wildPineapplesGenerate.get())
+            BiomeModifications.addFeature(BiomeSelectors.categories(HamNCheese.CONFIG_SERVER.wildPineapplesCategoryWhitelist.get().toArray(Biome.BiomeCategory[]::new)), GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.WILD_PINEAPPLE_KEY);
     }
 }

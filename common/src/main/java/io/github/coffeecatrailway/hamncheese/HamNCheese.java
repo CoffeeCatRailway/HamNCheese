@@ -36,9 +36,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ColorResolver;
-import net.minecraft.world.level.FoliageColor;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -134,6 +131,7 @@ public class HamNCheese
         HNCBlockEntities.load(PLATFORM);
 //        HNCContainers.load(PLATFORM);
         HNCFluids.load(PLATFORM);
+        HNCFeatures.load(PLATFORM);
 
         FluidBehaviorRegistry.register(HNCFluidTags.MAPLE_SAP, new MapleSapFluidBehavior());
     }
@@ -141,7 +139,7 @@ public class HamNCheese
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
         ctx.enqueueWork(() -> {
-            HNCFeatures.load(PLATFORM);
+            HNCFeatures.Configured.load(PLATFORM);
 
             // Dispenser Behaviors
             DispenserBlock.registerBehavior(HNCItems.MAPLE_BOAT.get(), new HNCDispenseBoatBehavior(HNCBoatEntity.ModType.MAPLE));
@@ -205,11 +203,6 @@ public class HamNCheese
     private static DispenseItemBehavior getBehavior(Item item)
     {
         return ((DispenserBlock) Blocks.DISPENSER).getDispenseMethod(new ItemStack(item));
-    }
-
-    private static void addCompostable(float chance, ItemLike itemLike)
-    {
-        ComposterBlock.COMPOSTABLES.put(itemLike.asItem(), chance);
     }
 
     public static void onDataInit(Platform.DataSetupContext ctx)
