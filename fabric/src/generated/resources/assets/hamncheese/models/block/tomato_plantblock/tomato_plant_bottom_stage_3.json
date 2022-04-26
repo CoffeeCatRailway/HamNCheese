@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "hamncheese:block/tomato_plant_bottom_stage_3"
+  }
+}

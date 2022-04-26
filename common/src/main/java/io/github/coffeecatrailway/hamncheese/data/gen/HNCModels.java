@@ -6,10 +6,7 @@ import gg.moonflower.pollen.api.datagen.provider.model.PollinatedItemModelGenera
 import gg.moonflower.pollen.api.datagen.provider.model.PollinatedModelProvider;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
-import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
-import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
-import io.github.coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
-import io.github.coffeecatrailway.hamncheese.common.block.TreeTapBlock;
+import io.github.coffeecatrailway.hamncheese.common.block.*;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
@@ -106,7 +103,7 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.PINEAPPLE_RING.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.PINEAPPLE_BIT.get(), ModelTemplates.FLAT_ITEM);
 
-//            this.generateFlatItem(HNCItems.TOMATO_SEEDS.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.TOMATO_SEEDS.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.TOMATO.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.TOMATO_SAUCE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.TOMATO_SLICE.get(), ModelTemplates.FLAT_ITEM);
@@ -155,50 +152,26 @@ public class HNCModels extends PollinatedModelProvider
         @Override
         public void run()
         {
-            /* Base pineapple model(s) off this */
-//            TextureMapping textureMapping = TextureMapping.defaultTexture(TextureMapping.getBlockTexture(planksBlock));
-//            ResourceLocation modelLocation = CHOPPING_BOARD.create(boardBlock, textureMapping, this.getModelOutput());
-//
-//            PropertyDispatch.C1<Direction> propertyDispatch = PropertyDispatch.property(ChoppingBoardBlock.FACING);
-//            for (Direction direction : Direction.Plane.HORIZONTAL)
-//                propertyDispatch = propertyDispatch.select(direction, Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)));
-//
-//            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(boardBlock).with(propertyDispatch));
-//            this.delegateItemModel(boardBlock, modelLocation);
-
             int i;
-            Function<Integer, TextureMapping> pineapplePlantTexture = stage -> TextureMapping.defaultTexture(HamNCheese.getLocation("block/pineapple_plant_stage_" + stage));
-            Function<Integer, TextureMapping> pineappleTexture = stage -> TextureMapping.defaultTexture(HamNCheese.getLocation("block/pineapple_stage_" + stage));
-
-            PropertyDispatch.C2<DoubleBlockHalf, Integer> pineappleDispatch = PropertyDispatch.properties(PineapplePlantBlock.HALF, PineapplePlantBlock.AGE);
+            Function<Integer, TextureMapping> plantBottomTexture = stage -> TextureMapping.defaultTexture(HamNCheese.getLocation("block/pineapple_plant_stage_" + stage));
+            Function<Integer, TextureMapping> plantTopTexture = stage -> TextureMapping.defaultTexture(HamNCheese.getLocation("block/pineapple_stage_" + stage));
+            PropertyDispatch.C2<DoubleBlockHalf, Integer> plantPropertyDispatch = PropertyDispatch.properties(PineapplePlantBlock.HALF, PineapplePlantBlock.AGE);
             for (i = 0; i < 5; i++)
             {
-                pineappleDispatch = pineappleDispatch.select(DoubleBlockHalf.LOWER, i, Variant.variant().with(VariantProperties.MODEL, PINEAPPLE_BOTTOM.createWithOverride(HNCBlocks.PINEAPPLE_PLANT.get(), "pineapple_plant_stage_" + i, pineapplePlantTexture.apply(i), this.getModelOutput())))
-                        .select(DoubleBlockHalf.UPPER, i, Variant.variant().with(VariantProperties.MODEL, PINEAPPLE_TOP.createWithOverride(HNCBlocks.PINEAPPLE_PLANT.get(), "pineapple_stage_" + i, pineappleTexture.apply(i), this.getModelOutput())));
+                plantPropertyDispatch = plantPropertyDispatch.select(DoubleBlockHalf.LOWER, i, Variant.variant().with(VariantProperties.MODEL, PINEAPPLE_BOTTOM.createWithOverride(HNCBlocks.PINEAPPLE_PLANT.get(), "pineapple_plant_stage_" + i, plantBottomTexture.apply(i), this.getModelOutput())))
+                        .select(DoubleBlockHalf.UPPER, i, Variant.variant().with(VariantProperties.MODEL, PINEAPPLE_TOP.createWithOverride(HNCBlocks.PINEAPPLE_PLANT.get(), "pineapple_stage_" + i, plantTopTexture.apply(i), this.getModelOutput())));
             }
-            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.PINEAPPLE_PLANT.get()).with(pineappleDispatch));
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.PINEAPPLE_PLANT.get()).with(plantPropertyDispatch));
 
-//            VariantBlockStateBuilder.PartialBlockstate pineapplePlant = this.getVariantBuilder(HNCBlocks.PINEAPPLE_PLANT.get()).partialState();
-//            for (i = 0; i < 5; i++)
-//            {
-//                pineapplePlant.with(PineapplePlantBlock.AGE, i).with(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER)
-//                        .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_bottom_stage_" + i, HamNCheese.getLocation("block/pineapple_plant_bottom"))
-//                                .texture("plant", HamNCheese.getLocation("block/pineapple_plant_stage_" + i))).addModel();
-//
-//                pineapplePlant.with(PineapplePlantBlock.AGE, i).with(PineapplePlantBlock.HALF, DoubleBlockHalf.UPPER)
-//                        .modelForState().modelFile(this.models().withExistingParent("block/pineapple_plant_top_stage_" + i, HamNCheese.getLocation("block/pineapple_plant_top"))
-//                                .texture("pineapple", HamNCheese.getLocation("block/pineapple_stage_" + i))).addModel();
-//            }
-
-//            VariantBlockStateBuilder.PartialBlockstate tomatoPlant = this.getVariantBuilder(HNCBlocks.TOMATO_PLANT.get()).partialState();
-//            for (i = 0; i < 10; i++)
-//            {
-//                tomatoPlant.with(TomatoPlantBlock.AGE, i).with(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER)
-//                        .modelForState().modelFile(this.models().crop("block/tomato_plant_bottom_stage_" + i, HamNCheese.getLocation("block/tomato_plant_bottom_stage_" + i))).addModel();
-//
-//                tomatoPlant.with(TomatoPlantBlock.AGE, i).with(TomatoPlantBlock.HALF, DoubleBlockHalf.UPPER)
-//                        .modelForState().modelFile(this.models().crop("block/tomato_plant_top_stage_" + i, HamNCheese.getLocation("block/tomato_plant_top_stage_" + i))).addModel();
-//            }
+            plantBottomTexture = stage -> TextureMapping.crop(HamNCheese.getLocation("block/tomato_plant_bottom_stage_" + stage));
+            plantTopTexture = stage -> TextureMapping.crop(HamNCheese.getLocation("block/tomato_plant_top_stage_" + stage));
+            plantPropertyDispatch = PropertyDispatch.properties(TomatoPlantBlock.HALF, TomatoPlantBlock.AGE);
+            for (i = 0; i < 10; i++)
+            {
+                plantPropertyDispatch = plantPropertyDispatch.select(DoubleBlockHalf.LOWER, i, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.CROP.createWithOverride(HNCBlocks.TOMATO_PLANT.get(), "block/tomato_plant_bottom_stage_" + i, plantBottomTexture.apply(i), this.getModelOutput())))
+                        .select(DoubleBlockHalf.UPPER, i, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.CROP.createWithOverride(HNCBlocks.TOMATO_PLANT.get(), "block/tomato_plant_top_stage_" + i, plantTopTexture.apply(i), this.getModelOutput())));
+            }
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.TOMATO_PLANT.get()).with(plantPropertyDispatch));
 
 //            VariantBlockStateBuilder.PartialBlockstate cornPlant = this.getVariantBuilder(HNCBlocks.CORN_PLANT.get()).partialState();
 //            for (i = 0; i < 7; i++)

@@ -93,7 +93,7 @@ public class PineapplePlantBlock extends AbstractDoubleCropBlock
     private void grow(BlockState state, BlockState newState, ServerLevel level, BlockPos pos, Random random)
     {
         float growthSpeed = this.getGrowthSpeed(level, pos);
-        if (random.nextInt((int) (25f / growthSpeed) + 1) == 0) // ForgeHooks.onCropsGrowPre(level, pos, state,
+        if (random.nextInt((int) (25f / growthSpeed) + 1) == 0) // ForgeHooks.onCropsGrowPre(level, pos, state, )
         {
             level.setBlock(pos, newState, 2);
 //            ForgeHooks.onCropsGrowPost(level, pos, state);
