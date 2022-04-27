@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
+import io.github.coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
 import io.github.coffeecatrailway.hamncheese.common.world.feature.TallCropFeature;
 import io.github.coffeecatrailway.hamncheese.common.world.feature.configurations.TallCropFeatureConfiguration;
 import net.minecraft.core.Registry;
@@ -54,9 +55,16 @@ public class HNCFeatures
         public static final Supplier<ConfiguredFeature<TallCropFeatureConfiguration, ?>> WILD_PINEAPPLE = CONFIGURED_FEATURES.register("wild_pineapple",
                 () -> TALL_CROP.get().configured(new TallCropFeatureConfiguration(HamNCheese.CONFIG_SERVER.wildPineapplesProbability.get().floatValue(), HamNCheese.CONFIG_SERVER.wildPineapplesSpread.get(),
                         BlockStateProvider.simple(HNCBlocks.PINEAPPLE_PLANT.get().defaultBlockState().setValue(PineapplePlantBlock.HALF, DoubleBlockHalf.UPPER).setValue(PineapplePlantBlock.AGE, 4)),
-                        BlockStateProvider.simple(HNCBlocks.PINEAPPLE_PLANT.get().defaultBlockState().setValue(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER).setValue(PineapplePlantBlock.AGE, 4)))));
+                        BlockStateProvider.simple(HNCBlocks.PINEAPPLE_PLANT.get().defaultBlockState().setValue(PineapplePlantBlock.HALF, DoubleBlockHalf.LOWER).setValue(PineapplePlantBlock.AGE, 4)), false)));
         public static final Supplier<PlacedFeature> WILD_PINEAPPLE_PLACEMENT = PLACEMENTS.register("wild_pineapple", () -> WILD_PINEAPPLE.get().placed(RarityFilter.onAverageOnceEvery(HamNCheese.CONFIG_SERVER.wildPineapplesChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE));
         public static final ResourceKey<PlacedFeature> WILD_PINEAPPLE_KEY = ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, HamNCheese.getLocation("wild_pineapple"));
+
+        public static final Supplier<ConfiguredFeature<TallCropFeatureConfiguration, ?>> WILD_TOMATO = CONFIGURED_FEATURES.register("wild_tomato",
+                () -> TALL_CROP.get().configured(new TallCropFeatureConfiguration(HamNCheese.CONFIG_SERVER.wildTomatoesProbability.get().floatValue(), HamNCheese.CONFIG_SERVER.wildTomatoesSpread.get(),
+                        BlockStateProvider.simple(HNCBlocks.TOMATO_PLANT.get().defaultBlockState().setValue(TomatoPlantBlock.HALF, DoubleBlockHalf.UPPER).setValue(TomatoPlantBlock.AGE, 9)),
+                        BlockStateProvider.simple(HNCBlocks.TOMATO_PLANT.get().defaultBlockState().setValue(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER).setValue(TomatoPlantBlock.AGE, 9)), true)));
+        public static final Supplier<PlacedFeature> WILD_TOMATO_PLACEMENT = PLACEMENTS.register("wild_tomato", () -> WILD_TOMATO.get().placed(RarityFilter.onAverageOnceEvery(HamNCheese.CONFIG_SERVER.wildTomatoesChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE));
+        public static final ResourceKey<PlacedFeature> WILD_TOMATO_KEY = ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, HamNCheese.getLocation("wild_tomato"));
 
         public static final Supplier<ConfiguredFeature<TreeConfiguration, ?>> MAPLE_TREE = CONFIGURED_FEATURES.register("maple_tree", () -> Feature.TREE.configured(new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(HNCBlocks.MAPLE_LOG.get()),

@@ -15,18 +15,21 @@ public class TallCropFeatureConfiguration implements FeatureConfiguration
             Codec.floatRange(0f, 1f).fieldOf("probability").forGetter(config -> config.probability),
             Codec.intRange(1, 10).fieldOf("spread").forGetter(config -> config.spread),
             BlockStateProvider.CODEC.fieldOf("topState").forGetter(config -> config.topState),
-            BlockStateProvider.CODEC.fieldOf("bottomState").forGetter(config -> config.bottomState)
+            BlockStateProvider.CODEC.fieldOf("bottomState").forGetter(config -> config.bottomState),
+            Codec.BOOL.fieldOf("needsFarmland").forGetter(config -> config.needsFarmland)
             ).apply(instance, TallCropFeatureConfiguration::new));
 
     public final float probability;
     public final int spread;
     public final BlockStateProvider topState;
     public final BlockStateProvider bottomState;
+    public final boolean needsFarmland;
 
-    public TallCropFeatureConfiguration(float probability, int spread, BlockStateProvider topState, BlockStateProvider bottomState) {
+    public TallCropFeatureConfiguration(float probability, int spread, BlockStateProvider topState, BlockStateProvider bottomState, boolean needsFarmland) {
         this.probability = probability;
         this.spread = spread;
         this.topState = topState;
         this.bottomState = bottomState;
+        this.needsFarmland = needsFarmland;
     }
 }

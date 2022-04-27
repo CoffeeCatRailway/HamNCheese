@@ -33,5 +33,8 @@ public class CommonEvents
 
         if (config.wildPineapplesGenerate.get() && config.wildPineapplesCategoryWhitelist.get().contains(event.getCategory()))
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.WILD_PINEAPPLE_PLACEMENT.get());
+
+        if (config.wildTomatoesGenerate.get() && config.wildTomatoesCategoryWhitelist.get().contains(event.getCategory()))
+            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.WILD_TOMATO_PLACEMENT.get());
     }
 }

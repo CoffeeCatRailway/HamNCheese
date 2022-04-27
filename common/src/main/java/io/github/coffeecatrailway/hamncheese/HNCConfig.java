@@ -62,8 +62,11 @@ public class HNCConfig
         public final PollinatedConfigBuilder.ConfigValue<List<? extends Biome.BiomeCategory>> wildPineapplesCategoryWhitelist;
 
         // Crops - Tomatoes
-//        public final PollinatedConfigBuilder.ConfigValue<Boolean> generateWildTomatoes;
-//        public final PollinatedConfigBuilder.ConfigValue<Integer> chanceWildTomatoes;
+        public final PollinatedConfigBuilder.ConfigValue<Boolean> wildTomatoesGenerate;
+        public final PollinatedConfigBuilder.ConfigValue<Integer> wildTomatoesChance;
+        public final PollinatedConfigBuilder.ConfigValue<Double> wildTomatoesProbability;
+        public final PollinatedConfigBuilder.ConfigValue<Integer> wildTomatoesSpread;
+        public final PollinatedConfigBuilder.ConfigValue<List<? extends Biome.BiomeCategory>> wildTomatoesCategoryWhitelist;
 
         // Crops - Corn
 //        public final PollinatedConfigBuilder.ConfigValue<Boolean> generateWildCorn;
@@ -121,22 +124,27 @@ public class HNCConfig
                     .defineInRange("mapleTreeWeight", .02d, 0, 1f);
 
             builder.push(Lists.newArrayList("crops", "wildPineapples"));
-            this.wildPineapplesGenerate = builder.comment("Whether pineapple are enabled or not")
+            this.wildPineapplesGenerate = builder.comment("Whether pineapples are enabled or not")
                     .define("wildPineapplesGenerate", true);
             this.wildPineapplesChance = builder.comment("Patch spawn once every #")
-                    .defineInRange("wildPineapplesChance", 32, 0, Integer.MAX_VALUE);
+                    .defineInRange("wildPineapplesChance", 24, 1, Integer.MAX_VALUE);
             this.wildPineapplesProbability = builder.comment("Probability of a plant spawning in a patch")
                     .defineInRange("wildPineapplesProbability", .25f, 0f, 1f);
             this.wildPineapplesSpread = builder.comment("Max spread of a patch")
                     .defineInRange("wildPineapplesSpread", 4, 1, 10);
-            this.wildPineapplesCategoryWhitelist = this.defineCategoryWhitelist(builder, "wildPineapplesCategoryWhitelist", "What types of biomes pineapples will generate in", Biome.BiomeCategory.PLAINS, Biome.BiomeCategory.JUNGLE);
-//            builder.pop();
-//
-//            builder.push("wildTomatoes");
-//            this.generateWildTomatoes = builder.comment("Generate tomatoes in biomes with a temperature of .5 to 1")
-//                    .define("generateWildTomatoes", true);
-//            this.chanceWildTomatoes = builder.comment("Tomato generation chance")
-//                    .defineInRange("chanceWildTomatoes", 8, 0, Integer.MAX_VALUE);
+            this.wildPineapplesCategoryWhitelist = this.defineCategoryWhitelist(builder, "wildPineapplesCategoryWhitelist", "What types of biomes pineapples will generate in", Biome.BiomeCategory.PLAINS, Biome.BiomeCategory.RIVER, Biome.BiomeCategory.JUNGLE);
+            builder.pop();
+
+            builder.push("wildTomatoes");
+            this.wildTomatoesGenerate = builder.comment("Whether tomatoes are enabled or not")
+                    .define("wildTomatoesGenerate", true);
+            this.wildTomatoesChance = builder.comment("Patch spawn once every #")
+                    .defineInRange("wildTomatoesChance", 24, 1, Integer.MAX_VALUE);
+            this.wildTomatoesProbability = builder.comment("Probability of a plant spawning in a patch")
+                    .defineInRange("wildTomatoesProbability", .225f, 0f, 1f);
+            this.wildTomatoesSpread = builder.comment("Max spread of a patch")
+                    .defineInRange("wildTomatoesSpread", 3, 1, 10);
+            this.wildTomatoesCategoryWhitelist = this.defineCategoryWhitelist(builder, "wildTomatoesCategoryWhitelist", "What types of biomes pineapples will generate in", Biome.BiomeCategory.PLAINS, Biome.BiomeCategory.RIVER, Biome.BiomeCategory.FOREST);
 //            builder.pop();
 //
 //            builder.push("wildCorn");

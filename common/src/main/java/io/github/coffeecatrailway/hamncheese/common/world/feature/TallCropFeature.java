@@ -18,6 +18,9 @@ import java.util.Random;
  */
 public class TallCropFeature extends Feature<TallCropFeatureConfiguration>
 {
+    private static final BlockState FARMLAND = Blocks.FARMLAND.defaultBlockState();
+    private static final BlockState WATER = Blocks.WATER.defaultBlockState();
+
     public TallCropFeature(Codec<TallCropFeatureConfiguration> codec)
     {
         super(codec);
@@ -35,8 +38,9 @@ public class TallCropFeature extends Feature<TallCropFeatureConfiguration>
 
         if (level.isEmptyBlock(mutableBlockPos) && random.nextFloat() < probability)
         {
+            boolean placedWater = false;
             int spread = random.nextInt(config.spread) + 1;
-            for(int x = origin.getX() - spread; x <= origin.getX() + spread; x++)
+            for (int x = origin.getX() - spread; x <= origin.getX() + spread; x++)
             {
                 for (int z = origin.getZ() - spread; z <= origin.getZ() + spread; z++)
                 {
@@ -49,6 +53,16 @@ public class TallCropFeature extends Feature<TallCropFeatureConfiguration>
                             mutableBlockPos.set(x, level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z) - 1, z);
                             if (this.validGround(level.getBlockState(mutableBlockPos)))
                             {
+                                if (config.needsFarmland)
+                                {
+                                    if (!placedWater)
+                                    {
+                                        BlockPos originSurface = new BlockPos(origin.getX(), level.getHeight(Heightmap.Types.WORLD_SURFACE, origin.getX(), origin.getZ()) - 1, origin.getZ());
+                                        level.setBlock(originSurface, WATER, 3);
+                                        placedWater = true;
+                                    }
+                                    level.setBlock(mutableBlockPos, FARMLAND, 2);
+                                }
                                 level.setBlock(mutableBlockPos.above(), config.bottomState.getState(random, mutableBlockPos.above()), 2);
                                 level.setBlock(mutableBlockPos.above(2), config.topState.getState(random, mutableBlockPos.above(2)), 2);
                             }
