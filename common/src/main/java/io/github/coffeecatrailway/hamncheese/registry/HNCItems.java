@@ -91,7 +91,7 @@ public class HNCItems
     public static final Supplier<Item> TOMATO_SAUCE = registerIdAsName("tomato_sauce", prop -> new Item(prop.food(HNCFoods.TOMATO_SAUCE).stacksTo(1)));
     public static final Supplier<Item> TOMATO_SLICE = registerIdAsName("tomato_slice", prop -> new Item(prop.food(HNCFoods.TOMATO_SLICE)));
 
-    //    public static final Supplier<BlockNamedItem> CORN_COB = registerIdAsName("corn_cob", prop -> new BlockNamedItem(HNCBlocks.CORN_PLANT.get(), prop.food(HNCFoods.CORN_COB).stacksTo(32)));
+    public static final Supplier<ItemNameBlockItem> CORN_COB = registerIdAsName("corn_cob", prop -> new ItemNameBlockItem(HNCBlocks.CORN_PLANT.get(), prop.food(HNCFoods.CORN_COB).stacksTo(32)));
     public static final Supplier<Item> CORN_KERNELS = registerIdAsName("corn_kernels", prop -> new Item(prop.food(HNCFoods.CORN_KERNELS)));
     public static final Supplier<Item> DRIED_CORN_KERNELS = registerIdAsName("dried_corn_kernels", prop -> new Item(prop.food(HNCFoods.CORN_KERNELS)));
 

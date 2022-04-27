@@ -100,6 +100,22 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 8.0
+              },
+              "add": false
+            }
+          ],
+          "name": "hamncheese:corn_cob"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 8,
           "functions": [
             {

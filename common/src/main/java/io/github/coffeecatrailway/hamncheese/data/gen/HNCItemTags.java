@@ -197,7 +197,7 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(TOMATO_COMMON).addTag(TOMATO);
         this.tag(TOMATO_SAUCE).add(HNCItems.TOMATO_SAUCE.get());
 
-        this.tag(CORN_COB);//.add(HNCItems.CORN_COB.get());
+        this.tag(CORN_COB).add(HNCItems.CORN_COB.get());
         this.tag(CORN_COMMON).addTag(CORN_COB);
 
         this.tag(FRUITS).addTag(PINEAPPLE, TOMATO, CORN_COB);

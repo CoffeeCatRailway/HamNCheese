@@ -137,8 +137,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
                 .unlockedBy("has_tomato", has(HNCItemTags.TOMATO_COMMON)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SEEDS.get(), 4).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_tomato_slice", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
 
-//        ShapelessRecipeBuilder.shapeless(HNCItems.CORN_KERNELS.get(), 8).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.CORN_COB.get()).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
-//                .unlockedBy("has_corn_cob", has(HNCItemTags.CORN_COMMON)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.CORN_KERNELS.get(), 8).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.CORN_COB.get()).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
+                .unlockedBy("has_corn_cob", has(HNCItemTags.CORN_COMMON)).save(consumer);
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(HNCItems.CORN_KERNELS.get()), HNCItems.DRIED_CORN_KERNELS.get(), .2f, 50).unlockedBy("has_corn_kernels", has(HNCItems.CORN_KERNELS.get())).save(consumer, HamNCheese.getLocation("dried_corn_kernals"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.CORN_KERNELS.get()), HNCItems.DRIED_CORN_KERNELS.get(), .2f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_corn_kernels", has(HNCItems.CORN_KERNELS.get())).save(consumer, HamNCheese.getLocation("dried_corn_kernals_campfire"));
 

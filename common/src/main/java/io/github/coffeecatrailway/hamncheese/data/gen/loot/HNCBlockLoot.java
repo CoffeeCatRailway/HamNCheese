@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
+import io.github.coffeecatrailway.hamncheese.common.block.CornPlantBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
@@ -148,17 +149,16 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
                                 .setProperties(StatePropertiesPredicate.Builder.properties()
                                         .hasProperty(TomatoPlantBlock.AGE, 9).hasProperty(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER))))));
 
-//        this.add(HNCBlocks.CORN_PLANT.get(), block -> LootTable.lootTable()
-//                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
-//                        .add(LootItem.lootTableItem(HNCItems.CORN_COB.get())
-//                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 2))
-//                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(HNCBlocks.CORN_PLANT.get())
-//                                        .setProperties(StatePropertiesPredicate.Builder.properties()
-//                                                .hasProperty(CornPlantBlock.AGE, 6).hasProperty(CornPlantBlock.HALF, DoubleBlockHalf.LOWER)))
-//                                .otherwise(LootItem.lootTableItem(HNCItems.CORN_COB.get())
-//                                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(HNCBlocks.CORN_PLANT.get())
-//                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornPlantBlock.HALF, DoubleBlockHalf.LOWER))))))
-//                .apply(applyExplosionDecay()));
+        this.add(HNCBlocks.CORN_PLANT.get(), block -> LootTable.lootTable()
+                .withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(HNCItems.CORN_COB.get())
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 2))
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(CornPlantBlock.AGE, 6).hasProperty(CornPlantBlock.HALF, DoubleBlockHalf.LOWER)))
+                                .otherwise(LootItem.lootTableItem(HNCItems.CORN_COB.get())
+                                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornPlantBlock.HALF, DoubleBlockHalf.LOWER))))))));
 
         this.dropSelf(HNCBlocks.OAK_CHOPPING_BOARD.get());
         this.dropSelf(HNCBlocks.BIRCH_CHOPPING_BOARD.get());

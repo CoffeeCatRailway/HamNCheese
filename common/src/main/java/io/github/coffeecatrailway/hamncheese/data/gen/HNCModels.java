@@ -108,7 +108,7 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.TOMATO_SAUCE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.TOMATO_SLICE.get(), ModelTemplates.FLAT_ITEM);
 
-//            this.generateFlatItem(HNCItems.CORN_COB.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.CORN_COB.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.CORN_KERNELS.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.DRIED_CORN_KERNELS.get(), ModelTemplates.FLAT_ITEM);
 
@@ -173,18 +173,19 @@ public class HNCModels extends PollinatedModelProvider
             }
             this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.TOMATO_PLANT.get()).with(plantPropertyDispatch));
 
-//            VariantBlockStateBuilder.PartialBlockstate cornPlant = this.getVariantBuilder(HNCBlocks.CORN_PLANT.get()).partialState();
-//            for (i = 0; i < 7; i++)
-//            {
-//                cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.LOWER)
-//                        .modelForState().modelFile(this.models().cross("block/corn_plant_bottom_stage_" + i, HamNCheese.getLocation("block/corn_plant_bottom_stage_" + i))).addModel();
-//
-//                if (i > 2)
-//                    cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER)
-//                            .modelForState().modelFile(this.models().cross("block/corn_plant_top_stage_" + i, HamNCheese.getLocation("block/corn_plant_top_stage_" + i))).addModel();
-//                else
-//                    cornPlant.with(CornPlantBlock.AGE, i).with(CornPlantBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(this.models().getExistingFile(new ResourceLocation("block/air"))).addModel();
-//            }
+            plantBottomTexture = stage -> TextureMapping.cross(HamNCheese.getLocation("block/corn_plant_bottom_stage_" + stage));
+            plantTopTexture = stage -> TextureMapping.cross(HamNCheese.getLocation("block/corn_plant_top_stage_" + stage));
+            plantPropertyDispatch = PropertyDispatch.properties(CornPlantBlock.HALF, CornPlantBlock.AGE);
+            for (i = 0; i < 7; i++)
+            {
+                plantPropertyDispatch = plantPropertyDispatch.select(DoubleBlockHalf.LOWER, i, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.CROSS.createWithOverride(HNCBlocks.CORN_PLANT.get(), "block/corn_plant_bottom_stage_" + i, plantBottomTexture.apply(i), this.getModelOutput())));
+
+                if (i > 2)
+                    plantPropertyDispatch = plantPropertyDispatch.select(DoubleBlockHalf.UPPER, i, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.CROSS.createWithOverride(HNCBlocks.CORN_PLANT.get(), "block/corn_plant_top_stage_" + i, plantTopTexture.apply(i), this.getModelOutput())));
+                else
+                    plantPropertyDispatch = plantPropertyDispatch.select(DoubleBlockHalf.UPPER, i, Variant.variant().with(VariantProperties.MODEL, new ResourceLocation("block/air")));
+            }
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.CORN_PLANT.get()).with(plantPropertyDispatch));
 
 //            // Horizontal Blocks - Initial
 //            VariantBlockStateBuilder.PartialBlockstate oven = this.getVariantBuilder(HNCBlocks.PIZZA_OVEN.get()).partialState();

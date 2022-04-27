@@ -46,8 +46,8 @@ public class HNCChestLoot implements Consumer<BiConsumer<ResourceLocation, LootT
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))))
                                 .add(LootItem.lootTableItem(HNCItems.TOMATO_SEEDS.get()).setWeight(10)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))))
-//                        .add(LootItem.lootTableItem(HNCItems.CORN_COB.get()).setWeight(10)
-//                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))))
+                        .add(LootItem.lootTableItem(HNCItems.CORN_COB.get()).setWeight(10)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))))
 
                                 .add(LootItem.lootTableItem(Items.BREAD).setWeight(8)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))))

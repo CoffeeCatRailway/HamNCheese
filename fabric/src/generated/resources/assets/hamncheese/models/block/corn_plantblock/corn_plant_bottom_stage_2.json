@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "hamncheese:block/corn_plant_bottom_stage_2"
+  }
+}

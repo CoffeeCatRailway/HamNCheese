@@ -40,6 +40,8 @@ public class HNCBlocks
 
     public static final Supplier<PineapplePlantBlock> PINEAPPLE_PLANT = registerPlant("pineapple_plant", PineapplePlantBlock::new);
     public static final Supplier<TomatoPlantBlock> TOMATO_PLANT = registerPlant("tomato_plant", TomatoPlantBlock::new);
+    public static final Supplier<CornPlantBlock> CORN_PLANT = registerPlant("corn_plant", CornPlantBlock::new);
+
     public static final Supplier<ChoppingBoardBlock> OAK_CHOPPING_BOARD = registerChoppingBoard("oak_chopping_board", () -> Blocks.OAK_PRESSURE_PLATE);
     public static final Supplier<ChoppingBoardBlock> BIRCH_CHOPPING_BOARD = registerChoppingBoard("birch_chopping_board", () -> Blocks.BIRCH_PRESSURE_PLATE);
     public static final Supplier<ChoppingBoardBlock> SPRUCE_CHOPPING_BOARD = registerChoppingBoard("spruce_chopping_board", () -> Blocks.SPRUCE_PRESSURE_PLATE);
