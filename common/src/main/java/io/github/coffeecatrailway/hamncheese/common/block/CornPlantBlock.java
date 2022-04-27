@@ -74,7 +74,7 @@ public class CornPlantBlock extends AbstractDoubleCropBlock
     @Override
     protected boolean placeableOn(BlockState state, BlockGetter level, BlockPos pos)
     {
-        return state.is(Blocks.FARMLAND) || state.is(Blocks.GRASS_BLOCK);
+        return state.is(Blocks.FARMLAND);
     }
 
     @Override

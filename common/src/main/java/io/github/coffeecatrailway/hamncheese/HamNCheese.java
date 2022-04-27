@@ -104,6 +104,7 @@ public class HamNCheese
 
         RenderTypeRegistry.register(HNCBlocks.PINEAPPLE_PLANT.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.TOMATO_PLANT.get(), RenderType.cutout());
+        RenderTypeRegistry.register(HNCBlocks.CORN_PLANT.get(), RenderType.cutout());
 
         RenderTypeRegistry.register(HNCBlocks.MAPLE_SAPLING.get(), RenderType.cutout());
         RenderTypeRegistry.register(HNCBlocks.POTTED_MAPLE_SAPLING.get(), RenderType.cutout());
@@ -197,6 +198,7 @@ public class HamNCheese
             // 65% chance
             ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE.get(), .65f);
             ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO.get(), .65f);
+            ComposterBlock.COMPOSTABLES.put(HNCItems.CORN_COB.get(), .65f);
         });
         StrippingRegistry.register(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get());
         StrippingRegistry.register(HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());

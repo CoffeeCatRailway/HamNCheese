@@ -69,8 +69,11 @@ public class HNCConfig
         public final PollinatedConfigBuilder.ConfigValue<List<? extends Biome.BiomeCategory>> wildTomatoesCategoryWhitelist;
 
         // Crops - Corn
-//        public final PollinatedConfigBuilder.ConfigValue<Boolean> generateWildCorn;
-//        public final PollinatedConfigBuilder.ConfigValue<Integer> chanceWildCorn;
+        public final PollinatedConfigBuilder.ConfigValue<Boolean> wildCornGenerate;
+        public final PollinatedConfigBuilder.ConfigValue<Integer> wildCornChance;
+        public final PollinatedConfigBuilder.ConfigValue<Double> wildCornProbability;
+        public final PollinatedConfigBuilder.ConfigValue<Integer> wildCornSpread;
+        public final PollinatedConfigBuilder.ConfigValue<List<? extends Biome.BiomeCategory>> wildCornCategoryWhitelist;
 
         // Generation - Mouse
         public final PollinatedConfigBuilder.ConfigValue<Integer> mouseSpawnWeight;
@@ -144,14 +147,19 @@ public class HNCConfig
                     .defineInRange("wildTomatoesProbability", .225f, 0f, 1f);
             this.wildTomatoesSpread = builder.comment("Max spread of a patch")
                     .defineInRange("wildTomatoesSpread", 3, 1, 10);
-            this.wildTomatoesCategoryWhitelist = this.defineCategoryWhitelist(builder, "wildTomatoesCategoryWhitelist", "What types of biomes pineapples will generate in", Biome.BiomeCategory.PLAINS, Biome.BiomeCategory.RIVER, Biome.BiomeCategory.FOREST);
-//            builder.pop();
-//
-//            builder.push("wildCorn");
-//            this.generateWildCorn = builder.comment("Generate corn plants in biomes with a temperature of .5 to 1")
-//                    .define("generateWildCorn", true);
-//            this.chanceWildCorn = builder.comment("Corn plant generation chance")
-//                    .defineInRange("chanceWildCorn", 8, 0, Integer.MAX_VALUE);
+            this.wildTomatoesCategoryWhitelist = this.defineCategoryWhitelist(builder, "wildTomatoesCategoryWhitelist", "What types of biomes tomatoes will generate in", Biome.BiomeCategory.PLAINS, Biome.BiomeCategory.RIVER, Biome.BiomeCategory.FOREST);
+            builder.pop();
+
+            builder.push("wildCorn");
+            this.wildCornGenerate = builder.comment("Whether corn are enabled or not")
+                    .define("wildCornGenerate", true);
+            this.wildCornChance = builder.comment("Patch spawn once every #")
+                    .defineInRange("wildCornChance", 24, 1, Integer.MAX_VALUE);
+            this.wildCornProbability = builder.comment("Probability of a plant spawning in a patch")
+                    .defineInRange("wildCornProbability", .225f, 0f, 1f);
+            this.wildCornSpread = builder.comment("Max spread of a patch")
+                    .defineInRange("wildCornSpread", 3, 1, 10);
+            this.wildCornCategoryWhitelist = this.defineCategoryWhitelist(builder, "wildCornCategoryWhitelist", "What types of biomes corn will generate in", Biome.BiomeCategory.PLAINS, Biome.BiomeCategory.RIVER, Biome.BiomeCategory.FOREST);
             builder.pop(2);
 
             builder.push("mouse");

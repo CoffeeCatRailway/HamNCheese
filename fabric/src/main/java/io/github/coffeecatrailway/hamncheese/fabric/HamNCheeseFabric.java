@@ -28,5 +28,8 @@ public class HamNCheeseFabric implements ModInitializer
 
         if (config.wildTomatoesGenerate.get())
             BiomeModifications.addFeature(BiomeSelectors.categories(config.wildTomatoesCategoryWhitelist.get().toArray(Biome.BiomeCategory[]::new)), GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.WILD_TOMATO_KEY);
+
+        if (config.wildCornGenerate.get())
+            BiomeModifications.addFeature(BiomeSelectors.categories(config.wildCornCategoryWhitelist.get().toArray(Biome.BiomeCategory[]::new)), GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.WILD_CORN_KEY);
     }
 }
