@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import gg.moonflower.pollen.api.client.util.CreativeModeTabBuilder;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
+import gg.moonflower.pollen.api.event.events.entity.ModifyTradesEvents;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.FluidBehaviorRegistry;
 import gg.moonflower.pollen.api.registry.StrippingRegistry;
@@ -16,6 +17,7 @@ import io.github.coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDisp
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
+import io.github.coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import io.github.coffeecatrailway.hamncheese.common.material.MapleSapFluidBehavior;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
 import io.github.coffeecatrailway.hamncheese.registry.*;
@@ -31,6 +33,7 @@ import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -140,6 +143,46 @@ public class HamNCheese
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
+        ModifyTradesEvents.VILLAGER.register(villagerCtx -> {
+            ModifyTradesEvents.TradeRegistry trades;
+            VillagerProfession profession = villagerCtx.getProfession();
+            // Vanilla
+            if (CONFIG_SERVER.allowButcherTrades.get() && profession == VillagerProfession.BUTCHER)
+            {
+                trades = villagerCtx.getTrades(1);
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.HAM_SLICE.get(), 14, 16, 2));
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.BACON.get(), 14, 16, 2));
+
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.CURDLER.get(), 1, 16, 2));
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.ROLLING_PIN.get(), 1, 16, 2));
+
+                trades = villagerCtx.getTrades(2);
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.COOKED_HAM_SLICE.get(), 9, 16, 5));
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.COOKED_BACON.get(), 9, 16, 5));
+
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.GRIND_STONES.get(), 1, 16, 5));
+
+                villagerCtx.getTrades(3).add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.IRON_KNIFE.get(), 1, 8, 5));
+            }
+            if (CONFIG_SERVER.allowFarmerTrades.get() && profession == VillagerProfession.FARMER)
+            {
+                trades = villagerCtx.getTrades(1);
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.TOMATO_SEEDS.get(), 18, 16, 2));
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.PINEAPPLE_PLANT.get(), 18, 16, 2));
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.CORN_COB.get(), 18, 16, 2));
+
+                trades.add(new HNCVillagerTrades.ItemsForEmeraldsTrade(HNCItems.TOMATO_SEEDS.get(), 1, 9, 16, 2));
+                trades.add(new HNCVillagerTrades.ItemsForEmeraldsTrade(HNCItems.PINEAPPLE_PLANT.get(), 1, 9, 16, 2));
+                trades.add(new HNCVillagerTrades.ItemsForEmeraldsTrade(HNCItems.CORN_COB.get(), 1, 9, 16, 2));
+
+                trades = villagerCtx.getTrades(2);
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.TOMATO.get(), 20, 16, 5));
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.PINEAPPLE.get(), 20, 16, 5));
+
+                trades.add(new HNCVillagerTrades.ItemsForEmeraldsTrade(HNCItems.TOMATO.get(), 2, 15, 16, 5));
+                trades.add(new HNCVillagerTrades.ItemsForEmeraldsTrade(HNCItems.PINEAPPLE.get(), 2, 15, 16, 5));
+            }
+        });
         ctx.enqueueWork(() -> {
             HNCFeatures.Configured.load(PLATFORM);
 
