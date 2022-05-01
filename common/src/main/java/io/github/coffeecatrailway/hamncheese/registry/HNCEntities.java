@@ -27,7 +27,7 @@ public class HNCEntities
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final PollinatedEntityRegistry ENTITIES = PollinatedRegistry.createEntity(HamNCheese.MOD_ID);
 
-    public static final Supplier<EntityType<MouseEntity>> MOUSE = registerWithEgg("mouse", MouseEntity::new, MobCategory.AMBIENT, 0xffffff, 0x7a3205, builder -> builder.sized(.8f, .5f).clientTrackingRange(10));
+    public static final Supplier<EntityType<MouseEntity>> MOUSE = registerWithEgg("mouse", MouseEntity::new, MobCategory.CREATURE, 0xffffff, 0x7a3205, builder -> builder.sized(.8f, .5f).clientTrackingRange(10));
     public static final Supplier<EntityType<HNCBoatEntity>> MAPLE_BOAT = register("maple_boat", HNCBoatEntity::new, MobCategory.MISC, builder -> builder.sized(1.375f, 0.5625f));
 
     private static <E extends Mob> Supplier<EntityType<E>> registerWithEgg(String id, BiFunction<EntityType<E>, Level, E> entityFactory, MobCategory category, int bgColor, int spotColor, Function<EntityType.Builder<E>, EntityType.Builder<E>> factory)
@@ -42,6 +42,12 @@ public class HNCEntities
         Supplier<EntityType<E>> object = ENTITIES.register(id, () -> factory.apply(EntityType.Builder.of(entityFactory::apply, category)).build(HamNCheese.getLocation(id).toString()));
         HNCLanguage.ENTITIES.put(object, HNCLanguage.capitalize(id));
         return object;
+    }
+
+    public static void registerSpawnPlacements()
+    {
+        SpawnPlacements.register(MOUSE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (type, level, reason, pos, random) -> Mob.checkMobSpawnRules(type, level, reason, pos, random) && HamNCheese.CONFIG_SERVER.canSpawnMouse());
     }
 
     public static void load(Platform platform)

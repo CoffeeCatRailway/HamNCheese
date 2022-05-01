@@ -272,6 +272,8 @@ public class HamNCheese
 
         StrippingRegistry.register(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get());
         StrippingRegistry.register(HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());
+
+        HNCEntities.registerSpawnPlacements();
     }
 
     private static DispenseItemBehavior getBehavior(Item item)
