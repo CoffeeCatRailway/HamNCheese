@@ -109,7 +109,7 @@ public class MouseEntity extends Animal
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 2f));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(4, new BreedGoal(this, .8d));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, Cat.class, Ocelot.class).setAlertOthers());
     }
 
     public static AttributeSupplier.Builder registerAttributeMap()
