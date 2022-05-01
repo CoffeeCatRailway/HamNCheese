@@ -4,12 +4,22 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.registry.HNCEntities;
+import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
+import net.minecraft.advancements.critereon.EntityFlagsPredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.Map;
 import java.util.Set;
@@ -25,16 +35,18 @@ import java.util.stream.Collectors;
  */
 public class HNCEntityLoot implements Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>
 {
+    private static final EntityPredicate.Builder ENTITY_ON_FIRE = EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build());
+
     private static final Set<EntityType<?>> SPECIAL_LOOT_TABLE_TYPES = ImmutableSet.of(EntityType.PLAYER, EntityType.ARMOR_STAND, EntityType.IRON_GOLEM, EntityType.SNOW_GOLEM, EntityType.VILLAGER);
     private final Map<ResourceLocation, LootTable.Builder> map = Maps.newHashMap();
 
     @Override
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer)
     {
-//        this.add(HNCEntities.MOUSE.get(), LootTable.lootTable()
-//                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
-//                            .add(LootItem.lootTableItem(HNCItems.MOUSE.get())
-//                                    .apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))))));
+        this.add(HNCEntities.MOUSE.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                            .add(LootItem.lootTableItem(HNCItems.MOUSE.get())
+                                    .apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))))));
 
         Set<ResourceLocation> set = Sets.newHashSet();
         Set<ResourceLocation> entityTypeKeys = Registry.ENTITY_TYPE.keySet().stream().filter(entityType -> HamNCheese.MOD_ID.equals(entityType.getNamespace())).collect(Collectors.toSet());

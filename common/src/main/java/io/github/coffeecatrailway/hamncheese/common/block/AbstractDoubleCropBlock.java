@@ -1,7 +1,6 @@
 package io.github.coffeecatrailway.hamncheese.common.block;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
-import gg.moonflower.pollen.api.platform.Platform;
+import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -107,15 +106,9 @@ public abstract class AbstractDoubleCropBlock extends BushBlock implements Bonem
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity)
     {
-        if (entity instanceof Ravager && mobGriefing(level, entity))
+        if (entity instanceof Ravager && HamNCheese.mobGriefing(level, entity))
             level.destroyBlock(pos, true, entity);
         super.entityInside(state, level, pos, entity);
-    }
-    
-    @ExpectPlatform
-    private static boolean mobGriefing(Level level, Entity entity)
-    {
-        return Platform.error();
     }
 
     @Override

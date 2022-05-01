@@ -26,7 +26,7 @@ public class HNCFluids
     private static final Logger LOGGER = LogManager.getLogger();
     private static final PollinatedFluidRegistry FLUIDS = PollinatedRegistry.createFluid(HamNCheese.MOD_ID);
 
-    public static final Supplier<FlowingFluid> MAPLE_SAP = FLUIDS.register("maple_sap", MapleSapFluid.Source::new); // TODO: Ask jackson/ocelot about swim crash
+    public static final Supplier<FlowingFluid> MAPLE_SAP = FLUIDS.register("maple_sap", MapleSapFluid.Source::new);
     public static final Supplier<FlowingFluid> MAPLE_SAP_FLOWING = FLUIDS.register("maple_sap_flowing", MapleSapFluid.Flowing::new);
     public static final Supplier<PollinatedLiquidBlock> MAPLE_SAP_BLOCK = HNCBlocks.registerWithItem("maple_sap", () -> new PollinatedLiquidBlock(MAPLE_SAP, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100f).noDrops()), null);
     public static final Supplier<BucketItem> MAPLE_SAP_BUCKET = HNCItems.registerIdAsName("maple_sap_bucket", prop -> new BucketItemBase(MAPLE_SAP, prop.craftRemainder(Items.BUCKET).stacksTo(1)));

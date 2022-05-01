@@ -1,25 +1,33 @@
 package io.github.coffeecatrailway.hamncheese;
 
 import com.google.common.collect.ImmutableList;
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.client.util.CreativeModeTabBuilder;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
+import gg.moonflower.pollen.api.event.events.entity.EntityEvents;
 import gg.moonflower.pollen.api.event.events.entity.ModifyTradesEvents;
 import gg.moonflower.pollen.api.platform.Platform;
+import gg.moonflower.pollen.api.registry.EntityAttributeRegistry;
 import gg.moonflower.pollen.api.registry.FluidBehaviorRegistry;
 import gg.moonflower.pollen.api.registry.StrippingRegistry;
 import gg.moonflower.pollen.api.registry.client.*;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
+import io.github.coffeecatrailway.hamncheese.client.HNCModelLayers;
 import io.github.coffeecatrailway.hamncheese.client.entity.HNCBoatEntityRenderer;
+import io.github.coffeecatrailway.hamncheese.client.entity.MouseModel;
+import io.github.coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.HNCDispenseBoatBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
+import io.github.coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import io.github.coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import io.github.coffeecatrailway.hamncheese.common.material.MapleSapFluidBehavior;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
+import io.github.coffeecatrailway.hamncheese.mixins.MobAccessor;
 import io.github.coffeecatrailway.hamncheese.registry.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -33,12 +41,18 @@ import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ColorResolver;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -73,10 +87,13 @@ public class HamNCheese
     {
         SandwichItemRenderer.init();
 
-        EntityRendererRegistry.register(HNCEntities.MAPLE_BOAT, HNCBoatEntityRenderer::new);
         Supplier<LayerDefinition> boatDefinition = BoatModel::createBodyModel;
         for (HNCBoatEntity.ModType type : HNCBoatEntity.ModType.values())
             EntityRendererRegistry.registerLayerDefinition(HNCBoatEntityRenderer.createModelLayer(type), boatDefinition);
+        EntityRendererRegistry.register(HNCEntities.MAPLE_BOAT, HNCBoatEntityRenderer::new);
+
+        EntityRendererRegistry.registerLayerDefinition(HNCModelLayers.MOUSE, MouseModel::createLayer);
+        EntityRendererRegistry.register(HNCEntities.MOUSE, MouseRenderer::new);
 
         BlockEntityRendererRegistry.register(HNCBlockEntities.SIGN, SignRenderer::new);
 
@@ -139,6 +156,14 @@ public class HamNCheese
         HNCFeatures.load(PLATFORM);
 
         FluidBehaviorRegistry.register(HNCFluidTags.MAPLE_SAP, new MapleSapFluidBehavior());
+
+        EntityAttributeRegistry.register(HNCEntities.MOUSE, MouseEntity::registerAttributeMap);
+
+        EntityEvents.JOIN.register((entity, level) -> {
+            if (entity instanceof Ocelot || entity instanceof Cat)
+                ((MobAccessor) entity).getTargetSelector().addGoal(1, new NearestAttackableTargetGoal<>((Mob) entity, MouseEntity.class, false));
+            return true;
+        });
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
@@ -183,6 +208,7 @@ public class HamNCheese
                 trades.add(new HNCVillagerTrades.ItemsForEmeraldsTrade(HNCItems.PINEAPPLE.get(), 2, 15, 16, 5));
             }
         });
+
         ctx.enqueueWork(() -> {
             HNCFeatures.Configured.load(PLATFORM);
 
@@ -243,6 +269,7 @@ public class HamNCheese
             ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO.get(), .65f);
             ComposterBlock.COMPOSTABLES.put(HNCItems.CORN_COB.get(), .65f);
         });
+
         StrippingRegistry.register(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get());
         StrippingRegistry.register(HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());
     }
@@ -269,5 +296,11 @@ public class HamNCheese
     public static ResourceLocation getLocation(String path)
     {
         return new ResourceLocation(MOD_ID, path);
+    }
+
+    @ExpectPlatform
+    public static boolean mobGriefing(Level level, Entity entity)
+    {
+        return Platform.error();
     }
 }
