@@ -27,6 +27,7 @@ public class HNCItems
 {
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final PollinatedRegistry<Item> ITEMS = PollinatedRegistry.create(Registry.ITEM, HamNCheese.MOD_ID);
+    protected static final Supplier<Item.Properties> DEFAULT_PROP = () -> new Item.Properties().tab(HamNCheese.TAB);
 
     // Crafting Ingredients
     public static final Supplier<Item> WOODEN_GEAR = registerIdAsName("wooden_gear", Item::new);
@@ -124,7 +125,7 @@ public class HNCItems
 
     private static <T extends Item> Supplier<T> register(String id, @Nullable String name, boolean addLang, Function<Item.Properties, T> factory)
     {
-        Supplier<T> object = ITEMS.register(id, () -> factory.apply(new Item.Properties().tab(HamNCheese.TAB)));
+        Supplier<T> object = ITEMS.register(id, () -> factory.apply(DEFAULT_PROP.get()));
         if (addLang)
             HNCLanguage.ITEMS.put(object, name == null ? HNCLanguage.capitalize(id) : name);
         return object;

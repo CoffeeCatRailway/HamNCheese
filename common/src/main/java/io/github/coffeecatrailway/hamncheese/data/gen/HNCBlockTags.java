@@ -84,8 +84,8 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
         this.tag(WOODEN_PRESSURE_PLATES).add(HNCBlocks.MAPLE_PRESSURE_PLATE.get());
         this.tag(LEAVES).add(HNCBlocks.MAPLE_LEAVES.get());
         this.tag(WOODEN_TRAPDOORS).add(HNCBlocks.MAPLE_TRAPDOOR.get());
-        this.tag(STANDING_SIGNS).add(HNCBlocks.MAPLE_SIGN.get());
-        this.tag(WALL_SIGNS).add(HNCBlocks.MAPLE_WALL_SIGN.get());
+        this.tag(STANDING_SIGNS).add(HNCBlocks.MAPLE_SIGN.getFirst().get());
+        this.tag(WALL_SIGNS).add(HNCBlocks.MAPLE_SIGN.getSecond().get());
         this.tag(FENCE_GATES).add(HNCBlocks.MAPLE_FENCE_GATE.get());
     }
 }

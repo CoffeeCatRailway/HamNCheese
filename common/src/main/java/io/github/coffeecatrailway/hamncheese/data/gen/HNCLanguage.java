@@ -49,6 +49,7 @@ public class HNCLanguage extends PollinatedLanguageProvider
         this.add("tooltip." + HamNCheese.MOD_ID + ".hold_shift", "[Hold SHIFT %s]");
 
         this.add("block." + HamNCheese.MOD_ID + ".from", "From: ");
+        this.add("block." + HamNCheese.MOD_ID + ".maple_sign", "Maple Sign");
 
         this.add("jei." + HamNCheese.MOD_ID + ".maple_sap", "Maple sap is made by placing a tree tap on a maple log, then by right-clicking with an empty bucket");
 

@@ -276,7 +276,7 @@ public class HNCModels extends PollinatedModelProvider
             this.family(HNCBlocks.MAPLE_PLANKS.get())
                     .stairs(HNCBlocks.MAPLE_STAIRS.get())
                     .slab(HNCBlocks.MAPLE_SLAB.get())
-                    .sign(HNCBlocks.MAPLE_SIGN.get(), HNCBlocks.MAPLE_WALL_SIGN.get())
+                    .sign(HNCBlocks.MAPLE_SIGN.getFirst().get(), HNCBlocks.MAPLE_SIGN.getSecond().get())
                     .pressurePlate(HNCBlocks.MAPLE_PRESSURE_PLATE.get())
                     .button(HNCBlocks.MAPLE_BUTTON.get())
                     .fence(HNCBlocks.MAPLE_FENCE.get())

@@ -11,7 +11,10 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.EntityAttributeRegistry;
 import gg.moonflower.pollen.api.registry.FluidBehaviorRegistry;
 import gg.moonflower.pollen.api.registry.StrippingRegistry;
-import gg.moonflower.pollen.api.registry.client.*;
+import gg.moonflower.pollen.api.registry.client.ColorRegistry;
+import gg.moonflower.pollen.api.registry.client.EntityRendererRegistry;
+import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
+import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
 import gg.moonflower.pollen.api.registry.content.CompostablesRegistry;
 import gg.moonflower.pollen.api.registry.content.DispenseItemBehaviorRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
@@ -34,7 +37,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockTintCache;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -84,8 +86,6 @@ public class HamNCheese
         EntityRendererRegistry.registerLayerDefinition(HNCModelLayers.MOUSE, MouseModel::createLayer);
         EntityRendererRegistry.register(HNCEntities.MOUSE, MouseRenderer::new);
 
-        BlockEntityRendererRegistry.register(HNCBlockEntities.SIGN, SignRenderer::new);
-
         final ColorResolver mapleColorResolver = (biome, d, e) -> {
             double f = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(2345L)), ImmutableList.of(0)).getValue(d * .0225d, e * .0225d, false);
             return f < -.1d ? 0xEC4400 : 0xAE1800;
@@ -132,8 +132,8 @@ public class HamNCheese
 
     public static void onCommonInit()
     {
-        HNCBlocks.load(PLATFORM);
         HNCItems.load(PLATFORM);
+        HNCBlocks.load(PLATFORM);
         HNCRecipes.load(PLATFORM);
         HNCEntities.load(PLATFORM);
         HNCProfessions.load(PLATFORM);
