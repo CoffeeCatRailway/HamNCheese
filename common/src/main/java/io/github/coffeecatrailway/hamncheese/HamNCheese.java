@@ -156,6 +156,8 @@ public class HamNCheese
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
+        ctx.enqueueWork(() -> HNCFeatures.Configured.load(PLATFORM));
+
         ModifyTradesEvents.VILLAGER.register(villagerCtx -> {
             ModifyTradesEvents.TradeRegistry trades;
             VillagerProfession profession = villagerCtx.getProfession();
@@ -226,66 +228,61 @@ public class HamNCheese
             }
         });
 
-        ctx.enqueueWork(() -> {
-            HNCFeatures.Configured.load(PLATFORM);
+        // Dispenser Behaviors
+        DispenseItemBehaviorRegistry.register(HNCItems.SANDWICH.get(), new SandwichExplodeBehavior(HNCItems.BREAD_SLICE.get(), HNCItems.TOAST.get(), true));
+        DispenseItemBehaviorRegistry.register(HNCItems.CRACKER.get(), new SandwichExplodeBehavior(HNCItems.CRACKER.get(), HNCItems.CRACKER.get(), false));
+        DispenseItemBehaviorRegistry.register(HNCItems.PIZZA.get(), new SandwichExplodeBehavior(HNCItems.UNBAKED_PIZZA_BASE.get(), HNCItems.BAKED_PIZZA_DUMMY.get(), false, HamNCheese.CONFIG_SERVER.dispenseTomatoSauce.get() ? new Item[]{HNCItems.TOMATO_SAUCE.get()} : new Item[]{}));
 
-            // Dispenser Behaviors
-            DispenserBlock.registerBehavior(HNCItems.MAPLE_BOAT.get(), new HNCDispenseBoatBehavior(HNCBoatEntity.ModType.MAPLE));
+        DispenseItemBehaviorRegistry.register(HNCFluids.MAPLE_SAP_BUCKET.get(), new MapleSapDispenseBehavior());
 
-            DispenserBlock.registerBehavior(HNCItems.SANDWICH.get(), new SandwichExplodeBehavior(HNCItems.BREAD_SLICE.get(), HNCItems.TOAST.get(), true));
-            DispenserBlock.registerBehavior(HNCItems.CRACKER.get(), new SandwichExplodeBehavior(HNCItems.CRACKER.get(), HNCItems.CRACKER.get(), false));
-            DispenserBlock.registerBehavior(HNCItems.PIZZA.get(), new SandwichExplodeBehavior(HNCItems.UNBAKED_PIZZA_BASE.get(), HNCItems.BAKED_PIZZA_DUMMY.get(), false, HamNCheese.CONFIG_SERVER.dispenseTomatoSauce.get() ? new Item[]{HNCItems.TOMATO_SAUCE.get()} : new Item[]{}));
+        DispenseItemBehavior behavior = getBehavior(Items.GLASS_BOTTLE);
+        DispenseItemBehaviorRegistry.register(Items.GLASS_BOTTLE, new TreeTapDispenseBehavior.GlassBottle(behavior));
 
-            DispenserBlock.registerBehavior(HNCFluids.MAPLE_SAP_BUCKET.get(), new MapleSapDispenseBehavior());
+        behavior = getBehavior(Items.BUCKET);
+        DispenseItemBehaviorRegistry.register(Items.BUCKET, new TreeTapDispenseBehavior.Bucket(behavior));
 
-            DispenseItemBehavior behavior = getBehavior(Items.GLASS_BOTTLE);
-            DispenserBlock.registerBehavior(Items.GLASS_BOTTLE, new TreeTapDispenseBehavior.GlassBottle(behavior));
+        DispenseItemBehaviorRegistry.register(HNCItems.MAPLE_SAP_BOTTLE.get(), new TreeTapDispenseBehavior.MapleSapBottle());
 
-            behavior = getBehavior(Items.BUCKET);
-            DispenserBlock.registerBehavior(Items.BUCKET, new TreeTapDispenseBehavior.Bucket(behavior));
+        behavior = getBehavior(HNCFluids.MAPLE_SAP_BUCKET.get());
+        DispenseItemBehaviorRegistry.register(HNCFluids.MAPLE_SAP_BUCKET.get(), new TreeTapDispenseBehavior.MapleSapBucket(behavior));
 
-            DispenserBlock.registerBehavior(HNCItems.MAPLE_SAP_BOTTLE.get(), new TreeTapDispenseBehavior.MapleSapBottle());
 
-            behavior = getBehavior(HNCFluids.MAPLE_SAP_BUCKET.get());
-            DispenserBlock.registerBehavior(HNCFluids.MAPLE_SAP_BUCKET.get(), new TreeTapDispenseBehavior.MapleSapBucket(behavior));
+        // Composter
+        // 30% chance
+        CompostablesRegistry.register(HNCItems.CHEESE_SLICE.get(), .3f);
+        CompostablesRegistry.register(HNCItems.HAM_SLICE.get(), .3f);
+        CompostablesRegistry.register(HNCItems.COOKED_HAM_SLICE.get(), .3f);
+        CompostablesRegistry.register(HNCItems.GREEN_HAM_SLICE.get(), .3f);
+        CompostablesRegistry.register(HNCItems.BACON.get(), .3f);
+        CompostablesRegistry.register(HNCItems.COOKED_BACON.get(), .3f);
+        CompostablesRegistry.register(HNCItems.PINEAPPLE_PLANT.get(), .3f);
+        CompostablesRegistry.register(HNCItems.TOMATO_SEEDS.get(), .3f);
+        CompostablesRegistry.register(HNCItems.FOOD_SCRAPS.get(), .3f);
+        CompostablesRegistry.register(HNCItems.CORN_KERNELS.get(), .3f);
+        CompostablesRegistry.register(HNCBlocks.MAPLE_LEAVES.get(), .3f);
+        CompostablesRegistry.register(HNCBlocks.MAPLE_SAPLING.get(), .3f);
 
-            // Composter
-            // 30% chance
-            ComposterBlock.COMPOSTABLES.put(HNCItems.CHEESE_SLICE.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.HAM_SLICE.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_HAM_SLICE.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.GREEN_HAM_SLICE.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.BACON.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_BACON.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE_PLANT.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO_SEEDS.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.FOOD_SCRAPS.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.CORN_KERNELS.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCBlocks.MAPLE_LEAVES.get(), .3f);
-            ComposterBlock.COMPOSTABLES.put(HNCBlocks.MAPLE_SAPLING.get(), .3f);
+        // 40% chance
+        CompostablesRegistry.register(HNCItems.CRACKED_EGG.get(), .4f);
+        CompostablesRegistry.register(HNCItems.COOKED_EGG.get(), .4f);
+        CompostablesRegistry.register(HNCItems.GREEN_EGG.get(), .4f);
 
-            // 40% chance
-            ComposterBlock.COMPOSTABLES.put(HNCItems.CRACKED_EGG.get(), .4f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.COOKED_EGG.get(), .4f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.GREEN_EGG.get(), .4f);
+        // 50% chance
+        CompostablesRegistry.register(HNCBlocks.BLOCK_OF_CHEESE.get(), .5f);
+        CompostablesRegistry.register(HNCItems.DOUGH.get(), .5f);
+        CompostablesRegistry.register(HNCItems.UNBAKED_PIZZA_BASE.get(), .5f);
+        CompostablesRegistry.register(HNCItems.UNBAKED_BREAD.get(), .5f);
+        CompostablesRegistry.register(HNCItems.BREAD_SLICE.get(), .5f);
+        CompostablesRegistry.register(HNCItems.TOAST.get(), .5f);
+        CompostablesRegistry.register(HNCItems.UNBAKED_CRACKER.get(), .5f);
+        CompostablesRegistry.register(HNCItems.PINEAPPLE_RING.get(), .5f);
+        CompostablesRegistry.register(HNCItems.PINEAPPLE_BIT.get(), .5f);
+        CompostablesRegistry.register(HNCItems.TOMATO_SLICE.get(), .5f);
 
-            // 50% chance
-            ComposterBlock.COMPOSTABLES.put(HNCBlocks.BLOCK_OF_CHEESE.get(), .5f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.DOUGH.get(), .5f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_PIZZA_BASE.get(), .5f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_BREAD.get(), .5f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.BREAD_SLICE.get(), .5f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.TOAST.get(), .5f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.UNBAKED_CRACKER.get(), .5f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE_RING.get(), .5f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE_BIT.get(), .5f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO_SLICE.get(), .5f);
-
-            // 65% chance
-            ComposterBlock.COMPOSTABLES.put(HNCItems.PINEAPPLE.get(), .65f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.TOMATO.get(), .65f);
-            ComposterBlock.COMPOSTABLES.put(HNCItems.CORN_COB.get(), .65f);
-        });
+        // 65% chance
+        CompostablesRegistry.register(HNCItems.PINEAPPLE.get(), .65f);
+        CompostablesRegistry.register(HNCItems.TOMATO.get(), .65f);
+        CompostablesRegistry.register(HNCItems.CORN_COB.get(), .65f);
 
         StrippingRegistry.register(HNCBlocks.MAPLE_LOG.get(), HNCBlocks.STRIPPED_MAPLE_LOG.get());
         StrippingRegistry.register(HNCBlocks.MAPLE_WOOD.get(), HNCBlocks.STRIPPED_MAPLE_WOOD.get());
