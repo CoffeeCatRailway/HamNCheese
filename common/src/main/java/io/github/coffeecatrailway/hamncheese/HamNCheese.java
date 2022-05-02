@@ -65,8 +65,8 @@ public class HamNCheese
     public static final String MOD_ID = "hamncheese";
     public static HNCConfig.Server CONFIG_SERVER = ConfigManager.register(MOD_ID, PollinatedConfigType.SERVER, HNCConfig.Server::new);
     public static final Platform PLATFORM = Platform.builder(MOD_ID)
-            .clientInit(HamNCheese::onClientInit)
-            .clientPostInit(HamNCheese::onClientPostInit)
+            .clientInit(() -> HamNCheese::onClientInit)
+            .clientPostInit(() -> HamNCheese::onClientPostInit)
             .commonInit(HamNCheese::onCommonInit)
             .commonPostInit(HamNCheese::onCommonPostInit)
             .dataInit(HamNCheese::onDataInit)
