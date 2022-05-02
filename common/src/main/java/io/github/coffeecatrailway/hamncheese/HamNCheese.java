@@ -12,17 +12,16 @@ import gg.moonflower.pollen.api.registry.EntityAttributeRegistry;
 import gg.moonflower.pollen.api.registry.FluidBehaviorRegistry;
 import gg.moonflower.pollen.api.registry.StrippingRegistry;
 import gg.moonflower.pollen.api.registry.client.*;
+import gg.moonflower.pollen.api.registry.content.CompostablesRegistry;
+import gg.moonflower.pollen.api.registry.content.DispenseItemBehaviorRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.HNCModelLayers;
-import io.github.coffeecatrailway.hamncheese.client.entity.HNCBoatEntityRenderer;
 import io.github.coffeecatrailway.hamncheese.client.entity.MouseModel;
 import io.github.coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
-import io.github.coffeecatrailway.hamncheese.common.block.dispenser.HNCDispenseBoatBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavior;
-import io.github.coffeecatrailway.hamncheese.common.entity.HNCBoatEntity;
 import io.github.coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import io.github.coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
 import io.github.coffeecatrailway.hamncheese.common.material.MapleSapFluidBehavior;
@@ -33,8 +32,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockTintCache;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
@@ -54,13 +51,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ColorResolver;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
-
-import java.util.function.Supplier;
 
 /**
  * @author CoffeeCatRailway
@@ -86,11 +80,6 @@ public class HamNCheese
     public static void onClientInit()
     {
         SandwichItemRenderer.init();
-
-        Supplier<LayerDefinition> boatDefinition = BoatModel::createBodyModel;
-        for (HNCBoatEntity.ModType type : HNCBoatEntity.ModType.values())
-            EntityRendererRegistry.registerLayerDefinition(HNCBoatEntityRenderer.createModelLayer(type), boatDefinition);
-        EntityRendererRegistry.register(HNCEntities.MAPLE_BOAT, HNCBoatEntityRenderer::new);
 
         EntityRendererRegistry.registerLayerDefinition(HNCModelLayers.MOUSE, MouseModel::createLayer);
         EntityRendererRegistry.register(HNCEntities.MOUSE, MouseRenderer::new);

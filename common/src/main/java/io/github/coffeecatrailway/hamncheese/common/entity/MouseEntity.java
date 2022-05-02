@@ -52,7 +52,7 @@ public class MouseEntity extends Animal
             HamNCheese.getLocation("textures/entity/mouse/white.png")
     );
 
-    public MouseEntity(EntityType<? extends Animal> type, Level world) // TODO: Spawn packets
+    public MouseEntity(EntityType<? extends Animal> type, Level world)
     {
         super(type, world);
     }
