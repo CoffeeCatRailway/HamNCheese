@@ -9,6 +9,7 @@
     "BottleItemMixin",
     "ItemMixin",
     "MobAccessor",
+    "StructureTemplatePoolAccessor",
     "ThrownEggMixin"
   ],
   "injectors": {

@@ -82,7 +82,6 @@ public class HNCConfig
         public final PollinatedConfigBuilder.ConfigValue<List<? extends Biome.BiomeCategory>> mouseCategoryWhitelist;
 
         // Generation - Villagers
-        public final PollinatedConfigBuilder.ConfigValue<Boolean> generateVillageRestaurants;
         public final PollinatedConfigBuilder.ConfigValue<Integer> plainsRestaurantWeight;
         public final PollinatedConfigBuilder.ConfigValue<Integer> snowyRestaurantWeight;
         public final PollinatedConfigBuilder.ConfigValue<Integer> savannaRestaurantWeight;
@@ -173,18 +172,18 @@ public class HNCConfig
             builder.pop();
 
             builder.push("village");
-            this.generateVillageRestaurants = builder.comment("Whether or not the restaurant can generate in villages")
-                    .define("generateVillageRestaurants", true);
-            this.plainsRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a plains village")
-                    .defineInRange("plainsRestaurantWeight", 8, 1, Integer.MAX_VALUE);
-            this.snowyRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a snowy village")
-                    .defineInRange("snowyRestaurantWeight", 8, 1, Integer.MAX_VALUE);
-            this.savannaRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a savanna village")
-                    .defineInRange("savannaRestaurantWeight", 100, 1, Integer.MAX_VALUE);
-            this.desertRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a desert village")
-                    .defineInRange("desertRestaurantWeight", 8, 1, Integer.MAX_VALUE);
-            this.taigaRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a taiga village")
-                    .defineInRange("taigaRestaurantWeight", 8, 1, Integer.MAX_VALUE);
+            int weight = 25;
+            String disableComment = "If weight is set to zero no restaurants will spawn!";
+            this.plainsRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a plains village", disableComment)
+                    .defineInRange("plainsRestaurantWeight", weight, 0, Integer.MAX_VALUE);
+            this.snowyRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a snowy village", disableComment)
+                    .defineInRange("snowyRestaurantWeight", weight, 0, Integer.MAX_VALUE);
+            this.savannaRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a savanna village", disableComment)
+                    .defineInRange("savannaRestaurantWeight", weight, 0, Integer.MAX_VALUE);
+            this.desertRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a desert village", disableComment)
+                    .defineInRange("desertRestaurantWeight", weight, 0, Integer.MAX_VALUE);
+            this.taigaRestaurantWeight = builder.comment("The weight for a restaurant to spawn in a taiga village", disableComment)
+                    .defineInRange("taigaRestaurantWeight", weight, 0, Integer.MAX_VALUE);
 
             builder.push("trading");
             this.allowButcherTrades = builder.comment("Allow butchers to trade emeralds for cooking tools")

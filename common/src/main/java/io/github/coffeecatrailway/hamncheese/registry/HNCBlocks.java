@@ -50,10 +50,6 @@ public class HNCBlocks
     public static final Supplier<ChoppingBoardBlock> GOLD_CHOPPING_BOARD = registerChoppingBoard("gold_chopping_board", () -> Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE);
     public static final Supplier<ChoppingBoardBlock> IRON_CHOPPING_BOARD = registerChoppingBoard("iron_chopping_board", () -> Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE);
 
-//    public static final Supplier<PizzaOvenBlock> PIZZA_OVEN = register("pizza_oven", () -> new PizzaOvenBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_TERRACOTTA)), prop -> prop);
-//    public static final Supplier<GrillBlock> GRILL = register("grill", () -> new GrillBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
-//    public static final Supplier<PopcornMachineBlock> POPCORN_MACHINE = register("popcorn_machine", () -> new PopcornMachineBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), prop -> prop);
-
     public static final Supplier<CheeseBlock> BLOCK_OF_CHEESE = registerWithItem("block_of_cheese", () -> new CheeseBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)), prop -> prop.food(HNCFoods.BLOCK_OF_CHEESE).stacksTo(16));
     public static final Supplier<CheeseBlock> BLOCK_OF_BLUE_CHEESE = registerWithItem("block_of_blue_cheese", () -> new CheeseBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)), prop -> prop.food(HNCFoods.BLOCK_OF_BLUE_CHEESE).stacksTo(16));
     public static final Supplier<CheeseBlock> BLOCK_OF_GOUDA_CHEESE = registerWithItem("block_of_gouda_cheese", () -> new CheeseBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)), prop -> prop.food(HNCFoods.BLOCK_OF_GOUDA_CHEESE).stacksTo(16));

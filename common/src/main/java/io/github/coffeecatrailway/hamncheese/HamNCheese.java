@@ -7,6 +7,7 @@ import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.event.events.entity.EntityEvents;
 import gg.moonflower.pollen.api.event.events.entity.ModifyTradesEvents;
+import gg.moonflower.pollen.api.event.events.lifecycle.ServerLifecycleEvents;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.EntityAttributeRegistry;
 import gg.moonflower.pollen.api.registry.FluidBehaviorRegistry;
@@ -136,7 +137,7 @@ public class HamNCheese
         HNCBlocks.load(PLATFORM);
         HNCRecipes.load(PLATFORM);
         HNCEntities.load(PLATFORM);
-        HNCProfessions.load(PLATFORM);
+        HNCVillage.load(PLATFORM);
 //        bus.addGenericListener(StatType.class, HNCStats::register);
         HNCBlockEntities.load(PLATFORM);
 //        HNCContainers.load(PLATFORM);
@@ -152,6 +153,20 @@ public class HamNCheese
                 ((MobAccessor) entity).getTargetSelector().addGoal(1, new NearestAttackableTargetGoal<>((Mob) entity, MouseEntity.class, false));
             return true;
         });
+
+        ServerLifecycleEvents.STARTING.register(server -> {
+            if (CONFIG_SERVER.plainsRestaurantWeight.get() > 0)
+                HNCVillage.addVillageStructure(server, "village/plains/houses", "village/plains/houses/plains_restaurant_1", CONFIG_SERVER.plainsRestaurantWeight.get());
+            if (CONFIG_SERVER.desertRestaurantWeight.get() > 0)
+                HNCVillage.addVillageStructure(server, "village/desert/houses", "village/desert/houses/desert_restaurant_1", CONFIG_SERVER.desertRestaurantWeight.get());
+            if (CONFIG_SERVER.savannaRestaurantWeight.get() > 0)
+                HNCVillage.addVillageStructure(server, "village/savanna/houses", "village/savanna/houses/savanna_restaurant_1", CONFIG_SERVER.savannaRestaurantWeight.get());
+            if (CONFIG_SERVER.snowyRestaurantWeight.get() > 0)
+                HNCVillage.addVillageStructure(server, "village/snowy/houses", "village/snowy/houses/snowy_restaurant_1", CONFIG_SERVER.snowyRestaurantWeight.get());
+            if (CONFIG_SERVER.taigaRestaurantWeight.get() > 0)
+                HNCVillage.addVillageStructure(server, "village/taiga/houses", "village/taiga/houses/taiga_restaurant_1", CONFIG_SERVER.taigaRestaurantWeight.get());
+            return true;
+        });
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
@@ -162,7 +177,7 @@ public class HamNCheese
             ModifyTradesEvents.TradeRegistry trades;
             VillagerProfession profession = villagerCtx.getProfession();
             // Modded
-            if (profession == HNCProfessions.CHEF.get())
+            if (profession == HNCVillage.CHEF.get())
             {
                 trades = villagerCtx.getTrades(1);
                 trades.add(new HNCVillagerTrades.ItemsForEmeraldsTrade(HNCItems.CRACKER.get(), 2, 4, 10, 2));
