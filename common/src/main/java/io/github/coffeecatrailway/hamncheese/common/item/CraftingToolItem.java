@@ -5,7 +5,7 @@ import com.google.common.collect.Multimap;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -26,11 +26,11 @@ import net.minecraft.world.level.block.state.BlockState;
 public class CraftingToolItem extends TieredItem implements Vanishable, SelfRemainder
 {
     @Nullable
-    private final Tag<Block> mineableBlocks;
+    private final TagKey<Block> mineableBlocks;
     protected final float mineSpeed;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
-    public CraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks, Properties properties)
+    public CraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable TagKey<Block> mineableBlocks, Properties properties)
     {
         super(tier, properties);
         this.mineableBlocks = mineableBlocks;
@@ -44,7 +44,7 @@ public class CraftingToolItem extends TieredItem implements Vanishable, SelfRema
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state)
     {
-        return this.mineableBlocks != null && this.mineableBlocks.contains(state.getBlock()) ? this.mineSpeed : 1f;
+        return this.mineableBlocks != null && state.is(this.mineableBlocks) ? this.mineSpeed : 1f;
     }
 
     @Override

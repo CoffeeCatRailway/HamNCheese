@@ -9,7 +9,7 @@ import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomDisplay;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -35,22 +35,23 @@ public class HNCREIClientPlugin implements REIClientPlugin
         registry.add(new DefaultCustomDisplay(null, List.of(EntryIngredients.of(HNCItems.MAPLE_SAP_BOTTLE.get()), EntryIngredients.ofIngredient(Ingredient.of(HNCItemTags.SUGAR_COMMON))), List.of(EntryIngredients.of(HNCItems.MAPLE_SYRUP.get()))));
     }
 
-    private void addSandwichDisplay(DisplayRegistry registry, Tag.Named<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem)
+    private void addSandwichDisplay(DisplayRegistry registry, TagKey<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem)
     {
         this.addSandwichDisplay(registry, bunTag, hasTwoBuns, defaultItem, null);
     }
 
-    private void addSandwichDisplay(DisplayRegistry registry, Tag.Named<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem, @Nullable ItemLike neededItem)
+    private void addSandwichDisplay(DisplayRegistry registry, TagKey<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem, @Nullable ItemLike neededItem)
     {
-        List<EntryIngredient> breadSlice = bunTag.getValues().stream().map(EntryIngredients::of).toList();
+        EntryIngredient bun = EntryIngredients.ofIngredient(Ingredient.of(bunTag));
         List<ItemStack> selected = FoodPicker.pickFoods(7);
-        List<EntryIngredient> inputs = new ArrayList<>(breadSlice);
+        List<EntryIngredient> inputs = new ArrayList<>();
+        inputs.add(bun);
 
         if (neededItem != null)
             inputs.add(EntryIngredients.of(neededItem));
         selected.forEach(stack -> inputs.add(EntryIngredients.of(stack)));
         if (hasTwoBuns)
-            inputs.addAll(breadSlice);
+            inputs.add(bun);
 
         ItemStack sandwich = new ItemStack(defaultItem);
         selected.forEach(stack -> AbstractSandwichItem.addIngredient(sandwich, stack));

@@ -6,7 +6,7 @@ import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 
 /**
@@ -15,7 +15,7 @@ import net.minecraft.world.level.material.Fluid;
  */
 public class HNCFluidTags extends PollinatedFluidTagsProvider
 {
-    public static final Tag.Named<Fluid> MAPLE_SAP = TagRegistry.bindFluid(HamNCheese.getLocation("maple_sap"));
+    public static final TagKey<Fluid> MAPLE_SAP = TagRegistry.bindFluid(HamNCheese.getLocation("maple_sap"));
 
     public HNCFluidTags(DataGenerator dataGenerator, PollinatedModContainer container)
     {

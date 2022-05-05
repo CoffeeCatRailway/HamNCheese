@@ -1,7 +1,7 @@
 package io.github.coffeecatrailway.hamncheese.common.item.crafting;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.CustomRecipe;
@@ -15,10 +15,10 @@ import java.util.function.Supplier;
  */
 public abstract class AbstractSandwichRecipe extends CustomRecipe implements CustomSandwichRecipe<CraftingContainer>
 {
-    private final Tag.Named<Item> bunTag;
+    private final TagKey<Item> bunTag;
     private final Supplier<? extends ItemLike> defaultItem;
 
-    public AbstractSandwichRecipe(ResourceLocation id, Tag.Named<Item> bunTag, Supplier<? extends ItemLike> defaultItem)
+    public AbstractSandwichRecipe(ResourceLocation id, TagKey<Item> bunTag, Supplier<? extends ItemLike> defaultItem)
     {
         super(id);
         this.bunTag = bunTag;
@@ -32,7 +32,7 @@ public abstract class AbstractSandwichRecipe extends CustomRecipe implements Cus
     }
 
     @Override
-    public Tag.Named<Item> getBunTag()
+    public TagKey<Item> getBunTag()
     {
         return this.bunTag;
     }

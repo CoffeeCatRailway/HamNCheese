@@ -65,10 +65,10 @@ repositories {
 //        name = "JustEnoughItems fallback"
 //        url = "https://modmaven.k-4u.nl"
 //    }
-    maven { // Top
-        name 'tterrag maven'
-        url "https://maven.tterrag.com/"
-    }
+//    maven { // Top
+//        name 'tterrag maven'
+//        url "https://maven.tterrag.com/"
+//    }
 }
 
 dependencies {

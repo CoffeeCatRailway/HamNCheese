@@ -6,7 +6,7 @@ import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
  */
 public interface CustomSandwichRecipe<T extends Container> extends Recipe<T>
 {
-    Tag.Named<Item> getBunTag();
+    TagKey<Item> getBunTag();
 
     ItemLike getDefaultBunItem();
 
@@ -59,7 +59,7 @@ public interface CustomSandwichRecipe<T extends Container> extends Recipe<T>
                         {
                             neededItemCount++;
                             hasNeededItem = neededItemCount <= 1;
-                        } else if (this.getBunTag().contains(stack.getItem()))
+                        } else if (stack.is(this.getBunTag()))
                             bunCount++;
                         else
                             ingredientCount++;
@@ -86,7 +86,7 @@ public interface CustomSandwichRecipe<T extends Container> extends Recipe<T>
                 if (ingredient.getItem() == this.getNeededItem())
                     neededItemCount++;
                 if (ingredient.getItem() != this.getNeededItem() && neededItemCount <= 1)
-                    if (!ingredient.isEmpty() && ingredient.isEdible() && !this.getBunTag().contains(ingredient.getItem()))
+                    if (!ingredient.isEmpty() && ingredient.isEdible() && !ingredient.is(this.getBunTag()))
                         AbstractSandwichItem.addIngredient(sandwich, ingredient);
             }
             return sandwich;
@@ -100,7 +100,7 @@ public interface CustomSandwichRecipe<T extends Container> extends Recipe<T>
         for (int i = checkSlots.getFirst(); i < checkSlots.getSecond(); i++)
         {
             ItemStack stack = inventory.getItem(i);
-            if (this.getBunTag().contains(stack.getItem()))
+            if (stack.is(this.getBunTag()))
             {
                 if (stack.getItem() instanceof AbstractSandwichItem)
                 {

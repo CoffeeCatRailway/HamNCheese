@@ -1,7 +1,7 @@
 package io.github.coffeecatrailway.hamncheese.common.item.forge;
 
 import io.github.coffeecatrailway.hamncheese.common.item.CraftingToolItem;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.block.Block;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.Block;
  */
 public class CraftingToolItemForge extends CraftingToolItem
 {
-    public CraftingToolItemForge(float attackModifier, double attackSpeed, Tier tier, Tag<Block> mineableBlocks, Properties properties)
+    public CraftingToolItemForge(float attackModifier, double attackSpeed, Tier tier, TagKey<Block> mineableBlocks, Properties properties)
     {
         super(attackModifier, attackSpeed, tier, mineableBlocks, properties);
     }

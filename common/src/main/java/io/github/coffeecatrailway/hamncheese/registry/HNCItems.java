@@ -10,7 +10,7 @@ import io.github.coffeecatrailway.hamncheese.data.gen.HNCBlockTags;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.core.Registry;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import org.apache.logging.log4j.LogManager;
@@ -133,7 +133,7 @@ public class HNCItems
 
     // Mod loader sided items
     @ExpectPlatform
-    private static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable Tag<Block> mineableBlocks, Function<Item.Properties, Item.Properties> factory)
+    private static Function<Item.Properties, CraftingToolItem> getCraftingToolItem(float attackModifier, double attackSpeed, Tier tier, @Nullable TagKey<Block> mineableBlocks, Function<Item.Properties, Item.Properties> factory)
     {
         return Platform.error();
     }

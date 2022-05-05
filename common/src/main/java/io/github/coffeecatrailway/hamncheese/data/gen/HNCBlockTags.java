@@ -8,7 +8,7 @@ import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
@@ -18,36 +18,36 @@ import net.minecraft.world.level.block.Blocks;
  */
 public class HNCBlockTags extends PollinatedBlockTagsProvider
 {
-    private static final Tag.Named<Block> BARRELS_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "barrels"));
-    private static final Tag.Named<Block> BARRELS_COMMON = TagRegistry.bindBlock(new ResourceLocation("c", "barrel"));
-    private static final Tag.Named<Block> CHESTS_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "chests"));
-    private static final Tag.Named<Block> CHESTS_COMMON = TagRegistry.bindBlock(new ResourceLocation("c", "chest"));
-    private static final Tag.Named<Block> SHULKERS_COMMON = TagRegistry.bindBlock(new ResourceLocation("c", "shulker_box"));
-    public static final Tag.Named<Block> MOUSE_SEARCHABLE = TagRegistry.bindBlock(HamNCheese.getLocation("mouse_searchable"));
+    private static final TagKey<Block> BARRELS_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "barrels"));
+    private static final TagKey<Block> BARRELS_COMMON = TagRegistry.bindBlock(new ResourceLocation("c", "barrel"));
+    private static final TagKey<Block> CHESTS_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "chests"));
+    private static final TagKey<Block> CHESTS_COMMON = TagRegistry.bindBlock(new ResourceLocation("c", "chest"));
+    private static final TagKey<Block> SHULKERS_COMMON = TagRegistry.bindBlock(new ResourceLocation("c", "shulker_box"));
+    public static final TagKey<Block> MOUSE_SEARCHABLE = TagRegistry.bindBlock(HamNCheese.getLocation("mouse_searchable"));
 
-    public static final Tag.Named<Block> MINEABLE_WITH_KNIFE = TagRegistry.bindBlock(HamNCheese.getLocation("mineable_with_knife"));
+    public static final TagKey<Block> MINEABLE_WITH_KNIFE = TagRegistry.bindBlock(HamNCheese.getLocation("mineable_with_knife"));
 
-    private static final Tag.Named<Block> ENDER_STORAGE_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "chests/ender"));
-    public static final Tag.Named<Block> ENDER_STORAGE = TagRegistry.bindBlock(new ResourceLocation("c", "ender_storage"));
+    private static final TagKey<Block> ENDER_STORAGE_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "chests/ender"));
+    public static final TagKey<Block> ENDER_STORAGE = TagRegistry.bindBlock(new ResourceLocation("c", "ender_storage"));
 
     // Vanilla
-    public static final Tag.Named<Block> PLANKS = TagRegistry.bindBlock(new ResourceLocation("planks"));
-    public static final Tag.Named<Block> WOODEN_BUTTONS = TagRegistry.bindBlock(new ResourceLocation("wooden_buttons"));
-    public static final Tag.Named<Block> WOODEN_DOORS = TagRegistry.bindBlock(new ResourceLocation("wooden_doors"));
-    public static final Tag.Named<Block> WOODEN_STAIRS = TagRegistry.bindBlock(new ResourceLocation("wooden_stairs"));
-    public static final Tag.Named<Block> WOODEN_SLABS = TagRegistry.bindBlock(new ResourceLocation("wooden_slabs"));
-    public static final Tag.Named<Block> WOODEN_FENCES = TagRegistry.bindBlock(new ResourceLocation("wooden_fences"));
-    public static final Tag.Named<Block> SAPLINGS = TagRegistry.bindBlock(new ResourceLocation("saplings"));
-    public static final Tag.Named<Block> MAPLE_LOGS = TagRegistry.bindBlock(HamNCheese.getLocation("maple_logs"));
-    public static final Tag.Named<Block> LOGS_THAT_BURN = TagRegistry.bindBlock(new ResourceLocation("logs_that_burn"));
-    public static final Tag.Named<Block> FLOWER_POTS = TagRegistry.bindBlock(new ResourceLocation("flower_pots"));
-    public static final Tag.Named<Block> WOODEN_PRESSURE_PLATES = TagRegistry.bindBlock(new ResourceLocation("wooden_pressure_plate"));
-    public static final Tag.Named<Block> LEAVES = TagRegistry.bindBlock(new ResourceLocation("leaves"));
-    public static final Tag.Named<Block> WOODEN_TRAPDOORS = TagRegistry.bindBlock(new ResourceLocation("wooden_trapdoors"));
-    public static final Tag.Named<Block> STANDING_SIGNS = TagRegistry.bindBlock(new ResourceLocation("standing_signs"));
-    public static final Tag.Named<Block> WALL_SIGNS = TagRegistry.bindBlock(new ResourceLocation("wall_signs"));
-    public static final Tag.Named<Block> FENCE_GATES = TagRegistry.bindBlock(new ResourceLocation("fence_gates"));
-    
+    public static final TagKey<Block> PLANKS = TagRegistry.bindBlock(new ResourceLocation("planks"));
+    public static final TagKey<Block> WOODEN_BUTTONS = TagRegistry.bindBlock(new ResourceLocation("wooden_buttons"));
+    public static final TagKey<Block> WOODEN_DOORS = TagRegistry.bindBlock(new ResourceLocation("wooden_doors"));
+    public static final TagKey<Block> WOODEN_STAIRS = TagRegistry.bindBlock(new ResourceLocation("wooden_stairs"));
+    public static final TagKey<Block> WOODEN_SLABS = TagRegistry.bindBlock(new ResourceLocation("wooden_slabs"));
+    public static final TagKey<Block> WOODEN_FENCES = TagRegistry.bindBlock(new ResourceLocation("wooden_fences"));
+    public static final TagKey<Block> SAPLINGS = TagRegistry.bindBlock(new ResourceLocation("saplings"));
+    public static final TagKey<Block> MAPLE_LOGS = TagRegistry.bindBlock(HamNCheese.getLocation("maple_logs"));
+    public static final TagKey<Block> LOGS_THAT_BURN = TagRegistry.bindBlock(new ResourceLocation("logs_that_burn"));
+    public static final TagKey<Block> FLOWER_POTS = TagRegistry.bindBlock(new ResourceLocation("flower_pots"));
+    public static final TagKey<Block> WOODEN_PRESSURE_PLATES = TagRegistry.bindBlock(new ResourceLocation("wooden_pressure_plate"));
+    public static final TagKey<Block> LEAVES = TagRegistry.bindBlock(new ResourceLocation("leaves"));
+    public static final TagKey<Block> WOODEN_TRAPDOORS = TagRegistry.bindBlock(new ResourceLocation("wooden_trapdoors"));
+    public static final TagKey<Block> STANDING_SIGNS = TagRegistry.bindBlock(new ResourceLocation("standing_signs"));
+    public static final TagKey<Block> WALL_SIGNS = TagRegistry.bindBlock(new ResourceLocation("wall_signs"));
+    public static final TagKey<Block> FENCE_GATES = TagRegistry.bindBlock(new ResourceLocation("fence_gates"));
+
     public HNCBlockTags(DataGenerator dataGenerator, PollinatedModContainer container)
     {
         super(dataGenerator, container);

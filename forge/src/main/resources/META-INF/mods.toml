@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[39,)"
+loaderVersion="[40,)"
 license="https://www.gnu.org/licenses/gpl-3.0.en.html"
 issueTrackerURL="https://github.com/CoffeeCatRailway/HamNCheese/issues"
 
@@ -26,14 +26,14 @@ catalogueItemIcon="${id}:block_of_cheese"
 [[dependencies.${id}]]
 modId = "forge"
 mandatory = true
-versionRange = "[39,)"
+versionRange = "[40,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${id}]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.18,)"
+versionRange = "[1.18.2)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -47,6 +47,6 @@ side = "BOTH"
 [[dependencies.${id}]]
 modId = "jei"
 mandatory = false
-versionRange = "[7,)"
+versionRange = "[8,)"
 ordering = "NONE"
 side = "BOTH"

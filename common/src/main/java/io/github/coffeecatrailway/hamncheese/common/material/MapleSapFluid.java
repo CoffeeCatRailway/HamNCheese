@@ -2,9 +2,6 @@ package io.github.coffeecatrailway.hamncheese.common.material;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import gg.moonflower.pollen.api.fluid.PollinatedFluid;
-import gg.moonflower.pollen.core.Pollen;
-import gg.moonflower.pollen.core.PollenTest;
-import gg.moonflower.pollen.core.test.TestFluid;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCFluidTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
@@ -13,6 +10,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -23,7 +21,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -64,7 +61,7 @@ public abstract class MapleSapFluid extends FlowingFluid implements PollinatedFl
     }
 
     @Override
-    public int getFogColor(Camera camera, ClientLevel level, Biome biome, float partialTicks)
+    public int getFogColor(Camera camera, ClientLevel level, Holder<Biome> biome, float partialTicks)
     {
         return 0x5f3700;
     }
