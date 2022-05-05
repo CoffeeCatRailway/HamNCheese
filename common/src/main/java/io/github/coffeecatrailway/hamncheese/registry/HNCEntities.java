@@ -35,7 +35,8 @@ public class HNCEntities
     private static <E extends Mob> Supplier<EntityType<E>> registerWithEgg(String id, BiFunction<EntityType<E>, Level, E> entityFactory, MobCategory category, int bgColor, int spotColor, Function<EntityType.Builder<E>, EntityType.Builder<E>> factory)
     {
         Supplier<EntityType<E>> object = register(id, entityFactory, category, factory);
-        HNCItems.registerIdAsName(id + "_spawn_egg", prop -> new SpawnEggItemBase<>(object, bgColor, spotColor, true, prop));
+        HNCItems.registerIdAsName(id + "_spawn_egg", prop -> new SpawnEggItemBase<>(object, bgColor, spotColor, prop));
+        HNCLanguage.ENTITIES.put(object, HNCLanguage.capitalize(id));
         return object;
     }
 
