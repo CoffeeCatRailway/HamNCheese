@@ -8,25 +8,28 @@ import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import io.github.coffeecatrailway.hamncheese.mixins.StructureTemplatePoolAccessor;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.structure.pools.LegacySinglePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+
+import static io.github.coffeecatrailway.hamncheese.HamNCheese.CONFIG_SERVER;
 
 /**
  * @author CoffeeCatRailway
@@ -54,32 +57,60 @@ public class HNCVillage
     }
 
     /**
-     * All of the credit for this method goes to the creators of the Waystones mod.
-     * <a href="https://github.com/ModdingForBlockheads/Waystones/blob/1.18.x/shared/src/main/java/net/blay09/mods/waystones/worldgen/ModWorldGen.java">ModWorldGen.java</a>
+     * All of the credit for this class goes to the creators of the Etched mod.
+     * <a href="https://github.com/MoonflowerTeam/etched/blob/1.18.x/common/src/main/java/gg/moonflower/etched/core/registry/EtchedVillagers.java">EtchedVillagers.java</a>
+     * <p>
+     * Start
      */
-    public static void addVillageStructure(MinecraftServer server, String villagePiece, String structureName, int weight)
-    {
-        ResourceLocation structure = HamNCheese.getLocation(structureName);
+    public static void addStructurePieces() {
+        PlainVillagePools.bootstrap();
+        DesertVillagePools.bootstrap();
+        SavannaVillagePools.bootstrap();
+        SnowyVillagePools.bootstrap();
+        TaigaVillagePools.bootstrap();
 
-        LegacySinglePoolElement piece = StructurePoolElement.legacy(structure.toString()).apply(StructureTemplatePool.Projection.RIGID);
-        StructureTemplatePool pool = server.registryAccess().registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).getOptional(new ResourceLocation(villagePiece)).orElse(null);
-
-        if (pool != null)
-        {
-            var poolAccessor = (StructureTemplatePoolAccessor) pool;
-            // pretty sure this can be an immutable list (when datapacked) so gotta make a copy to be safe.
-            List<StructurePoolElement> listOfPieces = new ArrayList<>(poolAccessor.getTemplates());
-
-            for (int i = 0; i < weight; i++)
-                listOfPieces.add(piece);
-            LOGGER.info("Added weight for '" + structure + "' to " + weight);
-            poolAccessor.setTemplates(listOfPieces);
-
-            List<Pair<StructurePoolElement, Integer>> listOfWeightedPieces = new ArrayList<>(poolAccessor.getRawTemplates());
-            listOfWeightedPieces.add(new Pair<>(piece, weight));
-            poolAccessor.setRawTemplates(listOfWeightedPieces);
-        }
+        if (CONFIG_SERVER.plainsRestaurantWeight.get() > 0)
+            createVillagePiece("plains", "restaurant", 1, CONFIG_SERVER.plainsRestaurantWeight.get(), ProcessorLists.MOSSIFY_10_PERCENT, ProcessorLists.ZOMBIE_PLAINS);
+        if (CONFIG_SERVER.desertRestaurantWeight.get() > 0)
+            createVillagePiece("desert", "restaurant", 1, CONFIG_SERVER.desertRestaurantWeight.get(), ProcessorLists.ZOMBIE_DESERT);
+        if (CONFIG_SERVER.savannaRestaurantWeight.get() > 0)
+            createVillagePiece("savanna", "restaurant", 1, CONFIG_SERVER.savannaRestaurantWeight.get(), ProcessorLists.ZOMBIE_SAVANNA);
+        if (CONFIG_SERVER.snowyRestaurantWeight.get() > 0)
+            createVillagePiece("snowy", "restaurant", 1, CONFIG_SERVER.snowyRestaurantWeight.get(), ProcessorLists.ZOMBIE_SNOWY);
+        if (CONFIG_SERVER.taigaRestaurantWeight.get() > 0)
+            createVillagePiece("taiga", "restaurant", 1, CONFIG_SERVER.taigaRestaurantWeight.get(), ProcessorLists.MOSSIFY_10_PERCENT, ProcessorLists.ZOMBIE_TAIGA);
     }
+    
+    private static void createVillagePiece(String village, String name, int houseId, int weight, Holder<StructureProcessorList> zombieProcessor)
+    {
+        createVillagePiece(village, name, houseId, weight, ProcessorLists.EMPTY, zombieProcessor);
+    }
+
+    private static void createVillagePiece(String village, String name, int houseId, int weight, Holder<StructureProcessorList> normalProcessor, Holder<StructureProcessorList> zombieProcessor)
+    {
+        addToPool(new ResourceLocation("village/" + village + "/houses"), new ResourceLocation(HamNCheese.MOD_ID, "village/" + village + "/houses/" + village + "_" + name + "_" + houseId), normalProcessor, weight);
+        addToPool(new ResourceLocation("village/" + village + "/zombie/houses"), new ResourceLocation(HamNCheese.MOD_ID, "village/" + village + "/houses/" + village + "_" + name + "_" + houseId), zombieProcessor, weight);
+    }
+
+    private static void addToPool(ResourceLocation poolId, ResourceLocation pieceId, Holder<StructureProcessorList> processorList, int weight)
+    {
+        StructureTemplatePool pool = BuiltinRegistries.TEMPLATE_POOL.get(poolId);
+        if (pool == null)
+            return;
+
+        StructurePoolElement piece = StructurePoolElement.legacy(pieceId.toString(), processorList).apply(StructureTemplatePool.Projection.RIGID);
+        List<StructurePoolElement> templates = ((StructureTemplatePoolAccessor) pool).getTemplates();
+        List<Pair<StructurePoolElement, Integer>> rawTemplates = ((StructureTemplatePoolAccessor) pool).getRawTemplates();
+        if (templates == null || rawTemplates == null)
+            return;
+
+        for (int i = 0; i < weight; i++)
+            templates.add(piece);
+        rawTemplates.add(Pair.of(piece, weight));
+    }
+    /*
+     * End
+     */
 
     public static void load(Platform platform)
     {
