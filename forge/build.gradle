@@ -65,10 +65,6 @@ repositories {
 //        name = "JustEnoughItems fallback"
 //        url = "https://modmaven.k-4u.nl"
 //    }
-//    maven { // Top
-//        name 'tterrag maven'
-//        url "https://maven.tterrag.com/"
-//    }
 }
 
 dependencies {
@@ -78,7 +74,6 @@ dependencies {
 
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.reiVersion}"
     modImplementation("mezz.jei:jei-${rootProject.jeiVersion}") { transitive = false }
-//    modImplementation("mcjty.theoneprobe:TheOneProbe-1.16:${project.topVersion}") { transitive = false }
 
     modRuntime("curse.maven:shutupexperimentalsettings-407174:3544525")
     modRuntime("curse.maven:configured-457570:3640884")
