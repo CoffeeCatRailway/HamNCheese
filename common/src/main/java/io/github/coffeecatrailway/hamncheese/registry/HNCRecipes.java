@@ -29,9 +29,9 @@ public class HNCRecipes
 //    public static IRecipeType<PopcornRecipe> POPCORN_TYPE;
 
     // Blocks
-//    public static final RegistryObject<SpecialRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SpecialRecipeSerializer<>(PizzaOvenRecipe::new));
-//    public static final RegistryObject<SpecialRecipeSerializer<GrillRecipe>> GRILL_SERIALIZER = RECIPE_SERIALIZERS.register("grill", () -> new SpecialRecipeSerializer<>(GrillRecipe::new));
-//    public static final RegistryObject<PopcornRecipe.Serializer> POPCORN_SERIALIZER = RECIPE_SERIALIZERS.register("popcorn", PopcornRecipe.Serializer::new);
+//    public static final Supplier<SpecialRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SpecialRecipeSerializer<>(PizzaOvenRecipe::new));
+//    public static final Supplier<SpecialRecipeSerializer<GrillRecipe>> GRILL_SERIALIZER = RECIPE_SERIALIZERS.register("grill", () -> new SpecialRecipeSerializer<>(GrillRecipe::new));
+//    public static final Supplier<PopcornRecipe.Serializer> POPCORN_SERIALIZER = RECIPE_SERIALIZERS.register("popcorn", PopcornRecipe.Serializer::new);
 
     // Crafting grid
     public static final Supplier<SimpleRecipeSerializer<SandwichRecipe>> SANDWICH_SERIALIZER = RECIPE_SERIALIZERS.register("sandwich", () -> new SimpleRecipeSerializer<>(SandwichRecipe::new));
