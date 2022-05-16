@@ -4,7 +4,6 @@ import io.github.coffeecatrailway.hamncheese.HNCConfig;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.registry.HNCEntities;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFeatures;
-import net.minecraft.core.Holder;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
@@ -35,16 +34,16 @@ public class CommonEvents
         final HNCConfig.Server config = HamNCheese.CONFIG_SERVER;
 
         if (config.mapleTreeWeight.get() > 0 && (event.getCategory() == Biome.BiomeCategory.PLAINS || event.getCategory() == Biome.BiomeCategory.RIVER))
-            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, Holder.direct(HNCFeatures.Configured.MAPLE_TREE_PLACEMENT.get()));
+            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.MAPLE_TREE_PLACEMENT.get());
 
         if (config.wildPineapplesGenerate.get() && config.wildPineapplesCategoryWhitelist.get().contains(event.getCategory()))
-            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, Holder.direct(HNCFeatures.Configured.WILD_PINEAPPLE_PLACEMENT.get()));
+            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.WILD_PINEAPPLE_PLACEMENT.get());
 
         if (config.wildTomatoesGenerate.get() && config.wildTomatoesCategoryWhitelist.get().contains(event.getCategory()))
-            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, Holder.direct(HNCFeatures.Configured.WILD_TOMATO_PLACEMENT.get()));
+            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.WILD_TOMATO_PLACEMENT.get());
 
         if (config.wildCornGenerate.get() && config.wildCornCategoryWhitelist.get().contains(event.getCategory()))
-            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, Holder.direct(HNCFeatures.Configured.WILD_CORN_PLACEMENT.get()));
+            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, HNCFeatures.Configured.WILD_CORN_PLACEMENT.get());
 
         List<MobSpawnSettings.SpawnerData> creatureSpawns = event.getSpawns().getSpawner(MobCategory.CREATURE);
         if (config.canSpawnMouse() && config.mouseCategoryWhitelist.get().contains(event.getCategory()))

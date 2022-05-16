@@ -32,11 +32,7 @@
   },
   "depends": {
     "fabric": "*",
-    "minecraft": "1.18.2",
+    "minecraft": "1.18.1",
     "pollen": "1.x"
-  },
-  "suggests": {
-    "modmenu": "3.2.x",
-    "roughlyenoughitems": "8.x"
   }
 }

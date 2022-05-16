@@ -61,7 +61,7 @@ public class FindChestWithFoodGoal extends MouseInteractGoal
                 {
                     ItemStack stack = tile.getItem(i);
                     Item item = stack.getItem();
-                    if (!stack.is(HNCItemTags.MOUSE_BLACKLIST))
+                    if (!HNCItemTags.MOUSE_BLACKLIST.contains(item))
                     {
                         if (!stack.isEmpty() && item.isEdible() && item.getFoodProperties() != null)
                         {
@@ -98,7 +98,7 @@ public class FindChestWithFoodGoal extends MouseInteractGoal
             for (int i = 0; i < tile.getContainerSize(); i++)
             {
                 ItemStack stack = tile.getItem(i);
-                if (!stack.is(HNCItemTags.MOUSE_BLACKLIST) && !stack.isEmpty() && stack.isEdible())
+                if (!HNCItemTags.MOUSE_BLACKLIST.contains(stack.getItem()) && !stack.isEmpty() && stack.isEdible())
                     return true;
             }
         }

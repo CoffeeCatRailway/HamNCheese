@@ -25,7 +25,7 @@ public class FoodPicker
             random = Minecraft.getInstance().level.random;
 
         if (FOODS.isEmpty())
-            Registry.ITEM.stream().map(ItemStack::new).filter(stack -> stack.isEdible() && !stack.is(HNCItemTags.JEI_FOOD_BLACKLIST) && !(stack.getItem() instanceof AbstractSandwichItem)).forEach(FOODS::add);
+            Registry.ITEM.stream().filter(item -> item.isEdible() && !HNCItemTags.JEI_FOOD_BLACKLIST.contains(item) && !(item instanceof AbstractSandwichItem)).map(ItemStack::new).forEach(FOODS::add);
         return pickNRandomElements(FOODS, random.nextInt(amount) + 1, random);
     }
 

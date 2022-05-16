@@ -142,7 +142,6 @@ public class HamNCheese
 //        HNCContainers.load(PLATFORM);
         HNCFluids.load(PLATFORM);
         HNCFeatures.load(PLATFORM);
-        HNCFeatures.Configured.load(PLATFORM);
 
         FluidBehaviorRegistry.register(HNCFluidTags.MAPLE_SAP, new MapleSapFluidBehavior());
 
@@ -157,7 +156,10 @@ public class HamNCheese
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
-        ctx.enqueueWork(HNCVillage::addStructurePieces);
+        ctx.enqueueWork(() -> {
+            HNCFeatures.Configured.load(PLATFORM);
+            HNCVillage.addStructurePieces();
+        });
         ModifyTradesEvents.VILLAGER.register(villagerCtx -> {
             ModifyTradesEvents.TradeRegistry trades;
             VillagerProfession profession = villagerCtx.getProfession();

@@ -18,10 +18,8 @@ import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,8 +53,8 @@ public class HNCJEIPlugin implements IModPlugin
             @Override
             public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper helper, IFocusGroup focuses)
             {
-                helper.setInputs(builder, VanillaTypes.ITEM_STACK, List.of(List.of(new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get())), Arrays.asList(Ingredient.of(HNCItemTags.SUGAR_COMMON).getItems())), 2, 1);
-                helper.setOutputs(builder, VanillaTypes.ITEM_STACK, List.of(new ItemStack(HNCItems.MAPLE_SYRUP.get())));
+                helper.setInputs(builder, VanillaTypes.ITEM, List.of(List.of(new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get())), HNCItemTags.SUGAR_COMMON.getValues().stream().map(ItemStack::new).toList()), 2, 1);
+                helper.setOutputs(builder, VanillaTypes.ITEM, List.of(new ItemStack(HNCItems.MAPLE_SYRUP.get())));
             }
 
             @Override
