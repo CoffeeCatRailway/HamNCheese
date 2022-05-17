@@ -38,6 +38,7 @@
   "block.hamncheese.stripped_maple_wood": "Stripped Maple Wood",
   "block.hamncheese.tomato_plant": "Tomato Plant",
   "block.hamncheese.tree_tap": "Tree Tap",
+  "block.hamncheese.tree_tap.description": "Used to collect maple sap from maple trees",
   "block.hamncheese.warped_chopping_board": "Warped Chopping Board",
   "entity.hamncheese.mouse": "Mouse",
   "entity.minecraft.villager.hamncheese.chef": "Chef",
@@ -112,5 +113,6 @@
   "item.hamncheese.wooden_knife": "Wooden Knife",
   "itemGroup.hamncheese.tab": "Ham N' Cheese",
   "jei.hamncheese.maple_sap": "Maple sap is made by placing a tree tap on a maple log, then by right-clicking with an empty bucket",
-  "tooltip.hamncheese.hold_shift": "[Hold SHIFT %s]"
+  "tooltip.hamncheese.hold_shift": "[Hold SHIFT %s]",
+  "waila.hamncheese.tree_tap.level": "Sap Level: %s"
 }

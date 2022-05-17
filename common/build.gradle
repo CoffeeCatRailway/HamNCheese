@@ -6,6 +6,7 @@ dependencies {
     modApi("gg.moonflower:pollen:${rootProject.pollenVersion}") { transitive = false }
 
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.reiVersion}"
+    modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${rootProject.wthitVersion}"
 }
 
 architectury {

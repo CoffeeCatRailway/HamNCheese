@@ -68,7 +68,11 @@ dependencies {
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rootProject.reiVersion}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${rootProject.reiVersion}"
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.reiVersion}"
+
     modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modMenuVersion}"
+
+    modRuntimeOnly "mcp.mobius.waila:wthit:fabric-${rootProject.wthitVersion}"
+    modRuntimeOnly "lol.bai:badpackets:fabric-0.1.2"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

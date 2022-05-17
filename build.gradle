@@ -46,6 +46,7 @@ allprojects {
                 includeGroup "curse.maven"
             }
         }
+        maven { url "https://maven.bai.lol" }
     }
 
     tasks.withType(JavaCompile) {
