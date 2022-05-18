@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.hamncheese.registry;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.block.entity.GrillBlockEntity;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -23,7 +24,7 @@ public class HNCBlockEntities
     protected static final PollinatedRegistry<BlockEntityType<?>> TILE_ENTITIES = PollinatedRegistry.create(Registry.BLOCK_ENTITY_TYPE, HamNCheese.MOD_ID);
 
 //    public static final RegistryObject<TileEntityType<PizzaOvenTileEntity>> PIZZA_OVEN = register("pizza_oven", PizzaOvenTileEntity::new, HNCBlocks.PIZZA_OVEN);
-//    public static final RegistryObject<TileEntityType<GrillTileEntity>> GRILL = register("grill", GrillTileEntity::new, HNCBlocks.GRILL);
+    public static final Supplier<BlockEntityType<GrillBlockEntity>> GRILL = register("grill", GrillBlockEntity::new, HNCBlocks.GRILL);
 //    public static final RegistryObject<TileEntityType<PopcornMachineTileEntity>> POPCORN_MACHINE = register("popcorn_machine", PopcornMachineTileEntity::new, HNCBlocks.POPCORN_MACHINE);
 
     @SafeVarargs

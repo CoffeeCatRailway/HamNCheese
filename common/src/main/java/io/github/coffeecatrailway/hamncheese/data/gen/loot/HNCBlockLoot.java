@@ -32,10 +32,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
-import net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
@@ -182,11 +179,11 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
 //                                .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
 //                        .when(ExplosionCondition.survivesExplosion())));
 
-//        this.add(HNCBlocks.GRILL.get(), block -> LootTable.lootTable()
-//                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
-//                        .add(LootItem.lootTableItem(HNCBlocks.GRILL.get())
-//                                .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
-//                        .when(ExplosionCondition.survivesExplosion())));
+        this.add(HNCBlocks.GRILL.get(), block -> LootTable.lootTable()
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(HNCBlocks.GRILL.get())
+                                .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
+                        .when(ExplosionCondition.survivesExplosion())));
 
 //        this.add(HNCBlocks.POPCORN_MACHINE.get(), block -> LootTable.lootTable()
 //                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))

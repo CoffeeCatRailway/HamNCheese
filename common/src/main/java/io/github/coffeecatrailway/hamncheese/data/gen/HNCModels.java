@@ -187,21 +187,21 @@ public class HNCModels extends PollinatedModelProvider
             }
             this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.CORN_PLANT.get()).with(plantPropertyDispatch));
 
-//            // Horizontal Blocks - Initial
+            // Horizontal Blocks
 //            VariantBlockStateBuilder.PartialBlockstate oven = this.getVariantBuilder(HNCBlocks.PIZZA_OVEN.get()).partialState();
 //            ModelFile ovenModel = this.models().getExistingFile(HamNCheese.getLocation("block/pizza_oven"));
 
-//            VariantBlockStateBuilder.PartialBlockstate grill = this.getVariantBuilder(HNCBlocks.GRILL.get()).partialState();
-//            ModelFile grillModel = this.models().getExistingFile(HamNCheese.getLocation("block/grill"));
+            ResourceLocation grillModel = HamNCheese.getLocation("block/grill");
+            PropertyDispatch.C3<Direction, Boolean, Boolean> grillPropertyDispatch = PropertyDispatch.properties(GrillBlock.FACING, GrillBlock.WATERLOGGED, GrillBlock.LIT);
 
 //            VariantBlockStateBuilder.PartialBlockstate popcorn = this.getVariantBuilder(HNCBlocks.POPCORN_MACHINE.get()).partialState();
 //            ModelFile popcornModelFull = this.models().getExistingFile(HamNCheese.getLocation("block/popcorn_machine_full"));
 //            ModelFile popcornModelEmpty = this.models().getExistingFile(HamNCheese.getLocation("block/popcorn_machine_empty"));
 
-//            // Add models
-//            for (Direction direction : Direction.Plane.HORIZONTAL)
-//            {
-//                // Pizza Oven
+            for (Direction direction : Direction.Plane.HORIZONTAL)
+            {
+                VariantProperties.Rotation yRot = this.yRotationFromDirection(direction.getOpposite());
+                // Pizza Oven
 //                oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, false).with(PizzaOvenBlock.LIT, false)
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(ovenModel).addModel();
 //                oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, false).with(PizzaOvenBlock.LIT, true)
@@ -211,17 +211,13 @@ public class HNCModels extends PollinatedModelProvider
 //                oven.with(PizzaOvenBlock.HORIZONTAL_FACING, direction).with(PizzaOvenBlock.WATERLOGGED, true).with(PizzaOvenBlock.LIT, true)
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(ovenModel).addModel();
 
-//                // Grill
-//                grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, false).with(GrillBlock.LIT, false)
-//                        .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
-//                grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, false).with(GrillBlock.LIT, true)
-//                        .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
-//                grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, true).with(GrillBlock.LIT, false)
-//                        .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
-//                grill.with(GrillBlock.HORIZONTAL_FACING, direction).with(GrillBlock.WATERLOGGED, true).with(GrillBlock.LIT, true)
-//                        .modelForState().rotationY((int) direction.toYRot()).modelFile(grillModel).addModel();
+                // Grill
+                grillPropertyDispatch = grillPropertyDispatch.select(direction, false, false, Variant.variant().with(VariantProperties.Y_ROT, yRot).with(VariantProperties.MODEL, grillModel))
+                        .select(direction, false, true, Variant.variant().with(VariantProperties.Y_ROT, yRot).with(VariantProperties.MODEL, grillModel))
+                        .select(direction, true, false, Variant.variant().with(VariantProperties.Y_ROT, yRot).with(VariantProperties.MODEL, grillModel))
+                        .select(direction, true, true, Variant.variant().with(VariantProperties.Y_ROT, yRot).with(VariantProperties.MODEL, grillModel));
 
-//                // Popcorn Machine
+                // Popcorn Machine
 //                popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, false).with(PopcornMachineBlock.LIT, false)
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelEmpty).addModel();
 //                popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, false).with(PopcornMachineBlock.LIT, true)
@@ -230,10 +226,10 @@ public class HNCModels extends PollinatedModelProvider
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelEmpty).addModel();
 //                popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, true).with(PopcornMachineBlock.LIT, true)
 //                        .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelFull).addModel();
-//            }
+            }
 
 //            this.toItem(HNCBlocks.PIZZA_OVEN.get());
-//            this.toItem(HNCBlocks.GRILL.get());
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.GRILL.get()).with(grillPropertyDispatch));
 //            this.toItem(HNCBlocks.POPCORN_MACHINE.get(), HamNCheese.getLocation("block/popcorn_machine_full"));
 
             this.choppingBoard(HNCBlocks.OAK_CHOPPING_BOARD.get(), Blocks.OAK_PLANKS);

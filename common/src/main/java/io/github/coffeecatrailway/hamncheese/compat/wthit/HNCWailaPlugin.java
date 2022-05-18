@@ -1,9 +1,11 @@
 package io.github.coffeecatrailway.hamncheese.compat.wthit;
 
+import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.block.GrillBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.TreeTapBlock;
-import mcp.mobius.waila.api.IRegistrar;
-import mcp.mobius.waila.api.IWailaPlugin;
-import mcp.mobius.waila.api.TooltipPosition;
+import io.github.coffeecatrailway.hamncheese.common.block.entity.GrillBlockEntity;
+import mcp.mobius.waila.api.*;
+import net.minecraft.network.chat.TranslatableComponent;
 
 /**
  * @author CoffeeCatRailway
@@ -14,6 +16,30 @@ public class HNCWailaPlugin implements IWailaPlugin
     @Override
     public void register(IRegistrar reg)
     {
-        reg.addComponent(new TreeTapBlockOverride(), TooltipPosition.BODY, TreeTapBlock.class);
+        reg.addComponent(new IBlockComponentProvider()
+        {
+            @Override
+            public void appendBody(ITooltip tooltip, IBlockAccessor accessor, IPluginConfig config)
+            {
+                tooltip.addLine(new TranslatableComponent("waila." + HamNCheese.MOD_ID + ".tree_tap.level", accessor.getBlockState().getValue(TreeTapBlock.SAP_LEVEL)));
+            }
+        }, TooltipPosition.BODY, TreeTapBlock.class);
+        reg.addComponent(new IBlockComponentProvider()
+        {
+            @Override
+            public void appendBody(ITooltip tooltip, IBlockAccessor accessor, IPluginConfig config)
+            {
+                if (accessor.getBlockEntity() instanceof GrillBlockEntity)
+                {
+                    float cookTime = ((GrillBlockEntity) accessor.getBlockEntity()).data.get(2);
+                    float cookTimeTotal = ((GrillBlockEntity) accessor.getBlockEntity()).data.get(3);
+                    if (cookTime > 0 && cookTimeTotal > 0)
+                    {
+                        int progress = Math.round((cookTime / cookTimeTotal) * 100f);
+                        tooltip.addLine(new TranslatableComponent("waila." + HamNCheese.MOD_ID + ".progress", progress).append("%"));
+                    }
+                }
+            }
+        }, TooltipPosition.BODY, GrillBlock.class);
     }
 }

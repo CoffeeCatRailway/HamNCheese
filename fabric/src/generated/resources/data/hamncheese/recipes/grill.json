@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i i",
+    "rsi",
+    "b b"
+  ],
+  "key": {
+    "i": {
+      "tag": "c:iron_ingots"
+    },
+    "r": {
+      "tag": "c:redstone_dusts"
+    },
+    "s": {
+      "item": "minecraft:smoker"
+    },
+    "b": {
+      "item": "minecraft:iron_bars"
+    }
+  },
+  "result": {
+    "item": "hamncheese:grill"
+  }
+}

@@ -11,16 +11,14 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.EntityAttributeRegistry;
 import gg.moonflower.pollen.api.registry.FluidBehaviorRegistry;
 import gg.moonflower.pollen.api.registry.StrippingRegistry;
-import gg.moonflower.pollen.api.registry.client.ColorRegistry;
-import gg.moonflower.pollen.api.registry.client.EntityRendererRegistry;
-import gg.moonflower.pollen.api.registry.client.ItemRendererRegistry;
-import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
+import gg.moonflower.pollen.api.registry.client.*;
 import gg.moonflower.pollen.api.registry.content.CompostablesRegistry;
 import gg.moonflower.pollen.api.registry.content.DispenseItemBehaviorRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.HNCModelLayers;
 import io.github.coffeecatrailway.hamncheese.client.entity.MouseModel;
 import io.github.coffeecatrailway.hamncheese.client.entity.MouseRenderer;
+import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
@@ -105,9 +103,9 @@ public class HamNCheese
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
     {
-//        ctx.enqueueWork(() -> {
-//            ScreenRegistry.register(PlusMenuTypes.SAW_BENCH.get(), SawBenchScreen::new);
-//        });
+        ctx.enqueueWork(() -> {
+            ScreenRegistry.register(HNCMenus.GRILL.get(), GrillScreen::new);
+        });
 
         RenderTypeRegistry.register(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get(), RenderType.cutout());
 
@@ -128,6 +126,8 @@ public class HamNCheese
         ItemRendererRegistry.registerRenderer(HNCItems.PIZZA.get(), SandwichItemRenderer.INSTANCE);
         ItemRendererRegistry.registerRenderer(HNCItems.CRACKER.get(), SandwichItemRenderer.INSTANCE);
         ItemRendererRegistry.registerRenderer(HNCItems.SANDWICH.get(), SandwichItemRenderer.INSTANCE);
+
+        //RegisterAtlasSpriteEvent
     }
 
     public static void onCommonInit()
@@ -137,9 +137,9 @@ public class HamNCheese
         HNCRecipes.load(PLATFORM);
         HNCEntities.load(PLATFORM);
         HNCVillage.load(PLATFORM);
-//        bus.addGenericListener(StatType.class, HNCStats::register);
+        HNCStats.register();
         HNCBlockEntities.load(PLATFORM);
-//        HNCContainers.load(PLATFORM);
+        HNCMenus.load(PLATFORM);
         HNCFluids.load(PLATFORM);
         HNCFeatures.load(PLATFORM);
 
@@ -160,6 +160,7 @@ public class HamNCheese
             HNCFeatures.Configured.load(PLATFORM);
             HNCVillage.addStructurePieces();
         });
+
         ModifyTradesEvents.VILLAGER.register(villagerCtx -> {
             ModifyTradesEvents.TradeRegistry trades;
             VillagerProfession profession = villagerCtx.getProfession();
