@@ -23,12 +23,12 @@ public class HNCRecipes
     private static final Logger LOGGER = LogManager.getLogger();
     private static final PollinatedRegistry<RecipeSerializer<?>> RECIPE_SERIALIZERS = PollinatedRegistry.create(Registry.RECIPE_SERIALIZER, HamNCheese.MOD_ID);
 
-//    public static IRecipeType<PizzaOvenRecipe> PIZZA_OVEN_TYPE;
+    public static RecipeType<PizzaOvenRecipe> PIZZA_OVEN_TYPE;
     public static RecipeType<GrillRecipe> GRILL_TYPE;
-//    public static IRecipeType<PopcornRecipe> POPCORN_TYPE;
+//    public static RecipeType<PopcornRecipe> POPCORN_TYPE;
 
     // Blocks
-//    public static final Supplier<SimpleRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SimpleRecipeSerializer<>(PizzaOvenRecipe::new));
+    public static final Supplier<SimpleRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SimpleRecipeSerializer<>(PizzaOvenRecipe::new));
     public static final Supplier<SimpleRecipeSerializer<GrillRecipe>> GRILL_SERIALIZER = RECIPE_SERIALIZERS.register("grill", () -> new SimpleRecipeSerializer<>(GrillRecipe::new));
 //    public static final Supplier<PopcornRecipe.Serializer> POPCORN_SERIALIZER = RECIPE_SERIALIZERS.register("popcorn", PopcornRecipe.Serializer::new);
 
@@ -54,7 +54,7 @@ public class HNCRecipes
     public static void load(Platform platform)
     {
         LOGGER.debug("Loaded");
-//        PIZZA_OVEN_TYPE = registerType("pizza_oven");
+        PIZZA_OVEN_TYPE = registerType("pizza_oven");
         GRILL_TYPE = registerType("grill");
 //        POPCORN_TYPE = registerType("popcorn");
         RECIPE_SERIALIZERS.register(platform);

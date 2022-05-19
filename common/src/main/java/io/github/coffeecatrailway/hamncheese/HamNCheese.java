@@ -19,6 +19,7 @@ import io.github.coffeecatrailway.hamncheese.client.HNCModelLayers;
 import io.github.coffeecatrailway.hamncheese.client.entity.MouseModel;
 import io.github.coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
+import io.github.coffeecatrailway.hamncheese.client.gui.screens.PizzaOvenScreen;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
@@ -104,6 +105,7 @@ public class HamNCheese
     public static void onClientPostInit(Platform.ModSetupContext ctx)
     {
         ctx.enqueueWork(() -> {
+            ScreenRegistry.register(HNCMenus.PIZZA_OVEN.get(), PizzaOvenScreen::new);
             ScreenRegistry.register(HNCMenus.GRILL.get(), GrillScreen::new);
         });
 

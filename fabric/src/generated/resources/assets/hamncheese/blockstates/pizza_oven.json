@@ -1,0 +1,68 @@
+{
+  "variants": {
+    "facing=east,lit=false,waterlogged=false": {
+      "y": 270,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=east,lit=false,waterlogged=true": {
+      "y": 270,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=east,lit=true,waterlogged=false": {
+      "y": 270,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=east,lit=true,waterlogged=true": {
+      "y": 270,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=north,lit=false,waterlogged=false": {
+      "y": 180,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=north,lit=false,waterlogged=true": {
+      "y": 180,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=north,lit=true,waterlogged=false": {
+      "y": 180,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=north,lit=true,waterlogged=true": {
+      "y": 180,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=south,lit=false,waterlogged=false": {
+      "y": 0,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=south,lit=false,waterlogged=true": {
+      "y": 0,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=south,lit=true,waterlogged=false": {
+      "y": 0,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=south,lit=true,waterlogged=true": {
+      "y": 0,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=west,lit=false,waterlogged=false": {
+      "y": 90,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=west,lit=false,waterlogged=true": {
+      "y": 90,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=west,lit=true,waterlogged=false": {
+      "y": 90,
+      "model": "hamncheese:block/pizza_oven"
+    },
+    "facing=west,lit=true,waterlogged=true": {
+      "y": 90,
+      "model": "hamncheese:block/pizza_oven"
+    }
+  }
+}

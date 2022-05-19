@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.GrillBlockEntity;
+import io.github.coffeecatrailway.hamncheese.common.block.entity.PizzaOvenBlockEntity;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -23,9 +24,9 @@ public class HNCBlockEntities
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final PollinatedRegistry<BlockEntityType<?>> TILE_ENTITIES = PollinatedRegistry.create(Registry.BLOCK_ENTITY_TYPE, HamNCheese.MOD_ID);
 
-//    public static final RegistryObject<TileEntityType<PizzaOvenTileEntity>> PIZZA_OVEN = register("pizza_oven", PizzaOvenTileEntity::new, HNCBlocks.PIZZA_OVEN);
+    public static final Supplier<BlockEntityType<PizzaOvenBlockEntity>> PIZZA_OVEN = register("pizza_oven", PizzaOvenBlockEntity::new, HNCBlocks.PIZZA_OVEN);
     public static final Supplier<BlockEntityType<GrillBlockEntity>> GRILL = register("grill", GrillBlockEntity::new, HNCBlocks.GRILL);
-//    public static final RegistryObject<TileEntityType<PopcornMachineTileEntity>> POPCORN_MACHINE = register("popcorn_machine", PopcornMachineTileEntity::new, HNCBlocks.POPCORN_MACHINE);
+//    public static final Supplier<BlockEntityType<PopcornMachineBlockEntity>> POPCORN_MACHINE = register("popcorn_machine", PopcornMachineBlockEntity::new, HNCBlocks.POPCORN_MACHINE);
 
     @SafeVarargs
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> tileEntity, Supplier<? extends Block>... blocks)

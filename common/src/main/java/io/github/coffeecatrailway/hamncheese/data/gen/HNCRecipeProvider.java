@@ -149,9 +149,9 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 50, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HamNCheese.getLocation("cooked_mouse_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.MOUSE.get()), HNCItems.COOKED_MOUSE.get(), .2f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_mouse", has(HNCItems.MOUSE.get())).save(consumer, HamNCheese.getLocation("cooked_mouse_campfire"));
 
-//        ShapedRecipeBuilder.shaped(HNCBlocks.PIZZA_OVEN.get()).define('b', Items.BRICK).define('t', Blocks.WHITE_TERRACOTTA).define('c', Ingredient.of(HNCItemTags.CAMPFIRES))
-//                .pattern(" t ").pattern("tct").pattern("bbb").unlockedBy("has_bricks", has(Items.BRICK)).unlockedBy("has_terracotta", has(Blocks.WHITE_TERRACOTTA))
-//                .unlockedBy("has_campfire", has(HNCItemTags.CAMPFIRES)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCBlocks.PIZZA_OVEN.get()).define('b', Items.BRICK).define('t', Blocks.WHITE_TERRACOTTA).define('c', Ingredient.of(HNCItemTags.CAMPFIRES))
+                .pattern(" t ").pattern("tct").pattern("bbb").unlockedBy("has_bricks", has(Items.BRICK)).unlockedBy("has_terracotta", has(Blocks.WHITE_TERRACOTTA))
+                .unlockedBy("has_campfire", has(HNCItemTags.CAMPFIRES)).save(consumer);
 
         ShapedRecipeBuilder.shaped(HNCBlocks.GRILL.get()).define('i', HNCItemTags.IRON_INGOTS_COMMON).define('r', HNCItemTags.REDSTONE_DUSTS_COMMON).define('s', Blocks.SMOKER).define('b', Blocks.IRON_BARS)
                 .pattern("i i").pattern("rsi").pattern("b b").unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).unlockedBy("has_redstone", has(HNCItemTags.REDSTONE_DUSTS_COMMON))

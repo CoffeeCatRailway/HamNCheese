@@ -173,11 +173,11 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
 
         this.dropSelf(HNCBlocks.MAPLE_CHOPPING_BOARD.get());
 
-//        this.add(HNCBlocks.PIZZA_OVEN.get(), block -> LootTable.lootTable()
-//                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
-//                        .add(LootItem.lootTableItem(HNCBlocks.PIZZA_OVEN.get())
-//                                .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
-//                        .when(ExplosionCondition.survivesExplosion())));
+        this.add(HNCBlocks.PIZZA_OVEN.get(), block -> LootTable.lootTable()
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(HNCBlocks.PIZZA_OVEN.get())
+                                .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
+                        .when(ExplosionCondition.survivesExplosion())));
 
         this.add(HNCBlocks.GRILL.get(), block -> LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
