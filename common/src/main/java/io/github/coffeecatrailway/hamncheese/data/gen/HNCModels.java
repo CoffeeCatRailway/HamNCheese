@@ -194,9 +194,9 @@ public class HNCModels extends PollinatedModelProvider
             ResourceLocation grillModel = HamNCheese.getLocation("block/grill");
             PropertyDispatch.C3<Direction, Boolean, Boolean> grillPropertyDispatch = PropertyDispatch.properties(GrillBlock.FACING, GrillBlock.WATERLOGGED, GrillBlock.LIT);
 
-//            VariantBlockStateBuilder.PartialBlockstate popcorn = this.getVariantBuilder(HNCBlocks.POPCORN_MACHINE.get()).partialState();
-//            ModelFile popcornModelFull = this.models().getExistingFile(HamNCheese.getLocation("block/popcorn_machine_full"));
-//            ModelFile popcornModelEmpty = this.models().getExistingFile(HamNCheese.getLocation("block/popcorn_machine_empty"));
+            ResourceLocation popcornModelFull = HamNCheese.getLocation("block/popcorn_machine_full");
+            ResourceLocation popcornModelEmpty = HamNCheese.getLocation("block/popcorn_machine_empty");
+            PropertyDispatch.C3<Direction, Boolean, Boolean> popcornPropertyDispatch = PropertyDispatch.properties(PopcornMachineBlock.FACING, PopcornMachineBlock.WATERLOGGED, PopcornMachineBlock.LIT);
 
             for (Direction direction : Direction.Plane.HORIZONTAL)
             {
@@ -214,19 +214,16 @@ public class HNCModels extends PollinatedModelProvider
                         .select(direction, true, true, Variant.variant().with(VariantProperties.Y_ROT, yRot).with(VariantProperties.MODEL, grillModel));
 
                 // Popcorn Machine
-//                popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, false).with(PopcornMachineBlock.LIT, false)
-//                        .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelEmpty).addModel();
-//                popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, false).with(PopcornMachineBlock.LIT, true)
-//                        .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelFull).addModel();
-//                popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, true).with(PopcornMachineBlock.LIT, false)
-//                        .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelEmpty).addModel();
-//                popcorn.with(PopcornMachineBlock.HORIZONTAL_FACING, direction).with(PopcornMachineBlock.WATERLOGGED, true).with(PopcornMachineBlock.LIT, true)
-//                        .modelForState().rotationY((int) direction.toYRot()).modelFile(popcornModelFull).addModel();
+                popcornPropertyDispatch = popcornPropertyDispatch.select(direction, false, false, Variant.variant().with(VariantProperties.Y_ROT, yRot).with(VariantProperties.MODEL, popcornModelEmpty))
+                        .select(direction, false, true, Variant.variant().with(VariantProperties.Y_ROT, yRot).with(VariantProperties.MODEL, popcornModelFull))
+                        .select(direction, true, false, Variant.variant().with(VariantProperties.Y_ROT, yRot).with(VariantProperties.MODEL, popcornModelEmpty))
+                        .select(direction, true, true, Variant.variant().with(VariantProperties.Y_ROT, yRot).with(VariantProperties.MODEL, popcornModelFull));
             }
 
             this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.PIZZA_OVEN.get()).with(ovenPropertyDispatch));
             this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.GRILL.get()).with(grillPropertyDispatch));
-//            this.toItem(HNCBlocks.POPCORN_MACHINE.get(), HamNCheese.getLocation("block/popcorn_machine_full"));
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(HNCBlocks.POPCORN_MACHINE.get()).with(popcornPropertyDispatch));
+            this.delegateItemModel(HNCBlocks.POPCORN_MACHINE.get(), popcornModelFull);
 
             this.choppingBoard(HNCBlocks.OAK_CHOPPING_BOARD.get(), Blocks.OAK_PLANKS);
             this.choppingBoard(HNCBlocks.BIRCH_CHOPPING_BOARD.get(), Blocks.BIRCH_PLANKS);

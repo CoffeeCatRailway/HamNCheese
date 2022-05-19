@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 import gg.moonflower.pollen.api.datagen.provider.PollinatedLanguageProvider;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.block.entity.PopcornMachineBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.network.chat.Component;
@@ -57,8 +58,8 @@ public class HNCLanguage extends PollinatedLanguageProvider
 
         this.add("jei." + HamNCheese.MOD_ID + ".maple_sap", "Maple sap is made by placing a tree tap on a maple log, then by right-clicking with an empty bucket");
 
-//        this.add("container." + HamNCheese.MOD_ID + ".popcorn_machine.flavour", "Flavour: %s/" + PopcornMachineTileEntity.MAX_FLAVOUR_TIME + "mb");
-//        this.add("container." + HamNCheese.MOD_ID + ".popcorn_machine.popcorn", "Popcorn: %s/" + PopcornMachineTileEntity.MAX_POPCORN);
+        this.add("container." + HamNCheese.MOD_ID + ".popcorn_machine.flavour", "Flavour: %s/" + PopcornMachineBlockEntity.MAX_FLAVOUR_TIME + "mb");
+        this.add("container." + HamNCheese.MOD_ID + ".popcorn_machine.popcorn", "Popcorn: %s/" + PopcornMachineBlockEntity.MAX_POPCORN);
 
         this.add("fluid." + HamNCheese.MOD_ID + ".maple_sap", "Maple Sap");
 

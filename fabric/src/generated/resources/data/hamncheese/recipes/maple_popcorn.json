@@ -1,0 +1,13 @@
+{
+  "type": "hamncheese:popcorn",
+  "popcorn": 75,
+  "flavouring": {
+    "item": "hamncheese:maple_syrup"
+  },
+  "seasoning": {
+    "tag": "c:salt"
+  },
+  "result": {
+    "item": "hamncheese:maple_popcorn"
+  }
+}

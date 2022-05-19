@@ -19,13 +19,13 @@ public class HNCStats
 
     public static ResourceLocation INTERACT_PIZZA_OVEN;
     public static ResourceLocation INTERACT_GRILL;
-//    public static ResourceLocation INTERACT_POPCORN_MACHINE;
+    public static ResourceLocation INTERACT_POPCORN_MACHINE;
 
     public static void register()
     {
         INTERACT_PIZZA_OVEN = register("interact_pizza_oven", "Interactions with Pizza Oven", StatFormatter.DEFAULT);
         INTERACT_GRILL = register("interact_grill", "Interactions with Grill", StatFormatter.DEFAULT);
-//        INTERACT_POPCORN_MACHINE = register("interact_popcorn_machine", "Interactions with Popcorn Machine", StatFormatter.DEFAULT);
+        INTERACT_POPCORN_MACHINE = register("interact_popcorn_machine", "Interactions with Popcorn Machine", StatFormatter.DEFAULT);
 
         LOGGER.debug("Custom stats registered");
     }

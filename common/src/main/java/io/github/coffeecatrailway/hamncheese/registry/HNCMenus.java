@@ -5,6 +5,7 @@ import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.world.inventory.GrillContainer;
 import io.github.coffeecatrailway.hamncheese.common.world.inventory.PizzaOvenContainer;
+import io.github.coffeecatrailway.hamncheese.common.world.inventory.PopcornMachineContainer;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.core.Registry;
 import net.minecraft.world.inventory.MenuType;
@@ -24,7 +25,7 @@ public class HNCMenus
 
     public static final Supplier<MenuType<PizzaOvenContainer>> PIZZA_OVEN = register("pizza_oven", () -> new MenuType<>(PizzaOvenContainer::new));
     public static final Supplier<MenuType<GrillContainer>> GRILL = register("grill", () -> new MenuType<>(GrillContainer::new));
-//    public static final Supplier<MenuType<PopcornMachineContainer>> POPCORN_MACHINE = register("popcorn_machine", () -> new MenuType<>(PopcornMachineContainer::new), "Popcorn");
+    public static final Supplier<MenuType<PopcornMachineContainer>> POPCORN_MACHINE = register("popcorn_machine", () -> new MenuType<>(PopcornMachineContainer::new), "Popcorn");
 
     private static <T extends MenuType<?>> Supplier<T> register(String id, Supplier<T> container)
     {

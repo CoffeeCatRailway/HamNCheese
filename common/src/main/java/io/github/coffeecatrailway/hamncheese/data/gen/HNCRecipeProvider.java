@@ -157,21 +157,21 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
                 .pattern("i i").pattern("rsi").pattern("b b").unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).unlockedBy("has_redstone", has(HNCItemTags.REDSTONE_DUSTS_COMMON))
                 .unlockedBy("has_smoker", has(Blocks.SMOKER)).unlockedBy("has_bars", has(Blocks.IRON_BARS)).save(consumer);
 
-//        ShapedRecipeBuilder.shaped(HNCBlocks.POPCORN_MACHINE.get()).define('i', HNCItemTags.IRON_INGOTS_COMMON).define('r', Blocks.RED_CONCRETE).define('w', Blocks.WHITE_CONCRETE).define('b', Items.BUCKET).define('g', Blocks.GLASS_PANE)
-//                .pattern("rwr").pattern("gbg").pattern("i i").unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).unlockedBy("has_red_concrete", has(Blocks.RED_CONCRETE))
-//                .unlockedBy("has_white_concrete", has(Blocks.WHITE_CONCRETE)).unlockedBy("has_bucket", has(Items.BUCKET)).unlockedBy("has_glass_pane", has(Blocks.GLASS_PANE)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCBlocks.POPCORN_MACHINE.get()).define('i', HNCItemTags.IRON_INGOTS_COMMON).define('r', Blocks.RED_CONCRETE).define('w', Blocks.WHITE_CONCRETE).define('b', Items.BUCKET).define('g', Blocks.GLASS_PANE)
+                .pattern("rwr").pattern("gbg").pattern("i i").unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).unlockedBy("has_red_concrete", has(Blocks.RED_CONCRETE))
+                .unlockedBy("has_white_concrete", has(Blocks.WHITE_CONCRETE)).unlockedBy("has_bucket", has(Items.BUCKET)).unlockedBy("has_glass_pane", has(Blocks.GLASS_PANE)).save(consumer);
 
         ShapedRecipeBuilder.shaped(HNCItems.POPCORN_BAG.get()).define('p', Items.PAPER).define('r', HNCItemTags.RED_DYES_COMMON)
                 .pattern("p p").pattern("rpr").unlockedBy("has_paper", has(Items.PAPER)).unlockedBy("has_red_dye", has(HNCItemTags.RED_DYES_COMMON)).save(consumer);
 
-//        PopcornRecipeBuilder.popcorn(HNCItems.POPCORN.get(), 2, 50, Ingredient.of(HNCItemTags.SALT_COMMON))
-//                .unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
-//        PopcornRecipeBuilder.popcorn(HNCItems.CHEESY_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItems.CHEESE_SLICE.get()))
-//                .unlockedBy("has_cheese_slice", has(HNCItems.CHEESE_SLICE.get())).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
-//        PopcornRecipeBuilder.popcorn(HNCItems.CARAMEL_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItemTags.SUGAR_COMMON))
-//                .unlockedBy("has_sugar", has(HNCItemTags.SUGAR_COMMON)).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
-//        PopcornRecipeBuilder.popcorn(HNCItems.MAPLE_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItems.MAPLE_SYRUP.get()))
-//                .unlockedBy("has_syrup", has(HNCItems.MAPLE_SYRUP.get())).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
+        PopcornRecipeBuilder.popcorn(HNCItems.POPCORN.get(), 2, 50, Ingredient.of(HNCItemTags.SALT_COMMON))
+                .unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
+        PopcornRecipeBuilder.popcorn(HNCItems.CHEESY_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItems.CHEESE_SLICE.get()))
+                .unlockedBy("has_cheese_slice", has(HNCItems.CHEESE_SLICE.get())).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
+        PopcornRecipeBuilder.popcorn(HNCItems.CARAMEL_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItemTags.SUGAR_COMMON))
+                .unlockedBy("has_sugar", has(HNCItemTags.SUGAR_COMMON)).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
+        PopcornRecipeBuilder.popcorn(HNCItems.MAPLE_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItems.MAPLE_SYRUP.get()))
+                .unlockedBy("has_syrup", has(HNCItems.MAPLE_SYRUP.get())).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
 
         ShapedRecipeBuilder.shaped(HNCBlocks.MAPLE_WOOD.get(), 3).define('l', HNCBlocks.MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.MAPLE_LOG.get())).save(consumer);
         ShapedRecipeBuilder.shaped(HNCBlocks.STRIPPED_MAPLE_WOOD.get(), 3).define('l', HNCBlocks.STRIPPED_MAPLE_LOG.get()).pattern("ll").pattern("ll").group("bark").unlockedBy("has_log", has(HNCBlocks.STRIPPED_MAPLE_LOG.get())).save(consumer);

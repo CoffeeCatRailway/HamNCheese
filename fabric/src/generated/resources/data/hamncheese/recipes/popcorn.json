@@ -1,0 +1,11 @@
+{
+  "type": "hamncheese:popcorn",
+  "popcorn": 50,
+  "seasoning": {
+    "tag": "c:salt"
+  },
+  "result": {
+    "item": "hamncheese:popcorn",
+    "count": 2
+  }
+}

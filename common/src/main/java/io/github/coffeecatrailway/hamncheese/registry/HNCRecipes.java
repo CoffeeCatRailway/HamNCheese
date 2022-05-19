@@ -1,5 +1,6 @@
 package io.github.coffeecatrailway.hamncheese.registry;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
@@ -25,12 +26,12 @@ public class HNCRecipes
 
     public static RecipeType<PizzaOvenRecipe> PIZZA_OVEN_TYPE;
     public static RecipeType<GrillRecipe> GRILL_TYPE;
-//    public static RecipeType<PopcornRecipe> POPCORN_TYPE;
+    public static RecipeType<PopcornRecipe> POPCORN_TYPE;
 
     // Blocks
     public static final Supplier<SimpleRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SimpleRecipeSerializer<>(PizzaOvenRecipe::new));
     public static final Supplier<SimpleRecipeSerializer<GrillRecipe>> GRILL_SERIALIZER = RECIPE_SERIALIZERS.register("grill", () -> new SimpleRecipeSerializer<>(GrillRecipe::new));
-//    public static final Supplier<PopcornRecipe.Serializer> POPCORN_SERIALIZER = RECIPE_SERIALIZERS.register("popcorn", PopcornRecipe.Serializer::new);
+    public static final Supplier<RecipeSerializer<?>> POPCORN_SERIALIZER = RECIPE_SERIALIZERS.register("popcorn", getPopcornSerializer());
 
     // Crafting grid
     public static final Supplier<SimpleRecipeSerializer<SandwichRecipe>> SANDWICH_SERIALIZER = RECIPE_SERIALIZERS.register("sandwich", () -> new SimpleRecipeSerializer<>(SandwichRecipe::new));
@@ -51,12 +52,18 @@ public class HNCRecipes
         });
     }
 
+    @ExpectPlatform
+    private static Supplier<RecipeSerializer<?>> getPopcornSerializer()
+    {
+        return Platform.error();
+    }
+
     public static void load(Platform platform)
     {
         LOGGER.debug("Loaded");
         PIZZA_OVEN_TYPE = registerType("pizza_oven");
         GRILL_TYPE = registerType("grill");
-//        POPCORN_TYPE = registerType("popcorn");
+        POPCORN_TYPE = registerType("popcorn");
         RECIPE_SERIALIZERS.register(platform);
     }
 }

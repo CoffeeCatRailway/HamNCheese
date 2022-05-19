@@ -185,11 +185,11 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
                                 .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
                         .when(ExplosionCondition.survivesExplosion())));
 
-//        this.add(HNCBlocks.POPCORN_MACHINE.get(), block -> LootTable.lootTable()
-//                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
-//                        .add(LootItem.lootTableItem(HNCBlocks.POPCORN_MACHINE.get())
-//                                .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
-//                        .when(ExplosionCondition.survivesExplosion())));
+        this.add(HNCBlocks.POPCORN_MACHINE.get(), block -> LootTable.lootTable()
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(HNCBlocks.POPCORN_MACHINE.get())
+                                .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))
+                        .when(ExplosionCondition.survivesExplosion())));
 
         this.blockOfCheese(HNCBlocks.BLOCK_OF_CHEESE.get());
         this.blockOfCheese(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get());

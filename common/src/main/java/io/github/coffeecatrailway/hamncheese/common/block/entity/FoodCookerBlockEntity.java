@@ -254,4 +254,11 @@ public abstract class FoodCookerBlockEntity extends BaseFoodMakerBlockEntity
 //        }
 //        return super.getCapability(cap, side);
 //    }
+//
+//    @Override
+//    public void setRemoved()
+//    {
+//        super.setRemoved();
+//        for (LazyOptional<? extends IItemHandler> handler : this.handlers) handler.invalidate();
+//    }
 }
