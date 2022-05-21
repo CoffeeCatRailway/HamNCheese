@@ -13,6 +13,8 @@ public class FoodCookerBlockEntityImpl
 {
     public static int getBurnTime(ItemStack fuelStack, @Nullable RecipeType<?> recipeType)
     {
+        if (fuelStack == null || fuelStack.isEmpty())
+            return 0;
         return FuelRegistry.INSTANCE.get(fuelStack.getItem());
     }
 }
