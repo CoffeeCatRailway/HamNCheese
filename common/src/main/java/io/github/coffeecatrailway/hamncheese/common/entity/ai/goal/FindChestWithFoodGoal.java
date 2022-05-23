@@ -106,7 +106,7 @@ public class FindChestWithFoodGoal extends MouseInteractGoal
     }
 
     @Nullable
-    private RandomizableContainerBlockEntity getContainerBlock(LevelReader reader, BlockPos pos)
+    private RandomizableContainerBlockEntity getContainerBlock(LevelReader reader, BlockPos pos) // TODO: Find possible way to check for forge capabilities
     {
 //        BlockState state = reader.getBlockState(pos);
 //        if (state.is(HNCBlockTags.MOUSE_SEARCH) && !state.is(Tags.Blocks.CHESTS_ENDER))
