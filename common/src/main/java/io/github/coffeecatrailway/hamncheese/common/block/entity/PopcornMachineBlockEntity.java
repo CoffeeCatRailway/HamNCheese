@@ -78,8 +78,6 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity
 
     private PopcornRecipe recipe = null;
 
-//    private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.DOWN, Direction.UP, Direction.NORTH, Direction.WEST, Direction.EAST);
-
     public PopcornMachineBlockEntity(BlockPos pos, BlockState state)
     {
         super(HNCBlockEntities.POPCORN_MACHINE.get(), pos, state, 5, HNCRecipes.POPCORN_TYPE);
@@ -241,33 +239,4 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity
         compound.putInt("FlavourTime", this.flavourTime);
         compound.putInt("Popcorn", this.popcornAmount);
     }
-
-//    @Override
-//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-//    {
-//        if (!this.isRemoved() && side != null && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-//        {
-//            switch (side)
-//            {
-//                case DOWN:
-//                    return this.handlers[0].cast();
-//                case UP:
-//                    return this.handlers[1].cast();
-//                case WEST:
-//                    return this.handlers[3].cast();
-//                case EAST:
-//                    return this.handlers[4].cast();
-//                default:
-//                    return this.handlers[2].cast();
-//            }
-//        }
-//        return super.getCapability(cap, side);
-//    }
-//
-//    @Override
-//    public void setRemoved()
-//    {
-//        super.setRemoved();
-//        for (LazyOptional<? extends IItemHandler> handler : this.handlers) handler.invalidate();
-//    }
 }

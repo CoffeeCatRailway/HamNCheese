@@ -1,5 +1,6 @@
 package io.github.coffeecatrailway.hamncheese.registry;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
@@ -25,14 +26,33 @@ public class HNCBlockEntities
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final PollinatedRegistry<BlockEntityType<?>> TILE_ENTITIES = PollinatedRegistry.create(Registry.BLOCK_ENTITY_TYPE, HamNCheese.MOD_ID);
 
-    public static final Supplier<BlockEntityType<PizzaOvenBlockEntity>> PIZZA_OVEN = register("pizza_oven", PizzaOvenBlockEntity::new, HNCBlocks.PIZZA_OVEN);
-    public static final Supplier<BlockEntityType<GrillBlockEntity>> GRILL = register("grill", GrillBlockEntity::new, HNCBlocks.GRILL);
-    public static final Supplier<BlockEntityType<PopcornMachineBlockEntity>> POPCORN_MACHINE = register("popcorn_machine", PopcornMachineBlockEntity::new, HNCBlocks.POPCORN_MACHINE);
+    public static final Supplier<BlockEntityType<PizzaOvenBlockEntity>> PIZZA_OVEN = register("pizza_oven", getPizzaOven(), HNCBlocks.PIZZA_OVEN);
+    public static final Supplier<BlockEntityType<GrillBlockEntity>> GRILL = register("grill", getGrill(), HNCBlocks.GRILL);
+    public static final Supplier<BlockEntityType<PopcornMachineBlockEntity>> POPCORN_MACHINE = register("popcorn_machine", getPopcornMachine(), HNCBlocks.POPCORN_MACHINE);
 
     @SafeVarargs
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> tileEntity, Supplier<? extends Block>... blocks)
     {
         return TILE_ENTITIES.register(id, () -> BlockEntityType.Builder.of(tileEntity, Arrays.stream(blocks).map(Supplier::get).toArray(Block[]::new)).build(null));
+    }
+
+    // Mod loader sided items
+    @ExpectPlatform
+    private static BlockEntityType.BlockEntitySupplier<PizzaOvenBlockEntity> getPizzaOven()
+    {
+        return Platform.error();
+    }
+
+    @ExpectPlatform
+    private static BlockEntityType.BlockEntitySupplier<GrillBlockEntity> getGrill()
+    {
+        return Platform.error();
+    }
+
+    @ExpectPlatform
+    private static BlockEntityType.BlockEntitySupplier<PopcornMachineBlockEntity> getPopcornMachine()
+    {
+        return Platform.error();
     }
 
     public static void load(Platform platform)

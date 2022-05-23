@@ -75,8 +75,6 @@ public abstract class FoodCookerBlockEntity extends BaseFoodMakerBlockEntity
         }
     };
 
-//    private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-
     public FoodCookerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize, RecipeType<? extends Recipe<?>> recipeType)
     {
         super(type, pos, state, inventorySize, recipeType);
@@ -236,29 +234,4 @@ public abstract class FoodCookerBlockEntity extends BaseFoodMakerBlockEntity
     {
         return Platform.error();
     }
-
-//    @Override
-//    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side)
-//    {
-//        if (!this.isRemoved() && side != null && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-//        {
-//            switch (side)
-//            {
-//                case UP:
-//                    return this.handlers[0].cast();
-//                case DOWN:
-//                    return this.handlers[1].cast();
-//                default:
-//                    return this.handlers[2].cast();
-//            }
-//        }
-//        return super.getCapability(cap, side);
-//    }
-//
-//    @Override
-//    public void setRemoved()
-//    {
-//        super.setRemoved();
-//        for (LazyOptional<? extends IItemHandler> handler : this.handlers) handler.invalidate();
-//    }
 }
