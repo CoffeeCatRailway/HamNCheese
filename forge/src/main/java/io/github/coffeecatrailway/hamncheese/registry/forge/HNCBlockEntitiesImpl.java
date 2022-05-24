@@ -14,12 +14,12 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
  */
 public class HNCBlockEntitiesImpl
 {
-    private static BlockEntityType.BlockEntitySupplier<PizzaOvenBlockEntity> getPizzaOven()
+    public static BlockEntityType.BlockEntitySupplier<PizzaOvenBlockEntity> getPizzaOven()
     {
         return ForgePizzaOvenBlockEntity::new;
     }
 
-    private static BlockEntityType.BlockEntitySupplier<GrillBlockEntity> getGrill()
+    public static BlockEntityType.BlockEntitySupplier<GrillBlockEntity> getGrill()
     {
         return ForgeGrillBlockEntity::new;
     }

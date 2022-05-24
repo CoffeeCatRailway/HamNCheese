@@ -31,6 +31,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +57,7 @@ public abstract class BaseFoodMakerBlockEntity extends BaseContainerBlockEntity 
     {
         super.setChanged();
         if (this.hasLevel())
-            this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 8);
+            this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
     }
 
     @Override
@@ -111,18 +112,16 @@ public abstract class BaseFoodMakerBlockEntity extends BaseContainerBlockEntity 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction)
     {
+        if (direction != null)
+            return Arrays.stream(this.getSlotsForFace(direction)).anyMatch(i -> i == index); // This works if the world is reloaded. Why is direction nullable?!
         return this.canPlaceItem(index, stack);
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction)
     {
-        if (direction == Direction.DOWN && index == 1)
-        {
-            Item item = stack.getItem();
-            return item != Items.WATER_BUCKET && item != Items.BUCKET;
-        }
-        return true;
+        Item item = stack.getItem();
+        return item != Items.WATER_BUCKET && item != Items.BUCKET && Arrays.stream(this.getSlotsForFace(direction)).anyMatch(i -> i == index);
     }
 
     @Override

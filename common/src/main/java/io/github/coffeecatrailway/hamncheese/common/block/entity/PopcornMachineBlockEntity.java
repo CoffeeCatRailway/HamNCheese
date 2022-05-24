@@ -102,18 +102,29 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity
         return new PopcornMachineContainer(id, playerInventory, this, this.data);
     }
 
-    @Override
-    public int[] getSlotsForFace(Direction direction) // TODO: Change to relative facing
+    protected Direction worldToRelativeDirection(Direction worldDir, BlockState state)
     {
-        int slot = switch (direction)
+        Direction facingDir = state.getValue(PopcornMachineBlock.FACING);
+        return switch (facingDir)
+                {
+                    case SOUTH -> worldDir.getOpposite();
+                    case WEST -> worldDir.getCounterClockWise();
+                    case EAST -> worldDir.getClockWise();
+                    default -> worldDir;
+                };
+    }
+
+    @Override
+    public int[] getSlotsForFace(Direction direction)
+    {
+        return new int[]{switch (this.worldToRelativeDirection(direction, this.getBlockState()))
                 {
                     case DOWN -> SLOT_DOWN;
                     case UP -> SLOT_KERNELS;
                     case WEST -> SLOT_BAG;
                     case EAST -> SLOT_FLAVOURING;
                     default -> SLOT_SEASONING;
-                };
-        return new int[]{slot};
+                }};
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, PopcornMachineBlockEntity blockEntity)

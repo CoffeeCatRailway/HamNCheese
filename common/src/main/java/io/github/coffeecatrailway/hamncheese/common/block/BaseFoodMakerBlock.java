@@ -89,9 +89,9 @@ public abstract class BaseFoodMakerBlock extends BaseEntityBlock implements Simp
     {
         if (stack.hasCustomHoverName())
         {
-            BlockEntity tile = level.getBlockEntity(pos);
-            if (tile instanceof BaseFoodMakerBlockEntity)
-                ((BaseFoodMakerBlockEntity) tile).setCustomName(stack.getDisplayName());
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof BaseFoodMakerBlockEntity)
+                ((BaseFoodMakerBlockEntity) blockEntity).setCustomName(stack.getDisplayName());
         }
     }
 

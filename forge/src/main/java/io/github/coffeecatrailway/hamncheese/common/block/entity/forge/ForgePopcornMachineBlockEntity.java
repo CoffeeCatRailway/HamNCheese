@@ -29,7 +29,7 @@ public class ForgePopcornMachineBlockEntity extends PopcornMachineBlockEntity
     {
         if (!this.isRemoved() && side != null && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
         {
-            return switch (side)
+            return switch (this.worldToRelativeDirection(side, this.getBlockState()))
                     {
                         case DOWN -> this.handlers[0].cast();
                         case UP -> this.handlers[1].cast();
