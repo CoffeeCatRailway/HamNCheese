@@ -28,7 +28,7 @@ import io.github.coffeecatrailway.hamncheese.common.block.dispenser.SandwichExpl
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import io.github.coffeecatrailway.hamncheese.common.entity.villager.HNCVillagerTrades;
-import io.github.coffeecatrailway.hamncheese.common.material.MapleSapFluidBehavior;
+import io.github.coffeecatrailway.hamncheese.common.material.HNCFluidBehavior;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
 import io.github.coffeecatrailway.hamncheese.mixins.MobAccessor;
 import io.github.coffeecatrailway.hamncheese.registry.*;
@@ -147,6 +147,9 @@ public class HamNCheese
         RenderTypeRegistry.register(HNCFluids.MAPLE_SAP.get(), RenderType.translucent());
         RenderTypeRegistry.register(HNCFluids.MAPLE_SAP_FLOWING.get(), RenderType.translucent());
 
+        RenderTypeRegistry.register(HNCFluids.MILK.get(), RenderType.translucent());
+        RenderTypeRegistry.register(HNCFluids.MILK_FLOWING.get(), RenderType.translucent());
+
         ItemRendererRegistry.registerRenderer(HNCItems.PIZZA.get(), SandwichItemRenderer.INSTANCE);
         ItemRendererRegistry.registerRenderer(HNCItems.CRACKER.get(), SandwichItemRenderer.INSTANCE);
         ItemRendererRegistry.registerRenderer(HNCItems.SANDWICH.get(), SandwichItemRenderer.INSTANCE);
@@ -165,7 +168,8 @@ public class HamNCheese
         HNCFluids.load(PLATFORM);
         HNCFeatures.load(PLATFORM);
 
-        FluidBehaviorRegistry.register(HNCFluidTags.MAPLE_SAP, new MapleSapFluidBehavior());
+        FluidBehaviorRegistry.register(HNCFluidTags.MAPLE_SAP, new HNCFluidBehavior());
+        FluidBehaviorRegistry.register(HNCFluidTags.MILK, new HNCFluidBehavior());
 
         EntityAttributeRegistry.register(HNCEntities.MOUSE, MouseEntity::registerAttributeMap);
 

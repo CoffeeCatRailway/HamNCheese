@@ -14,8 +14,10 @@ import java.util.Random;
 /**
  * @author CoffeeCatRailway
  * Created: 22/04/2022
+ *
+ * Idk how this works...
  */
-public class MapleSapFluidBehavior implements PollenFluidBehavior
+public class HNCFluidBehavior implements PollenFluidBehavior
 {
     @Override
     public double getMotionScale(Entity entity)
@@ -38,13 +40,13 @@ public class MapleSapFluidBehavior implements PollenFluidBehavior
     @Override
     public boolean canSprint(Player player)
     {
-        return false;
+        return true;
     }
 
     @Override
     public void applyPhysics(LivingEntity entity, Vec3 travelVector, double fallSpeed, boolean falling)
     {
-        double e = entity.getY();
+        double entityY = entity.getY();
         float g = .02f;
 
         entity.moveRelative(g, travelVector);
@@ -57,7 +59,7 @@ public class MapleSapFluidBehavior implements PollenFluidBehavior
         entity.setDeltaMovement(vec3.scale(.001d));
         Vec3 vec32 = entity.getFluidFallingAdjustedMovement(fallSpeed, falling, entity.getDeltaMovement());
         entity.setDeltaMovement(vec32);
-        if (entity.horizontalCollision && entity.isFree(vec32.x, vec32.y + .6f - entity.getY() + e, vec32.z))
+        if (entity.horizontalCollision && entity.isFree(vec32.x, vec32.y + .6f - entity.getY() + entityY, vec32.z))
             entity.setDeltaMovement(vec32.x, .3f, vec32.z);
     }
 

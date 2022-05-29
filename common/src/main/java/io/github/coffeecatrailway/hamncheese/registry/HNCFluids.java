@@ -7,6 +7,7 @@ import gg.moonflower.pollen.api.registry.PollinatedFluidRegistry;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.material.MapleSapFluid;
+import io.github.coffeecatrailway.hamncheese.common.material.MilkFluid;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -30,6 +31,10 @@ public class HNCFluids
     public static final Supplier<FlowingFluid> MAPLE_SAP_FLOWING = FLUIDS.register("maple_sap_flowing", MapleSapFluid.Flowing::new);
     public static final Supplier<PollinatedLiquidBlock> MAPLE_SAP_BLOCK = HNCBlocks.registerWithOutItem("maple_sap", () -> new PollinatedLiquidBlock(MAPLE_SAP, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100f).noDrops()));
     public static final Supplier<BucketItem> MAPLE_SAP_BUCKET = HNCItems.registerIdAsName("maple_sap_bucket", prop -> new BucketItemBase(MAPLE_SAP, prop.craftRemainder(Items.BUCKET).stacksTo(1)));
+
+    public static final Supplier<FlowingFluid> MILK = FLUIDS.register("milk", MilkFluid.Source::new);
+    public static final Supplier<FlowingFluid> MILK_FLOWING = FLUIDS.register("milk_flowing", MilkFluid.Flowing::new);
+    public static final Supplier<PollinatedLiquidBlock> MILK_BLOCK = HNCBlocks.registerWithOutItem("milk", () -> new PollinatedLiquidBlock(MILK, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100f).noDrops()));
 
     public static void load(Platform platform)
     {
