@@ -71,6 +71,7 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.GOUDA_CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.SWISS_CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.SWISS_CHEESE_BITS.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.GOAT_CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);
 
             this.generateFlatItem(HNCItems.ROCK_SALT.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.FLOUR.get(), ModelTemplates.FLAT_ITEM);
@@ -248,6 +249,7 @@ public class HNCModels extends PollinatedModelProvider
             this.blockOfCheese(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get());
             this.blockOfCheese(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get());
             this.blockOfCheese(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get());
+            this.blockOfCheese(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get());
 
             this.createRotatedPillarWithHorizontalVariant(HNCBlocks.MAPLE_LOG.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
             this.createWoodVariant(HNCBlocks.MAPLE_WOOD.get(), HamNCheese.getLocation("block/maple_log_side"));

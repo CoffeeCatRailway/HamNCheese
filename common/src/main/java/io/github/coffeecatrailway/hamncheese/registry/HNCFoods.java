@@ -28,6 +28,9 @@ public class HNCFoods
     public static final FoodProperties SWISS_CHEESE_SLICE = add(CHEESE_SLICE, -1, -.3f).build();
     public static final FoodProperties SWISS_CHEESE_BITS = divide(SWISS_CHEESE_SLICE, 2f, 1f).build();
 
+    public static final FoodProperties BLOCK_OF_GOAT_CHEESE = times(BLOCK_OF_CHEESE, 1.5f).build();
+    public static final FoodProperties GOAT_CHEESE_SLICE = times(CHEESE_SLICE, 1.5f).build();
+
     public static final FoodProperties INGREDIENT = new FoodProperties.Builder().nutrition(1).saturationMod(.5f).build();
     public static final FoodProperties DOUGH = times(INGREDIENT, 3f).build();
 

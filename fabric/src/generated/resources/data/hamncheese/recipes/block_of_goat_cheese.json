@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_of_cheese",
+  "ingredients": [
+    {
+      "item": "hamncheese:goat_milk_bucket"
+    },
+    {
+      "item": "hamncheese:curdler"
+    }
+  ],
+  "result": {
+    "item": "hamncheese:block_of_goat_cheese",
+    "count": 2
+  }
+}

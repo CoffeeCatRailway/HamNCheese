@@ -1,0 +1,9 @@
+{
+    "parent": "hamncheese:block/block_of_cheese_template",
+	"textures": {
+		"bottom": "hamncheese:block/goat_cheese_block_bottom",
+		"top": "hamncheese:block/goat_cheese_block_top",
+		"inside": "hamncheese:block/goat_cheese_block_inner",
+		"side": "hamncheese:block/goat_cheese_block_side"
+	}
+}

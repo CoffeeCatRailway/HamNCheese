@@ -159,7 +159,7 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(SUGAR).add(Items.SUGAR);
         this.tag(SUGAR_COMMON).addTag(SUGAR);
 
-        this.tag(CHEESE).add(HNCItems.CHEESE_SLICE.get(), HNCItems.BLUE_CHEESE_SLICE.get(), HNCItems.GOUDA_CHEESE_SLICE.get(), HNCItems.SWISS_CHEESE_SLICE.get(), HNCItems.SWISS_CHEESE_BITS.get(), HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_BLUE_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_SWISS_CHEESE.get().asItem());
+        this.tag(CHEESE).add(HNCItems.CHEESE_SLICE.get(), HNCItems.BLUE_CHEESE_SLICE.get(), HNCItems.GOUDA_CHEESE_SLICE.get(), HNCItems.SWISS_CHEESE_SLICE.get(), HNCItems.SWISS_CHEESE_BITS.get(), HNCItems.GOAT_CHEESE_SLICE.get(), HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_BLUE_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_SWISS_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_GOAT_CHEESE.get().asItem());
         this.tag(CHEESE_COMMON).addTag(CHEESE);
 
         this.tag(SALT).add(HNCItems.ROCK_SALT.get());

@@ -195,6 +195,7 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
         this.blockOfCheese(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get());
         this.blockOfCheese(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get());
         this.blockOfCheese(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get());
+        this.blockOfCheese(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get());
 
         this.dropSelf(HNCBlocks.MAPLE_LOG.get());
         this.dropSelf(HNCBlocks.MAPLE_WOOD.get());

@@ -2,40 +2,28 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "hamncheese:block_of_gouda_cheese"
+      "hamncheese:goat_cheese_slice"
     ]
   },
   "criteria": {
-    "has_dye": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "tag": "c:red_dyes"
-          }
-        ]
-      }
-    },
-    "has_wax": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:honeycomb"
-            ]
-          }
-        ]
-      }
-    },
     "has_cheese": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "hamncheese:block_of_cheese"
+              "hamncheese:block_of_goat_cheese"
             ]
+          }
+        ]
+      }
+    },
+    "has_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:knives"
           }
         ]
       }
@@ -43,15 +31,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "hamncheese:block_of_gouda_cheese"
+        "recipe": "hamncheese:goat_cheese_slice"
       }
     }
   },
   "requirements": [
     [
-      "has_dye",
-      "has_wax",
       "has_cheese",
+      "has_knife",
       "has_the_recipe"
     ]
   ]

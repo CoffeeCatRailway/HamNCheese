@@ -58,6 +58,7 @@ public class HNCBlocks
     public static final Supplier<CheeseBlock> BLOCK_OF_BLUE_CHEESE = registerWithItem("block_of_blue_cheese", () -> new CheeseBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)), prop -> prop.food(HNCFoods.BLOCK_OF_BLUE_CHEESE).stacksTo(16));
     public static final Supplier<CheeseBlock> BLOCK_OF_GOUDA_CHEESE = registerWithItem("block_of_gouda_cheese", () -> new CheeseBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)), prop -> prop.food(HNCFoods.BLOCK_OF_GOUDA_CHEESE).stacksTo(16));
     public static final Supplier<CheeseBlock> BLOCK_OF_SWISS_CHEESE = registerWithItem("block_of_swiss_cheese", () -> new CheeseBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)), prop -> prop.food(HNCFoods.BLOCK_OF_SWISS_CHEESE).stacksTo(16));
+    public static final Supplier<CheeseBlock> BLOCK_OF_GOAT_CHEESE = registerWithItem("block_of_goat_cheese", () -> new CheeseBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)), prop -> prop.food(HNCFoods.BLOCK_OF_GOAT_CHEESE).stacksTo(16));
 
     public static final Supplier<RotatedPillarBlock> MAPLE_LOG = registerLog("maple_log", MaterialColor.SAND, MaterialColor.COLOR_BROWN);
     public static final Supplier<RotatedPillarBlock> MAPLE_WOOD = registerLog("maple_wood", MaterialColor.COLOR_BROWN);

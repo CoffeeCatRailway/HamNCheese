@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 import gg.moonflower.pollen.api.datagen.provider.PollinatedRecipeProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
+import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -79,12 +80,17 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ShapelessRecipeBuilder.shapeless(HNCItems.BLUE_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
 
-        ShapedRecipeBuilder.shaped(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get()).group("block_of_cheese").define('r', HNCItemTags.RED_DYES_COMMON).define('c', HNCBlocks.BLOCK_OF_CHEESE.get()).pattern(" r ").pattern("rcr").pattern(" r ")
-                .unlockedBy("has_dye", has(HNCItemTags.RED_DYES_COMMON)).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_CHEESE.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get()).group("block_of_cheese").define('r', HNCItemTags.RED_DYES_COMMON).define('w', Items.HONEYCOMB).define('c', Ingredient.of(HNCBlocks.BLOCK_OF_CHEESE.get(), HNCBlocks.BLOCK_OF_GOAT_CHEESE.get())).pattern("wrw").pattern("rcr").pattern("wrw")
+                .unlockedBy("has_dye", has(HNCItemTags.RED_DYES_COMMON)).unlockedBy("has_wax", has(Items.HONEYCOMB)).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_CHEESE.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.GOUDA_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.SWISS_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get()))
+                .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get(), 2).group("block_of_cheese").requires(HNCFluids.GOAT_MILK_BUCKET.get()).requires(HNCItems.CURDLER.get()).unlockedBy("has_milk", has(HNCFluids.GOAT_MILK_BUCKET.get()))
+                .unlockedBy("has_curdler", has(HNCItems.CURDLER.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.GOAT_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.ROCK_SALT.get(), 2).requires(HNCItems.GRIND_STONES.get()).requires(HNCItemTags.STONE_COMMON).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON))

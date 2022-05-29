@@ -2,39 +2,29 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "hamncheese:block_of_gouda_cheese"
+      "hamncheese:block_of_goat_cheese"
     ]
   },
   "criteria": {
-    "has_dye": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "tag": "c:red_dyes"
-          }
-        ]
-      }
-    },
-    "has_wax": {
+    "has_milk": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:honeycomb"
+              "hamncheese:goat_milk_bucket"
             ]
           }
         ]
       }
     },
-    "has_cheese": {
+    "has_curdler": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "hamncheese:block_of_cheese"
+              "hamncheese:curdler"
             ]
           }
         ]
@@ -43,15 +33,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "hamncheese:block_of_gouda_cheese"
+        "recipe": "hamncheese:block_of_goat_cheese"
       }
     }
   },
   "requirements": [
     [
-      "has_dye",
-      "has_wax",
-      "has_cheese",
+      "has_milk",
+      "has_curdler",
       "has_the_recipe"
     ]
   ]
