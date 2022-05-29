@@ -2,17 +2,25 @@
   "type": "minecraft:crafting_shaped",
   "group": "block_of_cheese",
   "pattern": [
-    " r ",
+    "wrw",
     "rcr",
-    " r "
+    "wrw"
   ],
   "key": {
     "r": {
       "tag": "c:red_dyes"
     },
-    "c": {
-      "item": "hamncheese:block_of_cheese"
-    }
+    "w": {
+      "item": "minecraft:honeycomb"
+    },
+    "c": [
+      {
+        "item": "hamncheese:block_of_cheese"
+      },
+      {
+        "item": "hamncheese:block_of_goat_cheese"
+      }
+    ]
   },
   "result": {
     "item": "hamncheese:block_of_gouda_cheese"
