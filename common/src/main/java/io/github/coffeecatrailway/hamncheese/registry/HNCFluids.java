@@ -6,6 +6,8 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedFluidRegistry;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.item.GoatMilkBucketItem;
+import io.github.coffeecatrailway.hamncheese.common.material.GoatMilkFluid;
 import io.github.coffeecatrailway.hamncheese.common.material.MapleSapFluid;
 import io.github.coffeecatrailway.hamncheese.common.material.MilkFluid;
 import net.minecraft.world.item.BucketItem;
@@ -35,6 +37,11 @@ public class HNCFluids
     public static final Supplier<FlowingFluid> MILK = FLUIDS.register("milk", MilkFluid.Source::new);
     public static final Supplier<FlowingFluid> MILK_FLOWING = FLUIDS.register("milk_flowing", MilkFluid.Flowing::new);
     public static final Supplier<PollinatedLiquidBlock> MILK_BLOCK = HNCBlocks.registerWithOutItem("milk", () -> new PollinatedLiquidBlock(MILK, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100f).noDrops()));
+
+    public static final Supplier<FlowingFluid> GOAT_MILK = FLUIDS.register("goat_milk", GoatMilkFluid.Source::new);
+    public static final Supplier<FlowingFluid> GOAT_MILK_FLOWING = FLUIDS.register("goat_milk_flowing", GoatMilkFluid.Flowing::new);
+    public static final Supplier<PollinatedLiquidBlock> GOAT_MILK_BLOCK = HNCBlocks.registerWithOutItem("goat_milk", () -> new PollinatedLiquidBlock(GOAT_MILK, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100f).noDrops()));
+    public static final Supplier<BucketItem> GOAT_MILK_BUCKET = HNCItems.registerIdAsName("goat_milk_bucket", prop -> new GoatMilkBucketItem(GOAT_MILK, prop.craftRemainder(Items.BUCKET).stacksTo(1)));
 
     public static void load(Platform platform)
     {

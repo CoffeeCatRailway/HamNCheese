@@ -14,7 +14,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -36,11 +35,11 @@ import java.util.Optional;
  * @author CoffeeCatRailway
  * Created: 22/04/2022
  */
-public abstract class MilkFluid extends FlowingFluid implements PollinatedFluid
+public abstract class GoatMilkFluid extends FlowingFluid implements PollinatedFluid
 {
-    private static final ResourceLocation STILL = new ResourceLocation(HamNCheese.MOD_ID, "block/milk_still");
-    private static final ResourceLocation FLOW = new ResourceLocation(HamNCheese.MOD_ID, "block/milk_flow");
-    private static final ResourceLocation OVERLAY = new ResourceLocation(HamNCheese.MOD_ID, "block/milk_overlay");
+    private static final ResourceLocation STILL = new ResourceLocation(HamNCheese.MOD_ID, "block/goat_milk_still");
+    private static final ResourceLocation FLOW = new ResourceLocation(HamNCheese.MOD_ID, "block/goat_milk_flow");
+    private static final ResourceLocation OVERLAY = new ResourceLocation(HamNCheese.MOD_ID, "block/goat_milk_overlay");
 
     @Override
     public ResourceLocation getStillTextureName()
@@ -63,7 +62,7 @@ public abstract class MilkFluid extends FlowingFluid implements PollinatedFluid
     @Override
     public int getFogColor(Camera camera, ClientLevel level, Biome biome, float partialTicks)
     {
-        return 0xf9f9f9;
+        return 0xe0f0f0;
     }
 
     @Override
@@ -76,19 +75,19 @@ public abstract class MilkFluid extends FlowingFluid implements PollinatedFluid
     @Override
     public Fluid getFlowing()
     {
-        return HNCFluids.MILK_FLOWING.get();
+        return HNCFluids.GOAT_MILK_FLOWING.get();
     }
 
     @Override
     public Fluid getSource()
     {
-        return HNCFluids.MILK.get();
+        return HNCFluids.GOAT_MILK.get();
     }
 
     @Override
     public Item getBucket()
     {
-        return Items.MILK_BUCKET;
+        return HNCFluids.GOAT_MILK_BUCKET.get();
     }
 
     @Override
@@ -125,7 +124,7 @@ public abstract class MilkFluid extends FlowingFluid implements PollinatedFluid
     @Override
     protected BlockState createLegacyBlock(FluidState state)
     {
-        return HNCFluids.MILK_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(state));
+        return HNCFluids.GOAT_MILK_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(state));
     }
 
     @Override
@@ -149,7 +148,7 @@ public abstract class MilkFluid extends FlowingFluid implements PollinatedFluid
     @Override
     public boolean canBeReplacedWith(FluidState fluidState, BlockGetter blockReader, BlockPos pos, Fluid fluid, Direction direction)
     {
-        return direction == Direction.DOWN && !fluid.is(HNCFluidTags.MILK);
+        return direction == Direction.DOWN && !fluid.is(HNCFluidTags.GOAT_MILK);
     }
 
     @Override
@@ -165,7 +164,7 @@ public abstract class MilkFluid extends FlowingFluid implements PollinatedFluid
         return null;
     }
 
-    public static class Flowing extends MilkFluid
+    public static class Flowing extends GoatMilkFluid
     {
         @Override
         protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder)
@@ -187,7 +186,7 @@ public abstract class MilkFluid extends FlowingFluid implements PollinatedFluid
         }
     }
 
-    public static class Source extends MilkFluid
+    public static class Source extends GoatMilkFluid
     {
         @Override
         public int getAmount(FluidState state)

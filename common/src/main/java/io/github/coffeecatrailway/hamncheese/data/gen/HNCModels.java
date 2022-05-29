@@ -129,6 +129,8 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCFluids.MAPLE_SAP_BUCKET.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.MAPLE_SAP_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.MAPLE_SYRUP.get(), ModelTemplates.FLAT_ITEM);
+
+            this.generateFlatItem(HNCFluids.GOAT_MILK_BUCKET.get(), ModelTemplates.FLAT_ITEM);
         }
 
         private void generateFlatItem(Item item, ResourceLocation texture, ModelTemplate modelTemplate)

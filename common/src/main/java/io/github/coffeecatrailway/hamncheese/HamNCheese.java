@@ -150,6 +150,9 @@ public class HamNCheese
         RenderTypeRegistry.register(HNCFluids.MILK.get(), RenderType.translucent());
         RenderTypeRegistry.register(HNCFluids.MILK_FLOWING.get(), RenderType.translucent());
 
+        RenderTypeRegistry.register(HNCFluids.GOAT_MILK.get(), RenderType.translucent());
+        RenderTypeRegistry.register(HNCFluids.GOAT_MILK_FLOWING.get(), RenderType.translucent());
+
         ItemRendererRegistry.registerRenderer(HNCItems.PIZZA.get(), SandwichItemRenderer.INSTANCE);
         ItemRendererRegistry.registerRenderer(HNCItems.CRACKER.get(), SandwichItemRenderer.INSTANCE);
         ItemRendererRegistry.registerRenderer(HNCItems.SANDWICH.get(), SandwichItemRenderer.INSTANCE);
@@ -170,6 +173,7 @@ public class HamNCheese
 
         FluidBehaviorRegistry.register(HNCFluidTags.MAPLE_SAP, new HNCFluidBehavior());
         FluidBehaviorRegistry.register(HNCFluidTags.MILK, new HNCFluidBehavior());
+        FluidBehaviorRegistry.register(HNCFluidTags.GOAT_MILK, new HNCFluidBehavior());
 
         EntityAttributeRegistry.register(HNCEntities.MOUSE, MouseEntity::registerAttributeMap);
 
