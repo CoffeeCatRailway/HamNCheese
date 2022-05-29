@@ -2,9 +2,6 @@ package io.github.coffeecatrailway.hamncheese.common.material;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import gg.moonflower.pollen.api.fluid.PollinatedFluid;
-import gg.moonflower.pollen.core.Pollen;
-import gg.moonflower.pollen.core.PollenTest;
-import gg.moonflower.pollen.core.test.TestFluid;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCFluidTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
@@ -23,7 +20,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -72,7 +68,7 @@ public abstract class MapleSapFluid extends FlowingFluid implements PollinatedFl
     @Override
     public void applyFog(GameRenderer renderer, Camera camera, float distance, float partialTicks)
     {
-        RenderSystem.setShaderFogEnd(1f);
+        RenderSystem.setShaderFogEnd(1.25f);
         RenderSystem.setShaderFogStart(.2f);
     }
 
