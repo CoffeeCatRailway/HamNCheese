@@ -59,11 +59,6 @@ public class HNCChestLoot implements Consumer<BiConsumer<ResourceLocation, LootT
                         .add(LootItem.lootTableItem(HNCItems.CHEESE_SLICE.get()).setWeight(10)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))))
 
-                        .add(LootItem.lootTableItem(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get()).setWeight(8)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 8))))
-                        .add(LootItem.lootTableItem(HNCItems.BLUE_CHEESE_SLICE.get()).setWeight(8)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 4))))
-
                         .add(LootItem.lootTableItem(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get()).setWeight(8)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 8))))
                         .add(LootItem.lootTableItem(HNCItems.GOUDA_CHEESE_SLICE.get()).setWeight(8)

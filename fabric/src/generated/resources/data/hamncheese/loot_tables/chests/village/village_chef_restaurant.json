@@ -192,38 +192,6 @@
               "add": false
             }
           ],
-          "name": "hamncheese:block_of_blue_cheese"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 8,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 4.0
-              },
-              "add": false
-            }
-          ],
-          "name": "hamncheese:blue_cheese_slice"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 8,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 8.0
-              },
-              "add": false
-            }
-          ],
           "name": "hamncheese:block_of_gouda_cheese"
         },
         {
