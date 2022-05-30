@@ -1,18 +1,19 @@
 {
-  "required": true,
-  "package": "io.github.coffeecatrailway.hamncheese.mixins",
-  "compatibilityLevel": "JAVA_17",
-  "minVersion": "0.8",
-  "client": [
-  ],
-  "mixins": [
-    "BottleItemMixin",
-    "ItemMixin",
-    "MobAccessor",
-    "StructureTemplatePoolAccessor",
-    "ThrownEggMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
+    "required": true,
+    "package": "io.github.coffeecatrailway.hamncheese.mixins",
+    "compatibilityLevel": "JAVA_17",
+    "minVersion": "0.8",
+    "client": [
+    ],
+    "mixins": [
+        "BottleItemMixin",
+        "GoatMixin",
+        "ItemMixin",
+        "MobAccessor",
+        "StructureTemplatePoolAccessor",
+        "ThrownEggMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
   }
 }
