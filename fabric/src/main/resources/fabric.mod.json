@@ -1,49 +1,54 @@
 {
-  "schemaVersion": 1,
-  "id": "${id}",
-  "version": "${version}",
-  "name": "${name}",
-  "icon": "icon.png",
-  "description": "Adds in lots of ham and cheese related foods.\nPlease note, I only upload to CurseForge & Modrinth!\nDiscord: https://discord.gg/GkeexxWnyz\nCredit to 'https://github.com/SystemZeeWorkshop/modding-template'",
-  "authors": [ "CoffeeCatRailway" ],
-  "contributors": [ "Nyctoniac" ],
-  "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/coffeecheese",
-	"issues": "https://github.com/CoffeeCatRailway/HamNCheese/issues",
-    "sources": "https://github.com/CoffeeCatRailway/HamNCheese/"
-  },
-  "license": "GPLv3",
-  "environment": "*",
-  "mixins": [
-    "${id}-common.mixins.json",
-    "${id}.mixins.json"
-  ],
-  "accessWidener": "${id}.accesswidener",
-  "entrypoints": {
-    "main": [
-      "io.github.coffeecatrailway.hamncheese.fabric.HamNCheeseFabric"
+    "schemaVersion": 1,
+    "id": "${id}",
+    "version": "${version}",
+    "name": "${name}",
+    "icon": "icon.png",
+    "description": "Adds in lots of ham and cheese related foods.\nPlease note, I only upload to CurseForge & Modrinth!\nDiscord: https://discord.gg/GkeexxWnyz\nCredit to 'https://github.com/SystemZeeWorkshop/modding-template'",
+    "authors": [
+        "CoffeeCatRailway"
     ],
-    "fabric-datagen": [
-      "io.github.coffeecatrailway.hamncheese.data.gen.fabric.HNCDataEntryPoint"
+    "contributors": [
+        "Nyctoniac"
     ],
-    "rei": [
-      "io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.HNCREIClientPlugin"
-    ]
-  },
-  "depends": {
-    "fabric": "*",
-    "minecraft": "1.18.1",
-    "pollen": "1.x"
-  },
-  "custom": {
-    "modmenu": {
-      "links": {
-        "modmenu.discord": "https://discord.gg/GkeexxWnyz"
-      }
+    "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/coffeecheese",
+        "issues": "https://github.com/CoffeeCatRailway/HamNCheese/issues",
+        "sources": "https://github.com/CoffeeCatRailway/HamNCheese/"
     },
-    "waila:plugins": {
-      "id": "hamncheese:hamncheese",
-      "initializer": "io.github.coffeecatrailway.hamncheese.compat.wthit.HNCWailaPlugin"
+    "license": "GPLv3",
+    "environment": "*",
+    "mixins": [
+        "${id}-common.mixins.json",
+        "${id}.mixins.json"
+    ],
+    "accessWidener": "${id}.accesswidener",
+    "entrypoints": {
+        "main": [
+            "io.github.coffeecatrailway.hamncheese.fabric.HamNCheeseFabric"
+        ],
+        "fabric-datagen": [
+            "io.github.coffeecatrailway.hamncheese.data.gen.fabric.HNCDataEntryPoint"
+        ],
+        "rei": [
+            "io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.HNCREIClientPlugin",
+            "io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.HNCREIPlugin"
+        ]
+    },
+    "depends": {
+        "fabric": "*",
+        "minecraft": "1.18.1",
+        "pollen": "1.x"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.gg/GkeexxWnyz"
+            }
+        },
+        "waila:plugins": {
+            "id": "hamncheese:hamncheese",
+            "initializer": "io.github.coffeecatrailway.hamncheese.compat.wthit.HNCWailaPlugin"
+        }
     }
-  }
 }
