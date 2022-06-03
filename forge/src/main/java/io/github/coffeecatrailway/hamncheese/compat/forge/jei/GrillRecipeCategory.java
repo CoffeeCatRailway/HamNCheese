@@ -1,8 +1,8 @@
 package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.datafixers.util.Pair;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
-import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.GrillRecipe;
 import io.github.coffeecatrailway.hamncheese.compat.FoodPicker;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
@@ -76,13 +76,9 @@ public class GrillRecipeCategory implements IRecipeCategory<GrillRecipe>
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, GrillRecipe recipe, IFocusGroup focuses)
     {
-        ItemStack sandwich = new ItemStack(HNCItems.SANDWICH.get());
-        FoodPicker.pickFoods(7).forEach(stack -> AbstractSandwichItem.addIngredient(sandwich, stack));
-        builder.addSlot(RecipeIngredientRole.INPUT, 2, 2).addIngredient(VanillaTypes.ITEM, sandwich);
-
-        ItemStack toasted = sandwich.copy();
-        toasted.getOrCreateTag().putBoolean(AbstractSandwichItem.TAG_TOASTED, true);
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 2).addIngredient(VanillaTypes.ITEM, toasted);
+        Pair<ItemStack, ItemStack> sandwich = FoodPicker.generateSandwichPair(HNCItems.SANDWICH.get(), 7, true);
+        builder.addSlot(RecipeIngredientRole.INPUT, 2, 2).addIngredient(VanillaTypes.ITEM, sandwich.getFirst());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 2).addIngredient(VanillaTypes.ITEM, sandwich.getSecond());
     }
 
     @Override
