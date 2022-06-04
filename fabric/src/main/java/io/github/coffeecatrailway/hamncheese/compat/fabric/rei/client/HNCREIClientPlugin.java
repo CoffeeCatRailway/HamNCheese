@@ -1,12 +1,16 @@
 package io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client;
 
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
+import io.github.coffeecatrailway.hamncheese.client.gui.screens.PizzaOvenScreen;
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.GrillRecipe;
+import io.github.coffeecatrailway.hamncheese.common.item.crafting.PizzaOvenRecipe;
 import io.github.coffeecatrailway.hamncheese.compat.FoodPicker;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.categories.GrillCategory;
+import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.categories.PizzaOvenCategory;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.HNCREIPlugin;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.displays.GrillDisplay;
+import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.displays.PizzaOvenDisplay;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
@@ -38,11 +42,13 @@ public class HNCREIClientPlugin implements REIClientPlugin
     @Override
     public void registerCategories(CategoryRegistry registry)
     {
-        registry.add(new GrillCategory());
+        registry.add(new GrillCategory(), new PizzaOvenCategory());
 
         registry.removePlusButton(HNCREIPlugin.GRILL);
+        registry.removePlusButton(HNCREIPlugin.PIZZA_OVEN);
 
         registry.addWorkstations(HNCREIPlugin.GRILL, EntryStacks.of(HNCBlocks.GRILL.get()), EntryStacks.of(HNCItems.SANDWICH.get()));
+        registry.addWorkstations(HNCREIPlugin.PIZZA_OVEN, EntryStacks.of(HNCBlocks.PIZZA_OVEN.get()), EntryStacks.of(HNCItems.PIZZA.get()));
     }
 
     @Override
@@ -55,12 +61,14 @@ public class HNCREIClientPlugin implements REIClientPlugin
         registry.add(new DefaultCustomDisplay(null, List.of(EntryIngredients.of(HNCItems.MAPLE_SAP_BOTTLE.get()), EntryIngredients.ofIngredient(Ingredient.of(HNCItemTags.SUGAR_COMMON))), List.of(EntryIngredients.of(HNCItems.MAPLE_SYRUP.get()))));
 
         registry.registerFiller(GrillRecipe.class, GrillDisplay::new);
+        registry.registerFiller(PizzaOvenRecipe.class, PizzaOvenDisplay::new);
     }
 
     @Override
     public void registerScreens(ScreenRegistry registry)
     {
         registry.registerContainerClickArea(new Rectangle(76, 26, 24, 17), GrillScreen.class, HNCREIPlugin.GRILL);
+        registry.registerContainerClickArea(new Rectangle(88, 18, 24, 17), PizzaOvenScreen.class, HNCREIPlugin.PIZZA_OVEN);
     }
 
     private void addSandwichDisplay(DisplayRegistry registry, Tag.Named<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem)

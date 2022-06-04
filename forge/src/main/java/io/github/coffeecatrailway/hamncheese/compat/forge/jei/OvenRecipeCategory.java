@@ -38,7 +38,7 @@ public class OvenRecipeCategory implements IRecipeCategory<PizzaOvenRecipe>
     public OvenRecipeCategory(IGuiHelper guiHelper)
     {
         this.background = guiHelper.createDrawable(PizzaOvenScreen.TEXTURE, 6, 6, 152, 64);
-        this.icon = guiHelper.createDrawableIngredient(new ItemStack(HNCBlocks.PIZZA_OVEN.get()));
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(HNCBlocks.PIZZA_OVEN.get()));
 
         this.flame = guiHelper.drawableBuilder(PizzaOvenScreen.TEXTURE, 176, 0, 14, 14)
                 .buildAnimated(200, IDrawableAnimated.StartDirection.TOP, true);

@@ -21,6 +21,8 @@ import java.util.Optional;
  */
 public class GrillDisplay extends BasicDisplay
 {
+    private List<EntryIngredient> outputEntry;
+
     public GrillDisplay(GrillRecipe recipe)
     {
         this(getSandwich().getFirst(), getSandwich().getSecond(), Optional.ofNullable(recipe.getId()));
@@ -32,6 +34,20 @@ public class GrillDisplay extends BasicDisplay
     }
 
     @Override
+    public List<EntryIngredient> getInputEntries()
+    {
+        Pair<List<EntryIngredient>, List<EntryIngredient>> sandwich = getSandwich();
+        this.outputEntry = sandwich.getSecond();
+        return sandwich.getFirst();
+    }
+
+    @Override
+    public List<EntryIngredient> getOutputEntries()
+    {
+        return this.outputEntry;
+    }
+
+    @Override
     public CategoryIdentifier<?> getCategoryIdentifier()
     {
         return HNCREIPlugin.GRILL;
@@ -39,7 +55,7 @@ public class GrillDisplay extends BasicDisplay
 
     private static Pair<List<EntryIngredient>, List<EntryIngredient>> getSandwich()
     {
-        return FoodPicker.generateSandwichPairMapped(HNCItems.SANDWICH.get(), 7, false, stack -> Collections.singletonList(EntryIngredients.of(stack)));
+        return FoodPicker.generateSandwichPairMapped(HNCItems.SANDWICH.get(), 7, true, stack -> Collections.singletonList(EntryIngredients.of(stack)));
     }
 
     public static BasicDisplay.Serializer<GrillDisplay> serializer()

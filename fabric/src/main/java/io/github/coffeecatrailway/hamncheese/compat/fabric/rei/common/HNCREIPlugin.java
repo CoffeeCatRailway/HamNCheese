@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common;
 
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.displays.GrillDisplay;
+import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.displays.PizzaOvenDisplay;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
 import me.shedaniel.rei.api.common.plugins.REIServerPlugin;
@@ -13,10 +14,12 @@ import me.shedaniel.rei.api.common.plugins.REIServerPlugin;
 public class HNCREIPlugin implements REIServerPlugin
 {
     public static final CategoryIdentifier<GrillDisplay> GRILL = CategoryIdentifier.of(HamNCheese.getLocation("plugins/grill"));
+    public static final CategoryIdentifier<PizzaOvenDisplay> PIZZA_OVEN = CategoryIdentifier.of(HamNCheese.getLocation("plugins/pizza_oven"));
 
     @Override
     public void registerDisplaySerializer(DisplaySerializerRegistry registry)
     {
         registry.register(GRILL, GrillDisplay.serializer());
+        registry.register(PIZZA_OVEN, PizzaOvenDisplay.serializer());
     }
 }
