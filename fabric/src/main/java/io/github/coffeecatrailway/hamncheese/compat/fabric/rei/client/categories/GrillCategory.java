@@ -11,6 +11,8 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import java.util.List;
  * @author CoffeeCatRailway
  * Created: 1/06/2022
  */
+@Environment(EnvType.CLIENT)
 public class GrillCategory implements DisplayCategory<GrillDisplay>
 {
     @Override
@@ -39,7 +42,7 @@ public class GrillCategory implements DisplayCategory<GrillDisplay>
     {
         Point startPoint = new Point(bounds.getCenterX() - 31, bounds.getCenterY() - 13);
         List<Widget> widgets = new ArrayList<>();
-        widgets.add(Widgets.createArrow(new Point(startPoint.x + 17, startPoint.y + 4)));
+        widgets.add(Widgets.createArrow(new Point(startPoint.x + 17, startPoint.y + 4)).animationDurationTicks(200));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 5)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 10 - 22, startPoint.y + 5)).entries(display.getInputEntries().get(0)).markInput());
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 5)).entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
