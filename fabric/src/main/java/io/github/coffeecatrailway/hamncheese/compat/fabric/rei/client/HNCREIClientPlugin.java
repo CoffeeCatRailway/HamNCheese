@@ -2,20 +2,26 @@ package io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client;
 
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PizzaOvenScreen;
+import io.github.coffeecatrailway.hamncheese.client.gui.screens.PopcornMachineScreen;
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.GrillRecipe;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.PizzaOvenRecipe;
+import io.github.coffeecatrailway.hamncheese.common.item.crafting.PopcornRecipe;
 import io.github.coffeecatrailway.hamncheese.compat.FoodPicker;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.categories.GrillCategory;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.categories.PizzaOvenCategory;
+import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.categories.PopcornCategory;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.HNCREIPlugin;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.displays.GrillDisplay;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.displays.PizzaOvenDisplay;
+import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.displays.PopcornDisplay;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
+import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
+import me.shedaniel.rei.api.client.registry.category.ButtonArea;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
@@ -42,13 +48,15 @@ public class HNCREIClientPlugin implements REIClientPlugin
     @Override
     public void registerCategories(CategoryRegistry registry)
     {
-        registry.add(new GrillCategory(), new PizzaOvenCategory());
-
-        registry.removePlusButton(HNCREIPlugin.GRILL);
-        registry.removePlusButton(HNCREIPlugin.PIZZA_OVEN);
+        registry.add(new GrillCategory(), new PizzaOvenCategory(), new PopcornCategory());
 
         registry.addWorkstations(HNCREIPlugin.GRILL, EntryStacks.of(HNCBlocks.GRILL.get()), EntryStacks.of(HNCItems.SANDWICH.get()));
         registry.addWorkstations(HNCREIPlugin.PIZZA_OVEN, EntryStacks.of(HNCBlocks.PIZZA_OVEN.get()), EntryStacks.of(HNCItems.PIZZA.get()));
+        registry.addWorkstations(HNCREIPlugin.POPCORN, EntryStacks.of(HNCBlocks.POPCORN_MACHINE.get()));
+
+        registry.removePlusButton(HNCREIPlugin.GRILL);
+        registry.removePlusButton(HNCREIPlugin.PIZZA_OVEN);
+        registry.setPlusButtonArea(HNCREIPlugin.POPCORN, ButtonArea.defaultArea());
     }
 
     @Override
@@ -62,6 +70,7 @@ public class HNCREIClientPlugin implements REIClientPlugin
 
         registry.registerFiller(GrillRecipe.class, GrillDisplay::new);
         registry.registerFiller(PizzaOvenRecipe.class, PizzaOvenDisplay::new);
+        registry.registerRecipeFiller(PopcornRecipe.class, HNCRecipes.POPCORN_TYPE, PopcornDisplay::new);
     }
 
     @Override
@@ -69,6 +78,7 @@ public class HNCREIClientPlugin implements REIClientPlugin
     {
         registry.registerContainerClickArea(new Rectangle(76, 26, 24, 17), GrillScreen.class, HNCREIPlugin.GRILL);
         registry.registerContainerClickArea(new Rectangle(88, 18, 24, 17), PizzaOvenScreen.class, HNCREIPlugin.PIZZA_OVEN);
+        registry.registerContainerClickArea(new Rectangle(109, 4, 61, 12), PopcornMachineScreen.class, HNCREIPlugin.POPCORN);
     }
 
     private void addSandwichDisplay(DisplayRegistry registry, Tag.Named<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem)
