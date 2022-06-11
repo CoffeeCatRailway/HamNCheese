@@ -12,5 +12,6 @@ import net.minecraft.resources.ResourceLocation;
 @Environment(EnvType.CLIENT)
 public class CompatTextures // TODO: Use for jei
 {
+    public static final ResourceLocation PIZZA_OVEN = HamNCheese.getLocation("textures/gui/jei/pizza_oven.png");
     public static final ResourceLocation POPCORN_MACHINE = HamNCheese.getLocation("textures/gui/jei/popcorn.png");
 }
