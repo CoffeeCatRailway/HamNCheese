@@ -48,7 +48,6 @@ public class PopcornCategory implements DisplayCategory<PopcornDisplay>
     {
         Point startPoint = new Point(bounds.getCenterX() - 66, bounds.getCenterY() - 33);
         List<Widget> widgets = new ArrayList<>();
-        widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createTexturedWidget(CompatTextures.POPCORN_MACHINE, startPoint.x, startPoint.y, 0, 0, 133, 67, 133, 67)); // Background
 
         // Popcorn
