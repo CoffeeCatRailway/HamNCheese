@@ -25,24 +25,24 @@ import java.util.stream.Stream;
 public class HNCBlockEntities
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    protected static final PollinatedRegistry<BlockEntityType<?>> TILE_ENTITIES = PollinatedRegistry.create(Registry.BLOCK_ENTITY_TYPE, HamNCheese.MOD_ID);
+    protected static final PollinatedRegistry<BlockEntityType<?>> BLOCK_ENTITIES = PollinatedRegistry.create(Registry.BLOCK_ENTITY_TYPE, HamNCheese.MOD_ID);
 
     public static final Supplier<BlockEntityType<PizzaOvenBlockEntity>> PIZZA_OVEN = register("pizza_oven", getPizzaOven(), HNCBlocks.PIZZA_OVEN);
     public static final Supplier<BlockEntityType<GrillBlockEntity>> GRILL = register("grill", getGrill(), HNCBlocks.GRILL);
     public static final Supplier<BlockEntityType<PopcornMachineBlockEntity>> POPCORN_MACHINE = register("popcorn_machine", getPopcornMachine(), HNCBlocks.POPCORN_MACHINE);
 
     @SafeVarargs
-    private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> tileEntity, Supplier<? extends Block>... blocks)
+    private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> blockEntity, Supplier<? extends Block>... blocks)
     {
         return register(id, tileEntity, Arrays.stream(blocks).map(Supplier::get));
     }
 
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> tileEntity, Stream<? extends Block> blocks)
     {
-        return TILE_ENTITIES.register(id, () -> BlockEntityType.Builder.of(tileEntity, blocks.toArray(Block[]::new)).build(null));
+        return BLOCK_ENTITIES.register(id, () -> BlockEntityType.Builder.of(blockEntity, blocks.toArray(Block[]::new)).build(null));
     }
 
-    // Mod loader sided items
+    // Mod loader sided block entities
     @ExpectPlatform
     private static BlockEntityType.BlockEntitySupplier<PizzaOvenBlockEntity> getPizzaOven()
     {
@@ -64,6 +64,6 @@ public class HNCBlockEntities
     public static void load(Platform platform)
     {
         LOGGER.debug("Loaded");
-        TILE_ENTITIES.register(platform);
+        BLOCK_ENTITIES.register(platform);
     }
 }

@@ -48,10 +48,10 @@ public abstract class BaseFoodMakerBlock extends BaseEntityBlock implements Simp
     {
         if (!state.is(newState.getBlock()))
         {
-            BlockEntity tileentity = level.getBlockEntity(pos);
-            if (tileentity instanceof BaseFoodMakerBlockEntity)
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof BaseFoodMakerBlockEntity)
             {
-                Containers.dropContents(level, pos, (BaseFoodMakerBlockEntity) tileentity);
+                Containers.dropContents(level, pos, (BaseFoodMakerBlockEntity) blockEntity);
                 level.updateNeighbourForOutputSignal(pos, this);
             }
             super.onRemove(state, level, pos, newState, p_196243_5_);
