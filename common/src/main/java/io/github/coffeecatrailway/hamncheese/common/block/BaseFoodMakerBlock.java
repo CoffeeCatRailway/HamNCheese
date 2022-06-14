@@ -114,7 +114,7 @@ public abstract class BaseFoodMakerBlock extends BaseEntityBlock implements Simp
     protected abstract ResourceLocation getInteractWithStat();
 
     @Nullable
-    protected static <T extends BlockEntity, E extends BaseFoodMakerBlockEntity> BlockEntityTicker<T> createTicker(Level level, BlockEntityType<T> type, BlockEntityType<E> type2, BlockEntityTicker<? super E> ticker)
+    protected static <T extends BlockEntity, E extends BlockEntity> BlockEntityTicker<T> createTicker(Level level, BlockEntityType<T> type, BlockEntityType<E> type2, BlockEntityTicker<? super E> ticker)
     {
         return level.isClientSide ? null : createTickerHelper(type, type2, ticker);
     }

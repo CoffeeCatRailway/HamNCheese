@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
  * @author CoffeeCatRailway
  * Created: 11/05/2021
  */
-public class PizzaOvenBlockEntity extends FoodCookerBlockEntity
+public class PizzaOvenBlockEntity extends FoodCookerBlockEntity<PizzaOvenBlockEntity>
 {
     private static final int[] SLOTS_UP = new int[]{
             0, 1, 2,
@@ -32,6 +32,12 @@ public class PizzaOvenBlockEntity extends FoodCookerBlockEntity
     public PizzaOvenBlockEntity(BlockPos pos, BlockState state)
     {
         super(HNCBlockEntities.PIZZA_OVEN.get(), pos, state, 13, HNCRecipes.PIZZA_OVEN_TYPE);
+    }
+
+    @Override
+    public PizzaOvenBlockEntity getThis()
+    {
+        return this;
     }
 
     @Override

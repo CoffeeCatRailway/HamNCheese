@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
  * @author CoffeeCatRailway
  * Created: 3/08/2021
  */
-public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity
+public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity<PopcornMachineBlockEntity>
 {
     public static final int MAX_POPCORN = 500;
     public static final int MAX_FLAVOUR_TIME = 200;
@@ -81,6 +81,12 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity
     public PopcornMachineBlockEntity(BlockPos pos, BlockState state)
     {
         super(HNCBlockEntities.POPCORN_MACHINE.get(), pos, state, 5, HNCRecipes.POPCORN_TYPE);
+    }
+
+    @Override
+    public PopcornMachineBlockEntity getThis()
+    {
+        return this;
     }
 
     @Nullable

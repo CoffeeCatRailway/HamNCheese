@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * @author CoffeeCatRailway
@@ -33,7 +34,12 @@ public class HNCBlockEntities
     @SafeVarargs
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> tileEntity, Supplier<? extends Block>... blocks)
     {
-        return TILE_ENTITIES.register(id, () -> BlockEntityType.Builder.of(tileEntity, Arrays.stream(blocks).map(Supplier::get).toArray(Block[]::new)).build(null));
+        return register(id, tileEntity, Arrays.stream(blocks).map(Supplier::get));
+    }
+
+    private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> tileEntity, Stream<? extends Block> blocks)
+    {
+        return TILE_ENTITIES.register(id, () -> BlockEntityType.Builder.of(tileEntity, blocks.toArray(Block[]::new)).build(null));
     }
 
     // Mod loader sided items

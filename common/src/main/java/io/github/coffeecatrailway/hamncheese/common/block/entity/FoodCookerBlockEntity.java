@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
  * @author CoffeeCatRailway
  * Created: 11/05/2021
  */
-public abstract class FoodCookerBlockEntity extends BaseFoodMakerBlockEntity
+public abstract class FoodCookerBlockEntity<T extends FoodCookerBlockEntity<?>> extends BaseFoodMakerBlockEntity<T>
 {
     protected int burnTime;
     protected int burnTimeTotal;
@@ -123,7 +123,7 @@ public abstract class FoodCookerBlockEntity extends BaseFoodMakerBlockEntity
         }
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, FoodCookerBlockEntity blockEntity)
+    public static <T extends FoodCookerBlockEntity<?>> void tick(Level level, BlockPos pos, BlockState state, FoodCookerBlockEntity<T> blockEntity)
     {
         boolean isBurningFlag = blockEntity.isBurning();
         boolean flag = false;

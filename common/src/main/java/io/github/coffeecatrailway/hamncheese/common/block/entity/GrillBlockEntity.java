@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
  * @author CoffeeCatRailway
  * Created: 4/06/2021
  */
-public class GrillBlockEntity extends FoodCookerBlockEntity
+public class GrillBlockEntity extends FoodCookerBlockEntity<GrillBlockEntity>
 {
     private static final int[] SLOTS_UP = new int[]{0, 1, 2, 3};
     private static final int[] SLOTS_DOWN = new int[]{6, 7, 8, 9};
@@ -29,6 +29,12 @@ public class GrillBlockEntity extends FoodCookerBlockEntity
     public GrillBlockEntity(BlockPos pos, BlockState state)
     {
         super(HNCBlockEntities.GRILL.get(), pos, state, 10, HNCRecipes.GRILL_TYPE);
+    }
+
+    @Override
+    public GrillBlockEntity getThis()
+    {
+        return this;
     }
 
     @Override
