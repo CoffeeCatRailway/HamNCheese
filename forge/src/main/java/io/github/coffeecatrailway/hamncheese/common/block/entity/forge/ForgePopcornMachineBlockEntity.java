@@ -42,9 +42,9 @@ public class ForgePopcornMachineBlockEntity extends PopcornMachineBlockEntity
     }
 
     @Override
-    public void setRemoved()
+    public void invalidateCaps()
     {
-        super.setRemoved();
+        super.invalidateCaps();
         for (LazyOptional<? extends IItemHandler> handler : this.handlers) handler.invalidate();
     }
 }

@@ -40,9 +40,9 @@ public class ForgeGrillBlockEntity extends GrillBlockEntity
     }
 
     @Override
-    public void setRemoved()
+    public void invalidateCaps()
     {
-        super.setRemoved();
+        super.invalidateCaps();
         for (LazyOptional<? extends IItemHandler> handler : this.handlers) handler.invalidate();
     }
 }
