@@ -30,6 +30,8 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
     private static final Tag.Named<Block> ENDER_STORAGE_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "chests/ender"));
     public static final Tag.Named<Block> ENDER_STORAGE = TagRegistry.bindBlock(new ResourceLocation("c", "ender_storage"));
 
+    public static final Tag.Named<Block> CHOPPING_BOARDS = TagRegistry.bindBlock(HamNCheese.getLocation("chopping_boards"));
+
     // Vanilla
     public static final Tag.Named<Block> PLANKS = TagRegistry.bindBlock(new ResourceLocation("planks"));
     public static final Tag.Named<Block> WOODEN_BUTTONS = TagRegistry.bindBlock(new ResourceLocation("wooden_buttons"));
@@ -67,6 +69,8 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
 
         this.tag(ENDER_STORAGE_FORGE).add(Blocks.ENDER_CHEST);
         this.tag(ENDER_STORAGE).addTag(ENDER_STORAGE_FORGE);
+
+        this.tag(CHOPPING_BOARDS).add(HNCBlocks.OAK_CHOPPING_BOARD.get(), HNCBlocks.BIRCH_CHOPPING_BOARD.get(), HNCBlocks.SPRUCE_CHOPPING_BOARD.get(), HNCBlocks.JUNGLE_CHOPPING_BOARD.get(), HNCBlocks.ACACIA_CHOPPING_BOARD.get(), HNCBlocks.DARK_OAK_CHOPPING_BOARD.get(), HNCBlocks.CRIMSON_CHOPPING_BOARD.get(), HNCBlocks.WARPED_CHOPPING_BOARD.get(), HNCBlocks.STONE_CHOPPING_BOARD.get(), HNCBlocks.POLISHED_BLACKSTONE_CHOPPING_BOARD.get(), HNCBlocks.GOLD_CHOPPING_BOARD.get(), HNCBlocks.IRON_CHOPPING_BOARD.get(), HNCBlocks.MAPLE_CHOPPING_BOARD.get());
 
         // Vanilla
         this.tag(BlockTags.CROPS).add(HNCBlocks.PINEAPPLE_PLANT.get(), HNCBlocks.TOMATO_PLANT.get(), HNCBlocks.CORN_PLANT.get());

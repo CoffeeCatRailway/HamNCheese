@@ -142,6 +142,8 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     private static final Tag.Named<Item> SHEARS = TagRegistry.bindItem(new ResourceLocation("forge", "shears"));
     public static final Tag.Named<Item> SHEARS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "shears"));
 
+    public static final Tag.Named<Item> CHOPPING_BOARDS = TagRegistry.bindItem(HamNCheese.getLocation("chopping_boards"));
+
     public HNCItemTags(DataGenerator dataGenerator, PollinatedModContainer container, BlockTagsProvider blockTags)
     {
         super(dataGenerator, container, blockTags);
@@ -283,5 +285,7 @@ public class HNCItemTags extends PollinatedItemTagsProvider
 
         this.tag(SHEARS).add(Items.SHEARS);
         this.tag(SHEARS_COMMON).addTag(SHEARS);
+
+        this.copy(HNCBlockTags.CHOPPING_BOARDS, CHOPPING_BOARDS);
     }
 }
