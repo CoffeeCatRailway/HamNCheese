@@ -1,6 +1,7 @@
-package io.github.coffeecatrailway.hamncheese.data.gen;
+package io.github.coffeecatrailway.hamncheese.data.gen.recipes;
 
 import com.google.gson.JsonObject;
+import io.github.coffeecatrailway.hamncheese.data.gen.HNCRecipeProvider;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import net.minecraft.advancements.Advancement;
@@ -15,8 +16,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
@@ -27,7 +26,6 @@ import java.util.function.Consumer;
  */
 public class PopcornRecipeBuilder
 {
-    private static final Logger LOGGER = LogManager.getLogger();
     private final Item result;
     private final int count;
     private final int popcorn;

@@ -28,10 +28,14 @@ public class HNCRecipes
     public static RecipeType<GrillRecipe> GRILL_TYPE;
     public static RecipeType<PopcornRecipe> POPCORN_TYPE;
 
+    public static RecipeType<ChoppingBoardRecipe> CHOPPING_BOARD_TYPE;
+
     // Blocks
     public static final Supplier<SimpleRecipeSerializer<PizzaOvenRecipe>> PIZZA_OVEN_SERIALIZER = RECIPE_SERIALIZERS.register("pizza_oven", () -> new SimpleRecipeSerializer<>(PizzaOvenRecipe::new));
     public static final Supplier<SimpleRecipeSerializer<GrillRecipe>> GRILL_SERIALIZER = RECIPE_SERIALIZERS.register("grill", () -> new SimpleRecipeSerializer<>(GrillRecipe::new));
     public static final Supplier<RecipeSerializer<?>> POPCORN_SERIALIZER = RECIPE_SERIALIZERS.register("popcorn", getPopcornSerializer());
+
+    public static final Supplier<RecipeSerializer<?>> CHOPPING_BOARD_SERIALIZER = RECIPE_SERIALIZERS.register("chopping_board", getChoppingBoardSerializer());
 
     // Crafting grid
     public static final Supplier<SimpleRecipeSerializer<SandwichRecipe>> SANDWICH_SERIALIZER = RECIPE_SERIALIZERS.register("sandwich", () -> new SimpleRecipeSerializer<>(SandwichRecipe::new));
@@ -52,8 +56,16 @@ public class HNCRecipes
         });
     }
 
+
+    // Mod loader sided serializers
     @ExpectPlatform
     private static Supplier<RecipeSerializer<?>> getPopcornSerializer()
+    {
+        return Platform.error();
+    }
+
+    @ExpectPlatform
+    private static Supplier<RecipeSerializer<?>> getChoppingBoardSerializer()
     {
         return Platform.error();
     }
@@ -64,6 +76,7 @@ public class HNCRecipes
         PIZZA_OVEN_TYPE = registerType("pizza_oven");
         GRILL_TYPE = registerType("grill");
         POPCORN_TYPE = registerType("popcorn");
+        CHOPPING_BOARD_TYPE = registerType("chopping_board");
         RECIPE_SERIALIZERS.register(platform);
     }
 }
