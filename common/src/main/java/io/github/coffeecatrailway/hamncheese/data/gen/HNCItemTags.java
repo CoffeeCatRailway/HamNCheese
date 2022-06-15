@@ -169,7 +169,7 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(FLOUR).add(HNCItems.FLOUR.get());
         this.tag(FLOUR_COMMON).addTag(FLOUR);
 
-        this.tag(DOUGH).add(HNCItems.DOUGH.get(), HNCItems.UNBAKED_PIZZA_BASE.get());
+        this.tag(DOUGH).add(HNCItems.DOUGH.get(), HNCItems.UNBAKED_PIZZA_BASE.get(), HNCItems.UNBAKED_CROISSANT.get());
         this.tag(DOUGH_COMMON).addTag(DOUGH);
 
         this.tag(PIZZA).add(HNCItems.UNBAKED_PIZZA_BASE.get());
