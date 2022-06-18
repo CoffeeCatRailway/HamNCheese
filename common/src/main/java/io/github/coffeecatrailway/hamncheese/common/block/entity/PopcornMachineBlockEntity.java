@@ -44,15 +44,12 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity<PopcornM
         @Override
         public int get(int index)
         {
-            switch (index)
-            {
-                case 0:
-                    return PopcornMachineBlockEntity.this.flavourTime;
-                case 1:
-                    return PopcornMachineBlockEntity.this.popcornAmount;
-                default:
-                    return 0;
-            }
+            return switch (index)
+                    {
+                        case 0 -> PopcornMachineBlockEntity.this.flavourTime;
+                        case 1 -> PopcornMachineBlockEntity.this.popcornAmount;
+                        default -> 0;
+                    };
         }
 
         @Override
@@ -60,12 +57,8 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity<PopcornM
         {
             switch (index)
             {
-                case 0:
-                    PopcornMachineBlockEntity.this.flavourTime = value;
-                    break;
-                case 1:
-                    PopcornMachineBlockEntity.this.popcornAmount = value;
-                    break;
+                case 0 -> PopcornMachineBlockEntity.this.flavourTime = value;
+                case 1 -> PopcornMachineBlockEntity.this.popcornAmount = value;
             }
         }
 
@@ -242,18 +235,18 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity<PopcornM
     }
 
     @Override
-    public void load(CompoundTag compound)
+    public void load(CompoundTag compoundTag)
     {
-        super.load(compound);
-        this.flavourTime = compound.getInt("FlavourTime");
-        this.popcornAmount = compound.getInt("Popcorn");
+        super.load(compoundTag);
+        this.flavourTime = compoundTag.getInt("FlavourTime");
+        this.popcornAmount = compoundTag.getInt("Popcorn");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound)
+    public void saveAdditional(CompoundTag compoundTag)
     {
-        super.saveAdditional(compound);
-        compound.putInt("FlavourTime", this.flavourTime);
-        compound.putInt("Popcorn", this.popcornAmount);
+        super.saveAdditional(compoundTag);
+        compoundTag.putInt("FlavourTime", this.flavourTime);
+        compoundTag.putInt("Popcorn", this.popcornAmount);
     }
 }

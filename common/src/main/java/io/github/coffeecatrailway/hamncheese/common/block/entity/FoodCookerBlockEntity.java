@@ -33,19 +33,14 @@ public abstract class FoodCookerBlockEntity<T extends FoodCookerBlockEntity<?>> 
         @Override
         public int get(int index)
         {
-            switch (index)
-            {
-                case 0:
-                    return FoodCookerBlockEntity.this.burnTime;
-                case 1:
-                    return FoodCookerBlockEntity.this.burnTimeTotal;
-                case 2:
-                    return FoodCookerBlockEntity.this.cookTime;
-                case 3:
-                    return FoodCookerBlockEntity.this.cookTimeTotal;
-                default:
-                    return 0;
-            }
+            return switch (index)
+                    {
+                        case 0 -> FoodCookerBlockEntity.this.burnTime;
+                        case 1 -> FoodCookerBlockEntity.this.burnTimeTotal;
+                        case 2 -> FoodCookerBlockEntity.this.cookTime;
+                        case 3 -> FoodCookerBlockEntity.this.cookTimeTotal;
+                        default -> 0;
+                    };
         }
 
         @Override
@@ -53,18 +48,10 @@ public abstract class FoodCookerBlockEntity<T extends FoodCookerBlockEntity<?>> 
         {
             switch (index)
             {
-                case 0:
-                    FoodCookerBlockEntity.this.burnTime = value;
-                    break;
-                case 1:
-                    FoodCookerBlockEntity.this.burnTimeTotal = value;
-                    break;
-                case 2:
-                    FoodCookerBlockEntity.this.cookTime = value;
-                    break;
-                case 3:
-                    FoodCookerBlockEntity.this.cookTimeTotal = value;
-                    break;
+                case 0 -> FoodCookerBlockEntity.this.burnTime = value;
+                case 1 -> FoodCookerBlockEntity.this.burnTimeTotal = value;
+                case 2 -> FoodCookerBlockEntity.this.cookTime = value;
+                case 3 -> FoodCookerBlockEntity.this.cookTimeTotal = value;
             }
         }
 
@@ -203,22 +190,22 @@ public abstract class FoodCookerBlockEntity<T extends FoodCookerBlockEntity<?>> 
     }
 
     @Override
-    public void load(CompoundTag compound)
+    public void load(CompoundTag compoundTag)
     {
-        super.load(compound);
-        this.burnTime = compound.getInt("BurnTime");
+        super.load(compoundTag);
+        this.burnTime = compoundTag.getInt("BurnTime");
         this.burnTimeTotal = getBurnTime(this.getNextFuelStack().getFirst(), this.recipeType);
-        this.cookTime = compound.getInt("CookTime");
-        this.cookTimeTotal = compound.getInt("CookTimeTotal");
+        this.cookTime = compoundTag.getInt("CookTime");
+        this.cookTimeTotal = compoundTag.getInt("CookTimeTotal");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound)
+    public void saveAdditional(CompoundTag compoundTag)
     {
-        super.saveAdditional(compound);
-        compound.putInt("BurnTime", this.burnTime);
-        compound.putInt("CookTime", this.cookTime);
-        compound.putInt("CookTimeTotal", this.cookTimeTotal);
+        super.saveAdditional(compoundTag);
+        compoundTag.putInt("BurnTime", this.burnTime);
+        compoundTag.putInt("CookTime", this.cookTime);
+        compoundTag.putInt("CookTimeTotal", this.cookTimeTotal);
     }
 
     private Pair<ItemStack, Integer> getNextFuelStack()

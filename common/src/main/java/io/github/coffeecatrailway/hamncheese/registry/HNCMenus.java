@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 public class HNCMenus
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    protected static final PollinatedRegistry<MenuType<?>> CONTAINERS = PollinatedRegistry.create(Registry.MENU, HamNCheese.MOD_ID);
+    protected static final PollinatedRegistry<MenuType<?>> MENUS = PollinatedRegistry.create(Registry.MENU, HamNCheese.MOD_ID);
 
     public static final Supplier<MenuType<PizzaOvenContainer>> PIZZA_OVEN = register("pizza_oven", () -> new MenuType<>(PizzaOvenContainer::new));
     public static final Supplier<MenuType<GrillContainer>> GRILL = register("grill", () -> new MenuType<>(GrillContainer::new));
@@ -33,8 +33,8 @@ public class HNCMenus
     }
 
     private static <T extends MenuType<?>> Supplier<T> register(String id, Supplier<T> container, String name)
-        {
-            Supplier<T> object = CONTAINERS.register(id, container);
+    {
+        Supplier<T> object = MENUS.register(id, container);
         HNCLanguage.EXTRA.put("container." + HamNCheese.MOD_ID + "." + id, name);
         return object;
     }
@@ -42,6 +42,6 @@ public class HNCMenus
     public static void load(Platform platform)
     {
         LOGGER.debug("Loaded");
-        CONTAINERS.register(platform);
+        MENUS.register(platform);
     }
 }

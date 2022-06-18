@@ -69,16 +69,16 @@ public abstract class BaseFoodMakerBlockEntity<T extends BaseFoodMakerBlockEntit
     }
 
     @Override
-    public void load(CompoundTag compound)
+    public void load(CompoundTag compoundTag)
     {
-        super.load(compound);
-        WorldlyRecipeContainer.super.load(compound);
+        super.load(compoundTag);
+        WorldlyRecipeContainer.super.load(compoundTag);
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound)
+    public void saveAdditional(CompoundTag compoundTag)
     {
-        super.saveAdditional(compound);
-        WorldlyRecipeContainer.super.save(compound);
+        super.saveAdditional(compoundTag);
+        WorldlyRecipeContainer.super.save(compoundTag);
     }
 }
