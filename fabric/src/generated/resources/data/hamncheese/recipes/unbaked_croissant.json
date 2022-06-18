@@ -1,0 +1,12 @@
+{
+  "type": "hamncheese:chopping_board",
+  "ingredient": {
+    "item": "hamncheese:unbaked_pizza_base"
+  },
+  "tool": {
+    "item": "hamncheese:rolling_pin"
+  },
+  "result": {
+    "item": "hamncheese:unbaked_croissant"
+  }
+}

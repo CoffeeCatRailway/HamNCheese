@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:unbaked_croissant"
+    ]
+  },
+  "criteria": {
+    "has_pizza_base": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:unbaked_pizza_base"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:unbaked_croissant"
+      }
+    },
+    "has_board": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "hamncheese:chopping_boards"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pizza_base",
+      "has_the_recipe",
+      "has_board"
+    ]
+  ]
+}

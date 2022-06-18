@@ -2,6 +2,8 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.PollinatedRecipeProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.data.gen.recipes.ChoppingBoardRecipeBuilder;
+import io.github.coffeecatrailway.hamncheese.data.gen.recipes.PopcornRecipeBuilder;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
@@ -210,5 +212,9 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ShapelessRecipeBuilder.shapeless(HNCBlocks.IRON_CHOPPING_BOARD.get()).group("chopping_board").requires(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE).unlockedBy("has_pressure_plate", has(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_CHOPPING_BOARD.get()).group("chopping_board").requires(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).unlockedBy("has_pressure_plate", has(HNCBlocks.MAPLE_PRESSURE_PLATE.get())).save(consumer);
+
+        // TODO: Stone rolling pin & other tools
+        // TODO: More recipes
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.UNBAKED_CROISSANT.get(), Ingredient.of(HNCItems.UNBAKED_PIZZA_BASE.get())).tool(Ingredient.of(HNCItems.ROLLING_PIN.get())).unlockedBy("has_pizza_base", has(HNCItems.UNBAKED_PIZZA_BASE.get())).save(consumer);
     }
 }

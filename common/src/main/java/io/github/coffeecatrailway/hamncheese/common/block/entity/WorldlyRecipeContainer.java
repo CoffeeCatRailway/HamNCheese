@@ -178,10 +178,10 @@ public interface WorldlyRecipeContainer<T extends BlockEntity> extends Container
         this.markUpdated();
     }
 
-    default void load(CompoundTag compound)
+    default void load(CompoundTag compoundTag)
     {
-        ContainerHelper.loadAllItems(compound, this.getInventory());
-        ListTag recipesUsedNbt = compound.getList("RecipesUsed", NbtConstants.COMPOUND);
+        ContainerHelper.loadAllItems(compoundTag, this.getInventory());
+        ListTag recipesUsedNbt = compoundTag.getList("RecipesUsed", NbtConstants.COMPOUND);
         for (int i = 0; i < recipesUsedNbt.size(); i++)
         {
             CompoundTag obj = recipesUsedNbt.getCompound(i);
@@ -189,17 +189,41 @@ public interface WorldlyRecipeContainer<T extends BlockEntity> extends Container
         }
     }
 
-    default void save(CompoundTag compound)
+    default void save(CompoundTag compoundTag)
     {
-        ContainerHelper.saveAllItems(compound, this.getInventory());
-        ListTag recipesUsedNbt = new ListTag();
+        saveEveryItem(compoundTag, this.getInventory());
+        ListTag recipesUsedTag = new ListTag();
         this.getRecipeAmounts().forEach((location, amount) -> {
             CompoundTag obj = new CompoundTag();
             obj.putString("Location", location.toString());
             obj.putInt("Amount", amount);
-            recipesUsedNbt.add(obj);
+            recipesUsedTag.add(obj);
         });
-        compound.put("RecipesUsed", recipesUsedNbt);
+        compoundTag.put("RecipesUsed", recipesUsedTag);
+    }
+
+    static CompoundTag saveEveryItem(CompoundTag compoundTag, NonNullList<ItemStack> nonNullList)
+    {
+        return saveEveryItem(compoundTag, nonNullList, false);
+    }
+
+    static CompoundTag saveEveryItem(CompoundTag compoundTag, NonNullList<ItemStack> nonNullList, boolean includeEmpty)
+    {
+        ListTag itemsTag = new ListTag();
+        for (int i = 0; i < nonNullList.size(); ++i)
+        {
+            ItemStack itemStack = nonNullList.get(i);
+            if (!itemStack.isEmpty() || includeEmpty)
+            {
+                CompoundTag slotTag = new CompoundTag();
+                slotTag.putByte("Slot", (byte) i);
+                itemStack.save(slotTag);
+                itemsTag.add(slotTag);
+            }
+        }
+
+        compoundTag.put("Items", itemsTag);
+        return compoundTag;
     }
 
     default boolean hasItems(int startSlot, int endSlot)

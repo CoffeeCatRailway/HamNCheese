@@ -4,6 +4,8 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
+import io.github.coffeecatrailway.hamncheese.common.block.entity.ChoppingBoardBlockEntity;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.GrillBlockEntity;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.PizzaOvenBlockEntity;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.PopcornMachineBlockEntity;
@@ -31,13 +33,15 @@ public class HNCBlockEntities
     public static final Supplier<BlockEntityType<GrillBlockEntity>> GRILL = register("grill", getGrill(), HNCBlocks.GRILL);
     public static final Supplier<BlockEntityType<PopcornMachineBlockEntity>> POPCORN_MACHINE = register("popcorn_machine", getPopcornMachine(), HNCBlocks.POPCORN_MACHINE);
 
+    public static final Supplier<BlockEntityType<ChoppingBoardBlockEntity>> CHOPPING_BOARD = register("chopping_board", getChoppingBoard(), Registry.BLOCK.stream().filter(block -> block instanceof ChoppingBoardBlock));
+
     @SafeVarargs
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> blockEntity, Supplier<? extends Block>... blocks)
     {
-        return register(id, tileEntity, Arrays.stream(blocks).map(Supplier::get));
+        return register(id, blockEntity, Arrays.stream(blocks).map(Supplier::get));
     }
 
-    private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> tileEntity, Stream<? extends Block> blocks)
+    private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> blockEntity, Stream<? extends Block> blocks)
     {
         return BLOCK_ENTITIES.register(id, () -> BlockEntityType.Builder.of(blockEntity, blocks.toArray(Block[]::new)).build(null));
     }
@@ -57,6 +61,12 @@ public class HNCBlockEntities
 
     @ExpectPlatform
     private static BlockEntityType.BlockEntitySupplier<PopcornMachineBlockEntity> getPopcornMachine()
+    {
+        return Platform.error();
+    }
+
+    @ExpectPlatform
+    private static BlockEntityType.BlockEntitySupplier<ChoppingBoardBlockEntity> getChoppingBoard()
     {
         return Platform.error();
     }

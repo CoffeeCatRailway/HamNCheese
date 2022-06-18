@@ -17,16 +17,23 @@ public class HNCStats
 {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static ResourceLocation INTERACT_PIZZA_OVEN;
-    public static ResourceLocation INTERACT_GRILL;
-    public static ResourceLocation INTERACT_POPCORN_MACHINE;
+    public static final ResourceLocation INTERACT_PIZZA_OVEN;
+    public static final ResourceLocation INTERACT_GRILL;
+    public static final ResourceLocation INTERACT_POPCORN_MACHINE;
 
-    public static void register()
+    public static final ResourceLocation INTERACT_CHOPPING_BOARD;
+
+    static
     {
         INTERACT_PIZZA_OVEN = register("interact_pizza_oven", "Interactions with Pizza Oven", StatFormatter.DEFAULT);
         INTERACT_GRILL = register("interact_grill", "Interactions with Grill", StatFormatter.DEFAULT);
         INTERACT_POPCORN_MACHINE = register("interact_popcorn_machine", "Interactions with Popcorn Machine", StatFormatter.DEFAULT);
 
+        INTERACT_CHOPPING_BOARD = register("interact_chopping_board", "Interactions with Chopping Board", StatFormatter.DEFAULT);
+    }
+
+    public static void register()
+    {
         LOGGER.debug("Custom stats registered");
     }
 

@@ -17,6 +17,7 @@ import gg.moonflower.pollen.api.registry.content.CompostablesRegistry;
 import gg.moonflower.pollen.api.registry.content.DispenseItemBehaviorRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.HNCModelLayers;
+import io.github.coffeecatrailway.hamncheese.client.blockentity.ChoppingBoardRenderer;
 import io.github.coffeecatrailway.hamncheese.client.entity.MouseModel;
 import io.github.coffeecatrailway.hamncheese.client.entity.MouseRenderer;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
@@ -93,6 +94,8 @@ public class HamNCheese
     public static void onClientInit()
     {
         SandwichItemRenderer.init();
+
+        BlockEntityRendererRegistry.register(HNCBlockEntities.CHOPPING_BOARD, ChoppingBoardRenderer::new);
 
         EntityRendererRegistry.registerLayerDefinition(HNCModelLayers.MOUSE, MouseModel::createLayer);
         EntityRendererRegistry.register(HNCEntities.MOUSE, MouseRenderer::new);

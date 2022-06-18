@@ -1,11 +1,23 @@
 package io.github.coffeecatrailway.hamncheese.common.block;
 
+import io.github.coffeecatrailway.hamncheese.common.block.entity.ChoppingBoardBlockEntity;
+import io.github.coffeecatrailway.hamncheese.common.item.crafting.ChoppingBoardRecipe;
+import io.github.coffeecatrailway.hamncheese.registry.HNCBlockEntities;
+import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
+import io.github.coffeecatrailway.hamncheese.registry.HNCStats;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -13,14 +25,16 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author CoffeeCatRailway
  * Created: 27/04/2021
  */
-public class ChoppingBoardBlock extends Block implements SimpleWaterloggedBlock
+public class ChoppingBoardBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -42,6 +56,65 @@ public class ChoppingBoardBlock extends Block implements SimpleWaterloggedBlock
                     case NORTH, SOUTH -> SHAPE_NS;
                     default -> SHAPE_EW;
                 };
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
+    {
+        return new ChoppingBoardBlockEntity(pos, state);
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean tisABoolean)
+    {
+        if (!state.is(newState.getBlock()))
+        {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof ChoppingBoardBlockEntity)
+            {
+                Containers.dropContents(level, pos, (ChoppingBoardBlockEntity) blockEntity);
+                level.updateNeighbourForOutputSignal(pos, this);
+            }
+            super.onRemove(state, level, pos, newState, tisABoolean);
+        }
+    }
+
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
+    {
+        if (!level.isClientSide)
+        {
+            ChoppingBoardBlockEntity blockEntity = level.getBlockEntity(pos, HNCBlockEntities.CHOPPING_BOARD.get()).orElse(null);
+            if (blockEntity != null)
+            {
+                ItemStack heldItem = player.getMainHandItem();
+                if (!heldItem.isEmpty() && blockEntity.placeIngredient(heldItem, false, player))
+                    player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
+                else
+                {
+                    ChoppingBoardRecipe recipe = level.getRecipeManager().getRecipesFor(HNCRecipes.CHOPPING_BOARD_TYPE, blockEntity, level).stream().filter(recipeFilter -> recipeFilter.matches(blockEntity, level) && recipeFilter.getTool().test(heldItem)).findFirst().orElse(null);
+                    if (recipe != null)
+                    {
+                        if (!player.isCreative())
+                            heldItem.setDamageValue(heldItem.getDamageValue() + 1);
+                        blockEntity.setRecipeUsed(recipe);
+
+                        blockEntity.placeIngredient(recipe.assemble(blockEntity), true, player);
+                        player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
+                    } else if (heldItem.isEmpty() && !blockEntity.getItem(0).isEmpty())
+                    {
+                        if (blockEntity.getRecipeUsed() != null)
+                            blockEntity.awardUsedRecipes(player);
+
+                        blockEntity.dropIngredient(player);
+                        player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
+                    }
+                }
+                return InteractionResult.SUCCESS;
+            }
+        }
+        return InteractionResult.CONSUME;
     }
 
     @Override
@@ -82,6 +155,12 @@ public class ChoppingBoardBlock extends Block implements SimpleWaterloggedBlock
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         builder.add(FACING, WATERLOGGED);
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState blockState)
+    {
+        return RenderShape.MODEL;
     }
 
     @Override
