@@ -76,6 +76,10 @@ public class HNCFoods
     public static final FoodProperties MAPLE_SYRUP = combine(1f, false, MAPLE_SAP_BOTTLE, INGREDIENT).build();
     public static final FoodProperties MAPLE_POPCORN = times(combine(1f, false, MAPLE_SYRUP, INGREDIENT).build(), 1f, .5f).build();
 
+    public static final FoodProperties CROISSANT = times(DOUGH, 1.5f).build();
+    public static final FoodProperties CHEESY_CROISSANT = combine(1f, false, CROISSANT, CHEESE_SLICE).build();
+    public static final FoodProperties CHEESY_HAM_CROISSANT = combine(1f, false, CHEESY_CROISSANT, HAM_SLICE).build();
+
     private static FoodProperties.Builder add(FoodProperties copy, int nutrition, float saturationMod)
     {
         return copyFoodProperties(copy).nutrition(copy.getNutrition() + nutrition).saturationMod(copy.getSaturationModifier() + saturationMod);

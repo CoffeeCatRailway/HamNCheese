@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:croissant"
+    ]
+  },
+  "criteria": {
+    "has_unbaked_croissant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:unbaked_croissant"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:croissant"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_unbaked_croissant",
+      "has_the_recipe"
+    ]
+  ]
+}

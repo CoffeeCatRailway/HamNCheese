@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "hamncheese:unbaked_croissant"
+  },
+  "result": "hamncheese:croissant",
+  "experience": 0.2,
+  "cookingtime": 100
+}

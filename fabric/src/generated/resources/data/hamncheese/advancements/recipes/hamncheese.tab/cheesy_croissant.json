@@ -2,10 +2,22 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "hamncheese:cheesy_popcorn"
+      "hamncheese:cheesy_croissant"
     ]
   },
   "criteria": {
+    "has_croissant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:croissant"
+            ]
+          }
+        ]
+      }
+    },
     "has_cheese_slice": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -16,41 +28,18 @@
         ]
       }
     },
-    "has_salt": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "tag": "c:salt"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "hamncheese:cheesy_popcorn"
-      }
-    },
-    "has_bag": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "hamncheese:popcorn_bag"
-            ]
-          }
-        ]
+        "recipe": "hamncheese:cheesy_croissant"
       }
     }
   },
   "requirements": [
     [
+      "has_croissant",
       "has_cheese_slice",
-      "has_salt",
-      "has_the_recipe",
-      "has_bag"
+      "has_the_recipe"
     ]
   ]
 }

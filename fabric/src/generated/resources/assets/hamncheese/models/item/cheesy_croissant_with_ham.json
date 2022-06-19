@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hamncheese:item/cheesy_croissant_with_ham"
+  }
+}

@@ -109,6 +109,9 @@ public class HNCItems
     public static final Supplier<Item> FOOD_SCRAPS = registerIdAsName("food_scraps", prop -> new Item(prop.food(HNCFoods.FOOD_SCRAPS)));
 
     public static final Supplier<Item> UNBAKED_CROISSANT = registerIdAsName("unbaked_croissant", prop -> new Item(prop.food(HNCFoods.DOUGH).stacksTo(32)));
+    public static final Supplier<Item> CROISSANT = registerIdAsName("croissant", prop -> new Item(prop.food(HNCFoods.CROISSANT).stacksTo(32)));
+    public static final Supplier<Item> CHEESY_CROISSANT = registerIdAsName("cheesy_croissant", prop -> new Item(prop.food(HNCFoods.CHEESY_CROISSANT).stacksTo(32)));
+    public static final Supplier<Item> CHEESY_HAM_CROISSANT = registerIdAsName("cheesy_croissant_with_ham", prop -> new Item(prop.food(HNCFoods.CHEESY_HAM_CROISSANT).stacksTo(32)));
 
     // Misc
     public static final Supplier<PollinatedBoatItem> MAPLE_BOAT = registerIdAsName("maple_boat", prop -> new PollinatedBoatItem(HNCEntities.MAPLE_BOAT, prop.stacksTo(1)));

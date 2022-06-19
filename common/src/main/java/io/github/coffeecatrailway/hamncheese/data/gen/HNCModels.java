@@ -125,6 +125,9 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.FOOD_SCRAPS.get(), ModelTemplates.FLAT_ITEM);
 
             this.generateFlatItem(HNCItems.UNBAKED_CROISSANT.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.CROISSANT.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.CHEESY_CROISSANT.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.CHEESY_HAM_CROISSANT.get(), ModelTemplates.FLAT_ITEM);
 
             // Misc
             this.generateFlatItem(HNCItems.MAPLE_BOAT.get(), ModelTemplates.FLAT_ITEM);

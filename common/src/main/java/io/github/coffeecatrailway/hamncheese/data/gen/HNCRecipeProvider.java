@@ -174,8 +174,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 
         PopcornRecipeBuilder.popcorn(HNCItems.POPCORN.get(), 2, 50, Ingredient.of(HNCItemTags.SALT_COMMON))
                 .unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
-        PopcornRecipeBuilder.popcorn(HNCItems.CHEESY_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItems.CHEESE_SLICE.get()))
-                .unlockedBy("has_cheese_slice", has(HNCItems.CHEESE_SLICE.get())).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
+        PopcornRecipeBuilder.popcorn(HNCItems.CHEESY_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItemTags.CHEESE_SLICE_COMMON))
+                .unlockedBy("has_cheese_slice", has(HNCItemTags.CHEESE_SLICE_COMMON)).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
         PopcornRecipeBuilder.popcorn(HNCItems.CARAMEL_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItemTags.SUGAR_COMMON))
                 .unlockedBy("has_sugar", has(HNCItemTags.SUGAR_COMMON)).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).save(consumer);
         PopcornRecipeBuilder.popcorn(HNCItems.MAPLE_POPCORN.get(), 75, Ingredient.of(HNCItemTags.SALT_COMMON)).flavouring(Ingredient.of(HNCItems.MAPLE_SYRUP.get()))
@@ -216,5 +216,13 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         // TODO: Stone rolling pin & other tools
         // TODO: More recipes
         ChoppingBoardRecipeBuilder.recipe(HNCItems.UNBAKED_CROISSANT.get(), Ingredient.of(HNCItems.UNBAKED_PIZZA_BASE.get())).tool(Ingredient.of(HNCItems.ROLLING_PIN.get())).unlockedBy("has_pizza_base", has(HNCItems.UNBAKED_PIZZA_BASE.get())).save(consumer);
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(HNCItems.UNBAKED_CROISSANT.get()), HNCItems.CROISSANT.get(), .2f, 100).unlockedBy("has_unbaked_croissant", has(HNCItems.UNBAKED_CROISSANT.get())).save(consumer);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_CROISSANT.get()), HNCItems.CROISSANT.get(), .2f, 50, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_croissant", has(HNCItems.UNBAKED_CROISSANT.get())).save(consumer, HamNCheese.getLocation("croissant_smoking"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_CROISSANT.get()), HNCItems.CROISSANT.get(), .2f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_unbaked_croissant", has(HNCItems.UNBAKED_CROISSANT.get())).save(consumer, HamNCheese.getLocation("croissant_campfire"));
+
+        ShapelessRecipeBuilder.shapeless(HNCItems.CHEESY_CROISSANT.get()).group("croissant").requires(HNCItems.CROISSANT.get()).requires(HNCItemTags.CHEESE_SLICE_COMMON).unlockedBy("has_croissant", has(HNCItems.CROISSANT.get())).unlockedBy("has_cheese_slice", has(HNCItemTags.CHEESE_SLICE_COMMON)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.CHEESY_HAM_CROISSANT.get()).group("croissant").requires(HNCItems.CHEESY_CROISSANT.get()).requires(HNCItems.HAM_SLICE.get()).unlockedBy("has_croissant", has(HNCItems.CHEESY_CROISSANT.get())).unlockedBy("has_ham_slice", has(HNCItems.HAM_SLICE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.CHEESY_HAM_CROISSANT.get()).group("croissant").requires(HNCItems.CROISSANT.get()).requires(HNCItemTags.CHEESE_SLICE_COMMON).requires(HNCItems.HAM_SLICE.get()).unlockedBy("has_croissant", has(HNCItems.CROISSANT.get())).unlockedBy("has_cheese_slice", has(HNCItemTags.CHEESE_SLICE_COMMON)).unlockedBy("has_ham_slice", has(HNCItems.HAM_SLICE.get())).save(consumer, HamNCheese.getLocation("cheesy_croissant_with_ham_alt"));
     }
 }

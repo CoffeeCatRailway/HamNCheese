@@ -30,6 +30,9 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     private static final Tag.Named<Item> SUGAR = TagRegistry.bindItem(new ResourceLocation("forge", "sugar"));
     public static final Tag.Named<Item> SUGAR_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "sugar"));
 
+    private static final Tag.Named<Item> CHEESE_SLICE = TagRegistry.bindItem(new ResourceLocation("forge", "cheese_slice"));
+    public static final Tag.Named<Item> CHEESE_SLICE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cheese_slice"));
+
     private static final Tag.Named<Item> CHEESE = TagRegistry.bindItem(new ResourceLocation("forge", "cheese"));
     public static final Tag.Named<Item> CHEESE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cheese"));
 
@@ -161,7 +164,10 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(SUGAR).add(Items.SUGAR);
         this.tag(SUGAR_COMMON).addTag(SUGAR);
 
-        this.tag(CHEESE).add(HNCItems.CHEESE_SLICE.get(), HNCItems.BLUE_CHEESE_SLICE.get(), HNCItems.GOUDA_CHEESE_SLICE.get(), HNCItems.SWISS_CHEESE_SLICE.get(), HNCItems.SWISS_CHEESE_BITS.get(), HNCItems.GOAT_CHEESE_SLICE.get(), HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_BLUE_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_SWISS_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_GOAT_CHEESE.get().asItem());
+        this.tag(CHEESE_SLICE).add(HNCItems.CHEESE_SLICE.get(), HNCItems.BLUE_CHEESE_SLICE.get(), HNCItems.GOUDA_CHEESE_SLICE.get(), HNCItems.SWISS_CHEESE_SLICE.get(), HNCItems.GOAT_CHEESE_SLICE.get());
+        this.tag(CHEESE_SLICE_COMMON).addTag(CHEESE_SLICE);
+
+        this.tag(CHEESE).addTag(CHEESE_SLICE_COMMON).add(HNCItems.SWISS_CHEESE_BITS.get(), HNCBlocks.BLOCK_OF_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_BLUE_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_SWISS_CHEESE.get().asItem(), HNCBlocks.BLOCK_OF_GOAT_CHEESE.get().asItem());
         this.tag(CHEESE_COMMON).addTag(CHEESE);
 
         this.tag(SALT).add(HNCItems.ROCK_SALT.get());

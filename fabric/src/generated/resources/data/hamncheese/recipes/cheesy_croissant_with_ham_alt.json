@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "croissant",
+  "ingredients": [
+    {
+      "item": "hamncheese:croissant"
+    },
+    {
+      "tag": "c:cheese_slice"
+    },
+    {
+      "item": "hamncheese:ham_slice"
+    }
+  ],
+  "result": {
+    "item": "hamncheese:cheesy_croissant_with_ham"
+  }
+}

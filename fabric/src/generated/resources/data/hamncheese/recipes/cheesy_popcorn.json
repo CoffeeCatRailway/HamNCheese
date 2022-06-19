@@ -2,7 +2,7 @@
   "type": "hamncheese:popcorn",
   "popcorn": 75,
   "flavouring": {
-    "item": "hamncheese:cheese_slice"
+    "tag": "c:cheese_slice"
   },
   "seasoning": {
     "tag": "c:salt"
