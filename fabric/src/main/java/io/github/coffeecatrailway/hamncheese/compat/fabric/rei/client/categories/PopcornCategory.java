@@ -2,7 +2,7 @@ package io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.categorie
 
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PopcornMachineScreen;
 import io.github.coffeecatrailway.hamncheese.common.world.inventory.PopcornMachineContainer;
-import io.github.coffeecatrailway.hamncheese.compat.CompatTextures;
+import io.github.coffeecatrailway.hamncheese.compat.CompatCommon;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.HNCREIPlugin;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.displays.PopcornDisplay;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
@@ -48,7 +48,7 @@ public class PopcornCategory implements DisplayCategory<PopcornDisplay>
     {
         Point startPoint = new Point(bounds.getCenterX() - 66, bounds.getCenterY() - 33);
         List<Widget> widgets = new ArrayList<>();
-        widgets.add(Widgets.createTexturedWidget(CompatTextures.POPCORN_MACHINE, startPoint.x, startPoint.y, 0, 0, 133, 67, 133, 67)); // Background
+        widgets.add(Widgets.createTexturedWidget(CompatCommon.POPCORN_MACHINE, startPoint.x, startPoint.y, 0, 0, 133, 67, 133, 67)); // Background
 
         // Popcorn
         int popcornScaled = PopcornMachineContainer.getPopcornScaled(display.getPopcorn());

@@ -1,7 +1,7 @@
 package io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.categories;
 
 import com.google.common.collect.Lists;
-import io.github.coffeecatrailway.hamncheese.compat.CompatTextures;
+import io.github.coffeecatrailway.hamncheese.compat.CompatCommon;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.HNCREIPlugin;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.displays.PizzaOvenDisplay;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
@@ -47,7 +47,7 @@ public class PizzaOvenCategory implements DisplayCategory<PizzaOvenDisplay>
     {
         Point startPoint = new Point(bounds.getCenterX() - 67, bounds.getCenterY() - 31);
         List<Widget> widgets = new ArrayList<>();
-        widgets.add(Widgets.createTexturedWidget(CompatTextures.PIZZA_OVEN, startPoint.x, startPoint.y, 0, 0, 134, 62, 134, 62));
+        widgets.add(Widgets.createTexturedWidget(CompatCommon.PIZZA_OVEN, startPoint.x, startPoint.y, 0, 0, 134, 62, 134, 62));
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 69, startPoint.y + 21)).animationDurationTicks(200));
 
         // Create slot grid

@@ -2,7 +2,7 @@ package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
 
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.ChoppingBoardRecipe;
-import io.github.coffeecatrailway.hamncheese.compat.CompatTextures;
+import io.github.coffeecatrailway.hamncheese.compat.CompatCommon;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -26,7 +26,7 @@ public class ChoppingBoardRecipeCategory implements IRecipeCategory<ChoppingBoar
     private final IDrawable icon;
 
     public ChoppingBoardRecipeCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.drawableBuilder(CompatTextures.CHOPPING_BOARD, 4, 4, 78, 54).setTextureSize(86, 62).build();
+        this.background = guiHelper.drawableBuilder(CompatCommon.CHOPPING_BOARD, 4, 4, 78, 54).setTextureSize(86, 62).build();
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(HNCBlocks.OAK_CHOPPING_BOARD.get()));
     }
 
@@ -65,7 +65,7 @@ public class ChoppingBoardRecipeCategory implements IRecipeCategory<ChoppingBoar
     {
         builder.addSlot(RecipeIngredientRole.INPUT, 8, 19).addIngredients(recipe.getIngredient());
         builder.addSlot(RecipeIngredientRole.INPUT, 31, 8).addIngredients(recipe.getTool());
-        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 31, 30).addIngredients(VanillaTypes.ITEM, HNCJEIPlugin.CHOPPING_BOARDS);
+        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 31, 30).addIngredients(VanillaTypes.ITEM, CompatCommon.CHOPPING_BOARDS);
         builder.addSlot(RecipeIngredientRole.INPUT, 54, 19).addIngredient(VanillaTypes.ITEM, recipe.getResultItem());
     }
 }
