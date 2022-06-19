@@ -100,7 +100,7 @@ public class ChoppingBoardBlock extends BaseEntityBlock implements SimpleWaterlo
                             heldItem.setDamageValue(heldItem.getDamageValue() + 1);
                         blockEntity.setRecipeUsed(recipe);
 
-                        blockEntity.placeIngredient(recipe.assemble(blockEntity), true, player);
+                        blockEntity.setIngredient(recipe.assemble(blockEntity));
                         player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
                     } else if (heldItem.isEmpty() && !blockEntity.getItem(0).isEmpty())
                     {

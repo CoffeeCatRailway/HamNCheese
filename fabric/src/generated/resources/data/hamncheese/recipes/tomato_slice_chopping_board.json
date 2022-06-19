@@ -1,0 +1,13 @@
+{
+  "type": "hamncheese:chopping_board",
+  "ingredient": {
+    "tag": "c:vegetables/tomato"
+  },
+  "tool": {
+    "tag": "c:knives"
+  },
+  "result": {
+    "item": "hamncheese:tomato_slice",
+    "count": 5
+  }
+}

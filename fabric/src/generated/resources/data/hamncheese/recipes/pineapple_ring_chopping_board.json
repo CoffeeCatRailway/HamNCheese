@@ -1,0 +1,13 @@
+{
+  "type": "hamncheese:chopping_board",
+  "ingredient": {
+    "tag": "c:fruits/pineapples"
+  },
+  "tool": {
+    "tag": "c:knives"
+  },
+  "result": {
+    "item": "hamncheese:pineapple_ring",
+    "count": 5
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "hamncheese:chopping_board",
+  "ingredient": {
+    "item": "minecraft:porkchop"
+  },
+  "tool": {
+    "tag": "c:knives"
+  },
+  "result": {
+    "item": "hamncheese:ham_slice",
+    "count": 4
+  }
+}

@@ -48,6 +48,12 @@ public class ChoppingBoardBlockEntity extends BlockEntity implements WorldlyReci
         return false;
     }
 
+    public void setIngredient(ItemStack stack)
+    {
+        this.setItem(0, stack);
+        this.markUpdated();
+    }
+
     public ItemStack getIngredient()
     {
         return this.getItem(0);

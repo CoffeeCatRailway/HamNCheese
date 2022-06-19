@@ -1,0 +1,13 @@
+{
+  "type": "hamncheese:chopping_board",
+  "ingredient": {
+    "item": "hamncheese:corn_cob"
+  },
+  "tool": {
+    "tag": "c:knives"
+  },
+  "result": {
+    "item": "hamncheese:corn_kernels",
+    "count": 9
+  }
+}

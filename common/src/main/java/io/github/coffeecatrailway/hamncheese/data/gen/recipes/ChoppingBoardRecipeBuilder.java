@@ -32,7 +32,8 @@ public class ChoppingBoardRecipeBuilder
     private Ingredient tool = Ingredient.EMPTY;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public ChoppingBoardRecipeBuilder(ItemLike result, int count, Ingredient ingredient) {
+    public ChoppingBoardRecipeBuilder(ItemLike result, int count, Ingredient ingredient)
+    {
         this.result = result.asItem();
         this.count = count;
         this.ingredient = ingredient;
@@ -63,6 +64,11 @@ public class ChoppingBoardRecipeBuilder
     public void save(Consumer<FinishedRecipe> consumer)
     {
         ResourceLocation location = Registry.ITEM.getKey(this.result);
+        this.save(consumer, location);
+    }
+
+    public void save(Consumer<FinishedRecipe> consumer, ResourceLocation location)
+    {
         this.ensureValid(location);
         this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(location)).addCriterion("has_board", HNCRecipeProvider.has(HNCItemTags.CHOPPING_BOARDS)).rewards(AdvancementRewards.Builder.recipe(location)).requirements(RequirementsStrategy.OR);
         consumer.accept(new ChoppingBoardRecipeBuilder.Result(location, this.result, this.count, this.ingredient, this.tool, this.advancement, new ResourceLocation(location.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + location.getPath())));

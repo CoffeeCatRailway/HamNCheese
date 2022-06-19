@@ -89,22 +89,27 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
                 .unlockedBy("has_curdler", has(HNCItemTags.CURDLERS)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.CHEESE_SLICE.get(), 5, Ingredient.of(HNCBlocks.BLOCK_OF_CHEESE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_CHEESE.get())).save(consumer, HamNCheese.getLocation("cheese_slice_chopping_board"));
 
         ShapelessRecipeBuilder.shapeless(HNCItems.BLUE_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.BLUE_CHEESE_SLICE.get(), 5, Ingredient.of(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get())).save(consumer, HamNCheese.getLocation("blue_cheese_slice_chopping_board"));
 
         ShapedRecipeBuilder.shaped(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get()).group("block_of_cheese").define('r', HNCItemTags.RED_DYES_COMMON).define('w', Items.HONEYCOMB).define('c', Ingredient.of(HNCBlocks.BLOCK_OF_CHEESE.get(), HNCBlocks.BLOCK_OF_GOAT_CHEESE.get())).pattern("wrw").pattern("rcr").pattern("wrw")
                 .unlockedBy("has_dye", has(HNCItemTags.RED_DYES_COMMON)).unlockedBy("has_wax", has(Items.HONEYCOMB)).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_CHEESE.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.GOUDA_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.GOUDA_CHEESE_SLICE.get(), 5, Ingredient.of(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get())).save(consumer, HamNCheese.getLocation("gouda_cheese_slice_chopping_board"));
 
         ShapelessRecipeBuilder.shapeless(HNCItems.SWISS_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.SWISS_CHEESE_SLICE.get(), 5, Ingredient.of(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get())).save(consumer, HamNCheese.getLocation("swiss_cheese_slice_chopping_board"));
 
         ShapelessRecipeBuilder.shapeless(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get(), 2).group("block_of_cheese").requires(HNCFluids.GOAT_MILK_BUCKET.get()).requires(HNCItemTags.CURDLERS).unlockedBy("has_milk", has(HNCFluids.GOAT_MILK_BUCKET.get()))
                 .unlockedBy("has_curdler", has(HNCItemTags.CURDLERS)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.GOAT_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.GOAT_CHEESE_SLICE.get(), 5, Ingredient.of(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get())).save(consumer, HamNCheese.getLocation("goat_cheese_slice_chopping_board"));
 
         ShapelessRecipeBuilder.shapeless(HNCItems.ROCK_SALT.get(), 2).requires(HNCItems.GRIND_STONES.get()).requires(HNCItemTags.STONE_COMMON).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON))
                 .unlockedBy("has_grind_stones", has(HNCItems.GRIND_STONES.get())).save(consumer);
@@ -119,6 +124,7 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ShapedRecipeBuilder.shaped(HNCItems.UNBAKED_BREAD.get(), 2).define('d', HNCItemTags.DOUGH_COMMON).pattern("ddd").unlockedBy("has_dough", has(HNCItemTags.DOUGH_COMMON)).save(consumer);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_BREAD.get()), Items.BREAD, .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_bread", has(HNCItems.UNBAKED_BREAD.get())).save(consumer, HamNCheese.getLocation("bread_smoking"));
         ShapelessRecipeBuilder.shapeless(HNCItems.BREAD_SLICE.get(), 3).requires(HNCItemTags.KNIVES_COMMON).requires(Items.BREAD).unlockedBy("has_bread", has(Items.BREAD)).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.BREAD_SLICE.get(), 4, Ingredient.of(Items.BREAD)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_bread", has(Items.BREAD)).save(consumer, HamNCheese.getLocation("bread_slice_chopping_board"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HamNCheese.getLocation("toast_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HamNCheese.getLocation("toast_campfire"));
 
@@ -136,6 +142,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
                 .unlockedBy("has_porkchop", has(Items.PORKCHOP)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.COOKED_HAM_SLICE.get(), 3).requires(HNCItemTags.KNIVES_COMMON).requires(Items.COOKED_PORKCHOP).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
                 .unlockedBy("has_cooked_porkchop", has(Items.COOKED_PORKCHOP)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.HAM_SLICE.get(), 4, Ingredient.of(Items.PORKCHOP)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_porkchop", has(Items.PORKCHOP)).save(consumer, HamNCheese.getLocation("ham_slice_chopping_board"));
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.COOKED_HAM_SLICE.get(), 4, Ingredient.of(Items.COOKED_PORKCHOP)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_porkchop", has(Items.COOKED_PORKCHOP)).save(consumer, HamNCheese.getLocation("cooked_ham_slice_chopping_board"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.HAM_SLICE.get()), HNCItems.COOKED_HAM_SLICE.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ham_slice", has(HNCItems.HAM_SLICE.get())).save(consumer, HamNCheese.getLocation("cooked_ham_slice_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.HAM_SLICE.get()), HNCItems.COOKED_HAM_SLICE.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ham_slice", has(HNCItems.HAM_SLICE.get())).save(consumer, HamNCheese.getLocation("cooked_ham_slice_campfire"));
         ShapelessRecipeBuilder.shapeless(HNCItems.GREEN_HAM_SLICE.get()).requires(HNCItemTags.GREEN_DYES_COMMON).requires(HNCItems.HAM_SLICE.get()).unlockedBy("has_ham", has(HNCItems.HAM_SLICE.get()))
@@ -145,6 +153,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.COOKED_BACON.get(), 2).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.COOKED_HAM_SLICE.get()).unlockedBy("has_ham", has(HNCItems.COOKED_HAM_SLICE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer, HamNCheese.getLocation("cooked_bacon_knife"));
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.BACON.get(), 3, Ingredient.of(HNCItems.HAM_SLICE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_ham", has(HNCItems.HAM_SLICE.get())).save(consumer, HamNCheese.getLocation("bacon_chopping_board"));
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.COOKED_BACON.get(), 3, Ingredient.of(HNCItems.COOKED_HAM_SLICE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_ham", has(HNCItems.COOKED_HAM_SLICE.get())).save(consumer, HamNCheese.getLocation("cooked_bacon_chopping_board"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 50, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HamNCheese.getLocation("cooked_bacon_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HamNCheese.getLocation("cooked_bacon_campfire"));
 
@@ -152,15 +162,19 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_BIT.get(), 3).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.PINEAPPLE_RING.get()).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE_RING.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.PINEAPPLE_RING.get(), 5, Ingredient.of(HNCItemTags.PINEAPPLE_COMMON)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_pineapple", has(HNCItemTags.PINEAPPLE_COMMON)).save(consumer, HamNCheese.getLocation("pineapple_ring_chopping_board"));
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.PINEAPPLE_BIT.get(), 4, Ingredient.of(HNCItems.PINEAPPLE_RING.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE_RING.get())).save(consumer, HamNCheese.getLocation("pineapple_bit_chopping_board"));
 
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SAUCE.get()).requires(Items.BOWL).requires(Items.PUMPKIN_SEEDS).requires(HNCItemTags.TOMATO_COMMON).unlockedBy("has_bowl", has(Items.BOWL))
                 .unlockedBy("has_pumpkin_seeds", has(Items.PUMPKIN_SEEDS)).unlockedBy("has_tomato", has(HNCItemTags.TOMATO_COMMON)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItemTags.TOMATO_COMMON).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
                 .unlockedBy("has_tomato", has(HNCItemTags.TOMATO_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.TOMATO_SLICE.get(), 5, Ingredient.of(HNCItemTags.TOMATO_COMMON)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_tomato", has(HNCItemTags.TOMATO_COMMON)).save(consumer, HamNCheese.getLocation("tomato_slice_chopping_board"));
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SEEDS.get(), 4).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_tomato_slice", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.CORN_KERNELS.get(), 8).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.CORN_COB.get()).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
                 .unlockedBy("has_corn_cob", has(HNCItemTags.CORN_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.CORN_KERNELS.get(), 9, Ingredient.of(HNCItems.CORN_COB.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_corn_cob", has(HNCItems.CORN_COB.get())).save(consumer, HamNCheese.getLocation("corn_kernels_chopping_board"));
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(HNCItems.CORN_KERNELS.get()), HNCItems.DRIED_CORN_KERNELS.get(), .2f, 50).unlockedBy("has_corn_kernels", has(HNCItems.CORN_KERNELS.get())).save(consumer, HamNCheese.getLocation("dried_corn_kernals"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.CORN_KERNELS.get()), HNCItems.DRIED_CORN_KERNELS.get(), .2f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_corn_kernels", has(HNCItems.CORN_KERNELS.get())).save(consumer, HamNCheese.getLocation("dried_corn_kernals_campfire"));
 
@@ -224,7 +238,6 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 
         ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_CHOPPING_BOARD.get()).group("chopping_board").requires(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).unlockedBy("has_pressure_plate", has(HNCBlocks.MAPLE_PRESSURE_PLATE.get())).save(consumer);
 
-        // TODO: More recipes
         ChoppingBoardRecipeBuilder.recipe(HNCItems.UNBAKED_CROISSANT.get(), Ingredient.of(HNCItems.UNBAKED_PIZZA_BASE.get())).tool(Ingredient.of(HNCItemTags.ROLLING_PINS)).unlockedBy("has_pizza_base", has(HNCItems.UNBAKED_PIZZA_BASE.get())).save(consumer);
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(HNCItems.UNBAKED_CROISSANT.get()), HNCItems.CROISSANT.get(), .2f, 100).unlockedBy("has_unbaked_croissant", has(HNCItems.UNBAKED_CROISSANT.get())).save(consumer);
