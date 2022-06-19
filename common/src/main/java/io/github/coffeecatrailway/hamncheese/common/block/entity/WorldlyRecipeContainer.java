@@ -191,7 +191,7 @@ public interface WorldlyRecipeContainer<T extends BlockEntity> extends Container
 
     default void save(CompoundTag compoundTag)
     {
-        saveEveryItem(compoundTag, this.getInventory());
+        saveEveryItem(compoundTag, this.getInventory(), false);
         ListTag recipesUsedTag = new ListTag();
         this.getRecipeAmounts().forEach((location, amount) -> {
             CompoundTag obj = new CompoundTag();
@@ -200,11 +200,6 @@ public interface WorldlyRecipeContainer<T extends BlockEntity> extends Container
             recipesUsedTag.add(obj);
         });
         compoundTag.put("RecipesUsed", recipesUsedTag);
-    }
-
-    static CompoundTag saveEveryItem(CompoundTag compoundTag, NonNullList<ItemStack> nonNullList)
-    {
-        return saveEveryItem(compoundTag, nonNullList, false);
     }
 
     static CompoundTag saveEveryItem(CompoundTag compoundTag, NonNullList<ItemStack> nonNullList, boolean includeEmpty)
