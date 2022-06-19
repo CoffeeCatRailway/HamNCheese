@@ -51,10 +51,13 @@ public class HNCModels extends PollinatedModelProvider
         {
             // Crafting Ingredients
             this.generateFlatItem(HNCItems.WOODEN_GEAR.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.STONE_GEAR.get(), ModelTemplates.FLAT_ITEM);
 
             // Tools
-            this.generateFlatItem(HNCItems.CURDLER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-            this.generateFlatItem(HNCItems.ROLLING_PIN.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.WOODEN_CURDLER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.STONE_CURDLER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.WOODEN_ROLLING_PIN.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.STONE_ROLLING_PIN.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
             this.generateFlatItem(HNCItems.GRIND_STONES.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
             this.generateFlatItem(HNCItems.WOODEN_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);

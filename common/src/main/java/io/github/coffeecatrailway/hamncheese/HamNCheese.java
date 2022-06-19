@@ -233,8 +233,8 @@ public class HamNCheese
                 trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.HAM_SLICE.get(), 14, 16, 2));
                 trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.BACON.get(), 14, 16, 2));
 
-                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.CURDLER.get(), 1, 16, 2));
-                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.ROLLING_PIN.get(), 1, 16, 2));
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.WOODEN_CURDLER.get(), 1, 16, 2));
+                trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.WOODEN_ROLLING_PIN.get(), 1, 16, 2));
 
                 trades = villagerCtx.getTrades(2);
                 trades.add(new HNCVillagerTrades.EmeraldForItemsTrade(HNCItems.COOKED_HAM_SLICE.get(), 9, 16, 5));

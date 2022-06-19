@@ -6,7 +6,7 @@
       "item": "minecraft:milk_bucket"
     },
     {
-      "item": "hamncheese:curdler"
+      "tag": "hamncheese:curdlers"
     }
   ],
   "result": {

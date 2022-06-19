@@ -2,28 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "hamncheese:unbaked_pizza_base"
+      "hamncheese:stone_curdler"
     ]
   },
   "criteria": {
-    "has_dough": {
+    "has_sticks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "hamncheese:dough"
-            ]
+            "tag": "c:wood_sticks"
           }
         ]
       }
     },
-    "has_rolling_pin": {
+    "has_gears": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "hamncheese:rolling_pins"
+            "tag": "c:stone_gears"
           }
         ]
       }
@@ -31,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "hamncheese:unbaked_pizza_base"
+        "recipe": "hamncheese:stone_curdler"
       }
     }
   },
   "requirements": [
     [
-      "has_dough",
-      "has_rolling_pin",
+      "has_sticks",
+      "has_gears",
       "has_the_recipe"
     ]
   ]

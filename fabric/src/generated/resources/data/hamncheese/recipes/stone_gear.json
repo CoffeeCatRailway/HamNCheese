@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " s ",
+    "sps",
+    " s "
+  ],
+  "key": {
+    "s": {
+      "tag": "c:wood_sticks"
+    },
+    "p": {
+      "tag": "c:stones"
+    }
+  },
+  "result": {
+    "item": "hamncheese:stone_gear",
+    "count": 4
+  }
+}

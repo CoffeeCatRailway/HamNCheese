@@ -31,10 +31,13 @@ public class HNCItems
 
     // Crafting Ingredients
     public static final Supplier<Item> WOODEN_GEAR = registerIdAsName("wooden_gear", Item::new);
+    public static final Supplier<Item> STONE_GEAR = registerIdAsName("stone_gear", Item::new);
 
     // Tools
-    public static final Supplier<CraftingToolItem> CURDLER = registerIdAsName("curdler", getCraftingToolItem(2f, 2.5d, Tiers.WOOD, null, prop -> prop.stacksTo(1)));
-    public static final Supplier<CraftingToolItem> ROLLING_PIN = registerIdAsName("rolling_pin", getCraftingToolItem(1f, 2.5d, Tiers.WOOD, null, prop -> prop.stacksTo(1)));
+    public static final Supplier<CraftingToolItem> WOODEN_CURDLER = registerWithName("curdler", "Wooden Curdler", getCraftingToolItem(2f, 2.5d, Tiers.WOOD, null, prop -> prop.stacksTo(1)));
+    public static final Supplier<CraftingToolItem> STONE_CURDLER = registerIdAsName("stone_curdler", getCraftingToolItem(2f, 2.5d, Tiers.STONE, null, prop -> prop.stacksTo(1)));
+    public static final Supplier<CraftingToolItem> WOODEN_ROLLING_PIN = registerWithName("rolling_pin", "Wooden Rolling Pin", getCraftingToolItem(1f, 2.5d, Tiers.WOOD, null, prop -> prop.stacksTo(1)));
+    public static final Supplier<CraftingToolItem> STONE_ROLLING_PIN = registerIdAsName("stone_rolling_pin", getCraftingToolItem(1f, 2.5d, Tiers.STONE, null, prop -> prop.stacksTo(1)));
     public static final Supplier<CraftingToolItem> GRIND_STONES = registerIdAsName("grind_stones", getCraftingToolItem(2f, 2.7d, Tiers.STONE, null, prop -> prop.stacksTo(1)));
 
     public static final Supplier<CraftingToolItem> WOODEN_KNIFE = registerIdAsName("wooden_knife", getCraftingToolItem(1f, 2.5d, Tiers.WOOD, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.WOOD.getUses() / 2)));

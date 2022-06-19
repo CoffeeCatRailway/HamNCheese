@@ -21,9 +21,14 @@ import net.minecraft.world.level.block.Blocks;
  */
 public class HNCItemTags extends PollinatedItemTagsProvider
 {
-    public static final Tag.Named<Item> GEARS = TagRegistry.bindItem(new ResourceLocation("forge", "gears"));
     private static final Tag.Named<Item> GEARS_WOODEN = TagRegistry.bindItem(new ResourceLocation("forge", "gears/wooden"));
     public static final Tag.Named<Item> GEARS_WOODEN_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "wood_gears"));
+    private static final Tag.Named<Item> GEARS_STONE = TagRegistry.bindItem(new ResourceLocation("forge", "gears/stone"));
+    public static final Tag.Named<Item> GEARS_STONE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "stone_gears"));
+    public static final Tag.Named<Item> GEARS = TagRegistry.bindItem(new ResourceLocation("forge", "gears"));
+
+    public static final Tag.Named<Item> CURDLERS = TagRegistry.bindItem(HamNCheese.getLocation("curdlers"));
+    public static final Tag.Named<Item> ROLLING_PINS = TagRegistry.bindItem(HamNCheese.getLocation("rolling_pins"));
 
     private static final Tag.Named<Item> WHEAT = TagRegistry.bindItem(new ResourceLocation("forge", "wheat"));
     public static final Tag.Named<Item> GRAIN_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "grain"));
@@ -157,7 +162,12 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     {
         this.tag(GEARS_WOODEN).add(HNCItems.WOODEN_GEAR.get());
         this.tag(GEARS_WOODEN_COMMON).addTag(GEARS_WOODEN);
-        this.tag(GEARS).addTag(GEARS_WOODEN_COMMON);
+        this.tag(GEARS_STONE).add(HNCItems.STONE_GEAR.get());
+        this.tag(GEARS_STONE_COMMON).addTag(GEARS_STONE);
+        this.tag(GEARS).addTag(GEARS_WOODEN_COMMON, GEARS_STONE_COMMON);
+
+        this.tag(CURDLERS).add(HNCItems.WOODEN_CURDLER.get(), HNCItems.STONE_CURDLER.get());
+        this.tag(ROLLING_PINS).add(HNCItems.WOODEN_ROLLING_PIN.get(), HNCItems.STONE_ROLLING_PIN.get());
 
         this.tag(WHEAT).add(Items.WHEAT);
         this.tag(GRAIN_COMMON).addTag(WHEAT);

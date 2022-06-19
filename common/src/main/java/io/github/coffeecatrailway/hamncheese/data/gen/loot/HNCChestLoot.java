@@ -34,7 +34,7 @@ public class HNCChestLoot implements Consumer<BiConsumer<ResourceLocation, LootT
                         .add(LootItem.lootTableItem(HNCItems.COPPER_KNIFE.get()).setWeight(8))
                         .add(LootItem.lootTableItem(HNCItems.IRON_KNIFE.get()).setWeight(2))
 
-                        .add(LootItem.lootTableItem(HNCItems.CURDLER.get()).setWeight(2))
+                        .add(LootItem.lootTableItem(HNCItems.WOODEN_CURDLER.get()).setWeight(2))
                         .add(LootItem.lootTableItem(HNCItems.GRIND_STONES.get()).setWeight(2))
 
                         .add(LootItem.lootTableItem(HNCItems.PINEAPPLE.get()).setWeight(5)

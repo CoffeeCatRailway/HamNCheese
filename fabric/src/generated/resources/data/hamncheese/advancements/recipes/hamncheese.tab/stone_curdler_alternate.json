@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "hamncheese:curdler_alternate"
+      "hamncheese:stone_curdler_alternate"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:wood_gears"
+            "tag": "c:stone_gears"
           }
         ]
       }
@@ -29,7 +29,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "hamncheese:curdler_alternate"
+        "recipe": "hamncheese:stone_curdler_alternate"
       }
     }
   },

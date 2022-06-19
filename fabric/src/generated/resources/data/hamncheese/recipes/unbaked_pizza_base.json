@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "hamncheese:rolling_pin"
+      "tag": "hamncheese:rolling_pins"
     },
     {
       "item": "hamncheese:dough"

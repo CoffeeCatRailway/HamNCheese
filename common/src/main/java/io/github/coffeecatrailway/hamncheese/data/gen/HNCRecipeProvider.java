@@ -37,22 +37,33 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         /*
          * Crafting Ingredients
          */
-        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_GEAR.get(), 4).define('s', HNCItemTags.WOOD_STICKS).define('p', net.minecraft.tags.ItemTags.PLANKS)
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_GEAR.get(), 4).define('s', HNCItemTags.WOOD_STICKS).define('p', ItemTags.PLANKS)
                 .pattern(" s ").pattern("sps").pattern(" s ").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
                 .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_GEAR.get(), 4).define('s', HNCItemTags.WOOD_STICKS).define('p', HNCItemTags.STONE_COMMON)
+                .pattern(" s ").pattern("sps").pattern(" s ").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
+                .unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON)).save(consumer);
 
         /*
          * Tools
          */
-        ShapedRecipeBuilder.shaped(HNCItems.CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_WOODEN_COMMON)
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_WOODEN_COMMON)
                 .pattern("s").pattern("s").pattern("g").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
-                .unlockedBy("has_gears", has(HNCItemTags.GEARS_WOODEN_COMMON)).save(consumer, HamNCheese.getLocation("curdler_alternate"));
-        ShapedRecipeBuilder.shaped(HNCItems.CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_WOODEN_COMMON)
+                .unlockedBy("has_gears", has(HNCItemTags.GEARS_WOODEN_COMMON)).save(consumer, HamNCheese.getLocation("wooden_curdler_alternate"));
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_WOODEN_COMMON)
                 .pattern("g").pattern("s").pattern("s").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
                 .unlockedBy("has_gears", has(HNCItemTags.GEARS_WOODEN_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_STONE_COMMON)
+                .pattern("s").pattern("s").pattern("g").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
+                .unlockedBy("has_gears", has(HNCItemTags.GEARS_STONE_COMMON)).save(consumer, HamNCheese.getLocation("stone_curdler_alternate"));
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_STONE_COMMON)
+                .pattern("g").pattern("s").pattern("s").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
+                .unlockedBy("has_gears", has(HNCItemTags.GEARS_STONE_COMMON)).save(consumer);
 
-        ShapedRecipeBuilder.shaped(HNCItems.ROLLING_PIN.get()).define('s', HNCItemTags.WOOD_STICKS).define('p', net.minecraft.tags.ItemTags.PLANKS).pattern("sps")
-                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_planks", has(net.minecraft.tags.ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_ROLLING_PIN.get()).define('s', HNCItemTags.WOOD_STICKS).define('p', ItemTags.PLANKS).pattern("sps")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_ROLLING_PIN.get()).define('s', HNCItemTags.WOOD_STICKS).define('p', HNCItemTags.STONE_COMMON).pattern("sps")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.GRIND_STONES.get(), 2)
                 .requires(HNCItemTags.STONE_COMMON).unlockedBy("has_cobble", has(HNCItemTags.STONE_COMMON)).save(consumer);
@@ -74,8 +85,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         /*
          * Foods
          */
-        ShapelessRecipeBuilder.shapeless(HNCBlocks.BLOCK_OF_CHEESE.get(), 2).group("block_of_cheese").requires(Items.MILK_BUCKET).requires(HNCItems.CURDLER.get()).unlockedBy("has_milk", has(Items.MILK_BUCKET))
-                .unlockedBy("has_curdler", has(HNCItems.CURDLER.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.BLOCK_OF_CHEESE.get(), 2).group("block_of_cheese").requires(Items.MILK_BUCKET).requires(HNCItemTags.CURDLERS).unlockedBy("has_milk", has(Items.MILK_BUCKET))
+                .unlockedBy("has_curdler", has(HNCItemTags.CURDLERS)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
 
@@ -90,8 +101,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ShapelessRecipeBuilder.shapeless(HNCItems.SWISS_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
 
-        ShapelessRecipeBuilder.shapeless(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get(), 2).group("block_of_cheese").requires(HNCFluids.GOAT_MILK_BUCKET.get()).requires(HNCItems.CURDLER.get()).unlockedBy("has_milk", has(HNCFluids.GOAT_MILK_BUCKET.get()))
-                .unlockedBy("has_curdler", has(HNCItems.CURDLER.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get(), 2).group("block_of_cheese").requires(HNCFluids.GOAT_MILK_BUCKET.get()).requires(HNCItemTags.CURDLERS).unlockedBy("has_milk", has(HNCFluids.GOAT_MILK_BUCKET.get()))
+                .unlockedBy("has_curdler", has(HNCItemTags.CURDLERS)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.GOAT_CHEESE_SLICE.get(), 4).group("cheese_slice").requires(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get()).requires(HNCItemTags.KNIVES_COMMON).unlockedBy("has_cheese", has(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
 
@@ -102,8 +113,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 
         ShapelessRecipeBuilder.shapeless(HNCItems.DOUGH.get(), 3).requires(HNCItemTags.GRAIN_COMMON).requires(HNCItemTags.SUGAR_COMMON).requires(HNCItemTags.SALT_COMMON).requires(HNCItemTags.FLOUR_COMMON).unlockedBy("has_wheat", has(HNCItemTags.GRAIN_COMMON))
                 .unlockedBy("has_sugar", has(HNCItemTags.SUGAR_COMMON)).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).unlockedBy("has_flour", has(HNCItemTags.FLOUR_COMMON)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_PIZZA_BASE.get()).requires(HNCItems.ROLLING_PIN.get()).requires(HNCItems.DOUGH.get()).unlockedBy("has_dough", has(HNCItems.DOUGH.get()))
-                .unlockedBy("has_rolling_pin", has(HNCItems.ROLLING_PIN.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_PIZZA_BASE.get()).requires(HNCItemTags.ROLLING_PINS).requires(HNCItems.DOUGH.get()).unlockedBy("has_dough", has(HNCItems.DOUGH.get()))
+                .unlockedBy("has_rolling_pin", has(HNCItemTags.ROLLING_PINS)).save(consumer);
 
         ShapedRecipeBuilder.shaped(HNCItems.UNBAKED_BREAD.get(), 2).define('d', HNCItemTags.DOUGH_COMMON).pattern("ddd").unlockedBy("has_dough", has(HNCItemTags.DOUGH_COMMON)).save(consumer);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_BREAD.get()), Items.BREAD, .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_bread", has(HNCItems.UNBAKED_BREAD.get())).save(consumer, HamNCheese.getLocation("bread_smoking"));
@@ -213,9 +224,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 
         ShapelessRecipeBuilder.shapeless(HNCBlocks.MAPLE_CHOPPING_BOARD.get()).group("chopping_board").requires(HNCBlocks.MAPLE_PRESSURE_PLATE.get()).unlockedBy("has_pressure_plate", has(HNCBlocks.MAPLE_PRESSURE_PLATE.get())).save(consumer);
 
-        // TODO: Stone rolling pin & other tools
         // TODO: More recipes
-        ChoppingBoardRecipeBuilder.recipe(HNCItems.UNBAKED_CROISSANT.get(), Ingredient.of(HNCItems.UNBAKED_PIZZA_BASE.get())).tool(Ingredient.of(HNCItems.ROLLING_PIN.get())).unlockedBy("has_pizza_base", has(HNCItems.UNBAKED_PIZZA_BASE.get())).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.UNBAKED_CROISSANT.get(), Ingredient.of(HNCItems.UNBAKED_PIZZA_BASE.get())).tool(Ingredient.of(HNCItemTags.ROLLING_PINS)).unlockedBy("has_pizza_base", has(HNCItems.UNBAKED_PIZZA_BASE.get())).save(consumer);
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(HNCItems.UNBAKED_CROISSANT.get()), HNCItems.CROISSANT.get(), .2f, 100).unlockedBy("has_unbaked_croissant", has(HNCItems.UNBAKED_CROISSANT.get())).save(consumer);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_CROISSANT.get()), HNCItems.CROISSANT.get(), .2f, 50, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_croissant", has(HNCItems.UNBAKED_CROISSANT.get())).save(consumer, HamNCheese.getLocation("croissant_smoking"));

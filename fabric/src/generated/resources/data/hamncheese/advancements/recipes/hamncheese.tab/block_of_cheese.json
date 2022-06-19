@@ -23,9 +23,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "hamncheese:curdler"
-            ]
+            "tag": "hamncheese:curdlers"
           }
         ]
       }
