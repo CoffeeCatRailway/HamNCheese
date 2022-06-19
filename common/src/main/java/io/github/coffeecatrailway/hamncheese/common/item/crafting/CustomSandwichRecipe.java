@@ -4,7 +4,6 @@ import com.mojang.datafixers.util.Pair;
 import gg.moonflower.pollen.api.util.NbtConstants;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
-import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.Container;
@@ -13,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author CoffeeCatRailway

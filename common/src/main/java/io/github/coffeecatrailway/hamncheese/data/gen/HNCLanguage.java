@@ -57,6 +57,7 @@ public class HNCLanguage extends PollinatedLanguageProvider
         this.add("waila." + HamNCheese.MOD_ID + ".progress", "Progress: %s");
 
         this.add("jei." + HamNCheese.MOD_ID + ".maple_sap", "Maple sap is made by placing a tree tap on a maple log, then by right-clicking with an empty bucket");
+        this.add("jei." + HamNCheese.MOD_ID + ".category.chopping_board", "Chopping Board");
 
         this.add("container." + HamNCheese.MOD_ID + ".popcorn_machine.flavour", "Flavour: %s/" + PopcornMachineBlockEntity.MAX_FLAVOUR_TIME + "mb");
         this.add("container." + HamNCheese.MOD_ID + ".popcorn_machine.popcorn", "Popcorn: %s/" + PopcornMachineBlockEntity.MAX_POPCORN);

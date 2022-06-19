@@ -5,6 +5,7 @@ import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PizzaOvenScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PopcornMachineScreen;
+import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.CrackerRecipe;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.MapleSyrupRecipe;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
@@ -24,6 +25,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -48,6 +50,9 @@ public class HNCJEIPlugin implements IModPlugin
     protected static final ResourceLocation GRILL_UID = HamNCheese.getLocation("category/grill");
     protected static final ResourceLocation OVEN_UID = HamNCheese.getLocation("category/oven");
     protected static final ResourceLocation POPCORN_UID = HamNCheese.getLocation("category/popcorn");
+    protected static final ResourceLocation CHOPPING_BOARD_UID = HamNCheese.getLocation("category/chopping_board");
+
+    protected static final List<ItemStack> CHOPPING_BOARDS = Registry.BLOCK.stream().filter(block -> block instanceof ChoppingBoardBlock).map(ItemStack::new).collect(Collectors.toList());
 
     @Override
     public ResourceLocation getPluginUid()
@@ -83,9 +88,10 @@ public class HNCJEIPlugin implements IModPlugin
     public void registerCategories(IRecipeCategoryRegistration reg)
     {
         IGuiHelper guiHelper = reg.getJeiHelpers().getGuiHelper();
-        reg.addRecipeCategories(new GrillRecipeCategory(guiHelper));
-        reg.addRecipeCategories(new OvenRecipeCategory(guiHelper));
-        reg.addRecipeCategories(new PopcornRecipeCategory(guiHelper));
+        reg.addRecipeCategories(new GrillRecipeCategory(guiHelper),
+                new OvenRecipeCategory(guiHelper),
+                new PopcornRecipeCategory(guiHelper),
+                new ChoppingBoardRecipeCategory(guiHelper));
     }
 
     @Override
@@ -97,6 +103,7 @@ public class HNCJEIPlugin implements IModPlugin
         reg.addRecipes(getRecipesOfType(HNCRecipes.GRILL_TYPE), GRILL_UID);
         reg.addRecipes(getRecipesOfType(HNCRecipes.PIZZA_OVEN_TYPE), OVEN_UID);
         reg.addRecipes(getRecipesOfType(HNCRecipes.POPCORN_TYPE), POPCORN_UID);
+        reg.addRecipes(getRecipesOfType(HNCRecipes.CHOPPING_BOARD_TYPE), CHOPPING_BOARD_UID);
     }
 
     private static List<Recipe<?>> getRecipesOfType(RecipeType<?> type)
@@ -110,6 +117,7 @@ public class HNCJEIPlugin implements IModPlugin
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.GRILL.get()), GRILL_UID);
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.PIZZA_OVEN.get()), OVEN_UID);
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.POPCORN_MACHINE.get()), POPCORN_UID);
+        CHOPPING_BOARDS.forEach(stack -> reg.addRecipeCatalyst(stack, CHOPPING_BOARD_UID));
     }
 
     @Override
