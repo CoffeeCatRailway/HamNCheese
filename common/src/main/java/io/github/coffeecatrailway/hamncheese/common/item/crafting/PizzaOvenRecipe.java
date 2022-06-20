@@ -7,7 +7,7 @@ import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -31,7 +31,7 @@ public class PizzaOvenRecipe implements Recipe<Container>, CustomSandwichRecipe<
     }
 
     @Override
-    public Tag.Named<Item> getBunTag()
+    public TagKey<Item> getBunTag()
     {
         return HNCItemTags.PIZZAS_COMMON;
     }

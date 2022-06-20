@@ -7,7 +7,7 @@ import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 
 /**
@@ -16,12 +16,12 @@ import net.minecraft.world.level.material.Fluid;
  */
 public class HNCFluidTags extends PollinatedFluidTagsProvider
 {
-    public static final Tag.Named<Fluid> MAPLE_SAP = TagRegistry.bindFluid(HamNCheese.getLocation("maple_sap"));
+    public static final TagKey<Fluid> MAPLE_SAP = TagRegistry.bindFluid(HamNCheese.getLocation("maple_sap"));
 
-    public static final Tag.Named<Fluid> MILK = TagRegistry.bindFluid(HamNCheese.getLocation("milk"));
-    public static final Tag.Named<Fluid> GOAT_MILK = TagRegistry.bindFluid(HamNCheese.getLocation("goat_milk"));
-    private static final Tag.Named<Fluid> MILK_FORGE = TagRegistry.bindFluid(new ResourceLocation("forge", "milk"));
-    public static final Tag.Named<Fluid> MILK_COMMON = TagRegistry.bindFluid(new ResourceLocation("c", "milk"));
+    public static final TagKey<Fluid> MILK = TagRegistry.bindFluid(HamNCheese.getLocation("milk"));
+    public static final TagKey<Fluid> GOAT_MILK = TagRegistry.bindFluid(HamNCheese.getLocation("goat_milk"));
+    private static final TagKey<Fluid> MILK_FORGE = TagRegistry.bindFluid(new ResourceLocation("forge", "milk"));
+    public static final TagKey<Fluid> MILK_COMMON = TagRegistry.bindFluid(new ResourceLocation("c", "milk"));
 
     public HNCFluidTags(DataGenerator dataGenerator, PollinatedModContainer container)
     {

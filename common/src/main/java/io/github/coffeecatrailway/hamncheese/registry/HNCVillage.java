@@ -8,6 +8,7 @@ import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import io.github.coffeecatrailway.hamncheese.mixins.StructureTemplatePoolAccessor;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.*;
@@ -17,8 +18,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.structures.StructurePoolElement;
-import net.minecraft.world.level.levelgen.feature.structures.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
+import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -80,18 +81,18 @@ public class HNCVillage
             createVillagePiece("taiga", "restaurant", 1, CONFIG_SERVER.taigaRestaurantWeight.get(), ProcessorLists.MOSSIFY_10_PERCENT, ProcessorLists.ZOMBIE_TAIGA);
     }
     
-    private static void createVillagePiece(String village, String name, int houseId, int weight, StructureProcessorList zombieProcessor)
+    private static void createVillagePiece(String village, String name, int houseId, int weight, Holder<StructureProcessorList> zombieProcessor)
     {
         createVillagePiece(village, name, houseId, weight, ProcessorLists.EMPTY, zombieProcessor);
     }
 
-    private static void createVillagePiece(String village, String name, int houseId, int weight, StructureProcessorList normalProcessor, StructureProcessorList zombieProcessor)
+    private static void createVillagePiece(String village, String name, int houseId, int weight, Holder<StructureProcessorList> normalProcessor, Holder<StructureProcessorList> zombieProcessor)
     {
         addToPool(new ResourceLocation("village/" + village + "/houses"), new ResourceLocation(HamNCheese.MOD_ID, "village/" + village + "/houses/" + village + "_" + name + "_" + houseId), normalProcessor, weight);
         addToPool(new ResourceLocation("village/" + village + "/zombie/houses"), new ResourceLocation(HamNCheese.MOD_ID, "village/" + village + "/houses/" + village + "_" + name + "_" + houseId), zombieProcessor, weight);
     }
 
-    private static void addToPool(ResourceLocation poolId, ResourceLocation pieceId, StructureProcessorList processorList, int weight)
+    private static void addToPool(ResourceLocation poolId, ResourceLocation pieceId, Holder<StructureProcessorList> processorList, int weight)
     {
         StructureTemplatePool pool = BuiltinRegistries.TEMPLATE_POOL.get(poolId);
         if (pool == null)

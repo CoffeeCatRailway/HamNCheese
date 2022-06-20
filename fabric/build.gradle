@@ -72,7 +72,7 @@ dependencies {
     modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modMenuVersion}"
 
     modRuntimeOnly "mcp.mobius.waila:wthit:fabric-${rootProject.wthitVersion}"
-    modRuntimeOnly "lol.bai:badpackets:fabric-0.1.2"
+    modRuntimeOnly "lol.bai:badpackets:fabric-${rootProject.badPacketsVersion}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

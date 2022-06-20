@@ -5,10 +5,7 @@ import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PizzaOvenScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PopcornMachineScreen;
-import io.github.coffeecatrailway.hamncheese.common.item.crafting.CrackerRecipe;
-import io.github.coffeecatrailway.hamncheese.common.item.crafting.MapleSyrupRecipe;
-import io.github.coffeecatrailway.hamncheese.common.item.crafting.PizzaRecipe;
-import io.github.coffeecatrailway.hamncheese.common.item.crafting.SandwichRecipe;
+import io.github.coffeecatrailway.hamncheese.common.item.crafting.*;
 import io.github.coffeecatrailway.hamncheese.compat.CompatCommon;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
@@ -22,16 +19,20 @@ import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import mezz.jei.api.registration.*;
+import mezz.jei.plugins.vanilla.crafting.CategoryRecipeValidator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -44,17 +45,20 @@ import java.util.stream.Collectors;
 @JeiPlugin
 public class HNCJEIPlugin implements IModPlugin
 {
-    private static final ResourceLocation UID = HamNCheese.getLocation("plugin/jei");
+    protected static final RecipeType<GrillRecipe> GRILL = new RecipeType<>(HamNCheese.getLocation("grill"), GrillRecipe.class);
+    protected static final RecipeType<PizzaOvenRecipe> OVEN = new RecipeType<>(HamNCheese.getLocation("oven"), PizzaOvenRecipe.class);
+    protected static final RecipeType<PopcornRecipe> POPCORN = new RecipeType<>(HamNCheese.getLocation("popcorn"), PopcornRecipe.class);
+    protected static final RecipeType<ChoppingBoardRecipe> CHOPPING_BOARD = new RecipeType<>(HamNCheese.getLocation("chopping_board"), ChoppingBoardRecipe.class);
 
-    protected static final ResourceLocation GRILL_UID = HamNCheese.getLocation("category/grill");
-    protected static final ResourceLocation OVEN_UID = HamNCheese.getLocation("category/oven");
-    protected static final ResourceLocation POPCORN_UID = HamNCheese.getLocation("category/popcorn");
-    protected static final ResourceLocation CHOPPING_BOARD_UID = HamNCheese.getLocation("category/chopping_board");
+    private GrillRecipeCategory grillCategory;
+    private OvenRecipeCategory ovenCategory;
+    private PopcornRecipeCategory popcornCategory;
+    private ChoppingBoardRecipeCategory choppingBoardCategory;
 
     @Override
     public ResourceLocation getPluginUid()
     {
-        return UID;
+        return HamNCheese.getLocation("plugin/jei");
     }
 
     @Override
@@ -69,7 +73,7 @@ public class HNCJEIPlugin implements IModPlugin
             @Override
             public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper helper, IFocusGroup focuses)
             {
-                helper.setInputs(builder, VanillaTypes.ITEM, List.of(List.of(new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get())), HNCItemTags.SUGAR_COMMON.getValues().stream().map(ItemStack::new).toList()), 2, 1);
+                helper.setInputs(builder, VanillaTypes.ITEM, List.of(List.of(new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get())), ForgeRegistries.ITEMS.tags().getTag(HNCItemTags.SUGAR_COMMON).stream().map(ItemStack::new).toList()), 2, 1);
                 helper.setOutputs(builder, VanillaTypes.ITEM, List.of(new ItemStack(HNCItems.MAPLE_SYRUP.get())));
             }
 
@@ -85,10 +89,10 @@ public class HNCJEIPlugin implements IModPlugin
     public void registerCategories(IRecipeCategoryRegistration reg)
     {
         IGuiHelper guiHelper = reg.getJeiHelpers().getGuiHelper();
-        reg.addRecipeCategories(new GrillRecipeCategory(guiHelper),
-                new OvenRecipeCategory(guiHelper),
-                new PopcornRecipeCategory(guiHelper),
-                new ChoppingBoardRecipeCategory(guiHelper));
+        reg.addRecipeCategories(this.grillCategory = new GrillRecipeCategory(guiHelper),
+                this.ovenCategory = new OvenRecipeCategory(guiHelper),
+                this.popcornCategory = new PopcornRecipeCategory(guiHelper),
+                this.choppingBoardCategory = new ChoppingBoardRecipeCategory(guiHelper));
     }
 
     @Override
@@ -97,31 +101,40 @@ public class HNCJEIPlugin implements IModPlugin
         reg.addIngredientInfo(Lists.<ItemLike>newArrayList(HNCItems.MAPLE_SAP_BOTTLE.get(), HNCFluids.MAPLE_SAP_BUCKET.get(), HNCBlocks.TREE_TAP.get()).stream().map(ItemStack::new).collect(Collectors.toList()),
                 VanillaTypes.ITEM, new TranslatableComponent("jei." + HamNCheese.MOD_ID + ".maple_sap"));
 
-        reg.addRecipes(getRecipesOfType(HNCRecipes.GRILL_TYPE), GRILL_UID);
-        reg.addRecipes(getRecipesOfType(HNCRecipes.PIZZA_OVEN_TYPE), OVEN_UID);
-        reg.addRecipes(getRecipesOfType(HNCRecipes.POPCORN_TYPE), POPCORN_UID);
-        reg.addRecipes(getRecipesOfType(HNCRecipes.CHOPPING_BOARD_TYPE), CHOPPING_BOARD_UID);
+        reg.addRecipes(GRILL, getRecipesOfType(HNCRecipes.GRILL_TYPE, this.grillCategory));
+        reg.addRecipes(OVEN, getRecipesOfType(HNCRecipes.PIZZA_OVEN_TYPE, this.ovenCategory));
+        reg.addRecipes(POPCORN, getRecipesOfType(HNCRecipes.POPCORN_TYPE, this.popcornCategory));
+        reg.addRecipes(CHOPPING_BOARD, getRecipesOfType(HNCRecipes.CHOPPING_BOARD_TYPE, this.choppingBoardCategory));
     }
 
-    private static List<Recipe<?>> getRecipesOfType(RecipeType<?> type)
+    private static <C extends Container, R extends Recipe<C>> List<R> getRecipesOfType(net.minecraft.world.item.crafting.RecipeType<R> type, IRecipeCategory<R> category)
     {
-        return Minecraft.getInstance().level.getRecipeManager().getRecipes().stream().filter(recipe -> recipe.getType() == type).collect(Collectors.toList());
+        CategoryRecipeValidator<R> validator = new CategoryRecipeValidator<>(category, 1);
+        return getValidHandledRecipes(type, validator);
+    }
+
+    private static <C extends Container, R extends Recipe<C>> List<R> getValidHandledRecipes(net.minecraft.world.item.crafting.RecipeType<R> recipeType, CategoryRecipeValidator<R> validator)
+    {
+        return Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(recipeType)
+                .stream()
+                .filter(r -> validator.isRecipeValid(r) && validator.isRecipeHandled(r))
+                .toList();
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration reg)
     {
-        reg.addRecipeCatalyst(new ItemStack(HNCBlocks.GRILL.get()), GRILL_UID);
-        reg.addRecipeCatalyst(new ItemStack(HNCBlocks.PIZZA_OVEN.get()), OVEN_UID);
-        reg.addRecipeCatalyst(new ItemStack(HNCBlocks.POPCORN_MACHINE.get()), POPCORN_UID);
-        CompatCommon.CHOPPING_BOARDS.forEach(stack -> reg.addRecipeCatalyst(stack, CHOPPING_BOARD_UID));
+        reg.addRecipeCatalyst(new ItemStack(HNCBlocks.GRILL.get()), GRILL);
+        reg.addRecipeCatalyst(new ItemStack(HNCBlocks.PIZZA_OVEN.get()), OVEN);
+        reg.addRecipeCatalyst(new ItemStack(HNCBlocks.POPCORN_MACHINE.get()), POPCORN);
+        CompatCommon.CHOPPING_BOARDS.forEach(stack -> reg.addRecipeCatalyst(stack, CHOPPING_BOARD));
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration reg)
     {
-        reg.addRecipeClickArea(GrillScreen.class, 76, 26, 24, 17, GRILL_UID);
-        reg.addRecipeClickArea(PizzaOvenScreen.class, 88, 18, 24, 17, OVEN_UID);
-        reg.addRecipeClickArea(PopcornMachineScreen.class, 109, 4, 61, 12, POPCORN_UID);
+        reg.addRecipeClickArea(GrillScreen.class, 76, 26, 24, 17, GRILL);
+        reg.addRecipeClickArea(PizzaOvenScreen.class, 88, 18, 24, 17, OVEN);
+        reg.addRecipeClickArea(PopcornMachineScreen.class, 109, 4, 61, 12, POPCORN);
     }
 }

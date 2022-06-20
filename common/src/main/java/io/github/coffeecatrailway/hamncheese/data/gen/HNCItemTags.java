@@ -10,7 +10,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
@@ -21,136 +21,136 @@ import net.minecraft.world.level.block.Blocks;
  */
 public class HNCItemTags extends PollinatedItemTagsProvider
 {
-    private static final Tag.Named<Item> GEARS_WOODEN = TagRegistry.bindItem(new ResourceLocation("forge", "gears/wooden"));
-    public static final Tag.Named<Item> GEARS_WOODEN_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "wood_gears"));
-    private static final Tag.Named<Item> GEARS_STONE = TagRegistry.bindItem(new ResourceLocation("forge", "gears/stone"));
-    public static final Tag.Named<Item> GEARS_STONE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "stone_gears"));
-    public static final Tag.Named<Item> GEARS = TagRegistry.bindItem(new ResourceLocation("forge", "gears"));
+    private static final TagKey<Item> GEARS_WOODEN = TagRegistry.bindItem(new ResourceLocation("forge", "gears/wooden"));
+    public static final TagKey<Item> GEARS_WOODEN_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "wood_gears"));
+    private static final TagKey<Item> GEARS_STONE = TagRegistry.bindItem(new ResourceLocation("forge", "gears/stone"));
+    public static final TagKey<Item> GEARS_STONE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "stone_gears"));
+    public static final TagKey<Item> GEARS = TagRegistry.bindItem(new ResourceLocation("forge", "gears"));
 
-    public static final Tag.Named<Item> CURDLERS = TagRegistry.bindItem(HamNCheese.getLocation("curdlers"));
-    public static final Tag.Named<Item> ROLLING_PINS = TagRegistry.bindItem(HamNCheese.getLocation("rolling_pins"));
+    public static final TagKey<Item> CURDLERS = TagRegistry.bindItem(HamNCheese.getLocation("curdlers"));
+    public static final TagKey<Item> ROLLING_PINS = TagRegistry.bindItem(HamNCheese.getLocation("rolling_pins"));
 
-    private static final Tag.Named<Item> WHEAT = TagRegistry.bindItem(new ResourceLocation("forge", "wheat"));
-    public static final Tag.Named<Item> GRAIN_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "grain"));
-    private static final Tag.Named<Item> SUGAR = TagRegistry.bindItem(new ResourceLocation("forge", "sugar"));
-    public static final Tag.Named<Item> SUGAR_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "sugar"));
+    private static final TagKey<Item> WHEAT = TagRegistry.bindItem(new ResourceLocation("forge", "wheat"));
+    public static final TagKey<Item> GRAIN_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "grain"));
+    private static final TagKey<Item> SUGAR = TagRegistry.bindItem(new ResourceLocation("forge", "sugar"));
+    public static final TagKey<Item> SUGAR_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "sugar"));
 
-    private static final Tag.Named<Item> CHEESE_SLICE = TagRegistry.bindItem(new ResourceLocation("forge", "cheese_slice"));
-    public static final Tag.Named<Item> CHEESE_SLICE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cheese_slice"));
+    private static final TagKey<Item> CHEESE_SLICE = TagRegistry.bindItem(new ResourceLocation("forge", "cheese_slice"));
+    public static final TagKey<Item> CHEESE_SLICE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cheese_slice"));
 
-    private static final Tag.Named<Item> CHEESE = TagRegistry.bindItem(new ResourceLocation("forge", "cheese"));
-    public static final Tag.Named<Item> CHEESE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cheese"));
+    private static final TagKey<Item> CHEESE = TagRegistry.bindItem(new ResourceLocation("forge", "cheese"));
+    public static final TagKey<Item> CHEESE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cheese"));
 
-    private static final Tag.Named<Item> SALT = TagRegistry.bindItem(new ResourceLocation("forge", "salt"));
-    public static final Tag.Named<Item> SALT_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "salt"));
-    private static final Tag.Named<Item> FLOUR = TagRegistry.bindItem(new ResourceLocation("forge", "flour"));
-    public static final Tag.Named<Item> FLOUR_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "flour"));
+    private static final TagKey<Item> SALT = TagRegistry.bindItem(new ResourceLocation("forge", "salt"));
+    public static final TagKey<Item> SALT_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "salt"));
+    private static final TagKey<Item> FLOUR = TagRegistry.bindItem(new ResourceLocation("forge", "flour"));
+    public static final TagKey<Item> FLOUR_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "flour"));
 
-    private static final Tag.Named<Item> DOUGH = TagRegistry.bindItem(new ResourceLocation("forge", "dough"));
-    public static final Tag.Named<Item> DOUGH_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "dough"));
+    private static final TagKey<Item> DOUGH = TagRegistry.bindItem(new ResourceLocation("forge", "dough"));
+    public static final TagKey<Item> DOUGH_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "dough"));
 
-    private static final Tag.Named<Item> PIZZA = TagRegistry.bindItem(new ResourceLocation("forge", "pizza"));
-    public static final Tag.Named<Item> PIZZAS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "pizzas"));
+    private static final TagKey<Item> PIZZA = TagRegistry.bindItem(new ResourceLocation("forge", "pizza"));
+    public static final TagKey<Item> PIZZAS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "pizzas"));
 
-    public static final Tag.Named<Item> BREAD_SLICE = TagRegistry.bindItem(new ResourceLocation("forge", "bread_slice"));
-    private static final Tag.Named<Item> BREAD = TagRegistry.bindItem(new ResourceLocation("forge", "bread"));
-    public static final Tag.Named<Item> BREAD_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "sandwich/bread"));
+    public static final TagKey<Item> BREAD_SLICE = TagRegistry.bindItem(new ResourceLocation("forge", "bread_slice"));
+    private static final TagKey<Item> BREAD = TagRegistry.bindItem(new ResourceLocation("forge", "bread"));
+    public static final TagKey<Item> BREAD_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "sandwich/bread"));
 
-    private static final Tag.Named<Item> CRACKER = TagRegistry.bindItem(new ResourceLocation("forge", "cracker"));
-    public static final Tag.Named<Item> CRACKER_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cracker"));
+    private static final TagKey<Item> CRACKER = TagRegistry.bindItem(new ResourceLocation("forge", "cracker"));
+    public static final TagKey<Item> CRACKER_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cracker"));
 
-    private static final Tag.Named<Item> EGGS_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "eggs"));
-    public static final Tag.Named<Item> EGGS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "eggs"));
-    public static final Tag.Named<Item> CRACKED_EGG = TagRegistry.bindItem(new ResourceLocation("forge", "cracked_egg"));
-    public static final Tag.Named<Item> COOKED_EGG_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cooked_eggs"));
+    private static final TagKey<Item> EGGS_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "eggs"));
+    public static final TagKey<Item> EGGS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "eggs"));
+    public static final TagKey<Item> CRACKED_EGG = TagRegistry.bindItem(new ResourceLocation("forge", "cracked_egg"));
+    public static final TagKey<Item> COOKED_EGG_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cooked_eggs"));
 
-    private static final Tag.Named<Item> HAM = TagRegistry.bindItem(new ResourceLocation("forge", "ham"));
-    public static final Tag.Named<Item> HAM_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "ham"));
-    private static final Tag.Named<Item> BACON = TagRegistry.bindItem(new ResourceLocation("forge", "bacon"));
-    public static final Tag.Named<Item> BACON_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "bacon"));
+    private static final TagKey<Item> HAM = TagRegistry.bindItem(new ResourceLocation("forge", "ham"));
+    public static final TagKey<Item> HAM_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "ham"));
+    private static final TagKey<Item> BACON = TagRegistry.bindItem(new ResourceLocation("forge", "bacon"));
+    public static final TagKey<Item> BACON_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "bacon"));
 
-    private static final Tag.Named<Item> PINEAPPLE = TagRegistry.bindItem(new ResourceLocation("forge", "pineapple"));
-    public static final Tag.Named<Item> PINEAPPLE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "fruits/pineapples"));
+    private static final TagKey<Item> PINEAPPLE = TagRegistry.bindItem(new ResourceLocation("forge", "pineapple"));
+    public static final TagKey<Item> PINEAPPLE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "fruits/pineapples"));
 
-    private static final Tag.Named<Item> TOMATO = TagRegistry.bindItem(new ResourceLocation("forge", "tomato"));
-    public static final Tag.Named<Item> TOMATO_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "vegetables/tomato"));
-    public static final Tag.Named<Item> TOMATO_SAUCE = TagRegistry.bindItem(new ResourceLocation("forge", "tomato_sauce"));
+    private static final TagKey<Item> TOMATO = TagRegistry.bindItem(new ResourceLocation("forge", "tomato"));
+    public static final TagKey<Item> TOMATO_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "vegetables/tomato"));
+    public static final TagKey<Item> TOMATO_SAUCE = TagRegistry.bindItem(new ResourceLocation("forge", "tomato_sauce"));
 
-    private static final Tag.Named<Item> CORN_COB = TagRegistry.bindItem(new ResourceLocation("forge", "corn_cob"));
-    public static final Tag.Named<Item> CORN_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "corn"));
+    private static final TagKey<Item> CORN_COB = TagRegistry.bindItem(new ResourceLocation("forge", "corn_cob"));
+    public static final TagKey<Item> CORN_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "corn"));
 
-    public static final Tag.Named<Item> MOUSE_BLACKLIST = TagRegistry.bindItem(HamNCheese.getLocation("mouse_blacklist"));
+    public static final TagKey<Item> MOUSE_BLACKLIST = TagRegistry.bindItem(HamNCheese.getLocation("mouse_blacklist"));
 
-    private static final Tag.Named<Item> FRUITS = TagRegistry.bindItem(new ResourceLocation("forge", "fruits"));
-    public static final Tag.Named<Item> FRUITS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "fruits"));
-    private static final Tag.Named<Item> CROPS = TagRegistry.bindItem(new ResourceLocation("forge", "crops"));
-    public static final Tag.Named<Item> CROPS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "crops"));
-    private static final Tag.Named<Item> CARBS = TagRegistry.bindItem(new ResourceLocation("forge", "carbs"));
-    public static final Tag.Named<Item> CARBS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "carbs"));
-    private static final Tag.Named<Item> SEEDS = TagRegistry.bindItem(new ResourceLocation("forge", "seeds"));
-    public static final Tag.Named<Item> SEEDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "seeds"));
+    private static final TagKey<Item> FRUITS = TagRegistry.bindItem(new ResourceLocation("forge", "fruits"));
+    public static final TagKey<Item> FRUITS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "fruits"));
+    private static final TagKey<Item> CROPS = TagRegistry.bindItem(new ResourceLocation("forge", "crops"));
+    public static final TagKey<Item> CROPS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "crops"));
+    private static final TagKey<Item> CARBS = TagRegistry.bindItem(new ResourceLocation("forge", "carbs"));
+    public static final TagKey<Item> CARBS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "carbs"));
+    private static final TagKey<Item> SEEDS = TagRegistry.bindItem(new ResourceLocation("forge", "seeds"));
+    public static final TagKey<Item> SEEDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "seeds"));
 
-    public static final Tag.Named<Item> PINEAPPLE_SEEDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "seeds/pineapple"));
-    public static final Tag.Named<Item> TOMATO_SEEDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "seeds/tomato"));
-    public static final Tag.Named<Item> CORN_SEEDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "seeds/corn"));
+    public static final TagKey<Item> PINEAPPLE_SEEDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "seeds/pineapple"));
+    public static final TagKey<Item> TOMATO_SEEDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "seeds/tomato"));
+    public static final TagKey<Item> CORN_SEEDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "seeds/corn"));
 
-    public static final Tag.Named<Item> CAMPFIRES = TagRegistry.bindItem(new ResourceLocation("forge", "campfires"));
+    public static final TagKey<Item> CAMPFIRES = TagRegistry.bindItem(new ResourceLocation("forge", "campfires"));
 
-    public static final Tag.Named<Item> JEI_FOOD_BLACKLIST = TagRegistry.bindItem(HamNCheese.getLocation("jei_food_blacklist"));
+    public static final TagKey<Item> JEI_FOOD_BLACKLIST = TagRegistry.bindItem(HamNCheese.getLocation("jei_food_blacklist"));
 
-    public static final Tag.Named<Item> MAPLE_LOGS = TagRegistry.bindItem(HamNCheese.getLocation("maple_logs"));
+    public static final TagKey<Item> MAPLE_LOGS = TagRegistry.bindItem(HamNCheese.getLocation("maple_logs"));
 
-    private static final Tag.Named<Item> RODS_WOODEN = TagRegistry.bindItem(new ResourceLocation("forge", "rods/wooden"));
-    private static final Tag.Named<Item> RODS_WOODEN_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "wooden_rods"));
-    public static final Tag.Named<Item> WOOD_STICKS = TagRegistry.bindItem(new ResourceLocation("c", "wood_sticks"));
+    private static final TagKey<Item> RODS_WOODEN = TagRegistry.bindItem(new ResourceLocation("forge", "rods/wooden"));
+    private static final TagKey<Item> RODS_WOODEN_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "wooden_rods"));
+    public static final TagKey<Item> WOOD_STICKS = TagRegistry.bindItem(new ResourceLocation("c", "wood_sticks"));
 
-    private static final Tag.Named<Item> COBBLESTONE = TagRegistry.bindItem(new ResourceLocation("forge", "cobblestone"));
-    private static final Tag.Named<Item> STONE = TagRegistry.bindItem(new ResourceLocation("forge", "stone"));
-    private static final Tag.Named<Item> COBBLESTONES = TagRegistry.bindItem(new ResourceLocation("c", "cobblestones"));
-    private static final Tag.Named<Item> COBBLESTONE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cobblestone"));
-    public static final Tag.Named<Item> STONE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "stones"));
+    private static final TagKey<Item> COBBLESTONE = TagRegistry.bindItem(new ResourceLocation("forge", "cobblestone"));
+    private static final TagKey<Item> STONE = TagRegistry.bindItem(new ResourceLocation("forge", "stone"));
+    private static final TagKey<Item> COBBLESTONES = TagRegistry.bindItem(new ResourceLocation("c", "cobblestones"));
+    private static final TagKey<Item> COBBLESTONE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "cobblestone"));
+    public static final TagKey<Item> STONE_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "stones"));
 
-    private static final Tag.Named<Item> IRON_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/iron"));
-    public static final Tag.Named<Item> IRON_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "iron_ingots"));
+    private static final TagKey<Item> IRON_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/iron"));
+    public static final TagKey<Item> IRON_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "iron_ingots"));
 
-    private static final Tag.Named<Item> IRON_NUGGETS = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets/iron"));
-    public static final Tag.Named<Item> IRON_NUGGETS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "iron_nuggets"));
+    private static final TagKey<Item> IRON_NUGGETS = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets/iron"));
+    public static final TagKey<Item> IRON_NUGGETS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "iron_nuggets"));
 
-    private static final Tag.Named<Item> COPPER_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/copper"));
-    private static final Tag.Named<Item> COPPER_INGOT = TagRegistry.bindItem(new ResourceLocation("c", "copper_ingot"));
-    public static final Tag.Named<Item> COPPER_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "copper_ingots"));
+    private static final TagKey<Item> COPPER_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/copper"));
+    private static final TagKey<Item> COPPER_INGOT = TagRegistry.bindItem(new ResourceLocation("c", "copper_ingot"));
+    public static final TagKey<Item> COPPER_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "copper_ingots"));
 
-    private static final Tag.Named<Item> GOLD_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/gold"));
-    public static final Tag.Named<Item> GOLD_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "gold_ingots"));
+    private static final TagKey<Item> GOLD_INGOTS = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/gold"));
+    public static final TagKey<Item> GOLD_INGOTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "gold_ingots"));
 
-    private static final Tag.Named<Item> DIAMOND_GEMS = TagRegistry.bindItem(new ResourceLocation("forge", "gems/diamond"));
-    public static final Tag.Named<Item> DIAMONDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "diamonds"));
+    private static final TagKey<Item> DIAMOND_GEMS = TagRegistry.bindItem(new ResourceLocation("forge", "gems/diamond"));
+    public static final TagKey<Item> DIAMONDS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "diamonds"));
 
-    private static final Tag.Named<Item> GREEN_DYE = TagRegistry.bindItem(new ResourceLocation("forge", "dyes/green"));
-    private static final Tag.Named<Item> GREEN_DYE_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "green_dye"));
-    public static final Tag.Named<Item> GREEN_DYES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "green_dyes"));
+    private static final TagKey<Item> GREEN_DYE = TagRegistry.bindItem(new ResourceLocation("forge", "dyes/green"));
+    private static final TagKey<Item> GREEN_DYE_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "green_dye"));
+    public static final TagKey<Item> GREEN_DYES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "green_dyes"));
 
-    private static final Tag.Named<Item> RED_DYE = TagRegistry.bindItem(new ResourceLocation("forge", "dyes/red"));
-    private static final Tag.Named<Item> RED_DYE_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "red_dye"));
-    public static final Tag.Named<Item> RED_DYES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "red_dyes"));
+    private static final TagKey<Item> RED_DYE = TagRegistry.bindItem(new ResourceLocation("forge", "dyes/red"));
+    private static final TagKey<Item> RED_DYE_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "red_dye"));
+    public static final TagKey<Item> RED_DYES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "red_dyes"));
 
-    private static final Tag.Named<Item> REDSTONE_DUSTS = TagRegistry.bindItem(new ResourceLocation("forge", "dusts/redstone"));
-    public static final Tag.Named<Item> REDSTONE_DUSTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "redstone_dusts"));
+    private static final TagKey<Item> REDSTONE_DUSTS = TagRegistry.bindItem(new ResourceLocation("forge", "dusts/redstone"));
+    public static final TagKey<Item> REDSTONE_DUSTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "redstone_dusts"));
 
-    private static final Tag.Named<Item> KNIVES_WOOD = TagRegistry.bindItem(new ResourceLocation("forge", "knives/wooden"));
-    private static final Tag.Named<Item> KNIVES_STONE = TagRegistry.bindItem(new ResourceLocation("forge", "knives/stone"));
-    private static final Tag.Named<Item> KNIVES_COPPER = TagRegistry.bindItem(new ResourceLocation("forge", "knives/copper"));
-    private static final Tag.Named<Item> KNIVES_GOLD = TagRegistry.bindItem(new ResourceLocation("forge", "knives/golden"));
-    private static final Tag.Named<Item> KNIVES_IRON = TagRegistry.bindItem(new ResourceLocation("forge", "knives/iron"));
-    private static final Tag.Named<Item> KNIVES_DIAMOND = TagRegistry.bindItem(new ResourceLocation("forge", "knives/diamond"));
-    private static final Tag.Named<Item> KNIVES_NETHERITE = TagRegistry.bindItem(new ResourceLocation("forge", "knives/metherite"));
-    private static final Tag.Named<Item> KNIVES = TagRegistry.bindItem(new ResourceLocation("forge", "knives"));
-    public static final Tag.Named<Item> KNIVES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "knives"));
+    private static final TagKey<Item> KNIVES_WOOD = TagRegistry.bindItem(new ResourceLocation("forge", "knives/wooden"));
+    private static final TagKey<Item> KNIVES_STONE = TagRegistry.bindItem(new ResourceLocation("forge", "knives/stone"));
+    private static final TagKey<Item> KNIVES_COPPER = TagRegistry.bindItem(new ResourceLocation("forge", "knives/copper"));
+    private static final TagKey<Item> KNIVES_GOLD = TagRegistry.bindItem(new ResourceLocation("forge", "knives/golden"));
+    private static final TagKey<Item> KNIVES_IRON = TagRegistry.bindItem(new ResourceLocation("forge", "knives/iron"));
+    private static final TagKey<Item> KNIVES_DIAMOND = TagRegistry.bindItem(new ResourceLocation("forge", "knives/diamond"));
+    private static final TagKey<Item> KNIVES_NETHERITE = TagRegistry.bindItem(new ResourceLocation("forge", "knives/metherite"));
+    private static final TagKey<Item> KNIVES = TagRegistry.bindItem(new ResourceLocation("forge", "knives"));
+    public static final TagKey<Item> KNIVES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "knives"));
 
-    private static final Tag.Named<Item> SHEARS = TagRegistry.bindItem(new ResourceLocation("forge", "shears"));
-    public static final Tag.Named<Item> SHEARS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "shears"));
+    private static final TagKey<Item> SHEARS = TagRegistry.bindItem(new ResourceLocation("forge", "shears"));
+    public static final TagKey<Item> SHEARS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "shears"));
 
-    public static final Tag.Named<Item> CHOPPING_BOARDS = TagRegistry.bindItem(HamNCheese.getLocation("chopping_boards"));
+    public static final TagKey<Item> CHOPPING_BOARDS = TagRegistry.bindItem(HamNCheese.getLocation("chopping_boards"));
 
     public HNCItemTags(DataGenerator dataGenerator, PollinatedModContainer container, BlockTagsProvider blockTags)
     {

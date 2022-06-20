@@ -77,10 +77,10 @@ dependencies {
 
     modCompileOnly "mcp.mobius.waila:wthit-api:forge-${rootProject.wthitVersion}"
     modRuntimeOnly "mcp.mobius.waila:wthit:forge-${rootProject.wthitVersion}"
-    modRuntimeOnly "lol.bai:badpackets:forge-0.1.2"
+    modRuntimeOnly "lol.bai:badpackets:forge-${rootProject.badPacketsVersion}"
 
-    modRuntimeOnly "curse.maven:shutupexperimentalsettings-407174:3544525"
-    modRuntimeOnly "curse.maven:configured-457570:3640884"
+    modRuntimeOnly "curse.maven:shutupexperimentalsettings-407174:${rootProject.shutupVersion}"
+    modRuntimeOnly "curse.maven:configured-457570:${rootProject.configuredVersion}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }

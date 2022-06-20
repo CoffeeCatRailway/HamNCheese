@@ -168,7 +168,7 @@ public class HamNCheese
         HNCRecipes.load(PLATFORM);
         HNCEntities.load(PLATFORM);
         HNCVillage.load(PLATFORM);
-        HNCStats.register();
+        HNCStats.Localize.load();
         HNCBlockEntities.load(PLATFORM);
         HNCMenus.load(PLATFORM);
         HNCFluids.load(PLATFORM);
@@ -190,6 +190,7 @@ public class HamNCheese
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
         ctx.enqueueWork(() -> {
+            HNCStats.load(PLATFORM);
             HNCFeatures.Configured.load(PLATFORM);
             HNCVillage.addStructurePieces();
         });

@@ -37,8 +37,8 @@
     },
     "depends": {
         "fabric": "*",
-        "minecraft": "1.18.1",
-        "pollen": "1.x"
+        "minecraft": "1.18.2",
+        "pollen": "1.4.x"
     },
     "custom": {
         "modmenu": {

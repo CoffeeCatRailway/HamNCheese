@@ -34,7 +34,9 @@ import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomDisplay;
-import net.minecraft.tags.Tag;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.Registry;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -60,10 +62,10 @@ public class HNCREIClientPlugin implements REIClientPlugin
         registry.addWorkstations(HNCREIPlugin.POPCORN, EntryStacks.of(HNCBlocks.POPCORN_MACHINE.get()));
         registry.addWorkstations(HNCREIPlugin.CHOPPING_BOARD, CompatCommon.CHOPPING_BOARDS.stream().map(EntryStacks::of).toArray(EntryStack[]::new));
 
-        registry.removePlusButton(HNCREIPlugin.GRILL);
-        registry.removePlusButton(HNCREIPlugin.PIZZA_OVEN);
+//        registry.removePlusButton(HNCREIPlugin.GRILL);
+//        registry.removePlusButton(HNCREIPlugin.PIZZA_OVEN);
         registry.setPlusButtonArea(HNCREIPlugin.POPCORN, ButtonArea.defaultArea());
-        registry.removePlusButton(HNCREIPlugin.CHOPPING_BOARD);
+//        registry.removePlusButton(HNCREIPlugin.CHOPPING_BOARD);
     }
 
     @Override
@@ -89,14 +91,14 @@ public class HNCREIClientPlugin implements REIClientPlugin
         registry.registerContainerClickArea(new Rectangle(109, 4, 61, 12), PopcornMachineScreen.class, HNCREIPlugin.POPCORN);
     }
 
-    private void addSandwichDisplay(DisplayRegistry registry, Tag.Named<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem)
+    private void addSandwichDisplay(DisplayRegistry registry, TagKey<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem)
     {
         this.addSandwichDisplay(registry, bunTag, hasTwoBuns, defaultItem, null);
     }
 
-    private void addSandwichDisplay(DisplayRegistry registry, Tag.Named<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem, @Nullable ItemLike neededItem)
+    private void addSandwichDisplay(DisplayRegistry registry, TagKey<Item> bunTag, boolean hasTwoBuns, ItemLike defaultItem, @Nullable ItemLike neededItem)
     {
-        List<EntryIngredient> breadSlice = bunTag.getValues().stream().map(EntryIngredients::of).toList();
+        List<EntryIngredient> breadSlice = Registry.ITEM.getTag(bunTag).stream().flatMap(HolderSet.ListBacked::stream).map(holder -> EntryIngredients.of(new ItemStack(holder.value()))).toList();
         List<ItemStack> selected = FoodPicker.pickFoods(7);
         List<EntryIngredient> inputs = new ArrayList<>(breadSlice);
 

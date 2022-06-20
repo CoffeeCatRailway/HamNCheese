@@ -1,5 +1,7 @@
 package io.github.coffeecatrailway.hamncheese.registry;
 
+import gg.moonflower.pollen.api.platform.Platform;
+import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.core.Registry;
@@ -16,33 +18,42 @@ import org.apache.logging.log4j.Logger;
 public class HNCStats
 {
     private static final Logger LOGGER = LogManager.getLogger();
+    private static final PollinatedRegistry<ResourceLocation> STATS = PollinatedRegistry.createVanilla(Registry.CUSTOM_STAT, HamNCheese.MOD_ID);
 
-    public static final ResourceLocation INTERACT_PIZZA_OVEN;
-    public static final ResourceLocation INTERACT_GRILL;
-    public static final ResourceLocation INTERACT_POPCORN_MACHINE;
+    public static final ResourceLocation INTERACT_PIZZA_OVEN = register("interact_pizza_oven", StatFormatter.DEFAULT);
+    public static final ResourceLocation INTERACT_GRILL = register("interact_grill", StatFormatter.DEFAULT);
+    public static final ResourceLocation INTERACT_POPCORN_MACHINE = register("interact_popcorn_machine", StatFormatter.DEFAULT);
 
-    public static final ResourceLocation INTERACT_CHOPPING_BOARD;
+    public static final ResourceLocation INTERACT_CHOPPING_BOARD = register("interact_chopping_board", StatFormatter.DEFAULT);
 
-    static
+    public static void load(Platform platform)
     {
-        INTERACT_PIZZA_OVEN = register("interact_pizza_oven", "Interactions with Pizza Oven", StatFormatter.DEFAULT);
-        INTERACT_GRILL = register("interact_grill", "Interactions with Grill", StatFormatter.DEFAULT);
-        INTERACT_POPCORN_MACHINE = register("interact_popcorn_machine", "Interactions with Popcorn Machine", StatFormatter.DEFAULT);
-
-        INTERACT_CHOPPING_BOARD = register("interact_chopping_board", "Interactions with Chopping Board", StatFormatter.DEFAULT);
+        STATS.register(platform);
+        LOGGER.debug("Loaded");
     }
 
-    public static void register()
+    private static ResourceLocation register(String id, StatFormatter formatter)
     {
-        LOGGER.debug("Custom stats registered");
+        ResourceLocation stat = HamNCheese.getLocation(id);
+        STATS.register(id, () -> stat);
+        Stats.CUSTOM.get(stat, formatter);
+        return stat;
     }
 
-    private static ResourceLocation register(String name, String localizedName, StatFormatter formatter)
+    public static class Localize
     {
-        ResourceLocation id = HamNCheese.getLocation(name);
-        Registry.register(Registry.CUSTOM_STAT, name, id);
-        Stats.CUSTOM.get(id, formatter);
-        HNCLanguage.EXTRA.put("stat." + HamNCheese.MOD_ID + "." + name, localizedName);
-        return id;
+        public static void load()
+        {
+            register("interact_pizza_oven", "Interactions with Pizza Oven");
+            register("interact_grill", "Interactions with Grill");
+            register("interact_popcorn_machine", "Interactions with Popcorn Machine");
+
+            register("interact_chopping_board", "Interactions with Chopping Board");
+        }
+
+        private static void register(String id, String name)
+        {
+            HNCLanguage.EXTRA.put("stat." + HamNCheese.MOD_ID + "." + id, name);
+        }
     }
 }
