@@ -26,7 +26,7 @@ public class ChoppingBoardRecipeCategory implements IRecipeCategory<ChoppingBoar
     private final IDrawable icon;
 
     public ChoppingBoardRecipeCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.drawableBuilder(CompatCommon.CHOPPING_BOARD, 4, 4, 78, 54).setTextureSize(86, 62).build();
+        this.background = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 4, 4, 78, 54);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(HNCBlocks.OAK_CHOPPING_BOARD.get()));
     }
 

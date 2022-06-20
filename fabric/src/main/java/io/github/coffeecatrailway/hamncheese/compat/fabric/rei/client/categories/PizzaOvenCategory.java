@@ -47,7 +47,7 @@ public class PizzaOvenCategory implements DisplayCategory<PizzaOvenDisplay>
     {
         Point startPoint = new Point(bounds.getCenterX() - 67, bounds.getCenterY() - 31);
         List<Widget> widgets = new ArrayList<>();
-        widgets.add(Widgets.createTexturedWidget(CompatCommon.PIZZA_OVEN, startPoint.x, startPoint.y, 0, 0, 134, 62, 134, 62));
+        widgets.add(Widgets.createTexturedWidget(CompatCommon.JEI_REI_SHEET, startPoint.x, startPoint.y, 0, 129, 134, 62));
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 69, startPoint.y + 21)).animationDurationTicks(200));
 
         // Create slot grid

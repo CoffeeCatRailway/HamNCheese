@@ -44,7 +44,7 @@ public class ChoppingBoardCategory implements DisplayCategory<ChoppingBoardDispl
     {
         Point startPoint = new Point(bounds.getCenterX() - 43, bounds.getCenterY() - 31);
         List<Widget> widgets = new ArrayList<>();
-        widgets.add(Widgets.createTexturedWidget(CompatCommon.CHOPPING_BOARD, startPoint.x, startPoint.y, 0, 0, 86, 62, 86, 62)); // Background
+        widgets.add(Widgets.createTexturedWidget(CompatCommon.JEI_REI_SHEET, startPoint.x, startPoint.y, 0, 0, 86, 62)); // Background
 
         // Ingredients
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 12, startPoint.y + 23)).entries(display.getInputEntries().get(0)).disableBackground().markInput());

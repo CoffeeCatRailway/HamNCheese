@@ -1,9 +1,9 @@
 package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import io.github.coffeecatrailway.hamncheese.client.gui.screens.PizzaOvenScreen;
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.PizzaOvenRecipe;
+import io.github.coffeecatrailway.hamncheese.compat.CompatCommon;
 import io.github.coffeecatrailway.hamncheese.compat.FoodPicker;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
@@ -31,18 +31,13 @@ public class OvenRecipeCategory implements IRecipeCategory<PizzaOvenRecipe>
 {
     private final IDrawable background;
     private final IDrawable icon;
-
-    private final IDrawableAnimated flame;
     private final IDrawableAnimated arrow;
 
     public OvenRecipeCategory(IGuiHelper guiHelper)
     {
-        this.background = guiHelper.createDrawable(PizzaOvenScreen.TEXTURE, 6, 6, 152, 64);
+        this.background = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 2, 131, 130, 58);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(HNCBlocks.PIZZA_OVEN.get()));
-
-        this.flame = guiHelper.drawableBuilder(PizzaOvenScreen.TEXTURE, 176, 0, 14, 14)
-                .buildAnimated(200, IDrawableAnimated.StartDirection.TOP, true);
-        this.arrow = guiHelper.drawableBuilder(PizzaOvenScreen.TEXTURE, 176, 14, 24, 17)
+        this.arrow = guiHelper.drawableBuilder(CompatCommon.JEI_REI_SHEET, 200, 0, 24, 17)
                 .buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
@@ -91,20 +86,19 @@ public class OvenRecipeCategory implements IRecipeCategory<PizzaOvenRecipe>
                 index = j * 3 + i;
                 if (index + 1 > copy.size())
                     break;
-                builder.addSlot(RecipeIngredientRole.INPUT, 2 + j * 18, 2 + i * 18).addIngredient(VanillaTypes.ITEM, copy.get(index));
+                builder.addSlot(RecipeIngredientRole.INPUT, 3 + j * 18, 3 + i * 18).addIngredient(VanillaTypes.ITEM, copy.get(index));
             }
         }
 
         ItemStack pizza = new ItemStack(HNCItems.PIZZA.get());
         selected.forEach(stack -> AbstractSandwichItem.addIngredient(pizza, stack));
         pizza.getOrCreateTag().putBoolean(AbstractSandwichItem.TAG_TOASTED, true);
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 130, 13).addIngredient(VanillaTypes.ITEM, pizza);
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 107, 21).addIngredient(VanillaTypes.ITEM, pizza);
     }
 
     @Override
     public void draw(PizzaOvenRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY)
     {
-        this.flame.draw(poseStack, 82, 30);
-        this.arrow.draw(poseStack, 82, 12);
+        this.arrow.draw(poseStack, 67, 19);
     }
 }

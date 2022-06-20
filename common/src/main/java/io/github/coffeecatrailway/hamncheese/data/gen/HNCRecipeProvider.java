@@ -120,6 +120,7 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
                 .unlockedBy("has_sugar", has(HNCItemTags.SUGAR_COMMON)).unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).unlockedBy("has_flour", has(HNCItemTags.FLOUR_COMMON)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_PIZZA_BASE.get()).requires(HNCItemTags.ROLLING_PINS).requires(HNCItems.DOUGH.get()).unlockedBy("has_dough", has(HNCItems.DOUGH.get()))
                 .unlockedBy("has_rolling_pin", has(HNCItemTags.ROLLING_PINS)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.UNBAKED_PIZZA_BASE.get(), Ingredient.of(HNCItems.DOUGH.get())).tool(Ingredient.of(HNCItemTags.ROLLING_PINS)).unlockedBy("has_dough", has(HNCItems.DOUGH.get())).save(consumer, HamNCheese.getLocation("unbaked_pizza_base_chopping_board"));
 
         ShapedRecipeBuilder.shaped(HNCItems.UNBAKED_BREAD.get(), 2).define('d', HNCItemTags.DOUGH_COMMON).pattern("ddd").unlockedBy("has_dough", has(HNCItemTags.DOUGH_COMMON)).save(consumer);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_BREAD.get()), Items.BREAD, .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_bread", has(HNCItems.UNBAKED_BREAD.get())).save(consumer, HamNCheese.getLocation("bread_smoking"));

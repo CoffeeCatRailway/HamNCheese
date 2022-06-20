@@ -1,6 +1,5 @@
 package io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.categories;
 
-import io.github.coffeecatrailway.hamncheese.client.gui.screens.PopcornMachineScreen;
 import io.github.coffeecatrailway.hamncheese.common.world.inventory.PopcornMachineContainer;
 import io.github.coffeecatrailway.hamncheese.compat.CompatCommon;
 import io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.HNCREIPlugin;
@@ -48,12 +47,12 @@ public class PopcornCategory implements DisplayCategory<PopcornDisplay>
     {
         Point startPoint = new Point(bounds.getCenterX() - 66, bounds.getCenterY() - 33);
         List<Widget> widgets = new ArrayList<>();
-        widgets.add(Widgets.createTexturedWidget(CompatCommon.POPCORN_MACHINE, startPoint.x, startPoint.y, 0, 0, 133, 67, 133, 67)); // Background
+        widgets.add(Widgets.createTexturedWidget(CompatCommon.JEI_REI_SHEET, startPoint.x, startPoint.y, 0, 62, 133, 67)); // Background
 
         // Popcorn
         int popcornScaled = PopcornMachineContainer.getPopcornScaled(display.getPopcorn());
-        widgets.add(Widgets.createTexturedWidget(PopcornMachineScreen.TEXTURE, startPoint.x + 61, startPoint.y + 41 - popcornScaled, 178, 60 - popcornScaled, 28, popcornScaled)); // Popcorn
-        widgets.add(Widgets.createTexturedWidget(PopcornMachineScreen.TEXTURE, startPoint.x + 61, startPoint.y + 15, 178, 2, 28, 26)); // Window
+        widgets.add(Widgets.createTexturedWidget(CompatCommon.JEI_REI_SHEET, startPoint.x + 61, startPoint.y + 41 - popcornScaled, 226, 60 - popcornScaled, 28, popcornScaled)); // Popcorn
+        widgets.add(Widgets.createTexturedWidget(CompatCommon.JEI_REI_SHEET, startPoint.x + 61, startPoint.y + 15, 226, 2, 28, 26)); // Window
 
         // Ingredients
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 33, startPoint.y + 4)).entry(EntryStacks.of(HNCItems.DRIED_CORN_KERNELS.get())).disableBackground().markInput());

@@ -1,10 +1,10 @@
 package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import io.github.coffeecatrailway.hamncheese.client.gui.screens.PopcornMachineScreen;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.PopcornMachineBlockEntity;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.PopcornRecipe;
 import io.github.coffeecatrailway.hamncheese.common.world.inventory.PopcornMachineContainer;
+import io.github.coffeecatrailway.hamncheese.compat.CompatCommon;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
@@ -40,13 +40,13 @@ public class PopcornRecipeCategory implements IRecipeCategory<PopcornRecipe>
     private final IDrawableAnimated flavour;
 
     public PopcornRecipeCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.createDrawable(PopcornMachineScreen.TEXTURE, 16, 11, 127, 61);
+        this.background = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 2, 64, 129, 63);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(HNCBlocks.POPCORN_MACHINE.get()));
 
-        this.popcornWindow = guiHelper.createDrawable(PopcornMachineScreen.TEXTURE, 178, 2, 28, 26);
-        this.popcorn = guiHelper.createDrawable(PopcornMachineScreen.TEXTURE, 178, 34, 28, 26);
-        this.flavourWindow = guiHelper.createDrawable(PopcornMachineScreen.TEXTURE, 176, 64, 8, 22);
-        this.flavour = guiHelper.drawableBuilder(PopcornMachineScreen.TEXTURE, 184, 64, 8, 22)
+        this.popcornWindow = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 226, 2, 28, 26);
+        this.popcorn = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 226, 34, 28, 26);
+        this.flavourWindow = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 240, 64, 8, 22);
+        this.flavour = guiHelper.drawableBuilder(CompatCommon.JEI_REI_SHEET, 248, 64, 8, 22)
                 .buildAnimated(200, IDrawableAnimated.StartDirection.BOTTOM, false);
     }
 
@@ -83,22 +83,22 @@ public class PopcornRecipeCategory implements IRecipeCategory<PopcornRecipe>
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, PopcornRecipe recipe, IFocusGroup focuses)
     {
-        builder.addSlot(RecipeIngredientRole.INPUT, 30, 1).addIngredient(VanillaTypes.ITEM, new ItemStack(HNCItems.DRIED_CORN_KERNELS.get()));
-        builder.addSlot(RecipeIngredientRole.INPUT, 26, 21).addIngredients(recipe.getFlavouring());
-        builder.addSlot(RecipeIngredientRole.INPUT, 30, 41).addIngredients(recipe.getSeasoning());
+        builder.addSlot(RecipeIngredientRole.INPUT, 31, 2).addIngredient(VanillaTypes.ITEM, new ItemStack(HNCItems.DRIED_CORN_KERNELS.get()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 27, 22).addIngredients(recipe.getFlavouring());
+        builder.addSlot(RecipeIngredientRole.INPUT, 31, 42).addIngredients(recipe.getSeasoning());
 
         ItemStack result = recipe.getResultItem();
-        builder.addSlot(RecipeIngredientRole.INPUT, 105, 44).addIngredient(VanillaTypes.ITEM, new ItemStack(HNCItems.POPCORN_BAG.get(), result.getCount()));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 105, 18).addIngredient(VanillaTypes.ITEM, result);
+        builder.addSlot(RecipeIngredientRole.INPUT, 106, 45).addIngredient(VanillaTypes.ITEM, new ItemStack(HNCItems.POPCORN_BAG.get(), result.getCount()));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 106, 19).addIngredient(VanillaTypes.ITEM, result);
     }
 
     @Override
     public void draw(PopcornRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY)
     {
-        this.popcorn.draw(poseStack, 58, 12, PopcornMachineContainer.getPopcornScaled(PopcornMachineBlockEntity.MAX_POPCORN - recipe.getPopcorn()), 0, 0, 0);
-        this.popcornWindow.draw(poseStack, 58, 12);
-        this.flavour.draw(poseStack, 4, 18);
-        this.flavourWindow.draw(poseStack, 4, 18);
+        this.popcorn.draw(poseStack, 59, 13, PopcornMachineContainer.getPopcornScaled(PopcornMachineBlockEntity.MAX_POPCORN - recipe.getPopcorn()), 0, 0, 0);
+        this.popcornWindow.draw(poseStack, 59, 13);
+        this.flavour.draw(poseStack, 5, 19);
+        this.flavourWindow.draw(poseStack, 5, 19);
     }
 
     @Override
