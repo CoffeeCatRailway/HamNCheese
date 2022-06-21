@@ -28,7 +28,7 @@ public class GrillBlockEntity extends FoodCookerBlockEntity<GrillBlockEntity>
 
     public GrillBlockEntity(BlockPos pos, BlockState state)
     {
-        super(HNCBlockEntities.GRILL.get(), pos, state, 10, HNCRecipes.GRILL_TYPE);
+        super(HNCBlockEntities.GRILL.get(), pos, state, 10, HNCRecipes.GRILL_TYPE.get());
     }
 
     @Override

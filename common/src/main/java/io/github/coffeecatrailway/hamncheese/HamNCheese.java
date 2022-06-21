@@ -173,6 +173,7 @@ public class HamNCheese
         HNCMenus.load(PLATFORM);
         HNCFluids.load(PLATFORM);
         HNCFeatures.load(PLATFORM);
+        HNCFeatures.Configured.load(PLATFORM);
 
         FluidBehaviorRegistry.register(HNCFluidTags.MAPLE_SAP, new HNCFluidBehavior());
         FluidBehaviorRegistry.register(HNCFluidTags.MILK, new HNCFluidBehavior());
@@ -191,7 +192,6 @@ public class HamNCheese
     {
         ctx.enqueueWork(() -> {
             HNCStats.load(PLATFORM);
-            HNCFeatures.Configured.load(PLATFORM);
             HNCVillage.addStructurePieces();
         });
 

@@ -10,6 +10,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -60,7 +61,7 @@ public abstract class GoatMilkFluid extends FlowingFluid implements PollinatedFl
     }
 
     @Override
-    public int getFogColor(Camera camera, ClientLevel level, Biome biome, float partialTicks)
+    public int getFogColor(Camera camera, ClientLevel level, Holder<Biome> biome, float partialTicks)
     {
         return 0xe0f0f0;
     }

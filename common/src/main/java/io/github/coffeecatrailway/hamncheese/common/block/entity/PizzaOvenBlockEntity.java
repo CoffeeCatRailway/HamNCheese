@@ -31,7 +31,7 @@ public class PizzaOvenBlockEntity extends FoodCookerBlockEntity<PizzaOvenBlockEn
 
     public PizzaOvenBlockEntity(BlockPos pos, BlockState state)
     {
-        super(HNCBlockEntities.PIZZA_OVEN.get(), pos, state, 13, HNCRecipes.PIZZA_OVEN_TYPE);
+        super(HNCBlockEntities.PIZZA_OVEN.get(), pos, state, 13, HNCRecipes.PIZZA_OVEN_TYPE.get());
     }
 
     @Override

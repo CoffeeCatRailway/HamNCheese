@@ -80,7 +80,7 @@ public class ChoppingBoardRecipe implements Recipe<ChoppingBoardBlockEntity>
     @Override
     public RecipeType<?> getType()
     {
-        return HNCRecipes.CHOPPING_BOARD_TYPE;
+        return HNCRecipes.CHOPPING_BOARD_TYPE.get();
     }
 
     public static class Serializer implements RecipeSerializer<ChoppingBoardRecipe>

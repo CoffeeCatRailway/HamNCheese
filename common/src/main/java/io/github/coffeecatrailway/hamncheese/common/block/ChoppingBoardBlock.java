@@ -93,7 +93,7 @@ public class ChoppingBoardBlock extends BaseEntityBlock implements SimpleWaterlo
                     player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
                 else
                 {
-                    ChoppingBoardRecipe recipe = level.getRecipeManager().getRecipesFor(HNCRecipes.CHOPPING_BOARD_TYPE, blockEntity, level).stream().filter(recipeFilter -> recipeFilter.matches(blockEntity, level) && recipeFilter.getTool().test(heldItem)).findFirst().orElse(null);
+                    ChoppingBoardRecipe recipe = level.getRecipeManager().getRecipesFor(HNCRecipes.CHOPPING_BOARD_TYPE.get(), blockEntity, level).stream().filter(recipeFilter -> recipeFilter.matches(blockEntity, level) && recipeFilter.getTool().test(heldItem)).findFirst().orElse(null);
                     if (recipe != null)
                     {
                         if (!player.isCreative())

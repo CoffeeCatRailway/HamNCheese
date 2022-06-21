@@ -101,6 +101,6 @@ public class PizzaOvenRecipe implements Recipe<Container>, CustomSandwichRecipe<
     @Override
     public RecipeType<?> getType()
     {
-        return HNCRecipes.PIZZA_OVEN_TYPE;
+        return HNCRecipes.PIZZA_OVEN_TYPE.get();
     }
 }

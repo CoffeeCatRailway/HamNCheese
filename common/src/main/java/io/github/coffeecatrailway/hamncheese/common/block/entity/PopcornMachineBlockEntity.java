@@ -73,7 +73,7 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity<PopcornM
 
     public PopcornMachineBlockEntity(BlockPos pos, BlockState state)
     {
-        super(HNCBlockEntities.POPCORN_MACHINE.get(), pos, state, 5, HNCRecipes.POPCORN_TYPE);
+        super(HNCBlockEntities.POPCORN_MACHINE.get(), pos, state, 5, HNCRecipes.POPCORN_TYPE.get());
     }
 
     @Override
@@ -143,7 +143,7 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity<PopcornM
 
             if (!blockEntity.getItem(SLOT_BAG).isEmpty() && !blockEntity.getItem(SLOT_SEASONING).isEmpty())
             {
-                blockEntity.recipe = level.getRecipeManager().getRecipeFor(HNCRecipes.POPCORN_TYPE, blockEntity, level).orElse(null);
+                blockEntity.recipe = level.getRecipeManager().getRecipeFor(HNCRecipes.POPCORN_TYPE.get(), blockEntity, level).orElse(null);
                 if (blockEntity.canWork())
                 {
                     blockEntity.flavourTime++;

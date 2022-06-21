@@ -90,7 +90,7 @@ public class PopcornRecipe implements Recipe<PopcornMachineBlockEntity>
     @Override
     public RecipeType<?> getType()
     {
-        return HNCRecipes.POPCORN_TYPE;
+        return HNCRecipes.POPCORN_TYPE.get();
     }
 
     public static class Serializer implements RecipeSerializer<PopcornRecipe>

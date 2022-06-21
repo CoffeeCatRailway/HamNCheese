@@ -92,6 +92,6 @@ public class GrillRecipe implements Recipe<Container>
     @Override
     public RecipeType<?> getType()
     {
-        return HNCRecipes.GRILL_TYPE;
+        return HNCRecipes.GRILL_TYPE.get();
     }
 }
