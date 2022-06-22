@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.PopcornMachineBlockEntity;
 import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -73,6 +74,12 @@ public class PopcornRecipe implements Recipe<PopcornMachineBlockEntity>
     public Ingredient getSeasoning()
     {
         return this.seasoning;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients()
+    {
+        return NonNullList.of(this.flavouring, this.seasoning);
     }
 
     @Override

@@ -101,10 +101,10 @@ public class HNCJEIPlugin implements IModPlugin
         reg.addIngredientInfo(Lists.<ItemLike>newArrayList(HNCItems.MAPLE_SAP_BOTTLE.get(), HNCFluids.MAPLE_SAP_BUCKET.get(), HNCBlocks.TREE_TAP.get()).stream().map(ItemStack::new).collect(Collectors.toList()),
                 VanillaTypes.ITEM, new TranslatableComponent("jei." + HamNCheese.MOD_ID + ".maple_sap"));
 
-        reg.addRecipes(GRILL, getRecipesOfType(HNCRecipes.GRILL_TYPE, this.grillCategory));
-        reg.addRecipes(OVEN, getRecipesOfType(HNCRecipes.PIZZA_OVEN_TYPE, this.ovenCategory));
-        reg.addRecipes(POPCORN, getRecipesOfType(HNCRecipes.POPCORN_TYPE, this.popcornCategory));
-        reg.addRecipes(CHOPPING_BOARD, getRecipesOfType(HNCRecipes.CHOPPING_BOARD_TYPE, this.choppingBoardCategory));
+        reg.addRecipes(GRILL, getRecipesOfType(HNCRecipes.GRILL_TYPE.get(), this.grillCategory));
+        reg.addRecipes(OVEN, getRecipesOfType(HNCRecipes.PIZZA_OVEN_TYPE.get(), this.ovenCategory));
+        reg.addRecipes(POPCORN, getRecipesOfType(HNCRecipes.POPCORN_TYPE.get(), this.popcornCategory));
+        reg.addRecipes(CHOPPING_BOARD, getRecipesOfType(HNCRecipes.CHOPPING_BOARD_TYPE.get(), this.choppingBoardCategory));
     }
 
     private static <C extends Container, R extends Recipe<C>> List<R> getRecipesOfType(net.minecraft.world.item.crafting.RecipeType<R> type, IRecipeCategory<R> category)

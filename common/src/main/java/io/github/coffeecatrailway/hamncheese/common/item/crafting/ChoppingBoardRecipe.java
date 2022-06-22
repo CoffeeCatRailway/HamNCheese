@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.hamncheese.common.item.crafting;
 import com.google.gson.JsonObject;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.ChoppingBoardBlockEntity;
 import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -63,6 +64,12 @@ public class ChoppingBoardRecipe implements Recipe<ChoppingBoardBlockEntity>
     public Ingredient getTool()
     {
         return this.tool;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients()
+    {
+        return NonNullList.of(this.ingredient, this.tool);
     }
 
     @Override

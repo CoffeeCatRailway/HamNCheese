@@ -31,15 +31,17 @@ public class ChoppingBoardRecipeCategory implements IRecipeCategory<ChoppingBoar
     }
 
     @Override
+    @SuppressWarnings("removal")
     public ResourceLocation getUid()
     {
-        return HNCJEIPlugin.CHOPPING_BOARD_UID;
+        return HNCJEIPlugin.CHOPPING_BOARD.getUid();
     }
 
     @Override
+    @SuppressWarnings("removal")
     public Class<? extends ChoppingBoardRecipe> getRecipeClass()
     {
-        return ChoppingBoardRecipe.class;
+        return HNCJEIPlugin.CHOPPING_BOARD.getRecipeClass();
     }
 
     @Override

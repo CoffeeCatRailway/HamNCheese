@@ -44,15 +44,17 @@ public class GrillRecipeCategory implements IRecipeCategory<GrillRecipe>
     }
 
     @Override
+    @SuppressWarnings("removal")
     public ResourceLocation getUid()
     {
-        return HNCJEIPlugin.GRILL_UID;
+        return HNCJEIPlugin.GRILL.getUid();
     }
 
     @Override
+    @SuppressWarnings("removal")
     public Class<? extends GrillRecipe> getRecipeClass()
     {
-        return GrillRecipe.class;
+        return HNCJEIPlugin.GRILL.getRecipeClass();
     }
 
     @Override

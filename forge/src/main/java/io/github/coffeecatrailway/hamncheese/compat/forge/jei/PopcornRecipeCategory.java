@@ -51,15 +51,17 @@ public class PopcornRecipeCategory implements IRecipeCategory<PopcornRecipe>
     }
 
     @Override
+    @SuppressWarnings("removal")
     public ResourceLocation getUid()
     {
-        return HNCJEIPlugin.POPCORN_UID;
+        return HNCJEIPlugin.POPCORN.getUid();
     }
 
     @Override
+    @SuppressWarnings("removal")
     public Class<? extends PopcornRecipe> getRecipeClass()
     {
-        return PopcornRecipe.class;
+        return HNCJEIPlugin.POPCORN.getRecipeClass();
     }
 
     @Override

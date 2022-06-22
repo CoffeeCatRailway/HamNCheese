@@ -42,15 +42,17 @@ public class OvenRecipeCategory implements IRecipeCategory<PizzaOvenRecipe>
     }
 
     @Override
+    @SuppressWarnings("removal")
     public ResourceLocation getUid()
     {
-        return HNCJEIPlugin.OVEN_UID;
+        return HNCJEIPlugin.OVEN.getUid();
     }
 
     @Override
+    @SuppressWarnings("removal")
     public Class<? extends PizzaOvenRecipe> getRecipeClass()
     {
-        return PizzaOvenRecipe.class;
+        return HNCJEIPlugin.OVEN.getRecipeClass();
     }
 
     @Override
