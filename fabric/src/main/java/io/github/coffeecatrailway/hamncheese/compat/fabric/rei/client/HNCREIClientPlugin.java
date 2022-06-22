@@ -25,7 +25,6 @@ import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
-import me.shedaniel.rei.api.client.registry.category.ButtonArea;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
@@ -64,7 +63,7 @@ public class HNCREIClientPlugin implements REIClientPlugin
 
 //        registry.removePlusButton(HNCREIPlugin.GRILL);
 //        registry.removePlusButton(HNCREIPlugin.PIZZA_OVEN);
-        registry.setPlusButtonArea(HNCREIPlugin.POPCORN, ButtonArea.defaultArea());
+//        registry.setPlusButtonArea(HNCREIPlugin.POPCORN, ButtonArea.defaultArea());
 //        registry.removePlusButton(HNCREIPlugin.CHOPPING_BOARD);
     }
 
@@ -79,8 +78,8 @@ public class HNCREIClientPlugin implements REIClientPlugin
 
         registry.registerFiller(GrillRecipe.class, GrillDisplay::new);
         registry.registerFiller(PizzaOvenRecipe.class, PizzaOvenDisplay::new);
-        registry.registerRecipeFiller(PopcornRecipe.class, HNCRecipes.POPCORN_TYPE, PopcornDisplay::new);
-        registry.registerRecipeFiller(ChoppingBoardRecipe.class, HNCRecipes.CHOPPING_BOARD_TYPE, ChoppingBoardDisplay::new);
+        registry.registerRecipeFiller(PopcornRecipe.class, HNCRecipes.POPCORN_TYPE.get(), PopcornDisplay::new);
+        registry.registerRecipeFiller(ChoppingBoardRecipe.class, HNCRecipes.CHOPPING_BOARD_TYPE.get(), ChoppingBoardDisplay::new);
     }
 
     @Override

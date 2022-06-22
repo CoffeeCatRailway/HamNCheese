@@ -103,7 +103,7 @@ public class PopcornRecipe implements Recipe<PopcornMachineBlockEntity>
             if (json.has("flavouring"))
                 flavouring = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "flavouring"));
             Ingredient seasoning = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "seasoning"));
-            if (Arrays.stream(seasoning.getItems()).noneMatch(stack -> !stack.getItem().hasCraftingRemainingItem() || stack.getMaxStackSize() >= 2))
+            if (Arrays.stream(seasoning.getItems()).anyMatch(stack -> stack.getItem().hasCraftingRemainingItem() || stack.getMaxStackSize() < 2))
                 throw new JsonParseException("Popcorn recipe " + id + " seasoning has a container item or can't stack up to or above 2");
             ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
             return new PopcornRecipe(id, popcorn, flavouring, seasoning, result);
