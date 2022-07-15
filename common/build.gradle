@@ -3,7 +3,7 @@ dependencies {
     // Do NOT use other classes from fabric loader
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricLoaderVersion}"
 
-    modApi("gg.moonflower:pollen:${rootProject.pollenVersion}") { transitive = false }
+    modApi "gg.moonflower:pollen:${rootProject.pollenVersion}"
 
 //    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.reiVersion}"
     modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${rootProject.wthitVersion}"

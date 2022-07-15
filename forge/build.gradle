@@ -23,15 +23,6 @@ loom {
 
         convertAccessWideners.set(true)
         extraAccessWideners.add("${project.modId}.accesswidener")
-
-//        dataGen {
-//            mod project.modId
-//        }
-//        launches {
-//            data {
-//                arg "--existing", project(":common").file("src/main/resources/").absolutePath
-//            }
-//        }
     }
 
     mixin {
@@ -70,7 +61,7 @@ repositories {
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.minecraftVersion}-${rootProject.forgeVersion}"
 
-    modApi("gg.moonflower:pollen-forge:${rootProject.pollenVersion}") { transitive = false }
+    modApi "gg.moonflower:pollen-forge:${rootProject.pollenVersion}"
 
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.reiVersion}"
     modImplementation("mezz.jei:jei-${rootProject.jeiVersion}") { transitive = false }

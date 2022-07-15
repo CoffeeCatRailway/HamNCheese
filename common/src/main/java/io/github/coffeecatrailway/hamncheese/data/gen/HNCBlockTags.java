@@ -62,7 +62,7 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
         this.tag(BARRELS_COMMON).addTag(BARRELS_FORGE);
         this.tag(CHESTS_FORGE).add(Blocks.CHEST, Blocks.TRAPPED_CHEST);
         this.tag(CHESTS_COMMON).addTag(CHESTS_FORGE);
-        this.tag(SHULKERS_COMMON).addTag(BlockTags.SHULKER_BOXES);
+        this.tag(SHULKERS_COMMON);//.addTag(BlockTags.SHULKER_BOXES);
         this.tag(MOUSE_SEARCHABLE).addTag(BARRELS_COMMON, CHESTS_COMMON, SHULKERS_COMMON).add(Blocks.DISPENSER, Blocks.DROPPER, Blocks.HOPPER);
 
         this.tag(MINEABLE_WITH_KNIFE).add(HNCBlocks.BLOCK_OF_CHEESE.get(), HNCBlocks.BLOCK_OF_BLUE_CHEESE.get(), HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get(), HNCBlocks.BLOCK_OF_SWISS_CHEESE.get(), HNCBlocks.BLOCK_OF_GOAT_CHEESE.get());
