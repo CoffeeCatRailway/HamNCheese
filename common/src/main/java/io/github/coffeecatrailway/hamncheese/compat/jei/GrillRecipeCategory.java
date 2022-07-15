@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
+package io.github.coffeecatrailway.hamncheese.compat.jei;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
@@ -35,7 +35,7 @@ public class GrillRecipeCategory implements IRecipeCategory<GrillRecipe>
     public GrillRecipeCategory(IGuiHelper guiHelper)
     {
         this.background = guiHelper.createDrawable(GrillScreen.TEXTURE, 29, 16, 118, 63);
-        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(HNCBlocks.GRILL.get()));
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(HNCBlocks.GRILL.get()));
 
         this.flame = guiHelper.drawableBuilder(GrillScreen.TEXTURE, 176, 0, 14, 14)
                 .buildAnimated(200, IDrawableAnimated.StartDirection.TOP, true);
@@ -47,14 +47,14 @@ public class GrillRecipeCategory implements IRecipeCategory<GrillRecipe>
     @SuppressWarnings("removal")
     public ResourceLocation getUid()
     {
-        return HNCJEIPlugin.GRILL.getUid();
+        return HNCJeiPlugin.GRILL.getUid();
     }
 
     @Override
     @SuppressWarnings("removal")
     public Class<? extends GrillRecipe> getRecipeClass()
     {
-        return HNCJEIPlugin.GRILL.getRecipeClass();
+        return HNCJeiPlugin.GRILL.getRecipeClass();
     }
 
     @Override
@@ -79,8 +79,8 @@ public class GrillRecipeCategory implements IRecipeCategory<GrillRecipe>
     public void setRecipe(IRecipeLayoutBuilder builder, GrillRecipe recipe, IFocusGroup focuses)
     {
         Pair<ItemStack, ItemStack> sandwich = FoodPicker.generateSandwichPair(HNCItems.SANDWICH.get(), 7, true);
-        builder.addSlot(RecipeIngredientRole.INPUT, 2, 2).addIngredient(VanillaTypes.ITEM, sandwich.getFirst());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 2).addIngredient(VanillaTypes.ITEM, sandwich.getSecond());
+        builder.addSlot(RecipeIngredientRole.INPUT, 2, 2).addIngredient(VanillaTypes.ITEM_STACK, sandwich.getFirst());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 2).addIngredient(VanillaTypes.ITEM_STACK, sandwich.getSecond());
     }
 
     @Override

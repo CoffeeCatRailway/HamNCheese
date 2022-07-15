@@ -15,6 +15,6 @@ import java.util.stream.Collectors;
  */
 public class CompatCommon
 {
-    public static final ResourceLocation JEI_REI_SHEET = HamNCheese.getLocation("textures/gui/jei_rei.png");
+    public static final ResourceLocation JEI_SHEET = HamNCheese.getLocation("textures/gui/jei.png");
     public static final List<ItemStack> CHOPPING_BOARDS = Registry.BLOCK.stream().filter(block -> block instanceof ChoppingBoardBlock).map(ItemStack::new).collect(Collectors.toList());
 }

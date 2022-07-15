@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
+package io.github.coffeecatrailway.hamncheese.compat.jei;
 
 import com.google.common.collect.Lists;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
@@ -23,18 +23,20 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import mezz.jei.api.registration.*;
-import mezz.jei.plugins.vanilla.crafting.CategoryRecipeValidator;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,7 +45,7 @@ import java.util.stream.Collectors;
  * Created: 12/04/2022
  */
 @JeiPlugin
-public class HNCJEIPlugin implements IModPlugin
+public class HNCJeiPlugin implements IModPlugin
 {
     protected static final RecipeType<GrillRecipe> GRILL = new RecipeType<>(HamNCheese.getLocation("grill"), GrillRecipe.class);
     protected static final RecipeType<PizzaOvenRecipe> OVEN = new RecipeType<>(HamNCheese.getLocation("oven"), PizzaOvenRecipe.class);
@@ -73,8 +75,8 @@ public class HNCJEIPlugin implements IModPlugin
             @Override
             public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper helper, IFocusGroup focuses)
             {
-                helper.setInputs(builder, VanillaTypes.ITEM, List.of(List.of(new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get())), ForgeRegistries.ITEMS.tags().getTag(HNCItemTags.SUGAR_COMMON).stream().map(ItemStack::new).toList()), 2, 1);
-                helper.setOutputs(builder, VanillaTypes.ITEM, List.of(new ItemStack(HNCItems.MAPLE_SYRUP.get())));
+                helper.setInputs(builder, VanillaTypes.ITEM_STACK, List.of(List.of(new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get())), getTagItems(HNCItemTags.SUGAR_COMMON)), 2, 1);
+                helper.setOutputs(builder, VanillaTypes.ITEM_STACK, List.of(new ItemStack(HNCItems.MAPLE_SYRUP.get())));
             }
 
             @Override
@@ -83,6 +85,13 @@ public class HNCJEIPlugin implements IModPlugin
                 return recipe.getId();
             }
         });
+    }
+
+    public static List<ItemStack> getTagItems(TagKey<Item> key)
+    {
+        List<ItemStack> stacks = new ArrayList<>();
+        Registry.ITEM.getTag(key).ifPresent(tag -> stacks.addAll(tag.stream().map(ItemStack::new).toList()));
+        return stacks;
     }
 
     @Override
@@ -99,7 +108,7 @@ public class HNCJEIPlugin implements IModPlugin
     public void registerRecipes(IRecipeRegistration reg)
     {
         reg.addIngredientInfo(Lists.<ItemLike>newArrayList(HNCItems.MAPLE_SAP_BOTTLE.get(), HNCFluids.MAPLE_SAP_BUCKET.get(), HNCBlocks.TREE_TAP.get()).stream().map(ItemStack::new).collect(Collectors.toList()),
-                VanillaTypes.ITEM, new TranslatableComponent("jei." + HamNCheese.MOD_ID + ".maple_sap"));
+                VanillaTypes.ITEM_STACK, new TranslatableComponent("jei." + HamNCheese.MOD_ID + ".maple_sap"));
 
         reg.addRecipes(GRILL, getRecipesOfType(HNCRecipes.GRILL_TYPE.get(), this.grillCategory));
         reg.addRecipes(OVEN, getRecipesOfType(HNCRecipes.PIZZA_OVEN_TYPE.get(), this.ovenCategory));
@@ -109,16 +118,7 @@ public class HNCJEIPlugin implements IModPlugin
 
     private static <C extends Container, R extends Recipe<C>> List<R> getRecipesOfType(net.minecraft.world.item.crafting.RecipeType<R> type, IRecipeCategory<R> category)
     {
-        CategoryRecipeValidator<R> validator = new CategoryRecipeValidator<>(category, 1);
-        return getValidHandledRecipes(type, validator);
-    }
-
-    private static <C extends Container, R extends Recipe<C>> List<R> getValidHandledRecipes(net.minecraft.world.item.crafting.RecipeType<R> recipeType, CategoryRecipeValidator<R> validator)
-    {
-        return Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(recipeType)
-                .stream()
-                .filter(r -> validator.isRecipeValid(r) && validator.isRecipeHandled(r))
-                .toList();
+        return Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(type).stream().filter(category::isHandled).toList();
     }
 
     @Override

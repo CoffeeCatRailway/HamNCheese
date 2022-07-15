@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
+package io.github.coffeecatrailway.hamncheese.compat.jei;
 
 import com.google.common.collect.Lists;
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
@@ -14,7 +14,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper helper, IFocusGroup focuses)
     {
-        List<ItemStack> breadSlice = ForgeRegistries.ITEMS.tags().getTag(this.bunTag).stream().map(ItemStack::new).toList();
+        List<ItemStack> breadSlice = HNCJeiPlugin.getTagItems(this.bunTag);
         List<ItemStack> selected = FoodPicker.pickFoods(7);
         List<List<ItemStack>> inputs = new ArrayList<>();
 
@@ -53,11 +52,11 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
         selected.forEach(stack -> inputs.add(Lists.newArrayList(stack)));
         if (this.hasTwoBuns)
             inputs.add(breadSlice);
-        helper.setInputs(builder, VanillaTypes.ITEM, inputs, 3, 3);
+        helper.setInputs(builder, VanillaTypes.ITEM_STACK, inputs, 3, 3);
 
         ItemStack sandwich = new ItemStack(this.defaultItem.get());
         selected.forEach(stack -> AbstractSandwichItem.addIngredient(sandwich, stack));
-        helper.setOutputs(builder, VanillaTypes.ITEM, List.of(sandwich));
+        helper.setOutputs(builder, VanillaTypes.ITEM_STACK, List.of(sandwich));
     }
 
     @Nullable

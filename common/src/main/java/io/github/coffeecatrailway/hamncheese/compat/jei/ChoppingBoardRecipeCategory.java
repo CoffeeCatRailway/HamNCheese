@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
+package io.github.coffeecatrailway.hamncheese.compat.jei;
 
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.ChoppingBoardRecipe;
@@ -26,22 +26,22 @@ public class ChoppingBoardRecipeCategory implements IRecipeCategory<ChoppingBoar
     private final IDrawable icon;
 
     public ChoppingBoardRecipeCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 4, 4, 78, 54);
-        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(HNCBlocks.OAK_CHOPPING_BOARD.get()));
+        this.background = guiHelper.createDrawable(CompatCommon.JEI_SHEET, 4, 4, 78, 54);
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(HNCBlocks.OAK_CHOPPING_BOARD.get()));
     }
 
     @Override
     @SuppressWarnings("removal")
     public ResourceLocation getUid()
     {
-        return HNCJEIPlugin.CHOPPING_BOARD.getUid();
+        return HNCJeiPlugin.CHOPPING_BOARD.getUid();
     }
 
     @Override
     @SuppressWarnings("removal")
     public Class<? extends ChoppingBoardRecipe> getRecipeClass()
     {
-        return HNCJEIPlugin.CHOPPING_BOARD.getRecipeClass();
+        return HNCJeiPlugin.CHOPPING_BOARD.getRecipeClass();
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ChoppingBoardRecipeCategory implements IRecipeCategory<ChoppingBoar
     {
         builder.addSlot(RecipeIngredientRole.INPUT, 8, 19).addIngredients(recipe.getIngredient());
         builder.addSlot(RecipeIngredientRole.INPUT, 31, 8).addIngredients(recipe.getTool());
-        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 31, 30).addIngredients(VanillaTypes.ITEM, CompatCommon.CHOPPING_BOARDS);
-        builder.addSlot(RecipeIngredientRole.INPUT, 54, 19).addIngredient(VanillaTypes.ITEM, recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 31, 30).addIngredients(VanillaTypes.ITEM_STACK, CompatCommon.CHOPPING_BOARDS);
+        builder.addSlot(RecipeIngredientRole.INPUT, 54, 19).addIngredient(VanillaTypes.ITEM_STACK, recipe.getResultItem());
     }
 }

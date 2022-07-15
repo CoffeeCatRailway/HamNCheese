@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
+package io.github.coffeecatrailway.hamncheese.compat.jei;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.PopcornMachineBlockEntity;
@@ -40,13 +40,13 @@ public class PopcornRecipeCategory implements IRecipeCategory<PopcornRecipe>
     private final IDrawableAnimated flavour;
 
     public PopcornRecipeCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 2, 64, 129, 63);
-        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(HNCBlocks.POPCORN_MACHINE.get()));
+        this.background = guiHelper.createDrawable(CompatCommon.JEI_SHEET, 2, 64, 129, 63);
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(HNCBlocks.POPCORN_MACHINE.get()));
 
-        this.popcornWindow = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 226, 2, 28, 26);
-        this.popcorn = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 226, 34, 28, 26);
-        this.flavourWindow = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 240, 64, 8, 22);
-        this.flavour = guiHelper.drawableBuilder(CompatCommon.JEI_REI_SHEET, 248, 64, 8, 22)
+        this.popcornWindow = guiHelper.createDrawable(CompatCommon.JEI_SHEET, 226, 2, 28, 26);
+        this.popcorn = guiHelper.createDrawable(CompatCommon.JEI_SHEET, 226, 34, 28, 26);
+        this.flavourWindow = guiHelper.createDrawable(CompatCommon.JEI_SHEET, 240, 64, 8, 22);
+        this.flavour = guiHelper.drawableBuilder(CompatCommon.JEI_SHEET, 248, 64, 8, 22)
                 .buildAnimated(200, IDrawableAnimated.StartDirection.BOTTOM, false);
     }
 
@@ -54,14 +54,14 @@ public class PopcornRecipeCategory implements IRecipeCategory<PopcornRecipe>
     @SuppressWarnings("removal")
     public ResourceLocation getUid()
     {
-        return HNCJEIPlugin.POPCORN.getUid();
+        return HNCJeiPlugin.POPCORN.getUid();
     }
 
     @Override
     @SuppressWarnings("removal")
     public Class<? extends PopcornRecipe> getRecipeClass()
     {
-        return HNCJEIPlugin.POPCORN.getRecipeClass();
+        return HNCJeiPlugin.POPCORN.getRecipeClass();
     }
 
     @Override
@@ -85,13 +85,13 @@ public class PopcornRecipeCategory implements IRecipeCategory<PopcornRecipe>
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, PopcornRecipe recipe, IFocusGroup focuses)
     {
-        builder.addSlot(RecipeIngredientRole.INPUT, 31, 2).addIngredient(VanillaTypes.ITEM, new ItemStack(HNCItems.DRIED_CORN_KERNELS.get()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 31, 2).addIngredient(VanillaTypes.ITEM_STACK, new ItemStack(HNCItems.DRIED_CORN_KERNELS.get()));
         builder.addSlot(RecipeIngredientRole.INPUT, 27, 22).addIngredients(recipe.getFlavouring());
         builder.addSlot(RecipeIngredientRole.INPUT, 31, 42).addIngredients(recipe.getSeasoning());
 
         ItemStack result = recipe.getResultItem();
-        builder.addSlot(RecipeIngredientRole.INPUT, 106, 45).addIngredient(VanillaTypes.ITEM, new ItemStack(HNCItems.POPCORN_BAG.get(), result.getCount()));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 106, 19).addIngredient(VanillaTypes.ITEM, result);
+        builder.addSlot(RecipeIngredientRole.INPUT, 106, 45).addIngredient(VanillaTypes.ITEM_STACK, new ItemStack(HNCItems.POPCORN_BAG.get(), result.getCount()));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 106, 19).addIngredient(VanillaTypes.ITEM_STACK, result);
     }
 
     @Override

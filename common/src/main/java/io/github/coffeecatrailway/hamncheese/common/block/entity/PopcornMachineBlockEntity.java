@@ -20,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -73,7 +74,7 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity<PopcornM
 
     public PopcornMachineBlockEntity(BlockPos pos, BlockState state)
     {
-        super(HNCBlockEntities.POPCORN_MACHINE.get(), pos, state, 5, HNCRecipes.POPCORN_TYPE.get());
+        super(HNCBlockEntities.POPCORN_MACHINE.get(), pos, state, 5);
     }
 
     @Override
@@ -235,7 +236,7 @@ public class PopcornMachineBlockEntity extends BaseFoodMakerBlockEntity<PopcornM
     }
 
     @Override
-    public void load(CompoundTag compoundTag)
+    public void load(@NotNull CompoundTag compoundTag)
     {
         super.load(compoundTag);
         this.flavourTime = compoundTag.getInt("FlavourTime");

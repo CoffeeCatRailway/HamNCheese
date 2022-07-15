@@ -8,10 +8,8 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,13 +26,11 @@ public abstract class BaseFoodMakerBlockEntity<T extends BaseFoodMakerBlockEntit
     protected final NonNullList<ItemStack> inventory;
 
     private final Map<ResourceLocation, Integer> recipeAmounts = Maps.newHashMap();
-    protected final RecipeType<Recipe<Container>> recipeType;
 
-    public BaseFoodMakerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize, RecipeType<? extends Recipe<?>> recipeType)
+    public BaseFoodMakerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize)
     {
         super(type, pos, state);
         this.inventory = NonNullList.withSize(inventorySize, ItemStack.EMPTY);
-        this.recipeType = (RecipeType<Recipe<Container>>) recipeType;
     }
 
     @Override

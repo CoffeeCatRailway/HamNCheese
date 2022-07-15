@@ -48,14 +48,6 @@ configurations {
 }
 
 repositories {
-    maven { // JustEnoughItems
-        name = "Progwml6 (Just Enough Items)"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-//    maven { // JustEnoughItems fallback
-//        name = "JustEnoughItems fallback"
-//        url = "https://modmaven.k-4u.nl"
-//    }
 }
 
 dependencies {
@@ -63,8 +55,8 @@ dependencies {
 
     modApi "gg.moonflower:pollen-forge:${rootProject.pollenVersion}"
 
-    //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.reiVersion}"
-    modImplementation("mezz.jei:jei-${rootProject.jeiVersion}") { transitive = false }
+    modCompileOnlyApi "mezz.jei:jei-${rootProject.minecraftVersion}-forge-api:${rootProject.jeiVersion}"
+    modRuntimeOnly "mezz.jei:jei-${rootProject.minecraftVersion}-forge:${rootProject.jeiVersion}"
 
     modCompileOnly "mcp.mobius.waila:wthit-api:forge-${rootProject.wthitVersion}"
     modRuntimeOnly "mcp.mobius.waila:wthit:forge-${rootProject.wthitVersion}"

@@ -5,7 +5,7 @@ dependencies {
 
     modApi "gg.moonflower:pollen:${rootProject.pollenVersion}"
 
-//    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.reiVersion}"
+    modCompileOnlyApi "mezz.jei:jei-${rootProject.minecraftVersion}-common-api:${rootProject.jeiVersion}"
     modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${rootProject.wthitVersion}"
 }
 

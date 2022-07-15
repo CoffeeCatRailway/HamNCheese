@@ -40,6 +40,14 @@ allprojects {
         maven { url "https://repo.moonflower.gg/releases" }
         maven { url "https://maven.parchmentmc.org" }
         maven { url "https://maven.shedaniel.me/" }
+        maven { // JustEnoughItems
+            name = "Progwml6 maven"
+            url = "https://dvs1.progwml6.com/files/maven/"
+        }
+        maven { // JustEnoughItems fallback
+            name = "ModMaven"
+            url = "https://modmaven.dev"
+        }
         maven {
             url "https://www.cursemaven.com"
             content {

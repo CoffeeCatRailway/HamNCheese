@@ -16,6 +16,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -61,10 +62,12 @@ public abstract class FoodCookerBlockEntity<T extends FoodCookerBlockEntity<?>> 
             return 4;
         }
     };
+    protected final RecipeType<Recipe<Container>> recipeType;
 
     public FoodCookerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize, RecipeType<? extends Recipe<?>> recipeType)
     {
-        super(type, pos, state, inventorySize, recipeType);
+        super(type, pos, state, inventorySize);
+        this.recipeType = (RecipeType<Recipe<Container>>) recipeType;
     }
 
     protected abstract int[] getTableSlots();
@@ -82,15 +85,12 @@ public abstract class FoodCookerBlockEntity<T extends FoodCookerBlockEntity<?>> 
     @Override
     public int[] getSlotsForFace(Direction direction)
     {
-        switch (direction)
-        {
-            case DOWN:
-                return this.getOutputSlots();
-            case UP:
-                return this.getTableSlots();
-            default:
-                return this.getFuelSlots();
-        }
+        return switch (direction)
+                {
+                    case DOWN -> this.getOutputSlots();
+                    case UP -> this.getTableSlots();
+                    default -> this.getFuelSlots();
+                };
     }
 
     @Override
@@ -190,7 +190,7 @@ public abstract class FoodCookerBlockEntity<T extends FoodCookerBlockEntity<?>> 
     }
 
     @Override
-    public void load(CompoundTag compoundTag)
+    public void load(@NotNull CompoundTag compoundTag)
     {
         super.load(compoundTag);
         this.burnTime = compoundTag.getInt("BurnTime");

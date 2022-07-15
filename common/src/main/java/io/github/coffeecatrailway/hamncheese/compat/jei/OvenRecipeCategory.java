@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.hamncheese.compat.forge.jei;
+package io.github.coffeecatrailway.hamncheese.compat.jei;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
@@ -35,9 +35,9 @@ public class OvenRecipeCategory implements IRecipeCategory<PizzaOvenRecipe>
 
     public OvenRecipeCategory(IGuiHelper guiHelper)
     {
-        this.background = guiHelper.createDrawable(CompatCommon.JEI_REI_SHEET, 2, 131, 130, 58);
-        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(HNCBlocks.PIZZA_OVEN.get()));
-        this.arrow = guiHelper.drawableBuilder(CompatCommon.JEI_REI_SHEET, 200, 0, 24, 17)
+        this.background = guiHelper.createDrawable(CompatCommon.JEI_SHEET, 2, 131, 130, 58);
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(HNCBlocks.PIZZA_OVEN.get()));
+        this.arrow = guiHelper.drawableBuilder(CompatCommon.JEI_SHEET, 200, 0, 24, 17)
                 .buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
@@ -45,14 +45,14 @@ public class OvenRecipeCategory implements IRecipeCategory<PizzaOvenRecipe>
     @SuppressWarnings("removal")
     public ResourceLocation getUid()
     {
-        return HNCJEIPlugin.OVEN.getUid();
+        return HNCJeiPlugin.OVEN.getUid();
     }
 
     @Override
     @SuppressWarnings("removal")
     public Class<? extends PizzaOvenRecipe> getRecipeClass()
     {
-        return HNCJEIPlugin.OVEN.getRecipeClass();
+        return HNCJeiPlugin.OVEN.getRecipeClass();
     }
 
     @Override
@@ -88,14 +88,14 @@ public class OvenRecipeCategory implements IRecipeCategory<PizzaOvenRecipe>
                 index = j * 3 + i;
                 if (index + 1 > copy.size())
                     break;
-                builder.addSlot(RecipeIngredientRole.INPUT, 3 + j * 18, 3 + i * 18).addIngredient(VanillaTypes.ITEM, copy.get(index));
+                builder.addSlot(RecipeIngredientRole.INPUT, 3 + j * 18, 3 + i * 18).addIngredient(VanillaTypes.ITEM_STACK, copy.get(index));
             }
         }
 
         ItemStack pizza = new ItemStack(HNCItems.PIZZA.get());
         selected.forEach(stack -> AbstractSandwichItem.addIngredient(pizza, stack));
         pizza.getOrCreateTag().putBoolean(AbstractSandwichItem.TAG_TOASTED, true);
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 107, 21).addIngredient(VanillaTypes.ITEM, pizza);
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 107, 21).addIngredient(VanillaTypes.ITEM_STACK, pizza);
     }
 
     @Override

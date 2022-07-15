@@ -65,9 +65,8 @@ dependencies {
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabricApiVersion}"
     modApi "gg.moonflower:pollen-fabric:${rootProject.pollenVersion}"
 
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rootProject.reiVersion}"
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${rootProject.reiVersion}"
-    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.reiVersion}"
+    modCompileOnlyApi "mezz.jei:jei-${rootProject.minecraftVersion}-fabric-api:${rootProject.jeiVersion}"
+    modRuntimeOnly "mezz.jei:jei-${rootProject.minecraftVersion}-fabric:${rootProject.jeiVersion}"
 
     modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modMenuVersion}"
 
