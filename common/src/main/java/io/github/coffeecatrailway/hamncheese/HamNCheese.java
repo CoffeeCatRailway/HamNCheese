@@ -33,8 +33,6 @@ import io.github.coffeecatrailway.hamncheese.common.material.HNCFluidBehavior;
 import io.github.coffeecatrailway.hamncheese.data.gen.*;
 import io.github.coffeecatrailway.hamncheese.mixins.MobAccessor;
 import io.github.coffeecatrailway.hamncheese.registry.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockTintCache;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -79,16 +77,11 @@ public class HamNCheese
 
     public static final CreativeModeTab TAB = CreativeModeTabBuilder.builder(getLocation("tab")).setIcon(() -> new ItemStack(HNCBlocks.BLOCK_OF_CHEESE.get())).build();
 
-    @Environment(EnvType.CLIENT)
     public static final ResourceLocation EMPTY_SLOT_BAG = getLocation("item/empty_bag_slot");
-    @Environment(EnvType.CLIENT)
     public static final ResourceLocation EMPTY_SLOT_KERNELS = getLocation("item/empty_kernels_slot");
-    @Environment(EnvType.CLIENT)
     public static final ResourceLocation EMPTY_SLOT_SEASONING = getLocation("item/empty_seasoning_slot");
-    @Environment(EnvType.CLIENT)
     public static final ResourceLocation EMPTY_SLOT_FLAVOUR = getLocation("item/empty_flavour_slot");
 
-    @Environment(EnvType.CLIENT)
     private static BlockTintCache MAPLE_TINT_CACHE;
 
     public static void onClientInit()
