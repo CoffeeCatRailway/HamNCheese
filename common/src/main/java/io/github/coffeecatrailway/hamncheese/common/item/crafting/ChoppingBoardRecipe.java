@@ -90,6 +90,12 @@ public class ChoppingBoardRecipe implements Recipe<ChoppingBoardBlockEntity>
         return HNCRecipes.CHOPPING_BOARD_TYPE.get();
     }
 
+    @Override
+    public boolean isSpecial()
+    {
+        return true;
+    }
+
     public static class Serializer implements RecipeSerializer<ChoppingBoardRecipe>
     {
         @Override

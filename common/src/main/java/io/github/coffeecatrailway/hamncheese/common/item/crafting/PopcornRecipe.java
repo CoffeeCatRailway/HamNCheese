@@ -100,6 +100,12 @@ public class PopcornRecipe implements Recipe<PopcornMachineBlockEntity>
         return HNCRecipes.POPCORN_TYPE.get();
     }
 
+    @Override
+    public boolean isSpecial()
+    {
+        return true;
+    }
+
     public static class Serializer implements RecipeSerializer<PopcornRecipe>
     {
         @Override
