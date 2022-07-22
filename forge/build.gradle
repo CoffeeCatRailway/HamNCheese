@@ -53,7 +53,7 @@ repositories {
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.minecraftVersion}-${rootProject.forgeVersion}"
 
-    modApi "gg.moonflower:pollen-forge:${rootProject.pollenVersion}"
+    modApi "gg.moonflower:pollen-forge:${rootProject.pollenVersion}+${rootProject.minecraftVersion}"
 
     modCompileOnlyApi "mezz.jei:jei-${rootProject.minecraftVersion}-forge-api:${rootProject.jeiVersion}"
     modRuntimeOnly "mezz.jei:jei-${rootProject.minecraftVersion}-forge:${rootProject.jeiVersion}"
