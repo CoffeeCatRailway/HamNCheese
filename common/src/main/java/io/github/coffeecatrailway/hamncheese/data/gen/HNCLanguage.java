@@ -63,6 +63,8 @@ public class HNCLanguage extends PollinatedLanguageProvider
         this.add("container." + HamNCheese.MOD_ID + ".popcorn_machine.popcorn", "Popcorn: %s/" + PopcornMachineBlockEntity.MAX_POPCORN);
 
         this.add("fluid." + HamNCheese.MOD_ID + ".maple_sap", "Maple Sap");
+        this.add("fluid." + HamNCheese.MOD_ID + ".milk", "Milk");
+        this.add("fluid." + HamNCheese.MOD_ID + ".goat_milk", "Goat Milk");
 
         EXTRA.forEach(this::add);
         ITEMS.forEach(this::addItem);
