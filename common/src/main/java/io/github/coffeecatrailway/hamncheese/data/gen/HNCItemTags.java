@@ -137,14 +137,14 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     private static final TagKey<Item> REDSTONE_DUSTS = TagRegistry.bindItem(new ResourceLocation("forge", "dusts/redstone"));
     public static final TagKey<Item> REDSTONE_DUSTS_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "redstone_dusts"));
 
-    private static final TagKey<Item> KNIVES_WOOD = TagRegistry.bindItem(new ResourceLocation("forge", "knives/wooden"));
-    private static final TagKey<Item> KNIVES_STONE = TagRegistry.bindItem(new ResourceLocation("forge", "knives/stone"));
-    private static final TagKey<Item> KNIVES_COPPER = TagRegistry.bindItem(new ResourceLocation("forge", "knives/copper"));
-    private static final TagKey<Item> KNIVES_GOLD = TagRegistry.bindItem(new ResourceLocation("forge", "knives/golden"));
-    private static final TagKey<Item> KNIVES_IRON = TagRegistry.bindItem(new ResourceLocation("forge", "knives/iron"));
-    private static final TagKey<Item> KNIVES_DIAMOND = TagRegistry.bindItem(new ResourceLocation("forge", "knives/diamond"));
-    private static final TagKey<Item> KNIVES_NETHERITE = TagRegistry.bindItem(new ResourceLocation("forge", "knives/metherite"));
-    private static final TagKey<Item> KNIVES = TagRegistry.bindItem(new ResourceLocation("forge", "knives"));
+    private static final TagKey<Item> KNIVES_WOOD = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/wooden"));
+    private static final TagKey<Item> KNIVES_STONE = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/stone"));
+    private static final TagKey<Item> KNIVES_COPPER = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/copper"));
+    private static final TagKey<Item> KNIVES_GOLD = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/golden"));
+    private static final TagKey<Item> KNIVES_IRON = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/iron"));
+    private static final TagKey<Item> KNIVES_DIAMOND = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/diamond"));
+    private static final TagKey<Item> KNIVES_NETHERITE = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/metherite"));
+    private static final TagKey<Item> KNIVES = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives"));
     public static final TagKey<Item> KNIVES_COMMON = TagRegistry.bindItem(new ResourceLocation("c", "knives"));
 
     private static final TagKey<Item> SHEARS = TagRegistry.bindItem(new ResourceLocation("forge", "shears"));

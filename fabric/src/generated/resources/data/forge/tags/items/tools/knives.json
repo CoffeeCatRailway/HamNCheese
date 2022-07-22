@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:tools/knives/wooden",
+    "#forge:tools/knives/stone",
+    "#forge:tools/knives/copper",
+    "#forge:tools/knives/golden",
+    "#forge:tools/knives/iron",
+    "#forge:tools/knives/diamond",
+    "#forge:tools/knives/metherite"
+  ]
+}
