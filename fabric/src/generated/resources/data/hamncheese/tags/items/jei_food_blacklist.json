@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#forge:bread_slice",
-    "#forge:cracker",
+    "#hamncheese:bread_slice",
+    "#forge:crackers",
     "#forge:pizza",
     "#forge:tomato_sauce",
     "hamncheese:cracker_dummy",

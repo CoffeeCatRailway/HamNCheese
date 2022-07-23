@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:cheese",
+    "#c:cheese",
+    "#hamncheese:cheese_slice"
+  ]
+}

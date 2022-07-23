@@ -4,7 +4,7 @@
     "item": "hamncheese:block_of_swiss_cheese"
   },
   "tool": {
-    "tag": "c:knives"
+    "tag": "hamncheese:knives"
   },
   "result": {
     "item": "hamncheese:swiss_cheese_slice",

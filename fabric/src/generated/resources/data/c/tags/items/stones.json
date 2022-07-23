@@ -1,7 +1,12 @@
 {
   "replace": false,
   "values": [
-    "#forge:stone",
-    "#c:cobblestone"
+    "minecraft:stone",
+    "minecraft:diorite",
+    "minecraft:granite",
+    "minecraft:andesite",
+    "minecraft:infested_stone",
+    "minecraft:deepslate",
+    "minecraft:blackstone"
   ]
 }

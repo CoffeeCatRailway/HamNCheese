@@ -7,10 +7,10 @@
   ],
   "key": {
     "i": {
-      "tag": "c:iron_ingots"
+      "tag": "hamncheese:iron_ingots"
     },
     "r": {
-      "tag": "c:redstone_dusts"
+      "tag": "hamncheese:redstone_dusts"
     },
     "s": {
       "item": "minecraft:smoker"

@@ -4,7 +4,7 @@
     "item": "hamncheese:pineapple_ring"
   },
   "tool": {
-    "tag": "c:knives"
+    "tag": "hamncheese:knives"
   },
   "result": {
     "item": "hamncheese:pineapple_bit",

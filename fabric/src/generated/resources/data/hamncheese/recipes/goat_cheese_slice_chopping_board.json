@@ -4,7 +4,7 @@
     "item": "hamncheese:block_of_goat_cheese"
   },
   "tool": {
-    "tag": "c:knives"
+    "tag": "hamncheese:knives"
   },
   "result": {
     "item": "hamncheese:goat_cheese_slice",

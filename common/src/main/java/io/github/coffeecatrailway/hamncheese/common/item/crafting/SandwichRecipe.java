@@ -16,7 +16,7 @@ public class SandwichRecipe extends AbstractSandwichRecipe
 {
     public SandwichRecipe(ResourceLocation id)
     {
-        super(id, HNCItemTags.BREAD_SLICE, HNCItems.SANDWICH);
+        super(id, HNCItemTags.BREAD_SLICE_COMMON, HNCItems.SANDWICH);
     }
 
     @Override

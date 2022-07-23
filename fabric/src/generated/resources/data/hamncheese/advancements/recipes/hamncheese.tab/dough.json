@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:grain"
+            "tag": "hamncheese:grain"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:sugar"
+            "tag": "hamncheese:sugar"
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:salt"
+            "tag": "hamncheese:salt"
           }
         ]
       }
@@ -41,7 +41,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:flour"
+            "tag": "hamncheese:flour"
           }
         ]
       }

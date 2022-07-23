@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:bacon"
+    "hamncheese:bacon",
+    "hamncheese:cooked_bacon"
   ]
 }

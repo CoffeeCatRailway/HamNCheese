@@ -36,6 +36,6 @@ public class HNCFluidTags extends PollinatedFluidTagsProvider
         this.tag(MILK).add(HNCFluids.MILK.get(), HNCFluids.MILK_FLOWING.get());
         this.tag(GOAT_MILK).add(HNCFluids.GOAT_MILK.get(), HNCFluids.GOAT_MILK_FLOWING.get());
         this.tag(MILK_FORGE).addTag(MILK, GOAT_MILK);
-        this.tag(MILK_COMMON).addTag(MILK_FORGE);
+        this.tag(MILK_COMMON).addTag(MILK, GOAT_MILK);
     }
 }

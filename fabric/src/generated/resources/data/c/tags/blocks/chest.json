@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:chests"
+    "minecraft:chest",
+    "minecraft:trapped_chest"
   ]
 }

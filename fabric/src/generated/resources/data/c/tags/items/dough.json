@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#forge:dough"
+    "hamncheese:dough",
+    "hamncheese:unbaked_pizza_base",
+    "hamncheese:unbaked_croissant"
   ]
 }

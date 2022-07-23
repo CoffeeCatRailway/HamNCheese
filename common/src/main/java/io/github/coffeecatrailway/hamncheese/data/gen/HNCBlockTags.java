@@ -19,13 +19,14 @@ import net.minecraft.world.level.block.Blocks;
 public class HNCBlockTags extends PollinatedBlockTagsProvider
 {
     private static final TagKey<Block> BARRELS_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "barrels"));
-    private static final TagKey<Block> BARRELS_COMMON = TagRegistry.bindBlock(new ResourceLocation("c", "barrel"));
+    private static final TagKey<Block> BARRELS_FABRIC = TagRegistry.bindBlock(new ResourceLocation("c", "barrel"));
     private static final TagKey<Block> CHESTS_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "chests"));
-    private static final TagKey<Block> CHESTS_COMMON = TagRegistry.bindBlock(new ResourceLocation("c", "chest"));
-    private static final TagKey<Block> SHULKERS_COMMON = TagRegistry.bindBlock(new ResourceLocation("c", "shulker_box"));
+    private static final TagKey<Block> CHESTS_FABRIC = TagRegistry.bindBlock(new ResourceLocation("c", "chest"));
+    private static final TagKey<Block> SHULKERS_BOXES_VANILLA = TagRegistry.bindBlock(new ResourceLocation("shulker_boxs"));
+    private static final TagKey<Block> SHULKERS_BOXES_FABRIC = TagRegistry.bindBlock(new ResourceLocation("c", "shulker_box"));
     public static final TagKey<Block> MOUSE_SEARCHABLE = TagRegistry.bindBlock(HamNCheese.getLocation("mouse_searchable"));
 
-    public static final TagKey<Block> MINEABLE_WITH_KNIFE = TagRegistry.bindBlock(HamNCheese.getLocation("mineable_with_knife"));
+    public static final TagKey<Block> MINEABLE_WITH_KNIFE = TagRegistry.bindBlock(HamNCheese.getLocation("mineable/knife"));
 
     private static final TagKey<Block> ENDER_STORAGE_FORGE = TagRegistry.bindBlock(new ResourceLocation("forge", "chests/ender"));
     public static final TagKey<Block> ENDER_STORAGE = TagRegistry.bindBlock(new ResourceLocation("c", "ender_storage"));
@@ -33,6 +34,8 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
     public static final TagKey<Block> CHOPPING_BOARDS = TagRegistry.bindBlock(HamNCheese.getLocation("chopping_boards"));
 
     // Vanilla
+//    public static final TagKey<Block> MINEABLE_WITH_PICKAXE = TagRegistry.bindBlock(HamNCheese.getLocation("mineable/pickaxe"));
+
     public static final TagKey<Block> PLANKS = TagRegistry.bindBlock(new ResourceLocation("planks"));
     public static final TagKey<Block> WOODEN_BUTTONS = TagRegistry.bindBlock(new ResourceLocation("wooden_buttons"));
     public static final TagKey<Block> WOODEN_DOORS = TagRegistry.bindBlock(new ResourceLocation("wooden_doors"));
@@ -59,11 +62,12 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
     protected void addTags()
     {
         this.tag(BARRELS_FORGE).add(Blocks.BARREL);
-        this.tag(BARRELS_COMMON).addTag(BARRELS_FORGE);
+        this.tag(BARRELS_FABRIC).add(Blocks.BARREL);
         this.tag(CHESTS_FORGE).add(Blocks.CHEST, Blocks.TRAPPED_CHEST);
-        this.tag(CHESTS_COMMON).addTag(CHESTS_FORGE);
-        this.tag(SHULKERS_COMMON);//.addTag(BlockTags.SHULKER_BOXES);
-        this.tag(MOUSE_SEARCHABLE).addTag(BARRELS_COMMON, CHESTS_COMMON, SHULKERS_COMMON).add(Blocks.DISPENSER, Blocks.DROPPER, Blocks.HOPPER);
+        this.tag(CHESTS_FABRIC).add(Blocks.CHEST, Blocks.TRAPPED_CHEST);
+        this.tag(SHULKERS_BOXES_VANILLA).add(Blocks.SHULKER_BOX, Blocks.BLACK_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.WHITE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX);
+        this.tag(SHULKERS_BOXES_FABRIC).addTag(SHULKERS_BOXES_VANILLA);
+        this.tag(MOUSE_SEARCHABLE).addTag(BARRELS_FORGE, BARRELS_FABRIC, CHESTS_FORGE, CHESTS_FABRIC, SHULKERS_BOXES_FABRIC).add(Blocks.DISPENSER, Blocks.DROPPER, Blocks.HOPPER);
 
         this.tag(MINEABLE_WITH_KNIFE).add(HNCBlocks.BLOCK_OF_CHEESE.get(), HNCBlocks.BLOCK_OF_BLUE_CHEESE.get(), HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get(), HNCBlocks.BLOCK_OF_SWISS_CHEESE.get(), HNCBlocks.BLOCK_OF_GOAT_CHEESE.get());
 
@@ -74,6 +78,9 @@ public class HNCBlockTags extends PollinatedBlockTagsProvider
 
         // Vanilla
         this.tag(BlockTags.CROPS).add(HNCBlocks.PINEAPPLE_PLANT.get(), HNCBlocks.TOMATO_PLANT.get(), HNCBlocks.CORN_PLANT.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_AXE).addTag(CHOPPING_BOARDS);
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(HNCBlocks.GRILL.get(), HNCBlocks.PIZZA_OVEN.get(), HNCBlocks.POPCORN_MACHINE.get(), HNCBlocks.TREE_TAP.get());
 
         this.tag(PLANKS).add(HNCBlocks.MAPLE_PLANKS.get());
         this.tag(WOODEN_BUTTONS).add(HNCBlocks.MAPLE_BUTTON.get());

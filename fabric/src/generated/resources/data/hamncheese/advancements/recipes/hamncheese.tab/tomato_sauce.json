@@ -35,7 +35,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:vegetables/tomato"
+            "tag": "hamncheese:vegetables/tomato"
           }
         ]
       }

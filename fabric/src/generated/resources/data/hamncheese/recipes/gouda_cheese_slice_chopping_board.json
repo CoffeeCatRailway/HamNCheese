@@ -4,7 +4,7 @@
     "item": "hamncheese:block_of_gouda_cheese"
   },
   "tool": {
-    "tag": "c:knives"
+    "tag": "hamncheese:knives"
   },
   "result": {
     "item": "hamncheese:gouda_cheese_slice",

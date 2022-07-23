@@ -4,7 +4,7 @@
     "item": "hamncheese:cooked_ham_slice"
   },
   "tool": {
-    "tag": "c:knives"
+    "tag": "hamncheese:knives"
   },
   "result": {
     "item": "hamncheese:cooked_bacon",

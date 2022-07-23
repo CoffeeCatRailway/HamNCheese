@@ -5,6 +5,8 @@
     "minecraft:diorite",
     "minecraft:granite",
     "minecraft:andesite",
-    "minecraft:infested_stone"
+    "minecraft:infested_stone",
+    "minecraft:deepslate",
+    "minecraft:blackstone"
   ]
 }

@@ -4,7 +4,7 @@
     "item": "minecraft:porkchop"
   },
   "tool": {
-    "tag": "c:knives"
+    "tag": "hamncheese:knives"
   },
   "result": {
     "item": "hamncheese:ham_slice",

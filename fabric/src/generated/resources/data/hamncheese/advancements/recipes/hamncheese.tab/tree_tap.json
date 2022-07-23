@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:iron_ingots"
+            "tag": "hamncheese:iron_ingots"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:iron_nuggets"
+            "tag": "hamncheese:iron_nuggets"
           }
         ]
       }

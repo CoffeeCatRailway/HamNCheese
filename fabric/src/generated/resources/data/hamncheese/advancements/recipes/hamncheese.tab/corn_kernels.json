@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:knives"
+            "tag": "hamncheese:knives"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:corn"
+            "tag": "hamncheese:corn"
           }
         ]
       }

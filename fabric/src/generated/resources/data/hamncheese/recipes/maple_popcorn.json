@@ -5,7 +5,7 @@
     "item": "hamncheese:maple_syrup"
   },
   "seasoning": {
-    "tag": "c:salt"
+    "tag": "hamncheese:salt"
   },
   "result": {
     "item": "hamncheese:maple_popcorn"

@@ -2,16 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "c:grain"
+      "tag": "hamncheese:grain"
     },
     {
-      "tag": "c:sugar"
+      "tag": "hamncheese:sugar"
     },
     {
-      "tag": "c:salt"
+      "tag": "hamncheese:salt"
     },
     {
-      "tag": "c:flour"
+      "tag": "hamncheese:flour"
     }
   ],
   "result": {

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:sugar"
+            "tag": "hamncheese:sugar"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:salt"
+            "tag": "hamncheese:salt"
           }
         ]
       }

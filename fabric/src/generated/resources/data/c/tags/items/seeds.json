@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:seeds"
+    "hamncheese:pineapple_plant",
+    "hamncheese:tomato_seeds"
   ]
 }

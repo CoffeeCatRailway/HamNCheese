@@ -7,10 +7,10 @@
   ],
   "key": {
     "i": {
-      "tag": "c:iron_ingots"
+      "tag": "hamncheese:iron_ingots"
     },
     "n": {
-      "tag": "c:iron_nuggets"
+      "tag": "hamncheese:iron_nuggets"
     }
   },
   "result": {

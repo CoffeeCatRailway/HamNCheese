@@ -4,7 +4,7 @@
     "item": "minecraft:bread"
   },
   "tool": {
-    "tag": "c:knives"
+    "tag": "hamncheese:knives"
   },
   "result": {
     "item": "hamncheese:bread_slice",

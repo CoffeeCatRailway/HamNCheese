@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "#forge:cheese_slice"
+    "hamncheese:cheese_slice",
+    "hamncheese:blue_cheese_slice",
+    "hamncheese:gouda_cheese_slice",
+    "hamncheese:swiss_cheese_slice",
+    "hamncheese:goat_cheese_slice"
   ]
 }

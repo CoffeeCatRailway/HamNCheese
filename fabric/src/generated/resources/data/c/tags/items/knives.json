@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
-    "#forge:tools/knives"
+    "hamncheese:wooden_knife",
+    "hamncheese:stone_knife",
+    "hamncheese:copper_knife",
+    "hamncheese:golden_knife",
+    "hamncheese:iron_knife",
+    "hamncheese:diamond_knife",
+    "hamncheese:netherite_knife"
   ]
 }

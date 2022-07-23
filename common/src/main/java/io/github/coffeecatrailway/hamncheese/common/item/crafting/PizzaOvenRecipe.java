@@ -33,7 +33,7 @@ public class PizzaOvenRecipe implements Recipe<Container>, CustomSandwichRecipe<
     @Override
     public TagKey<Item> getBunTag()
     {
-        return HNCItemTags.PIZZAS_COMMON;
+        return HNCItemTags.PIZZA_COMMON;
     }
 
     @Override

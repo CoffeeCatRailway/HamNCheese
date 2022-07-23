@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:wood_sticks"
+            "tag": "hamncheese:wooden_sticks"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:stone_gears"
+            "tag": "hamncheese:stone_gears"
           }
         ]
       }

@@ -4,7 +4,7 @@
     "item": "hamncheese:corn_cob"
   },
   "tool": {
-    "tag": "c:knives"
+    "tag": "hamncheese:knives"
   },
   "result": {
     "item": "hamncheese:corn_kernels",

@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#forge:crops"
+    "#hamncheese:fruits/pineapples",
+    "#hamncheese:vegetables/tomato",
+    "#c:corn"
   ]
 }

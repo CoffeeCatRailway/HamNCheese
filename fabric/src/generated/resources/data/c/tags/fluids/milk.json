@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:milk"
+    "#hamncheese:milk",
+    "#hamncheese:goat_milk"
   ]
 }

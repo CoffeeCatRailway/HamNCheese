@@ -1,7 +1,9 @@
 {
   "replace": false,
   "values": [
+    "#forge:barrels",
     "#c:barrel",
+    "#forge:chests",
     "#c:chest",
     "#c:shulker_box",
     "minecraft:dispenser",

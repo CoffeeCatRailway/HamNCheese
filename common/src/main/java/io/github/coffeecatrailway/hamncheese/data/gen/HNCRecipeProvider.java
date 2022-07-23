@@ -37,49 +37,49 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         /*
          * Crafting Ingredients
          */
-        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_GEAR.get(), 4).define('s', HNCItemTags.WOOD_STICKS).define('p', ItemTags.PLANKS)
-                .pattern(" s ").pattern("sps").pattern(" s ").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_GEAR.get(), 4).define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('p', ItemTags.PLANKS)
+                .pattern(" s ").pattern("sps").pattern(" s ").unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON))
                 .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.STONE_GEAR.get(), 4).define('s', HNCItemTags.WOOD_STICKS).define('p', HNCItemTags.STONE_COMMON)
-                .pattern(" s ").pattern("sps").pattern(" s ").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_GEAR.get(), 4).define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('p', HNCItemTags.STONE_COMMON)
+                .pattern(" s ").pattern("sps").pattern(" s ").unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON))
                 .unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON)).save(consumer);
 
         /*
          * Tools
          */
-        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_WOODEN_COMMON)
-                .pattern("s").pattern("s").pattern("g").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_CURDLER.get()).define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('g', HNCItemTags.GEARS_WOODEN_COMMON)
+                .pattern("s").pattern("s").pattern("g").unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON))
                 .unlockedBy("has_gears", has(HNCItemTags.GEARS_WOODEN_COMMON)).save(consumer, HamNCheese.getLocation("wooden_curdler_alternate"));
-        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_WOODEN_COMMON)
-                .pattern("g").pattern("s").pattern("s").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_CURDLER.get()).define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('g', HNCItemTags.GEARS_WOODEN_COMMON)
+                .pattern("g").pattern("s").pattern("s").unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON))
                 .unlockedBy("has_gears", has(HNCItemTags.GEARS_WOODEN_COMMON)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.STONE_CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_STONE_COMMON)
-                .pattern("s").pattern("s").pattern("g").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_CURDLER.get()).define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('g', HNCItemTags.GEARS_STONE_COMMON)
+                .pattern("s").pattern("s").pattern("g").unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON))
                 .unlockedBy("has_gears", has(HNCItemTags.GEARS_STONE_COMMON)).save(consumer, HamNCheese.getLocation("stone_curdler_alternate"));
-        ShapedRecipeBuilder.shaped(HNCItems.STONE_CURDLER.get()).define('s', HNCItemTags.WOOD_STICKS).define('g', HNCItemTags.GEARS_STONE_COMMON)
-                .pattern("g").pattern("s").pattern("s").unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS))
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_CURDLER.get()).define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('g', HNCItemTags.GEARS_STONE_COMMON)
+                .pattern("g").pattern("s").pattern("s").unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON))
                 .unlockedBy("has_gears", has(HNCItemTags.GEARS_STONE_COMMON)).save(consumer);
 
-        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_ROLLING_PIN.get()).define('s', HNCItemTags.WOOD_STICKS).define('p', ItemTags.PLANKS).pattern("sps")
-                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.STONE_ROLLING_PIN.get()).define('s', HNCItemTags.WOOD_STICKS).define('p', HNCItemTags.STONE_COMMON).pattern("sps")
-                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_ROLLING_PIN.get()).define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('p', ItemTags.PLANKS).pattern("sps")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_ROLLING_PIN.get()).define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('p', HNCItemTags.STONE_COMMON).pattern("sps")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON)).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.GRIND_STONES.get(), 2)
                 .requires(HNCItemTags.STONE_COMMON).unlockedBy("has_cobble", has(HNCItemTags.STONE_COMMON)).save(consumer);
 
-        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', ItemTags.PLANKS).pattern(" i ").pattern("s  ")
-                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.STONE_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.STONE_COMMON).pattern(" i ").pattern("s  ")
-                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.COPPER_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.COPPER_INGOTS_COMMON).pattern(" i ").pattern("s  ")
-                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_copper", has(HNCItemTags.COPPER_INGOTS_COMMON)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.GOLDEN_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.GOLD_INGOTS_COMMON).pattern(" i ").pattern("s  ")
-                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_gold", has(HNCItemTags.GOLD_INGOTS_COMMON)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.IRON_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.IRON_INGOTS_COMMON).pattern(" i ").pattern("s  ")
-                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).save(consumer);
-        ShapedRecipeBuilder.shaped(HNCItems.DIAMOND_KNIFE.get()).group("knife").define('s', HNCItemTags.WOOD_STICKS).define('i', HNCItemTags.DIAMONDS_COMMON).pattern(" i ").pattern("s  ")
-                .unlockedBy("has_sticks", has(HNCItemTags.WOOD_STICKS)).unlockedBy("has_diamond", has(HNCItemTags.DIAMONDS_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.WOODEN_KNIFE.get()).group("knife").define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('i', ItemTags.PLANKS).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.STONE_KNIFE.get()).group("knife").define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('i', HNCItemTags.STONE_COMMON).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_stone", has(HNCItemTags.STONE_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.COPPER_KNIFE.get()).group("knife").define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('i', HNCItemTags.COPPER_INGOTS_COMMON).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_copper", has(HNCItemTags.COPPER_INGOTS_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.GOLDEN_KNIFE.get()).group("knife").define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('i', HNCItemTags.GOLD_INGOTS_COMMON).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_gold", has(HNCItemTags.GOLD_INGOTS_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.IRON_KNIFE.get()).group("knife").define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('i', HNCItemTags.IRON_INGOTS_COMMON).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).save(consumer);
+        ShapedRecipeBuilder.shaped(HNCItems.DIAMOND_KNIFE.get()).group("knife").define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('i', HNCItemTags.DIAMONDS_COMMON).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_diamond", has(HNCItemTags.DIAMONDS_COMMON)).save(consumer);
         netheriteSmithing(consumer, HNCItems.DIAMOND_KNIFE.get(), HNCItems.NETHERITE_KNIFE.get());
 
         /*
@@ -159,18 +159,18 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 50, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HamNCheese.getLocation("cooked_bacon_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BACON.get()), HNCItems.COOKED_BACON.get(), .2f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bacon", has(HNCItems.BACON.get())).save(consumer, HamNCheese.getLocation("cooked_bacon_campfire"));
 
-        ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_RING.get(), 4).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItemTags.PINEAPPLE_COMMON).unlockedBy("has_pineapple", has(HNCItemTags.PINEAPPLE_COMMON))
+        ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_RING.get(), 4).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.PINEAPPLE.get()).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
         ShapelessRecipeBuilder.shapeless(HNCItems.PINEAPPLE_BIT.get(), 3).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.PINEAPPLE_RING.get()).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE_RING.get()))
                 .unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
-        ChoppingBoardRecipeBuilder.recipe(HNCItems.PINEAPPLE_RING.get(), 5, Ingredient.of(HNCItemTags.PINEAPPLE_COMMON)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_pineapple", has(HNCItemTags.PINEAPPLE_COMMON)).save(consumer, HamNCheese.getLocation("pineapple_ring_chopping_board"));
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.PINEAPPLE_RING.get(), 5, Ingredient.of(HNCItems.PINEAPPLE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE.get())).save(consumer, HamNCheese.getLocation("pineapple_ring_chopping_board"));
         ChoppingBoardRecipeBuilder.recipe(HNCItems.PINEAPPLE_BIT.get(), 4, Ingredient.of(HNCItems.PINEAPPLE_RING.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_pineapple", has(HNCItems.PINEAPPLE_RING.get())).save(consumer, HamNCheese.getLocation("pineapple_bit_chopping_board"));
 
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SAUCE.get()).requires(Items.BOWL).requires(Items.PUMPKIN_SEEDS).requires(HNCItemTags.TOMATO_COMMON).unlockedBy("has_bowl", has(Items.BOWL))
                 .unlockedBy("has_pumpkin_seeds", has(Items.PUMPKIN_SEEDS)).unlockedBy("has_tomato", has(HNCItemTags.TOMATO_COMMON)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItemTags.TOMATO_COMMON).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
-                .unlockedBy("has_tomato", has(HNCItemTags.TOMATO_COMMON)).save(consumer);
-        ChoppingBoardRecipeBuilder.recipe(HNCItems.TOMATO_SLICE.get(), 5, Ingredient.of(HNCItemTags.TOMATO_COMMON)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_tomato", has(HNCItemTags.TOMATO_COMMON)).save(consumer, HamNCheese.getLocation("tomato_slice_chopping_board"));
+        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
+                .unlockedBy("has_tomato", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.TOMATO_SLICE.get(), 5, Ingredient.of(HNCItems.TOMATO_SLICE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_tomato", has(HNCItems.TOMATO_SLICE.get())).save(consumer, HamNCheese.getLocation("tomato_slice_chopping_board"));
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SEEDS.get(), 4).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_tomato_slice", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.CORN_KERNELS.get(), 8).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.CORN_COB.get()).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
@@ -187,8 +187,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
                 .pattern(" t ").pattern("tct").pattern("bbb").unlockedBy("has_bricks", has(Items.BRICK)).unlockedBy("has_terracotta", has(Blocks.WHITE_TERRACOTTA))
                 .unlockedBy("has_campfire", has(HNCItemTags.CAMPFIRES)).save(consumer);
 
-        ShapedRecipeBuilder.shaped(HNCBlocks.GRILL.get()).define('i', HNCItemTags.IRON_INGOTS_COMMON).define('r', HNCItemTags.REDSTONE_DUSTS_COMMON).define('s', Blocks.SMOKER).define('b', Blocks.IRON_BARS)
-                .pattern("i i").pattern("rsi").pattern("b b").unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).unlockedBy("has_redstone", has(HNCItemTags.REDSTONE_DUSTS_COMMON))
+        ShapedRecipeBuilder.shaped(HNCBlocks.GRILL.get()).define('i', HNCItemTags.IRON_INGOTS_COMMON).define('r', HNCItemTags.REDSTONE_COMMON).define('s', Blocks.SMOKER).define('b', Blocks.IRON_BARS)
+                .pattern("i i").pattern("rsi").pattern("b b").unlockedBy("has_iron", has(HNCItemTags.IRON_INGOTS_COMMON)).unlockedBy("has_redstone", has(HNCItemTags.REDSTONE_COMMON))
                 .unlockedBy("has_smoker", has(Blocks.SMOKER)).unlockedBy("has_bars", has(Blocks.IRON_BARS)).save(consumer);
 
         ShapedRecipeBuilder.shaped(HNCBlocks.POPCORN_MACHINE.get()).define('i', HNCItemTags.IRON_INGOTS_COMMON).define('r', Blocks.RED_CONCRETE).define('w', Blocks.WHITE_CONCRETE).define('b', Items.BUCKET).define('g', Blocks.GLASS_PANE)

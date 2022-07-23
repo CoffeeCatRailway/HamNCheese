@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "hamncheese:tomato"
+    "#forge:crackers",
+    "#c:cracker"
   ]
 }

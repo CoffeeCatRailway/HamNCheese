@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#c:cheese_slice",
     "hamncheese:swiss_cheese_bits",
     "hamncheese:block_of_cheese",
     "hamncheese:block_of_blue_cheese",

@@ -16,7 +16,7 @@ public class PizzaRecipe extends AbstractSandwichRecipe
 {
     public PizzaRecipe(ResourceLocation id)
     {
-        super(id, HNCItemTags.PIZZAS_COMMON, HNCItems.PIZZA);
+        super(id, HNCItemTags.PIZZA_COMMON, HNCItems.PIZZA);
     }
 
     @Override

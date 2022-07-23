@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#forge:ham"
+    "hamncheese:ham_slice",
+    "hamncheese:cooked_ham_slice",
+    "hamncheese:green_ham_slice"
   ]
 }
