@@ -1,5 +1,5 @@
 {
-    "parent": "hamncheese:block/block_of_cheese_slice1_template",
+    "parent": "hamncheese:block/block_of_cheese_slice3_template",
 	"textures": {
 		"bottom": "hamncheese:block/gouda_cheese_block_bottom",
 		"top": "hamncheese:block/gouda_cheese_block_top",
