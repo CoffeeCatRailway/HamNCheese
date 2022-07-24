@@ -76,9 +76,9 @@ public class HNCFoods
     public static final FoodProperties MAPLE_SYRUP = combine(1f, false, MAPLE_SAP_BOTTLE, INGREDIENT).build();
     public static final FoodProperties MAPLE_POPCORN = times(combine(1f, false, MAPLE_SYRUP, INGREDIENT).build(), 1f, .5f).build();
 
-    public static final FoodProperties CROISSANT = times(DOUGH, 1.5f).build();
-    public static final FoodProperties CHEESY_CROISSANT = combine(1f, false, CROISSANT, CHEESE_SLICE).build();
-    public static final FoodProperties CHEESY_HAM_CROISSANT = combine(1f, false, CHEESY_CROISSANT, HAM_SLICE).build();
+    public static final FoodProperties CROISSANT = times(DOUGH, 1.25f).build();
+    public static final FoodProperties CHEESY_CROISSANT = combine(1f, .75f, false, CROISSANT, CHEESE_SLICE).build();
+    public static final FoodProperties CHEESY_HAM_CROISSANT = combine(1f, .75f, false, CROISSANT, CHEESE_SLICE, HAM_SLICE).build();
 
     private static FoodProperties.Builder add(FoodProperties copy, int nutrition, float saturationMod)
     {
@@ -107,6 +107,11 @@ public class HNCFoods
 
     public static FoodProperties.Builder combine(float combinationMultiplier, boolean cooked, FoodProperties... foods)
     {
+        return combine(combinationMultiplier, combinationMultiplier, cooked, foods);
+    }
+
+    public static FoodProperties.Builder combine(float nutritionMod, float saturationModifier, boolean cooked, FoodProperties... foods)
+    {
         if (foods.length == 1)
             return copyFoodProperties(foods[0]);
 
@@ -119,7 +124,7 @@ public class HNCFoods
             saturationMod += food.getSaturationModifier();
             copyFoodProperties(food, combination);
         }
-        return combination.nutrition((int) (nutrition * combinationMultiplier * cookedModifier(cooked))).saturationMod(saturationMod * combinationMultiplier * cookedModifier(cooked));
+        return combination.nutrition((int) (nutrition * nutritionMod * cookedModifier(cooked))).saturationMod(saturationMod * saturationModifier * cookedModifier(cooked));
     }
 
     private static float cookedModifier(boolean cooked)
