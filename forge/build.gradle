@@ -62,6 +62,8 @@ dependencies {
     modRuntimeOnly "mcp.mobius.waila:wthit:forge-${rootProject.wthitVersion}"
     modRuntimeOnly "lol.bai:badpackets:forge-${rootProject.badPacketsVersion}"
 
+    modImplementation "curse.maven:appleskin-248787:${rootProject.appleSkinForge}"
+
     modRuntimeOnly "curse.maven:shutupexperimentalsettings-407174:${rootProject.shutupVersion}"
     modRuntimeOnly "curse.maven:configured-457570:${rootProject.configuredVersion}"
 

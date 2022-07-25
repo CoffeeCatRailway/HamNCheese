@@ -58,6 +58,9 @@ repositories {
         name = "TerraformersMC"
         url "https://maven.terraformersmc.com/"
     }
+    maven { // AppleSkin
+        url "https://maven.ryanliptak.com/"
+    }
 }
 
 dependencies {
@@ -72,6 +75,12 @@ dependencies {
 
     modRuntimeOnly "mcp.mobius.waila:wthit:fabric-${rootProject.wthitVersion}"
     modRuntimeOnly "lol.bai:badpackets:fabric-${rootProject.badPacketsVersion}"
+
+    modCompileOnly("squeek.appleskin:appleskin-fabric:${rootProject.appleSkinFabric}") { transitive = false }
+    modRuntimeOnly("squeek.appleskin:appleskin-fabric:${rootProject.appleSkinFabric}") {
+        exclude module: 'fabric-api'
+        exclude module: 'modmenu'
+    }
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

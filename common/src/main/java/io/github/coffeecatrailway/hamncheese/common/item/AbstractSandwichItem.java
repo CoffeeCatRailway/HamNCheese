@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.hamncheese.common.item;
 
 import com.mojang.datafixers.util.Pair;
+import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.util.NbtConstants;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
@@ -86,9 +87,12 @@ public class AbstractSandwichItem extends Item
         } else
             tooltip.add(HNCLanguage.shiftInfo(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.info")));
 
-        FoodProperties foodProperties = this.getFood(stack);
-        tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.hunger", foodProperties.getNutrition()).withStyle(ChatFormatting.GRAY));
-        tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.saturation", new DecimalFormat("#.##").format(foodProperties.getSaturationModifier())).withStyle(ChatFormatting.GRAY));
+        if (!Platform.isModLoaded("appleskin"))
+        {
+            FoodProperties foodProperties = this.getFood(stack);
+            tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.hunger", foodProperties.getNutrition()).withStyle(ChatFormatting.GRAY));
+            tooltip.add(new TranslatableComponent("item." + HamNCheese.MOD_ID + ".sandwich.saturation", new DecimalFormat("#.##").format(foodProperties.getSaturationModifier())).withStyle(ChatFormatting.GRAY));
+        }
     }
 
     @Override
@@ -123,19 +127,20 @@ public class AbstractSandwichItem extends Item
         return stack;
     }
 
-    private FoodProperties getFood(ItemStack stack)
+    public FoodProperties getFood(ItemStack stack)
     {
         List<FoodProperties> foods = new ArrayList<>();
-        CompoundTag nbt = stack.getOrCreateTag();
+        CompoundTag stackTag = stack.getOrCreateTag();
 
-        FoodProperties bread = this.sandwichProperties.getBunFood(nbt);
-        foods.add(bread);
-        stack.getOrCreateTag().getList(TAG_INGREDIENTS, NbtConstants.COMPOUND).stream().map(inbt -> ItemStack.of((CompoundTag) inbt))
-                .filter(ItemStack::isEdible).map(ingredient -> ingredient.getItem().getFoodProperties()).forEach(foods::add);
+        FoodProperties bun = this.sandwichProperties.getBunFood(stackTag);
+        foods.add(bun);
+        ListTag ingredients = stack.getOrCreateTag().getList(TAG_INGREDIENTS, NbtConstants.COMPOUND);
+        if (ingredients.size() > 0)
+            ingredients.stream().map(tag -> ItemStack.of((CompoundTag) tag)).filter(ItemStack::isEdible).map(ingredient -> ingredient.getItem().getFoodProperties()).forEach(foods::add);
         if (this.sandwichProperties.hasTwoBuns())
-            foods.add(bread);
+            foods.add(bun);
 
-        return HNCFoods.combine(.5f, this.sandwichProperties.isToasted(nbt), foods.toArray(new FoodProperties[]{})).build();
+        return HNCFoods.combine(ingredients.size() > 0 ? .5f : 1f, this.sandwichProperties.isToasted(stackTag), foods.toArray(new FoodProperties[]{})).build();
     }
 
     public static ItemStack addIngredient(ItemStack sandwich, ItemStack ingredient)

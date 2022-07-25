@@ -33,9 +33,8 @@
         "jei_mod_plugin": [
             "io.github.coffeecatrailway.hamncheese.compat.jei.HNCJeiPlugin"
         ],
-        "rei-old": [
-            "io.github.coffeecatrailway.hamncheese.compat.fabric.rei.client.HNCREIClientPlugin",
-            "io.github.coffeecatrailway.hamncheese.compat.fabric.rei.common.HNCREIPlugin"
+        "appleskin": [
+            "io.github.coffeecatrailway.hamncheese.compat.appleskin.fabric.HNCAppleSkinFabric"
         ]
     },
     "depends": {

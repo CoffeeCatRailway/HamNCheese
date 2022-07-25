@@ -47,7 +47,7 @@ side = "BOTH"
 [[dependencies.${id}]]
 modId = "jei"
 mandatory = false
-versionRange = "[9,)"
+versionRange = "[10,)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -55,5 +55,12 @@ side = "BOTH"
 modId = "waila"
 mandatory = false
 versionRange = "[4.11,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "appleskin"
+mandatory = false
+versionRange = "[2.4,)"
 ordering = "NONE"
 side = "BOTH"
