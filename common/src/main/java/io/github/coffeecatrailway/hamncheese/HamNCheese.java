@@ -190,7 +190,8 @@ public class HamNCheese
 
         ModifyTradesEvents.WANDERER.register(context -> {
             ModifyTradesEvents.TradeRegistry generic = context.getGeneric();
-            generic.add(1, new HNCVillagerTrades.MoldySandwichForEmeralds(ImmutableList.of(HNCItems.GREEN_EGG.get(), Items.ROTTEN_FLESH, HNCItems.BLUE_CHEESE_SLICE.get(), HNCItems.GREEN_HAM_SLICE.get()), "item." + HamNCheese.MOD_ID + ".sandwich.trade.week_old_sandwich", 1, 2));
+            if (generic.size() > 0)
+                generic.add(1, new HNCVillagerTrades.MoldySandwichForEmeralds(ImmutableList.of(HNCItems.GREEN_EGG.get(), Items.ROTTEN_FLESH, HNCItems.BLUE_CHEESE_SLICE.get(), HNCItems.GREEN_HAM_SLICE.get()), "item." + HamNCheese.MOD_ID + ".sandwich.trade.week_old_sandwich", 1, 2));
         });
 
         ModifyTradesEvents.VILLAGER.register(villagerCtx -> {
