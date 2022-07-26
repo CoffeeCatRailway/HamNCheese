@@ -1,4 +1,12 @@
 {
+  "advancements.hamncheese.grind.description": "Craft gind stones",
+  "advancements.hamncheese.grind.title": "Grind! Grind! Grind!",
+  "advancements.hamncheese.rise.description": "Craft flour",
+  "advancements.hamncheese.rise.title": "RISE!!",
+  "advancements.hamncheese.root.description": "Obtain a milk bucket",
+  "advancements.hamncheese.root.title": "Smells Cheesy",
+  "advancements.hamncheese.salty.description": "Craft rock salt",
+  "advancements.hamncheese.salty.title": "Ahh! Salty!",
   "block.hamncheese.acacia_chopping_board": "Acacia Chopping Board",
   "block.hamncheese.birch_chopping_board": "Birch Chopping Board",
   "block.hamncheese.block_of_blue_cheese": "Block Of Blue Cheese",

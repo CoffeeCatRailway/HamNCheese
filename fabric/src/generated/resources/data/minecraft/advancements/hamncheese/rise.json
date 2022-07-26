@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:hamncheese/grind",
+  "display": {
+    "icon": {
+      "item": "hamncheese:flour"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.rise.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.rise.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "flour": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:flour"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "flour"
+    ]
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:hamncheese/root",
+  "display": {
+    "icon": {
+      "item": "hamncheese:grind_stones",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.grind.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.grind.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "grind_stones": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:grind_stones"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "grind_stones"
+    ]
+  ]
+}

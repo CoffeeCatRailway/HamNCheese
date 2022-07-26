@@ -340,6 +340,7 @@ public class HamNCheese
         generator.addProvider(new HNCItemTags(generator, container, blockTags));
         generator.addProvider(new HNCFluidTags(generator, container));
         generator.addProvider(new HNCModels(generator, container));
+        generator.addProvider(new HNCAdvancements(generator));
         generator.addProvider(new HNCLanguage(generator, container));
         generator.addProvider(new HNCRecipeProvider(generator));
         generator.addProvider(new HNCLootTableProvider(generator));
