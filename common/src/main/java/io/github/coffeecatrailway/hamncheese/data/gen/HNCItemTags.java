@@ -254,8 +254,8 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(BREAD_SLICE_FABRIC).add(HNCItems.BREAD_SLICE.get());
         this.tag(BREAD_SLICE_COMMON).addTag(BREAD_SLICE_FORGE, BREAD_SLICE_FABRIC);
 
-        this.tag(BREAD_FORGE).add(HNCItems.BREAD_SLICE.get());
-        this.tag(BREAD_FABRIC).add(HNCItems.BREAD_SLICE.get());
+        this.tag(BREAD_FORGE).add(Items.BREAD);
+        this.tag(BREAD_FABRIC).add(Items.BREAD);
         this.tag(BREAD_COMMON).addTag(BREAD_FORGE, BREAD_FABRIC);
 
         this.tag(CRACKER_FORGE).add(HNCItems.CRACKER.get());

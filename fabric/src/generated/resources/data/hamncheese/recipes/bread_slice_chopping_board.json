@@ -1,7 +1,7 @@
 {
   "type": "hamncheese:chopping_board",
   "ingredient": {
-    "item": "minecraft:bread"
+    "tag": "hamncheese:sandwich/bread"
   },
   "tool": {
     "tag": "hamncheese:knives"
