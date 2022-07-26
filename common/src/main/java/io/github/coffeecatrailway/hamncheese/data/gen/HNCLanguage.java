@@ -43,6 +43,17 @@ public class HNCLanguage extends PollinatedLanguageProvider
         this.add("item." + HamNCheese.MOD_ID + ".sandwich.hunger", "Hunger: %s");
         this.add("item." + HamNCheese.MOD_ID + ".sandwich.saturation", "Saturation: %s");
         this.add("item." + HamNCheese.MOD_ID + ".sandwich.info", "to show ingredients");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.week_old_sandwich", "Week Old Sandwich");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.stew_cracker", "Stew Cracker");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.toastie", "Ham N' Cheese Toastie");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.bkt", "BKT");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.cheesy_pizza", "Cheesy Pizza");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.carnivore_pizza", "Carnivore Pizza");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.vegetarian_pizza", "Vegetarian Pizza");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.carnivore_sandwich", "Carnivore Sandwich");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.bacon_egg_roll", "Bacon & Egg Roll");
+        this.add("item." + HamNCheese.MOD_ID + ".sandwich.trade.pineapple_pizza", "Pineapple Pizza");
+
         this.add("item." + HamNCheese.MOD_ID + ".green_food.main", "Yay to Dr. Seuss for his green eggs and ham!");
         this.add("item." + HamNCheese.MOD_ID + ".green_food.birthday_line1", "And a happy birthday to the great Dr. Seuss!");
         this.add("item." + HamNCheese.MOD_ID + ".green_food.birthday_line2", "Born 2 March 1904, Died 24 September 1991");

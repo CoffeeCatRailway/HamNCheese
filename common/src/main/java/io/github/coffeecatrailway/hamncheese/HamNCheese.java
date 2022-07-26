@@ -188,6 +188,11 @@ public class HamNCheese
             HNCVillage.addStructurePieces();
         });
 
+        ModifyTradesEvents.WANDERER.register(context -> {
+            ModifyTradesEvents.TradeRegistry generic = context.getGeneric();
+            generic.add(1, new HNCVillagerTrades.MoldySandwichForEmeralds(ImmutableList.of(HNCItems.GREEN_EGG.get(), Items.ROTTEN_FLESH, HNCItems.BLUE_CHEESE_SLICE.get(), HNCItems.GREEN_HAM_SLICE.get()), "item." + HamNCheese.MOD_ID + ".sandwich.trade.week_old_sandwich", 1, 2));
+        });
+
         ModifyTradesEvents.VILLAGER.register(villagerCtx -> {
             ModifyTradesEvents.TradeRegistry trades;
             VillagerProfession profession = villagerCtx.getProfession();
@@ -204,21 +209,21 @@ public class HamNCheese
                 trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.CRACKER, ImmutableList.of(HNCItems.CHEESE_SLICE.get(), HNCItems.TOMATO_SLICE.get(), HNCItems.HAM_SLICE.get()), false, 1, 2, 8, 2));
 
                 trades = villagerCtx.getTrades(2);
-                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.CRACKER, ImmutableList.of(Items.MUSHROOM_STEW, Items.SUSPICIOUS_STEW, Items.RABBIT_STEW), false, "Stew Cracker", 2, 3, 16, 5));
+                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.CRACKER, ImmutableList.of(Items.MUSHROOM_STEW, Items.SUSPICIOUS_STEW, Items.RABBIT_STEW), false, "item." + HamNCheese.MOD_ID + ".sandwich.trade.stew_cracker", 2, 3, 16, 5));
                 trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(Items.ROTTEN_FLESH, Items.SPIDER_EYE, Items.POISONOUS_POTATO), false, 1, 2, 16, 2));
-                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(HNCItems.CHEESE_SLICE.get(), HNCItems.HAM_SLICE.get(), HNCItems.HAM_SLICE.get()), true, "Ham N' Cheese Toastie", 3, 2, 16, 5));
+                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(HNCItems.CHEESE_SLICE.get(), HNCItems.HAM_SLICE.get(), HNCItems.HAM_SLICE.get()), true, "item." + HamNCheese.MOD_ID + ".sandwich.trade.toastie", 3, 2, 16, 5));
                 trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(Items.BEEF, Items.DRIED_KELP, HNCItems.CHEESE_SLICE.get(), HNCItems.TOMATO_SLICE.get()), false, 1, 1, 16, 5));
 
                 trades = villagerCtx.getTrades(3);
-                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(HNCItems.COOKED_BACON.get(), Items.DRIED_KELP, HNCItems.TOMATO_SLICE.get(), Items.DRIED_KELP, HNCItems.TOMATO_SLICE.get()), false, "BKT", 3, 2, 20, 10));
-                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.CHEESE_SLICE.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.HAM_SLICE.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.HAM_SLICE.get(), HNCItems.HAM_SLICE.get()), true, "Cheesy Pizza", 3, 4, 20, 10));
-                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.COOKED_BACON.get(), Items.COOKED_PORKCHOP, HNCItems.CHEESE_SLICE.get(), HNCItems.HAM_SLICE.get(), Items.COOKED_PORKCHOP, HNCItems.COOKED_BACON.get(), HNCItems.HAM_SLICE.get()), true, "Carnivore Pizza", 3, 4, 20, 10));
-                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.COOKED_EGG.get(), Items.DRIED_KELP, HNCItems.TOMATO_SLICE.get(), Items.DRIED_KELP, HNCItems.TOMATO_SLICE.get(), HNCItems.COOKED_EGG.get()), true, "Vegetarian", 3, 4, 20, 10));
+                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(HNCItems.COOKED_BACON.get(), Items.DRIED_KELP, HNCItems.TOMATO_SLICE.get(), Items.DRIED_KELP, HNCItems.TOMATO_SLICE.get()), false, "item." + HamNCheese.MOD_ID + ".sandwich.trade.bkt", 3, 2, 20, 10));
+                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.CHEESE_SLICE.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.HAM_SLICE.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.HAM_SLICE.get(), HNCItems.HAM_SLICE.get()), true, "item." + HamNCheese.MOD_ID + ".sandwich.trade.cheesy_pizza", 3, 4, 20, 10));
+                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.COOKED_BACON.get(), Items.COOKED_PORKCHOP, HNCItems.CHEESE_SLICE.get(), HNCItems.HAM_SLICE.get(), Items.COOKED_PORKCHOP, HNCItems.COOKED_BACON.get(), HNCItems.HAM_SLICE.get()), true, "item." + HamNCheese.MOD_ID + ".sandwich.trade.carnivore_pizza", 3, 4, 20, 10));
+                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.COOKED_EGG.get(), Items.DRIED_KELP, HNCItems.TOMATO_SLICE.get(), Items.DRIED_KELP, HNCItems.TOMATO_SLICE.get(), HNCItems.COOKED_EGG.get()), true, "item." + HamNCheese.MOD_ID + ".sandwich.trade.vegetarian_pizza", 3, 4, 20, 10));
 
                 trades = villagerCtx.getTrades(4);
-                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(Items.COOKED_BEEF, HNCItems.COOKED_BACON.get(), Items.COOKED_PORKCHOP, HNCItems.COOKED_HAM_SLICE.get(), Items.COOKED_COD, Items.COOKED_CHICKEN, HNCItems.COOKED_MOUSE.get(), Items.COOKED_MUTTON, Items.COOKED_RABBIT, Items.COOKED_SALMON), false, "Carnivore Sandwich", 3, 2, 25, 15));
-                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(HNCItems.COOKED_BACON.get(), HNCItems.COOKED_EGG.get(), HNCItems.CHEESE_SLICE.get()), true, "Bacon & Egg Roll", 2, 1, 25, 15));
-                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.PINEAPPLE_RING.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.PINEAPPLE_BIT.get(), HNCItems.HAM_SLICE.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.PINEAPPLE_BIT.get(), HNCItems.HAM_SLICE.get()), true, "Pineapple Pizza", 3, 4, 25, 15));
+                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(Items.COOKED_BEEF, HNCItems.COOKED_BACON.get(), Items.COOKED_PORKCHOP, HNCItems.COOKED_HAM_SLICE.get(), Items.COOKED_COD, Items.COOKED_CHICKEN, HNCItems.COOKED_MOUSE.get(), Items.COOKED_MUTTON, Items.COOKED_RABBIT, Items.COOKED_SALMON), false, "item." + HamNCheese.MOD_ID + ".sandwich.trade.carnivore_sandwich", 3, 2, 25, 15));
+                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.SANDWICH, ImmutableList.of(HNCItems.COOKED_BACON.get(), HNCItems.COOKED_EGG.get(), HNCItems.CHEESE_SLICE.get()), true, "item." + HamNCheese.MOD_ID + ".sandwich.trade.bacon_egg_roll", 2, 1, 25, 15));
+                trades.add(new HNCVillagerTrades.SandwichForEmeralds(HNCItems.PIZZA, ImmutableList.of(HNCItems.PINEAPPLE_RING.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.PINEAPPLE_BIT.get(), HNCItems.HAM_SLICE.get(), HNCItems.CHEESE_SLICE.get(), HNCItems.PINEAPPLE_BIT.get(), HNCItems.HAM_SLICE.get()), true, "item." + HamNCheese.MOD_ID + ".sandwich.trade.pineapple_pizza", 3, 4, 25, 15));
             }
             // Vanilla
             if (CONFIG_SERVER.allowButcherTrades.get() && profession == VillagerProfession.BUTCHER)

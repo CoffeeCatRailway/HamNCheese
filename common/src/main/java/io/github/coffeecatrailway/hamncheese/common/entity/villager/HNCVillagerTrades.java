@@ -1,7 +1,8 @@
 package io.github.coffeecatrailway.hamncheese.common.entity.villager;
 
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
-import net.minecraft.network.chat.TextComponent;
+import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Item;
@@ -106,10 +107,38 @@ public class HNCVillagerTrades
         {
             ItemStack sandwichStack = new ItemStack(this.sandwich.get(), this.numberOfItems);
             if (this.name != null)
-                sandwichStack.setHoverName(new TextComponent(this.name));
+                sandwichStack.setHoverName(new TranslatableComponent(this.name));
             this.ingredients.forEach(item -> AbstractSandwichItem.addIngredient(sandwichStack, new ItemStack(item)).copy());
             sandwichStack.getOrCreateTag().putBoolean(AbstractSandwichItem.TAG_TOASTED, this.toasted);
             return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), sandwichStack.copy(), this.maxUses, this.villagerXp, .05f);
+        }
+    }
+
+    public static class MoldySandwichForEmeralds implements VillagerTrades.ItemListing
+    {
+        private final List<Item> ingredients;
+        private final String name;
+
+        private final int emeraldCost;
+        private final int villagerXp;
+
+        public MoldySandwichForEmeralds(List<Item> ingredients, String name, int emeraldCost, int villagerXp)
+        {
+            this.ingredients = ingredients;
+            this.name = name;
+            this.emeraldCost = emeraldCost;
+            this.villagerXp = villagerXp;
+        }
+
+        @Nullable
+        @Override
+        public MerchantOffer getOffer(Entity entity, Random random)
+        {
+            ItemStack sandwichStack = new ItemStack(HNCItems.SANDWICH.get(), 1);
+            sandwichStack.setHoverName(new TranslatableComponent(this.name));
+            this.ingredients.forEach(item -> AbstractSandwichItem.addIngredient(sandwichStack, new ItemStack(item)).copy());
+            sandwichStack.getOrCreateTag().putBoolean("Moldy", true);
+            return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), sandwichStack.copy(), 1, this.villagerXp, .05f);
         }
     }
 }

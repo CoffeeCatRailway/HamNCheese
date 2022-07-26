@@ -12,6 +12,7 @@ import gg.moonflower.pollen.api.util.NbtConstants;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.AbstractSandwichItem;
 import io.github.coffeecatrailway.hamncheese.common.item.PizzaItem;
+import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -72,6 +73,9 @@ public class SandwichItemRenderer implements DynamicItemRenderer
             ItemStack bun = sandwichItem.sandwichProperties.getBunItem(nbt);
             if (bun == null || bun.isEmpty())
                 bun = ItemStack.EMPTY;
+
+            if (nbt.contains("Moldy", NbtConstants.BYTE) && nbt.getBoolean("Moldy"))
+                bun = new ItemStack(HNCItems.MOLDY_BREAD_SLICE.get());
 
             // Render sandwich
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
