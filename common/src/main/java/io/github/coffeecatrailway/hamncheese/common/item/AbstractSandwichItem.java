@@ -44,7 +44,7 @@ public class AbstractSandwichItem extends Item
 
     public AbstractSandwichItem(Properties properties, SandwichProperties sandwichProperties)
     {
-        super(properties.food(sandwichProperties.bunFood));
+        super(properties.food(Objects.requireNonNull(sandwichProperties.bun.getItem().getFoodProperties())));
         this.sandwichProperties = sandwichProperties;
     }
 
@@ -137,7 +137,7 @@ public class AbstractSandwichItem extends Item
         ListTag ingredients = stack.getOrCreateTag().getList(TAG_INGREDIENTS, NbtConstants.COMPOUND);
         if (ingredients.size() > 0)
             ingredients.stream().map(tag -> ItemStack.of((CompoundTag) tag)).filter(ItemStack::isEdible).map(ingredient -> ingredient.getItem().getFoodProperties()).forEach(foods::add);
-        if (this.sandwichProperties.hasTwoBuns())
+        if (this.sandwichProperties.getHasTwoBuns())
             foods.add(bun);
 
         return HNCFoods.combine(ingredients.size() > 0 ? .5f : 1f, this.sandwichProperties.isToasted(stackTag), foods.toArray(new FoodProperties[]{})).build();
@@ -160,60 +160,57 @@ public class AbstractSandwichItem extends Item
 
     public static Set<ItemStack> getIngredients(ItemStack stack)
     {
-        CompoundTag nbt = stack.getOrCreateTag();
-        if (!(stack.getItem() instanceof AbstractSandwichItem) || !nbt.contains(TAG_INGREDIENTS, NbtConstants.LIST))
+        CompoundTag stackNbt = stack.getOrCreateTag();
+        if (!stackNbt.contains(TAG_INGREDIENTS, NbtConstants.LIST))
             return new HashSet<>();
 
-        ListTag nbtIngredients = nbt.getList(TAG_INGREDIENTS, NbtConstants.COMPOUND);
-        return nbtIngredients.stream().filter(ingredient -> ingredient instanceof CompoundTag).map(ingredient -> ItemStack.of((CompoundTag) ingredient)).collect(Collectors.toSet());
+        return stackNbt.getList(AbstractSandwichItem.TAG_INGREDIENTS, NbtConstants.COMPOUND).stream().map(nbt -> ItemStack.of((CompoundTag) nbt)).collect(Collectors.toSet());
     }
 
     public static class SandwichProperties
     {
-        private final FoodProperties bunFood;
-        @Nullable
-        private final FoodProperties toastedBunFood;
-        private final ItemStack bunItem;
-        @Nullable
-        private final ItemStack toastedBunItem;
+        private final ItemStack bun;
+        private final ItemStack toastedBun;
 
-        private final boolean hasTwoBuns;
-        private final boolean canBeToasted;
+        private boolean hasTwoBuns = false;
+        private boolean canBeToasted = false;
 
-        public SandwichProperties(FoodProperties bunFood, Supplier<? extends Item> bunItem, boolean hasTwoBuns)
+        public SandwichProperties(Supplier<? extends Item> bun)
         {
-            this(bunFood, null, bunItem, null, hasTwoBuns, false);
+            this(bun, bun);
         }
 
-        public SandwichProperties(FoodProperties bunFood, FoodProperties toastedBunFood, Supplier<? extends Item> bunItem, Supplier<? extends Item> toastedBunItem, boolean hasTwoBuns)
+        public SandwichProperties(Supplier<? extends Item> bun, Supplier<? extends Item> toastedBun)
         {
-            this(bunFood, toastedBunFood, bunItem, toastedBunItem, hasTwoBuns, true);
+            this.bun = new ItemStack(bun.get());
+            this.toastedBun = new ItemStack(toastedBun.get());
         }
 
-        private SandwichProperties(FoodProperties bunFood, @Nullable FoodProperties toastedBunFood, Supplier<? extends Item> bunItem, @Nullable Supplier<? extends Item> toastedBunItem, boolean hasTwoBuns, boolean canBeToasted)
+        public SandwichProperties hasTwoBuns()
         {
-            this.bunFood = bunFood;
-            this.toastedBunFood = toastedBunFood;
-            this.bunItem = new ItemStack(bunItem.get());
-            this.toastedBunItem = toastedBunItem == null ? ItemStack.EMPTY : new ItemStack(toastedBunItem.get());
+            this.hasTwoBuns = true;
+            return this;
+        }
 
-            this.hasTwoBuns = hasTwoBuns;
-            this.canBeToasted = canBeToasted;
+        public SandwichProperties canBeToasted()
+        {
+            this.canBeToasted = true;
+            return this;
         }
 
         @Nullable
         public FoodProperties getBunFood(CompoundTag nbt)
         {
-            return this.isToasted(nbt) ? this.toastedBunFood : this.bunFood;
+            return this.isToasted(nbt) ? this.toastedBun.getItem().getFoodProperties() : this.bun.getItem().getFoodProperties();
         }
 
         @Nullable
         public ItemStack getBunItem(CompoundTag nbt)
         {
-            return this.isToasted(nbt) ? this.toastedBunItem : this.bunItem;
+            return this.isToasted(nbt) ? this.toastedBun : this.bun;
         }
 
-        public boolean hasTwoBuns()
+        public boolean getHasTwoBuns()
         {
             return this.hasTwoBuns;
         }

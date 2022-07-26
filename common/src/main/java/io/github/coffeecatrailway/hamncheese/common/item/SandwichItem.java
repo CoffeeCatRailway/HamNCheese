@@ -1,7 +1,6 @@
 package io.github.coffeecatrailway.hamncheese.common.item;
 
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
-import io.github.coffeecatrailway.hamncheese.registry.HNCFoods;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -16,7 +15,7 @@ public class SandwichItem extends AbstractSandwichItem
 {
     public SandwichItem(Item.Properties properties)
     {
-        super(properties.tab(null).stacksTo(16), new SandwichProperties(HNCFoods.BREAD_SLICE, HNCFoods.TOAST, HNCItems.BREAD_SLICE, HNCItems.TOAST, true));
+        super(properties.tab(null).stacksTo(16), new SandwichProperties(HNCItems.BREAD_SLICE, HNCItems.TOAST).hasTwoBuns().canBeToasted());
     }
 
     @Override

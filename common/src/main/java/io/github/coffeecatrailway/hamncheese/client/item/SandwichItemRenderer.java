@@ -58,9 +58,8 @@ public class SandwichItemRenderer implements DynamicItemRenderer
     @Override
     public void render(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack matrixStack, MultiBufferSource multiBufferSource, int packedLight, int combinedOverlay)
     {
-        if (stack.getItem() instanceof AbstractSandwichItem)
+        if (stack.getItem() instanceof AbstractSandwichItem sandwichItem)
         {
-            AbstractSandwichItem sandwichItem = (AbstractSandwichItem) stack.getItem();
             matrixStack.pushPose();
 
             // Rotate & position
@@ -73,10 +72,6 @@ public class SandwichItemRenderer implements DynamicItemRenderer
             ItemStack bun = sandwichItem.sandwichProperties.getBunItem(nbt);
             if (bun == null || bun.isEmpty())
                 bun = ItemStack.EMPTY;
-
-            // Cache ingredient if not already
-            ingredients.stream().filter(inbt -> !this.ingredientCache.containsKey(inbt.getString("id")))
-                    .forEach(inbt -> this.ingredientCache.put(inbt.getString("id"), ItemStack.of(inbt)));
 
             // Render sandwich
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
@@ -118,7 +113,7 @@ public class SandwichItemRenderer implements DynamicItemRenderer
 
                     float angle = (float) (RANDOM.nextFloat() * Math.PI * 2f);
                     matrixStack.mulPose(Vector3f.ZN.rotation(angle));
-                    itemRenderer.renderStatic(this.ingredientCache.get(ingredient.getString("id")), ItemTransforms.TransformType.FIXED, packedLight, combinedOverlay, matrixStack, multiBufferSource, 0);
+                    itemRenderer.renderStatic(this.ingredientCache.computeIfAbsent(ingredient.getString("id"), __ -> ItemStack.of(ingredient)), ItemTransforms.TransformType.FIXED, packedLight, combinedOverlay, matrixStack, multiBufferSource, 0);
                     matrixStack.mulPose(Vector3f.ZP.rotation(angle));
 
                     matrixStack.translate(-pos.getFirst(), -pos.getSecond(), 0f);
@@ -138,12 +133,12 @@ public class SandwichItemRenderer implements DynamicItemRenderer
                     matrixStack.translate(0f, 0f, .06f);
                     float angle = (float) (RANDOM.nextFloat() * Math.PI * 2f);
                     matrixStack.mulPose(Vector3f.ZN.rotation(angle));
-                    itemRenderer.renderStatic(this.ingredientCache.get(ingredient.getString("id")), ItemTransforms.TransformType.FIXED, packedLight, combinedOverlay, matrixStack, multiBufferSource, 0);
+                    itemRenderer.renderStatic(this.ingredientCache.computeIfAbsent(ingredient.getString("id"), __ -> ItemStack.of(ingredient)), ItemTransforms.TransformType.FIXED, packedLight, combinedOverlay, matrixStack, multiBufferSource, 0);
                     matrixStack.mulPose(Vector3f.ZP.rotation(angle));
                 }
 
                 // Render other bun
-                if (sandwichItem.sandwichProperties.hasTwoBuns())
+                if (sandwichItem.sandwichProperties.getHasTwoBuns())
                 {
                     matrixStack.translate(0f, 0f, .06f);
                     itemRenderer.renderStatic(bun, ItemTransforms.TransformType.FIXED, packedLight, combinedOverlay, matrixStack, multiBufferSource, 0);

@@ -62,7 +62,7 @@ public class HNCItems
     public static final Supplier<Item> DOUGH = registerIdAsName("dough", prop -> new Item(prop.food(HNCFoods.DOUGH)));
 
     public static final Supplier<Item> UNBAKED_PIZZA_BASE = registerIdAsName("unbaked_pizza_base", prop -> new Item(prop.food(HNCFoods.DOUGH).stacksTo(32)));
-    public static final Supplier<Item> BAKED_PIZZA_DUMMY = registerWithName("baked_pizza_dummy", "Baked Pizza Base", prop -> new Item(prop.food(HNCFoods.BREAD_SLICE)));
+    public static final Supplier<Item> BAKED_PIZZA_DUMMY = registerWithName("baked_pizza_dummy", "Baked Pizza Base", prop -> new Item(prop.food(HNCFoods.PIZZA)));
     public static final Supplier<PizzaItem> PIZZA = registerIdAsName("pizza", getPizzaItem());
 
     public static final Supplier<Item> UNBAKED_BREAD = registerIdAsName("unbaked_bread", prop -> new Item(prop.food(HNCFoods.DOUGH)));

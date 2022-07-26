@@ -39,7 +39,7 @@ public interface CustomSandwichRecipe<T extends Container> extends Recipe<T>
         if (!bunStack.isEmpty())
         {
             AbstractSandwichItem sandwich = (AbstractSandwichItem) this.assemble(container).getItem();
-            int maxBunCount = sandwich.sandwichProperties.hasTwoBuns() ? 2 : 1;
+            int maxBunCount = sandwich.sandwichProperties.getHasTwoBuns() ? 2 : 1;
             int bunCount = 0;
             int ingredientCount = 0;
             boolean hasNeededItem = this.getNeededItem() == null;
