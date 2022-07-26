@@ -38,6 +38,7 @@ public class HNCFoods
 
     public static final FoodProperties BREAD_SLICE = times(divide(Foods.BREAD, 3f).build(), 1f, 2f).build();
     public static final FoodProperties TOAST = times(BREAD_SLICE, 1.5f).build();
+    public static final FoodProperties MOLDY_BREAD_SLICE = times(BREAD_SLICE, 1f).effect(HUNGER_EFFECT, 1f).build();
 
     public static final FoodProperties CRACKER = combine(.5f, false, INGREDIENT, INGREDIENT, divide(Foods.BREAD, 3f).build()).build();
 

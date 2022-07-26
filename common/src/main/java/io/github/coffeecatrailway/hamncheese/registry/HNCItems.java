@@ -68,6 +68,7 @@ public class HNCItems
     public static final Supplier<Item> UNBAKED_BREAD = registerIdAsName("unbaked_bread", prop -> new Item(prop.food(HNCFoods.DOUGH)));
     public static final Supplier<Item> BREAD_SLICE = registerIdAsName("bread_slice", prop -> new Item(prop.food(HNCFoods.BREAD_SLICE)));
     public static final Supplier<Item> TOAST = registerIdAsName("toast", prop -> new Item(prop.food(HNCFoods.TOAST)));
+    public static final Supplier<Item> MOLDY_BREAD_SLICE = registerIdAsName("moldy_bread_slice", prop -> new Item(prop.food(HNCFoods.MOLDY_BREAD_SLICE)));
 
     public static final Supplier<Item> UNBAKED_CRACKER = registerIdAsName("unbaked_cracker", prop -> new Item(prop.food(HNCFoods.DOUGH).stacksTo(16)));
     public static final Supplier<Item> CRACKER_DUMMY = registerIdAsName("cracker_dummy", prop -> new Item(prop.food(HNCFoods.CRACKER).tab(null)));

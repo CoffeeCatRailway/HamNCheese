@@ -87,6 +87,7 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.UNBAKED_BREAD.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.BREAD_SLICE.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.TOAST.get(), ModelTemplates.FLAT_ITEM);
+            this.generateFlatItem(HNCItems.MOLDY_BREAD_SLICE.get(), ModelTemplates.FLAT_ITEM);
 
             this.generateFlatItem(HNCItems.UNBAKED_CRACKER.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(HNCItems.CRACKER_DUMMY.get(), HamNCheese.getLocation("item/cracker"), ModelTemplates.FLAT_ITEM);

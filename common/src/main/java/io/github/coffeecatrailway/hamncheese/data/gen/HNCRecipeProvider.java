@@ -124,8 +124,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 
         ShapedRecipeBuilder.shaped(HNCItems.UNBAKED_BREAD.get(), 2).define('d', HNCItemTags.DOUGH_COMMON).pattern("ddd").unlockedBy("has_dough", has(HNCItemTags.DOUGH_COMMON)).save(consumer);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.UNBAKED_BREAD.get()), Items.BREAD, .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_unbaked_bread", has(HNCItems.UNBAKED_BREAD.get())).save(consumer, HamNCheese.getLocation("bread_smoking"));
-        ShapelessRecipeBuilder.shapeless(HNCItems.BREAD_SLICE.get(), 3).requires(HNCItemTags.KNIVES_COMMON).requires(Items.BREAD).unlockedBy("has_bread", has(Items.BREAD)).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
-        ChoppingBoardRecipeBuilder.recipe(HNCItems.BREAD_SLICE.get(), 4, Ingredient.of(Items.BREAD)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_bread", has(Items.BREAD)).save(consumer, HamNCheese.getLocation("bread_slice_chopping_board"));
+        ShapelessRecipeBuilder.shapeless(HNCItems.BREAD_SLICE.get(), 3).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItemTags.BREAD_COMMON).unlockedBy("has_bread", has(HNCItemTags.BREAD_COMMON)).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON)).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.BREAD_SLICE.get(), 4, Ingredient.of(HNCItemTags.BREAD_COMMON)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_bread", has(HNCItemTags.BREAD_COMMON)).save(consumer, HamNCheese.getLocation("bread_slice_chopping_board"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HamNCheese.getLocation("toast_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HamNCheese.getLocation("toast_campfire"));
 

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "hamncheese:bread_slice"
+    "hamncheese:bread_slice",
+    "hamncheese:moldy_bread_slice"
   ]
 }
