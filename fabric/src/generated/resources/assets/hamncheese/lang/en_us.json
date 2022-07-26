@@ -52,6 +52,7 @@
   "container.hamncheese.popcorn_machine.flavour": "Flavour: %s/200mb",
   "container.hamncheese.popcorn_machine.popcorn": "Popcorn: %s/500",
   "entity.hamncheese.mouse": "Mouse",
+  "entity.minecraft.villager.chef": "Chef",
   "entity.minecraft.villager.hamncheese.chef": "Chef",
   "fluid.hamncheese.goat_milk": "Goat Milk",
   "fluid.hamncheese.maple_sap": "Maple Sap",

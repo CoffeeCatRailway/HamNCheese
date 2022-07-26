@@ -81,7 +81,10 @@ public class HNCLanguage extends PollinatedLanguageProvider
         ITEMS.forEach(this::addItem);
         BLOCKS.forEach(this::addBlock);
         ENTITIES.forEach(this::addEntityType);
-        PROFESSIONS.forEach((profession, name) -> this.add("entity.minecraft.villager." + HamNCheese.MOD_ID + "." + profession.get(), name));
+        PROFESSIONS.forEach((profession, name) -> {
+            this.add("entity.minecraft.villager." + HamNCheese.MOD_ID + "." + profession.get(), name);
+            this.add("entity.minecraft.villager." + profession.get(), name);
+        });
     }
 
     public static Component shiftInfo(Object info)
