@@ -1,29 +1,28 @@
 {
-  "parent": "minecraft:hamncheese/iron_chop",
+  "parent": "hamncheese:grind",
   "display": {
     "icon": {
-      "item": "hamncheese:netherite_knife",
-      "nbt": "{Damage:0}"
+      "item": "hamncheese:rock_salt"
     },
     "title": {
-      "translate": "advancements.hamncheese.netherite_chop.title"
+      "translate": "advancements.hamncheese.salty.title"
     },
     "description": {
-      "translate": "advancements.hamncheese.netherite_chop.description"
+      "translate": "advancements.hamncheese.salty.description"
     },
-    "frame": "challenge",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
   "criteria": {
-    "netherite_knife": {
+    "salt": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "hamncheese:netherite_knife"
+              "hamncheese:rock_salt"
             ]
           }
         ]
@@ -32,7 +31,7 @@
   },
   "requirements": [
     [
-      "netherite_knife"
+      "salt"
     ]
   ]
 }

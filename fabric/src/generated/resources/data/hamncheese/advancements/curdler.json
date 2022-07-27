@@ -1,15 +1,15 @@
 {
-  "parent": "minecraft:hamncheese/wood_chop",
+  "parent": "hamncheese:root",
   "display": {
     "icon": {
-      "item": "hamncheese:golden_knife",
+      "item": "hamncheese:stone_curdler",
       "nbt": "{Damage:0}"
     },
     "title": {
-      "translate": "advancements.hamncheese.expensive_chop.title"
+      "translate": "advancements.hamncheese.curdler.title"
     },
     "description": {
-      "translate": "advancements.hamncheese.expensive_chop.description"
+      "translate": "advancements.hamncheese.curdler.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -17,14 +17,12 @@
     "hidden": false
   },
   "criteria": {
-    "gold_knife": {
+    "curdler": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "hamncheese:golden_knife"
-            ]
+            "tag": "hamncheese:curdlers"
           }
         ]
       }
@@ -32,7 +30,7 @@
   },
   "requirements": [
     [
-      "gold_knife"
+      "curdler"
     ]
   ]
 }

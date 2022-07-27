@@ -1,15 +1,14 @@
 {
-  "parent": "minecraft:hamncheese/root",
+  "parent": "hamncheese:chop_chop",
   "display": {
     "icon": {
-      "item": "hamncheese:wooden_knife",
-      "nbt": "{Damage:0}"
+      "item": "hamncheese:unbaked_croissant"
     },
     "title": {
-      "translate": "advancements.hamncheese.wood_chop.title"
+      "translate": "advancements.hamncheese.croissant.title"
     },
     "description": {
-      "translate": "advancements.hamncheese.wood_chop.description"
+      "translate": "advancements.hamncheese.croissant.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -17,13 +16,13 @@
     "hidden": false
   },
   "criteria": {
-    "wooden_knife": {
+    "croissant": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "hamncheese:wooden_knife"
+              "hamncheese:unbaked_croissant"
             ]
           }
         ]
@@ -32,7 +31,7 @@
   },
   "requirements": [
     [
-      "wooden_knife"
+      "croissant"
     ]
   ]
 }

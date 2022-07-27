@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:hamncheese/rolling",
+  "parent": "hamncheese:rolling",
   "display": {
     "icon": {
       "item": "hamncheese:oak_chopping_board"

@@ -1,14 +1,15 @@
 {
-  "parent": "minecraft:hamncheese/wood_chop",
+  "parent": "hamncheese:wood_chop",
   "display": {
     "icon": {
-      "item": "hamncheese:cooked_bacon"
+      "item": "hamncheese:golden_knife",
+      "nbt": "{Damage:0}"
     },
     "title": {
-      "translate": "advancements.hamncheese.sizzle.title"
+      "translate": "advancements.hamncheese.expensive_chop.title"
     },
     "description": {
-      "translate": "advancements.hamncheese.sizzle.description"
+      "translate": "advancements.hamncheese.expensive_chop.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,13 +17,13 @@
     "hidden": false
   },
   "criteria": {
-    "bacon": {
+    "gold_knife": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "hamncheese:bacon"
+              "hamncheese:golden_knife"
             ]
           }
         ]
@@ -31,7 +32,7 @@
   },
   "requirements": [
     [
-      "bacon"
+      "gold_knife"
     ]
   ]
 }

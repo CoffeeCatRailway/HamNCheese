@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 import gg.moonflower.pollen.api.datagen.provider.PollinatedAdvancementProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.SwissCheeseTrigger;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.advancements.Advancement;
@@ -180,7 +181,7 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)
     {
-        Advancement advancement = factory.apply(Advancement.Builder.advancement()).save(registry, HamNCheese.MOD_ID + "/" + id);
+        Advancement advancement = factory.apply(Advancement.Builder.advancement()).save(registry, HamNCheese.MOD_ID + ":" + id);
         HNCLanguage.EXTRA.put(((TranslatableComponent) advancement.getDisplay().getTitle()).getKey(), title);
         HNCLanguage.EXTRA.put(((TranslatableComponent) advancement.getDisplay().getDescription()).getKey(), description);
         return advancement;

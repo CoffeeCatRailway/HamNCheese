@@ -1,14 +1,14 @@
 {
-  "parent": "minecraft:hamncheese/chop_chop",
+  "parent": "hamncheese:wood_chop",
   "display": {
     "icon": {
-      "item": "hamncheese:unbaked_croissant"
+      "item": "hamncheese:cooked_bacon"
     },
     "title": {
-      "translate": "advancements.hamncheese.croissant.title"
+      "translate": "advancements.hamncheese.sizzle.title"
     },
     "description": {
-      "translate": "advancements.hamncheese.croissant.description"
+      "translate": "advancements.hamncheese.sizzle.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,13 +16,13 @@
     "hidden": false
   },
   "criteria": {
-    "croissant": {
+    "bacon": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "hamncheese:unbaked_croissant"
+              "hamncheese:bacon"
             ]
           }
         ]
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "croissant"
+      "bacon"
     ]
   ]
 }

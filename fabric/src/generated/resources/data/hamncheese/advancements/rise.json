@@ -1,15 +1,14 @@
 {
-  "parent": "minecraft:hamncheese/root",
+  "parent": "hamncheese:grind",
   "display": {
     "icon": {
-      "item": "hamncheese:stone_rolling_pin",
-      "nbt": "{Damage:0}"
+      "item": "hamncheese:flour"
     },
     "title": {
-      "translate": "advancements.hamncheese.rolling.title"
+      "translate": "advancements.hamncheese.rise.title"
     },
     "description": {
-      "translate": "advancements.hamncheese.rolling.description"
+      "translate": "advancements.hamncheese.rise.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -17,12 +16,14 @@
     "hidden": false
   },
   "criteria": {
-    "rolling_pin": {
+    "flour": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "hamncheese:rolling_pins"
+            "items": [
+              "hamncheese:flour"
+            ]
           }
         ]
       }
@@ -30,7 +31,7 @@
   },
   "requirements": [
     [
-      "rolling_pin"
+      "flour"
     ]
   ]
 }
