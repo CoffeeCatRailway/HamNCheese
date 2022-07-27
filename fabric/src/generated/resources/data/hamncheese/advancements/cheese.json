@@ -1,0 +1,37 @@
+{
+  "parent": "hamncheese:curdler",
+  "display": {
+    "icon": {
+      "item": "hamncheese:block_of_cheese"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.cheese.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.cheese.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cheese": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:block_of_cheese"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cheese"
+    ]
+  ]
+}

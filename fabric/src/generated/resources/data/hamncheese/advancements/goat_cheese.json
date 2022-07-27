@@ -1,0 +1,37 @@
+{
+  "parent": "hamncheese:curdler",
+  "display": {
+    "icon": {
+      "item": "hamncheese:block_of_goat_cheese"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.goat_cheese.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.goat_cheese.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "gouda_cheese": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:block_of_goat_cheese"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "gouda_cheese"
+    ]
+  ]
+}

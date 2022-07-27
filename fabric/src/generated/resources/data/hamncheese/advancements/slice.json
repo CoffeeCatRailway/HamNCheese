@@ -1,0 +1,35 @@
+{
+  "parent": "hamncheese:wood_chop",
+  "display": {
+    "icon": {
+      "item": "hamncheese:cheese_slice"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.slice.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.slice.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "bacon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "hamncheese:cheese_slice"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bacon"
+    ]
+  ]
+}

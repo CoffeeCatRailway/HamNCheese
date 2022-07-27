@@ -1,0 +1,37 @@
+{
+  "parent": "hamncheese:cheese",
+  "display": {
+    "icon": {
+      "item": "hamncheese:block_of_gouda_cheese"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.wax_on.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.wax_on.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "gouda_cheese": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:block_of_gouda_cheese"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "gouda_cheese"
+    ]
+  ]
+}

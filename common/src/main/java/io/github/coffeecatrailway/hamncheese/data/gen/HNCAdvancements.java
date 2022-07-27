@@ -116,6 +116,56 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("croissant", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.UNBAKED_CROISSANT.get())),
                 "CROISSANT!", "Are you gonna eat that croissant..?", registry);
+
+        Advancement curdler = this.register("curdler", builder -> builder.parent(root)
+                        .display(
+                                HNCItems.STONE_CURDLER.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".curdler.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".curdler.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("curdler", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(HNCItemTags.CURDLERS).build())),
+                "Cheese making time!", "Craft a cheese curdler", registry);
+        Advancement cheese = this.register("cheese", builder -> builder.parent(curdler)
+                        .display(
+                                HNCBlocks.BLOCK_OF_CHEESE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".cheese.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".cheese.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("cheese", InventoryChangeTrigger.TriggerInstance.hasItems(HNCBlocks.BLOCK_OF_CHEESE.get())),
+                "Cheese!", "Craft a block of cheese", registry);
+        Advancement waxOn = this.register("wax_on", builder -> builder.parent(cheese)
+                        .display(
+                                HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".wax_on.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".wax_on.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("gouda_cheese", InventoryChangeTrigger.TriggerInstance.hasItems(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get())),
+                "Wax on! Wax off!", "Craft gouda cheese", registry);
+        Advancement goatCheese = this.register("goat_cheese", builder -> builder.parent(curdler)
+                        .display(
+                                HNCBlocks.BLOCK_OF_GOAT_CHEESE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".goat_cheese.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".goat_cheese.description"),
+                                null,
+                                FrameType.GOAL,
+                                true,
+                                true,
+                                true
+                        ).addCriterion("gouda_cheese", InventoryChangeTrigger.TriggerInstance.hasItems(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get())),
+                "Horny cheese!", "I meant goat horns, what did you think?", registry);
+
         Advancement woodChop = this.register("wood_chop", builder -> builder.parent(root)
                         .display(
                                 HNCItems.WOODEN_KNIFE.get(),
@@ -177,6 +227,18 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("bacon", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.BACON.get())),
                 "Sizzle...", "Craft a bacon", registry);
+        Advancement slice = this.register("slice", builder -> builder.parent(woodChop)
+                        .display(
+                                HNCItems.CHEESE_SLICE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".slice.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".slice.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("bacon", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(HNCItemTags.CHEESE_SLICE_COMMON).build())),
+                "Best thing since sliced cheese", "Craft a cheese slice", registry);
     }
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)
