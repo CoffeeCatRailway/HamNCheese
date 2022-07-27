@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:hamncheese/chop_chop",
+  "display": {
+    "icon": {
+      "item": "hamncheese:unbaked_croissant"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.croissant.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.croissant.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "croissant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:unbaked_croissant"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "croissant"
+    ]
+  ]
+}

@@ -1,5 +1,6 @@
 package io.github.coffeecatrailway.hamncheese.common.block;
 
+import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.ChoppingBoardBlockEntity;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.ChoppingBoardRecipe;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlockEntities;
@@ -7,6 +8,7 @@ import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import io.github.coffeecatrailway.hamncheese.registry.HNCStats;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -88,9 +90,10 @@ public class ChoppingBoardBlock extends BaseEntityBlock implements SimpleWaterlo
             ChoppingBoardBlockEntity blockEntity = level.getBlockEntity(pos, HNCBlockEntities.CHOPPING_BOARD.get()).orElse(null);
             if (blockEntity != null)
             {
+                boolean award = false;
                 ItemStack heldItem = player.getMainHandItem();
                 if (!heldItem.isEmpty() && blockEntity.placeIngredient(heldItem, false, player))
-                    player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
+                    award = true;
                 else
                 {
                     ChoppingBoardRecipe recipe = level.getRecipeManager().getRecipesFor(HNCRecipes.CHOPPING_BOARD_TYPE.get(), blockEntity, level).stream().filter(recipeFilter -> recipeFilter.matches(blockEntity, level) && recipeFilter.getTool().test(heldItem)).findFirst().orElse(null);
@@ -101,15 +104,21 @@ public class ChoppingBoardBlock extends BaseEntityBlock implements SimpleWaterlo
                         blockEntity.setRecipeUsed(recipe);
 
                         blockEntity.setIngredient(recipe.assemble(blockEntity));
-                        player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
+                        award = true;
                     } else if (heldItem.isEmpty() && !blockEntity.getItem(0).isEmpty())
                     {
                         if (blockEntity.getRecipeUsed() != null)
                             blockEntity.awardUsedRecipes(player);
 
                         blockEntity.dropIngredient(player);
-                        player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
+                        award = true;
                     }
+                }
+                if (award)
+                {
+                    player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
+                    if (player instanceof ServerPlayer)
+                        HamNCheese.CHOPPING_BOARD_TRIGGER.trigger((ServerPlayer) player);
                 }
                 return InteractionResult.SUCCESS;
             }

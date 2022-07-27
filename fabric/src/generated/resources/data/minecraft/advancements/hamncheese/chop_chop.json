@@ -1,0 +1,29 @@
+{
+  "parent": "minecraft:hamncheese/rolling",
+  "display": {
+    "icon": {
+      "item": "hamncheese:oak_chopping_board"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.chop_chop.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.chop_chop.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "chopping_board": {
+      "trigger": "hamncheese:chopping_board_use",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "chopping_board"
+    ]
+  ]
+}

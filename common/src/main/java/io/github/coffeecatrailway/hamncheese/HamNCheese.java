@@ -15,6 +15,7 @@ import gg.moonflower.pollen.api.registry.StrippingRegistry;
 import gg.moonflower.pollen.api.registry.client.*;
 import gg.moonflower.pollen.api.registry.content.CompostablesRegistry;
 import gg.moonflower.pollen.api.registry.content.DispenseItemBehaviorRegistry;
+import gg.moonflower.pollen.api.registry.resource.CriterionRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.hamncheese.client.HNCModelLayers;
 import io.github.coffeecatrailway.hamncheese.client.blockentity.ChoppingBoardRenderer;
@@ -24,6 +25,7 @@ import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PizzaOvenScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PopcornMachineScreen;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.SandwichExplodeBehavior;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.TreeTapDispenseBehavior;
@@ -81,6 +83,8 @@ public class HamNCheese
     public static final ResourceLocation EMPTY_SLOT_KERNELS = getLocation("item/empty_kernels_slot");
     public static final ResourceLocation EMPTY_SLOT_SEASONING = getLocation("item/empty_seasoning_slot");
     public static final ResourceLocation EMPTY_SLOT_FLAVOUR = getLocation("item/empty_flavour_slot");
+
+    public static ChoppingBoardTrigger CHOPPING_BOARD_TRIGGER;
 
     private static BlockTintCache MAPLE_TINT_CACHE;
 
@@ -171,6 +175,8 @@ public class HamNCheese
         FluidBehaviorRegistry.register(HNCFluidTags.MAPLE_SAP, new HNCFluidBehavior());
         FluidBehaviorRegistry.register(HNCFluidTags.MILK, new HNCFluidBehavior());
         FluidBehaviorRegistry.register(HNCFluidTags.GOAT_MILK, new HNCFluidBehavior());
+
+        CHOPPING_BOARD_TRIGGER = CriterionRegistry.register(new ChoppingBoardTrigger());
 
         EntityAttributeRegistry.register(HNCEntities.MOUSE, MouseEntity::registerAttributeMap);
 

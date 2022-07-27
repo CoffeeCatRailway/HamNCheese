@@ -2,6 +2,8 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.PollinatedAdvancementProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
+import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
@@ -77,6 +79,42 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                         ).addCriterion("salt", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.ROCK_SALT.get())),
                 "Ahh! Salty!", "Craft rock salt", registry);
 
+        Advancement rolling = this.register("rolling", builder -> builder.parent(root)
+                        .display(
+                                HNCItems.STONE_ROLLING_PIN.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".rolling.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".rolling.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("rolling_pin", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(HNCItemTags.ROLLING_PINS).build())),
+                "They see me rollin!", "Craft a rolling pin", registry);
+        Advancement chopChop = this.register("chop_chop", builder -> builder.parent(rolling)
+                        .display(
+                                HNCBlocks.OAK_CHOPPING_BOARD.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".chop_chop.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".chop_chop.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("chopping_board", ChoppingBoardTrigger.TriggerInstance.useChoppingBoard()),
+                "Chop! Chop!", "Use a chopping board", registry);
+        Advancement croissant = this.register("croissant", builder -> builder.parent(chopChop)
+                        .display(
+                                HNCItems.UNBAKED_CROISSANT.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".croissant.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".croissant.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("croissant", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.UNBAKED_CROISSANT.get())),
+                "CROISSANT!", "Are you gonna eat that croissant..?", registry);
         Advancement woodChop = this.register("wood_chop", builder -> builder.parent(root)
                         .display(
                                 HNCItems.WOODEN_KNIFE.get(),
