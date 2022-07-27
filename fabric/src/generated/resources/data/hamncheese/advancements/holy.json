@@ -1,0 +1,29 @@
+{
+  "parent": "hamncheese:cheese",
+  "display": {
+    "icon": {
+      "item": "hamncheese:block_of_swiss_cheese"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.holy.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.holy.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "swiss_cheese": {
+      "trigger": "hamncheese:swiss_cheese",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "swiss_cheese"
+    ]
+  ]
+}

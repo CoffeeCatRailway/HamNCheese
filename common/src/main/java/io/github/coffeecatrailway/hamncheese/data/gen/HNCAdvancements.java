@@ -153,6 +153,18 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("gouda_cheese", InventoryChangeTrigger.TriggerInstance.hasItems(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get())),
                 "Wax on! Wax off!", "Craft gouda cheese", registry);
+        Advancement holy = this.register("holy", builder -> builder.parent(cheese)
+                        .display(
+                                HNCBlocks.BLOCK_OF_SWISS_CHEESE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".holy.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".holy.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("swiss_cheese", SwissCheeseTrigger.TriggerInstance.makeSwissCheese()),
+                "Holy cheese!", "Divine! Right-click a block of cheese with shears", registry);
         Advancement goatCheese = this.register("goat_cheese", builder -> builder.parent(curdler)
                         .display(
                                 HNCBlocks.BLOCK_OF_GOAT_CHEESE.get(),

@@ -9,6 +9,7 @@ import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -91,6 +92,8 @@ public class CheeseBlock extends Block
             Random random = level.getRandom();
             ItemEntity itemEntity = this.spawnAtLocation(new ItemStack(HNCItems.SWISS_CHEESE_BITS.get(), random.nextInt(2) + 1), level, pos);
             itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((random.nextFloat() - random.nextFloat()) * .1f, random.nextFloat() * .05f, (random.nextFloat() - random.nextFloat()) * .1f));
+            if (player instanceof ServerPlayer)
+                HamNCheese.SWISS_CHEESE_TRIGGER.trigger((ServerPlayer) player);
             return InteractionResult.SUCCESS;
         }
 
