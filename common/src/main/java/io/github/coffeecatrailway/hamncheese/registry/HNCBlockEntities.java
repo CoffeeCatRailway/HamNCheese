@@ -4,11 +4,9 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
-import io.github.coffeecatrailway.hamncheese.common.block.entity.ChoppingBoardBlockEntity;
-import io.github.coffeecatrailway.hamncheese.common.block.entity.GrillBlockEntity;
-import io.github.coffeecatrailway.hamncheese.common.block.entity.PizzaOvenBlockEntity;
-import io.github.coffeecatrailway.hamncheese.common.block.entity.PopcornMachineBlockEntity;
+import io.github.coffeecatrailway.hamncheese.common.block.entity.*;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -34,6 +32,8 @@ public class HNCBlockEntities
     public static final Supplier<BlockEntityType<PopcornMachineBlockEntity>> POPCORN_MACHINE = register("popcorn_machine", getPopcornMachine(), HNCBlocks.POPCORN_MACHINE);
 
     public static final Supplier<BlockEntityType<ChoppingBoardBlockEntity>> CHOPPING_BOARD = register("chopping_board", getChoppingBoard(), Registry.BLOCK.stream().filter(block -> block instanceof ChoppingBoardBlock));
+
+    public static final Supplier<BlockEntityType<CheeseBlockEntity>> CHEESE = register("cheese", CheeseBlockEntity::new, Registry.BLOCK.stream().filter(block -> block instanceof CheeseBlock));
 
     @SafeVarargs
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> blockEntity, Supplier<? extends Block>... blocks)

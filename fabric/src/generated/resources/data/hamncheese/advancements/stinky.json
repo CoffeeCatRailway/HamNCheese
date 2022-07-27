@@ -1,0 +1,29 @@
+{
+  "parent": "hamncheese:cheese",
+  "display": {
+    "icon": {
+      "item": "hamncheese:block_of_blue_cheese"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.stinky.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.stinky.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "blue_cheese": {
+      "trigger": "hamncheese:blue_cheese",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "blue_cheese"
+    ]
+  ]
+}

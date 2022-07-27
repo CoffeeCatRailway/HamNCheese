@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.PollinatedAdvancementProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.BlueCheeseTrigger;
 import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
 import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.SwissCheeseTrigger;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
@@ -141,6 +142,18 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("cheese", InventoryChangeTrigger.TriggerInstance.hasItems(HNCBlocks.BLOCK_OF_CHEESE.get())),
                 "Cheese!", "Craft a block of cheese", registry);
+        Advancement stinky = this.register("stinky", builder -> builder.parent(cheese)
+                        .display(
+                                HNCBlocks.BLOCK_OF_BLUE_CHEESE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".stinky.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".stinky.description"),
+                                null,
+                                FrameType.GOAL,
+                                true,
+                                true,
+                                true
+                        ).addCriterion("blue_cheese", BlueCheeseTrigger.TriggerInstance.waitForBlueCheese()),
+                "Stinky!", "Wait for a block of cheese to turn into blue cheese", registry);
         Advancement waxOn = this.register("wax_on", builder -> builder.parent(cheese)
                         .display(
                                 HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get(),

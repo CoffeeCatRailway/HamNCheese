@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.hamncheese.common.block;
 
 import gg.moonflower.pollen.api.util.VoxelShapeHelper;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.block.entity.CheeseBlockEntity;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFoods;
@@ -13,6 +14,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -21,8 +23,11 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -31,13 +36,14 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 /**
  * @author CoffeeCatRailway
  * Created: 1/09/2021
  */
-public class CheeseBlock extends Block
+public class CheeseBlock extends BaseEntityBlock
 {
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, 3);
 
@@ -61,6 +67,26 @@ public class CheeseBlock extends Block
         return SHAPES[state.getValue(BITES)];
     }
 
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
+    {
+        return new CheeseBlockEntity(pos, state);
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState blockState)
+    {
+        return RenderShape.MODEL;
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity living, ItemStack stack)
+    {
+        if (!level.isClientSide && living instanceof ServerPlayer player && level.getBlockEntity(pos) instanceof CheeseBlockEntity blockEntity)
+            blockEntity.setPlayerUUID(player.getUUID());
+    }
+
     @Override
     public boolean isRandomlyTicking(BlockState state)
     {
@@ -72,6 +98,12 @@ public class CheeseBlock extends Block
     {
         if (!this.isRandomlyTicking(state) && random.nextFloat() < HamNCheese.CONFIG_SERVER.blockOfCheeseChance.get().floatValue())
             return;
+        if (!level.isClientSide && level.getBlockEntity(pos) instanceof CheeseBlockEntity blockEntity && blockEntity.getPlayerUUID() != null)
+        {
+            ServerPlayer player = level.getServer().getPlayerList().getPlayer(blockEntity.getPlayerUUID());
+            if (player != null)
+                HamNCheese.BLUE_CHEESE_TRIGGER.trigger(player);
+        }
         level.setBlock(pos, HNCBlocks.BLOCK_OF_BLUE_CHEESE.get().defaultBlockState().setValue(BITES, state.getValue(BITES)), 3);
     }
 

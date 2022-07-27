@@ -25,6 +25,7 @@ import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PizzaOvenScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PopcornMachineScreen;
 import io.github.coffeecatrailway.hamncheese.client.item.SandwichItemRenderer;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.BlueCheeseTrigger;
 import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
 import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.SwissCheeseTrigger;
 import io.github.coffeecatrailway.hamncheese.common.block.dispenser.MapleSapDispenseBehavior;
@@ -87,6 +88,7 @@ public class HamNCheese
 
     public static ChoppingBoardTrigger CHOPPING_BOARD_TRIGGER;
     public static SwissCheeseTrigger SWISS_CHEESE_TRIGGER;
+    public static BlueCheeseTrigger BLUE_CHEESE_TRIGGER;
 
     private static BlockTintCache MAPLE_TINT_CACHE;
 
@@ -180,6 +182,7 @@ public class HamNCheese
 
         CHOPPING_BOARD_TRIGGER = CriterionRegistry.register(new ChoppingBoardTrigger());
         SWISS_CHEESE_TRIGGER = CriterionRegistry.register(new SwissCheeseTrigger());
+        BLUE_CHEESE_TRIGGER = CriterionRegistry.register(new BlueCheeseTrigger());
 
         EntityAttributeRegistry.register(HNCEntities.MOUSE, MouseEntity::registerAttributeMap);
 
