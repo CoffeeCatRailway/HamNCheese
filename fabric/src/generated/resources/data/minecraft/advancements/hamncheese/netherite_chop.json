@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:hamncheese/iron_chop",
+  "display": {
+    "icon": {
+      "item": "hamncheese:netherite_knife",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.netherite_chop.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.netherite_chop.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "netherite_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:netherite_knife"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "netherite_knife"
+    ]
+  ]
+}

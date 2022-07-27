@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:hamncheese/expensive_chop",
+  "display": {
+    "icon": {
+      "item": "hamncheese:iron_knife",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.iron_chop.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.iron_chop.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "iron_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:iron_knife"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "iron_knife"
+    ]
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:hamncheese/root",
+  "display": {
+    "icon": {
+      "item": "hamncheese:wooden_knife",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.wood_chop.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.wood_chop.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "wooden_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:wooden_knife"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "wooden_knife"
+    ]
+  ]
+}

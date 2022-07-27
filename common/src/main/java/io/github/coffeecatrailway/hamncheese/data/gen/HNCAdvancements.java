@@ -6,6 +6,7 @@ import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Items;
@@ -75,6 +76,68 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("salt", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.ROCK_SALT.get())),
                 "Ahh! Salty!", "Craft rock salt", registry);
+
+        Advancement woodChop = this.register("wood_chop", builder -> builder.parent(root)
+                        .display(
+                                HNCItems.WOODEN_KNIFE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".wood_chop.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".wood_chop.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("wooden_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.WOODEN_KNIFE.get())),
+                "Cooks first chop!", "Craft a wooden knife", registry);
+        Advancement expensiveChop = this.register("expensive_chop", builder -> builder.parent(woodChop)
+                        .display(
+                                HNCItems.GOLDEN_KNIFE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".expensive_chop.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".expensive_chop.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("gold_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.GOLDEN_KNIFE.get())),
+                "Must be expensive food!", "Craft a golden knife", registry);
+        Advancement ironChop = this.register("iron_chop", builder -> builder.parent(expensiveChop)
+                        .display(
+                                HNCItems.IRON_KNIFE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".iron_chop.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".iron_chop.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("iron_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.IRON_KNIFE.get())),
+                "Upgrade!", "Craft an iron knife", registry);
+        Advancement netheriteChop = this.register("netherite_chop", builder -> builder.parent(ironChop)
+                        .display(
+                                HNCItems.NETHERITE_KNIFE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".netherite_chop.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".netherite_chop.description"),
+                                null,
+                                FrameType.CHALLENGE,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("netherite_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.NETHERITE_KNIFE.get())),
+                "High quality", "Craft a netherite knife", registry);
+
+        Advancement sizzle = this.register("sizzle", builder -> builder.parent(woodChop)
+                        .display(
+                                HNCItems.COOKED_BACON.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".sizzle.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".sizzle.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("bacon", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.BACON.get())),
+                "Sizzle...", "Craft a bacon", registry);
     }
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)
