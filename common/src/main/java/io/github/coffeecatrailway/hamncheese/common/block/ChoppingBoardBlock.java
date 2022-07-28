@@ -1,9 +1,9 @@
 package io.github.coffeecatrailway.hamncheese.common.block;
 
-import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.ChoppingBoardBlockEntity;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.ChoppingBoardRecipe;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlockEntities;
+import io.github.coffeecatrailway.hamncheese.registry.HNCCriterionTriggers;
 import io.github.coffeecatrailway.hamncheese.registry.HNCRecipes;
 import io.github.coffeecatrailway.hamncheese.registry.HNCStats;
 import net.minecraft.core.BlockPos;
@@ -118,7 +118,7 @@ public class ChoppingBoardBlock extends BaseEntityBlock implements SimpleWaterlo
                 {
                     player.awardStat(HNCStats.INTERACT_CHOPPING_BOARD);
                     if (player instanceof ServerPlayer)
-                        HamNCheese.CHOPPING_BOARD_TRIGGER.trigger((ServerPlayer) player);
+                        HNCCriterionTriggers.CHOPPING_BOARD_TRIGGER.trigger((ServerPlayer) player);
                 }
                 return InteractionResult.SUCCESS;
             }
