@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.datagen.provider.PollinatedAdvancementProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.BlueCheeseTrigger;
 import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.PestControlTrigger;
 import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.SwissCheeseTrigger;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
@@ -313,6 +314,19 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("cheese_slice", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(HNCItemTags.CHEESE_SLICE_COMMON).build())),
                 "Best thing since sliced cheese", "Craft a cheese slice", registry);
+
+        Advancement pestControl = this.register("pest_control", builder -> builder.parent(root)
+                        .display(
+                                HNCItems.MOUSE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".pest_control.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".pest_control.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("pest_control", PestControlTrigger.TriggerInstance.killOrScareMouse()),
+                "Pest control", "Kill a mouse or scare one with a tamed cat", registry);
     }
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)

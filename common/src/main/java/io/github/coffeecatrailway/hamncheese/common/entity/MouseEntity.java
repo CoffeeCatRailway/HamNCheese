@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.entity.ai.goal.FindCheeseGoal;
 import io.github.coffeecatrailway.hamncheese.common.entity.ai.goal.FindChestWithFoodGoal;
+import io.github.coffeecatrailway.hamncheese.common.entity.ai.goal.MouseAvoidCatGoal;
+import io.github.coffeecatrailway.hamncheese.registry.HNCCriterionTriggers;
 import io.github.coffeecatrailway.hamncheese.registry.HNCEntities;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -14,8 +16,10 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -101,7 +105,7 @@ public class MouseEntity extends Animal
     {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1d, true));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Cat.class, 12f, .8d, 1d));
+        this.goalSelector.addGoal(1, new MouseAvoidCatGoal(this));
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Ocelot.class, 12f, .8d, 1d));
         this.goalSelector.addGoal(2, new FindChestWithFoodGoal(this, 1.2f, 12, 2));
         this.goalSelector.addGoal(2, new FindCheeseGoal(this, 1.2f, 15, 3));
@@ -151,5 +155,14 @@ public class MouseEntity extends Animal
     {
         this.setCoatType(this.random.nextInt(TEXTURE_BY_TYPE.size()));
         return super.finalizeSpawn(level, difficulty, spawnType, groupData, tag);
+    }
+
+    @Override
+    public void die(DamageSource source)
+    {
+        super.die(source);
+        if (this.dead && source.getEntity() instanceof ServerPlayer player)
+            HNCCriterionTriggers.PEST_CONTROL_TRIGGER.trigger(player);
+        // TODO: Good Kitty!
     }
 }

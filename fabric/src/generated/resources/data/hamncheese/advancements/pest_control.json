@@ -1,0 +1,29 @@
+{
+  "parent": "hamncheese:root",
+  "display": {
+    "icon": {
+      "item": "hamncheese:mouse"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.pest_control.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.pest_control.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "pest_control": {
+      "trigger": "hamncheese:pest_control",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "pest_control"
+    ]
+  ]
+}
