@@ -322,7 +322,7 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 true,
                                 true,
                                 false
-                        ).addCriterion("pest_control", PestControlTrigger.TriggerInstance.killOrScareMouse()),
+                        ).addCriterion("pest_control", PestControlTrigger.TriggerInstance.killOrScareMouse(PestControlTrigger.Type.NORMAL)),
                 "Pest control", "Kill a mouse or scare one with a tamed cat", registry);
         Advancement goodKitty = this.register("good_kitty", builder -> builder.parent(pestControl)
                         .display(
@@ -334,8 +334,20 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 true,
                                 true,
                                 false
-                        ).addCriterion("pest_control", GoodKittyTrigger.TriggerInstance.killMouse()),
+                        ).addCriterion("good_kitty", GoodKittyTrigger.TriggerInstance.killMouse()),
                 "Good kitty!", "Kill a mouse with a tamed cat", registry);
+        Advancement antiPestControl = this.register("anti_pest_control", builder -> builder.parent(pestControl)
+                        .display(
+                                HNCItems.MOUSE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".anti_pest_control.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".anti_pest_control.description"),
+                                null,
+                                FrameType.GOAL,
+                                true,
+                                true,
+                                true
+                        ).addCriterion("anti_pest_control", PestControlTrigger.TriggerInstance.killOrScareMouse(PestControlTrigger.Type.ANTI)),
+                "Anti Pest Control", "Breed two mice", registry);
     }
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)

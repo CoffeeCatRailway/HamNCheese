@@ -2,9 +2,11 @@ package io.github.coffeecatrailway.hamncheese.common.entity;
 
 import com.google.common.collect.Lists;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.PestControlTrigger;
 import io.github.coffeecatrailway.hamncheese.common.entity.ai.goal.FindCheeseGoal;
 import io.github.coffeecatrailway.hamncheese.common.entity.ai.goal.FindChestWithFoodGoal;
 import io.github.coffeecatrailway.hamncheese.common.entity.ai.goal.MouseAvoidCatGoal;
+import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCCriterionTriggers;
 import io.github.coffeecatrailway.hamncheese.registry.HNCEntities;
 import net.fabricmc.api.EnvType;
@@ -31,6 +33,8 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
@@ -44,6 +48,7 @@ import java.util.List;
  */
 public class MouseEntity extends Animal
 {
+    private static final Ingredient TEMPT = Ingredient.of(HNCItemTags.CHEESE_COMMON);
     private static final EntityDataAccessor<Integer> COAT_TYPE_ID = SynchedEntityData.defineId(MouseEntity.class, EntityDataSerializers.INT);
     public static final List<ResourceLocation> TEXTURE_BY_TYPE = Lists.newArrayList(
             HamNCheese.getLocation("textures/entity/mouse/black.png"),
@@ -107,13 +112,20 @@ public class MouseEntity extends Animal
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1d, true));
         this.goalSelector.addGoal(1, new MouseAvoidCatGoal(this));
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Ocelot.class, 12f, .8d, 1d));
+        this.goalSelector.addGoal(2, new BreedGoal(this, .8d));
+        this.goalSelector.addGoal(2, new TemptGoal(this, 1.25, TEMPT, false));
         this.goalSelector.addGoal(2, new FindChestWithFoodGoal(this, 1.2f, 12, 2));
         this.goalSelector.addGoal(2, new FindCheeseGoal(this, 1.2f, 15, 3));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, .6d));
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 2f));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(4, new BreedGoal(this, .8d));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, Cat.class, Ocelot.class).setAlertOthers());
+    }
+
+    @Override
+    public boolean isFood(ItemStack stack)
+    {
+        return TEMPT.test(stack);
     }
 
     public static AttributeSupplier.Builder registerAttributeMap()
@@ -133,6 +145,18 @@ public class MouseEntity extends Animal
     protected void playStepSound(BlockPos pos, BlockState block)
     {
         this.playSound(SoundEvents.CHICKEN_STEP, .15f, 1f);
+    }
+
+    @Override
+    public void spawnChildFromBreeding(ServerLevel level, Animal animal)
+    {
+        super.spawnChildFromBreeding(level, animal);
+        ServerPlayer player = this.getLoveCause();
+        if (player == null && animal.getLoveCause() != null)
+            player = animal.getLoveCause();
+
+        if (player != null)
+            HNCCriterionTriggers.PEST_CONTROL_TRIGGER.trigger(player, PestControlTrigger.Type.ANTI);
     }
 
     @Nullable
@@ -164,7 +188,7 @@ public class MouseEntity extends Animal
         if (!this.dead)
             return;
         if (source.getEntity() instanceof ServerPlayer player)
-            HNCCriterionTriggers.PEST_CONTROL_TRIGGER.trigger(player);
+            HNCCriterionTriggers.PEST_CONTROL_TRIGGER.trigger(player, PestControlTrigger.Type.NORMAL);
         if (source.getEntity() instanceof Cat cat && cat.isTame() && cat.getOwner() instanceof ServerPlayer player)
             HNCCriterionTriggers.GOOD_KITTY_TRIGGER.trigger(player);
     }

@@ -89,6 +89,14 @@ public class MouseModel extends EntityModel<MouseEntity>
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha)
     {
-        this.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        if (this.young)
+        {
+            poseStack.pushPose();
+            poseStack.scale(.5f, .5f, .5f);
+            poseStack.translate(0f, 16f/11f, 0f);
+            this.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+            poseStack.popPose();
+        } else
+            this.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 }

@@ -1,31 +1,31 @@
 {
-  "parent": "hamncheese:root",
+  "parent": "hamncheese:pest_control",
   "display": {
     "icon": {
       "item": "hamncheese:mouse"
     },
     "title": {
-      "translate": "advancements.hamncheese.pest_control.title"
+      "translate": "advancements.hamncheese.anti_pest_control.title"
     },
     "description": {
-      "translate": "advancements.hamncheese.pest_control.description"
+      "translate": "advancements.hamncheese.anti_pest_control.description"
     },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": false
+    "hidden": true
   },
   "criteria": {
-    "pest_control": {
+    "anti_pest_control": {
       "trigger": "hamncheese:pest_control",
       "conditions": {
-        "type": "normal"
+        "type": "anti"
       }
     }
   },
   "requirements": [
     [
-      "pest_control"
+      "anti_pest_control"
     ]
   ]
 }

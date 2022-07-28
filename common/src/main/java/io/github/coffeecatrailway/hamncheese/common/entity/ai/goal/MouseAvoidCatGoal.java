@@ -1,5 +1,6 @@
 package io.github.coffeecatrailway.hamncheese.common.entity.ai.goal;
 
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.PestControlTrigger;
 import io.github.coffeecatrailway.hamncheese.common.entity.MouseEntity;
 import io.github.coffeecatrailway.hamncheese.registry.HNCCriterionTriggers;
 import net.minecraft.server.level.ServerPlayer;
@@ -22,6 +23,6 @@ public class MouseAvoidCatGoal extends AvoidEntityGoal<Cat>
     {
         super.tick();
         if (this.toAvoid != null && this.mob.distanceToSqr(this.toAvoid) < 49d && this.toAvoid.isTame() && this.toAvoid.getOwner() instanceof ServerPlayer player)
-            HNCCriterionTriggers.PEST_CONTROL_TRIGGER.trigger(player);
+            HNCCriterionTriggers.PEST_CONTROL_TRIGGER.trigger(player, PestControlTrigger.Type.NORMAL);
     }
 }

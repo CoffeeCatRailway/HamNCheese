@@ -16,14 +16,14 @@
     "hidden": false
   },
   "criteria": {
-    "pest_control": {
+    "good_kitty": {
       "trigger": "hamncheese:good_kitty",
       "conditions": {}
     }
   },
   "requirements": [
     [
-      "pest_control"
+      "good_kitty"
     ]
   ]
 }
