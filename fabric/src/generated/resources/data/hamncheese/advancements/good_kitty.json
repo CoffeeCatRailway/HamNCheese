@@ -1,0 +1,29 @@
+{
+  "parent": "hamncheese:pest_control",
+  "display": {
+    "icon": {
+      "item": "minecraft:salmon"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.good_kitty.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.good_kitty.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "pest_control": {
+      "trigger": "hamncheese:good_kitty",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "pest_control"
+    ]
+  ]
+}

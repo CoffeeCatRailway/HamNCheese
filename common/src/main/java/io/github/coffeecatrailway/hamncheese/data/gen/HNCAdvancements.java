@@ -2,10 +2,7 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.PollinatedAdvancementProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.BlueCheeseTrigger;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.PestControlTrigger;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.SwissCheeseTrigger;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.*;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.advancements.Advancement;
@@ -327,6 +324,18 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("pest_control", PestControlTrigger.TriggerInstance.killOrScareMouse()),
                 "Pest control", "Kill a mouse or scare one with a tamed cat", registry);
+        Advancement goodKitty = this.register("good_kitty", builder -> builder.parent(pestControl)
+                        .display(
+                                Items.SALMON,
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".good_kitty.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".good_kitty.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("pest_control", GoodKittyTrigger.TriggerInstance.killMouse()),
+                "Good kitty!", "Kill a mouse with a tamed cat", registry);
     }
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)

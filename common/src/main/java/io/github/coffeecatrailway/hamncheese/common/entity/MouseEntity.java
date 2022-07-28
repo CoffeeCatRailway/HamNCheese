@@ -161,8 +161,11 @@ public class MouseEntity extends Animal
     public void die(DamageSource source)
     {
         super.die(source);
-        if (this.dead && source.getEntity() instanceof ServerPlayer player)
+        if (!this.dead)
+            return;
+        if (source.getEntity() instanceof ServerPlayer player)
             HNCCriterionTriggers.PEST_CONTROL_TRIGGER.trigger(player);
-        // TODO: Good Kitty!
+        if (source.getEntity() instanceof Cat cat && cat.isTame() && cat.getOwner() instanceof ServerPlayer player)
+            HNCCriterionTriggers.GOOD_KITTY_TRIGGER.trigger(player);
     }
 }
