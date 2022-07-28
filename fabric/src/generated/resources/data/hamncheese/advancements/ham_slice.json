@@ -1,14 +1,14 @@
 {
-  "parent": "hamncheese:ham_slice",
+  "parent": "hamncheese:wood_chop",
   "display": {
     "icon": {
-      "item": "hamncheese:cooked_bacon"
+      "item": "hamncheese:ham_slice"
     },
     "title": {
-      "translate": "advancements.hamncheese.sizzle.title"
+      "translate": "advancements.hamncheese.ham_slice.title"
     },
     "description": {
-      "translate": "advancements.hamncheese.sizzle.description"
+      "translate": "advancements.hamncheese.ham_slice.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "bacon": {
+    "ham_slice": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "hamncheese:bacon"
+            "tag": "hamncheese:ham"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "bacon"
+      "ham_slice"
     ]
   ]
 }

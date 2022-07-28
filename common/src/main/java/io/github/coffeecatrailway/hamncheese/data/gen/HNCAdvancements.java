@@ -203,7 +203,31 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("wooden_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.WOODEN_KNIFE.get())),
                 "Cooks first chop!", "Craft a wooden knife", registry);
-        Advancement expensiveChop = this.register("expensive_chop", builder -> builder.parent(woodChop)
+        Advancement crudeChop = this.register("curde_chop", builder -> builder.parent(woodChop)
+                        .display(
+                                HNCItems.STONE_KNIFE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".curde_chop.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".curde_chop.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("stone_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.STONE_KNIFE.get())),
+                "A bit crude...", "Craft a stone knife", registry);
+        Advancement staticChop = this.register("static_chop", builder -> builder.parent(crudeChop)
+                        .display(
+                                HNCItems.COPPER_KNIFE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".static_chop.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".static_chop.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("copper_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.COPPER_KNIFE.get())),
+                "Electrifying food", "Craft a copper knife", registry);
+        Advancement expensiveChop = this.register("expensive_chop", builder -> builder.parent(crudeChop)
                         .display(
                                 HNCItems.GOLDEN_KNIFE.get(),
                                 new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".expensive_chop.title"),
@@ -227,7 +251,19 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("iron_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.IRON_KNIFE.get())),
                 "Upgrade!", "Craft an iron knife", registry);
-        Advancement netheriteChop = this.register("netherite_chop", builder -> builder.parent(ironChop)
+        Advancement diamondChop = this.register("diamond_chop", builder -> builder.parent(ironChop)
+                        .display(
+                                HNCItems.DIAMOND_KNIFE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".diamond_chop.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".diamond_chop.description"),
+                                null,
+                                FrameType.GOAL,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("diamond_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.DIAMOND_KNIFE.get())),
+                "Now that's a knife!", "Craft a diamond knife", registry);
+        Advancement netheriteChop = this.register("netherite_chop", builder -> builder.parent(diamondChop)
                         .display(
                                 HNCItems.NETHERITE_KNIFE.get(),
                                 new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".netherite_chop.title"),
@@ -240,7 +276,19 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                         ).addCriterion("netherite_knife", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.NETHERITE_KNIFE.get())),
                 "High quality", "Craft a netherite knife", registry);
 
-        Advancement sizzle = this.register("sizzle", builder -> builder.parent(woodChop)
+        Advancement hamSlice = this.register("ham_slice", builder -> builder.parent(woodChop)
+                        .display(
+                                HNCItems.HAM_SLICE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".ham_slice.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".ham_slice.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("ham_slice", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(HNCItemTags.HAM_COMMON).build())),
+                "Poor piggy...", "Craft a ham slice", registry);
+        Advancement sizzle = this.register("sizzle", builder -> builder.parent(hamSlice)
                         .display(
                                 HNCItems.COOKED_BACON.get(),
                                 new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".sizzle.title"),
@@ -250,27 +298,30 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 true,
                                 true,
                                 false
-                        ).addCriterion("bacon", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.BACON.get())),
+                        ).addCriterion("bacon", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(HNCItemTags.BACON_COMMON).build())),
                 "Sizzle...", "Craft a bacon", registry);
-        Advancement slice = this.register("slice", builder -> builder.parent(woodChop)
+
+        Advancement cheeseSlice = this.register("cheese_slice", builder -> builder.parent(woodChop)
                         .display(
                                 HNCItems.CHEESE_SLICE.get(),
-                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".slice.title"),
-                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".slice.description"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".cheese_slice.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".cheese_slice.description"),
                                 null,
                                 FrameType.TASK,
                                 true,
                                 true,
                                 false
-                        ).addCriterion("bacon", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(HNCItemTags.CHEESE_SLICE_COMMON).build())),
+                        ).addCriterion("cheese_slice", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(HNCItemTags.CHEESE_SLICE_COMMON).build())),
                 "Best thing since sliced cheese", "Craft a cheese slice", registry);
     }
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)
     {
         Advancement advancement = factory.apply(Advancement.Builder.advancement()).save(registry, HamNCheese.MOD_ID + ":" + id);
-        HNCLanguage.EXTRA.put(((TranslatableComponent) advancement.getDisplay().getTitle()).getKey(), title);
-        HNCLanguage.EXTRA.put(((TranslatableComponent) advancement.getDisplay().getDescription()).getKey(), description);
+        if (advancement.getDisplay().getTitle() instanceof TranslatableComponent component)
+            HNCLanguage.EXTRA.put(component.getKey(), title);
+        if (advancement.getDisplay().getDescription() instanceof TranslatableComponent component)
+            HNCLanguage.EXTRA.put(component.getKey(), description);
         return advancement;
     }
 }
