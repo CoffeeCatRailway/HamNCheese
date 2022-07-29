@@ -17,8 +17,10 @@
   },
   "criteria": {
     "blue_cheese": {
-      "trigger": "hamncheese:blue_cheese",
-      "conditions": {}
+      "trigger": "hamncheese:cheese",
+      "conditions": {
+        "type": "blue"
+      }
     }
   },
   "requirements": [

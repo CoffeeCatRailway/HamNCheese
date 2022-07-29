@@ -17,8 +17,10 @@
   },
   "criteria": {
     "swiss_cheese": {
-      "trigger": "hamncheese:swiss_cheese",
-      "conditions": {}
+      "trigger": "hamncheese:cheese",
+      "conditions": {
+        "type": "swiss"
+      }
     }
   },
   "requirements": [

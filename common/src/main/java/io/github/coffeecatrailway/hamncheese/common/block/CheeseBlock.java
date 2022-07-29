@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.hamncheese.common.block;
 
 import gg.moonflower.pollen.api.util.VoxelShapeHelper;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.CheeseTrigger;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.CheeseBlockEntity;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
@@ -103,7 +104,7 @@ public class CheeseBlock extends BaseEntityBlock
         {
             ServerPlayer player = level.getServer().getPlayerList().getPlayer(blockEntity.getPlayerUUID());
             if (player != null)
-                HNCCriterionTriggers.BLUE_CHEESE_TRIGGER.trigger(player);
+                HNCCriterionTriggers.CHEESE_TRIGGER.trigger(player, CheeseTrigger.Type.BLUE);
         }
         level.setBlock(pos, HNCBlocks.BLOCK_OF_BLUE_CHEESE.get().defaultBlockState().setValue(BITES, state.getValue(BITES)), 3);
     }
@@ -126,7 +127,7 @@ public class CheeseBlock extends BaseEntityBlock
             ItemEntity itemEntity = this.spawnAtLocation(new ItemStack(HNCItems.SWISS_CHEESE_BITS.get(), random.nextInt(2) + 1), level, pos);
             itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((random.nextFloat() - random.nextFloat()) * .1f, random.nextFloat() * .05f, (random.nextFloat() - random.nextFloat()) * .1f));
             if (player instanceof ServerPlayer)
-                HNCCriterionTriggers.SWISS_CHEESE_TRIGGER.trigger((ServerPlayer) player);
+                HNCCriterionTriggers.CHEESE_TRIGGER.trigger((ServerPlayer) player, CheeseTrigger.Type.SWISS);
             return InteractionResult.SUCCESS;
         }
 

@@ -2,7 +2,10 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.PollinatedAdvancementProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.*;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.CheeseTrigger;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.GoodKittyTrigger;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.PestControlTrigger;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.advancements.Advancement;
@@ -150,7 +153,7 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 true,
                                 true,
                                 true
-                        ).addCriterion("blue_cheese", BlueCheeseTrigger.TriggerInstance.waitForBlueCheese()),
+                        ).addCriterion("blue_cheese", CheeseTrigger.TriggerInstance.trigger(CheeseTrigger.Type.BLUE)),
                 "Stinky!", "Wait for a block of cheese to turn into blue cheese", registry);
         Advancement waxOn = this.register("wax_on", builder -> builder.parent(cheese)
                         .display(
@@ -174,7 +177,7 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 true,
                                 true,
                                 false
-                        ).addCriterion("swiss_cheese", SwissCheeseTrigger.TriggerInstance.makeSwissCheese()),
+                        ).addCriterion("swiss_cheese", CheeseTrigger.TriggerInstance.trigger(CheeseTrigger.Type.SWISS)),
                 "Holy cheese!", "Divine! Right-click a block of cheese with shears", registry);
         Advancement goatCheese = this.register("goat_cheese", builder -> builder.parent(curdler)
                         .display(
