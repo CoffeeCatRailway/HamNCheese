@@ -102,15 +102,15 @@ public class AbstractSandwichItem extends Item
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity)
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity)
     {
-        if (!world.isClientSide)
+        if (!level.isClientSide)
         {
             SoundEvent sound = SoundEvents.GENERIC_EAT;
-            Supplier<Float> pitch = () -> 1f + (world.random.nextFloat() - world.random.nextFloat()) * .4f;
+            Supplier<Float> pitch = () -> 1f + (level.random.nextFloat() - level.random.nextFloat()) * .4f;
 
             entity.playSound(sound, 1f, pitch.get());
-            world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), sound, SoundSource.NEUTRAL, 1f, pitch.get());
+            level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), sound, SoundSource.NEUTRAL, 1f, pitch.get());
 
             FoodProperties food = this.getFood(stack);
             if (entity instanceof Player)
@@ -121,9 +121,10 @@ public class AbstractSandwichItem extends Item
             }
 
             for (Pair<MobEffectInstance, Float> pair : food.getEffects())
-                if (pair.getFirst() != null && world.random.nextFloat() < pair.getSecond())
+                if (pair.getFirst() != null && level.random.nextFloat() < pair.getSecond())
                     entity.addEffect(new MobEffectInstance(pair.getFirst()));
         }
+        getIngredients(stack).forEach(ingredient -> ingredient.finishUsingItem(level, entity));
         return stack;
     }
 
