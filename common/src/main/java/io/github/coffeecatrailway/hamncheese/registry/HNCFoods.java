@@ -64,7 +64,7 @@ public class HNCFoods
     public static final FoodProperties CORN_COB = new FoodProperties.Builder().nutrition(8).saturationMod(.5f).build();
     public static final FoodProperties CORN_KERNELS = divide(CORN_COB, 8f, 2f).build();
 
-    public static final FoodProperties POPCORN = times(combine(1f, false, CORN_KERNELS, INGREDIENT).build(), 1f, .5f).build();
+    public static final FoodProperties POPCORN = times(combine(1f, false, CORN_KERNELS, INGREDIENT).build(), 1.5f, .75f).build();
     public static final FoodProperties CHEESY_POPCORN = times(combine(1f, false, POPCORN, CHEESE_SLICE).build(), 1f, .5f).build();
     public static final FoodProperties CARAMEL_POPCORN = times(combine(1f, false, POPCORN, INGREDIENT).build(), 1f, .5f).build();
 
