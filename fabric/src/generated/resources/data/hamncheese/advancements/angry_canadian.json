@@ -1,0 +1,37 @@
+{
+  "parent": "hamncheese:mmm_caramel",
+  "display": {
+    "icon": {
+      "item": "hamncheese:maple_popcorn"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.angry_canadian.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.angry_canadian.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "caramel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:maple_popcorn"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "caramel"
+    ]
+  ]
+}

@@ -1,10 +1,7 @@
 package io.github.coffeecatrailway.hamncheese.registry;
 
 import gg.moonflower.pollen.api.registry.resource.CriterionRegistry;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.CheeseTrigger;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.GoodKittyTrigger;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.PestControlTrigger;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,6 +17,7 @@ public class HNCCriterionTriggers
     public static final CheeseTrigger CHEESE_TRIGGER = CriterionRegistry.register(new CheeseTrigger());
     public static final PestControlTrigger PEST_CONTROL_TRIGGER = CriterionRegistry.register(new PestControlTrigger());
     public static final GoodKittyTrigger GOOD_KITTY_TRIGGER = CriterionRegistry.register(new GoodKittyTrigger());
+    public static final PopcornMachineTrigger POPCORN_MACHINE_TRIGGER = CriterionRegistry.register(new PopcornMachineTrigger());
 
     public static void load()
     {

@@ -2,10 +2,7 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.PollinatedAdvancementProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.CheeseTrigger;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.ChoppingBoardTrigger;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.GoodKittyTrigger;
-import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.PestControlTrigger;
+import io.github.coffeecatrailway.hamncheese.common.advancements.critereon.*;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.advancements.Advancement;
@@ -351,6 +348,43 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 true
                         ).addCriterion("anti_pest_control", PestControlTrigger.TriggerInstance.killOrScareMouse(PestControlTrigger.Type.ANTI)),
                 "Anti Pest Control", "Breed two mice", registry);
+
+        Advancement popPop = this.register("pop_pop", builder -> builder.parent(root)
+                        .display(
+                                HNCBlocks.POPCORN_MACHINE.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".pop_pop.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".pop_pop.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("popcorn_machine", PopcornMachineTrigger.TriggerInstance.usePopcornMachine()),
+                "Pop! Pop! Pop!", "Use a popcorn machine for the first time", registry);
+        Advancement mmmCaramel = this.register("mmm_caramel", builder -> builder.parent(popPop)
+                        .display(
+                                HNCItems.CARAMEL_POPCORN.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".mmm_caramel.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".mmm_caramel.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("caramel", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.CARAMEL_POPCORN.get())),
+                "MMMmmm... Caramel...", "Craft caramel popcorn", registry);
+        Advancement angryCanadian = this.register("angry_canadian", builder -> builder.parent(mmmCaramel)
+                        .display(
+                                HNCItems.MAPLE_POPCORN.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".angry_canadian.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".angry_canadian.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("caramel", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.MAPLE_POPCORN.get())),
+                "Never anger a Canadian!", "Craft maple popcorn", registry);
     }
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)

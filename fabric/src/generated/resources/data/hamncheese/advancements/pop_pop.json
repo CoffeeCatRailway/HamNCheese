@@ -1,0 +1,29 @@
+{
+  "parent": "hamncheese:root",
+  "display": {
+    "icon": {
+      "item": "hamncheese:popcorn_machine"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.pop_pop.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.pop_pop.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "popcorn_machine": {
+      "trigger": "hamncheese:popcorn_machine_use",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "popcorn_machine"
+    ]
+  ]
+}

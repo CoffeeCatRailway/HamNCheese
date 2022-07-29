@@ -3,11 +3,13 @@ package io.github.coffeecatrailway.hamncheese.common.world.inventory;
 import com.mojang.datafixers.util.Pair;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.PopcornMachineBlockEntity;
+import io.github.coffeecatrailway.hamncheese.registry.HNCCriterionTriggers;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import io.github.coffeecatrailway.hamncheese.registry.HNCMenus;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -83,7 +85,16 @@ public class PopcornMachineContainer extends AbstractContainerMenu
                 return Pair.of(InventoryMenu.BLOCK_ATLAS, HamNCheese.EMPTY_SLOT_BAG);
             }
         });
-        this.addSlot(new ResultSlot(playerInventory.player, this.container, 4, 121, 29));
+        this.addSlot(new ResultSlot(playerInventory.player, this.container, 4, 121, 29)
+        {
+            @Override
+            public void onTake(Player player, ItemStack itemStack)
+            {
+                super.onTake(player, itemStack);
+                if (player instanceof ServerPlayer serverPlayer)
+                    HNCCriterionTriggers.POPCORN_MACHINE_TRIGGER.trigger(serverPlayer);
+            }
+        });
 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 9; j++)
