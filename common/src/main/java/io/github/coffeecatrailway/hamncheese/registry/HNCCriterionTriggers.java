@@ -18,6 +18,7 @@ public class HNCCriterionTriggers
     public static final PestControlTrigger PEST_CONTROL_TRIGGER = CriterionRegistry.register(new PestControlTrigger());
     public static final GoodKittyTrigger GOOD_KITTY_TRIGGER = CriterionRegistry.register(new GoodKittyTrigger());
     public static final PopcornMachineTrigger POPCORN_MACHINE_TRIGGER = CriterionRegistry.register(new PopcornMachineTrigger());
+    public static final GrillTrigger GRILL_TRIGGER = CriterionRegistry.register(new GrillTrigger());
 
     public static void load()
     {

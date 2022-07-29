@@ -1,0 +1,37 @@
+{
+  "parent": "hamncheese:root",
+  "display": {
+    "icon": {
+      "item": "hamncheese:grill"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.bbq.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.bbq.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "grill": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:grill"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "grill"
+    ]
+  ]
+}

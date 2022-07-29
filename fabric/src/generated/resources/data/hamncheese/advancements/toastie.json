@@ -1,0 +1,29 @@
+{
+  "parent": "hamncheese:bbq",
+  "display": {
+    "icon": {
+      "item": "hamncheese:toast"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.toastie.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.toastie.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "grill": {
+      "trigger": "hamncheese:grill_use",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "grill"
+    ]
+  ]
+}

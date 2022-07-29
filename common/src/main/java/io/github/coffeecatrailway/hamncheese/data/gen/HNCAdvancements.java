@@ -385,6 +385,31 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("caramel", InventoryChangeTrigger.TriggerInstance.hasItems(HNCItems.MAPLE_POPCORN.get())),
                 "Never anger a Canadian!", "Craft maple popcorn", registry);
+
+        Advancement bbq = this.register("bbq", builder -> builder.parent(root)
+                        .display(
+                                HNCBlocks.GRILL.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".bbq.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".bbq.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("grill", InventoryChangeTrigger.TriggerInstance.hasItems(HNCBlocks.GRILL.get())),
+                "BBQ time!", "Craft a grill", registry);
+        Advancement toastie = this.register("toastie", builder -> builder.parent(bbq)
+                        .display(
+                                HNCItems.TOAST.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".toastie.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".toastie.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("grill", GrillTrigger.TriggerInstance.useGrill()),
+                "Something smells good!", "Toast a sandwich", registry);
     }
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)

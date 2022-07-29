@@ -1,6 +1,9 @@
 package io.github.coffeecatrailway.hamncheese.common.world.inventory;
 
+import io.github.coffeecatrailway.hamncheese.common.item.SandwichItem;
+import io.github.coffeecatrailway.hamncheese.registry.HNCCriterionTriggers;
 import io.github.coffeecatrailway.hamncheese.registry.HNCMenus;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -38,7 +41,16 @@ public class GrillContainer extends CookerContainer
 
         for (i = 0; i < 2; i++)
             for (j = 0; j < 2; j++)
-                this.addSlot(new ResultSlot(inventory.player, this.container, j * 2 + i + 6, 111 + j * 18, 18 + i * 18));
+                this.addSlot(new ResultSlot(inventory.player, this.container, j * 2 + i + 6, 111 + j * 18, 18 + i * 18)
+                {
+                    @Override
+                    public void onTake(Player player, ItemStack stack)
+                    {
+                        super.onTake(player, stack);
+                        if (!SandwichItem.isUntoastedSandwich(stack) && player instanceof ServerPlayer serverPlayer)
+                            HNCCriterionTriggers.GRILL_TRIGGER.trigger(serverPlayer);
+                    }
+                });
 
         for (i = 0; i < 3; i++)
             for (j = 0; j < 9; j++)

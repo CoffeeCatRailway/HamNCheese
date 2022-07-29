@@ -29,6 +29,6 @@ public class SandwichItem extends AbstractSandwichItem
 
     public static boolean isUntoastedSandwich(ItemStack stack)
     {
-        return stack.getItem() instanceof SandwichItem || stack.getItem() == HNCItems.SANDWICH.get() && !stack.getOrCreateTag().getBoolean(TAG_TOASTED);
+        return (stack.getItem() instanceof SandwichItem || stack.getItem() == HNCItems.SANDWICH.get()) && !stack.getOrCreateTag().getBoolean(TAG_TOASTED);
     }
 }
