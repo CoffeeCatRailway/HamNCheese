@@ -1,0 +1,37 @@
+{
+  "parent": "hamncheese:root",
+  "display": {
+    "icon": {
+      "item": "hamncheese:pizza_oven"
+    },
+    "title": {
+      "translate": "advancements.hamncheese.pizza.title"
+    },
+    "description": {
+      "translate": "advancements.hamncheese.pizza.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "oven": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hamncheese:pizza_oven"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "oven"
+    ]
+  ]
+}

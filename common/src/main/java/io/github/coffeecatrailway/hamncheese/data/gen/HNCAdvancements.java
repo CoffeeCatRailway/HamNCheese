@@ -410,6 +410,19 @@ public class HNCAdvancements extends PollinatedAdvancementProvider
                                 false
                         ).addCriterion("grill", GrillTrigger.TriggerInstance.useGrill()),
                 "Something smells good!", "Toast a sandwich", registry);
+
+        Advancement pizza = this.register("pizza", builder -> builder.parent(root)
+                        .display(
+                                HNCBlocks.PIZZA_OVEN.get(),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".pizza.title"),
+                                new TranslatableComponent("advancements." + HamNCheese.MOD_ID + ".pizza.description"),
+                                null,
+                                FrameType.TASK,
+                                true,
+                                true,
+                                false
+                        ).addCriterion("oven", InventoryChangeTrigger.TriggerInstance.hasItems(HNCBlocks.PIZZA_OVEN.get())),
+                "Try with pineapple?", "Craft a pizza oven", registry);
     }
 
     private Advancement register(String id, Function<Advancement.Builder, Advancement.Builder> factory, String title, String description, Consumer<Advancement> registry)
