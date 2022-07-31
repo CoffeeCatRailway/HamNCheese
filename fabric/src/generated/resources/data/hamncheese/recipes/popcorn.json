@@ -2,7 +2,7 @@
   "type": "hamncheese:popcorn",
   "popcorn": 50,
   "seasoning": {
-    "tag": "hamncheese:salt"
+    "item": "hamncheese:rock_salt"
   },
   "result": {
     "item": "hamncheese:popcorn",

@@ -5,7 +5,7 @@
     "tag": "hamncheese:cheese_slice"
   },
   "seasoning": {
-    "tag": "hamncheese:salt"
+    "item": "hamncheese:rock_salt"
   },
   "result": {
     "item": "hamncheese:cheesy_popcorn"

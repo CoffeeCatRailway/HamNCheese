@@ -5,7 +5,7 @@
     "tag": "hamncheese:sugar"
   },
   "seasoning": {
-    "tag": "hamncheese:salt"
+    "item": "hamncheese:rock_salt"
   },
   "result": {
     "item": "hamncheese:caramel_popcorn"
