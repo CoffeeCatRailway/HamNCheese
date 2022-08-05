@@ -1,7 +1,7 @@
 {
   "type": "hamncheese:chopping_board",
   "ingredient": {
-    "item": "hamncheese:tomato_slice"
+    "item": "hamncheese:tomato"
   },
   "tool": {
     "tag": "hamncheese:knives"

@@ -168,9 +168,9 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
 
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SAUCE.get()).requires(Items.BOWL).requires(Items.PUMPKIN_SEEDS).requires(HNCItemTags.TOMATO_COMMON).unlockedBy("has_bowl", has(Items.BOWL))
                 .unlockedBy("has_pumpkin_seeds", has(Items.PUMPKIN_SEEDS)).unlockedBy("has_tomato", has(HNCItemTags.TOMATO_COMMON)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
-                .unlockedBy("has_tomato", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
-        ChoppingBoardRecipeBuilder.recipe(HNCItems.TOMATO_SLICE.get(), 5, Ingredient.of(HNCItems.TOMATO_SLICE.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_tomato", has(HNCItems.TOMATO_SLICE.get())).save(consumer, HamNCheese.getLocation("tomato_slice_chopping_board"));
+        ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SLICE.get(), 4).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.TOMATO.get()).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
+                .unlockedBy("has_tomato", has(HNCItems.TOMATO.get())).save(consumer);
+        ChoppingBoardRecipeBuilder.recipe(HNCItems.TOMATO_SLICE.get(), 5, Ingredient.of(HNCItems.TOMATO.get())).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_tomato", has(HNCItems.TOMATO.get())).save(consumer, HamNCheese.getLocation("tomato_slice_chopping_board"));
         ShapelessRecipeBuilder.shapeless(HNCItems.TOMATO_SEEDS.get(), 4).requires(HNCItems.TOMATO_SLICE.get()).unlockedBy("has_tomato_slice", has(HNCItems.TOMATO_SLICE.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.CORN_KERNELS.get(), 8).requires(HNCItemTags.KNIVES_COMMON).requires(HNCItems.CORN_COB.get()).unlockedBy("has_knife", has(HNCItemTags.KNIVES_COMMON))
