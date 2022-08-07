@@ -75,8 +75,8 @@ public class HNCJeiPlugin implements IModPlugin
             @Override
             public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper helper, IFocusGroup focuses)
             {
-                helper.setInputs(builder, VanillaTypes.ITEM_STACK, List.of(List.of(new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get())), getTagItems(HNCItemTags.SUGAR_COMMON)), 2, 1);
-                helper.setOutputs(builder, VanillaTypes.ITEM_STACK, List.of(new ItemStack(HNCItems.MAPLE_SYRUP.get())));
+                helper.createAndSetInputs(builder, VanillaTypes.ITEM_STACK, List.of(List.of(new ItemStack(HNCItems.MAPLE_SAP_BOTTLE.get())), getTagItems(HNCItemTags.SUGAR_COMMON)), 2, 1);
+                helper.createAndSetOutputs(builder, VanillaTypes.ITEM_STACK, List.of(new ItemStack(HNCItems.MAPLE_SYRUP.get())));
             }
 
             @Override

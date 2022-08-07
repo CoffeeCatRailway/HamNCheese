@@ -52,11 +52,11 @@ public class SandwichCraftingExtension<T extends AbstractSandwichRecipe> impleme
         selected.forEach(stack -> inputs.add(Lists.newArrayList(stack)));
         if (this.hasTwoBuns)
             inputs.add(breadSlice);
-        helper.setInputs(builder, VanillaTypes.ITEM_STACK, inputs, 3, 3);
+        helper.createAndSetInputs(builder, VanillaTypes.ITEM_STACK, inputs, 3, 3);
 
         ItemStack sandwich = new ItemStack(this.defaultItem.get());
         selected.forEach(stack -> AbstractSandwichItem.addIngredient(sandwich, stack));
-        helper.setOutputs(builder, VanillaTypes.ITEM_STACK, List.of(sandwich));
+        helper.createAndSetOutputs(builder, VanillaTypes.ITEM_STACK, List.of(sandwich));
     }
 
     @Nullable
