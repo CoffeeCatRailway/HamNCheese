@@ -8,14 +8,14 @@ modId = "${id}"
 version = "${version}"
 displayName = "${name}"
 logoFile = "icon.png"
-updateJSONURL = "https://raw.githubusercontent.com/CoffeeCatRailway/HamNCheese/main/update_checker.json"
+updateJSONURL = "https://raw.githubusercontent.com/CoffeeCatRailway/Online-Mod-Resources/main/Ham%20N'%20Cheese/update_checker.json"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/hamncheese"
 authors = "CoffeeCatRailway"
 credits = "Nyctoniac for mouse model & any/all others who've helped!"
 description = '''
 Adds in lots of ham and cheese related foods.
 
-Please note, I only upload to CurseForge & Modrinth!
+Disclaimer: I only upload to https://www.curseforge.com
 
 Discord: https://discord.gg/GkeexxWnyz
 '''
