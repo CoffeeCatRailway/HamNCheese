@@ -2,11 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": {
-        "type": "minecraft:uniform",
-        "min": 2.0,
-        "max": 3.0
-      },
+      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
@@ -31,7 +27,7 @@
                   "formula": "minecraft:binomial_with_bonus_count",
                   "parameters": {
                     "extra": 3,
-                    "probability": 0.5714286
+                    "probability": 0.65
                   }
                 }
               ],
@@ -54,44 +50,6 @@
         }
       ],
       "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
-    },
-    {
-      "rolls": {
-        "type": "minecraft:uniform",
-        "min": 2.0,
-        "max": 3.0
-      },
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
-              "parameters": {
-                "extra": 3,
-                "probability": 0.5714286
-              }
-            }
-          ],
-          "name": "hamncheese:tomato_seeds"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "hamncheese:tomato_plant",
-          "properties": {
-            "age": "9",
-            "half": "lower"
-          }
-        },
         {
           "condition": "minecraft:survives_explosion"
         }

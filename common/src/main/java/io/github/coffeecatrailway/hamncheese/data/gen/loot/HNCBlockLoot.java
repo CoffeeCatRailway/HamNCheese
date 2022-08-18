@@ -7,7 +7,6 @@ import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.CornPlantBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.PineapplePlantBlock;
-import io.github.coffeecatrailway.hamncheese.common.block.TomatoPlantBlock;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
@@ -130,21 +129,15 @@ public class HNCBlockLoot implements Consumer<BiConsumer<ResourceLocation, LootT
                                         .hasProperty(PineapplePlantBlock.AGE, 4))))));
 
         this.add(HNCBlocks.TOMATO_PLANT.get(), block -> LootTable.lootTable()
-                .withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(UniformGenerator.between(2, 3))
+                .withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                         .add(LootItem.lootTableItem(HNCItems.TOMATO.get())
-                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 3))
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .65f, 3))
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                         .setProperties(StatePropertiesPredicate.Builder.properties()
-                                                .hasProperty(TomatoPlantBlock.AGE, 9).hasProperty(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER)))
+                                                .hasProperty(CornPlantBlock.AGE, 9).hasProperty(CornPlantBlock.HALF, DoubleBlockHalf.LOWER)))
                                 .otherwise(LootItem.lootTableItem(HNCItems.TOMATO_SEEDS.get())
                                         .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER)))))))
-                .withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(UniformGenerator.between(2, 3))
-                        .add(LootItem.lootTableItem(HNCItems.TOMATO_SEEDS.get())
-                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, .5714286f, 3)))
-                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                .setProperties(StatePropertiesPredicate.Builder.properties()
-                                        .hasProperty(TomatoPlantBlock.AGE, 9).hasProperty(TomatoPlantBlock.HALF, DoubleBlockHalf.LOWER))))));
+                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornPlantBlock.HALF, DoubleBlockHalf.LOWER))))))));
 
         this.add(HNCBlocks.CORN_PLANT.get(), block -> LootTable.lootTable()
                 .withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1))
