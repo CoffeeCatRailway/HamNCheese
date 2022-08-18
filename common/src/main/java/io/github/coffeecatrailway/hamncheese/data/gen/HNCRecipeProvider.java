@@ -128,6 +128,7 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ChoppingBoardRecipeBuilder.recipe(HNCItems.BREAD_SLICE.get(), 4, Ingredient.of(HNCItemTags.BREAD_COMMON)).tool(Ingredient.of(HNCItemTags.KNIVES_COMMON)).unlockedBy("has_bread", has(HNCItemTags.BREAD_COMMON)).save(consumer, HamNCheese.getLocation("bread_slice_chopping_board"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HamNCheese.getLocation("toast_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(HNCItems.BREAD_SLICE.get()), HNCItems.TOAST.get(), .35f, 300, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer, HamNCheese.getLocation("toast_campfire"));
+        ShapelessRecipeBuilder.shapeless(HNCItems.MOLDY_BREAD_SLICE.get()).requires(Blocks.MOSS_BLOCK).requires(HNCItems.BREAD_SLICE.get()).unlockedBy("has_moss", has(Blocks.MOSS_BLOCK)).unlockedBy("has_bread_slice", has(HNCItems.BREAD_SLICE.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(HNCItems.UNBAKED_CRACKER.get(), 2).requires(HNCItemTags.GRAIN_COMMON).requires(HNCItemTags.SALT_COMMON).requires(HNCItemTags.FLOUR_COMMON).unlockedBy("has_wheat", has(HNCItemTags.GRAIN_COMMON))
                 .unlockedBy("has_salt", has(HNCItemTags.SALT_COMMON)).unlockedBy("has_flour", has(HNCItemTags.FLOUR_COMMON)).save(consumer);
