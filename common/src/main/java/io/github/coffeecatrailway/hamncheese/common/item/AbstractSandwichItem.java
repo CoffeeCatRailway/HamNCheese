@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
  * @author CoffeeCatRailway
  * Created: 19/03/2021
  */
-public class AbstractSandwichItem extends Item
+public class AbstractSandwichItem extends Item implements HasInitialNbt
 {
     public static final String TAG_INGREDIENTS = "Ingredients";
     public static final String TAG_TOASTED = "Toasted";
@@ -48,17 +48,14 @@ public class AbstractSandwichItem extends Item
         this.sandwichProperties = sandwichProperties;
     }
 
-    public static void init(ItemStack stack)
+    @Override
+    public void saveInitialNbt(ItemStack stack, CompoundTag tag)
     {
-        if (stack.getItem() instanceof AbstractSandwichItem)
-        {
-            CompoundTag tag = stack.getOrCreateTag();
-            if (!tag.contains(AbstractSandwichItem.TAG_INGREDIENTS))
-                tag.put(AbstractSandwichItem.TAG_INGREDIENTS, new ListTag());
+        if (!tag.contains(AbstractSandwichItem.TAG_INGREDIENTS))
+            tag.put(AbstractSandwichItem.TAG_INGREDIENTS, new ListTag());
 
-            if (((AbstractSandwichItem) stack.getItem()).sandwichProperties.canBeToasted && !tag.contains(AbstractSandwichItem.TAG_TOASTED, NbtConstants.BYTE))
-                tag.putBoolean(AbstractSandwichItem.TAG_TOASTED, false);
-        }
+        if (((AbstractSandwichItem) stack.getItem()).sandwichProperties.canBeToasted && !tag.contains(AbstractSandwichItem.TAG_TOASTED, NbtConstants.BYTE))
+            tag.putBoolean(AbstractSandwichItem.TAG_TOASTED, false);
     }
 
     @Override
