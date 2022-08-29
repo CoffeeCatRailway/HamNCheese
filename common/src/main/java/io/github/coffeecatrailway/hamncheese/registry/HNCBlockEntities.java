@@ -5,7 +5,6 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.block.CheeseBlock;
-import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.*;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
@@ -31,7 +30,7 @@ public class HNCBlockEntities
     public static final Supplier<BlockEntityType<GrillBlockEntity>> GRILL = register("grill", getGrill(), HNCBlocks.GRILL);
     public static final Supplier<BlockEntityType<PopcornMachineBlockEntity>> POPCORN_MACHINE = register("popcorn_machine", getPopcornMachine(), HNCBlocks.POPCORN_MACHINE);
 
-    public static final Supplier<BlockEntityType<ChoppingBoardBlockEntity>> CHOPPING_BOARD = register("chopping_board", getChoppingBoard(), Registry.BLOCK.stream().filter(block -> block instanceof ChoppingBoardBlock));
+    public static final Supplier<BlockEntityType<ChoppingBoardBlockEntity>> CHOPPING_BOARD = register("chopping_board", getChoppingBoard(), HNCBlocks.CHOPPING_BOARDS.stream());
 
     public static final Supplier<BlockEntityType<CheeseBlockEntity>> CHEESE = register("cheese", CheeseBlockEntity::new, Registry.BLOCK.stream().filter(block -> block instanceof CheeseBlock));
 

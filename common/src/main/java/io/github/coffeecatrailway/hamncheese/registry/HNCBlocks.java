@@ -10,6 +10,7 @@ import io.github.coffeecatrailway.hamncheese.common.block.*;
 import io.github.coffeecatrailway.hamncheese.common.block.grower.MapleTreeGrower;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -20,8 +21,10 @@ import net.minecraft.world.level.material.MaterialColor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
@@ -81,6 +84,8 @@ public class HNCBlocks
     public static final Supplier<ChoppingBoardBlock> MAPLE_CHOPPING_BOARD = registerChoppingBoard("maple_chopping_board", HNCBlocks.MAPLE_PRESSURE_PLATE);
 
     public static final Supplier<TreeTapBlock> TREE_TAP = registerWithItem("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5f, 6f).sound(SoundType.METAL)), prop -> prop.stacksTo(16));
+
+    public static final Set<Block> CHOPPING_BOARDS = Registry.BLOCK.stream().filter(block -> block instanceof ChoppingBoardBlock).collect(Collectors.toSet());
 
     private static Supplier<RotatedPillarBlock> registerLog(String id, MaterialColor color)
     {

@@ -5,7 +5,6 @@ import com.mojang.datafixers.util.Pair;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
-import io.github.coffeecatrailway.hamncheese.common.block.ChoppingBoardBlock;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import io.github.coffeecatrailway.hamncheese.mixins.StructureTemplatePoolAccessor;
 import net.minecraft.core.Holder;
@@ -41,7 +40,7 @@ public class HNCVillage
     protected static final PollinatedRegistry<PoiType> POI_TYPES = PollinatedRegistry.create(Registry.POINT_OF_INTEREST_TYPE, HamNCheese.MOD_ID);
     protected static final PollinatedRegistry<VillagerProfession> PROFESSIONS = PollinatedRegistry.create(Registry.VILLAGER_PROFESSION, HamNCheese.MOD_ID);
 
-    public static final Supplier<PoiType> CHEF_POI = registerPoi("chef", () -> Registry.BLOCK.stream().filter(block -> block instanceof ChoppingBoardBlock).flatMap(board -> board.getStateDefinition().getPossibleStates().stream()).collect(Collectors.toSet()), 1, 1);
+    public static final Supplier<PoiType> CHEF_POI = registerPoi("chef", HNCBlocks.CHOPPING_BOARDS.stream().flatMap(board -> board.getStateDefinition().getPossibleStates().stream()).collect(Collectors.toSet()), 1, 1);
     public static final Supplier<VillagerProfession> CHEF = registerProfession("chef", CHEF_POI, SoundEvents.VILLAGER_WORK_BUTCHER);
 
     private static Supplier<VillagerProfession> registerProfession(String id, Supplier<PoiType> poi, SoundEvent sound)
@@ -51,9 +50,9 @@ public class HNCVillage
         return object;
     }
 
-    private static Supplier<PoiType> registerPoi(String id, Supplier<Set<BlockState>> matchingStates, int maxTickets, int validRange)
+    private static Supplier<PoiType> registerPoi(String id, Set<BlockState> matchingStates, int maxTickets, int validRange)
     {
-        return POI_TYPES.register(id, () -> new PoiType(id, matchingStates.get(), maxTickets, validRange));
+        return POI_TYPES.register(id, () -> PoiType.registerBlockStates(new PoiType(id, matchingStates, maxTickets, validRange)));
     }
 
     /**

@@ -6,7 +6,6 @@ import io.github.coffeecatrailway.hamncheese.client.gui.screens.GrillScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PizzaOvenScreen;
 import io.github.coffeecatrailway.hamncheese.client.gui.screens.PopcornMachineScreen;
 import io.github.coffeecatrailway.hamncheese.common.item.crafting.*;
-import io.github.coffeecatrailway.hamncheese.compat.CompatCommon;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCItemTags;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
 import io.github.coffeecatrailway.hamncheese.registry.HNCFluids;
@@ -127,7 +126,7 @@ public class HNCJeiPlugin implements IModPlugin
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.GRILL.get()), GRILL);
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.PIZZA_OVEN.get()), OVEN);
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.POPCORN_MACHINE.get()), POPCORN);
-        CompatCommon.CHOPPING_BOARDS.forEach(stack -> reg.addRecipeCatalyst(stack, CHOPPING_BOARD));
+        HNCBlocks.CHOPPING_BOARDS.forEach(board -> reg.addRecipeCatalyst(new ItemStack(board), CHOPPING_BOARD));
     }
 
     @Override

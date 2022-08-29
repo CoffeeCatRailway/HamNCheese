@@ -52,7 +52,6 @@ configurations {
     developmentFabric.extendsFrom common
 }
 
-
 repositories {
     maven { // ModMenu
         name = "TerraformersMC"
