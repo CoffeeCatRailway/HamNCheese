@@ -285,11 +285,20 @@ public class HamNCheese
 
 
         // Composter
+        // 10% chance
+        CompostablesRegistry.register(HNCItems.SWISS_CHEESE_BITS.get(), .1f);
+
         // 30% chance
         CompostablesRegistry.register(HNCItems.CHEESE_SLICE.get(), .3f);
+        CompostablesRegistry.register(HNCItems.BLUE_CHEESE_SLICE.get(), .3f);
+        CompostablesRegistry.register(HNCItems.GOUDA_CHEESE_SLICE.get(), .3f);
+        CompostablesRegistry.register(HNCItems.SWISS_CHEESE_BITS.get(), .3f);
+        CompostablesRegistry.register(HNCItems.GOAT_CHEESE_SLICE.get(), .3f);
+
         CompostablesRegistry.register(HNCItems.HAM_SLICE.get(), .3f);
         CompostablesRegistry.register(HNCItems.COOKED_HAM_SLICE.get(), .3f);
         CompostablesRegistry.register(HNCItems.GREEN_HAM_SLICE.get(), .3f);
+
         CompostablesRegistry.register(HNCItems.BACON.get(), .3f);
         CompostablesRegistry.register(HNCItems.COOKED_BACON.get(), .3f);
         CompostablesRegistry.register(HNCItems.PINEAPPLE_PLANT.get(), .3f);
@@ -304,17 +313,37 @@ public class HamNCheese
         CompostablesRegistry.register(HNCItems.COOKED_EGG.get(), .4f);
         CompostablesRegistry.register(HNCItems.GREEN_EGG.get(), .4f);
 
+        // 45% chance
+        CompostablesRegistry.register(HNCItems.MOLDY_BREAD_SLICE.get(), .45f);
+
         // 50% chance
         CompostablesRegistry.register(HNCBlocks.BLOCK_OF_CHEESE.get(), .5f);
+        CompostablesRegistry.register(HNCBlocks.BLOCK_OF_BLUE_CHEESE.get(), .5f);
+        CompostablesRegistry.register(HNCBlocks.BLOCK_OF_GOUDA_CHEESE.get(), .5f);
+        CompostablesRegistry.register(HNCBlocks.BLOCK_OF_SWISS_CHEESE.get(), .5f);
+        CompostablesRegistry.register(HNCBlocks.BLOCK_OF_GOAT_CHEESE.get(), .5f);
+
         CompostablesRegistry.register(HNCItems.DOUGH.get(), .5f);
         CompostablesRegistry.register(HNCItems.UNBAKED_PIZZA_BASE.get(), .5f);
+
         CompostablesRegistry.register(HNCItems.UNBAKED_BREAD.get(), .5f);
         CompostablesRegistry.register(HNCItems.BREAD_SLICE.get(), .5f);
         CompostablesRegistry.register(HNCItems.TOAST.get(), .5f);
+
         CompostablesRegistry.register(HNCItems.UNBAKED_CRACKER.get(), .5f);
         CompostablesRegistry.register(HNCItems.PINEAPPLE_RING.get(), .5f);
         CompostablesRegistry.register(HNCItems.PINEAPPLE_BIT.get(), .5f);
         CompostablesRegistry.register(HNCItems.TOMATO_SLICE.get(), .5f);
+
+        CompostablesRegistry.register(HNCItems.POPCORN.get(), .5f);
+        CompostablesRegistry.register(HNCItems.CHEESY_POPCORN.get(), .5f);
+        CompostablesRegistry.register(HNCItems.CARAMEL_POPCORN.get(), .5f);
+        CompostablesRegistry.register(HNCItems.MAPLE_POPCORN.get(), .5f);
+
+        CompostablesRegistry.register(HNCItems.UNBAKED_CROISSANT.get(), .5f);
+        CompostablesRegistry.register(HNCItems.CROISSANT.get(), .5f);
+        CompostablesRegistry.register(HNCItems.CHEESY_CROISSANT.get(), .5f);
+        CompostablesRegistry.register(HNCItems.CHEESY_HAM_CROISSANT.get(), .5f);
 
         // 65% chance
         CompostablesRegistry.register(HNCItems.PINEAPPLE.get(), .65f);
