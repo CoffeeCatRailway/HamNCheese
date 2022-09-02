@@ -80,6 +80,7 @@ dependencies {
         exclude module: 'fabric-api'
         exclude module: 'modmenu'
     }
+    modRuntimeOnly "curse.maven:xaeros-minimap-263420:${rootProject.xaerosFabricVersion}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
