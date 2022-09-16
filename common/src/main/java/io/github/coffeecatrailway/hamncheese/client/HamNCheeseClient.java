@@ -47,7 +47,7 @@ public class HamNCheeseClient
     {
         SandwichItemRenderer.init();
 
-        BlockEntityRendererRegistry.register(HNCBlockEntities.CHOPPING_BOARD, ChoppingBoardRenderer::new); // TODO: Fix forge not rendering item
+        BlockEntityRendererRegistry.register(HNCBlockEntities.CHOPPING_BOARD, ChoppingBoardRenderer::new); // Broken on pollen 1.4.9 (forge)
 
         EntityRendererRegistry.registerLayerDefinition(MOUSE, MouseModel::createLayer);
         EntityRendererRegistry.register(HNCEntities.MOUSE, MouseRenderer::new);
