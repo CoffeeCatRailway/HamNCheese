@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "hamncheese:rose_gold_knife"
+    ]
+  },
+  "criteria": {
+    "has_sticks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "hamncheese:wooden_sticks"
+          }
+        ]
+      }
+    },
+    "has_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:rose_gold_ingots"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "hamncheese:rose_gold_knife"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sticks",
+      "has_diamond",
+      "has_the_recipe"
+    ]
+  ]
+}

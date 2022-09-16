@@ -7,6 +7,10 @@
     "#forge:tools/knives/golden",
     "#forge:tools/knives/iron",
     "#forge:tools/knives/diamond",
-    "#forge:tools/knives/netherite"
+    "#forge:tools/knives/netherite",
+    {
+      "id": "#forge:tools/knives/rose_gold",
+      "required": false
+    }
   ]
 }

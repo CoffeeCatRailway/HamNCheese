@@ -188,6 +188,7 @@ public class HNCItemTags extends PollinatedItemTagsProvider
     private static final TagKey<Item> KNIVES_IRON = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/iron"));
     private static final TagKey<Item> KNIVES_DIAMOND = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/diamond"));
     private static final TagKey<Item> KNIVES_NETHERITE = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/netherite"));
+    private static final TagKey<Item> KNIVES_ROSE_GOLD = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives/rose_gold"));
     private static final TagKey<Item> KNIVES_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "tools/knives"));
     private static final TagKey<Item> KNIVES_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "knives"));
     public static final TagKey<Item> KNIVES_COMMON = TagRegistry.bindItem(HamNCheese.getLocation("knives"));
@@ -386,8 +387,9 @@ public class HNCItemTags extends PollinatedItemTagsProvider
         this.tag(KNIVES_IRON).add(HNCItems.IRON_KNIFE.get());
         this.tag(KNIVES_DIAMOND).add(HNCItems.DIAMOND_KNIFE.get());
         this.tag(KNIVES_NETHERITE).add(HNCItems.NETHERITE_KNIFE.get());
-        this.tag(KNIVES_FORGE).addTag(KNIVES_WOOD, KNIVES_STONE, KNIVES_COPPER, KNIVES_GOLD, KNIVES_IRON, KNIVES_DIAMOND, KNIVES_NETHERITE);
-        this.tag(KNIVES_FABRIC).add(HNCItems.WOODEN_KNIFE.get(), HNCItems.STONE_KNIFE.get(), HNCItems.COPPER_KNIFE.get(), HNCItems.GOLDEN_KNIFE.get(), HNCItems.IRON_KNIFE.get(), HNCItems.DIAMOND_KNIFE.get(), HNCItems.NETHERITE_KNIFE.get());
+        this.tag(KNIVES_ROSE_GOLD).add(HNCItems.ROSE_GOLD_KNIFE.get());
+        this.tag(KNIVES_FORGE).addTag(KNIVES_WOOD, KNIVES_STONE, KNIVES_COPPER, KNIVES_GOLD, KNIVES_IRON, KNIVES_DIAMOND, KNIVES_NETHERITE).addOptionalTag(KNIVES_ROSE_GOLD.location());
+        this.tag(KNIVES_FABRIC).add(HNCItems.WOODEN_KNIFE.get(), HNCItems.STONE_KNIFE.get(), HNCItems.COPPER_KNIFE.get(), HNCItems.GOLDEN_KNIFE.get(), HNCItems.IRON_KNIFE.get(), HNCItems.DIAMOND_KNIFE.get(), HNCItems.NETHERITE_KNIFE.get()).addOptional(HamNCheese.getLocation("rose_gold_knife"));
         this.tag(KNIVES_COMMON).addTag(KNIVES_FORGE, KNIVES_FABRIC);
 
         this.tag(SHEARS_FORGE).add(Items.SHEARS);

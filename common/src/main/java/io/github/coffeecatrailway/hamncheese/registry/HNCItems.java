@@ -6,6 +6,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
 import io.github.coffeecatrailway.hamncheese.common.item.*;
+import io.github.coffeecatrailway.hamncheese.compat.PlusExtraCommon;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCBlockTags;
 import io.github.coffeecatrailway.hamncheese.data.gen.HNCLanguage;
 import net.minecraft.core.Registry;
@@ -46,7 +47,15 @@ public class HNCItems
     public static final Supplier<CraftingToolItem> GOLDEN_KNIFE = registerIdAsName("golden_knife", getCraftingToolItem(1f, 2.5d, Tiers.GOLD, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.GOLD.getUses() / 2)));
     public static final Supplier<CraftingToolItem> IRON_KNIFE = registerIdAsName("iron_knife", getCraftingToolItem(1f, 2.5d, Tiers.IRON, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.IRON.getUses() / 2)));
     public static final Supplier<CraftingToolItem> DIAMOND_KNIFE = registerIdAsName("diamond_knife", getCraftingToolItem(1f, 2.5d, Tiers.DIAMOND, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.DIAMOND.getUses() / 2)));
-    public static final Supplier<CraftingToolItem> NETHERITE_KNIFE = registerIdAsName("netherite_knife", getCraftingToolItem(1f, 2.5d, Tiers.NETHERITE, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.IRON.getUses())));
+    public static final Supplier<CraftingToolItem> NETHERITE_KNIFE = registerIdAsName("netherite_knife", getCraftingToolItem(1f, 2.5d, Tiers.NETHERITE, HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(Tiers.NETHERITE.getUses())));
+
+    public static Supplier<CraftingToolItem> ROSE_GOLD_KNIFE = null;
+    static {
+        if (Platform.isModLoaded("plus"))
+        {
+            ROSE_GOLD_KNIFE = registerIdAsName("rose_gold_knife", getCraftingToolItem(1f, 2.5d, PlusExtraCommon.getRoseGoldTier(), HNCBlockTags.MINEABLE_WITH_KNIFE, prop -> prop.defaultDurability(PlusExtraCommon.getRoseGoldTier().getUses())));
+        }
+    }
 
     // Foods
     public static final Supplier<Item> CHEESE_SLICE = registerIdAsName("cheese_slice", prop -> new Item(prop.food(HNCFoods.CHEESE_SLICE).stacksTo(32)));

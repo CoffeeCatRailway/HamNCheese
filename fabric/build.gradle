@@ -82,6 +82,8 @@ dependencies {
     }
     modRuntimeOnly "curse.maven:xaeros-minimap-263420:${rootProject.xaerosFabricVersion}"
 
+    modImplementation "curse.maven:plus-extra-658043:${rootProject.plusExtraFabricVersion}"
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }

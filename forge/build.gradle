@@ -68,6 +68,8 @@ dependencies {
     modRuntimeOnly "curse.maven:configured-457570:${rootProject.configuredVersion}"
     modRuntimeOnly "curse.maven:xaeros-minimap-263420:${rootProject.xaerosForgeVersion}"
 
+    modImplementation "curse.maven:plus-extra-658043:${rootProject.plusExtraForgeVersion}"
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }

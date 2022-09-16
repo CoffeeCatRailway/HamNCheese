@@ -67,6 +67,7 @@ public class HNCModels extends PollinatedModelProvider
             this.generateFlatItem(HNCItems.IRON_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
             this.generateFlatItem(HNCItems.DIAMOND_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
             this.generateFlatItem(HNCItems.NETHERITE_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+            this.generateFlatItem(HNCItems.ROSE_GOLD_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
             // Foods
             this.generateFlatItem(HNCItems.CHEESE_SLICE.get(), ModelTemplates.FLAT_ITEM);

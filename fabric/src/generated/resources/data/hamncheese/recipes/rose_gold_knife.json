@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "knife",
+  "pattern": [
+    " i ",
+    "s  "
+  ],
+  "key": {
+    "s": {
+      "tag": "hamncheese:wooden_sticks"
+    },
+    "i": {
+      "tag": "c:rose_gold_ingots"
+    }
+  },
+  "result": {
+    "item": "hamncheese:rose_gold_knife"
+  }
+}

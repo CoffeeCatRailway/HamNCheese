@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.hamncheese.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.PollinatedRecipeProvider;
 import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.compat.PlusExtraCommon;
 import io.github.coffeecatrailway.hamncheese.data.gen.recipes.ChoppingBoardRecipeBuilder;
 import io.github.coffeecatrailway.hamncheese.data.gen.recipes.PopcornRecipeBuilder;
 import io.github.coffeecatrailway.hamncheese.registry.HNCBlocks;
@@ -81,6 +82,8 @@ public class HNCRecipeProvider extends PollinatedRecipeProvider
         ShapedRecipeBuilder.shaped(HNCItems.DIAMOND_KNIFE.get()).group("knife").define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('i', HNCItemTags.DIAMONDS_COMMON).pattern(" i ").pattern("s  ")
                 .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_diamond", has(HNCItemTags.DIAMONDS_COMMON)).save(consumer);
         netheriteSmithing(consumer, HNCItems.DIAMOND_KNIFE.get(), HNCItems.NETHERITE_KNIFE.get());
+        ShapedRecipeBuilder.shaped(HNCItems.ROSE_GOLD_KNIFE.get()).group("knife").define('s', HNCItemTags.WOODEN_STICKS_COMMON).define('i', PlusExtraCommon.getRoseGoldIngotTag()).pattern(" i ").pattern("s  ")
+                .unlockedBy("has_sticks", has(HNCItemTags.WOODEN_STICKS_COMMON)).unlockedBy("has_diamond", has(PlusExtraCommon.getRoseGoldIngotTag())).save(consumer);
 
         /*
          * Foods
