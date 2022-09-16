@@ -1,12 +1,12 @@
 {
     "variants": {
-        "hamncheese:textures/entity/mouse/black.png": "sprite:hamncheese/mouse_black.png",
-        "hamncheese:textures/entity/mouse/brown.png": "sprite:hamncheese/mouse_brown.png",
-        "hamncheese:textures/entity/mouse/patch_black_white.png": "sprite:hamncheese/mouse_patch_black_white.png",
-        "hamncheese:textures/entity/mouse/patch_brown_white.png": "sprite:hamncheese/mouse_patch_brown_white.png",
-        "hamncheese:textures/entity/mouse/pump_white.png": "sprite:hamncheese/mouse_pump_white.png",
-        "hamncheese:textures/entity/mouse/tan_black.png": "sprite:hamncheese/mouse_tan_black.png",
-        "hamncheese:textures/entity/mouse/tri_color.png": "sprite:hamncheese/mouse_tri_color.png",
-        "default": "sprite:hamncheese/mouse_white.png"
+        "hamncheese:textures/entity/mouse/black.png": "normal_sprite:hamncheese/mouse_black.png",
+        "hamncheese:textures/entity/mouse/brown.png": "normal_sprite:hamncheese/mouse_brown.png",
+        "hamncheese:textures/entity/mouse/patch_black_white.png": "normal_sprite:hamncheese/mouse_patch_black_white.png",
+        "hamncheese:textures/entity/mouse/patch_brown_white.png": "normal_sprite:hamncheese/mouse_patch_brown_white.png",
+        "hamncheese:textures/entity/mouse/pump_white.png": "normal_sprite:hamncheese/mouse_pump_white.png",
+        "hamncheese:textures/entity/mouse/tan_black.png": "normal_sprite:hamncheese/mouse_tan_black.png",
+        "hamncheese:textures/entity/mouse/tri_color.png": "normal_sprite:hamncheese/mouse_tri_color.png",
+        "default": "normal_sprite:hamncheese/mouse_white.png"
     }
 }
