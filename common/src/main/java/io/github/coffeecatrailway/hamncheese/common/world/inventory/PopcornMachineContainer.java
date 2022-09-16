@@ -1,7 +1,7 @@
 package io.github.coffeecatrailway.hamncheese.common.world.inventory;
 
 import com.mojang.datafixers.util.Pair;
-import io.github.coffeecatrailway.hamncheese.HamNCheese;
+import io.github.coffeecatrailway.hamncheese.client.HamNCheeseClient;
 import io.github.coffeecatrailway.hamncheese.common.block.entity.PopcornMachineBlockEntity;
 import io.github.coffeecatrailway.hamncheese.registry.HNCCriterionTriggers;
 import io.github.coffeecatrailway.hamncheese.registry.HNCItems;
@@ -52,7 +52,7 @@ public class PopcornMachineContainer extends AbstractContainerMenu
             @Environment(EnvType.CLIENT)
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon()
             {
-                return Pair.of(InventoryMenu.BLOCK_ATLAS, HamNCheese.EMPTY_SLOT_KERNELS);
+                return Pair.of(InventoryMenu.BLOCK_ATLAS, HamNCheeseClient.EMPTY_SLOT_KERNELS);
             }
         });
         this.addSlot(new Slot(this.container, 1, 42, 32)
@@ -60,7 +60,7 @@ public class PopcornMachineContainer extends AbstractContainerMenu
             @Environment(EnvType.CLIENT)
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon()
             {
-                return Pair.of(InventoryMenu.BLOCK_ATLAS, HamNCheese.EMPTY_SLOT_FLAVOUR);
+                return Pair.of(InventoryMenu.BLOCK_ATLAS, HamNCheeseClient.EMPTY_SLOT_FLAVOUR);
             }
         });
         this.addSlot(new Slot(this.container, 2, 46, 52)
@@ -68,7 +68,7 @@ public class PopcornMachineContainer extends AbstractContainerMenu
             @Environment(EnvType.CLIENT)
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon()
             {
-                return Pair.of(InventoryMenu.BLOCK_ATLAS, HamNCheese.EMPTY_SLOT_SEASONING);
+                return Pair.of(InventoryMenu.BLOCK_ATLAS, HamNCheeseClient.EMPTY_SLOT_SEASONING);
             }
         });
         this.addSlot(new Slot(this.container, 3, 121, 55)
@@ -82,7 +82,7 @@ public class PopcornMachineContainer extends AbstractContainerMenu
             @Environment(EnvType.CLIENT)
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon()
             {
-                return Pair.of(InventoryMenu.BLOCK_ATLAS, HamNCheese.EMPTY_SLOT_BAG);
+                return Pair.of(InventoryMenu.BLOCK_ATLAS, HamNCheeseClient.EMPTY_SLOT_BAG);
             }
         });
         this.addSlot(new ResultSlot(playerInventory.player, this.container, 4, 121, 29)
