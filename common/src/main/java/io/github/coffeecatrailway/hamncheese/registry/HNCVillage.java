@@ -40,19 +40,19 @@ public class HNCVillage
     protected static final PollinatedRegistry<PoiType> POI_TYPES = PollinatedRegistry.create(Registry.POINT_OF_INTEREST_TYPE, HamNCheese.MOD_ID);
     protected static final PollinatedRegistry<VillagerProfession> PROFESSIONS = PollinatedRegistry.create(Registry.VILLAGER_PROFESSION, HamNCheese.MOD_ID);
 
-    public static final Supplier<PoiType> CHEF_POI = registerPoi("chef", HNCBlocks.CHOPPING_BOARDS.stream().flatMap(board -> board.getStateDefinition().getPossibleStates().stream()).collect(Collectors.toSet()), 1, 1);
+    public static final Supplier<PoiType> CHEF_POI = registerPoi("chef", () -> HNCBlocks.CHOPPING_BOARDS.get().stream().flatMap(board -> board.getStateDefinition().getPossibleStates().stream()).collect(Collectors.toSet()), 1, 1);
     public static final Supplier<VillagerProfession> CHEF = registerProfession("chef", CHEF_POI, SoundEvents.VILLAGER_WORK_BUTCHER);
 
     private static Supplier<VillagerProfession> registerProfession(String id, Supplier<PoiType> poi, SoundEvent sound)
     {
-        Supplier<VillagerProfession> object = PROFESSIONS.register(id, () -> new VillagerProfession(id, poi.get(), ImmutableSet.of(), ImmutableSet.of(), sound));
+        Supplier<VillagerProfession> object = PROFESSIONS.register(id, () -> new VillagerProfession(HamNCheese.getLocation(id).toString(), poi.get(), ImmutableSet.of(), ImmutableSet.of(), sound));
         HNCLanguage.PROFESSIONS.put(object, HNCLanguage.capitalize(id));
         return object;
     }
 
-    private static Supplier<PoiType> registerPoi(String id, Set<BlockState> matchingStates, int maxTickets, int validRange)
+    private static Supplier<PoiType> registerPoi(String id, Supplier<Set<BlockState>> matchingStates, int maxTickets, int validRange)
     {
-        return POI_TYPES.register(id, () -> PoiType.registerBlockStates(new PoiType(id, matchingStates, maxTickets, validRange)));
+        return POI_TYPES.register(id, () -> PoiType.registerBlockStates(new PoiType(HamNCheese.getLocation(id).toString(), matchingStates.get(), maxTickets, validRange)));
     }
 
     /**

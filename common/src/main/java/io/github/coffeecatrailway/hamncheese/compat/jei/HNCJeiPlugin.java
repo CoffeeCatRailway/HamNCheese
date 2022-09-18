@@ -126,7 +126,7 @@ public class HNCJeiPlugin implements IModPlugin
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.GRILL.get()), GRILL);
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.PIZZA_OVEN.get()), OVEN);
         reg.addRecipeCatalyst(new ItemStack(HNCBlocks.POPCORN_MACHINE.get()), POPCORN);
-        HNCBlocks.CHOPPING_BOARDS.forEach(board -> reg.addRecipeCatalyst(new ItemStack(board), CHOPPING_BOARD));
+        HNCBlocks.CHOPPING_BOARDS.get().forEach(board -> reg.addRecipeCatalyst(new ItemStack(board), CHOPPING_BOARD));
     }
 
     @Override

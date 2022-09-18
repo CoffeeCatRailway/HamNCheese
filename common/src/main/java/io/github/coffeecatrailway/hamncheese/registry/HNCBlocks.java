@@ -85,7 +85,7 @@ public class HNCBlocks
 
     public static final Supplier<TreeTapBlock> TREE_TAP = registerWithItem("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5f, 6f).sound(SoundType.METAL)), prop -> prop.stacksTo(16));
 
-    public static final Set<Block> CHOPPING_BOARDS = Registry.BLOCK.stream().filter(block -> block instanceof ChoppingBoardBlock).collect(Collectors.toSet());
+    public static final Supplier<Set<Block>> CHOPPING_BOARDS = () -> Registry.BLOCK.stream().filter(block -> block instanceof ChoppingBoardBlock).collect(Collectors.toSet());
 
     private static Supplier<RotatedPillarBlock> registerLog(String id, MaterialColor color)
     {

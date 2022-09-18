@@ -67,7 +67,7 @@ public class ChoppingBoardRecipeCategory implements IRecipeCategory<ChoppingBoar
     {
         builder.addSlot(RecipeIngredientRole.INPUT, 8, 19).addIngredients(recipe.getIngredient());
         builder.addSlot(RecipeIngredientRole.INPUT, 31, 8).addIngredients(recipe.getTool());
-        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 31, 30).addIngredients(VanillaTypes.ITEM_STACK, HNCBlocks.CHOPPING_BOARDS.stream().map(ItemStack::new).toList());
+        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 31, 30).addIngredients(VanillaTypes.ITEM_STACK, HNCBlocks.CHOPPING_BOARDS.get().stream().map(ItemStack::new).toList());
         builder.addSlot(RecipeIngredientRole.OUTPUT, 54, 19).addIngredient(VanillaTypes.ITEM_STACK, recipe.getResultItem());
     }
 }
