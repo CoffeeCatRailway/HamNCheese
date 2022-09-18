@@ -55,8 +55,10 @@ dependencies {
 
     modApi "gg.moonflower:pollen-forge:${rootProject.pollenVersion}+${rootProject.minecraftVersion}"
 
-    modCompileOnlyApi "mezz.jei:jei-${rootProject.minecraftVersion}-forge-api:${rootProject.jeiVersion}"
-    modRuntimeOnly "mezz.jei:jei-${rootProject.minecraftVersion}-forge:${rootProject.jeiVersion}"
+    // Commented out on forge because it doesn't want to work...
+//    modCompileOnly "mezz.jei:jei-${rootProject.minecraftVersion}-common-api:${rootProject.jeiVersion}"
+//    modCompileOnly "mezz.jei:jei-${rootProject.minecraftVersion}-forge-api:${rootProject.jeiVersion}"
+//    modRuntimeOnly "mezz.jei:jei-${rootProject.minecraftVersion}-forge:${rootProject.jeiVersion}"
 
     modCompileOnly "mcp.mobius.waila:wthit-api:forge-${rootProject.wthitVersion}"
     modRuntimeOnly "mcp.mobius.waila:wthit:forge-${rootProject.wthitVersion}"
