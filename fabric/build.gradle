@@ -84,6 +84,8 @@ dependencies {
 
     modImplementation "curse.maven:plus-extra-658043:${rootProject.plusExtraFabricVersion}"
 
+    modImplementation "curse.maven:smooth-boot-415758:${rootProject.smoothBootFabricVersion}"
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }

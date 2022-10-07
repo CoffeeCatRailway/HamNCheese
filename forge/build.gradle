@@ -72,6 +72,8 @@ dependencies {
 
     modImplementation "curse.maven:plus-extra-658043:${rootProject.plusExtraForgeVersion}"
 
+//    modImplementation "curse.maven:smooth-boot-reloaded-633412:${rootProject.smoothBootForgeVersion}"
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }
